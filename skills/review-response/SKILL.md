@@ -1,11 +1,11 @@
 ---
 name: review-response
-description: Handle review feedback on code, docs, or plans. Use when a comment must be verified before accepting it or pushing back with evidence.
+description: Handle review feedback on code, docs, or plans. Use when `review` findings must be verified and resolved before work can close.
 ---
 
 # Review Response
 
-Complements `review`: `review` finds issues; this handles feedback after review.
+`review` finds issues; this handles them without guesswork.
 
 ## Quick Start
 
@@ -15,15 +15,17 @@ Verify against artifact/codebase -> classify correct/incorrect/unclear -> fix or
 
 ## Core Loop
 
-1. Verify the comment against the actual code, doc, plan, diff, or requirement.
-   For external review, also verify any proposed remedy fits this codebase's constraints.
-2. Classify it: `correct`, `incorrect`, `mixed`, or `unclear`.
-3. Act:
-    - `correct`: make the smallest good fix
-    - `incorrect`: push back with concrete evidence
-    - `mixed`: separate issue from remedy; accept the valid part, reject the invalid part with evidence
-    - `unclear`: ask a narrow clarifying question
-4. Re-verify any accepted change before reporting back; if the change may expose broader issues, hand off to `review`.
+- Use `review-response` for execution findings or explicit review feedback.
+- Verify each item against the code, diff, tests, plan, or requirement before agreeing.
+- Classify it: `correct`, `incorrect`, `mixed`, or `unclear`.
+- `correct`: make the smallest good fix.
+- `incorrect`: push back with concrete evidence.
+- `mixed`: accept the valid issue, reject the bad remedy with evidence.
+- `unclear`: ask one narrow question.
+- Handle one finding at a time unless items are tightly coupled.
+- Re-verify every accepted fix before reporting back.
+- If code, doc, or plan changes were made, return to `review` until clear.
+- If findings conflict or the loop stops converging, escalate instead of churning.
 
 ## Rules
 
@@ -31,7 +33,6 @@ Verify against artifact/codebase -> classify correct/incorrect/unclear -> fix or
 - No performative gratitude or deference. Be direct.
 - Keep replies concise, direct, and low-context.
 - Prefer artifact evidence: code, tests, docs, diffs, commands, requirements.
-- Handle one item at a time unless items may be coupled; verify the set before changing any.
 - For "more proper/professional" feedback, require a concrete correctness, clarity, policy, or usage problem before expanding scope.
 - Works for high-value docs/plans too; verify against source material, not vibes.
 

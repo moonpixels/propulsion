@@ -1,41 +1,42 @@
 ---
 name: review
-description: Analyze code, plans, or other high-value artifacts for regressions, weak verification, plan drift, or risky changes. Use when a concise quality gate is needed.
+description: Analyze code, plans, or other high-value artifacts for regressions, weak verification, plan drift, or risky changes. Use when execution work or high-value artifacts must pass review before closure.
 ---
 
 # Review
 
-Reusable critique loop for implementation and planning. Findings first. Short summary only.
+Findings-first quality gate for execution and planning.
 
 ## Quick Start
 
 ```text
-Collect source of truth + artifact + verification evidence -> review -> report only findings by severity -> fix -> re-review until clear
+Collect contract + artifact + fresh evidence -> review -> report findings by severity -> route them through `review-response` -> re-review until clear
 ```
 
 ## Inputs
 
-- Review against the artifact's contract: approved plan, task, diff, doc, or stated requirements.
-- If the contract is missing, incomplete, or unapproved, stop. Ask for the source of truth or route back to `planning`/the user; do not invent standards.
-- Pull in fresh verification evidence when available; missing evidence is itself a finding.
-- Prefer subagent review when the platform supports it.
+- Use `review` after each completed execution task or slice and for explicit review requests.
+- For execution work, inputs are the approved task contract, the relevant diff or artifact, and fresh verification evidence.
+- If the contract or evidence is missing, that is itself a finding. Do not invent standards.
+- Prefer a fresh reviewer subagent when the platform supports it; use inline review only as fallback.
 
 ## Review Order
 
 - Start with issues only, ordered: Critical, Important, Minor.
-- Prioritize regressions, missing verification, plan drift, risky behavior, and requirement gaps.
+- Prioritize regressions, requirement gaps, plan drift, weak verification, risky behavior, and unnecessary scope.
 - For code, inspect behavior changes, regressions, weak tests, and risky implementation choices.
-- For plans/docs, inspect decision clarity, phase order, touch-point precision, review/verification quality, and whether the artifact is execution-ready.
+- For plans/docs, inspect decision clarity, phase order, touch-point precision, review quality, and execution readiness.
 - For each finding: state impact, cite exact file/section when possible, judge whether it deviates from the source of truth, and say what is missing or wrong.
 - When the corrective step is obvious, include it briefly after the finding; do not let remediation overshadow the issue.
 - Keep the closing summary to 1-2 lines.
 
 ## Loop
 
-- Use review repeatedly, not only at the end: after meaningful implementation slices and after drafting high-value written artifacts.
-- Default pattern: implement or draft -> review -> fix -> re-review.
-- If findings show the artifact needs new scope, missing decisions, or structural redirection, stop the critique loop and route to `planning` or the user for replanning.
-- Do not wave through work with unresolved Critical or Important findings.
+- Reviewer returns one status: `clear`, `findings`, or `unclear`.
+- `clear` means no unresolved Critical or Important issues.
+- `findings` route to `review-response`; accepted fixes return here after re-verification.
+- `unclear` means review cannot finish without a narrow question or missing artifact.
+- If findings show the artifact needs new scope, missing decisions, or structural redirection, stop the loop and route to `planning` or the user.
 
 ## Guardrails
 
