@@ -36,6 +36,8 @@ Add Propulsion to the `plugin` field in `~/.config/opencode/opencode.json`:
 - auto-injects the `workflow` skill once per session
 - keeps the bootstrap limited to `workflow` only
 
+Optional additional OpenCode-only skills and commands are documented separately in [`additional/README.md`](../additional/README.md).
+
 Non-OpenCode agents should install Propulsion with:
 
 ```bash
