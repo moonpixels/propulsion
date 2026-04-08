@@ -32,7 +32,7 @@ Add Propulsion to the `plugin` field in `~/.config/opencode/opencode.json`:
 - auto-injects the `workflow` skill once per session as the active workflow contract
 - keeps the bootstrap limited to that single `workflow` skill; downstream skills are still loaded on demand
 
-The injected `workflow` body is not passive reference text. It is the session contract that tells the agent to route work through the Propulsion lifecycle and load the detailed downstream skills only when the current stage calls for them.
+The injected `workflow` body is not passive reference text. It is the session contract that tells the agent to route work through the Propulsion lifecycle, require `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md` then `docs/propulsion/{yyyymmdd}-{plan-name}/plan.md` on non-trivial work, require the planning reviewer-subagent loop before plan approval, keep routing with the main agent, and load the detailed downstream skills only when the current stage calls for them.
 
 Optional additional OpenCode-only skills and commands are documented separately in [`additional/README.md`](../additional/README.md).
 
