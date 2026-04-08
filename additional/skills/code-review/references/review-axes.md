@@ -31,6 +31,7 @@ Use these axes to review the diff like a senior engineer while staying high-sign
 - `encapsulation`: internals or policy leak into callers that should not own them
 - `complexity-management`: the diff adds branching, coupling, or coordination cost beyond what the change needs
 - `abstraction-leakage`: the caller now knows details that should stay behind the abstraction boundary
+
 ## When to reject a candidate even if it sounds smart
 
 - The complaint is mostly aesthetic.

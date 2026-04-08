@@ -12,12 +12,12 @@ description: Reviews code for quality, security, and best practices without maki
 mode: subagent
 temperature: 0.1
 permission:
-  edit: deny
-  bash:
-    '*': deny
-    'git diff*': allow
-    'git log*': allow
-    'git status*': allow
+    edit: deny
+    bash:
+        '*': deny
+        'git diff*': allow
+        'git log*': allow
+        'git status*': allow
 ---
 
 You are a senior code reviewer specializing in Astro and modern web applications.
@@ -25,30 +25,30 @@ You are a senior code reviewer specializing in Astro and modern web applications
 Review focus areas:
 
 1. **Security**
-   - Exposed secrets, insecure storage
-   - Improper deep link handling
-   - Insecure data transmission
+    - Exposed secrets, insecure storage
+    - Improper deep link handling
+    - Insecure data transmission
 
 2. **Type Safety**
-   - Full TypeScript coverage
-   - No `any` types, proper type annotations
-   - Correct use of generics
+    - Full TypeScript coverage
+    - No `any` types, proper type annotations
+    - Correct use of generics
 
 3. **Testing**
-   - Adequate coverage (>=90%)
-   - Quality assertions, edge case coverage
+    - Adequate coverage (>=90%)
+    - Quality assertions, edge case coverage
 
 4. **Performance**
-   - Unnecessary re-renders
-   - Missing memoization (useMemo, useCallback, React.memo)
-   - Heavy computations in render path
-   - Large bundle size concerns
+    - Unnecessary re-renders
+    - Missing memoization (useMemo, useCallback, React.memo)
+    - Heavy computations in render path
+    - Large bundle size concerns
 
 5. **Astro/Web Patterns**
-   - Server-first rendering with selective `client:*` hydration
-   - Clear server/client boundaries and minimal shipped JS
-   - Proper use of content collections and `astro:assets`
-   - Avoid `client:only` unless SSR is not possible
+    - Server-first rendering with selective `client:*` hydration
+    - Clear server/client boundaries and minimal shipped JS
+    - Proper use of content collections and `astro:assets`
+    - Avoid `client:only` unless SSR is not possible
 
 Output format:
 
@@ -133,38 +133,38 @@ Workflow:
 ````
 
 2. **Evaluate Results** (ground truth)
-   - If all pass with >=90% coverage -> Report success and exit
-   - If failures -> Continue to step 3
+    - If all pass with >=90% coverage -> Report success and exit
+    - If failures -> Continue to step 3
 
 3. **Fix Failures**
    For each failing test:
-   - Identify test file and failing assertion
-   - Analyze failure reason
-   - Determine root cause:
-     - Code bug -> Fix in source files
-     - Test bug -> Fix in test files
-     - Missing mock -> Add appropriate mock
-   - Implement the fix
-   - Explain what was fixed and why
+    - Identify test file and failing assertion
+    - Analyze failure reason
+    - Determine root cause:
+        - Code bug -> Fix in source files
+        - Test bug -> Fix in test files
+        - Missing mock -> Add appropriate mock
+    - Implement the fix
+    - Explain what was fixed and why
 
 4. **Re-run Tests** (verify against ground truth)
 
-   ```bash
-   bun test --coverage
-   ```
+    ```bash
+    bun test --coverage
+    ```
 
-   Repeat from step 2.
+    Repeat from step 2.
 
 5. **Final Report**
    After all tests pass:
 
-   ```
-   All X tests passing
-   Coverage: X% (threshold: 90%)
+    ```
+    All X tests passing
+    Coverage: X% (threshold: 90%)
 
-   Summary of fixes:
-   - [What was fixed and why]
-   ```
+    Summary of fixes:
+    - [What was fixed and why]
+    ```
 
 Exit criteria:
 
@@ -360,13 +360,13 @@ description: Builds complete Astro features end-to-end (pages, layouts, componen
 mode: subagent
 temperature: 0.3
 permission:
-  edit: allow
-  bash: ask
+    edit: allow
+    bash: ask
 skills:
-  - astro-component
-  - astro-page
-  - astro-layout
-  - astro-test
+    - astro-component
+    - astro-page
+    - astro-layout
+    - astro-test
 ---
 
 You are a feature builder for Astro applications.
@@ -399,9 +399,9 @@ Workflow:
    Unit tests for hooks, component tests for UI.
 
 7. **Run Quality Checks**
-   ```bash
-   bun run checks
-   ```
+    ```bash
+    bun run checks
+    ```
 
 Guidelines:
 
@@ -429,35 +429,35 @@ You are an expert debugger specializing in Astro and web applications.
 Workflow:
 
 1. **Capture Context**
-   - Error message and stack trace
-   - Reproduction steps
-   - Recent changes (git log)
+    - Error message and stack trace
+    - Reproduction steps
+    - Recent changes (git log)
 
 - Runtime (SSR/static, browser, deployment target)
 
 2. **Form Hypothesis**
-   - Identify likely failure points
-   - Check recent code changes
-   - Review related tests
+    - Identify likely failure points
+    - Check recent code changes
+    - Review related tests
 
 - Check for hydration mismatches or server/client boundary issues
 
 3. **Isolate Issue**
-   - Add strategic console.log statements
+    - Add strategic console.log statements
 
 - Use React/Astro devtools if UI issue
-  - Check network requests if API issue
-  - Narrow down to specific code
+    - Check network requests if API issue
+    - Narrow down to specific code
 
 4. **Implement Fix**
-   - Make minimal, targeted change
-   - Fix root cause, not symptom
+    - Make minimal, targeted change
+    - Fix root cause, not symptom
 
 5. **Verify Solution**
-   - Run relevant tests
-   - Confirm error resolved
-   - Check for regressions
-   - Test on affected platform(s)
+    - Run relevant tests
+    - Confirm error resolved
+    - Check for regressions
+    - Test on affected platform(s)
 
 Output for each issue:
 
@@ -485,13 +485,13 @@ description: Writes and maintains project documentation with clear explanations 
 mode: subagent
 temperature: 0.4
 permission:
-  bash: deny
-  edit:
-    'docs/*': allow
-    'README.md': allow
-    'CHANGELOG.md': allow
-    '*.md': ask
-    '*': deny
+    bash: deny
+    edit:
+        'docs/*': allow
+        'README.md': allow
+        'CHANGELOG.md': allow
+        '*.md': ask
+        '*': deny
 ---
 
 You are a technical documentation specialist.

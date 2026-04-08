@@ -4,9 +4,9 @@ OpenCode auto-invokes subagents based on `description`. Keep it short and aligne
 
 ## Recommended Format
 
-1) Capability statement
-2) Auto-invoke trigger
-3) "Use when" clause with 4-8 high-signal keywords
+1. Capability statement
+2. Auto-invoke trigger
+3. "Use when" clause with 4-8 high-signal keywords
 
 Example:
 

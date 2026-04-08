@@ -19,10 +19,10 @@ Verify against artifact/codebase -> classify correct/incorrect/unclear -> fix or
    For external review, also verify any proposed remedy fits this codebase's constraints.
 2. Classify it: `correct`, `incorrect`, `mixed`, or `unclear`.
 3. Act:
-   - `correct`: make the smallest good fix
-   - `incorrect`: push back with concrete evidence
-   - `mixed`: separate issue from remedy; accept the valid part, reject the invalid part with evidence
-   - `unclear`: ask a narrow clarifying question
+    - `correct`: make the smallest good fix
+    - `incorrect`: push back with concrete evidence
+    - `mixed`: separate issue from remedy; accept the valid part, reject the invalid part with evidence
+    - `unclear`: ask a narrow clarifying question
 4. Re-verify any accepted change before reporting back; if the change may expose broader issues, hand off to `review`.
 
 ## Rules

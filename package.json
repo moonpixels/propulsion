@@ -1,6 +1,24 @@
 {
-  "name": "propulsion",
-  "version": "0.2.0",
-  "type": "module",
-  "main": ".opencode/plugins/propulsion.js"
+    "name": "propulsion",
+    "version": "0.2.0",
+    "type": "module",
+    "main": ".opencode/plugins/propulsion.ts",
+    "scripts": {
+        "checks": "bun run lint && bun run format",
+        "format": "oxfmt .",
+        "format:check": "oxfmt --check .",
+        "lint": "oxlint && bun run typecheck",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@opencode-ai/plugin": "^1.4.0"
+    },
+    "devDependencies": {
+        "@types/node": "^25.5.2",
+        "oxfmt": "^0.44.0",
+        "oxlint": "^1.59.0",
+        "oxlint-tsgolint": "^0.20.0",
+        "typescript": "^6.0.2"
+    },
+    "packageManager": "bun@1.3.11"
 }

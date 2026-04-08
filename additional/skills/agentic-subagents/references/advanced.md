@@ -7,11 +7,11 @@ Only use this when you need a strict orchestrator.
 
 ```yaml
 permission:
-  task:
-    "*": deny
-    "code-reviewer": allow
-    "test-fixer": allow
-    "security-auditor": ask
+    task:
+        '*': deny
+        'code-reviewer': allow
+        'test-fixer': allow
+        'security-auditor': ask
 ```
 
 ## Hidden Internal Helpers

@@ -4,21 +4,21 @@ Normalize all candidate findings into this shape before validation.
 
 ```json
 {
-  "file": "src/path/file.ts",
-  "line": 42,
-  "lane": "important",
-  "severity": "high",
-  "category": "duplication",
-  "summary": "Short issue title",
-  "evidence": "Quoted diff, exact rule text, quoted precedent snippet, concrete principle-backed code evidence, or explicit intent evidence",
-  "evidence_type": "intent-context",
-  "impact": "Why this matters in this codebase",
-  "confidence": 88,
-  "rule_source": "AGENTS.md:18",
-  "precedent_refs": ["src/example.ts:10", "src/example.ts:44"],
-  "intent_refs": ["PR description", "docs/propulsion/example-plan.md:12-18"],
-  "principle_basis": "DRY|single-source-of-truth|separation-of-concerns|ownership-boundary|test-protection|cohesion|encapsulation|complexity-management|abstraction-leakage",
-  "validator_verdict": "pending|confirmed|rejected"
+    "file": "src/path/file.ts",
+    "line": 42,
+    "lane": "important",
+    "severity": "high",
+    "category": "duplication",
+    "summary": "Short issue title",
+    "evidence": "Quoted diff, exact rule text, quoted precedent snippet, concrete principle-backed code evidence, or explicit intent evidence",
+    "evidence_type": "intent-context",
+    "impact": "Why this matters in this codebase",
+    "confidence": 88,
+    "rule_source": "AGENTS.md:18",
+    "precedent_refs": ["src/example.ts:10", "src/example.ts:44"],
+    "intent_refs": ["PR description", "docs/propulsion/example-plan.md:12-18"],
+    "principle_basis": "DRY|single-source-of-truth|separation-of-concerns|ownership-boundary|test-protection|cohesion|encapsulation|complexity-management|abstraction-leakage",
+    "validator_verdict": "pending|confirmed|rejected"
 }
 ```
 

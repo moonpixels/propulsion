@@ -21,9 +21,9 @@ Run multi-agent code review over repository diffs with strict false-positive con
 - For each changed file, read at most two one-hop adjacent context files when they are directly referenced, are the likely canonical home for duplicated or misplaced logic, or are explicitly linked by the PR description or reviewed contract.
 - When a PR exists, always use its title and description for intent context; only load extra planning or issue context when that artifact is explicitly linked.
 - Rule sources are hierarchical:
-  1) scoped `AGENTS.md` and `CLAUDE.md`
-  2) touched command/skill contracts in the reviewed diff
-  3) skill files loaded by touched command templates
+    1. scoped `AGENTS.md` and `CLAUDE.md`
+    2. touched command/skill contracts in the reviewed diff
+    3. skill files loaded by touched command templates
 - If multiple rule sources apply, enforce the stricter rule and cite the exact source file.
 - Treat linked references as supporting context unless they state an explicit rule or contract that can be quoted exactly.
 - Always run three lanes: `blocker`, `important`, and `advisory`.

@@ -10,6 +10,7 @@ Use one inline comment per unique validated `blocker` or `important` issue.
 This is a real issue because <objective impact>. <Short evidence-backed why-it-matters sentence>.
 
 Evidence:
+
 - Code: https://github.com/<owner>/<repo>/blob/<full_sha>/<path>#L<start>-L<end>
 - Rule (if applicable): https://github.com/<owner>/<repo>/blob/<full_sha>/<rule_path>#L<start>-L<end>
 - Precedent (if applicable): https://github.com/<owner>/<repo>/blob/<full_sha>/<precedent_path>#L<start>-L<end>

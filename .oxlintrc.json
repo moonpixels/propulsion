@@ -1,0 +1,22 @@
+{
+    "$schema": "./node_modules/oxlint/configuration_schema.json",
+    "categories": {
+        "correctness": "error",
+        "suspicious": "error"
+    },
+    "ignorePatterns": ["node_modules/**", ".opencode/node_modules/**"],
+    "options": {
+        "denyWarnings": true,
+        "reportUnusedDisableDirectives": "error",
+        "typeAware": true,
+        "typeCheck": true
+    },
+    "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "node"],
+    "rules": {
+        "@typescript-eslint/consistent-type-imports": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "import/first": "error",
+        "import/no-duplicates": "error",
+        "unicorn/prefer-node-protocol": "error"
+    }
+}

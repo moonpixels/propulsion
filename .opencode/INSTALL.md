@@ -1,6 +1,6 @@
 # OpenCode installation
 
-Propulsion's canonical skills live in the repo root at `skills/`. OpenCode support is just the adapter in `.opencode/plugins/propulsion.js`.
+Propulsion's canonical skills live in the repo root at `skills/`. OpenCode support is just the adapter in `.opencode/plugins/propulsion.ts`.
 
 ## Project installation
 
@@ -8,10 +8,8 @@ Add Propulsion to the `plugin` field in that project's `opencode.json`:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "propulsion@git+https://github.com/moonpixels/propulsion.git"
-  ]
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
 }
 ```
 
@@ -23,10 +21,8 @@ Add Propulsion to the `plugin` field in `~/.config/opencode/opencode.json`:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "propulsion@git+https://github.com/moonpixels/propulsion.git"
-  ]
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
 }
 ```
 

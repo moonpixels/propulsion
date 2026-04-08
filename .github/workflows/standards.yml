@@ -1,0 +1,41 @@
+name: Code Standards
+
+on:
+    pull_request:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: write
+
+jobs:
+    standards:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+                  ref: ${{ github.head_ref }}
+
+            - name: Setup project
+              uses: ./.github/workflows/setup-project
+
+            - name: Format code
+              run: bun run format
+
+            - name: Commit formatting changes
+              if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+              uses: stefanzweifel/git-auto-commit-action@v7
+              with:
+                  commit_message: 'Format code'
+
+            - name: Verify formatting on fork pull requests
+              if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+              run: bun run format:check
+
+            - name: Lint code
+              run: bun run lint
