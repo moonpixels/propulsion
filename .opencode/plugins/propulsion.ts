@@ -250,13 +250,17 @@ const getBootstrapContent = (): string | null => {
     const raw = fs.readFileSync(workflowPath, 'utf8');
     const { content } = extractFrontmatter(raw);
 
-    return `<IMPORTANT>
+    return `<EXTREMELY_IMPORTANT>
 ${bootstrapMarker}
 
-The workflow guidance below is the Propulsion \`workflow\` skill only. Treat it as active for this session, and only load the actual \`workflow\` skill again if you need to re-check its wording or the user explicitly asks.
+Propulsion's \`workflow\` skill is already active for this session.
+
+Treat the injected skill content below as the session contract you must follow.
+
+Do not reload \`workflow\` unless you need to re-check its wording or the user explicitly asks.
 
 ${content}
-</IMPORTANT>`;
+</EXTREMELY_IMPORTANT>`;
 };
 
 const isUserMessage = (

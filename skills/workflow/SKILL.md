@@ -1,27 +1,40 @@
 ---
 name: workflow
-description: Handle session-start routing to the right process skill. Use when a new request arrives before any response.
+description: Enforce Propulsion's session workflow and route to the right process skill. Use when a new request arrives, when deciding the next workflow stage, or when choosing which process skill to load.
 ---
 
 # Workflow
 
-## Quick Start
+## Contract
 
 ```text
-Before any response -> check whether a skill applies; if yes, load it first
-Start with these canonical routes:
+Propulsion workflow is active for this session.
+Before any substantive response or action, choose the correct process skill.
+Do not skip stages on non-trivial work.
+Done = verification passed, review clear, accepted feedback resolved.
+```
+
+## Canonical Flow
+
+```text
+Canonical lifecycle: exploration -> planning -> execution -> tdd -> review -> review-response -> done
+Unknown-cause bug, failing test, or unexpected behavior -> debugging first, then return to the lifecycle
 New or unclear work -> exploration
-Approved approach, need a written plan -> planning
-Unknown cause, failing test, or unexpected behavior -> debugging
-Behavior change or bugfix implementation with no approved plan -> tdd
+Approved direction -> planning
+Trivial, clearly-scoped, low-risk work that is safe without a multi-step plan -> execution
 Approved plan -> execution
-Completed changes or explicit review request -> review
-Review feedback -> review-response
+Behavior-changing implementation inside execution -> tdd
+Meaningful completed work or explicit review request -> review
+Review clear -> done
+Review feedback -> review-response, then return to review until clear
 ```
 
 ## Rules
 
-- Before any response, including clarifying questions, check whether a skill applies. If yes, load it first.
-- Route to process skills first: debugging for bugs, exploration for unclear work, planning for approved multi-step work.
-- Where routes overlap: debugging before tdd when the cause is unknown; execution before tdd when there is an approved plan.
-- Keep this skill tiny; downstream skills own the process details.
+- Treat this skill as already active when bootstrapped. Reload it only to re-check wording or if the user asks.
+- Before any substantive response, action, or clarifying question, route to the right process skill first.
+- Main agent owns top-level routing and workflow state.
+- Subagents support bounded work inside the current stage; they do not restart top-level routing unless explicitly asked.
+- Planning may be skipped only for trivial, clearly-scoped, low-risk work that can be safely completed without a multi-step plan; in that case, route straight to `execution`. If that is not clearly true, do not skip stages.
+- Where routes overlap: `debugging` before `tdd` when the cause is unknown; `execution` before `tdd` when there is an approved plan; `review` before handoff after meaningful work.
+- Downstream skills own the method details. Load the chosen skill and follow it.

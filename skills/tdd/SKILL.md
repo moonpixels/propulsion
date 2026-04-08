@@ -13,6 +13,7 @@ Write 1 behavior test -> run it and watch it fail -> make it pass with the small
 
 ## Rules
 
+- Enter `tdd` for behavior-changing implementation, including work handed off from `execution` or evidence-backed fixes from `debugging`.
 - No production code before a failing test. If you wrote speculative code for the current slice, discard it and start at red.
 - One test, one change, one pass. No batch tests. No batch fixes.
 - Test public behavior through real interfaces so the test survives internal refactors.

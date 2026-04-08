@@ -8,19 +8,20 @@ description: Analyze bugs, failing tests, flaky behavior, or unexpected output r
 ## Quick Start
 
 ```text
-reproduce or capture failing evidence -> collect full error/stack + recent changes -> compare broken vs working -> trace to source -> state root-cause hypothesis -> add failing test when behavior changes -> make smallest fix at source -> verify original repro or failing case
+reproduce or capture failing evidence -> collect full error/stack + recent changes -> compare broken vs working -> trace to source -> state root-cause hypothesis -> if behavior must change, hand off to `tdd` for the regression-test-first fix -> verify original repro or failing case
 ```
 
 ## Required Order
 
+- When the cause is unknown, `debugging` is the required first route. Do not jump straight to `tdd` or a fix.
 - Reproduce first. If intermittent, capture failing evidence and narrow the conditions first. No fixes, guesses, or design advice before that.
 - Gather evidence before proposing fixes: full error/stack, inputs, outputs, logs, failing path, recent changes.
 - Compare broken vs working paths when possible; differences beat speculation.
 - For multi-step systems, instrument boundaries between steps to find where reality diverges from expectation.
 - Trace the failure to the source before editing; fix the source, not a downstream symptom.
 - State the root-cause hypothesis before editing: `Hypothesis: X breaks because Y.`
-- If behavior changes, add a regression test first; use `tdd` for the loop.
-- Make the smallest fix that matches the evidence and hypothesis.
+- After an evidence-backed diagnosis, behavior changes should add a regression test first and use `tdd` for the loop.
+- If the fix does not change behavior, make the smallest fix that matches the evidence and hypothesis. Otherwise stop after diagnosis and hand off to `tdd`.
 
 ## Red Flags
 

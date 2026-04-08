@@ -5,7 +5,7 @@ description: Execute an approved plan one task at a time with review loops. Use 
 
 # Execution
 
-Run the current plan, not a fresh design pass.
+Run the approved execution slice, not a fresh design pass.
 
 ## Quick Start
 
@@ -15,10 +15,11 @@ Read the current task and its verification/review steps -> execute it via subage
 
 ## Start Here
 
-- Read the current plan task before editing.
-- Read that task's verification steps and review checkpoints before editing.
+- Enter from an approved plan task or from `workflow` routing a trivial, clearly-scoped, low-risk slice straight here.
+- Read the current task or direct-execution slice before editing.
+- Read that slice's verification steps and review checkpoints before editing.
 - Follow the task's written steps closely; if you need to change the sequence or intent, stop and ask.
-- Review it critically. If the plan is wrong, missing detail, or no longer fits the repo, stop and ask.
+- Review it critically. If the plan or direct-execution slice is wrong, missing detail, or no longer fits the repo, stop and ask.
 - Keep exactly one task in progress at a time.
 
 ## Execution Mode
@@ -27,6 +28,7 @@ Read the current task and its verification/review steps -> execute it via subage
 - Use inline execution only as fallback.
 - In either mode, make the smallest correct change needed for the current task.
 - Execution follows the approved plan; when a task changes behavior, use `tdd` to implement that task within this flow.
+- A task is not done until its required verification passes and `review` is clear.
 
 ## Review Loop
 
@@ -36,7 +38,7 @@ Read the current task and its verification/review steps -> execute it via subage
 - Fix findings, then run `review` again. Repeat until clear.
 - If verification keeps failing and the next fix is not evidence-backed, stop and surface the blocker.
 - Route meaningful completed work through `review`; no silent handoff.
-- If feedback is unclear, disputed, or risky, use `review-response` before proceeding.
+- Route review feedback through `review-response`, then return to `review` until clear.
 - Do not move to the next task with open review findings.
 
 ## Scope Guardrails

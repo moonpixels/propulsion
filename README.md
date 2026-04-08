@@ -62,7 +62,11 @@ Add Propulsion to the `plugin` field in `~/.config/opencode/opencode.json`:
 }
 ```
 
-The plugin exposes the top-level Propulsion skills and auto-bootstraps `workflow` once per session.
+The plugin exposes the top-level Propulsion skills and injects the `workflow` skill once per session as the active workflow contract.
+
+That single bootstrapped skill tells the agent how to move through Propulsion's lifecycle: route unclear work through exploration, write plans before multi-step implementation, execute approved plans in tight loops, send behavior changes through `tdd`, review meaningful work, and handle review feedback before calling the task done.
+
+`workflow` owns stage order and handoffs; the downstream skills hold the detailed methods for each stage.
 
 See `.opencode/INSTALL.md` for the OpenCode-specific instructions.
 
