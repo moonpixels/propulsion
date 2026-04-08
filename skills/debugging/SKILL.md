@@ -1,17 +1,26 @@
 ---
 name: debugging
-description: Analyze bugs, failing tests, flaky behavior, or unexpected output root-cause-first. Use when fixes should wait for evidence.
+description: Debugs bugs, failing tests, flaky behavior, and unexpected output by finding root cause before fixing. Use when the cause is unknown and fixes should wait for evidence.
 ---
 
 # Debugging
 
+Reproduce first. Guessing is not debugging.
+
 ## Quick Start
 
 ```text
-reproduce or capture failing evidence -> collect full error/stack + recent changes -> compare broken vs working -> trace to source -> state root-cause hypothesis -> if behavior must change, hand off to `tdd` for the regression-test-first fix -> verify original repro or failing case
+reproduce or capture failing evidence -> gather facts -> compare broken vs working -> trace to source -> state one hypothesis -> fix only if evidence supports it -> verify the original repro
 ```
 
-## Required Order
+## Use When
+
+- The cause is unknown.
+- A test fails and the reason is not yet clear.
+- Behavior is flaky or output is unexpected.
+- A fix would be guesswork without evidence.
+
+## Core Loop
 
 - When the cause is unknown, `debugging` is the required first route. Do not jump straight to `tdd` or a fix.
 - Reproduce first. If intermittent, capture failing evidence and narrow the conditions first. No fixes, guesses, or design advice before that.
@@ -23,17 +32,14 @@ reproduce or capture failing evidence -> collect full error/stack + recent chang
 - After an evidence-backed diagnosis, behavior changes should add a regression test first and use `tdd` for the loop.
 - If the fix does not change behavior, make the smallest fix that matches the evidence and hypothesis. Otherwise stop after diagnosis and hand off to `tdd`.
 
-## Red Flags
+## Guardrails
 
-- “Let me try a quick fix first.”
-- “It’s probably X.”
-- Multiple edits before one clear hypothesis.
-- Fixing a symptom because the source is unclear.
-- Stacking another fix onto a failed hypothesis.
+- Do not jump straight to a fix.
+- Do not stack edits onto a failed hypothesis.
+- Do not fix symptoms because the source is unclear.
+- If you hear yourself saying "It is probably X," go back to evidence.
 
-If any appear: stop, return to reproduction and evidence.
-
-## Verification
+## Exit
 
 - Re-run the original reproduction or captured failing case after the fix.
 - Re-run the new or updated regression test.

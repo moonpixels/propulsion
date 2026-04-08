@@ -1,42 +1,48 @@
 ---
 name: workflow
-description: Enforce Propulsion's session workflow and route to the right process skill. Use when a new request arrives, when deciding the next workflow stage, or when choosing which process skill to load.
+description: Routes work to the right Propulsion process skill and enforces artifact and approval gates. Use when a session starts, work changes stage, or the next skill is unclear.
 ---
 
 # Workflow
 
-## Contract
+Route before acting. Do not start substantive work until the right process skill is active.
+
+## Quick Start
 
 ```text
-Propulsion workflow is active for this session.
-Before any substantive response, question, or action, choose the correct process skill.
-Non-trivial work must not skip required artifacts or approval gates.
-Done = verification passed, review clear, accepted feedback resolved.
+new or unclear work -> exploration
+approved prd -> planning
+approved plan or trivial safe task -> execution
+unknown-cause bug or failing test -> debugging
+behavior-changing task inside execution -> tdd
+meaningful completed work -> review
+review findings -> review-response -> review until clear
 ```
 
-## Canonical Flow
+## Use When
 
-```text
-Canonical lifecycle: exploration -> approved prd -> planning -> approved plan -> execution -> review -> review-response -> done
-Unknown-cause bug, failing test, or unexpected behavior -> debugging first, then return to the lifecycle
-New or unclear work -> exploration
-Exploration is not done until `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md` is written and user-approved
-Approved PRD -> planning
-Planning is not done until `docs/propulsion/{yyyymmdd}-{plan-name}/plan.md` is written, reviewed, and user-approved
-Trivial, clearly-scoped, low-risk work that is safe without a PRD or multi-step plan -> execution
-Approved plan -> execution
-Behavior-changing tasks inside execution -> tdd first, then return to execution/review
-Meaningful completed work or explicit review request -> review
-Review clear -> done
-Review feedback -> review-response, then return to review until clear
-```
+- Session start.
+- Before substantive questions, edits, or tool use.
+- When the next stage is unclear.
 
-## Rules
+## Routing
 
-- Treat this skill as already active when bootstrapped. Reload it only to re-check wording or if the user asks.
-- Before any substantive response, action, or clarifying question, route to the right process skill first.
-- Main agent owns top-level routing, workflow state, artifact authorship, and approval gates.
-- Subagents support bounded work inside the current stage. They may inspect, critique, or validate, but they do not advance or restart top-level routing unless explicitly asked.
-- Planning may be skipped only for trivial, clearly-scoped, low-risk work that can be safely completed without a PRD or multi-step plan; in that case, route straight to `execution`. If that is not clearly true, do not skip stages.
-- Where routes overlap: `debugging` before `tdd` when the cause is unknown; approved plans enter `execution` first and use `tdd` only for behavior-changing tasks inside that flow; `review` before handoff after meaningful work.
-- Downstream skills own the method details. Load the chosen skill and follow it.
+- `exploration`: vague requests, missing scope, missing decisions, or no approved PRD.
+- `planning`: approved `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md`.
+- `execution`: approved `plan.md`, or trivial, clearly-scoped, low-risk work that is safe without a PRD or plan.
+- `debugging`: unknown-cause bugs, failing tests, flaky behavior, or unexpected output.
+- `tdd`: behavior-changing work with a stable automated proof. Use inside `execution`, not instead of it.
+- `review`: meaningful completed work or explicit review request.
+- `review-response`: review findings or disputed feedback.
+
+## Guardrails
+
+- Main agent owns routing, artifact authorship, approval gates, and done state.
+- Subagents support the current stage only. They do not advance the workflow.
+- Do not skip `exploration` or `planning` unless the trivial-task exception is clearly true.
+- Do not use `tdd` before `debugging` when the cause is unknown.
+- Done = verification passed, review clear, accepted feedback resolved.
+
+## Exit
+
+- Load the chosen skill and follow its method.
