@@ -1,6 +1,6 @@
 ---
 name: workflow
-description: Route session work to exploration, planning, execution, tdd, debugging, review, or review-response. Use when starting a session.
+description: Handle session-start routing to the right process skill. Use when a new request arrives before any response.
 ---
 
 # Workflow
@@ -8,16 +8,20 @@ description: Route session work to exploration, planning, execution, tdd, debugg
 ## Quick Start
 
 ```text
+Before any response -> check whether a skill applies; if yes, load it first
+Start with these canonical routes:
 New or unclear work -> exploration
 Approved approach, need a written plan -> planning
+Unknown cause, failing test, or unexpected behavior -> debugging
+Behavior change or bugfix implementation with no approved plan -> tdd
 Approved plan -> execution
-Behavior change or bugfix implementation -> tdd
-Bug, failing test, or unexpected behavior -> debugging
-Meaningful changes or review request -> review
+Completed changes or explicit review request -> review
 Review feedback -> review-response
 ```
 
 ## Rules
 
-- Check whether a skill applies before acting. If yes, load it first.
+- Before any response, including clarifying questions, check whether a skill applies. If yes, load it first.
+- Route to process skills first: debugging for bugs, exploration for unclear work, planning for approved multi-step work.
+- Where routes overlap: debugging before tdd when the cause is unknown; execution before tdd when there is an approved plan.
 - Keep this skill tiny; downstream skills own the process details.

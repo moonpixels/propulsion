@@ -1,6 +1,6 @@
 ---
 name: planning
-description: Plan approved work in one execution-ready implementation doc. Use when exploration is complete and direction is approved.
+description: Create one execution-ready implementation doc for approved work. Use when exploration is complete and direction is approved.
 ---
 
 # Planning
@@ -22,18 +22,19 @@ Confirm approved direction from exploration -> inspect only files needed to lock
 ## Plan File
 
 - Write exactly one document: `docs/propulsion/{yyyymmdd}-{plan-name}.md`.
-- Keep the single-document model. Do not split into separate spec/plan files.
+- Keep the single-document model. If scope crosses multiple subsystems or is unsafe to drive from one reviewable doc, stop and route back to `exploration` to split it first.
 - Write for an execution agent with near-zero context: concise, exact, no filler.
 - Use this fixed section order: `# Title`, `## Discovery Context`, `## Decisions`, `## Architecture`, `## Repo Touch Points`, `## Execution Phases`, `## Verification`, `## Review Points`.
 
 ## Required Contents
 
 - Discovery context: problem, constraints, approved direction, rejected options, non-blocking assumptions only.
-- Architecture: module boundaries, data flow, interfaces, dependencies, migrations, rollout notes.
+- Architecture: hide complexity behind small stable testable interfaces; cover data flow, dependencies, migrations, rollout notes.
 - Exact repo touch points: files/modules to create or change, with why each one exists.
 - Execution phases: ordered delivery slices, with phased rollout when work is too large for one safe pass.
-- Verification: tests, lint, builds, manual checks, and evidence required before completion.
+- Verification: tests, prior-art tests/checks to extend or mirror, lint, builds, manual checks, and required evidence.
 - Review points: checkpoints where an execution agent should pause for review before risky or irreversible work.
+- No placeholders: ban `TBD`, `etc.`, `as needed`, `follow existing patterns`, or similar gaps.
 - If any assumption would change scope, design, or sequencing, stop and route back to `exploration`.
 
 ## Review And Handoff
@@ -47,4 +48,5 @@ Confirm approved direction from exploration -> inspect only files needed to lock
 
 - No implementation, no code edits, no commits.
 - Prefer phased delivery over one large batch when scope, risk, or review load is high.
+- Scale detail to scope; do not fill sections ceremonially when a small change needs only brief exact notes.
 - Keep wording sharp, low-context, and execution-oriented.

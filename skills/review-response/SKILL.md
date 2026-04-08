@@ -16,6 +16,7 @@ Verify against artifact/codebase -> classify correct/incorrect/unclear -> fix or
 ## Core Loop
 
 1. Verify the comment against the actual code, doc, plan, diff, or requirement.
+   For external review, also verify any proposed remedy fits this codebase's constraints.
 2. Classify it: `correct`, `incorrect`, `mixed`, or `unclear`.
 3. Act:
    - `correct`: make the smallest good fix
@@ -30,7 +31,8 @@ Verify against artifact/codebase -> classify correct/incorrect/unclear -> fix or
 - No performative gratitude or deference. Be direct.
 - Keep replies concise, direct, and low-context.
 - Prefer artifact evidence: code, tests, docs, diffs, commands, requirements.
-- Handle one item at a time unless items are obviously coupled.
+- Handle one item at a time unless items may be coupled; verify the set before changing any.
+- For "more proper/professional" feedback, require a concrete correctness, clarity, policy, or usage problem before expanding scope.
 - Works for high-value docs/plans too; verify against source material, not vibes.
 
 ## Replies

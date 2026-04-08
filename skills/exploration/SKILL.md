@@ -10,13 +10,14 @@ Turns vague work into shared understanding. Inspect first, answer what code can 
 ## Quick Start
 
 ```text
-Inspect relevant code/docs -> answer from repo first -> ask 1 question with a recommendation -> resolve that branch -> repeat until shared understanding -> hand off to planning
+Inspect relevant code/docs/recent commits -> answer from repo first -> decompose if cross-subsystem -> ask 1 question with a recommendation -> resolve that branch -> repeat until shared understanding -> hand off to planning
 ```
 
 ## Core Loop
 
-- Inspect relevant files, docs, and nearby patterns first.
+- Inspect relevant files, docs, recent commits, and nearby patterns first.
 - Do not ask what the codebase can answer.
+- If the request spans multiple subsystems, decompose it into parts and identify the first dependency or decision before deep questioning.
 - Ask one question per message. Include a recommended answer every time.
 - Interview relentlessly until the plan is understood well enough to execute.
 - Walk the design tree branch-by-branch in order: goal -> users/inputs -> boundaries -> constraints -> failure cases -> success criteria.
