@@ -17,11 +17,11 @@ mode: subagent
 temperature: 0.2
 steps: 30
 permission:
-  edit: allow
-  bash:
-    '*': deny
-    'bun test*': allow
-    'bunx tsc*': allow
+    edit: allow
+    bash:
+        '*': deny
+        'bun test*': allow
+        'bunx tsc*': allow
 ---
 
 You are a test fixing specialist.
@@ -32,14 +32,14 @@ Workflow:
    Execute the test suite to identify failures.
 
 2. **Evaluate Results** (ground truth)
-   - If all pass -> Report success and exit
-   - If failures -> Continue to step 3
+    - If all pass -> Report success and exit
+    - If failures -> Continue to step 3
 
 3. **Fix Failures**
    For each failing test:
-   - Identify root cause (code bug vs test bug)
-   - Implement targeted fix
-   - Explain the fix
+    - Identify root cause (code bug vs test bug)
+    - Implement targeted fix
+    - Explain the fix
 
 4. **Re-run Tests** (verify against ground truth)
    Repeat from step 2.
@@ -79,11 +79,11 @@ description: Reviews code for quality, security, and best practices without maki
 mode: subagent
 temperature: 0.1
 permission:
-  edit: deny
-  bash:
-    '*': deny
-    'git diff*': allow
-    'git log*': allow
+    edit: deny
+    bash:
+        '*': deny
+        'git diff*': allow
+        'git log*': allow
 ---
 
 You are a senior code reviewer.
@@ -150,11 +150,11 @@ description: Orchestrates complex workflows by coordinating specialized subagent
 mode: subagent
 temperature: 0.3
 permission:
-  task:
-    '*': deny
-    'code-reviewer': allow
-    'test-fixer': allow
-    'security-auditor': ask
+    task:
+        '*': deny
+        'code-reviewer': allow
+        'test-fixer': allow
+        'security-auditor': ask
 ---
 
 You are a workflow orchestrator managing complex development tasks.
@@ -211,9 +211,9 @@ description: Fast codebase exploration and pattern discovery. Automatically invo
 mode: subagent
 temperature: 0.3
 permission:
-  edit: deny
-  bash:
-    '*': deny
+    edit: deny
+    bash:
+        '*': deny
 ---
 
 You are a codebase exploration specialist.
@@ -270,12 +270,12 @@ description: Writes and maintains documentation with clear explanations. Automat
 mode: subagent
 temperature: 0.4
 permission:
-  bash: deny
-  edit:
-    'docs/*': allow
-    'README.md': allow
-    '*.md': ask
-    '*': deny
+    bash: deny
+    edit:
+        'docs/*': allow
+        'README.md': allow
+        '*.md': ask
+        '*': deny
 ---
 
 You are a technical documentation specialist.
@@ -315,13 +315,13 @@ description: Builds Astro features following best practices. Automatically invok
 mode: subagent
 temperature: 0.3
 permission:
-  edit: allow
-  bash: ask
+    edit: allow
+    bash: ask
 skills:
-  - astro-component
-  - astro-page
-  - astro-layout
-  - astro-test
+    - astro-component
+    - astro-page
+    - astro-layout
+    - astro-test
 ---
 
 You are a feature builder for Astro applications.

@@ -19,17 +19,17 @@ Load the `agentic-config` skill and follow it strictly.
 
 3. **Prune aggressively**
    Remove anything discoverable from repository files, including:
-   - Tech stack summaries
-   - Directory maps
-   - Script/command inventories
-   - Architecture recaps
-   - Generic style/process rules already enforced by tooling
+    - Tech stack summaries
+    - Directory maps
+    - Script/command inventories
+    - Architecture recaps
+    - Generic style/process rules already enforced by tooling
 
 4. **Keep only invisible global constraints**
    Keep or add a line only if all are true:
-   - Global: applies to every task
-   - Non-discoverable: cannot be reliably inferred from files
-   - High impact: likely to cause mistakes if missing
+    - Global: applies to every task
+    - Non-discoverable: cannot be reliably inferred from files
+    - High impact: likely to cause mistakes if missing
 
 5. **Write the smallest useful file**
    Prefer a short protocol-style AGENTS.md (often 0-20 lines).
@@ -37,9 +37,9 @@ Load the `agentic-config` skill and follow it strictly.
 
 6. **Explain the changes**
    Report:
-   - What was kept and why
-   - What was removed and why
-   - Where removed information is already discoverable
+    - What was kept and why
+    - What was removed and why
+    - Where removed information is already discoverable
 
 ## Principle
 

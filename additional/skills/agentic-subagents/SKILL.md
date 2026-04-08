@@ -15,13 +15,14 @@ description: Reviews code for bugs, security, and maintainability without change
 mode: subagent
 temperature: 0.1
 permission:
-  edit: deny
-  bash:
-    "*": deny
-    "git diff*": allow
-    "git log*": allow
-    "git status*": allow
+    edit: deny
+    bash:
+        '*': deny
+        'git diff*': allow
+        'git log*': allow
+        'git status*': allow
 ---
+
 You are a code reviewer. Provide prioritized findings with file:line references and fixes.
 ```
 

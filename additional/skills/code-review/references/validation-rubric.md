@@ -21,16 +21,16 @@ Every candidate issue must pass this validation before reporting.
 - The issue is introduced by the reviewed diff and materially worsens code health.
 - The issue is concrete enough that a senior reviewer would reasonably ask for a fix before merge.
 - Evidence ties the claim to changed code and one of these concrete impacts:
-  - duplicated business logic or a second source of truth
-  - wrong ownership or abstraction placement
-  - meaningful maintainability or complexity regression
-  - requirement drift from stated PR intent or linked planning artifact
-  - missing or weak tests that leave changed behavior under-protected
-  - non-trivial performance or resource-risk regression in changed code
+    - duplicated business logic or a second source of truth
+    - wrong ownership or abstraction placement
+    - meaningful maintainability or complexity regression
+    - requirement drift from stated PR intent or linked planning artifact
+    - missing or weak tests that leave changed behavior under-protected
+    - non-trivial performance or resource-risk regression in changed code
 - The finding is backed by either:
-  - strong nearby precedent refs, or
-  - a named principle with a specific maintenance, ownership, testing, or correctness cost, or
-  - explicit PR or linked-plan intent evidence for `requirement-drift`
+    - strong nearby precedent refs, or
+    - a named principle with a specific maintenance, ownership, testing, or correctness cost, or
+    - explicit PR or linked-plan intent evidence for `requirement-drift`
 - Confidence is `>= 80`.
 
 ## Advisory confirmation requirements

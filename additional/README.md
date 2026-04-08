@@ -26,15 +26,15 @@ Add Propulsion to your OpenCode config with the `additional` option enabled:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    [
-      "propulsion@git+https://github.com/moonpixels/propulsion.git",
-      {
-        "additional": true
-      }
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": [
+        [
+            "propulsion@git+https://github.com/moonpixels/propulsion.git",
+            {
+                "additional": true
+            }
+        ]
     ]
-  ]
 }
 ```
 

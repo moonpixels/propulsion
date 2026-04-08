@@ -1,1 +1,2 @@
 - When the user corrects your approach with a reusable, global rule for future work, ask whether they want it added to `AGENTS.md`; if they do, load the `agentic-config` skill and update `AGENTS.md`.
+- After implementing changes run `bun run checks` before handoff.

@@ -4,8 +4,8 @@ Use these pointers when choosing `agent:` or `subtask: true` in command files.
 
 ## Built-in Agents
 
-| Agent     | Mode     | Use Case                                |
-| --------- | -------- | --------------------------------------- |
+| Agent     | Mode     | Use Case                                 |
+| --------- | -------- | ---------------------------------------- |
 | `build`   | primary  | Default agent for most command workflows |
 | `plan`    | primary  | Planning/analysis only, no writes        |
 | `general` | subagent | Research or multi-step assistance        |

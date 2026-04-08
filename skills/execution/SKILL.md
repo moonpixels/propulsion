@@ -1,48 +1,46 @@
 ---
 name: execution
-description: Execute an approved plan one task at a time with review loops. Use when implementation is approved and should stay tightly in scope.
+description: Executes one approved task at a time with verification and review loops. Use when implementation is approved and should stay tightly in scope.
 ---
 
 # Execution
 
-Run the current plan, not a fresh design pass.
+Execute one approved task. Do not redesign the plan.
 
 ## Quick Start
 
 ```text
-Read the current task and its verification/review steps -> execute it via subagent if possible, inline only if not -> if the task changes behavior, do that implementation through `tdd` -> run `review`, fix findings, and re-review until clear -> then move on
+read one task -> choose implementer path -> route unknown causes to `debugging` and behavior-proof work to `tdd` -> implement -> verify -> `review` -> `review-response` if needed -> close task only when clear
 ```
 
-## Start Here
+## Use When
 
-- Read the current plan task before editing.
-- Read that task's verification steps and review checkpoints before editing.
-- Follow the task's written steps closely; if you need to change the sequence or intent, stop and ask.
-- Review it critically. If the plan is wrong, missing detail, or no longer fits the repo, stop and ask.
-- Keep exactly one task in progress at a time.
+- An approved `plan.md` task is ready.
+- `workflow` routed a trivial, clearly-scoped, low-risk task straight here.
+- The work should stay tightly inside an existing contract.
 
-## Execution Mode
+## Core Loop
 
-- Default to subagent-driven execution when the platform supports it.
-- Use inline execution only as fallback.
-- In either mode, make the smallest correct change needed for the current task.
-- Execution follows the approved plan; when a task changes behavior, use `tdd` to implement that task within this flow.
+- Read the current task, its goal, verification, and review hold point before editing.
+- Work one task at a time. Main agent owns task choice, state, questions, blockers, and closure.
+- A bounded task has one clear goal, one verification bundle, and a small enough touch surface for one implementer and one reviewer.
+- Use a fresh implementer subagent for bounded tasks by default. Inline execution is fallback only for trivial local edits or missing subagent support.
+- Before coding, route correctly: unknown cause -> `debugging`; behavior change with stable automated proof -> `tdd`; otherwise stay here.
+- Implement exactly this task, then run its required verification before review.
+- Implementer returns one status: `done`, `needs_context`, or `blocked`.
+- On `needs_context`, answer narrowly and re-dispatch. On `blocked`, change approach or escalate. Do not churn unchanged.
+- Run `review` with the task contract, the relevant diff, and fresh evidence.
+- Route findings through `review-response`. Re-verify and re-review until clear.
 
-## Review Loop
-
-- Finish the current task's plan-defined verification before review.
-- Run review at the current task's plan-defined checkpoints; if none are called out, review before closing the task.
-- Use subagent-backed `review` by default when the platform supports it; otherwise use inline `review`.
-- Fix findings, then run `review` again. Repeat until clear.
-- If verification keeps failing and the next fix is not evidence-backed, stop and surface the blocker.
-- Route meaningful completed work through `review`; no silent handoff.
-- If feedback is unclear, disputed, or risky, use `review-response` before proceeding.
-- Do not move to the next task with open review findings.
-
-## Scope Guardrails
+## Guardrails
 
 - Do not quietly expand scope.
-- If the current task is unclear, stop and ask instead of guessing.
-- If required repo state, tools, or inputs are missing, stop and surface the dependency.
-- Stop when the plan is wrong or scope changes materially.
-- Do not assume extra repo setup, hidden prerequisites, or leftover workflow state.
+- Do not batch multiple tasks into one pass.
+- No task closes without verification and clear review, including trivial inline tasks.
+- If the current task is unclear, the plan drifts, or required repo state is missing, stop and ask.
+- Do not assume hidden setup, hidden prerequisites, or leftover workflow state.
+
+## Exit
+
+- Close the task only after verification passes and `review` returns `clear`.
+- Choose the next task in the main workflow, not inside a subagent.

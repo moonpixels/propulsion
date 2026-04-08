@@ -6,57 +6,57 @@ Use `permission` to align tool access with the workflow. Grant only what the age
 
 ```yaml
 permission:
-  edit: deny
-  bash:
-    "*": deny
-    "git diff*": allow
-    "git log*": allow
-    "git status*": allow
+    edit: deny
+    bash:
+        '*': deny
+        'git diff*': allow
+        'git log*': allow
+        'git status*': allow
 ```
 
 ## Test Runner (Read-Only)
 
 ```yaml
 permission:
-  edit: deny
-  bash:
-    "*": deny
-    "bun test*": allow
-    "bunx tsc*": allow
+    edit: deny
+    bash:
+        '*': deny
+        'bun test*': allow
+        'bunx tsc*': allow
 ```
 
 ## Test Fixer (Edit + Test)
 
 ```yaml
 permission:
-  edit: allow
-  bash:
-    "*": deny
-    "bun test*": allow
-    "bunx tsc*": allow
+    edit: allow
+    bash:
+        '*': deny
+        'bun test*': allow
+        'bunx tsc*': allow
 ```
 
 ## Feature Builder (Full Build)
 
 ```yaml
 permission:
-  edit: allow
-  bash: ask
+    edit: allow
+    bash: ask
 ```
 
 ## Docs Writer (Path-Restricted)
 
 ```yaml
 permission:
-  edit:
-    "docs/*": allow
-    "README.md": allow
-    "*.md": ask
-    "*": deny
-  bash: deny
+    edit:
+        'docs/*': allow
+        'README.md': allow
+        '*.md': ask
+        '*': deny
+    bash: deny
 ```
 
 ## Notes
 
 - `edit` covers all file modifications (edit/write/patch). Use it instead of `write`.
-- Put "*" first; last matching rule wins.
+- Put "\*" first; last matching rule wins.

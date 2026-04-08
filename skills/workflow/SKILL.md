@@ -1,27 +1,48 @@
 ---
 name: workflow
-description: Handle session-start routing to the right process skill. Use when a new request arrives before any response.
+description: Routes work to the right Propulsion process skill and enforces artifact and approval gates. Use when a session starts, work changes stage, or the next skill is unclear.
 ---
 
 # Workflow
 
+Route before acting. Do not start substantive work until the right process skill is active.
+
 ## Quick Start
 
 ```text
-Before any response -> check whether a skill applies; if yes, load it first
-Start with these canonical routes:
-New or unclear work -> exploration
-Approved approach, need a written plan -> planning
-Unknown cause, failing test, or unexpected behavior -> debugging
-Behavior change or bugfix implementation with no approved plan -> tdd
-Approved plan -> execution
-Completed changes or explicit review request -> review
-Review feedback -> review-response
+new or unclear work -> exploration
+approved prd -> planning
+approved plan or trivial safe task -> execution
+unknown-cause bug or failing test -> debugging
+behavior-changing task inside execution -> tdd
+meaningful completed work -> review
+review findings -> review-response -> review until clear
 ```
 
-## Rules
+## Use When
 
-- Before any response, including clarifying questions, check whether a skill applies. If yes, load it first.
-- Route to process skills first: debugging for bugs, exploration for unclear work, planning for approved multi-step work.
-- Where routes overlap: debugging before tdd when the cause is unknown; execution before tdd when there is an approved plan.
-- Keep this skill tiny; downstream skills own the process details.
+- Session start.
+- Before substantive questions, edits, or tool use.
+- When the next stage is unclear.
+
+## Routing
+
+- `exploration`: vague requests, missing scope, missing decisions, or no approved PRD.
+- `planning`: approved `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md`.
+- `execution`: approved `plan.md`, or trivial, clearly-scoped, low-risk work that is safe without a PRD or plan.
+- `debugging`: unknown-cause bugs, failing tests, flaky behavior, or unexpected output.
+- `tdd`: behavior-changing work with a stable automated proof. Use inside `execution`, not instead of it.
+- `review`: meaningful completed work or explicit review request.
+- `review-response`: review findings or disputed feedback.
+
+## Guardrails
+
+- Main agent owns routing, artifact authorship, approval gates, and done state.
+- Subagents support the current stage only. They do not advance the workflow.
+- Do not skip `exploration` or `planning` unless the trivial-task exception is clearly true.
+- Do not use `tdd` before `debugging` when the cause is unknown.
+- Done = verification passed, review clear, accepted feedback resolved.
+
+## Exit
+
+- Load the chosen skill and follow its method.

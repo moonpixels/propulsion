@@ -4,7 +4,7 @@
 
 Propulsion is a compact skill set for agentic coding workflows.
 
-It is designed to be small enough to respect context windows, but opinionated enough to push agents toward useful behaviour: explore first, plan clearly, execute in tight loops, review rigorously, and debug from evidence instead of guesswork.
+It is designed to be small enough to respect context windows, but opinionated enough to push agents toward useful behaviour: explore first, write a PRD, plan clearly, execute in tight loops, review rigorously, and debug from evidence instead of guesswork.
 
 The goal is not to be generic prompt paste. The goal is carefully worded skills that give agents a strong direction without loading them up with unnecessary ceremony.
 
@@ -46,10 +46,8 @@ Add Propulsion to the `plugin` field in that project's `opencode.json`:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "propulsion@git+https://github.com/moonpixels/propulsion.git"
-  ]
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
 }
 ```
 
@@ -59,14 +57,16 @@ Add Propulsion to the `plugin` field in `~/.config/opencode/opencode.json`:
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "propulsion@git+https://github.com/moonpixels/propulsion.git"
-  ]
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
 }
 ```
 
-The plugin exposes the top-level Propulsion skills and auto-bootstraps `workflow` once per session.
+The plugin exposes the top-level Propulsion skills and injects the `workflow` skill once per session as the active workflow contract.
+
+That single bootstrapped skill tells the agent how to move through Propulsion's lifecycle: route unclear work through exploration, write and approve `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md`, turn that into an approved `docs/propulsion/{yyyymmdd}-{plan-name}/plan.md`, run a reviewer-subagent loop before plan approval, execute approved plans in tight loops, send behavior-changing tasks through `tdd`, review meaningful work, and handle review feedback before calling the task done.
+
+`workflow` owns stage order and handoffs. The main agent owns routing and approval gates; subagents do bounded work inside the current stage. Downstream skills hold the detailed methods for each stage.
 
 See `.opencode/INSTALL.md` for the OpenCode-specific instructions.
 

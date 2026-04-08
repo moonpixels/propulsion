@@ -1,6 +1,6 @@
 ---
 description: Run high-signal senior-style code review on uncommitted changes or current-branch diff with optional inline PR comments.
-agent: build
+agent: plan
 subtask: true
 ---
 
@@ -13,27 +13,27 @@ User input: $ARGUMENTS
 Interpret `$ARGUMENTS` as review mode plus optional flags:
 
 - Modes:
-  - `uncommitted`
-  - `branch`
-  - `branch <base-branch>`
+    - `uncommitted`
+    - `branch`
+    - `branch <base-branch>`
 - Optional flag:
-  - `--comment` (post inline PR comments after validation)
+    - `--comment` (post inline PR comments after validation)
 
 If mode is missing, use the question tool:
 
 - header: Review mode
 - question: Which changes should I review?
 - options:
-  - `Uncommitted (Recommended)` - Review staged, unstaged, and untracked changes
-  - `Branch diff` - Review current branch changes against a base branch
+    - `Uncommitted (Recommended)` - Review staged, unstaged, and untracked changes
+    - `Branch diff` - Review current branch changes against a base branch
 
 If mode is `branch` and base branch is missing, use the question tool:
 
 - header: Base branch
 - question: Compare current branch against which base branch?
 - options:
-  - `main (Recommended)` - Use `main...HEAD`
-  - `Custom base branch` - I will provide another branch name
+    - `main (Recommended)` - Use `main...HEAD`
+    - `Custom base branch` - I will provide another branch name
 
 If custom base is selected, ask one follow-up question for the branch name.
 Validate that branch exists locally or as `origin/<branch>`. If not found, ask one corrective question with the closest match.
@@ -41,9 +41,9 @@ Validate that branch exists locally or as `origin/<branch>`. If not found, ask o
 ## Diff Resolution
 
 - `uncommitted` mode:
-  - Review staged + unstaged diffs and include untracked file contents.
+    - Review staged + unstaged diffs and include untracked file contents.
 - `branch` mode:
-  - Resolve base branch and review diff from merge-base: `<base>...HEAD`.
+    - Resolve base branch and review diff from merge-base: `<base>...HEAD`.
 
 For both modes:
 
@@ -56,20 +56,20 @@ For both modes:
 In parallel:
 
 1. Gather relevant `CLAUDE.md` and `AGENTS.md` file paths:
-   - root files if present
-   - parent-directory scoped files for changed paths
+    - root files if present
+    - parent-directory scoped files for changed paths
 2. Gather relevant workflow contracts from changed files:
-   - touched command templates (`additional/commands/*.md`, `.opencode/commands/*.md`, and global equivalents when available)
-   - touched skills (`*/skills/*/SKILL.md`)
-   - linked `references/*.md` only as supporting context unless they contain exact quoted rule text
-   - if a reviewed command loads a skill, include that skill's `SKILL.md` + references
+    - touched command templates (`additional/commands/*.md`, `.opencode/commands/*.md`, and global equivalents when available)
+    - touched skills (`*/skills/*/SKILL.md`)
+    - linked `references/*.md` only as supporting context unless they contain exact quoted rule text
+    - if a reviewed command loads a skill, include that skill's `SKILL.md` + references
 3. If current branch has an associated PR, fetch PR title + description for intent context.
 4. If the PR description explicitly links a repo file path, a docs plan under `docs/propulsion/`, or an issue/PR identifier, fetch only those explicitly linked artifacts for requirement context.
 5. If no PR exists, use any explicit user-stated review goal from the surrounding request as intent context; otherwise do not infer hidden requirements.
 6. For each changed file, gather at most two one-hop adjacent context files when they are:
-   - directly imported or referenced by the changed code
-   - the likely canonical home for duplicated or misplaced logic in the same module area
-   - explicitly linked by the PR description or reviewed contract
+    - directly imported or referenced by the changed code
+    - the likely canonical home for duplicated or misplaced logic in the same module area
+    - explicitly linked by the PR description or reviewed contract
 7. Produce a concise summary of selected diff scope, gathered context, and applicable rule sources.
 
 ## Review Workflow
@@ -106,19 +106,19 @@ Each reviewer returns candidate issues with:
 Keep three lanes, always on:
 
 - `blocker`:
-  - objective runtime/logic/security bugs in changed code
-  - definite parse/compile/type/import breakage
-  - clear scoped rule or skill/command contract violations with exact quoted rule text
+    - objective runtime/logic/security bugs in changed code
+    - definite parse/compile/type/import breakage
+    - clear scoped rule or skill/command contract violations with exact quoted rule text
 - `important`:
-  - duplicated business logic or second sources of truth introduced by the diff
-  - wrong abstraction or ownership placement for changed behavior
-  - meaningful maintainability or complexity regressions with concrete impact
-  - requirement drift from stated PR intent or explicitly linked plan context
-  - test gaps that materially weaken protection for changed behavior
-  - non-trivial performance or resource regressions in changed code
+    - duplicated business logic or second sources of truth introduced by the diff
+    - wrong abstraction or ownership placement for changed behavior
+    - meaningful maintainability or complexity regressions with concrete impact
+    - requirement drift from stated PR intent or explicitly linked plan context
+    - test gaps that materially weaken protection for changed behavior
+    - non-trivial performance or resource regressions in changed code
 - `advisory`:
-  - clear consistency drift from dominant local patterns with direct evidence
-  - non-blocking maintainability guidance with a concrete alignment path
+    - clear consistency drift from dominant local patterns with direct evidence
+    - non-blocking maintainability guidance with a concrete alignment path
 
 Never keep:
 
@@ -155,6 +155,7 @@ If issues remain, output in this order:
 ### Blocker Findings
 
 ### #<n> <short title>
+
 <brief description and impact>
 
 File: <path>:<line>
@@ -162,11 +163,13 @@ File: <path>:<line>
 ### Important Findings
 
 ### #<n> <short title>
+
 <brief description and why the author should fix it before merge>
 
 File: <path>:<line>
 
 Include one of:
+
 - Precedent: <path>:<line>[, <path>:<line>...]
 - Principle: <named principle>
 - Intent: <PR description or linked artifact ref>
@@ -174,11 +177,13 @@ Include one of:
 ### Advisory Findings
 
 ### #<n> <short title>
+
 <brief description and consistency or maintainability impact>
 
 File: <path>:<line>
 
 Include one of:
+
 - Precedent: <path>:<line>[, <path>:<line>...]
 - Principle: <named principle>
 - Intent: <PR description or linked artifact ref>
@@ -201,9 +206,9 @@ If `--comment` is present:
 - prefix important comment titles with `[important]`
 - use `gh` CLI only (prefer `gh api repos/{owner}/{repo}/pulls/{pr_number}/comments`)
 - include citations and links in each comment:
-  - relevant rule file link for rule/contract violations
-  - changed code link with full commit SHA and `#Lx-Ly` range
-  - precedent links for consistency or precedent-backed important findings
+    - relevant rule file link for rule/contract violations
+    - changed code link with full commit SHA and `#Lx-Ly` range
+    - precedent links for consistency or precedent-backed important findings
 - name the principle explicitly for any principle-backed important finding
 - do not post comments for filtered or unvalidated issues
 

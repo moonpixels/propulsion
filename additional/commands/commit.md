@@ -21,27 +21,27 @@ Create exactly one commit from current local changes.
 
 1. Auto-stage relevant changes (`git add -A`), including untracked files.
 2. Never commit likely secret files. Exclude these patterns:
-   - `.env`
-   - `.env.*`
-   - `*.pem`
-   - `*.key`
-   - `*.p12`
-   - `*.pfx`
-   - `credentials.json`
-   - `*credentials*`
-   - `*secret*`
-   - `*token*`
-   - `.ssh/*`
+    - `.env`
+    - `.env.*`
+    - `*.pem`
+    - `*.key`
+    - `*.p12`
+    - `*.pfx`
+    - `credentials.json`
+    - `*credentials*`
+    - `*secret*`
+    - `*token*`
+    - `.ssh/*`
 3. If excluded files are staged, unstage them before commit.
 4. If there are no committable changes after exclusions, stop and output exactly:
-   - `No changes to commit.`
+    - `No changes to commit.`
 5. Generate a commit message from the diff and recent commit style, but enforce this format:
-   - one line only
-   - 2-5 words preferred (hard max 6 words)
-   - extremely concise
-   - grammar may be rough
-   - omit filler words (`the`, `a`, `an`, `to`, `for`, `of`, `and`)
-   - no trailing punctuation
+    - one line only
+    - 2-5 words preferred (hard max 6 words)
+    - extremely concise
+    - grammar may be rough
+    - omit filler words (`the`, `a`, `an`, `to`, `for`, `of`, `and`)
+    - no trailing punctuation
 6. If `$ARGUMENTS` is not empty, treat it as an intent hint for wording.
 7. Do not push, open PRs, amend, reset, or force anything.
 
