@@ -1,47 +1,50 @@
 ---
 name: debugging
-description: Debugs bugs, failing tests, flaky behavior, and unexpected output by finding root cause before fixing. Use when the cause is unknown and fixes should wait for evidence.
+# prettier-ignore
+description: Analyze bugs and failures systematically before proposing fixes. Use when a test fails, behavior is unexpected, or the real issue is not yet understood.
 ---
 
 # Debugging
 
-Reproduce first. Guessing is not debugging.
+Find the root cause before anyone changes code.
 
 ## Quick Start
 
-```text
-reproduce or capture failing evidence -> gather facts -> compare broken vs working -> trace to source -> state one hypothesis -> fix only if evidence supports it -> verify the original repro
-```
+    Reproduce -> gather evidence -> compare broken vs working -> test one hypothesis -> diagnose -> hand off fix.
+
+## Before This Skill
+
+- A bug, test failure, flaky result, or unexpected behavior exists.
+- The root cause is not yet proven.
 
 ## Use When
 
-- The cause is unknown.
-- A test fails and the reason is not yet clear.
-- Behavior is flaky or output is unexpected.
-- A fix would be guesswork without evidence.
+- A user or agent reports a failure.
+- A proposed fix would still be guesswork.
 
 ## Core Loop
 
-- When the cause is unknown, `debugging` is the required first route. Do not jump straight to `tdd` or a fix.
-- Reproduce first. If intermittent, capture failing evidence and narrow the conditions first. No fixes, guesses, or design advice before that.
-- Gather evidence before proposing fixes: full error/stack, inputs, outputs, logs, failing path, recent changes.
-- Compare broken vs working paths when possible; differences beat speculation.
-- For multi-step systems, instrument boundaries between steps to find where reality diverges from expectation.
-- Trace the failure to the source before editing; fix the source, not a downstream symptom.
-- State the root-cause hypothesis before editing: `Hypothesis: X breaks because Y.`
-- After an evidence-backed diagnosis, behavior changes should add a regression test first and use `tdd` for the loop.
-- If the fix does not change behavior, make the smallest fix that matches the evidence and hypothesis. Otherwise stop after diagnosis and hand off to `tdd`.
+- Reproduce the issue first. Use [references/reproduction.md](references/reproduction.md).
+- Capture fresh evidence before proposing fixes. Use [references/evidence-capture.md](references/evidence-capture.md).
+- If a working example exists, compare broken vs working with [references/compare-working-vs-broken.md](references/compare-working-vs-broken.md).
+- Narrow the surface before changing code. Use [references/narrow-the-surface.md](references/narrow-the-surface.md).
+- Form one hypothesis at a time and test it with [references/hypothesis-testing.md](references/hypothesis-testing.md).
+- Do not propose fixes until the root cause is grounded in evidence.
+- If the investigation is non-trivial, write `docs/propulsion/{yyyymmdd}-{issue-name}/debug.md` from [references/debug-note-template.md](references/debug-note-template.md). Add `-2`, `-3`, and so on on collisions.
+- After 3 failed hypothesis or probe attempts, stop and question the architecture with the user.
+- Once the root cause and fix direction are clear, hand off to `execution` if a current plan exists. Otherwise route to `exploration`, then `planning`, then `execution`.
 
-## Guardrails
+## Subagents
 
-- Do not jump straight to a fix.
-- Do not stack edits onto a failed hypothesis.
-- Do not fix symptoms because the source is unclear.
-- If you hear yourself saying "It is probably X," go back to evidence.
+- Use fresh subagents to gather evidence, compare variants, or inspect likely code paths without polluting the main context.
 
-## Exit
+## Hand Off To
 
-- Re-run the original reproduction or captured failing case after the fix.
-- Re-run the new or updated regression test.
-- Confirm the fix addresses root cause, not just the visible symptom.
-- If the hypothesis fails, say so, do not stack another fix onto it, collect new evidence, and form a new one.
+- Hand off grounded diagnosis and fix direction to `execution` if a current plan exists.
+- Otherwise hand off to `exploration` so the bug fix gets a PRD and plan first.
+
+## Do Not
+
+- Do not stack guesses.
+- Do not patch symptoms first.
+- Do not claim the issue is fixed without fresh verification.

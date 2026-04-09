@@ -1,50 +1,50 @@
 ---
 name: exploration
-description: Turns vague work into an approved PRD by inspecting the repo and interviewing for missing decisions. Use when requests are under-specified or planning would require guessing.
+# prettier-ignore
+description: Create an approved PRD through repo inspection and relentless user questioning. Use when scope, UX, constraints, or success criteria are unclear, or when user needs a PRD.
 ---
 
 # Exploration
 
-Turn vague work into an approved PRD. Inspect only enough repo context to ask better questions.
+Turn vague work into an approved PRD.
 
 ## Quick Start
 
-```text
-check minimal repo facts -> ask 1 question with a recommendation -> resolve that branch -> repeat until scope is explicit -> present 2-3 directions if needed -> write prd.md -> self-review -> ask for approval
-```
+    User asks for a feature -> inspect repo -> ask one question with a recommendation -> write `prd.md` -> ask for approval.
+
+## Before This Skill
+
+- No approved PRD exists.
+- Product intent, scope, UX, constraints, or success criteria are unresolved.
 
 ## Use When
 
-- Request is vague, cross-cutting, or missing scope.
+- The request is vague, cross-cutting, or likely to change shape during planning.
 - Planning would require guessing.
-- The user needs discovery before implementation.
+- The user asks for a PRD, feature discovery, or design questioning.
 
 ## Core Loop
 
-- Answer repo facts from code. Ask the user only for product intent, UX, scope, and constraints.
-- Ask one question per message. Include a recommended answer.
-- Walk the design tree in order: goal -> actors and inputs -> boundaries -> constraints -> failure cases -> success criteria -> out of scope.
-- Resolve one dependency before moving on.
-- Prefer sharp multiple-choice questions. Use open-ended only when choices would bias the answer.
-- If the work spans subsystems, decompose it and question the first dependency first.
-- If the request is too large, narrow to one approved slice or discovery question and keep going.
-- When a real choice exists, present 2-3 viable directions, lead with the recommendation, then continue the interview.
+- Start with an aggressive targeted repo scan. Use subagents when code can answer the next branch faster than the user can.
+- Ask one question at a time from [references/questioning-rules.md](references/questioning-rules.md). Give your recommendation first.
+- Resolve branches in order: goal, actors, inputs, boundaries, constraints, failure cases, success criteria, out of scope.
+- If the work is too large, decompose it and explore the first slice only.
+- Do not leave blocking branches open. Resolve anything that would change scope, UX, architecture, sequencing, or success criteria.
+- Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` from [references/prd-template.md](references/prd-template.md). Add `-2`, `-3`, and so on on collisions.
+- Keep the PRD product-facing, but record durable implementation and testing decisions. Do not print the full PRD in chat.
+- If asked to plan without an approved PRD, route back to `exploration` and tell the user to switch to build mode so you can write the PRD first.
 
-## Guardrails
+## Subagents
+
+- Use fresh explore subagents for repo inspection only. They gather code facts. They do not decide product intent.
+
+## Hand Off To
+
+- Ask the user to review `prd.md`.
+- Move to `planning` only after explicit PRD approval.
+
+## Do Not
 
 - Do not infer product intent from code.
-- Do not stop with unresolved branches that would change scope, UX, architecture, sequencing, or success criteria.
-- Keep wording terse, direct, and low-context.
-
-## PRD
-
-- Write exactly one file: `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md`.
-- Use this section order: `# Title`, `## Problem Statement`, `## Goals`, `## User Stories`, `## Solution`, `## Implementation Decisions`, `## Testing Decisions`, `## Out Of Scope`, `## Risks / Open Questions`.
-- Keep it product-facing. No file paths, code snippets, or task breakdown.
-- Self-review: remove placeholders, resolve contradictions, and make scope explicit.
-
-## Exit
-
-- Stop before implementation or plan breakdown.
-- Ask the user to review `prd.md`, request changes, or approve it.
-- Only approved PRDs hand off to `planning`, with a compact summary of scope, constraints, rejected options, risks, and success criteria.
+- Do not start planning or implementation here.
+- Do not hide approval gates in references.

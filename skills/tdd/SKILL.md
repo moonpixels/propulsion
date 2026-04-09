@@ -1,50 +1,50 @@
 ---
 name: tdd
-description: Tests behavior changes with red-green-refactor, one failing test at a time. Use when a feature or bugfix should be proved by an automated test.
+# prettier-ignore
+description: Build behavior with one failing test at a time through red-green-refactor. Use when a slice changes public behavior or when fixing a bug with a regression test.
 ---
 
 # TDD
 
-Test behavior, not implementation.
+Prove behavior with a failing test before writing production code.
 
 ## Quick Start
 
-```text
-write 1 behavior test -> run it and watch it fail -> make it pass with the smallest change -> re-run relevant tests -> refactor while green -> repeat
-```
+    Write one failing test -> watch it fail -> write the smallest code to pass -> refactor while green.
+
+## Before This Skill
+
+- The current slice changes public behavior.
+- The interface or expected behavior is clear enough to test.
 
 ## Use When
 
-- New feature behavior.
-- Bugfix with known cause.
-- Regression test after `debugging`.
-- Public contract change where a failing automated test is the right proof.
-- Not docs, copy, config-only edits, generated files, formatting, mechanical renames, moves, or pure refactors.
-- If the cause is unknown, go to `debugging` first.
-- If a small safe seam makes the behavior testable, create it first, then start at red.
-- If no stable automated harness exists and creating one would itself be a separate slice, return to `execution`, use direct verification instead, and say why.
+- Building a feature or bug fix that changes behavior.
+- Writing a regression test for an observed failure.
 
 ## Core Loop
 
-- Write one behavior test through a public interface.
-- Run it and watch it fail. A test that passes on first run is not the next test.
-- Write the smallest code that gets back to green.
-- Re-run the relevant tests.
+- Write one test for one behavior through a public interface.
+- Run it. If it does not fail for the expected reason, fix the test first.
+- Write the smallest good fix. No speculative code.
+- Run the targeted test again. Keep going until it passes.
 - Refactor only while green.
-- Repeat one behavior at a time.
+- Repeat one behavior at a time. Do not queue failing tests.
+- Prefer real code paths over mocks. See [references/public-behavior.md](references/public-behavior.md) and [references/good-vs-bad-tests.md](references/good-vs-bad-tests.md).
 
-## Guardrails
+## Good vs Bad
 
-- No production code before a failing test for the current behavior step.
-- No horizontal slicing. Do not write all tests first, then all code.
-- One behavior test, one failure, one pass. No batch tests.
-- Test public behavior through real interfaces so the tests survive internal refactors.
-- Prefer small vertical slices over test inventories or layer-by-layer implementation.
-- No speculative work.
-- If the red state is unclear, debug first. Do not code around it.
-- Keep assertions plain and direct: prove behavior, not internals.
-- Do not write surprise low-value tests just because code changed.
+```text
+WRONG:  test1, test2, test3 -> code1, code2, code3
+RIGHT:  test1 -> code1 -> test2 -> code2 -> test3 -> code3
+```
 
-## Exit
+## Hand Off To
 
-- End each cycle with green tests and simpler code.
+- Hand off passing changes to `execution`.
+
+## Do Not
+
+- Do not write production code before a failing test.
+- Do not test implementation details.
+- Do not keep code written before the test.

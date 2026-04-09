@@ -1,43 +1,44 @@
 ---
 name: review
-description: Reviews code, plans, and artifacts for regressions, drift, and weak verification. Use when completed work or high-value artifacts need a findings-first quality gate.
+# prettier-ignore
+description: Analyze a completed slice for real issues before handoff. Use when implementation is verified and needs an objective fresh review.
 ---
 
 # Review
 
-Findings first. Review behavior, risk, and evidence.
+Find real issues before the slice moves on.
 
 ## Quick Start
 
-```text
-collect contract + artifact + fresh evidence -> review -> report findings by severity -> route valid fixes through `review-response` -> re-review until clear
-```
+    Gather plan step, plan excerpt, diff, and verification evidence -> review for real issues only -> return `clear`, `findings`, or `unclear`.
+
+## Before This Skill
+
+- The current slice is implemented.
+- Targeted verification evidence exists.
+- The review runs in a fresh subagent.
 
 ## Use When
 
-- After a completed execution task or slice.
-- For explicit review requests.
-- For plans or other high-value artifacts before closure.
+- A slice needs objective review before it can be marked complete.
+- The main agent needs findings, not suggestions.
 
 ## Core Loop
 
-- Inputs are the source of truth, the artifact or diff, and fresh evidence. If contract or evidence is missing, that is a finding.
-- Prefer a fresh reviewer subagent when the platform supports it.
-- Review for regressions, requirement gaps, plan drift, weak verification, risky behavior, and unnecessary scope.
-- For code, inspect behavior changes, regressions, weak tests, and risky implementation choices.
-- For plans or docs, inspect decision clarity, sequence, touch-point precision, and execution readiness.
-- Report findings only, ordered: Critical, Important, Minor.
-- For each finding: state impact, cite exact file or section when possible, say how it deviates from the source of truth, and add the shortest obvious fix if it is clear.
-- Return one status: `clear`, `findings`, or `unclear`.
-- `findings` route to `review-response` and return here after re-verification. `unclear` means ask one narrow question or request the missing artifact.
+- Stop if the reviewer did not receive the current plan step, relevant plan excerpt, diff, and verification evidence.
+- Review the work against the slice contract first, then against code health.
+- Use [references/signal-filter.md](references/signal-filter.md) to surface only real issues.
+- Return [references/review-format.md](references/review-format.md) with `clear`, `findings`, or `unclear`.
+- Sort findings by severity: `high`, `medium`, `low`.
 
-## Guardrails
+## Hand Off To
 
-- Review behavior, risk, and evidence; do not spend time on stylistic trivia.
-- If there are no findings, say so plainly, then note any residual risk or unverified area in one line.
-- If the artifact needs new scope, missing decisions, or structural redirection, stop and route to `planning` or the user.
+- If `clear`, return to `execution`.
+- If `findings`, hand off to `review-response`.
+- If `unclear`, return to `execution` for missing inputs.
 
-## Exit
+## Do Not
 
-- `clear` means no unresolved Critical or Important issues.
-- Keep the close to 1-2 lines.
+- Do not suggest speculative improvements or style nits.
+- Do not self-review inside the implementer context.
+- Do not approve work without evidence.
