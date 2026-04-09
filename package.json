@@ -4,10 +4,13 @@
     "type": "module",
     "main": ".opencode/plugins/propulsion.ts",
     "scripts": {
-        "checks": "bun run lint && bun run format",
+        "checks": "bun run lint && bun run format && bun run test",
         "format": "oxfmt .",
         "format:check": "oxfmt --check .",
         "lint": "oxlint && bun run typecheck",
+        "test": "bun test ./tests && bash tests/opencode/run-tests.sh",
+        "test:opencode": "bash tests/opencode/run-tests.sh",
+        "test:unit": "bun test ./tests",
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {

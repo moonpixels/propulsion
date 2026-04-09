@@ -14,7 +14,6 @@ const additionalCommandsDir = path.resolve(
 );
 const workflowPath = path.join(skillsDir, 'workflow', 'SKILL.md');
 const bootstrapMarker = 'You are using Propulsion.';
-const bootstrappedSessions = new Set<string>();
 
 type PropulsionHooks = Awaited<ReturnType<Plugin>>;
 type PropulsionConfig = Parameters<
@@ -51,46 +50,6 @@ type CommandDefinition = {
 
 type PropulsionOptions = {
     additional?: boolean;
-};
-
-const isRecord = (value: unknown): value is Record<string, unknown> => {
-    return typeof value === 'object' && value !== null;
-};
-
-const getObjectString = (value: unknown, keys: string[]): string | null => {
-    if (!isRecord(value)) {
-        return null;
-    }
-
-    for (const key of keys) {
-        const candidate = value[key];
-
-        if (typeof candidate === 'string' && candidate) {
-            return candidate;
-        }
-    }
-
-    return null;
-};
-
-const getSessionID = (value: unknown) => {
-    return getObjectString(value, ['sessionID', 'sessionId', 'session_id']);
-};
-
-const getSessionInfoID = (event: unknown) => {
-    if (!isRecord(event)) {
-        return null;
-    }
-
-    const properties = event.properties;
-
-    if (!isRecord(properties)) {
-        return null;
-    }
-
-    const info = properties.info;
-
-    return getObjectString(info, ['id']);
 };
 
 const parseFrontmatterValue = (value: string): string | boolean => {
@@ -282,25 +241,9 @@ const hasBootstrapPart = (parts: TransformMessage['parts']) => {
 
 export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
     const { additional = false } = options as PropulsionOptions;
-    const bootstrap = getBootstrapContent();
     const additionalCommands = additional ? loadAdditionalCommands() : {};
 
     return {
-        event: async ({ event }) => {
-            if (
-                event.type !== 'session.created' &&
-                event.type !== 'session.deleted'
-            ) {
-                return;
-            }
-
-            const sessionID = getSessionInfoID(event) ?? getSessionID(event);
-
-            if (sessionID) {
-                bootstrappedSessions.delete(sessionID);
-            }
-        },
-
         config: async (config) => {
             addSkillsPath(config, skillsDir);
 
@@ -314,6 +257,8 @@ export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
             _transformInput,
             output,
         ) => {
+            const bootstrap = getBootstrapContent();
+
             if (!bootstrap || output.messages.length === 0) {
                 return;
             }
@@ -324,17 +269,13 @@ export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
                 return;
             }
 
-            const sessionID = getSessionID(firstUser.info);
-
-            if (sessionID && bootstrappedSessions.has(sessionID)) {
+            if (hasBootstrapPart(firstUser.parts)) {
                 return;
             }
 
-            if (hasBootstrapPart(firstUser.parts)) {
-                if (sessionID) {
-                    bootstrappedSessions.add(sessionID);
-                }
+            const ref = firstUser.parts[0];
 
+            if (!ref) {
                 return;
             }
 
@@ -342,19 +283,14 @@ export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
             // with the user's first message without changing the persisted source text.
             const bootstrapPart: TransformTextPart = {
                 id: `prt_${randomUUID()}`,
-                sessionID: firstUser.info.sessionID,
-                messageID: firstUser.info.id,
+                sessionID: ref.sessionID,
+                messageID: ref.messageID,
                 type: 'text',
                 text: bootstrap,
                 synthetic: true,
             };
 
             firstUser.parts.unshift(bootstrapPart);
-
-            // Track sessions we have already patched so the bootstrap stays one-time.
-            if (sessionID) {
-                bootstrappedSessions.add(sessionID);
-            }
         },
     };
 };
