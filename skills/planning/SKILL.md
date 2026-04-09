@@ -1,51 +1,52 @@
 ---
 name: planning
-description: Turns an approved PRD into an execution-ready plan with thin vertical slices and bounded tasks. Use when exploration is complete and the PRD is approved.
+# prettier-ignore
+description: Create an execution-ready plan from an approved PRD using thin vertical slices and plan-review loops. Use when an approved PRD exists and the next step is to prepare for execution.
 ---
 
 # Planning
 
-Turn an approved PRD into one execution-ready plan. No discovery here.
+Turn an approved PRD into an execution-ready plan.
 
 ## Quick Start
 
-```text
-confirm approved prd -> inspect minimal code -> lock durable decisions -> draft thin vertical slices -> show slice list -> revise until approved -> write plan.md -> review it -> fix until clear -> ask user to approve -> stop
-```
+    Approved `prd.md` -> inspect repo -> draft thin slices -> review the plan -> write `plan.md` -> announce `execution`.
+
+## Before This Skill
+
+- An approved `docs/propulsion/.../prd.md` exists.
+- Execution would require a slice breakdown.
 
 ## Use When
 
-- `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md` exists and is explicitly approved.
-- Scope is clear enough to plan.
-- Execution needs bounded tasks, touch points, and verification.
+- The PRD is approved.
+- The user asks for a plan, phases, or execution-ready slices.
+- Execution would require rediscovering scope.
 
 ## Core Loop
 
-- Pull decisions from the approved PRD. Do not reopen discovery.
-- If scope, constraints, or success criteria are still unclear, return to `exploration`.
-- Identify durable decisions first: routes, schema shape, key models, auth boundaries, service boundaries.
-- Break the work into tracer-bullet vertical slices. Each slice must be narrow, end-to-end, and verifiable on its own.
-- Prefer many thin slices over few thick ones.
-- Before writing the final plan, show the proposed slices as a numbered list with covered user stories. Ask whether any slice should be split or merged.
-- Keep tasks bounded enough for one implementer subagent and one reviewer pass.
-- Use exact repo touch points when they are stable and useful. Do not pad the plan with brittle trivia.
-- No placeholders like `TBD`, `etc.`, `as needed`, or `follow existing patterns`.
+- Stop if the PRD is missing or unapproved. Route back to `exploration`.
+- Re-scan the relevant repo areas before slicing.
+- Capture durable decisions first. Keep them stable across all slices.
+- Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` from [references/plan-template.md](references/plan-template.md).
+- Every `plan.md` must begin with `## For Agentic Coders` exactly as shown in the template.
+- Make each checkbox one thin vertical slice. Each slice should be demoable or verifiable on its own.
+- Make each slice execution-ready: target behavior, likely files or areas, durable constraints, and targeted verification.
+- Use a fresh planning-review subagent with [references/plan-review-format.md](references/plan-review-format.md). If it returns `unclear`, route back to `exploration`, update the PRD, get the PRD approved again, then repair the plan.
+- Iterate until the reviewer says `clear`.
+- End by telling the user planning is complete and `execution` is next. Do not auto-start execution.
 
-## Plan
+## Subagents
 
-- Write exactly one file: `docs/propulsion/{yyyymmdd}-{plan-name}/plan.md`.
-- Header must include the source PRD and a short `## Durable Decisions` section.
-- Then write one section per slice with: title, user stories, goal, files to create or modify or test, checkbox tasks, verification, review hold point.
-- Keep the plan task-oriented and execution-facing.
+- Use fresh subagents for repo inspection and plan review.
+- Review subagents do not invent product intent.
 
-## Review Loop
+## Hand Off To
 
-- After writing the plan, dispatch a reviewer subagent using `plan-reviewer.md`.
-- Reviewer blocks on real execution risk only: missing PRD coverage, vague or contradictory tasks, weak decomposition, missing verification, or bad sequence.
-- Fix blocking issues and re-review until clear.
+- Hand off to `execution` with the PRD path, plan path, and durable decisions.
 
-## Exit
+## Do Not
 
-- After the reviewer loop is clear, ask the user to review `plan.md`, request changes, or approve it.
-- Require explicit user approval before any implementation starts.
-- No implementation, no code edits, no commits.
+- Do not plan from an unapproved PRD.
+- Do not leave scope gaps for execution to guess through.
+- Do not hide slice rules or handoff rules in references.

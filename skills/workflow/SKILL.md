@@ -1,48 +1,55 @@
 ---
 name: workflow
-description: Routes work to the right Propulsion process skill and enforces artifact and approval gates. Use when a session starts, work changes stage, or the next skill is unclear.
+# prettier-ignore
+description: Manage work through Propulsion from session start and load the right skill before any action. Use when a conversation starts or when the next Propulsion stage is unclear.
 ---
 
 # Workflow
 
-Route before acting. Do not start substantive work until the right process skill is active.
+Treat Propulsion as the session contract.
 
 ## Quick Start
 
-```text
-new or unclear work -> exploration
-approved prd -> planning
-approved plan or trivial safe task -> execution
-unknown-cause bug or failing test -> debugging
-behavior-changing task inside execution -> tdd
-meaningful completed work -> review
-review findings -> review-response -> review until clear
-```
+    Non-trivial feature -> load `exploration`. Bug or failure -> load `debugging`. Current plan -> load `execution`.
 
-## Use When
+## Subagent Stop
 
-- Session start.
-- Before substantive questions, edits, or tool use.
-- When the next stage is unclear.
+- If you are a subagent executing a bounded task, skip this skill.
+- Main agent owns routing and stage changes.
+
+## Priority
+
+- User instructions and repo rules win.
+- Then Propulsion workflow.
+- Then platform defaults.
+
+## The Rule
+
+- If a Propulsion skill might apply, load it before any response or action.
+- This includes clarifying questions.
+- Announce the active skill briefly.
+- Follow the active stage skill's gates. Do not advance stages on your own.
 
 ## Routing
 
-- `exploration`: vague requests, missing scope, missing decisions, or no approved PRD.
-- `planning`: approved `docs/propulsion/{yyyymmdd}-{plan-name}/prd.md`.
-- `execution`: approved `plan.md`, or trivial, clearly-scoped, low-risk work that is safe without a PRD or plan.
-- `debugging`: unknown-cause bugs, failing tests, flaky behavior, or unexpected output.
-- `tdd`: behavior-changing work with a stable automated proof. Use inside `execution`, not instead of it.
-- `review`: meaningful completed work or explicit review request.
-- `review-response`: review findings or disputed feedback.
+- Non-trivial feature, new behavior, or vague request -> `exploration`
+- Current PRD to break down -> `planning`
+- Current plan to implement -> `execution`
+- Bug, failure, flaky behavior, or unexpected output -> `debugging`
+- Public behavior change inside implementation -> `tdd`
+- Review request or completed slice needing objective review -> `review`
+- Review findings to address -> `review-response`
+- Truly trivial one-step work -> handle directly unless a focused skill applies
 
-## Guardrails
+## Red Flags
 
-- Main agent owns routing, artifact authorship, approval gates, and done state.
-- Subagents support the current stage only. They do not advance the workflow.
-- Do not skip `exploration` or `planning` unless the trivial-task exception is clearly true.
-- Do not use `tdd` before `debugging` when the cause is unknown.
-- Done = verification passed, review clear, accepted feedback resolved.
+- "This is simple."
+- "I need more context first."
+- "I can ask a question before loading a skill."
+- "I already know this skill."
 
-## Exit
+## Do Not
 
-- Load the chosen skill and follow its method.
+- Do not let subagents reroute the workflow.
+- Do not repeat stage detail from downstream skills here.
+- Do not skip a stage skill because the work looks easy.

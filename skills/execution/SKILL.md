@@ -1,46 +1,52 @@
 ---
 name: execution
-description: Executes one approved task at a time with verification and review loops. Use when implementation is approved and should stay tightly in scope.
+# prettier-ignore
+description: Execute a current plan by orchestrating fresh subagents one thin slice at a time. Use when `plan.md` exists and implementation should start.
 ---
 
 # Execution
 
-Execute one approved task. Do not redesign the plan.
+Execute a current plan one thin slice at a time.
 
 ## Quick Start
 
-```text
-read one task -> choose implementer path -> route unknown causes to `debugging` and behavior-proof work to `tdd` -> implement -> verify -> `review` -> `review-response` if needed -> close task only when clear
-```
+    Read `plan.md` -> dispatch fresh implementer for first unchecked slice -> verify -> review -> update plan -> continue.
+
+## Before This Skill
+
+- An approved PRD exists.
+- `plan.md` exists and is current.
+- The next step is implementation.
 
 ## Use When
 
-- An approved `plan.md` task is ready.
-- `workflow` routed a trivial, clearly-scoped, low-risk task straight here.
-- The work should stay tightly inside an existing contract.
+- The user wants to build from a written plan.
+- Each checkbox is concrete enough for a fresh subagent.
 
 ## Core Loop
 
-- Read the current task, its goal, verification, and review hold point before editing.
-- Work one task at a time. Main agent owns task choice, state, questions, blockers, and closure.
-- A bounded task has one clear goal, one verification bundle, and a small enough touch surface for one implementer and one reviewer.
-- Use a fresh implementer subagent for bounded tasks by default. Inline execution is fallback only for trivial local edits or missing subagent support.
-- Before coding, route correctly: unknown cause -> `debugging`; behavior change with stable automated proof -> `tdd`; otherwise stay here.
-- Implement exactly this task, then run its required verification before review.
-- Implementer returns one status: `done`, `needs_context`, or `blocked`.
-- On `needs_context`, answer narrowly and re-dispatch. On `blocked`, change approach or escalate. Do not churn unchanged.
-- Run `review` with the task contract, the relevant diff, and fresh evidence.
-- Route findings through `review-response`. Re-verify and re-review until clear.
+- Read the plan. Stop if a slice is unclear, blocked, or out of order.
+- Work sequentially unless the plan explicitly marks slices independent.
+- Dispatch a fresh implementer with [references/subagent-handoff.md](references/subagent-handoff.md).
+- The implementer uses `tdd` for public behavior changes. Skip it only for pure docs, config, or non-behavioral maintenance.
+- Require targeted verification from [references/slice-completion-checklist.md](references/slice-completion-checklist.md) before review.
+- Dispatch a fresh reviewer using `review`. If it returns findings, send them to `review-response`, then review again.
+- Mark the slice complete in `plan.md` only after verification and a clear review.
+- Stop on blockers. Surface the blocker instead of skipping ahead.
+- After all slices complete, run `bun run checks` before claiming the plan done.
 
-## Guardrails
+## Subagents
 
-- Do not quietly expand scope.
-- Do not batch multiple tasks into one pass.
-- No task closes without verification and clear review, including trivial inline tasks.
-- If the current task is unclear, the plan drifts, or required repo state is missing, stop and ask.
-- Do not assume hidden setup, hidden prerequisites, or leftover workflow state.
+- Main agent orchestrates only. Subagents implement or review. They do not update workflow artifacts.
+- Use fresh context for each implementer and each review pass.
 
-## Exit
+## Hand Off To
 
-- Close the task only after verification passes and `review` returns `clear`.
-- Choose the next task in the main workflow, not inside a subagent.
+- Implementers use `tdd` inside behavioral slices. The main agent sends completed slices to `review` and `review-response` as needed.
+- After the last slice and `bun run checks`, hand off to the user with evidence.
+
+## Do Not
+
+- Do not implement from an unapproved or stale plan.
+- Do not run multiple implementation subagents in parallel by default.
+- Do not move to the next slice with open review issues.

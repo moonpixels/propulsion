@@ -255,6 +255,8 @@ ${bootstrapMarker}
 
 Propulsion's \`workflow\` skill is already active for this session.
 
+If you are a subagent executing a bounded task, the injected workflow below is inactive for you. Stay inside your assigned stage or task. Do not reroute the workflow.
+
 Treat the injected skill content below as the session contract you must follow.
 
 Do not reload \`workflow\` unless you need to re-check its wording or the user explicitly asks.
@@ -272,7 +274,9 @@ const isUserMessage = (
 const hasBootstrapPart = (parts: TransformMessage['parts']) => {
     return parts.some(
         (part): part is TransformTextPart =>
-            part.type === 'text' && part.text.includes(bootstrapMarker),
+            part.type === 'text' &&
+            part.synthetic === true &&
+            part.text.includes(bootstrapMarker),
     );
 };
 
