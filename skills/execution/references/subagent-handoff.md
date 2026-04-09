@@ -3,10 +3,10 @@
 Every implementation subagent should receive:
 
 - the exact slice text
-- the relevant PRD and plan excerpts
+- the relevant PRD, debug note, and plan excerpts
+- the slice acceptance criteria
 - the durable decisions that constrain the slice
 - the files or areas most likely to change
-- the exact verification command or commands
 - the required skill inside the slice: `tdd` for behavior changes
 
 Rules:

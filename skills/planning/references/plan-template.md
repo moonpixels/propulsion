@@ -9,13 +9,10 @@ Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using this shape.
 
 ## For Agentic Coders
 
-- Main agent orchestrates.
-- Complete one checkbox at a time.
-- Use a fresh implementation subagent per checkbox.
-- Use a fresh review subagent before handoff.
+- Use `execution` to implement this plan one slice at a time.
+- Use the slice checkboxes for progress.
+- Main agent orchestrates. Fresh subagents implement and review.
 - Use `tdd` for public behavior changes.
-- Run targeted checks before marking a slice complete.
-- Update this file only from the main agent.
 - Stop on blockers.
 
 ## Durable Decisions
@@ -27,19 +24,23 @@ Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using this shape.
 
 - [ ] Slice complete
 - Goal: narrow end-to-end behavior
-- PRD stories: `1, 2`
+- Source: `PRD stories 1, 2` or `debug diagnosis`
 - Likely areas: `src/...`, `tests/...`
 - Constraints: durable rules that this slice must respect
-- Verification: `exact command or commands`
+- Acceptance criteria:
+    - [ ] Criterion 1
+    - [ ] Criterion 2
 
 ## Slice 2: <Short Title>
 
 - [ ] Slice complete
 - Goal: next narrow end-to-end behavior
-- PRD stories: `3, 4`
+- Source: `PRD stories 3, 4` or `debug diagnosis`
 - Likely areas: `src/...`, `tests/...`
 - Constraints: durable rules that this slice must respect
-- Verification: `exact command or commands`
+- Acceptance criteria:
+    - [ ] Criterion 1
+    - [ ] Criterion 2
 ```
 
 Rules:
@@ -48,3 +49,4 @@ Rules:
 - Prefer many thin slices over few thick ones.
 - Give enough context that a fresh subagent does not need to rediscover scope.
 - Keep durable decisions out of the slices when they apply globally.
+- Use exact file paths only when they are durable and important.

@@ -13,14 +13,14 @@ If `findings`:
 
 If `unclear`:
 
-- <missing product or scope decision>
-  - Why planning cannot decide it
-  - What `exploration` must resolve
+- Missing: <product decision | grounded bug diagnosis>
+    - Why planning cannot continue
+    - Route to: `exploration` | `debugging`
 ```
 
 Rules:
 
 - Use `clear` only if the plan is execution-ready.
 - Use `findings` for fixable planning issues.
-- Use `unclear` for missing product intent, scope, UX, or success criteria.
-- Do not invent missing product decisions inside the review.
+- Use `unclear` for missing product intent, scope, UX, success criteria, or bug diagnosis.
+- Do not invent missing product decisions or root cause inside the review.

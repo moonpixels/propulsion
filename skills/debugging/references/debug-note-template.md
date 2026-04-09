@@ -2,7 +2,7 @@
 
 Use this for non-trivial investigations.
 
-Write `docs/propulsion/{yyyymmdd}-{issue-name}/debug.md`.
+Write `docs/propulsion/{yyyymmdd}-{feature-name}/debug.md`.
 
 ```md
 # Debug Note: <issue>

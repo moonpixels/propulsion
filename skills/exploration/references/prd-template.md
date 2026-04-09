@@ -49,4 +49,5 @@ Rules:
 - Keep it product-facing.
 - Include durable decisions, not file paths or code.
 - Resolve blocking branches before writing.
+- Use the first explored slice only if the request was decomposed.
 - Self-review for placeholders, contradictions, and scope drift before asking for approval.

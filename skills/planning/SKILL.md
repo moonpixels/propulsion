@@ -1,52 +1,67 @@
 ---
 name: planning
 # prettier-ignore
-description: Create an execution-ready plan from an approved PRD using thin vertical slices and plan-review loops. Use when an approved PRD exists and the next step is to prepare for execution.
+description: Create an execution-ready plan from approved discovery using thin vertical slices. Use when approved `prd.md` or grounded debugging output exists and the next step is execution.
 ---
 
 # Planning
 
-Turn an approved PRD into an execution-ready plan.
+Turn approved discovery into an execution-ready plan.
 
 ## Quick Start
 
-    Approved `prd.md` -> inspect repo -> draft thin slices -> review the plan -> write `plan.md` -> announce `execution`.
+    Load `planning` -> rescan repo -> write `plan.md` -> review until `clear` -> ask to move to `execution`.
 
-## Before This Skill
+## Prerequisites
 
-- An approved `docs/propulsion/.../prd.md` exists.
-- Execution would require a slice breakdown.
+ALL prerequisites MUST be true before following this skill.
 
-## Use When
+- Approved `docs/propulsion/.../prd.md` exists, or grounded output from `debugging` exists.
+- The next step is to break the work into thin slices.
+- If product intent is unresolved, STOP. Load `exploration`.
+- If bug diagnosis is ungrounded, STOP. Load `debugging`.
 
-- The PRD is approved.
-- The user asks for a plan, phases, or execution-ready slices.
-- Execution would require rediscovering scope.
+## Instructions
 
-## Core Loop
+Follow these steps IN ORDER. Do NOT skip steps.
 
-- Stop if the PRD is missing or unapproved. Route back to `exploration`.
-- Re-scan the relevant repo areas before slicing.
-- Capture durable decisions first. Keep them stable across all slices.
-- Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` from [references/plan-template.md](references/plan-template.md).
-- Every `plan.md` must begin with `## For Agentic Coders` exactly as shown in the template.
-- Make each checkbox one thin vertical slice. Each slice should be demoable or verifiable on its own.
-- Make each slice execution-ready: target behavior, likely files or areas, durable constraints, and targeted verification.
-- Use a fresh planning-review subagent with [references/plan-review-format.md](references/plan-review-format.md). If it returns `unclear`, route back to `exploration`, update the PRD, get the PRD approved again, then repair the plan.
-- Iterate until the reviewer says `clear`.
-- End by telling the user planning is complete and `execution` is next. Do not auto-start execution.
+1. Re-scan the relevant repo areas before slicing.
+2. Capture durable decisions first. Keep them stable across all slices.
+3. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` from [references/plan-template.md](references/plan-template.md).
+4. Make each checkbox one thin vertical slice with acceptance criteria and likely areas.
+5. Use a fresh review subagent with [references/plan-review-format.md](references/plan-review-format.md). Repeat until it returns `clear`.
+6. If review finds missing product intent, STOP. Load `exploration`. If review finds missing bug diagnosis, STOP. Load `debugging`.
+7. Tell the user planning is complete and ask whether to move to `execution`.
 
-## Subagents
+## Rules
 
-- Use fresh subagents for repo inspection and plan review.
-- Review subagents do not invent product intent.
+These rules are MANDATORY.
 
-## Hand Off To
+- MUST start every `plan.md` with `## For Agentic Coders` from the template.
+- MUST keep slices thin, ordered, and execution-ready.
+- DO NOT invent missing product decisions or bug diagnosis here.
+- DO NOT auto-start `execution`.
 
-- Hand off to `execution` with the PRD path, plan path, and durable decisions.
+## Completion Gate
 
-## Do Not
+Do NOT leave this skill until ALL items are complete.
 
-- Do not plan from an unapproved PRD.
-- Do not leave scope gaps for execution to guess through.
-- Do not hide slice rules or handoff rules in references.
+- [ ] Relevant repo areas re-scanned.
+- [ ] `plan.md` written to `docs/propulsion/.../plan.md`.
+- [ ] Fresh review returns `clear`.
+- [ ] User asked whether to move to `execution`.
+
+## Next Skill
+
+Once the completion gate is fully checked:
+
+- If the user says to proceed, load `execution`.
+- If product intent is missing, load `exploration`.
+- If bug diagnosis is missing, load `debugging`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/plan-template.md](references/plan-template.md) - Plan shape and slice format.
+- [references/plan-review-format.md](references/plan-review-format.md) - Review statuses and routing.

@@ -10,34 +10,54 @@ Treat review findings as technical claims to verify.
 
 ## Quick Start
 
-    Classify each finding -> fix valid items -> push back on invalid items with evidence -> rerun checks -> request fresh review.
+    Load `review-response` -> classify every finding -> fix or push back -> rerun checks -> request fresh `review`.
 
-## Before This Skill
+## Prerequisites
+
+ALL prerequisites MUST be true before following this skill.
 
 - `review` returned findings.
 - The original slice context and verification commands are available.
+- If required context is missing, STOP and return to `execution`.
 
-## Use When
+## Instructions
 
-- A reviewer reported issues that block slice completion.
-- Feedback needs technical evaluation before code changes start.
+Follow these steps IN ORDER. Do NOT skip steps.
 
-## Core Loop
+1. Classify every finding with [references/finding-triage-format.md](references/finding-triage-format.md).
+2. If any finding is `unclear`, resolve it before coding.
+3. If a valid finding changes public behavior or fixes a bug, load `tdd` before production code.
+4. Fix valid findings.
+5. Push back on invalid findings with [references/pushback-rules.md](references/pushback-rules.md).
+6. Rerun the relevant checks and request a fresh `review`.
 
-- Classify each finding with [references/finding-triage-format.md](references/finding-triage-format.md): `valid`, `invalid`, or `unclear`.
-- If a valid finding changes public behavior or fixes a bug, use `tdd` before changing production code.
-- Fix valid items first.
-- For invalid items, respond with evidence from code, tests, or plan scope. See [references/pushback-rules.md](references/pushback-rules.md).
-- Resolve unclear items before coding. Do not partially implement ambiguous feedback.
-- Rerun the relevant checks after the fixes.
-- Request a fresh `review`. Do not self-close after code changed.
+## Rules
 
-## Hand Off To
+These rules are MANDATORY.
 
-- Hand off fixed work to `review` again.
+- DO NOT agree performatively.
+- DO NOT implement every finding blindly.
+- DO NOT partially fix around unclear findings.
+- DO NOT self-close after code changed.
 
-## Do Not
+## Completion Gate
 
-- Do not agree performatively.
-- Do not implement every finding blindly.
-- Do not move on without rechecking and re-reviewing.
+Do NOT leave this skill until ALL items are complete.
+
+- [ ] Every finding classified as `valid`, `invalid`, or `unclear`.
+- [ ] Valid findings fixed or invalid findings pushed back with evidence.
+- [ ] Relevant checks rerun.
+- [ ] Fresh `review` requested.
+
+## Next Skill
+
+Once the completion gate is fully checked:
+
+- Load `review`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/finding-triage-format.md](references/finding-triage-format.md) - Classify before coding.
+- [references/pushback-rules.md](references/pushback-rules.md) - Push back with evidence.

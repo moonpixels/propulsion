@@ -10,46 +10,57 @@ Treat Propulsion as the session contract.
 
 ## Quick Start
 
-    Non-trivial feature -> load `exploration`. Bug or failure -> load `debugging`. Current plan -> load `execution`.
+    Load a Propulsion skill before any response or action. New work -> `exploration`. Bug -> `debugging`. Current plan -> `execution`.
 
-## Subagent Stop
+## Prerequisites
 
-- If you are a subagent executing a bounded task, skip this skill.
+ALL prerequisites MUST be true before following this skill.
+
+- This skill is for the main agent.
+- If you are a subagent on a bounded task, follow the assigned skill and do not reroute the workflow.
+
+## Instructions
+
+Follow these steps IN ORDER. Do NOT skip steps.
+
+1. If a Propulsion skill applies, load it before any response or action. This includes clarifying questions.
+2. Announce the active skill and each major stage transition in plain language.
+3. Route with this table:
+    - New feature, vague request, or new behavior -> `exploration`
+    - Bug, test failure, flaky behavior, or unexpected output -> `debugging`
+    - Approved `prd.md` or grounded debugging output to break into slices -> `planning`
+    - Current `plan.md` and user wants implementation -> `execution`
+    - Public behavior change inside a slice -> `tdd`
+    - Completed slice needing objective review -> `review`
+    - `review` findings to address -> `review-response`
+4. Keep major stage prompts user-facing: `exploration` -> `planning`, `planning` -> `execution`, `debugging` -> `planning`.
+
+## Rules
+
+These rules are MANDATORY.
+
+- User instructions and repo rules win, then Propulsion, then platform defaults.
 - Main agent owns routing and stage changes.
+- DO NOT let subagents reroute the workflow.
+- DO NOT handle coding work outside Propulsion.
+- DO NOT repeat downstream skill detail here.
 
-## Priority
+## Completion Gate
 
-- User instructions and repo rules win.
-- Then Propulsion workflow.
-- Then platform defaults.
+Do NOT leave this skill until ALL items are complete.
 
-## The Rule
+- [ ] Active skill loaded before work begins.
+- [ ] Major stage transitions announced to the user.
+- [ ] Routing stayed inside Propulsion.
 
-- If a Propulsion skill might apply, load it before any response or action.
-- This includes clarifying questions.
-- Announce the active skill briefly.
-- Follow the active stage skill's gates. Do not advance stages on your own.
+## Next Skill
 
-## Routing
+Once the completion gate is fully checked:
 
-- Non-trivial feature, new behavior, or vague request -> `exploration`
-- Current PRD to break down -> `planning`
-- Current plan to implement -> `execution`
-- Bug, failure, flaky behavior, or unexpected output -> `debugging`
-- Public behavior change inside implementation -> `tdd`
-- Review request or completed slice needing objective review -> `review`
-- Review findings to address -> `review-response`
-- Truly trivial one-step work -> handle directly unless a focused skill applies
+- Load the skill selected by the routing table.
 
-## Red Flags
+## References
 
-- "This is simple."
-- "I need more context first."
-- "I can ask a question before loading a skill."
-- "I already know this skill."
+Use these references when you need detail.
 
-## Do Not
-
-- Do not let subagents reroute the workflow.
-- Do not repeat stage detail from downstream skills here.
-- Do not skip a stage skill because the work looks easy.
+- None. This file is the routing contract.

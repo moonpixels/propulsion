@@ -10,35 +10,55 @@ Find real issues before the slice moves on.
 
 ## Quick Start
 
-    Gather plan step, plan excerpt, diff, and verification evidence -> review for real issues only -> return `clear`, `findings`, or `unclear`.
+    Load `review` -> verify inputs -> review for real issues only -> return `clear`, `findings`, or `unclear`.
 
-## Before This Skill
+## Prerequisites
+
+ALL prerequisites MUST be true before following this skill.
 
 - The current slice is implemented.
-- Targeted verification evidence exists.
+- The current slice text, plan context, diff, and verification evidence are available.
 - The review runs in a fresh subagent.
+- If any required input is missing, STOP and return `unclear` to `execution`.
 
-## Use When
+## Instructions
 
-- A slice needs objective review before it can be marked complete.
-- The main agent needs findings, not suggestions.
+Follow these steps IN ORDER. Do NOT skip steps.
 
-## Core Loop
+1. Verify the review inputs first.
+2. Review the slice contract first, then code health.
+3. Use [references/signal-filter.md](references/signal-filter.md) to surface real issues only.
+4. Return [references/review-format.md](references/review-format.md) with `clear`, `findings`, or `unclear` only.
+5. Sort findings by severity, highest first.
 
-- Stop if the reviewer did not receive the current plan step, relevant plan excerpt, diff, and verification evidence.
-- Review the work against the slice contract first, then against code health.
-- Use [references/signal-filter.md](references/signal-filter.md) to surface only real issues.
-- Return [references/review-format.md](references/review-format.md) with `clear`, `findings`, or `unclear`.
-- Sort findings by severity: `high`, `medium`, `low`.
+## Rules
 
-## Hand Off To
+These rules are MANDATORY.
 
-- If `clear`, return to `execution`.
-- If `findings`, hand off to `review-response`.
-- If `unclear`, return to `execution` for missing inputs.
+- MUST surface real issues only.
+- DO NOT self-review inside the implementer context.
+- DO NOT approve work without evidence.
+- DO NOT include style nits or speculative refactors.
 
-## Do Not
+## Completion Gate
 
-- Do not suggest speculative improvements or style nits.
-- Do not self-review inside the implementer context.
-- Do not approve work without evidence.
+Do NOT leave this skill until ALL items are complete.
+
+- [ ] Inputs verified or `unclear` returned.
+- [ ] Output uses `clear`, `findings`, or `unclear` only.
+- [ ] Findings, if any, are evidence-based and severity-sorted.
+
+## Next Skill
+
+Once the completion gate is fully checked:
+
+- If the review is `clear`, return to `execution`.
+- If the review is `findings`, load `review-response`.
+- If the review is `unclear`, return to `execution`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/review-format.md](references/review-format.md) - Exact review output.
+- [references/signal-filter.md](references/signal-filter.md) - High-signal findings only.

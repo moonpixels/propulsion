@@ -10,41 +10,56 @@ Turn vague work into an approved PRD.
 
 ## Quick Start
 
-    User asks for a feature -> inspect repo -> ask one question with a recommendation -> write `prd.md` -> ask for approval.
+    Load `exploration` -> scan repo -> ask questions -> write `prd.md` -> ask for approval.
 
-## Before This Skill
+## Prerequisites
 
-- No approved PRD exists.
+ALL prerequisites MUST be true before following this skill.
+
+- No approved `docs/propulsion/.../prd.md` exists for this work.
 - Product intent, scope, UX, constraints, or success criteria are unresolved.
+- If this is a bug, failure, or unexpected behavior, STOP. Load `debugging`.
+- If an approved `prd.md` already exists, STOP. Load `planning`.
 
-## Use When
+## Instructions
 
-- The request is vague, cross-cutting, or likely to change shape during planning.
-- Planning would require guessing.
-- The user asks for a PRD, feature discovery, or design questioning.
+Follow these steps IN ORDER. Do NOT skip steps.
 
-## Core Loop
+1. Start with a targeted repo scan. Use fresh subagents for code facts.
+2. Walk this order: goal -> actors -> inputs -> UX -> boundaries -> constraints -> failure cases -> success criteria -> out of scope.
+3. Ask one question per message from [references/questioning-rules.md](references/questioning-rules.md). Give your recommendation first. If code can answer the branch, inspect the repo instead.
+4. If the request is too large, decompose it and explore only the first slice or subsystem.
+5. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` from [references/prd-template.md](references/prd-template.md) only after all blocking branches are closed.
+6. Ask the user to review the file and approve it before `planning`.
 
-- Start with an aggressive targeted repo scan. Use subagents when code can answer the next branch faster than the user can.
-- Ask one question at a time from [references/questioning-rules.md](references/questioning-rules.md). Give your recommendation first.
-- Resolve branches in order: goal, actors, inputs, boundaries, constraints, failure cases, success criteria, out of scope.
-- If the work is too large, decompose it and explore the first slice only.
-- Do not leave blocking branches open. Resolve anything that would change scope, UX, architecture, sequencing, or success criteria.
-- Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` from [references/prd-template.md](references/prd-template.md). Add `-2`, `-3`, and so on on collisions.
-- Keep the PRD product-facing, but record durable implementation and testing decisions. Do not print the full PRD in chat.
-- If asked to plan without an approved PRD, route back to `exploration` and tell the user to switch to build mode so you can write the PRD first.
+## Rules
 
-## Subagents
+These rules are MANDATORY.
 
-- Use fresh explore subagents for repo inspection only. They gather code facts. They do not decide product intent.
+- MUST close every blocking branch before writing `prd.md`.
+- MUST keep the PRD product-facing while recording durable implementation and testing decisions.
+- DO NOT print the full PRD in chat.
+- DO NOT start `planning` here.
+- If you cannot write files, STOP and ask the user to switch to build mode.
 
-## Hand Off To
+## Completion Gate
 
-- Ask the user to review `prd.md`.
-- Move to `planning` only after explicit PRD approval.
+Do NOT leave this skill until ALL items are complete.
 
-## Do Not
+- [ ] Targeted repo scan complete.
+- [ ] Blocking branches closed or scope decomposed.
+- [ ] `prd.md` written to `docs/propulsion/.../prd.md`.
+- [ ] User asked to review and approve `prd.md`.
 
-- Do not infer product intent from code.
-- Do not start planning or implementation here.
-- Do not hide approval gates in references.
+## Next Skill
+
+Once the completion gate is fully checked:
+
+- If `prd.md` is approved, load `planning`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/questioning-rules.md](references/questioning-rules.md) - Question order and blocking branches.
+- [references/prd-template.md](references/prd-template.md) - PRD shape and output path.

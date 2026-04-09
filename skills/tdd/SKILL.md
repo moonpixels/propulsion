@@ -10,41 +10,53 @@ Prove behavior with a failing test before writing production code.
 
 ## Quick Start
 
-    Write one failing test -> watch it fail -> write the smallest code to pass -> refactor while green.
+    Load `tdd` -> write one failing test -> make it pass -> refactor while green.
 
-## Before This Skill
+## Prerequisites
+
+ALL prerequisites MUST be true before following this skill.
 
 - The current slice changes public behavior.
 - The interface or expected behavior is clear enough to test.
+- If the work is non-behavioral, STOP. Return to `execution`.
 
-## Use When
+## Instructions
 
-- Building a feature or bug fix that changes behavior.
-- Writing a regression test for an observed failure.
+Follow these steps IN ORDER. Do NOT skip steps.
 
-## Core Loop
+1. Write one test for one behavior through a public interface. Use [references/public-behavior.md](references/public-behavior.md).
+2. Run it. If it does not fail for the expected reason, fix the test first.
+3. Write the smallest good code to pass the test.
+4. Run the targeted test again. Repeat one behavior at a time.
+5. Refactor only while green. See [references/good-vs-bad-tests.md](references/good-vs-bad-tests.md).
 
-- Write one test for one behavior through a public interface.
-- Run it. If it does not fail for the expected reason, fix the test first.
-- Write the smallest good fix. No speculative code.
-- Run the targeted test again. Keep going until it passes.
-- Refactor only while green.
-- Repeat one behavior at a time. Do not queue failing tests.
-- Prefer real code paths over mocks. See [references/public-behavior.md](references/public-behavior.md) and [references/good-vs-bad-tests.md](references/good-vs-bad-tests.md).
+## Rules
 
-## Good vs Bad
+These rules are MANDATORY.
 
-```text
-WRONG:  test1, test2, test3 -> code1, code2, code3
-RIGHT:  test1 -> code1 -> test2 -> code2 -> test3 -> code3
-```
+- NO PRODUCTION CODE BEFORE A FAILING TEST.
+- MUST do one behavior, one test, and one fix at a time.
+- DO NOT test implementation details.
+- DO NOT keep speculative code.
 
-## Hand Off To
+## Completion Gate
 
-- Hand off passing changes to `execution`.
+Do NOT leave this skill until ALL items are complete.
 
-## Do Not
+- [ ] A failing test existed for the target behavior.
+- [ ] The target test now passes.
+- [ ] No speculative code remains.
+- [ ] Any refactor left the tests green.
 
-- Do not write production code before a failing test.
-- Do not test implementation details.
-- Do not keep code written before the test.
+## Next Skill
+
+Once the completion gate is fully checked:
+
+- Return to `execution` or `review-response`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/public-behavior.md](references/public-behavior.md) - Test through stable seams.
+- [references/good-vs-bad-tests.md](references/good-vs-bad-tests.md) - Keep tests high-signal.

@@ -10,41 +10,60 @@ Find the root cause before anyone changes code.
 
 ## Quick Start
 
-    Reproduce -> gather evidence -> compare broken vs working -> test one hypothesis -> diagnose -> hand off fix.
+    Load `debugging` -> reproduce -> gather evidence -> test one hypothesis at a time -> diagnose -> ask to move to `planning`.
 
-## Before This Skill
+## Prerequisites
+
+ALL prerequisites MUST be true before following this skill.
 
 - A bug, test failure, flaky result, or unexpected behavior exists.
 - The root cause is not yet proven.
+- If this is new feature work without a failure, STOP. Load `exploration`.
 
-## Use When
+## Instructions
 
-- A user or agent reports a failure.
-- A proposed fix would still be guesswork.
+Follow these steps IN ORDER. Do NOT skip steps.
 
-## Core Loop
+1. Reproduce the issue first with [references/reproduction.md](references/reproduction.md).
+2. Capture fresh evidence with [references/evidence-capture.md](references/evidence-capture.md).
+3. If a working example exists, compare it with [references/compare-working-vs-broken.md](references/compare-working-vs-broken.md).
+4. Narrow the surface with [references/narrow-the-surface.md](references/narrow-the-surface.md).
+5. Form one hypothesis at a time and test it with [references/hypothesis-testing.md](references/hypothesis-testing.md). Repeat until the root cause is grounded.
+6. If the investigation is non-trivial, write `docs/propulsion/{yyyymmdd}-{feature-name}/debug.md` from [references/debug-note-template.md](references/debug-note-template.md).
+7. Tell the user debugging is complete, summarize the diagnosis, point to `debug.md` if it exists, and ask whether to move to `planning`.
 
-- Reproduce the issue first. Use [references/reproduction.md](references/reproduction.md).
-- Capture fresh evidence before proposing fixes. Use [references/evidence-capture.md](references/evidence-capture.md).
-- If a working example exists, compare broken vs working with [references/compare-working-vs-broken.md](references/compare-working-vs-broken.md).
-- Narrow the surface before changing code. Use [references/narrow-the-surface.md](references/narrow-the-surface.md).
-- Form one hypothesis at a time and test it with [references/hypothesis-testing.md](references/hypothesis-testing.md).
-- Do not propose fixes until the root cause is grounded in evidence.
-- If the investigation is non-trivial, write `docs/propulsion/{yyyymmdd}-{issue-name}/debug.md` from [references/debug-note-template.md](references/debug-note-template.md). Add `-2`, `-3`, and so on on collisions.
-- After 3 failed hypothesis or probe attempts, stop and question the architecture with the user.
-- Once the root cause and fix direction are clear, hand off to `execution` if a current plan exists. Otherwise route to `exploration`, then `planning`, then `execution`.
+## Rules
 
-## Subagents
+These rules are MANDATORY.
 
-- Use fresh subagents to gather evidence, compare variants, or inspect likely code paths without polluting the main context.
+- NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.
+- MUST complete the phases in order.
+- MUST stop after 3 failed hypotheses or probes and question the architecture with the user.
+- Fresh subagents may gather evidence or code facts only.
+- DO NOT implement fixes here.
 
-## Hand Off To
+## Completion Gate
 
-- Hand off grounded diagnosis and fix direction to `execution` if a current plan exists.
-- Otherwise hand off to `exploration` so the bug fix gets a PRD and plan first.
+Do NOT leave this skill until ALL items are complete.
 
-## Do Not
+- [ ] Reproduction and fresh evidence captured.
+- [ ] Root cause grounded in evidence.
+- [ ] `debug.md` written for non-trivial work, if needed.
+- [ ] User asked whether to move to `planning`.
 
-- Do not stack guesses.
-- Do not patch symptoms first.
-- Do not claim the issue is fixed without fresh verification.
+## Next Skill
+
+Once the completion gate is fully checked:
+
+- If the diagnosis is grounded, load `planning`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/reproduction.md](references/reproduction.md) - Reproduce first.
+- [references/evidence-capture.md](references/evidence-capture.md) - Gather fresh evidence.
+- [references/compare-working-vs-broken.md](references/compare-working-vs-broken.md) - Compare variants.
+- [references/narrow-the-surface.md](references/narrow-the-surface.md) - Shrink the search space.
+- [references/hypothesis-testing.md](references/hypothesis-testing.md) - One hypothesis at a time.
+- [references/debug-note-template.md](references/debug-note-template.md) - Durable debug handoff.
