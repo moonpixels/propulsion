@@ -8,10 +8,6 @@ description: Create an approved PRD through repo inspection and relentless user 
 
 Turn vague work into an approved PRD.
 
-## Quick Start
-
-    Load `exploration` -> scan repo -> ask questions -> write `prd.md` -> ask for approval.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

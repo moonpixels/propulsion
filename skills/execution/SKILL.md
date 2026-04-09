@@ -8,10 +8,6 @@ description: Execute a current plan by orchestrating fresh subagents one thin sl
 
 Execute a current plan one thin slice at a time.
 
-## Quick Start
-
-    Load `execution` -> read `plan.md` -> dispatch first slice -> review -> update `plan.md` -> repeat.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

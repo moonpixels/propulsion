@@ -8,10 +8,6 @@ description: Create an execution-ready plan from approved discovery using thin v
 
 Turn approved discovery into an execution-ready plan.
 
-## Quick Start
-
-    Load `planning` -> rescan repo -> write `plan.md` -> review until `clear` -> ask to move to `execution`.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

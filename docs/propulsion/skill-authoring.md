@@ -19,7 +19,6 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 - State what to do when prerequisites are missing. Usually: `STOP` and route to another skill by exact name.
 - State what artifact must exist, where it lives, and whether explicit user approval or a visible user-facing transition prompt is required.
 - Add a completion checklist. Do not let the skill exit without it.
-- Add `## Quick Start` with one minimal workflow example.
 - Start each major section with its standard intro line.
 - Move explanation, examples, and long formats into `references/`.
 
@@ -42,10 +41,6 @@ Every Propulsion `SKILL.md` should use this structure unless there is a clear re
 # Skill Name
 
 One-line mission.
-
-## Quick Start
-
-    Minimal workflow example.
 
 ## Prerequisites
 

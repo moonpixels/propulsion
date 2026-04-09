@@ -25,7 +25,6 @@ Create OpenCode skills that are compact, triggerable, and enforce progressive di
 ## SKILL.md Body Rules (Level 2)
 
 - Hard limit: 50 lines (frontmatter excluded)
-- Must include `## Quick Start` with ONE minimal example
 - 1 code block preferred; warn if >2, error if >3
 - 3-5 sections recommended; warn if >8
 - Long explanations move to `references/`

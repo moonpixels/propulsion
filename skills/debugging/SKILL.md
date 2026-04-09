@@ -8,10 +8,6 @@ description: Analyze bugs and failures systematically before proposing fixes. Us
 
 Find the root cause before anyone changes code.
 
-## Quick Start
-
-    Load `debugging` -> reproduce -> gather evidence -> test one hypothesis at a time -> diagnose -> ask to move to `planning`.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

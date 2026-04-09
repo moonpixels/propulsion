@@ -8,10 +8,6 @@ description: Build behavior with one failing test at a time through red-green-re
 
 Prove behavior with a failing test before writing production code.
 
-## Quick Start
-
-    Load `tdd` -> write one failing test -> make it pass -> refactor while green.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

@@ -8,10 +8,6 @@ description: Analyze a completed slice for real issues before handoff. Use when 
 
 Find real issues before the slice moves on.
 
-## Quick Start
-
-    Load `review` -> verify inputs -> review for real issues only -> return `clear`, `findings`, or `unclear`.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

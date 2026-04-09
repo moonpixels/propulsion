@@ -8,10 +8,6 @@ description: Manage work through Propulsion from session start and load the righ
 
 Treat Propulsion as the session contract.
 
-## Quick Start
-
-    Load a Propulsion skill before any response or action. New work -> `exploration`. Bug -> `debugging`. Current plan -> `execution`.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

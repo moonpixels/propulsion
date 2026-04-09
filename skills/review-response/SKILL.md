@@ -8,10 +8,6 @@ description: Handle review findings with technical triage, fixes, and re-review.
 
 Treat review findings as technical claims to verify.
 
-## Quick Start
-
-    Load `review-response` -> classify every finding -> fix or push back -> rerun checks -> request fresh `review`.
-
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.

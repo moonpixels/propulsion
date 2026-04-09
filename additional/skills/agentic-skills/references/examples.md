@@ -24,13 +24,6 @@ description: Create TypeScript types and interfaces for data models. Use when de
 
 Define type-safe models and interfaces for data shapes.
 
-## Quick Start
-
-    export interface User {
-      id: string
-      email: string
-    }
-
 ## Core Rules
 
 - Use `interface` for object shapes
@@ -68,13 +61,6 @@ description: Create custom React hooks for reusable logic. Use when creating hoo
 # Hooks
 
 Encapsulate reusable stateful logic in hook functions.
-
-## Quick Start
-
-    export function useFlag() {
-      const [value, setValue] = useState(false)
-      return { value, setValue }
-    }
 
 ## Core Rules
 
