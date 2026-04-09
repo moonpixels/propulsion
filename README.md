@@ -8,13 +8,9 @@ It gives coding agents a stronger workflow: explore unclear work first, write a 
 
 ## Installation
 
-Install Propulsion outside OpenCode with:
+Propulsion is installed as an OpenCode plugin.
 
-```bash
-npx skills add moonpixels/propulsion
-```
-
-Install the OpenCode plugin in a project with:
+Install it for a project by adding it to that project's `opencode.json`:
 
 ```json
 {
@@ -23,7 +19,7 @@ Install the OpenCode plugin in a project with:
 }
 ```
 
-Or install it globally with:
+Or install it globally in `~/.config/opencode/opencode.json`:
 
 ```json
 {
@@ -32,7 +28,7 @@ Or install it globally with:
 }
 ```
 
-See `.opencode/INSTALL.md` for the OpenCode guide.
+Optional extras, including agent-authoring helpers and extra workflow commands, are documented in [`additional/README.md`](additional/README.md).
 
 ## Acknowledgements
 

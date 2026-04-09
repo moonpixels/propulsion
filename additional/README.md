@@ -1,6 +1,8 @@
 # Additional OpenCode Assets
 
-These are optional OpenCode-only Propulsion skills and commands, including agent-authoring helpers and extra workflow commands.
+These assets are separate from the default Propulsion workflow.
+
+They are optional skills and commands, including agent-authoring helpers and extra workflow commands, and are only included when you explicitly enable them.
 
 ## Installation
 
