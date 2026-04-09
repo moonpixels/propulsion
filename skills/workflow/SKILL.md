@@ -1,62 +1,77 @@
 ---
 name: workflow
 # prettier-ignore
-description: Manage work through Propulsion from session start and load the right skill before any action. Use when a conversation starts or when the next Propulsion stage is unclear.
+description: Manage software-work request routing into Propulsion before any downstream skill is loaded. Use when starting a session with software work.
 ---
 
-# Workflow
+# Using Propulsion Workflow
 
-Treat Propulsion as the session contract.
+Use `workflow` to route software-work requests into Propulsion before any other response or action.
 
-## Prerequisites
+<SUBAGENT_STOP>
+If you were dispatched as a subagent to execute a specific task, skip this skill.
+</SUBAGENT_STOP>
 
-ALL prerequisites MUST be true before following this skill.
+<EXTREMELY_IMPORTANT>
+If the user request is software work, `workflow` applies before any clarifying question, repo scan, tool call, or downstream Propulsion skill.
 
-- This skill is for the main agent.
-- If you are a subagent on a bounded task, follow the assigned skill and do not reroute the workflow.
+If `workflow` applies, you MUST route first. Do NOT reload `workflow`. Do NOT skip it because the task looks small, obvious, or familiar.
 
-## Instructions
+ONCE YOU ARE FOLLOWING PROPULSION WORKFLOW, DO NOT LEAVE IT UNTIL COMPLETION. DO NOT SKIP STEPS. FOLLOW THE RULES OF EACH SKILL.
+</EXTREMELY_IMPORTANT>
+
+## Instruction Priority
+
+1. User instructions, repository rules, and `AGENTS.md`
+2. Propulsion skills
+3. Default system behavior
+
+After `workflow` selects the entry skill, that downstream skill owns the stage.
+
+## The Rule
+
+Route software-work requests only to `exploration` or `debugging`.
+
+- Default entry route: `exploration`.
+- Use `debugging` only for a pure bug, test-failure, or unexpected-behavior request with no desired change.
+- If the request includes a fix plus any desired behavior change, enhancement, redesign, or new outcome, use `exploration`.
+- If the request is vague, mixed, or not clearly pure bug-only investigation, use `exploration`.
+
+For non-software-work requests, do not use Propulsion. Respond normally.
+
+## Required Response
+
+For software-work requests, emit this exact line before any other user-visible text:
+
+`Propulsion workflow enabled, routing to <skill>...`
+
+Replace `<skill>` only with `exploration` or `debugging`.
+
+## Sequence
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. If a Propulsion skill applies, load it before any response or action. This includes clarifying questions.
-2. Announce the active skill and each major stage transition in plain language.
-3. Route with this table:
-    - New feature, vague request, or new behavior -> `exploration`
-    - Bug, test failure, flaky behavior, or unexpected output -> `debugging`
-    - Approved `prd.md` or grounded debugging output to break into slices -> `planning`
-    - Current `plan.md` and user wants implementation -> `execution`
-    - Public behavior change inside a slice -> `tdd`
-    - Completed slice needing objective review -> `review`
-    - `review` findings to address -> `review-response`
-4. Keep major stage prompts user-facing: `exploration` -> `planning`, `planning` -> `execution`, `debugging` -> `planning`.
+1. Determine whether the request is software work.
+2. If it is not software work, respond normally.
+3. If it is software work, choose `exploration` or `debugging` with the rules above.
+4. Emit `Propulsion workflow enabled, routing to <skill>...` before any other user-visible text.
+5. Load the chosen skill immediately.
+6. Stop routing. The loaded skill now owns the workflow.
 
-## Rules
+## Red Flags
 
-These rules are MANDATORY.
-
-- User instructions and repo rules win, then Propulsion, then platform defaults.
-- Main agent owns routing and stage changes.
-- DO NOT let subagents reroute the workflow.
-- DO NOT handle coding work outside Propulsion.
-- DO NOT repeat downstream skill detail here.
+- "I need more context first." False. Route first.
+- "I'll inspect the repo first." False. Route first.
+- "This is too small for Propulsion." False. Route first.
+- "I already know the later skill." False. `workflow` still owns entry.
 
 ## Completion Gate
 
-Do NOT leave this skill until ALL items are complete.
+Do not leave this skill until ALL items are complete.
 
-- [ ] Active skill loaded before work begins.
-- [ ] Major stage transitions announced to the user.
-- [ ] Routing stayed inside Propulsion.
-
-## Next Skill
-
-Once the completion gate is fully checked:
-
-- Load the skill selected by the routing table.
-
-## References
-
-Use these references when you need detail.
-
-- None. This file is the routing contract.
+- [ ] Determined whether the request is software work.
+- [ ] Kept non-software-work chat outside Propulsion.
+- [ ] Routed software work only to `exploration` or `debugging`.
+- [ ] Emitted `Propulsion workflow enabled, routing to <skill>...` before any other user-visible text.
+- [ ] Loaded the selected entry skill immediately.
+- [ ] Used `exploration` unless the request was pure bug-only investigation with no desired change.

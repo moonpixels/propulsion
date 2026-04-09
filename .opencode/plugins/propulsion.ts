@@ -1,4 +1,3 @@
-import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +12,6 @@ const additionalCommandsDir = path.resolve(
     '../../additional/commands',
 );
 const workflowPath = path.join(skillsDir, 'workflow', 'SKILL.md');
-const bootstrapMarker = 'You are using Propulsion.';
 
 type PropulsionHooks = Awaited<ReturnType<Plugin>>;
 type PropulsionConfig = Parameters<
@@ -24,15 +22,6 @@ type PropulsionConfig = Parameters<
     };
     command?: Record<string, CommandDefinition>;
 };
-type TransformOutput = Parameters<
-    NonNullable<PropulsionHooks['experimental.chat.messages.transform']>
->[1];
-type TransformMessage = TransformOutput['messages'][number];
-type TransformTextPart = Extract<
-    TransformMessage['parts'][number],
-    { type: 'text' }
->;
-
 type CommandFrontmatter = {
     description?: string;
     agent?: string;
@@ -210,33 +199,12 @@ const getBootstrapContent = (): string | null => {
     const { content } = extractFrontmatter(raw);
 
     return `<EXTREMELY_IMPORTANT>
-${bootstrapMarker}
+You are using the Propulsion workflow.
 
-Propulsion's \`workflow\` skill is already active for this session.
-
-If you are a subagent executing a bounded task, the injected workflow below is inactive for you. Stay inside your assigned stage or task. Do not reroute the workflow.
-
-Treat the injected skill content below as the session contract you must follow.
-
-Do not reload \`workflow\` unless you need to re-check its wording or the user explicitly asks.
+**IMPORTANT: The workflow skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "workflow" again - that would be redundant.**
 
 ${content}
 </EXTREMELY_IMPORTANT>`;
-};
-
-const isUserMessage = (
-    message: TransformMessage,
-): message is TransformMessage & { info: { role: 'user'; id: string } } => {
-    return message.info.role === 'user';
-};
-
-const hasBootstrapPart = (parts: TransformMessage['parts']) => {
-    return parts.some(
-        (part): part is TransformTextPart =>
-            part.type === 'text' &&
-            part.synthetic === true &&
-            part.text.includes(bootstrapMarker),
-    );
 };
 
 export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
@@ -263,34 +231,31 @@ export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
                 return;
             }
 
-            const firstUser = output.messages.find(isUserMessage);
+            const firstUser = output.messages.find(
+                (message) => message.info.role === 'user',
+            );
 
             if (!firstUser || firstUser.parts.length === 0) {
                 return;
             }
 
-            if (hasBootstrapPart(firstUser.parts)) {
+            if (
+                firstUser.parts.some(
+                    (part) =>
+                        part.type === 'text' &&
+                        part.text.includes('EXTREMELY_IMPORTANT'),
+                )
+            ) {
                 return;
             }
 
             const ref = firstUser.parts[0];
 
-            if (!ref) {
+            if (!ref || ref.type !== 'text') {
                 return;
             }
 
-            // Inject the workflow bootstrap as a synthetic first user part so it rides
-            // with the user's first message without changing the persisted source text.
-            const bootstrapPart: TransformTextPart = {
-                id: `prt_${randomUUID()}`,
-                sessionID: ref.sessionID,
-                messageID: ref.messageID,
-                type: 'text',
-                text: bootstrap,
-                synthetic: true,
-            };
-
-            firstUser.parts.unshift(bootstrapPart);
+            firstUser.parts.unshift({ ...ref, text: bootstrap });
         },
     };
 };

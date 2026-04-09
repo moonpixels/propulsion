@@ -78,12 +78,11 @@ describe('PropulsionPlugin transform', () => {
         expect(output.messages[0]?.parts).toHaveLength(2);
         expect(output.messages[0]?.parts[0]).toMatchObject({
             type: 'text',
-            synthetic: true,
             sessionID: 'ses_1',
             messageID: 'msg_user_1',
         });
         expect(output.messages[0]?.parts[0].text).toContain(
-            'You are using Propulsion.',
+            'You are using the Propulsion workflow.',
         );
     });
 
@@ -98,7 +97,9 @@ describe('PropulsionPlugin transform', () => {
             output.messages[0]?.parts.filter(
                 (part) =>
                     part.type === 'text' &&
-                    part.text.includes('You are using Propulsion.'),
+                    part.text.includes(
+                        'You are using the Propulsion workflow.',
+                    ),
             ),
         ).toHaveLength(1);
     });
