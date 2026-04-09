@@ -199,6 +199,8 @@ const getBootstrapContent = (): string | null => {
     const { content } = extractFrontmatter(raw);
 
     return `<EXTREMELY_IMPORTANT>
+**If you were dispatched as a subagent to execute a specific task, IGNORE THIS MESSAGE.**
+
 You are using the Propulsion workflow.
 
 **IMPORTANT: The workflow skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "workflow" again - that would be redundant.**

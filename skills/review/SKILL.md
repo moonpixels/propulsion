@@ -1,19 +1,19 @@
 ---
 name: review
 # prettier-ignore
-description: Analyze a completed slice for real issues before handoff. Use when implementation is verified and needs an objective fresh review.
+description: Analyze a completed phase for real issues before handoff. Use when implementation is verified and needs an objective fresh review.
 ---
 
 # Review
 
-Find real issues before the slice moves on.
+Find real issues before the phase moves on.
 
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.
 
-- The current slice is implemented.
-- The current slice text, plan context, diff, and verification evidence are available.
+- The current phase is implemented.
+- The current phase text, plan context, diff, and verification evidence are available.
 - The review runs in a fresh subagent.
 - If any required input is missing, STOP and return `unclear` to `execution`.
 
@@ -22,9 +22,9 @@ ALL prerequisites MUST be true before following this skill.
 Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Verify the review inputs first.
-2. Review the slice contract first, then code health.
+2. Review the phase contract first, then code health.
 3. Use [references/signal-filter.md](references/signal-filter.md) to surface real issues only.
-4. Return [references/review-format.md](references/review-format.md) with `clear`, `findings`, or `unclear` only.
+4. Return [references/review-format.md](references/review-format.md) using the exact `Status: clear | findings | unclear` shape only.
 5. Sort findings by severity, highest first.
 
 ## Rules
@@ -49,7 +49,7 @@ Do NOT leave this skill until ALL items are complete.
 Once the completion gate is fully checked:
 
 - If the review is `clear`, return to `execution`.
-- If the review is `findings`, load `review-response`.
+- If the review is `findings`, return the findings to `execution` so they can be sent back to the implementer context for `review-response`.
 - If the review is `unclear`, return to `execution`.
 
 ## References

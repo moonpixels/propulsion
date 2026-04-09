@@ -49,5 +49,7 @@ Rules:
 - Keep it product-facing.
 - Include durable decisions, not file paths or code.
 - Resolve blocking branches before writing.
-- Use the first explored slice only if the request was decomposed.
+- Write workflow artifacts to files. Do not print the PRD, plan, or template content into chat instead.
+- If file writing is unavailable, stop, ask the user to switch to build mode, and return to `exploration` to write `prd.md`.
+- Use the first explored phase only if the request was decomposed.
 - Self-review for placeholders, contradictions, and scope drift before asking for approval.

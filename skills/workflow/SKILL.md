@@ -9,7 +9,7 @@ description: Manage software-work request routing into Propulsion before any dow
 Use `workflow` to route software-work requests into Propulsion before any other response or action.
 
 <SUBAGENT_STOP>
-If you were dispatched as a subagent to execute a specific task, skip this skill.
+If you were dispatched as a subagent to execute a specific task, SKIP THIS SKILL.
 </SUBAGENT_STOP>
 
 <EXTREMELY_IMPORTANT>

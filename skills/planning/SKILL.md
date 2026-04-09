@@ -1,7 +1,7 @@
 ---
 name: planning
 # prettier-ignore
-description: Create an execution-ready plan from approved discovery using thin vertical slices. Use when approved `prd.md` or grounded debugging output exists and the next step is execution.
+description: Create an execution-ready plan from approved discovery using phases scoped as thin vertical slices. Use when approved `prd.md` or grounded debugging output exists and the next step is execution.
 ---
 
 # Planning
@@ -13,7 +13,7 @@ Turn approved discovery into an execution-ready plan.
 ALL prerequisites MUST be true before following this skill.
 
 - Approved `docs/propulsion/.../prd.md` exists, or grounded output from `debugging` exists.
-- The next step is to break the work into thin slices.
+- The next step is to break the work into phases.
 - If product intent is unresolved, STOP. Load `exploration`.
 - If bug diagnosis is ungrounded, STOP. Load `debugging`.
 
@@ -21,10 +21,10 @@ ALL prerequisites MUST be true before following this skill.
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Re-scan the relevant repo areas before slicing.
-2. Capture durable decisions first. Keep them stable across all slices.
+1. Re-scan the relevant repo areas before drafting phases.
+2. Capture durable decisions first. Keep them stable across all phases.
 3. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` from [references/plan-template.md](references/plan-template.md).
-4. Make each checkbox one thin vertical slice with acceptance criteria and likely areas.
+4. Make each checkbox one phase scoped as a thin vertical slice with acceptance criteria and likely areas.
 5. Use a fresh review subagent with [references/plan-review-format.md](references/plan-review-format.md). Repeat until it returns `clear`.
 6. If review finds missing product intent, STOP. Load `exploration`. If review finds missing bug diagnosis, STOP. Load `debugging`.
 7. Tell the user planning is complete and ask whether to move to `execution`.
@@ -34,7 +34,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 These rules are MANDATORY.
 
 - MUST start every `plan.md` with `## For Agentic Coders` from the template.
-- MUST keep slices thin, ordered, and execution-ready.
+- MUST keep phases thin, ordered, and execution-ready.
+- MUST write workflow artifacts to files. DO NOT print full `plan.md` or full review artifacts in chat instead.
 - DO NOT invent missing product decisions or bug diagnosis here.
 - DO NOT auto-start `execution`.
 
@@ -59,5 +60,5 @@ Once the completion gate is fully checked:
 
 Use these references when you need detail.
 
-- [references/plan-template.md](references/plan-template.md) - Plan shape and slice format.
+- [references/plan-template.md](references/plan-template.md) - Plan shape and phase format.
 - [references/plan-review-format.md](references/plan-review-format.md) - Review statuses and routing.

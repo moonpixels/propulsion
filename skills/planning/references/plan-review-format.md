@@ -9,7 +9,7 @@ If `findings`:
 
 - <issue>
   - Why it matters
-  - Which slice or section it affects
+  - Which phase or section it affects
 
 If `unclear`:
 

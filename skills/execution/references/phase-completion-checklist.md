@@ -1,15 +1,17 @@
-# Slice Completion Checklist
+# Phase Completion Checklist
 
-Mark a slice complete only after all of these are true:
+Mark a phase complete only after all of these are true:
 
 - the requested behavior is implemented
-- slice acceptance criteria are met
+- phase acceptance criteria are met
 - targeted checks passed
 - review returned `clear`
 - any review findings were fixed and re-reviewed
 - the main agent updated `plan.md`
 
-After the last slice:
+Keep each phase shaped as a thin vertical slice where possible.
+
+After the last phase:
 
 - infer and run the repo's real final checks
 - only then claim the full plan is complete

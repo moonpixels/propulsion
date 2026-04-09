@@ -23,8 +23,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Start with a targeted repo scan. Use fresh subagents for code facts.
 2. Walk this order: goal -> actors -> inputs -> UX -> boundaries -> constraints -> failure cases -> success criteria -> out of scope.
-3. Ask one question per message from [references/questioning-rules.md](references/questioning-rules.md). Give your recommendation first. If code can answer the branch, inspect the repo instead.
-4. If the request is too large, decompose it and explore only the first slice or subsystem.
+3. Ask one question per message from [references/questioning-rules.md](references/questioning-rules.md). Each user question MUST use the `question` tool. Give your recommendation first. If code can answer the branch, inspect the repo instead.
+4. If the request is too large, decompose it and explore only the first phase or subsystem.
 5. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` from [references/prd-template.md](references/prd-template.md) only after all blocking branches are closed.
 6. Ask the user to review the file and approve it before `planning`.
 
@@ -34,9 +34,9 @@ These rules are MANDATORY.
 
 - MUST close every blocking branch before writing `prd.md`.
 - MUST keep the PRD product-facing while recording durable implementation and testing decisions.
-- DO NOT print the full PRD in chat.
+- DO NOT print the PRD, plan, or other workflow artifact content in chat instead of writing files.
 - DO NOT start `planning` here.
-- If you cannot write files, STOP and ask the user to switch to build mode.
+- If you cannot write files, STOP, ask the user to switch to build mode, and tell them to return to `exploration` so you can write `prd.md`.
 
 ## Completion Gate
 
