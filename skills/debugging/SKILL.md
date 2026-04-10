@@ -12,8 +12,8 @@ Prove the first bad state before anyone plans or fixes.
 
 ALL prerequisites MUST be true before following this skill.
 
-- If this is not bug, failure, flaky, or unexpected-behavior work, STOP. Load `exploration`. 
-- If the work is not diagnosis-only, STOP. Load `exploration`. 
+- If this is not bug, failure, flaky, or unexpected-behavior work, STOP. Load `exploration`.
+- If the work is not diagnosis-only, STOP. Load `exploration`.
 - If grounded `debug.md` already exists and later evidence does not contradict it, STOP. Load `planning`.
 
 ## Instructions
