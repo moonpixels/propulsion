@@ -21,7 +21,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 4. If any finding remains `unclear` after inspecting the plan, codebase, diff, and available evidence, STOP and report `Status: unclear` with a request for specific additional information needed to triage the finding.
 5. For every `valid` finding, make the minimal correct fix.
 6. For every `invalid` finding, keep the code as-is and prepare evidence-backed pushback.
-7. If the resulting work changes public behaviour, load `tdd` now and follow it before completing the fix.
+7. Load the `tdd` skill NOW if it's not already loaded, and follow the guidance when implementing the fixes.
 8. Verify your implementation works as intended.
 9. Self-review your implementation against the task description and acceptance criteria.
 10. Return a report in the exact format defined below.
