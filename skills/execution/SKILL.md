@@ -26,7 +26,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 6. If the implementer reports `Status: blocked` then triage the blocker and resolve it.
 7. Escalate to the user if you are unable to resolve `unclear` or `blocked` statuses from context within the plan, codebase, or tools.
 8. If the implementer reports `Status: done` then dispatch a fresh implementation-reviewer subagent with the prompt in [references/implementation-reviewer-prompt.md](references/implementation-reviewer-prompt.md).
-9. If the implementation-reviewer reports `Status: findings`, send the findings back the same implementer subagent session with the prompt in [references/implementation-feedback-prompt.md](references/implementation-feedback-prompt.md).
+9. If the implementation-reviewer reports `Status: rejected`, send the findings back to the same implementer subagent session with the prompt in [references/implementation-feedback-prompt.md](references/implementation-feedback-prompt.md).
 10. Repeat steps 4-9 until the implementer reports `Status: done` and the latest implementation-reviewer reports `Status: approved`.
 11. Check off the current phase acceptance criteria and phase completion in `plan.md`.
 12. Repeat steps 2-11 for the next incomplete phase in `plan.md` until all phases are complete.

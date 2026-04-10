@@ -4,7 +4,7 @@
 
 Propulsion is a compact skill set for agentic coding.
 
-It gives coding agents a stronger workflow: explore unclear work first, write a PRD, turn it into a plan, execute in thin slices, review objectively, and debug from evidence instead of guesses.
+It gives coding agents a stronger workflow: explore unclear work first, write a PRD, turn it into a plan, execute in thin slices with an objective implementation-review loop, and debug from evidence instead of guesses.
 
 ## Installation
 

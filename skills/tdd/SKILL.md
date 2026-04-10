@@ -48,7 +48,7 @@ Do NOT leave this skill until ALL items are complete.
 
 Once the completion gate is fully checked:
 
-- Return to `execution` or `review-response`.
+- Return to `execution`.
 
 ## References
 

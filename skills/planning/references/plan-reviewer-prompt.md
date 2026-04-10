@@ -41,22 +41,26 @@ Use this exact format for your output.
 ```markdown
 # Plan Review Report
 
-**Status**: <approved | findings>
+**Status**: <approved | rejected>
 
 <if findings, include this section>
+
 ## Findings
 
 - <issue>
-  - Phase or section affected: <phase name or section name>
-  - Why it matters: <short explanation of why this issue would block execution>
+    - Phase or section affected: <phase name or section name>
+    - Why it matters: <short explanation of why this issue would block execution>
+
 </if findings, include this section>
 
 <if suggestions, include this section>
+
 ## Suggestions (if any)
 
 - <suggestion>
-  - Phase or section affected: <phase name or section name>
-  - Why it matters: <short explanation of how this suggestion would improve execution-readiness>
+    - Phase or section affected: <phase name or section name>
+    - Why it matters: <short explanation of how this suggestion would improve execution-readiness>
+
 </if suggestions, include this section>
 ```
 
@@ -65,9 +69,9 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Replace the plan and PRD paths with the actual paths for the plan being reviewed.
-- MUST return exactly one `Status:` line with either `approved` or `findings`.
+- MUST return exactly one `Status:` line with either `approved` or `rejected`.
 - Status CAN be `approved` if there are only suggestions but NO findings.
-- If returning `Status: findings`, MUST include at least one finding.
+- If returning `Status: rejected`, MUST include at least one finding.
 - Findings MUST be specific issues that would block execution, not vague or general feedback.
 - Suggestions are optional, but if included, MUST be specific improvements that would increase execution-readiness.
 - Be specific about which phase or section each finding or suggestion relates to, and why it matters for execution-readiness.
@@ -79,7 +83,7 @@ Do NOT output your response until ALL items are complete.
 
 - [ ] Plan reviewed against source PRD or debug context.
 - [ ] Findings and suggestions are categorised according to the criteria.
-- [ ] Status is set to `approved` if no findings, or `findings` if there are any blocking issues.
+- [ ] Status is set to `approved` if no findings, or `rejected` if there are any blocking issues.
 ````
 
 ## Rules

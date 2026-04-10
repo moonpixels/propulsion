@@ -10,7 +10,7 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 
 ## Core Rules
 
-- Use exact skill names in backticks: `workflow`, `exploration`, `planning`, `execution`, `tdd`, `review`, `review-response`, `debugging`.
+- Use exact supported skill names in backticks: `workflow`, `exploration`, `planning`, `execution`, `tdd`, `debugging`.
 - State every stage boundary explicitly. Never imply what should happen next.
 - Put critical gates in `SKILL.md`. Do not hide them only in `references/`.
 - Prefer hard commands over soft guidance: `MUST`, `DO NOT`, `NEVER`, `ONLY`, `STOP`, `ALL`.
@@ -166,7 +166,7 @@ Good:
 
 - If `prd.md` is approved, load `planning`.
 - If plan review finds missing product intent, load `exploration`.
-- If review returns findings, load `review-response`.
+- If implementation review returns findings during phase execution, keep the loop inside `execution` and send the findings back to the active implementer context.
 
 Bad:
 

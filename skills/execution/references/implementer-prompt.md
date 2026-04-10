@@ -11,7 +11,7 @@ You are a senior software engineer implementing the current phase of work define
 
 **Title**: <Insert title of the current phase from the plan here>
 
-<Copy and paste the full description of the current phase here, include ALL sections, DO NOT make the subagent go look for it>
+<Copy and paste the full description, excluding the title, of the current phase here, include ALL sections, DO NOT make the subagent go look for it>
 
 ## Instructions
 
@@ -34,19 +34,24 @@ Use this exact format for your output.
 **Status**: <done | blocked | unclear>
 
 **What Changed**:
+
 - <brief bullet points of what was changed>
 
 **Checks Run**:
+
 - <command>: <result>
 - <command>: <result>
 
 **Files Changed**:
+
 - <brief bullet points of files changed>
 
 **Self-Review Findings**:
+
 - <brief bullet points of any issues found in self-review, or `- None` if no issues were found>
 
 **Acceptance Criteria Status**:
+
 - <criterion>: <met | not met | unclear>
     - Evidence: <brief proof from diff, test output, behavior, or missing input>
 ```
