@@ -61,10 +61,10 @@ Use this exact format for your output.
 
 ## Findings
 
-- [<high | medium | low>] <short finding title> 
-    - Location: <exact file/section/command when possible> 
-    - Issue: <what is wrong> 
-    - Impact: <why this matters for correctness, acceptance criteria, or regression risk> 
+- [<high | medium | low>] <short finding title>
+    - Location: <exact file/section/command when possible>
+    - Issue: <what is wrong>
+    - Impact: <why this matters for correctness, acceptance criteria, or regression risk>
     - Fix: <practical direction, not a full patch>
 
 </if findings, include this section>

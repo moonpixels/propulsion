@@ -20,12 +20,12 @@ ALL prerequisites MUST be true before following this skill.
 Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Choose the smallest thin vertical slice that delivers one observable behaviour end-to-end.
-2. Write one test for that single behaviour through a public interface.
+2. Write one test for that single behaviour through a public interface or stable seam. Refer to [references/testing-patterns.md](references/testing-patterns.md) for guidance.
 3. Run the test and verify it fails for the expected reason.
 4. Write the smallest amount of production code to pass the test.
 5. Run the test again and verify it now passes.
 6. Repeat steps 1-5 for the next behaviour, building on the previous code, until the work is complete.
-7. Refactor only while all tests are green, and verify tests remain green after refactor.
+7. Refactor only while all tests are green, and verify tests remain green after refactor. Refer to [references/refactor-candidates.md](references/refactor-candidates.md) for guidance.
 8. For bug fixes, write a regression test that reproduces the bug before fixing it, then verify the test passes after the fix.
 
 ## Rules
@@ -33,7 +33,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 These rules are MANDATORY.
 
 - NO PRODUCTION CODE BEFORE A FAILING TEST.
-- ALWAYS write ONE test at a time for ONE observable behaviour. 
+- ALWAYS write ONE test at a time for ONE observable behaviour.
 - ENSURE the test initially fails for the EXPECTED reason before writing production code.
 - ONLY write the minimal amount of code to make the test pass.
 - ALWAYS use the public interface for testing, and test through stable seams if necessary.
@@ -55,5 +55,5 @@ Do NOT leave this skill until ALL items are complete.
 
 Use these references when you need detail.
 
-- [references/public-behavior.md](references/public-behavior.md) - Test through stable seams.
-- [references/good-vs-bad-tests.md](references/good-vs-bad-tests.md) - Keep tests high-signal.
+- [references/testing-patterns.md](references/testing-patterns.md) - Testing patterns for guidance on how to write effective tests.
+- [references/refactor-candidates.md](references/refactor-candidates.md) - Refactor candidates to identify good opportunities for refactor after the tests are green.
