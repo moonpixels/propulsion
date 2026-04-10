@@ -188,8 +188,18 @@ Use `references/` for detail, not for gates.
 
 - Put templates, formats, examples, and deeper heuristics in `references/`.
 - Mention critical references inside the ordered instructions.
-- Keep references focused and single-purpose.
+- Keep references focused and single-purpose. Consolidate tiny overlapping references when one stronger reference is clearer.
 - Do not hide approval gates, stop conditions, or next-skill routing in references.
+
+## Reference Shape
+
+Use the same reference layout every time.
+
+- Start with `# Title`.
+- Follow with one line that says when to use the reference, for example `Use this reference ...` or `Use this template ...`.
+- Put the actual template, format, heuristics, or examples next.
+- End with `## Rules` and only the reference-local rules.
+- For prompt templates, keep the full prompt in a fenced block and keep dispatch-only rules after the fence.
 
 ## Author Checklist
 

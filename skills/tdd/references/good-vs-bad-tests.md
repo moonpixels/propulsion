@@ -1,5 +1,7 @@
 # Good vs Bad Tests
 
+Use this reference to keep TDD tests narrow, durable, and high-signal.
+
 Good tests:
 
 - name one behavior clearly
@@ -13,3 +15,8 @@ Bad tests:
 - mock internals by default
 - pass immediately because they test existing behavior
 - break when internals change but behavior does not
+
+## Rules
+
+- Use this reference to judge test quality during `tdd` only.
+- Do not use this reference to skip the failing-test-first rule.

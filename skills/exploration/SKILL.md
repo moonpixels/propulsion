@@ -22,7 +22,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 1. Start with a targeted exploration of the codebase using fresh explore subagents for code facts.
 2. Walk down each branch of the decision tree, interviewing the user relentlessly until every branch is closed, and you have a shared understanding of the work.
 3. Ask each question using the `question` tool, one at a time, and provide your recommended answer first.
-4. If a question can be answered by inspecting the codebase, do that instead of asking the user. 
+4. If a question can be answered by inspecting the codebase, do that instead of asking the user.
 5. If the request is too large, decompose it and explore only the first phase or subsystem.
 6. After all blocking branches are closed, write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md).
 7. Ask the user to review and approve `prd.md` before loading `planning`.

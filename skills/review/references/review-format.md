@@ -1,6 +1,6 @@
 # Review Format
 
-Use this exact shape.
+Use this reference when validating or copying the exact `review` output shape.
 
 ```md
 Status: clear | findings | unclear
@@ -23,11 +23,8 @@ If `unclear`:
     - Why review cannot continue
 ```
 
-Rules:
+## Rules
 
-- Return `clear` only when there are no real issues for the current phase.
-- Return `unclear` when required review inputs are missing.
-- In `Acceptance Criteria Status`, cover every current-phase acceptance criterion.
-- If any criterion is `not met` or `unclear`, include explicit findings or missing-input notes that explain why.
-- Keep findings short and concrete.
-- Prefer evidence over opinion.
+- Use this reference only when validating or copying `review` output.
+- Keep the output in this exact shape.
+- Replace placeholders with the actual current-phase criteria, findings, and missing-input details.

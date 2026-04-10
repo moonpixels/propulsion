@@ -1,6 +1,6 @@
 # Finding Triage Format
 
-Use this shape before changing code.
+Use this reference before changing code in response to review findings.
 
 ```md
 - <finding title>
@@ -9,7 +9,7 @@ Use this shape before changing code.
   - Action: <fix | push back | ask>
 ```
 
-Rules:
+## Rules
 
 - Classify every finding.
 - Do not start coding until each finding has a classification.

@@ -20,13 +20,10 @@ ALL prerequisites MUST be true before following this skill.
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Reproduce the issue first with [references/reproduction.md](references/reproduction.md).
-2. Capture fresh evidence with [references/evidence-capture.md](references/evidence-capture.md).
-3. If a working example exists, compare it with [references/compare-working-vs-broken.md](references/compare-working-vs-broken.md).
-4. Narrow the surface with [references/narrow-the-surface.md](references/narrow-the-surface.md).
-5. Form one hypothesis at a time and test it with [references/hypothesis-testing.md](references/hypothesis-testing.md). Repeat until the root cause is grounded.
-6. If the investigation is non-trivial, write `docs/propulsion/{yyyymmdd}-{feature-name}/debug.md` from [references/debug-note-template.md](references/debug-note-template.md).
-7. Tell the user debugging is complete, summarize the diagnosis, point to `debug.md` if it exists, and ask whether to move to `planning`.
+1. Reproduce the issue first with [references/investigation-loop.md](references/investigation-loop.md).
+2. Capture fresh evidence and drive the investigation loop with [references/investigation-loop.md](references/investigation-loop.md). Repeat until the root cause is grounded.
+3. If the investigation is non-trivial, write `docs/propulsion/{yyyymmdd}-{feature-name}/debug.md` with [references/debug.md](references/debug.md).
+4. Tell the user debugging is complete, summarize the diagnosis, point to `debug.md` if it exists, and ask whether to move to `planning`.
 
 ## Rules
 
@@ -57,9 +54,5 @@ Once the completion gate is fully checked:
 
 Use these references when you need detail.
 
-- [references/reproduction.md](references/reproduction.md) - Reproduce first.
-- [references/evidence-capture.md](references/evidence-capture.md) - Gather fresh evidence.
-- [references/compare-working-vs-broken.md](references/compare-working-vs-broken.md) - Compare variants.
-- [references/narrow-the-surface.md](references/narrow-the-surface.md) - Shrink the search space.
-- [references/hypothesis-testing.md](references/hypothesis-testing.md) - One hypothesis at a time.
-- [references/debug-note-template.md](references/debug-note-template.md) - Durable debug handoff.
+- [references/investigation-loop.md](references/investigation-loop.md) - Reproduce, gather evidence, compare variants, narrow the surface, and test one hypothesis at a time.
+- [references/debug.md](references/debug.md) - Durable `debug.md` guidance and template.
