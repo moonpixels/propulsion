@@ -26,7 +26,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. If a valid finding changes public behavior or fixes a bug, load `tdd` before production code.
 4. Fix valid findings.
 5. Push back on invalid findings with [references/pushback-rules.md](references/pushback-rules.md).
-6. Rerun the relevant checks and report back to `execution` so it can dispatch a fresh `review`.
+6. Rerun the relevant checks and report back to `execution` with an updated `Acceptance Criteria Status` section for the current phase so it can dispatch a fresh `review`.
 
 ## Rules
 
@@ -37,6 +37,7 @@ These rules are MANDATORY.
 - DO NOT partially fix around unclear findings.
 - DO NOT self-close after code changed.
 - DO NOT leave the implementer context while findings are being resolved.
+- DO NOT update `plan.md` or its acceptance-criteria checkboxes.
 
 ## Completion Gate
 
@@ -45,6 +46,7 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Every finding classified as `valid`, `invalid`, or `unclear`.
 - [ ] Valid findings fixed or invalid findings pushed back with evidence.
 - [ ] Relevant checks rerun.
+- [ ] Updated `Acceptance Criteria Status` returned for every current-phase acceptance criterion.
 - [ ] `execution` has what it needs to dispatch a fresh `review`.
 
 ## Next Skill

@@ -24,7 +24,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 1. Verify the review inputs first.
 2. Review the phase contract first, then code health.
 3. Use [references/signal-filter.md](references/signal-filter.md) to surface real issues only.
-4. Return [references/review-format.md](references/review-format.md) using the exact `Status: clear | findings | unclear` shape only.
+4. Return [references/review-format.md](references/review-format.md) using the exact `Status: clear | findings | unclear` shape only, including an `Acceptance Criteria Status` section for the current phase.
 5. Sort findings by severity, highest first.
 
 ## Rules
@@ -35,6 +35,7 @@ These rules are MANDATORY.
 - DO NOT self-review inside the implementer context.
 - DO NOT approve work without evidence.
 - DO NOT include style nits or speculative refactors.
+- DO NOT treat `Acceptance Criteria Status` as permission to update `plan.md`; that stays with `execution`.
 
 ## Completion Gate
 
@@ -43,6 +44,7 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Inputs verified or `unclear` returned.
 - [ ] Output uses `clear`, `findings`, or `unclear` only.
 - [ ] Findings, if any, are evidence-based and severity-sorted.
+- [ ] `Acceptance Criteria Status` covers every current-phase acceptance criterion with evidence.
 
 ## Next Skill
 

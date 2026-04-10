@@ -3,7 +3,8 @@
 Mark a phase complete only after all of these are true:
 
 - the requested behavior is implemented
-- phase acceptance criteria are met
+- every phase acceptance criterion is checked off in `plan.md` by the main orchestrator
+- implementer and reviewer evidence supports each checked-off acceptance criterion
 - targeted checks passed
 - review returned `clear`
 - any review findings were fixed and re-reviewed

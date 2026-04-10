@@ -2,6 +2,7 @@
 
 Every implementation subagent should receive:
 
+- the exact sentence `You are a subagent.`
 - the full phase text
 - the relevant PRD, debug note, and plan context
 - the phase acceptance criteria
@@ -12,7 +13,12 @@ Every implementation subagent should receive:
 - instruction to escalate blockers instead of guessing
 - instruction to verify the work with targeted checks
 - instruction to self-review before reporting back
-- instruction to return structured status reporting with changed files, checks run, open questions, and blockers
+- instruction to return structured status reporting with changed files, checks run, open questions, blockers, and an `Acceptance Criteria Status` section
+
+`Acceptance Criteria Status` must list every current-phase acceptance criterion and report:
+
+- `met | not met | unclear`
+- brief evidence for that status
 
 Rules:
 
@@ -21,3 +27,5 @@ Rules:
 - Tell the subagent that review dispatch stays with the main agent.
 - The implementer decides whether the handed-off work requires `tdd`.
 - Do not let the subagent update `plan.md`.
+- Do not let the subagent check off acceptance criteria in `plan.md`; that stays with the main orchestrator.
+- When sending review findings back, explicitly say `You are a subagent.` and tell the implementer to load `review-response`.
