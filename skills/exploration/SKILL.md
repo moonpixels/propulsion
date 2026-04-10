@@ -33,6 +33,7 @@ These rules are MANDATORY.
 
 - MUST close every blocking branch before writing `prd.md`. Blocking branches include anything that would change scope, UX, architecture, sequencing, or success criteria.
 - MUST keep the PRD product-facing while recording durable implementation and testing decisions.
+- ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
 - DO NOT print the PRD, plan, or other workflow artefact content in chat instead of writing files.
 - DO NOT start `planning` here.
 - If you cannot write files, STOP, ask the user to switch to build mode, and tell them to return to `exploration` so you can write `prd.md`.

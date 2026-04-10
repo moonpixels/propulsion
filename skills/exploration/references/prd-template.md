@@ -23,6 +23,12 @@ State the user problem in user language.
 
 Describe the proposed behaviour end-to-end from the user's perspective.
 
+## Implementation Inputs
+
+- External links or references to check out
+- Business rules or constraints that must be respected
+- References to tickets, docs, or other internal resources that are relevant to implementation
+
 ## Implementation Decisions
 
 - Durable module or boundary decisions

@@ -22,6 +22,8 @@ Use the `execution` skill to implement this plan one phase at a time, and track 
 
 **Goal**: Concise description of the vertical slice, describing the narrow end-to-end behaviour that this phase will implement and test.
 
+**Supporting Context**: Any important implementation inputs from the PRD or debug output that is relevant to this phase.
+
 **User Stories**:
 
 1. As a <actor>, I want <behaviour>, so that <benefit>
@@ -42,6 +44,8 @@ Replace this section with `**Debug Context**:` when the plan is driven by ground
 **Status**: [ ] Phase complete
 
 **Goal**: Concise description of the vertical slice, describing the narrow end-to-end behaviour that this phase will implement and test.
+
+**Supporting Context**: Any important implementation inputs from the PRD or debug output that is relevant to this phase.
 
 **User Stories**:
 

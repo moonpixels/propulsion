@@ -37,6 +37,7 @@ These rules are MANDATORY.
 - MUST output the `plan.md` in the exact shape specified in the template reference.
 - DO NOT output the plan in the chat, ONLY in the `plan.md` file.
 - MUST keep phases thin, ordered, and execution-ready.
+- DO NOT loose ANY information from the PRD that is relevant to implementation, otherwise you risk misalignment and rework.
 - MUST treat `Status: approved` as the only valid approval signal for execution-readiness.
 - MUST treat `findings` as fixable planning issues inside `planning`.
 - MUST treat `suggestions` as improvable aspects that should be implemented IF they make execution smoother.

@@ -52,14 +52,14 @@ Use this exact format for your output.
 
 **Status**: <approved | rejected>
 
-## Acceptance Criteria Status
+**Acceptance Criteria Status**
 
 - <criterion>: <met | not met | unclear>
     - Evidence: <brief proof from code, diff, checks, behavior, or missing verification>
 
 <if findings, include this section>
 
-## Findings
+**Findings**
 
 - [<high | medium | low>] <short finding title>
     - Location: <exact file/section/command when possible>

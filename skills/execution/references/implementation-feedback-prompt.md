@@ -57,7 +57,7 @@ Use this exact format for your output.
 - <criterion>: <met | not met | unclear>
     - Evidence: <brief proof from diff, test output, behavior, or missing input>
 
-## Review Feedback Triage
+**Review Feedback Triage**:
 
 - <finding title>
     - Classification: <valid | invalid | unclear>
