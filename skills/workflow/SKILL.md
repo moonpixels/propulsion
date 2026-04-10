@@ -24,7 +24,7 @@ ONCE YOU ARE FOLLOWING PROPULSION WORKFLOW, DO NOT LEAVE IT UNTIL COMPLETION. DO
 
 1. User instructions, repository rules, and `AGENTS.md`
 2. Propulsion skills
-3. Default system behavior
+3. Default system behaviour
 
 After `workflow` selects the entry skill, that downstream skill owns the stage.
 
@@ -33,8 +33,8 @@ After `workflow` selects the entry skill, that downstream skill owns the stage.
 Route software-work requests only to `exploration` or `debugging`.
 
 - Default entry route: `exploration`.
-- Use `debugging` only for a pure bug, test-failure, or unexpected-behavior request with no desired change.
-- If the request includes a fix plus any desired behavior change, enhancement, redesign, or new outcome, use `exploration`.
+- Use `debugging` only for a pure bug, test-failure, or unexpected-behaviour request with no desired change.
+- If the request includes a fix plus any desired behaviour change, enhancement, redesign, or new outcome, use `exploration`.
 - If the request is vague, mixed, or not clearly pure bug-only investigation, use `exploration`.
 
 For non-software-work requests, do not use Propulsion. Respond normally.
