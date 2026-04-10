@@ -16,12 +16,12 @@ State the user problem in user language.
 
 ## User Stories
 
-1. As a <actor>, I want <behavior>, so that <benefit>
-2. As a <actor>, I want <behavior>, so that <benefit>
+1. As a <actor>, I want <behaviour>, so that <benefit>
+2. As a <actor>, I want <behaviour>, so that <benefit>
 
 ## Solution
 
-Describe the proposed behavior end-to-end from the user's perspective.
+Describe the proposed behaviour end-to-end from the user's perspective.
 
 ## Implementation Decisions
 
@@ -44,12 +44,13 @@ Describe the proposed behavior end-to-end from the user's perspective.
 - Only non-blocking risks or future questions
 ```
 
-Rules:
+## Rules
+
+These rules are MANDATORY.
 
 - Keep it product-facing.
 - Include durable decisions, not file paths or code.
 - Resolve blocking branches before writing.
-- Write workflow artifacts to files. Do not print the PRD, plan, or template content into chat instead.
-- If file writing is unavailable, stop, ask the user to switch to build mode, and return to `exploration` to write `prd.md`.
+- Write the PRD to the correct path using the correct shape.
 - Use the first explored phase only if the request was decomposed.
 - Self-review for placeholders, contradictions, and scope drift before asking for approval.

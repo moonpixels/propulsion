@@ -32,9 +32,12 @@ Follow these steps IN ORDER. Do NOT skip steps.
 These rules are MANDATORY.
 
 - MUST surface real issues only.
+- Return `clear` only when there are no real issues for the current phase.
 - DO NOT self-review inside the implementer context.
 - DO NOT approve work without evidence.
 - DO NOT include style nits or speculative refactors.
+- If any acceptance criterion is `not met` or `unclear`, include explicit findings or missing-input notes that explain why.
+- Do not leave `review` for another skill unless this skill explicitly routes you there.
 - DO NOT treat `Acceptance Criteria Status` as permission to update `plan.md`; that stays with `execution`.
 
 ## Completion Gate
@@ -59,4 +62,5 @@ Once the completion gate is fully checked:
 Use these references when you need detail.
 
 - [references/review-format.md](references/review-format.md) - Exact review output.
+- [references/reviewer-prompt-template.md](references/reviewer-prompt-template.md) - Review subagent dispatch template.
 - [references/signal-filter.md](references/signal-filter.md) - High-signal findings only.

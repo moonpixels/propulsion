@@ -1,5 +1,7 @@
 # Phase Completion Checklist
 
+Use this as a quick completion reference. The authoritative review-loop and completion-gate rules stay in `skills/execution/SKILL.md`.
+
 Mark a phase complete only after all of these are true:
 
 - the requested behavior is implemented

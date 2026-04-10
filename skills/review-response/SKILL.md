@@ -34,10 +34,15 @@ These rules are MANDATORY.
 
 - DO NOT agree performatively.
 - DO NOT implement every finding blindly.
+- DO classify every finding as `valid`, `invalid`, or `unclear` before changing code.
+- DO resolve every `unclear` finding before coding.
 - DO NOT partially fix around unclear findings.
+- DO keep triage and follow-up in the implementer context that owns the phase.
 - DO NOT self-close after code changed.
 - DO NOT leave the implementer context while findings are being resolved.
 - DO NOT update `plan.md` or its acceptance-criteria checkboxes.
+- DO push back when a finding adds unneeded scope, is disproved by code or tests, contradicts the plan or PRD, breaks existing behavior, or assumes context the reviewer did not have.
+- DO back every pushback with code or test evidence, the relevant plan or PRD constraint when one exists, and a concrete technical reason the finding is wrong here.
 
 ## Completion Gate
 
@@ -59,5 +64,6 @@ Once the completion gate is fully checked:
 
 Use these references when you need detail.
 
+- [references/findings-response-prompt-template.md](references/findings-response-prompt-template.md) - Skill-local subagent dispatch template.
 - [references/finding-triage-format.md](references/finding-triage-format.md) - Classify before coding.
 - [references/pushback-rules.md](references/pushback-rules.md) - Push back with evidence.
