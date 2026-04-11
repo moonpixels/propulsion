@@ -5,11 +5,11 @@ Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using this shape.
 ```md
 # Plan: <Feature Title>
 
-> Source PRD: `docs/propulsion/.../prd.md` OR Source Debug: `docs/propulsion/.../debug.md`
+> Source PRD: `docs/propulsion/.../prd.md`
 
 ## For Agentic Coders
 
-Use the `execution` skill to implement this plan one phase at a time, and track progress using the checkboxes.
+Use the <`execution` | `debugging`> skill to implement this plan and track progress using the checkboxes.
 
 ## Durable Decisions
 
@@ -22,13 +22,11 @@ Use the `execution` skill to implement this plan one phase at a time, and track 
 
 **Goal**: Concise description of the vertical slice, describing the narrow end-to-end behaviour that this phase will implement and test.
 
-**Supporting Context**: Any important implementation inputs from the PRD or debug output that is relevant to this phase.
+**Supporting Context**: Any important implementation inputs from the PRD that are relevant to this phase.
 
 **User Stories**:
 
 1. As a <actor>, I want <behaviour>, so that <benefit>
-
-Replace this section with `**Debug Context**:` when the plan is driven by grounded `debugging` output instead of a PRD.
 
 **Likely Areas**: `src/...`, `tests/...`
 
@@ -45,13 +43,11 @@ Replace this section with `**Debug Context**:` when the plan is driven by ground
 
 **Goal**: Concise description of the vertical slice, describing the narrow end-to-end behaviour that this phase will implement and test.
 
-**Supporting Context**: Any important implementation inputs from the PRD or debug output that is relevant to this phase.
+**Supporting Context**: Any important implementation inputs from the PRD that are relevant to this phase.
 
 **User Stories**:
 
 1. As a <actor>, I want <behaviour>, so that <benefit>
-
-Replace this section with `**Debug Context**:` when the plan is driven by grounded `debugging` output instead of a PRD.
 
 **Likely Areas**: `src/...`, `tests/...`
 
@@ -68,5 +64,6 @@ Replace this section with `**Debug Context**:` when the plan is driven by ground
 - Prefer many thin phases over few thick ones.
 - Keep durable decisions out of the phases when they apply globally.
 - Use exact file paths only when they are durable and important.
-- Copy the relevant `**User Stories**:` into each phase for PRD-driven plans. Use `**Debug Context**:` instead only when planning from grounded `debugging` output.
+- Copy the relevant `**User Stories**:` into each phase from the approved PRD.
 - Give each phase enough context that a fresh subagent does not need to rediscover scope.
+- Choose the downstream skill based on the plan's content and PRD context. If the plan is feature-oriented, it should hand off to `execution`. If the plan is bug-oriented, it should hand off to `debugging`.
