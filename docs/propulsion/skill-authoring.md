@@ -12,6 +12,9 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 
 - Use exact supported skill names in backticks: `propulsion-workflow`, `exploration`, `planning`, `execution`, `tdd`, `debugging`.
 - State every stage boundary explicitly. Never imply what should happen next.
+- All bug work enters through `exploration`, reaches `planning` from an approved `prd.md`, and hands off to `debugging` after planning.
+- `execution` owns feature implementation only. `debugging` owns bug diagnosis, bug-fix orchestration, review feedback loops, and closure.
+- When authoring bug-work contracts, require one living `docs/propulsion/.../debug.md` artifact that debugging creates or resumes on entry and keeps through closure.
 - Put critical gates in `SKILL.md`. Do not hide them only in `references/`.
 - Prefer hard commands over soft guidance: `MUST`, `DO NOT`, `NEVER`, `ONLY`, `STOP`, `ALL`.
 - Keep sentences short, imperative, and binary.
@@ -30,6 +33,17 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 - Avoid filler, motivation, and commentary.
 - Avoid hedging like `prefer`, `usually`, `maybe`, unless the choice is genuinely optional.
 - Avoid vague language like `continue if needed`, `consider`, `handle appropriately`, `similar to`, `etc.`.
+
+## Bug Workflow Contract
+
+Use this pattern when authoring or editing bug-work skills.
+
+- `propulsion-workflow` routes bug work to `exploration`.
+- `exploration` captures expected behavior and writes the approved `prd.md`.
+- `planning` turns the approved `prd.md` into a bug-oriented `plan.md` and hands off to `debugging`.
+- `debugging` creates or resumes the living `docs/propulsion/.../debug.md` artifact on entry.
+- `debugging` owns diagnosis, bug-fix orchestration, review feedback loops, resets, escalation, and closure.
+- `execution` stays feature-only. Do not move bug-fix prompts, bug review prompts, or `debug.md` ownership into `execution`.
 
 ## Required Shape
 
