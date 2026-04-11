@@ -11,7 +11,11 @@ const additionalCommandsDir = path.resolve(
     __dirname,
     '../../additional/commands',
 );
-const workflowPath = path.join(skillsDir, 'workflow', 'SKILL.md');
+const propulsionWorkflowPath = path.join(
+    skillsDir,
+    'propulsion-workflow',
+    'SKILL.md',
+);
 
 type PropulsionHooks = Awaited<ReturnType<Plugin>>;
 type PropulsionConfig = Parameters<
@@ -191,11 +195,11 @@ const mergeAdditionalCommands = (
 };
 
 const getBootstrapContent = (): string | null => {
-    if (!fs.existsSync(workflowPath)) {
+    if (!fs.existsSync(propulsionWorkflowPath)) {
         return null;
     }
 
-    const raw = fs.readFileSync(workflowPath, 'utf8');
+    const raw = fs.readFileSync(propulsionWorkflowPath, 'utf8');
     const { content } = extractFrontmatter(raw);
 
     return `<EXTREMELY_IMPORTANT>
@@ -203,7 +207,7 @@ const getBootstrapContent = (): string | null => {
 
 You are using the Propulsion workflow.
 
-**IMPORTANT: The workflow skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "workflow" again - that would be redundant.**
+**IMPORTANT: The workflow skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "propulsion-workflow" again - that would be redundant.**
 
 ${content}
 </EXTREMELY_IMPORTANT>`;

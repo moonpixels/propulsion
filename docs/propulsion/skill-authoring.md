@@ -10,7 +10,7 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 
 ## Core Rules
 
-- Use exact supported skill names in backticks: `workflow`, `exploration`, `planning`, `execution`, `tdd`, `debugging`.
+- Use exact supported skill names in backticks: `propulsion-workflow`, `exploration`, `planning`, `execution`, `tdd`, `debugging`.
 - State every stage boundary explicitly. Never imply what should happen next.
 - Put critical gates in `SKILL.md`. Do not hide them only in `references/`.
 - Prefer hard commands over soft guidance: `MUST`, `DO NOT`, `NEVER`, `ONLY`, `STOP`, `ALL`.
@@ -33,9 +33,9 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 
 ## Required Shape
 
-Every Propulsion `SKILL.md` except `workflow` MUST use this structure.
+Every Propulsion `SKILL.md` except `propulsion-workflow` MUST use this structure.
 
-`workflow` is the only exception. It is an entry-only contract, not a standard stage skill.
+`propulsion-workflow` is the only exception. It is an entry-only contract, not a standard stage skill.
 
 ```md
 # Skill Name

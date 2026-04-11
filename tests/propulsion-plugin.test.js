@@ -31,7 +31,7 @@ const createTransformOutput = () => ({
 });
 
 describe('PropulsionPlugin config', () => {
-    test('adds the workflow skills path once', async () => {
+    test('adds the bundled skills path once', async () => {
         const hooks = await PropulsionPlugin({});
         const config = {
             skills: {
@@ -69,7 +69,7 @@ describe('PropulsionPlugin config', () => {
 });
 
 describe('PropulsionPlugin transform', () => {
-    test('injects the workflow bootstrap into the first user message', async () => {
+    test('injects the propulsion-workflow bootstrap into the first user message', async () => {
         const hooks = await PropulsionPlugin({});
         const output = createTransformOutput();
 
@@ -83,6 +83,9 @@ describe('PropulsionPlugin transform', () => {
         });
         expect(output.messages[0]?.parts[0].text).toContain(
             'You are using the Propulsion workflow.',
+        );
+        expect(output.messages[0]?.parts[0].text).toContain(
+            'Do NOT use the skill tool to load "propulsion-workflow" again',
         );
     });
 

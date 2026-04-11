@@ -26,7 +26,7 @@ skills_pid=$!
 
 attempt=0
 while [ "$attempt" -lt 20 ]; do
-    if /usr/bin/grep -a -q '"name": "workflow"' "$skills_output"; then
+    if /usr/bin/grep -a -q '"name": "propulsion-workflow"' "$skills_output"; then
         break
     fi
 
@@ -45,20 +45,20 @@ kill "$pure_pid" 2>/dev/null || true
 kill_descendants "$pure_pid"
 wait "$pure_pid" 2>/dev/null || true
 
-workflow_skill='"name": "workflow"'
-workflow_path="$REPO_ROOT/skills/workflow/SKILL.md"
+workflow_skill='"name": "propulsion-workflow"'
+workflow_path="$REPO_ROOT/skills/propulsion-workflow/SKILL.md"
 
 if ! /usr/bin/grep -a -q "$workflow_skill" "$skills_output"; then
-    echo "Expected workflow skill in plugin-backed skill list"
+    echo "Expected propulsion-workflow skill in plugin-backed skill list"
     exit 1
 fi
 
 if ! /usr/bin/grep -a -q "$workflow_path" "$skills_output"; then
-    echo "Expected workflow skill path in plugin-backed skill list"
+    echo "Expected propulsion-workflow skill path in plugin-backed skill list"
     exit 1
 fi
 
 if /usr/bin/grep -a -q "$workflow_skill" "$pure_output"; then
-    echo "Pure skill listing should not expose propulsion workflow"
+    echo "Pure skill listing should not expose propulsion-workflow"
     exit 1
 fi

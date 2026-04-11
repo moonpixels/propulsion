@@ -1,21 +1,21 @@
 ---
-name: workflow
+name: propulsion-workflow
 # prettier-ignore
 description: Manage software-work request routing into Propulsion before any downstream skill is loaded. Use when starting a session with software work.
 ---
 
 # Using Propulsion Workflow
 
-Use `workflow` to route software-work requests into Propulsion before any other response or action.
+Use `propulsion-workflow` to route software-work requests into Propulsion before any other response or action.
 
 <SUBAGENT_STOP>
 If you were dispatched as a subagent to execute a specific task, SKIP THIS SKILL.
 </SUBAGENT_STOP>
 
 <EXTREMELY_IMPORTANT>
-If the user request is software work, `workflow` applies before any clarifying question, repo scan, tool call, or downstream Propulsion skill.
+If the user request is software work, `propulsion-workflow` applies before any clarifying question, repo scan, tool call, or downstream Propulsion skill.
 
-If `workflow` applies, you MUST route first. Do NOT reload `workflow`. Do NOT skip it because the task looks small, obvious, or familiar.
+If `propulsion-workflow` applies, you MUST route first. Do NOT reload `propulsion-workflow`. Do NOT skip it because the task looks small, obvious, or familiar.
 
 ONCE YOU ARE FOLLOWING PROPULSION WORKFLOW, DO NOT LEAVE IT UNTIL COMPLETION. DO NOT SKIP STEPS. FOLLOW THE RULES OF EACH SKILL.
 </EXTREMELY_IMPORTANT>
@@ -26,7 +26,7 @@ ONCE YOU ARE FOLLOWING PROPULSION WORKFLOW, DO NOT LEAVE IT UNTIL COMPLETION. DO
 2. Propulsion skills
 3. Default system behaviour
 
-After `workflow` selects the entry skill, that downstream skill owns the stage.
+After `propulsion-workflow` selects the entry skill, that downstream skill owns the stage.
 
 ## The Rule
 
@@ -63,7 +63,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 - "I need more context first." False. Route first.
 - "I'll inspect the repo first." False. Route first.
 - "This is too small for Propulsion." False. Route first.
-- "I already know the later skill." False. `workflow` still owns entry.
+- "I already know the later skill." False. `propulsion-workflow` still owns entry.
 
 ## Completion Gate
 
