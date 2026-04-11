@@ -34,17 +34,6 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 - Avoid hedging like `prefer`, `usually`, `maybe`, unless the choice is genuinely optional.
 - Avoid vague language like `continue if needed`, `consider`, `handle appropriately`, `similar to`, `etc.`.
 
-## Bug Workflow Contract
-
-Use this pattern when authoring or editing bug-work skills.
-
-- `propulsion-workflow` routes bug work to `exploration`.
-- `exploration` captures expected behavior and writes the approved `prd.md`.
-- `planning` turns the approved `prd.md` into a bug-oriented `plan.md` and hands off to `debugging`.
-- `debugging` creates or resumes the living `docs/propulsion/.../debug.md` artifact on entry.
-- `debugging` owns diagnosis, bug-fix orchestration, review feedback loops, resets, escalation, and closure.
-- `execution` stays feature-only. Do not move bug-fix prompts, bug review prompts, or `debug.md` ownership into `execution`.
-
 ## Required Shape
 
 Every Propulsion `SKILL.md` except `propulsion-workflow` MUST use this structure.
