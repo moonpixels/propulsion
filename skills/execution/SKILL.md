@@ -1,18 +1,19 @@
 ---
 name: execution
 # prettier-ignore
-description: Execute a current plan by orchestrating fresh subagents one phase at a time. Use when current `plan.md` exists and the user wants implementation to start.
+description: Execute a feature plan by orchestrating fresh subagents one phase at a time. Use when current `plan.md` exists and the user wants feature implementation to start.
 ---
 
 # Execution
 
-Execute a current plan one phase at a time.
+Execute a feature plan one phase at a time.
 
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.
 
 - If no `docs/propulsion/.../plan.md` exists for this work, STOP. Load `planning`.
+- If the plan is bug-oriented, STOP. Load `debugging`.
 
 ## Instructions
 
@@ -37,6 +38,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 These rules are MANDATORY.
 
 - DO NOT implement work from the main agent, ALWAYS dispatch a fresh implementer subagent for each phase.
+- DO NOT use `execution` for bug diagnosis, bug-fix orchestration, or bug-fix feedback loops; those belong to `debugging`.
 - NEVER resolve `Status: unclear` or `Status: blocked` by guessing. If the information is not in the plan, codebase, or tools, escalate to the user for resolution.
 - ALWAYS update `plan.md` checkboxes after each successful implementation-review cycle.
 - ALWAYS use the prompts in the references when dispatching subagents and sending feedback.

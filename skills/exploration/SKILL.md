@@ -6,14 +6,13 @@ description: Create an approved PRD through repo inspection and relentless user 
 
 # Exploration
 
-Turn vague work into an approved PRD.
+Turn vague work into an approved PRD, including bug work that still needs expected-behaviour capture before implementation planning.
 
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.
 
 - If an approved `docs/propulsion/.../prd.md` already exists for this work, STOP. Load `planning`.
-- If this is a bug, failure, or unexpected behaviour, STOP. Load `debugging`.
 
 ## Instructions
 
