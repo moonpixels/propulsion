@@ -8,43 +8,55 @@ description: Create an approved PRD through repo inspection and relentless user 
 
 Turn vague work into an approved PRD.
 
-## Quick Start
+## Prerequisites
 
-    User asks for a feature -> inspect repo -> ask one question with a recommendation -> write `prd.md` -> ask for approval.
+ALL prerequisites MUST be true before following this skill.
 
-## Before This Skill
+- If an approved `docs/propulsion/.../prd.md` already exists for this work, STOP. Load `planning`.
+- If this is a bug, failure, or unexpected behaviour, STOP. Load `debugging`.
 
-- No approved PRD exists.
-- Product intent, scope, UX, constraints, or success criteria are unresolved.
+## Instructions
 
-## Use When
+Follow these steps IN ORDER. Do NOT skip steps.
 
-- The request is vague, cross-cutting, or likely to change shape during planning.
-- Planning would require guessing.
-- The user asks for a PRD, feature discovery, or design questioning.
+1. Start with a targeted exploration of the codebase using fresh explore subagents for code facts.
+2. Walk down each branch of the decision tree, interviewing the user relentlessly until every branch is closed, and you have a shared understanding of the work.
+3. Ask each question using the `question` tool, one at a time, and provide your recommended answer first.
+4. If a question can be answered by inspecting the codebase, do that instead of asking the user.
+5. If the request is too large, decompose it and explore only the first phase or subsystem.
+6. After all blocking branches are closed, write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md).
+7. Ask the user to review and approve `prd.md` before loading `planning`.
 
-## Core Loop
+## Rules
 
-- Start with an aggressive targeted repo scan. Use subagents when code can answer the next branch faster than the user can.
-- Ask one question at a time from [references/questioning-rules.md](references/questioning-rules.md). Give your recommendation first.
-- Resolve branches in order: goal, actors, inputs, boundaries, constraints, failure cases, success criteria, out of scope.
-- If the work is too large, decompose it and explore the first slice only.
-- Do not leave blocking branches open. Resolve anything that would change scope, UX, architecture, sequencing, or success criteria.
-- Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` from [references/prd-template.md](references/prd-template.md). Add `-2`, `-3`, and so on on collisions.
-- Keep the PRD product-facing, but record durable implementation and testing decisions. Do not print the full PRD in chat.
-- If asked to plan without an approved PRD, route back to `exploration` and tell the user to switch to build mode so you can write the PRD first.
+These rules are MANDATORY.
 
-## Subagents
+- MUST close every blocking branch before writing `prd.md`. Blocking branches include anything that would change scope, UX, architecture, sequencing, or success criteria.
+- MUST keep the PRD product-facing while recording durable implementation and testing decisions.
+- ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
+- You CAN create supporting documents such as `docs/propulsion/.../research.md` or `docs/propulsion/.../diagrams.md` if needed, but the PRD must include all durable decisions.
+- DO include the supporting documents as implementation inputs in the PRD, but DO NOT rely on them for durable decisions.
+- DO NOT print the PRD, plan, or other workflow artefact content in chat instead of writing files.
+- DO NOT start `planning` here.
+- If you cannot write files, STOP, ask the user to switch to build mode, and tell them to return to `exploration` so you can write `prd.md`.
 
-- Use fresh explore subagents for repo inspection only. They gather code facts. They do not decide product intent.
+## Completion Gate
 
-## Hand Off To
+Do NOT leave this skill until ALL items are complete.
 
-- Ask the user to review `prd.md`.
-- Move to `planning` only after explicit PRD approval.
+- [ ] Targeted exploration of the codebase is complete.
+- [ ] Blocking decision tree branches are closed.
+- [ ] `prd.md` written to `docs/propulsion/.../prd.md`.
+- [ ] User asked to review and approve `prd.md`.
 
-## Do Not
+## Next Skill
 
-- Do not infer product intent from code.
-- Do not start planning or implementation here.
-- Do not hide approval gates in references.
+Once the completion gate is fully checked:
+
+- If `prd.md` is approved, load `planning`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/prd-template.md](references/prd-template.md) - PRD shape and output path.

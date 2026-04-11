@@ -1,52 +1,70 @@
 ---
 name: planning
 # prettier-ignore
-description: Create an execution-ready plan from an approved PRD using thin vertical slices and plan-review loops. Use when an approved PRD exists and the next step is to prepare for execution.
+description: Create an execution-ready plan from approved discovery using phases scoped as thin vertical slices. Use when approved `prd.md` or grounded debugging output exists and the next step is execution.
 ---
 
 # Planning
 
-Turn an approved PRD into an execution-ready plan.
+Turn an approved PRD into a phased execution-ready implementation plan using vertical slices.
 
-## Quick Start
+## Prerequisites
 
-    Approved `prd.md` -> inspect repo -> draft thin slices -> review the plan -> write `plan.md` -> announce `execution`.
+ALL prerequisites MUST be true before following this skill.
 
-## Before This Skill
+- If a `docs/propulsion/.../plan.md` already exists for this work, STOP. Ask the user whether to load `execution`.
+- If this is not a bug, failure, or unexpected behaviour and no approved `docs/propulsion/.../prd.md` exists, STOP. Load `exploration`.
+- If this is a bug, failure, or unexpected behaviour and no grounded output from `debugging` exists, STOP. Load `debugging`.
 
-- An approved `docs/propulsion/.../prd.md` exists.
-- Execution would require a slice breakdown.
+## Instructions
 
-## Use When
+Follow these steps IN ORDER. Do NOT skip steps.
 
-- The PRD is approved.
-- The user asks for a plan, phases, or execution-ready slices.
-- Execution would require rediscovering scope.
+1. Review the approved `prd.md` or grounded debug output to understand the requirements.
+2. Explore relevant areas of the codebase for fresh context.
+3. Identify high-level durable decisions that are unlikely to change throughout implementation.
+4. Identify narrow vertical slices that cut through all integration layers end-to-end.
+5. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using the template in [references/plan-template.md](references/plan-template.md).
+6. Dispatch a fresh plan-reviewer subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
+7. Review and implement feedback from the plan-reviewer subagent.
+8. Repeat steps 6 and 7 until the review returns `Status: approved`.
+9. Tell the user planning is complete and ask whether to move to `execution`.
 
-## Core Loop
+## Rules
 
-- Stop if the PRD is missing or unapproved. Route back to `exploration`.
-- Re-scan the relevant repo areas before slicing.
-- Capture durable decisions first. Keep them stable across all slices.
-- Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` from [references/plan-template.md](references/plan-template.md).
-- Every `plan.md` must begin with `## For Agentic Coders` exactly as shown in the template.
-- Make each checkbox one thin vertical slice. Each slice should be demoable or verifiable on its own.
-- Make each slice execution-ready: target behavior, likely files or areas, durable constraints, and targeted verification.
-- Use a fresh planning-review subagent with [references/plan-review-format.md](references/plan-review-format.md). If it returns `unclear`, route back to `exploration`, update the PRD, get the PRD approved again, then repair the plan.
-- Iterate until the reviewer says `clear`.
-- End by telling the user planning is complete and `execution` is next. Do not auto-start execution.
+These rules are MANDATORY.
 
-## Subagents
+- MUST output the `plan.md` in the exact shape specified in the template reference.
+- DO NOT output the plan in the chat, ONLY in the `plan.md` file.
+- MUST keep phases thin, ordered, and execution-ready.
+- DO NOT loose ANY information from the PRD that is relevant to implementation, otherwise you risk misalignment and rework.
+- MUST treat `Status: approved` as the only valid approval signal for execution-readiness.
+- MUST treat `findings` as fixable planning issues inside `planning`.
+- MUST treat `suggestions` as improvable aspects that should be implemented IF they make execution smoother.
+- DO NOT invent missing product decisions or bug diagnosis.
+- DO NOT auto-start `execution`.
 
-- Use fresh subagents for repo inspection and plan review.
-- Review subagents do not invent product intent.
+## Completion Gate
 
-## Hand Off To
+Do NOT leave this skill until ALL items are complete.
 
-- Hand off to `execution` with the PRD path, plan path, and durable decisions.
+- [ ] PRD or debug context reviewed.
+- [ ] Relevant codebase areas explored for fresh context.
+- [ ] `plan.md` written to `docs/propulsion/.../plan.md`.
+- [ ] Plan-reviewer subagent returns `Status: approved`.
+- [ ] User asked whether to move to `execution`.
 
-## Do Not
+## Next Skill
 
-- Do not plan from an unapproved PRD.
-- Do not leave scope gaps for execution to guess through.
-- Do not hide slice rules or handoff rules in references.
+Once the completion gate is fully checked:
+
+- If the user says to proceed, load `execution`.
+- If product intent is missing, load `exploration`.
+- If bug diagnosis is missing, load `debugging`.
+
+## References
+
+Use these references when you need detail.
+
+- [references/plan-template.md](references/plan-template.md) - Plan shape and phase format.
+- [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md) - Fresh plan-reviewer subagent prompt.

@@ -5,46 +5,68 @@ Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using this shape.
 ```md
 # Plan: <Feature Title>
 
-> Source PRD: `docs/propulsion/.../prd.md`
+> Source PRD: `docs/propulsion/.../prd.md` OR Source Debug: `docs/propulsion/.../debug.md`
 
 ## For Agentic Coders
 
-- Main agent orchestrates.
-- Complete one checkbox at a time.
-- Use a fresh implementation subagent per checkbox.
-- Use a fresh review subagent before handoff.
-- Use `tdd` for public behavior changes.
-- Run targeted checks before marking a slice complete.
-- Update this file only from the main agent.
-- Stop on blockers.
+Use the `execution` skill to implement this plan one phase at a time, and track progress using the checkboxes.
 
 ## Durable Decisions
 
 - Decision 1
 - Decision 2
 
-## Slice 1: <Short Title>
+## Phase 1: <Short Title>
 
-- [ ] Slice complete
-- Goal: narrow end-to-end behavior
-- PRD stories: `1, 2`
-- Likely areas: `src/...`, `tests/...`
-- Constraints: durable rules that this slice must respect
-- Verification: `exact command or commands`
+**Status**: [ ] Phase complete
 
-## Slice 2: <Short Title>
+**Goal**: Concise description of the vertical slice, describing the narrow end-to-end behaviour that this phase will implement and test.
 
-- [ ] Slice complete
-- Goal: next narrow end-to-end behavior
-- PRD stories: `3, 4`
-- Likely areas: `src/...`, `tests/...`
-- Constraints: durable rules that this slice must respect
-- Verification: `exact command or commands`
+**Supporting Context**: Any important implementation inputs from the PRD or debug output that is relevant to this phase.
+
+**User Stories**:
+
+1. As a <actor>, I want <behaviour>, so that <benefit>
+
+Replace this section with `**Debug Context**:` when the plan is driven by grounded `debugging` output instead of a PRD.
+
+**Likely Areas**: `src/...`, `tests/...`
+
+**Constraints**: Durable rules that this phase must respect
+
+**Acceptance Criteria**:
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+
+## Phase 2: <Short Title>
+
+**Status**: [ ] Phase complete
+
+**Goal**: Concise description of the vertical slice, describing the narrow end-to-end behaviour that this phase will implement and test.
+
+**Supporting Context**: Any important implementation inputs from the PRD or debug output that is relevant to this phase.
+
+**User Stories**:
+
+1. As a <actor>, I want <behaviour>, so that <benefit>
+
+Replace this section with `**Debug Context**:` when the plan is driven by grounded `debugging` output instead of a PRD.
+
+**Likely Areas**: `src/...`, `tests/...`
+
+**Constraints**: Durable rules that this phase must respect
+
+**Acceptance Criteria**:
+
+- [ ] Criterion 1
+- [ ] Criterion 2
 ```
 
-Rules:
+## Rules
 
-- One checkbox equals one thin vertical slice.
-- Prefer many thin slices over few thick ones.
-- Give enough context that a fresh subagent does not need to rediscover scope.
-- Keep durable decisions out of the slices when they apply globally.
+- Prefer many thin phases over few thick ones.
+- Keep durable decisions out of the phases when they apply globally.
+- Use exact file paths only when they are durable and important.
+- Copy the relevant `**User Stories**:` into each phase for PRD-driven plans. Use `**Debug Context**:` instead only when planning from grounded `debugging` output.
+- Give each phase enough context that a fresh subagent does not need to rediscover scope.

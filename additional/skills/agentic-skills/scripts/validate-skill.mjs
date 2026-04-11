@@ -213,9 +213,6 @@ function validateBody(body) {
             `SKILL.md has ${sections} sections (recommended <= ${limits.sectionWarn})`,
         );
     }
-    if (!body.includes('## Quick Start') && !body.includes('## Quick start')) {
-        error('Missing required "## Quick Start" section');
-    }
     const wordCount = countWords(body);
     const estimatedTokens = estimateTokens(wordCount);
     return { lineCount, codeBlocks, sections, wordCount, estimatedTokens };

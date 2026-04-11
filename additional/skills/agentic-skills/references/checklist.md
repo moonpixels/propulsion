@@ -40,7 +40,6 @@ Before writing the skill:
 
 ### Body Content (Level 2)
 
-- [ ] `## Quick Start` exists with ONE minimal example
 - [ ] Body is <= 50 lines (frontmatter excluded)
 - [ ] 1 code block preferred (warn if >2, error if >3)
 - [ ] 3-5 sections recommended (warn if >8)

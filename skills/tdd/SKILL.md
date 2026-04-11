@@ -6,45 +6,54 @@ description: Build behavior with one failing test at a time through red-green-re
 
 # TDD
 
-Prove behavior with a failing test before writing production code.
+Prove behaviour with a failing test before writing production code. Use red-green-refactor to build confidence in the change and keep the code clean.
 
-## Quick Start
+## Prerequisites
 
-    Write one failing test -> watch it fail -> write the smallest code to pass -> refactor while green.
+ALL prerequisites MUST be true before following this skill.
 
-## Before This Skill
+- The work includes observable behaviour that can be proven through testing.
+- The codebase has a test framework and tests can be run locally.
 
-- The current slice changes public behavior.
-- The interface or expected behavior is clear enough to test.
+## Instructions
 
-## Use When
+Follow these steps IN ORDER. Do NOT skip steps.
 
-- Building a feature or bug fix that changes behavior.
-- Writing a regression test for an observed failure.
+1. Choose the smallest thin vertical slice that delivers one observable behaviour end-to-end.
+2. Write one test for that single behaviour through a public interface or stable seam. Refer to [references/testing-patterns.md](references/testing-patterns.md) for guidance.
+3. Run the test and verify it fails for the expected reason.
+4. Write the smallest amount of production code to pass the test.
+5. Run the test again and verify it now passes.
+6. Repeat steps 1-5 for the next behaviour, building on the previous code, until the work is complete.
+7. Refactor only while all tests are green, and verify tests remain green after refactor. Refer to [references/refactor-candidates.md](references/refactor-candidates.md) for guidance.
+8. For bug fixes, write a regression test that reproduces the bug before fixing it, then verify the test passes after the fix.
 
-## Core Loop
+## Rules
 
-- Write one test for one behavior through a public interface.
-- Run it. If it does not fail for the expected reason, fix the test first.
-- Write the smallest good fix. No speculative code.
-- Run the targeted test again. Keep going until it passes.
-- Refactor only while green.
-- Repeat one behavior at a time. Do not queue failing tests.
-- Prefer real code paths over mocks. See [references/public-behavior.md](references/public-behavior.md) and [references/good-vs-bad-tests.md](references/good-vs-bad-tests.md).
+These rules are MANDATORY.
 
-## Good vs Bad
+- NO PRODUCTION CODE BEFORE A FAILING TEST.
+- ALWAYS write ONE test at a time for ONE observable behaviour.
+- ENSURE the test initially fails for the EXPECTED reason before writing production code.
+- ONLY write the minimal amount of code to make the test pass.
+- ALWAYS use the public interface for testing, and test through stable seams if necessary.
+- NEVER write speculative tests or code for behaviour that is not yet required.
+- ALWAYS look for refactor opportunities after the test is green, and ONLY refactor when all tests are green.
 
-```text
-WRONG:  test1, test2, test3 -> code1, code2, code3
-RIGHT:  test1 -> code1 -> test2 -> code2 -> test3 -> code3
-```
+## Completion Gate
 
-## Hand Off To
+Do NOT leave this skill until ALL items are complete.
 
-- Hand off passing changes to `execution`.
+- [ ] Work was implemented in thin vertical slices.
+- [ ] Each slice started with a failing test.
+- [ ] Each failing test was verified to fail for the expected reason.
+- [ ] Each slice was completed with passing tests.
+- [ ] Refactors only happened from green and remained green.
+- [ ] All tests for the work are now passing.
 
-## Do Not
+## References
 
-- Do not write production code before a failing test.
-- Do not test implementation details.
-- Do not keep code written before the test.
+Use these references when you need detail.
+
+- [references/testing-patterns.md](references/testing-patterns.md) - Testing patterns for guidance on how to write effective tests.
+- [references/refactor-candidates.md](references/refactor-candidates.md) - Refactor candidates to identify good opportunities for refactor after the tests are green.

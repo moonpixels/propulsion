@@ -15,10 +15,6 @@ description: {Action-oriented summary}. Use when {trigger contexts} or when user
 
 {Brief overview: 1-2 sentences.}
 
-## Quick Start
-
-    {ONE minimal working example.}
-
 ## Core Rules
 
 - {Rule 1}
@@ -38,7 +34,6 @@ description: {Action-oriented summary}. Use when {trigger contexts} or when user
 PROGRESSIVE DISCLOSURE RULES:
 - Description must be ONE line and <= 300 chars
 - SKILL.md body must be <= 50 lines (frontmatter excluded)
-- Include a Quick Start section with one minimal example
 - Prefer 1 code block (warn if >2, error if >3)
 - Move details to references/
 -->

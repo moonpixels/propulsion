@@ -1,4 +1,3 @@
-import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,9 +11,11 @@ const additionalCommandsDir = path.resolve(
     __dirname,
     '../../additional/commands',
 );
-const workflowPath = path.join(skillsDir, 'workflow', 'SKILL.md');
-const bootstrapMarker = 'You are using Propulsion.';
-const bootstrappedSessions = new Set<string>();
+const propulsionWorkflowPath = path.join(
+    skillsDir,
+    'propulsion-workflow',
+    'SKILL.md',
+);
 
 type PropulsionHooks = Awaited<ReturnType<Plugin>>;
 type PropulsionConfig = Parameters<
@@ -25,15 +26,6 @@ type PropulsionConfig = Parameters<
     };
     command?: Record<string, CommandDefinition>;
 };
-type TransformOutput = Parameters<
-    NonNullable<PropulsionHooks['experimental.chat.messages.transform']>
->[1];
-type TransformMessage = TransformOutput['messages'][number];
-type TransformTextPart = Extract<
-    TransformMessage['parts'][number],
-    { type: 'text' }
->;
-
 type CommandFrontmatter = {
     description?: string;
     agent?: string;
@@ -51,46 +43,6 @@ type CommandDefinition = {
 
 type PropulsionOptions = {
     additional?: boolean;
-};
-
-const isRecord = (value: unknown): value is Record<string, unknown> => {
-    return typeof value === 'object' && value !== null;
-};
-
-const getObjectString = (value: unknown, keys: string[]): string | null => {
-    if (!isRecord(value)) {
-        return null;
-    }
-
-    for (const key of keys) {
-        const candidate = value[key];
-
-        if (typeof candidate === 'string' && candidate) {
-            return candidate;
-        }
-    }
-
-    return null;
-};
-
-const getSessionID = (value: unknown) => {
-    return getObjectString(value, ['sessionID', 'sessionId', 'session_id']);
-};
-
-const getSessionInfoID = (event: unknown) => {
-    if (!isRecord(event)) {
-        return null;
-    }
-
-    const properties = event.properties;
-
-    if (!isRecord(properties)) {
-        return null;
-    }
-
-    const info = properties.info;
-
-    return getObjectString(info, ['id']);
 };
 
 const parseFrontmatterValue = (value: string): string | boolean => {
@@ -243,64 +195,29 @@ const mergeAdditionalCommands = (
 };
 
 const getBootstrapContent = (): string | null => {
-    if (!fs.existsSync(workflowPath)) {
+    if (!fs.existsSync(propulsionWorkflowPath)) {
         return null;
     }
 
-    const raw = fs.readFileSync(workflowPath, 'utf8');
+    const raw = fs.readFileSync(propulsionWorkflowPath, 'utf8');
     const { content } = extractFrontmatter(raw);
 
     return `<EXTREMELY_IMPORTANT>
-${bootstrapMarker}
+**If you were dispatched as a subagent to execute a specific task, IGNORE THIS MESSAGE.**
 
-Propulsion's \`workflow\` skill is already active for this session.
+You are using the Propulsion workflow.
 
-If you are a subagent executing a bounded task, the injected workflow below is inactive for you. Stay inside your assigned stage or task. Do not reroute the workflow.
-
-Treat the injected skill content below as the session contract you must follow.
-
-Do not reload \`workflow\` unless you need to re-check its wording or the user explicitly asks.
+**IMPORTANT: The workflow skill content is included below. It is ALREADY LOADED - you are currently following it. Do NOT use the skill tool to load "propulsion-workflow" again - that would be redundant.**
 
 ${content}
 </EXTREMELY_IMPORTANT>`;
 };
 
-const isUserMessage = (
-    message: TransformMessage,
-): message is TransformMessage & { info: { role: 'user'; id: string } } => {
-    return message.info.role === 'user';
-};
-
-const hasBootstrapPart = (parts: TransformMessage['parts']) => {
-    return parts.some(
-        (part): part is TransformTextPart =>
-            part.type === 'text' &&
-            part.synthetic === true &&
-            part.text.includes(bootstrapMarker),
-    );
-};
-
 export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
     const { additional = false } = options as PropulsionOptions;
-    const bootstrap = getBootstrapContent();
     const additionalCommands = additional ? loadAdditionalCommands() : {};
 
     return {
-        event: async ({ event }) => {
-            if (
-                event.type !== 'session.created' &&
-                event.type !== 'session.deleted'
-            ) {
-                return;
-            }
-
-            const sessionID = getSessionInfoID(event) ?? getSessionID(event);
-
-            if (sessionID) {
-                bootstrappedSessions.delete(sessionID);
-            }
-        },
-
         config: async (config) => {
             addSkillsPath(config, skillsDir);
 
@@ -314,47 +231,37 @@ export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
             _transformInput,
             output,
         ) => {
+            const bootstrap = getBootstrapContent();
+
             if (!bootstrap || output.messages.length === 0) {
                 return;
             }
 
-            const firstUser = output.messages.find(isUserMessage);
+            const firstUser = output.messages.find(
+                (message) => message.info.role === 'user',
+            );
 
             if (!firstUser || firstUser.parts.length === 0) {
                 return;
             }
 
-            const sessionID = getSessionID(firstUser.info);
-
-            if (sessionID && bootstrappedSessions.has(sessionID)) {
+            if (
+                firstUser.parts.some(
+                    (part) =>
+                        part.type === 'text' &&
+                        part.text.includes('EXTREMELY_IMPORTANT'),
+                )
+            ) {
                 return;
             }
 
-            if (hasBootstrapPart(firstUser.parts)) {
-                if (sessionID) {
-                    bootstrappedSessions.add(sessionID);
-                }
+            const ref = firstUser.parts[0];
 
+            if (!ref || ref.type !== 'text') {
                 return;
             }
 
-            // Inject the workflow bootstrap as a synthetic first user part so it rides
-            // with the user's first message without changing the persisted source text.
-            const bootstrapPart: TransformTextPart = {
-                id: `prt_${randomUUID()}`,
-                sessionID: firstUser.info.sessionID,
-                messageID: firstUser.info.id,
-                type: 'text',
-                text: bootstrap,
-                synthetic: true,
-            };
-
-            firstUser.parts.unshift(bootstrapPart);
-
-            // Track sessions we have already patched so the bootstrap stays one-time.
-            if (sessionID) {
-                bootstrappedSessions.add(sessionID);
-            }
+            firstUser.parts.unshift({ ...ref, text: bootstrap });
         },
     };
 };

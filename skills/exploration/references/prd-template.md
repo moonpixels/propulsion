@@ -16,12 +16,18 @@ State the user problem in user language.
 
 ## User Stories
 
-1. As a <actor>, I want <behavior>, so that <benefit>
-2. As a <actor>, I want <behavior>, so that <benefit>
+1. As a <actor>, I want <behaviour>, so that <benefit>
+2. As a <actor>, I want <behaviour>, so that <benefit>
 
 ## Solution
 
-Describe the proposed behavior end-to-end from the user's perspective.
+Describe the proposed behaviour end-to-end from the user's perspective.
+
+## Implementation Inputs
+
+- External links or references to check out
+- Business rules or constraints that must be respected
+- References to tickets, docs, or other internal resources that are relevant to implementation
 
 ## Implementation Decisions
 
@@ -44,9 +50,13 @@ Describe the proposed behavior end-to-end from the user's perspective.
 - Only non-blocking risks or future questions
 ```
 
-Rules:
+## Rules
+
+These rules are MANDATORY.
 
 - Keep it product-facing.
 - Include durable decisions, not file paths or code.
 - Resolve blocking branches before writing.
+- Write the PRD to the correct path using the correct shape.
+- Use the first explored phase only if the request was decomposed.
 - Self-review for placeholders, contradictions, and scope drift before asking for approval.
