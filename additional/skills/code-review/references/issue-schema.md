@@ -18,7 +18,7 @@ Use this reference when normalising candidate findings and questions before vali
     "rule_source": "AGENTS.md:18",
     "precedent_refs": ["src/example.ts:10", "src/example.ts:44"],
     "intent_refs": ["PR description", "docs/propulsion/example-plan.md:12-18"],
-    "principle_basis": "DRY|single-source-of-truth|separation-of-concerns|ownership-boundary|test-protection|cohesion|encapsulation|complexity-management|abstraction-leakage",
+    "principle_basis": "DRY|single-source-of-truth|separation-of-concerns|ownership-boundary|test-protection|cohesion|encapsulation|complexity-management|abstraction-leakage|SOLID|YAGNI",
     "open_question": "What missing context prevents a reliable decision?",
     "validator_verdict": "pending|confirmed|rejected"
 }

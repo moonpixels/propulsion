@@ -28,13 +28,21 @@ User input: $ARGUMENTS
 6. If there is no upstream for the current branch, push with `git push -u origin <branch>`. Otherwise, run `git push`.
 7. If push fails because of authentication, permissions, or remote access requires user action, stop and report the failing command with one concrete unblock action.
 8. Check for an existing open PR for the current head branch with `gh pr list --head <branch> --state open --json url,number,title,body,baseRefName,headRefName`.
-9. If no commit delta exists against the base branch, output exactly:
+9. If an open PR already exists with a different base branch than the chosen `<base>`, stop and ask the user whether to correct the PR base.
+    - If the user agrees, update the base with `gh pr edit --base <base>` before any title or body refresh.
+    - If the user declines, stop and ask them to rerun `/pr` with the intended base branch.
+10. If an open PR already exists on the chosen base, handle it before generating new metadata.
+    - If no commit delta exists against the base branch, reuse the existing PR unchanged and output its URL.
+    - Otherwise, show its URL and ask whether to refresh the title and summary.
+    - If the user agrees, update only the title and body with `gh pr edit`.
+    - If the user declines, reuse the existing PR unchanged.
+11. If no commit delta exists against the base branch, output exactly:
     - `No PR changes to open.`
-10. Infer a Conventional Commit PR title from the full `<base>...HEAD` scope.
+12. Infer a Conventional Commit PR title from the full `<base>...HEAD` scope.
     - use the complete branch diff and commit history, not just the latest commit
     - include a scope only when the scope is obvious from the full PR context
     - make the title a valid Conventional Commit subject suitable for squash merge history
-11. Use a PR body with this exact shape:
+13. Use a PR body with this exact shape:
 
     ```md
     ## Summary
@@ -42,12 +50,6 @@ User input: $ARGUMENTS
     - <bullet derived from the full PR scope>
     ```
 
-12. If an open PR already exists with a different base branch than the chosen `<base>`, stop and ask the user whether to correct the PR base.
-    - If the user agrees, update the base with `gh pr edit --base <base>` before any title or body refresh.
-    - If the user declines, stop and ask them to rerun `/pr` with the intended base branch.
-13. If an open PR already exists on the chosen base, show its URL and ask whether to refresh the title and summary.
-    - If the user agrees, update only the title and body with `gh pr edit`.
-    - If the user declines, reuse the existing PR unchanged.
 14. If no open PR exists, create one with `gh pr create --base <base> --title "<title>" --body "<body>"`.
 15. Verify with `gh pr view --json url,number,title,baseRefName,headRefName,state`.
 
