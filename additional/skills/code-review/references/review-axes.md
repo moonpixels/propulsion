@@ -1,41 +1,53 @@
 # Review Axes
 
-Use these axes to review the diff like a senior engineer while staying high-signal.
+Use this reference when dispatching the focused reviewer passes.
 
-## Core questions
+## Focused reviewer passes
 
-- Correctness: does the changed code do what the PR claims, including edge cases and failure paths?
-- Design: does the behavior live in the right abstraction, or has the diff pushed domain logic into the wrong layer?
-- Duplication: does the diff create a second source of truth or repeat business logic that should be centralized?
-- Maintainability: does the change make future edits riskier, harder to reason about, or more coupled than needed?
-- Tests: do the changed tests actually protect the new or changed behavior, and are important failure modes covered?
-- Requirements: does the diff align with the stated PR intent or explicitly linked planning artifact?
-- Consistency: does the diff diverge from dominant local patterns in ways that make the code harder to maintain?
+- Correctness
+    - Verify changed behaviour against the stated intent, edge cases, failure paths, state transitions, data flow, and dependency changes.
+- Security / trust boundaries
+    - Inspect auth, authorization, validation, injection surfaces, secrets, config, logging, file handling, and integration boundaries.
+- Maintainability / architecture
+    - Look for wrong-layer ownership, second sources of truth, duplicated business logic, concrete refactoring opportunities, abstraction leakage, coupling, unnecessary complexity, and unnecessary indirection.
+    - Apply `DRY`, `single-source-of-truth`, `separation-of-concerns`, `ownership-boundary`, `cohesion`, `encapsulation`, `complexity-management`, `abstraction-leakage`, `SOLID`, and `YAGNI` only when the impact is concrete in the changed code.
+- Tests / verification
+    - Check whether changed behaviour is actually protected by tests or other verification, including realistic failure modes and regressions.
+- Intent / rule alignment
+    - Compare the diff against PR intent, explicitly linked planning artefacts, scoped `AGENTS.md` / `CLAUDE.md`, touched command or skill contracts, and dominant local precedent when consistency matters.
 
-## Reviewer guidance
+## Alignment rules
 
-- Favor issues that improve overall code health, not just immediate runtime safety.
-- Treat design and maintainability comments as real findings only when the cost is concrete.
-- Prefer exact code evidence over broad advice.
-- Use precedent when local patterns are strong.
-- Use named principles when the code-health regression is obvious even without an exact nearby match.
+- Review like a senior PR reviewer, not a lint pass.
+- Improve overall code health; do not seek perfection.
+- Prefer concrete, merge-relevant issues the author would likely fix.
+- Read code in context, not only the diff hunk.
+- Treat tests and trust-boundary changes as first-class review scope.
+- Use exact evidence, quoted rules, and nearby precedent before broad principles.
 
 ## Named principles allowed for principle-backed findings
 
-- `DRY`: duplicated business logic or duplicated branching that should have one canonical home
-- `single-source-of-truth`: the diff introduces a second place that must now stay in sync
-- `separation-of-concerns`: the wrong layer now owns behavior, validation, or policy
-- `ownership-boundary`: behavior belongs in a model, service, helper, or shared abstraction rather than the new location
-- `test-protection`: changed behavior is no longer adequately defended by tests
-- `cohesion`: related behavior is split across locations that should change together
-- `encapsulation`: internals or policy leak into callers that should not own them
-- `complexity-management`: the diff adds branching, coupling, or coordination cost beyond what the change needs
-- `abstraction-leakage`: the caller now knows details that should stay behind the abstraction boundary
+- `DRY`
+- `single-source-of-truth`
+- `separation-of-concerns`
+- `ownership-boundary`
+- `test-protection`
+- `cohesion`
+- `encapsulation`
+- `complexity-management`
+- `abstraction-leakage`
+- `SOLID`
+- `YAGNI`
 
-## When to reject a candidate even if it sounds smart
+## Reject candidates when
 
-- The complaint is mostly aesthetic.
-- The claim depends on guessing hidden requirements.
-- The code may be imperfect, but the issue is too small for a real review comment.
+- The complaint is aesthetic or stylistic.
+- The claim depends on hidden requirements.
+- The issue is too small for a real review comment.
 - Multiple local patterns exist and no dominant precedent is clear.
-- The suggested abstraction is hypothetical future-proofing rather than a concrete simplification of the current diff.
+- The suggestion is speculative future-proofing instead of a concrete fix for this diff.
+
+## Rules
+
+- EACH pass returns only candidates, NEVER final report text.
+- DO stay inside the allowed review scope and gathered context.
