@@ -6,7 +6,7 @@ subtask: true
 
 Load the `code-review` skill and follow it strictly.
 
-## Input
+## Inputs
 
 User input: $ARGUMENTS
 
