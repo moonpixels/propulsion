@@ -1,26 +1,30 @@
 ---
-description: Auto-stage safe changes and create an ultra-concise commit
-agent: build
-subtask: true
+description: Automatically stage safe changes and create one local commit
 ---
 
-User input: $ARGUMENTS
-
-## Context
+## Inputs
 
 - Current git status: !`git status --short`
 - Current git diff (staged and unstaged): !`git diff HEAD`
 - Current branch: !`git branch --show-current`
-- Recent commits (style reference): !`git log --oneline -10`
 
-## Task
+## Instructions
 
-Create exactly one commit from current local changes.
+1. Create exactly one commit from current local changes.
+2. Auto-stage relevant changes with `git add -A`, including untracked files.
+3. Unstage excluded files before commit when they are staged.
+4. If there are no committable changes after exclusions, stop and output exactly:
+    - `No changes to commit.`
+5. Generate a normal imperative commit subject from the diff, and enforce this format:
+    - one line only
+    - short descriptive subject line
+    - imperative mood
+    - normal natural wording
+    - no trailing punctuation
 
 ## Rules
 
-1. Auto-stage relevant changes (`git add -A`), including untracked files.
-2. Never commit likely secret files. Exclude these patterns:
+- NEVER commit likely secret files, ALWAYS unstage them if applicable. Exclude these patterns:
     - `.env`
     - `.env.*`
     - `*.pem`
@@ -32,24 +36,17 @@ Create exactly one commit from current local changes.
     - `*secret*`
     - `*token*`
     - `.ssh/*`
-3. If excluded files are staged, unstage them before commit.
-4. If there are no committable changes after exclusions, stop and output exactly:
-    - `No changes to commit.`
-5. Generate a commit message from the diff and recent commit style, but enforce this format:
-    - one line only
-    - 2-5 words preferred (hard max 6 words)
-    - extremely concise
-    - grammar may be rough
-    - omit filler words (`the`, `a`, `an`, `to`, `for`, `of`, `and`)
-    - no trailing punctuation
-6. If `$ARGUMENTS` is not empty, treat it as an intent hint for wording.
-7. Do not push, open PRs, amend, reset, or force anything.
+- DO NOT push, open PRs, amend, reset, or force anything.
 
 ## Output
 
-After committing, run `git status --short` and report:
+Use this exact format for your output when the commit succeeds:
 
-- commit hash
-- final commit message
-- files included in commit
-- excluded secret-like files (if any)
+- Run `git status --short` before producing the final response.
+
+```md
+Commit created: <hash>
+Message: <final commit message>
+Files: <none|comma-separated paths>
+Excluded secret-like files: <none|comma-separated paths>
+```

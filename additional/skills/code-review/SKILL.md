@@ -1,61 +1,38 @@
 ---
 name: code-review
 # prettier-ignore
-description: Use when running /review or auditing diffs for real bugs, code-health regressions, and maintainability issues with validation-first filtering and low review noise.
+description: Reviews code changes for senior-level PR feedback with parallel reviewer passes, disprove-first validation, and exact report output. Use when reviewing PR or local changes.
 ---
 
-# Agentic Code Review
+# Code Review
 
-Run multi-agent code review over repository diffs with strict false-positive control.
+Review diffs like a senior engineer. Stay evidence-first. Stay merge-relevant.
 
-## Quick Start
+## Instructions
 
-    Use the code-review skill to review uncommitted changes or compare `<base>...HEAD`.
+1. Resolve review scope and allowed context with [references/mode-selection.md](references/mode-selection.md).
+2. Dispatch fresh reviewer subagents in parallel with the prompt in [references/reviewer-prompt.md](references/reviewer-prompt.md). Cover the axes in [references/review-axes.md](references/review-axes.md).
+3. Dispatch fresh validator subagents with the prompt in [references/validator-prompt.md](references/validator-prompt.md). Discard anything unconfirmed.
+4. Produce the final report exactly as defined in [references/report-format.md](references/report-format.md). Use only `approve`, `approve-with-comments`, `request-changes`, or `needs-clarification`.
+5. After the report, for a real PR only, optionally post inline comments with [references/comment-template.md](references/comment-template.md). Default to validated blocking findings only.
 
-## Core Rules
+## Rules
 
-- Always resolve one mode: `uncommitted` or `branch`.
-- In branch mode, compare `<base>...HEAD`; if base is omitted, ask and use `main` only when the user selects the default.
-- Build the changed file list first and exclude generated output unless the user explicitly asks for it.
-- Always read the full contents of every changed file in scope.
-- For each changed file, read at most two one-hop adjacent context files when they are directly referenced, are the likely canonical home for duplicated or misplaced logic, or are explicitly linked by the PR description or reviewed contract.
-- When a PR exists, always use its title and description for intent context; only load extra planning or issue context when that artifact is explicitly linked.
-- Rule sources are hierarchical:
-    1. scoped `AGENTS.md` and `CLAUDE.md`
-    2. touched command/skill contracts in the reviewed diff
-    3. skill files loaded by touched command templates
-- If multiple rule sources apply, enforce the stricter rule and cite the exact source file.
-- Treat linked references as supporting context unless they state an explicit rule or contract that can be quoted exactly.
-- Always run three lanes: `blocker`, `important`, and `advisory`.
-- `important` findings are part of the core review surface, not optional polish.
-- Report only issues the PR author would likely fix if made aware of them.
-- Run independent parallel reviewers, then validate each candidate issue in a disprove-first pass.
-- Keep only validated issues with concrete evidence and `file:line` references.
-
-## High-Signal Filter
-
-- `blocker`: deterministic bugs, definite parse/compile/type/import failures, security issues, or clear scoped rule/contract violations.
-- `important`: concrete code-health regressions introduced by the diff, including wrong abstraction placement, duplicated business logic, second sources of truth, meaningful maintainability drift, requirement drift, non-trivial performance issues, and test gaps that materially weaken protection for changed behavior.
-- `advisory`: non-blocking consistency or maintainability guidance with strong evidence and an actionable alignment path.
-- Keep `important` and `advisory` findings objective: tie them to changed code, concrete impact, and either strong precedent or a named code-health principle.
-- Never flag style nits, subjective preferences, speculative risks, pre-existing issues, or linter-catch issues.
-- Discard findings with weak evidence, unclear impact, conflicting local precedents, or confidence below threshold.
-
-## Validation Thresholds
-
-- `blocker` findings require confidence `>= 85`.
-- `important` findings require confidence `>= 80` and a concrete code-health impact.
-- `advisory` findings require confidence `>= 75` and sufficient precedent or principle evidence.
-- Rule/contract violations must include exact quoted rule text and source path.
-- Consistency findings must cite at least one dominant precedent from the same code area.
-- Principle-backed `important` findings must cite changed code, name the principle, and explain the maintenance, ownership, testing, or correctness cost.
-- Inline PR comments are for validated `blocker` and `important` findings only.
+- ALWAYS use a severity-first model: `critical`, `high`, `medium`, `low`, `nitpick`, `question`.
+- ALWAYS report only validated findings or validated missing-context questions with concrete evidence and exact `file:line` refs when code is involved.
+- DO keep findings issue-focused. DO NOT add a positive-notes section.
+- DO NOT keep style nits, speculative risks, weak evidence, pre-existing issues, or linter-catch comments.
+- DO treat blocking recommendations as requiring material production, security, UX, or maintenance risk.
+- DO treat blocking findings as the validated `critical` and `high` findings that would materially harm code health or create unacceptable production, security, UX, or maintenance risk if shipped.
+- DO NOT post unvalidated findings.
 
 ## References
 
-- [references/mode-selection.md](references/mode-selection.md) - Mode parsing and diff sources
-- [references/review-axes.md](references/review-axes.md) - Canonical review dimensions and reviewer questions
-- [references/high-signal-examples.md](references/high-signal-examples.md) - Report / do-not-report examples
-- [references/issue-schema.md](references/issue-schema.md) - Required issue fields and dedupe key
-- [references/validation-rubric.md](references/validation-rubric.md) - Disprove-first validation checklist
-- [references/comment-template.md](references/comment-template.md) - Inline comment and citation format
+- [references/mode-selection.md](references/mode-selection.md) - Scope parsing and allowed context.
+- [references/review-axes.md](references/review-axes.md) - Parallel reviewer-pass contracts.
+- [references/reviewer-prompt.md](references/reviewer-prompt.md) - Prompt template for one reviewer pass.
+- [references/issue-schema.md](references/issue-schema.md) - Candidate finding and question schema.
+- [references/validator-prompt.md](references/validator-prompt.md) - Prompt template for one validator pass.
+- [references/validation-rubric.md](references/validation-rubric.md) - Separate disprove-first validator rules.
+- [references/report-format.md](references/report-format.md) - Exact final report shape and decision rules.
+- [references/comment-template.md](references/comment-template.md) - Post-report inline comment format.
