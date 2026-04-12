@@ -1,6 +1,5 @@
 ---
 description: Create or reuse a pull request from the current branch with safe commit + push
-agent: build
 ---
 
 ## Inputs

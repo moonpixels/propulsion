@@ -1,6 +1,5 @@
 ---
 description: Create or prune AGENTS.md into minimal global steering for this project
-agent: build
 ---
 
 You are initialising OpenCode by creating or pruning AGENTS.md into minimal global steering.

@@ -1,6 +1,5 @@
 ---
 description: Automatically stage safe changes and create one local commit
-agent: build
 ---
 
 ## Inputs
