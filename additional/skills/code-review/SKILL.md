@@ -1,7 +1,7 @@
 ---
 name: code-review
 # prettier-ignore
-description: Run senior-level PR review on code changes with parallel reviewer passes, disprove-first validation, and exact report output. Use when reviewing PR or local changes.
+description: Reviews code changes for senior-level PR feedback with parallel reviewer passes, disprove-first validation, and exact report output. Use when reviewing PR or local changes.
 ---
 
 # Code Review
