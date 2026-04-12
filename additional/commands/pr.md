@@ -6,12 +6,11 @@ description: Create or reuse a pull request from the current branch with safe co
 
 User input: $ARGUMENTS
 
-- Default base branch: `main`
 - If `$ARGUMENTS` is non-empty then treat it as the base branch name
 
 ## Instructions
 
-1. Resolve the base branch from `$ARGUMENTS` or default to `main`.
+1. Resolve the base branch from `$ARGUMENTS`, or default to the repo's main development branch (e.g. `main`).
 2. Collect context first:
     - `git status --short`
     - `git branch --show-current`
