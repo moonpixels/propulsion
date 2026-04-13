@@ -1,6 +1,10 @@
 ---
 description: Run a report-first senior code review with PR-first context gathering and local fallback modes.
+agent: build
+subtask: true
 ---
+
+**You are a subagent executing a specific task.**
 
 ## Inputs
 

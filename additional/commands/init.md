@@ -1,6 +1,10 @@
 ---
 description: Create or prune AGENTS.md into minimal global steering for this project
+agent: build
+subtask: true
 ---
+
+**You are a subagent executing a specific task.**
 
 You are initialising OpenCode by creating or pruning AGENTS.md into minimal global steering.
 

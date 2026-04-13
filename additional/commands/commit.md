@@ -1,6 +1,10 @@
 ---
 description: Automatically stage safe changes and create one local commit
+agent: build
+subtask: true
 ---
+
+**You are a subagent executing a specific task.**
 
 ## Inputs
 
