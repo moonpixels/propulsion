@@ -1,6 +1,10 @@
 ---
 description: Create or reuse a pull request from the current branch with safe commit + push
+agent: build
+subtask: true
 ---
+
+**You are a subagent executing a specific task.**
 
 ## Inputs
 
