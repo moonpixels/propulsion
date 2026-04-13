@@ -8,9 +8,9 @@ subtask: true
 
 ## Inputs
 
-- Current git status: !`git status --short`
-- Current git diff (staged and unstaged): !`git diff HEAD`
-- Current branch: !`git branch --show-current`
+- Current git status: `git status --short`
+- Current git diff (staged and unstaged): `git diff HEAD`
+- Current branch: `git branch --show-current`
 
 ## Instructions
 
