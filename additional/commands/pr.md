@@ -43,6 +43,7 @@ User input: $ARGUMENTS
     - `No PR changes to open.`
 12. Infer a Conventional Commit PR title from the full `<base>...HEAD` scope.
     - use the complete branch diff and commit history, not just the latest commit
+    - approved types beyond `feat:` and `fix:` are allowed; use `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, and `test`
     - make the title a valid Conventional Commit subject suitable for squash merge history
 13. Use a PR body with this exact shape:
 
