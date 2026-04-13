@@ -43,7 +43,6 @@ User input: $ARGUMENTS
     - `No PR changes to open.`
 12. Infer a Conventional Commit PR title from the full `<base>...HEAD` scope.
     - use the complete branch diff and commit history, not just the latest commit
-    - include a scope only when the scope is obvious from the full PR context
     - make the title a valid Conventional Commit subject suitable for squash merge history
 13. Use a PR body with this exact shape:
 
@@ -63,7 +62,6 @@ User input: $ARGUMENTS
 - ALWAYS stop for user action when push or GitHub auth fails.
 - ALWAYS collect context first.
 - DO use the complete branch diff and commit history, not just the latest commit.
-- DO include a scope only when the scope is obvious from the full PR context.
 - ALWAYS make the title a valid Conventional Commit subject suitable for squash merge history.
 
 ## Output
