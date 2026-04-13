@@ -17,7 +17,7 @@ agent: build
 
 Run the full test suite:
 
-!`bun test --coverage`
+`bun test --coverage`
 
 If tests fail, list each failure with file:line and suggest fixes.
 ```
@@ -25,7 +25,7 @@ If tests fail, list each failure with file:line and suggest fixes.
 ## Core Rules
 
 - Store commands in `.opencode/commands/{name}.md` (global: `~/.config/opencode/commands/{name}.md`).
-- Use `$ARGUMENTS` (or `$1`, `$2`) for user input, ``!`cmd` `` for shell output, and `@file` to include file contents.
+- Use `$ARGUMENTS` (or `$1`, `$2`) for user input, `cmd` for shell output, and `@file` to include file contents.
 - Write explicit success/failure handling and verification steps.
 - Avoid destructive shell commands unless the user explicitly asks; if needed, require confirmation.
 - Prefer `subtask: true` for noisy or multi-step workflows.

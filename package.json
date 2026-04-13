@@ -1,6 +1,6 @@
 {
     "name": "propulsion",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "type": "module",
     "main": ".opencode/plugins/propulsion.ts",
     "scripts": {

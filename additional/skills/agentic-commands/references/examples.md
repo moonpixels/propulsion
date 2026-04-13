@@ -14,7 +14,7 @@ agent: build
 
 Run tests matching: $ARGUMENTS
 
-!`bun test --testNamePattern="$ARGUMENTS" --verbose`
+`bun test --testNamePattern="$ARGUMENTS" --verbose`
 
 If tests fail, summarize each failure with file:line and likely cause.
 ```
@@ -31,7 +31,7 @@ agent: build
 
 Run ESLint:
 
-!`bun run lint`
+`bun run lint`
 
 If errors exist, list each error with file:line and suggested fix.
 ```
@@ -49,7 +49,7 @@ subtask: true
 
 Review changes from the last commit:
 
-!`git diff HEAD~1`
+`git diff HEAD~1`
 
 Report issues with file:line references and concise recommendations.
 ```
