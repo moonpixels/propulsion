@@ -43,7 +43,18 @@ User input: $ARGUMENTS
     - `No PR changes to open.`
 12. Infer a Conventional Commit PR title from the full `<base>...HEAD` scope.
     - use the complete branch diff and commit history, not just the latest commit
-    - approved types beyond `feat:` and `fix:` are allowed; use `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, and `test`
+    - approved types beyond `feat:` and `fix:` are allowed:
+        - `build`: production dependencies or build-system changes
+        - `chore`: maintenance, admin, or dev-only dependency work
+        - `ci`: CI or automation pipeline changes
+        - `docs`: documentation-only changes
+        - `feat`: a new feature or functionality
+        - `fix`: a bug fix for incorrect behaviour
+        - `perf`: a performance improvement
+        - `refactor`: code changes without behaviour changes
+        - `revert`: reverts an earlier change
+        - `style`: formatting or style-only clean-up
+        - `test`: adds or updates tests
     - make the title a valid Conventional Commit subject suitable for squash merge history
 13. Use a PR body with this exact shape:
 
