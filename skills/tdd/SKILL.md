@@ -14,7 +14,7 @@ ALL prerequisites MUST be true before following this skill.
 
 - The work includes a change to observable user-facing behaviour, a public contract, or durable business logic that can be proven through testing.
 - The codebase has a test framework installed, and tests can be run locally.
-- The work is not solely for CI-only changes, linting, formatting, dependency maintenance, build or development script changes, repo hygiene, or internal refactors with no behaviour change. 
+- The work is not solely for CI-only changes, linting, formatting, dependency maintenance, build or development script changes, repo hygiene, or internal refactors with no behaviour change.
 
 If the work mixes behaviour change with tooling or maintenance updates, use `tdd` on the behaviour change ONLY.
 
