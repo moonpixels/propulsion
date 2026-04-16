@@ -1,19 +1,22 @@
 ---
 name: tdd
 # prettier-ignore
-description: Build behavior with one failing test at a time through red-green-refactor. Use when a slice changes public behavior or when fixing a bug with a regression test.
+description: Build observable behaviour with one failing test at a time through red-green-refactor. Use when a slice changes user-facing behaviour, API contracts, or durable business logic, including bug fixes proven with regression tests.
 ---
 
 # TDD
 
-Prove behaviour with a failing test before writing production code. Use red-green-refactor to build confidence in the change and keep the code clean.
+Prove observable behaviour with a failing test before writing production code. Use red-green-refactor to build confidence in the change and keep the code clean.
 
 ## Prerequisites
 
 ALL prerequisites MUST be true before following this skill.
 
-- The work includes observable behaviour that can be proven through testing.
-- The codebase has a test framework and tests can be run locally.
+- The work includes a change to observable user-facing behaviour, a public contract, or durable business logic that can be proven through testing.
+- The codebase has a test framework installed, and tests can be run locally.
+- The work is not solely for CI-only changes, linting, formatting, dependency maintenance, build or development script changes, repo hygiene, or internal refactors with no behaviour change.
+
+If the work mixes behaviour change with tooling or maintenance updates, use `tdd` on the behaviour change ONLY.
 
 ## Instructions
 
@@ -32,6 +35,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 These rules are MANDATORY.
 
+- ONLY use `tdd` on observable user-visible behaviour or business logic changes.
 - NO PRODUCTION CODE BEFORE A FAILING TEST.
 - ALWAYS write ONE test at a time for ONE observable behaviour.
 - ENSURE the test initially fails for the EXPECTED reason before writing production code.
