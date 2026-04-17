@@ -49,7 +49,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. If it is software work, choose `exploration` as the entry point.
 4. Emit `Propulsion workflow enabled, routing to exploration...` before any other user-visible text.
 5. Load the `exploration` skill immediately.
-6. Stop routing. The loaded skill now owns the workflow.
+6. Stop routing. The loaded Propulsion skill now owns the workflow stage.
 
 ## Red Flags
 

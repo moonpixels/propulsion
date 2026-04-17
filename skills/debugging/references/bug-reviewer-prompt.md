@@ -83,6 +83,8 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Treat the diagnosis gate as required, not advisory.
+- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - Reject speculative or symptom-only fixes.
 - Call out missing verification or contradictory evidence explicitly.
 - MUST return exactly one `Status:` line with either `approved` or `rejected`.

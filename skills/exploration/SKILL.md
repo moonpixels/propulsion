@@ -23,14 +23,17 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. Ask each question using the `question` tool, one at a time, and provide your recommended answer first.
 4. If a question can be answered by inspecting the codebase, do that instead of asking the user.
 5. If the request is too large, decompose it and explore only the first phase or subsystem.
-6. After all blocking branches are closed, write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md).
-7. Ask the user to review and approve `prd.md` before loading `planning`.
+6. After all blocking branches are closed and exploration is complete, check for relevant non-Propulsion skills and load them before writing `prd.md`.
+7. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md).
+8. Ask the user to review and approve `prd.md` before loading `planning`.
 
 ## Rules
 
 These rules are MANDATORY.
 
 - MUST close every blocking branch before writing `prd.md`. Blocking branches include anything that would change scope, UX, architecture, sequencing, or success criteria.
+- BEFORE writing `prd.md`, ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - MUST keep the PRD product-facing while recording durable implementation and testing decisions.
 - ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
 - You CAN create supporting documents such as `docs/propulsion/.../research.md` or `docs/propulsion/.../diagrams.md` if needed, but the PRD must include all durable decisions.

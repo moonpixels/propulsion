@@ -63,6 +63,8 @@ These rules are MANDATORY.
 - ALWAYS ask questions if anything in the task description is unclear. Do NOT guess or make assumptions.
 - DO NOT write any code before fully understanding the requirements, scope, and repo state for the current phase.
 - ALWAYS load and use the `tdd` skill.
+- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - Follow the instructions and output format EXACTLY as defined above.
 
 ## Completion Gate
