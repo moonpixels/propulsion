@@ -50,6 +50,8 @@ Return `[]` when no candidates survive the reviewer pass.
 
 - ALWAYS stay inside the assigned axis.
 - ALWAYS stay inside the allowed review scope and allowed context.
+- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - DO return only normalised candidates.
 - MUST replace the output placeholders with the exact JSON object shape from `references/issue-schema.md` before dispatching the reviewer.
 - DO NOT write final report sections, verdicts, inline comments, or fix patches.

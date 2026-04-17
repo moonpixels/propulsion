@@ -75,6 +75,8 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - DO NOT trust the implementers self-review report, verify all criteria yourself.
+- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - MUST review the actual implementation, not only the report text.
 - MUST inspect relevant changed files and the current diff before approving.
 - MUST cover every current-phase acceptance criterion.

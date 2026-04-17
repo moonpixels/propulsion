@@ -71,6 +71,8 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Replace the plan and PRD paths with the actual paths for the plan being reviewed.
+- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - MUST return exactly one `Status:` line with either `approved` or `rejected`.
 - Status CAN be `approved` if there are only suggestions but NO findings.
 - If returning `Status: rejected`, MUST include at least one finding.

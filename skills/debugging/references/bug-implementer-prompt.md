@@ -58,6 +58,8 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Load the `tdd` skill NOW.
+- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - NO PRODUCTION CODE before the failing regression test.
 - Work only on the chosen fix hypothesis for this loop.
 - Make one minimal fix attempt only.
