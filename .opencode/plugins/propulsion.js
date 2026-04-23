@@ -2,8 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { Plugin } from '@opencode-ai/plugin';
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillsDir = path.resolve(__dirname, '../../skills');
 const additionalSkillsDir = path.resolve(__dirname, '../../additional/skills');
@@ -17,35 +15,7 @@ const propulsionWorkflowPath = path.join(
     'SKILL.md',
 );
 
-type PropulsionHooks = Awaited<ReturnType<Plugin>>;
-type PropulsionConfig = Parameters<
-    NonNullable<PropulsionHooks['config']>
->[0] & {
-    skills?: {
-        paths?: string[];
-    };
-    command?: Record<string, CommandDefinition>;
-};
-type CommandFrontmatter = {
-    description?: string;
-    agent?: string;
-    model?: string;
-    subtask?: boolean;
-};
-
-type CommandDefinition = {
-    template: string;
-    description?: string;
-    agent?: string;
-    model?: string;
-    subtask?: boolean;
-};
-
-type PropulsionOptions = {
-    additional?: boolean;
-};
-
-const parseFrontmatterValue = (value: string): string | boolean => {
+const parseFrontmatterValue = (value) => {
     const trimmed = value.trim();
 
     if (
@@ -66,19 +36,14 @@ const parseFrontmatterValue = (value: string): string | boolean => {
     return trimmed;
 };
 
-const extractFrontmatter = (
-    raw: string,
-): {
-    frontmatter: CommandFrontmatter;
-    content: string;
-} => {
+const extractFrontmatter = (raw) => {
     const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
 
     if (!match) {
         return { frontmatter: {}, content: raw };
     }
 
-    const frontmatter: CommandFrontmatter = {};
+    const frontmatter = {};
     const frontmatterBlock = match[1] ?? '';
     const content = match[2] ?? '';
 
@@ -129,7 +94,7 @@ const extractFrontmatter = (
     return { frontmatter, content };
 };
 
-const addSkillsPath = (config: PropulsionConfig, skillsPath: string) => {
+const addSkillsPath = (config, skillsPath) => {
     config.skills = config.skills ?? {};
     config.skills.paths = config.skills.paths ?? [];
 
@@ -138,12 +103,12 @@ const addSkillsPath = (config: PropulsionConfig, skillsPath: string) => {
     }
 };
 
-const loadAdditionalCommands = (): Record<string, CommandDefinition> => {
+const loadAdditionalCommands = () => {
     if (!fs.existsSync(additionalCommandsDir)) {
         return {};
     }
 
-    const commands: Record<string, CommandDefinition> = {};
+    const commands = {};
 
     for (const entry of fs.readdirSync(additionalCommandsDir, {
         withFileTypes: true,
@@ -176,10 +141,7 @@ const loadAdditionalCommands = (): Record<string, CommandDefinition> => {
     return commands;
 };
 
-const mergeAdditionalCommands = (
-    config: PropulsionConfig,
-    additionalCommands: Record<string, CommandDefinition>,
-) => {
+const mergeAdditionalCommands = (config, additionalCommands) => {
     if (Object.keys(additionalCommands).length === 0) {
         return;
     }
@@ -194,7 +156,7 @@ const mergeAdditionalCommands = (
     }
 };
 
-const getBootstrapContent = (): string | null => {
+const getBootstrapContent = () => {
     if (!fs.existsSync(propulsionWorkflowPath)) {
         return null;
     }
@@ -213,8 +175,8 @@ ${content}
 </EXTREMELY_IMPORTANT>`;
 };
 
-export const PropulsionPlugin: Plugin = async (_pluginInput, options = {}) => {
-    const { additional = false } = options as PropulsionOptions;
+export const PropulsionPlugin = async (_pluginInput, options = {}) => {
+    const { additional = false } = options;
     const additionalCommands = additional ? loadAdditionalCommands() : {};
 
     return {
