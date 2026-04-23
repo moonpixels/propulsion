@@ -11,6 +11,15 @@
         "type": "git",
         "url": "git+https://github.com/moonpixels/propulsion.git"
     },
+    "files": [
+        ".opencode/package.json",
+        ".opencode/plugins/propulsion.js",
+        "skills",
+        "additional/commands",
+        "additional/skills",
+        "README.md",
+        "additional/README.md"
+    ],
     "type": "module",
     "main": "./.opencode/plugins/propulsion.js",
     "exports": {
@@ -30,7 +39,8 @@
     },
     "devDependencies": {
         "oxfmt": "^0.44.0",
-        "oxlint": "^1.59.0"
+        "oxlint": "^1.59.0",
+        "oxlint-tsgolint": "^0.20.0"
     },
     "packageManager": "bun@1.3.11"
 }
