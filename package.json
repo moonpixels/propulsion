@@ -1,6 +1,6 @@
 {
     "name": "propulsion",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "description": "Compact workflow skills for agentic coding in OpenCode.",
     "homepage": "https://github.com/moonpixels/propulsion#readme",
     "bugs": {
