@@ -42,7 +42,7 @@ These rules are MANDATORY.
 - ONLY write the minimal amount of code to make the test pass.
 - ALWAYS use the public interface for testing, and test through stable seams if necessary.
 - NEVER write speculative tests or code for behaviour that is not yet required.
-- ALWAYS look for refactor opportunities after the test is green, and ONLY refactor when all tests are green.
+- ALWAYS look for refactor opportunities after the test is green.
 
 ## Completion Gate
 

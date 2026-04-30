@@ -31,6 +31,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 These rules are MANDATORY.
 
+- ALWAYS interview the user RELENTLESSLY to close branches, ask as many questions as it takes to get a shared understanding.
 - MUST close every blocking branch before writing `prd.md`. Blocking branches include anything that would change scope, UX, architecture, sequencing, or success criteria.
 - BEFORE writing `prd.md`, ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
