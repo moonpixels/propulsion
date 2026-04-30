@@ -2,11 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const skillsDir = path.resolve(__dirname, '../../skills');
-const additionalSkillsDir = path.resolve(__dirname, '../../additional/skills');
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const skillsDir = path.resolve(dirname, '../../skills');
+const additionalSkillsDir = path.resolve(dirname, '../../additional/skills');
 const additionalCommandsDir = path.resolve(
-    __dirname,
+    dirname,
     '../../additional/commands',
 );
 const propulsionWorkflowPath = path.join(
