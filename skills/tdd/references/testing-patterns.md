@@ -2,6 +2,8 @@
 
 Use this reference during red-green. Choose tests that prove behaviour, not today's implementation.
 
+**Refactor-safe tests are the standard:** good tests keep passing when internals are rewritten but observable behaviour stays the same. Test through public interfaces or stable seams with domain meaning, and avoid assertions about private helpers, call order, source shape, or other implementation details.
+
 ## Default Move
 
 Start with the highest-level public interface that proves the behaviour cheaply.
@@ -95,6 +97,8 @@ The seam should still represent behaviour another part of the system could reaso
 
 ## Anti-Patterns
 
+Reject tests that only inspect source strings, private structure, implementation details, brittle snapshots, or speculative behaviour. These are not acceptable substitutes for behavioural coverage; use fallback verification instead when no valuable behavioural test exists.
+
 ### Implementation-detail tests
 
 These tests fail when refactoring changes structure without changing behaviour.
@@ -118,6 +122,20 @@ test('sends audit event after saving', async () => {
 ```
 
 Prefer a result that matters to a caller, such as the user being created and an audit entry being visible through a supported query.
+
+### Source-string and private-structure tests
+
+Do not read source files as strings or inspect private modules, hidden fields, AST shape, CSS class names, hook order, folder layout, or helper presence to prove behaviour.
+
+- Bad: asserting a file contains `aria-label` or calls `useMemo()`.
+- Better: render the UI and query the accessible control, or verify the public API result.
+
+### Brittle snapshots
+
+Do not use broad snapshots for behaviour changes. Snapshots that mostly capture markup, class churn, generated IDs, timestamps, or component structure fail on harmless refactors.
+
+- Bad: snapshotting an entire page to prove a button opens a menu.
+- Better: interact as a user and assert the menu content is visible.
 
 ### Over-mocking
 
@@ -194,6 +212,17 @@ Ask these questions before keeping a test:
 7. Am I adding this test because of a current requirement, not because it feels thorough?
 
 If any answer is "no" or "I am not sure", simplify the test before proceeding.
+
+If no valuable behavioural test remains, do not keep a weak test. Document why no new test was written and run the strongest appropriate fallback verification, such as an existing related test suite, typecheck, lint, build, CLI smoke check, manual reproduction, or browser check.
+
+## Frontend Guidance
+
+For UI behaviour changes, prefer user-level tests that render the UI, interact through accessible controls, and assert visible or announced outcomes.
+
+- Good: click "Save" and assert the success toast appears.
+- Bad: assert a component state setter was called or a specific class name exists.
+
+For visual-only changes or UI states that are hard to cover with valuable automated tests, prefer Playwright or browser verification when available. Capture the no-test rationale and the browser checks performed.
 
 ## Red-Green Heuristics
 
