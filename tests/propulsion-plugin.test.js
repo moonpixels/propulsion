@@ -7,8 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 import { PropulsionPlugin } from '../.opencode/plugins/propulsion.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, '..');
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(dirname, '..');
 const skillsDir = path.join(repoRoot, 'skills');
 const additionalSkillsDir = path.join(repoRoot, 'additional/skills');
 
