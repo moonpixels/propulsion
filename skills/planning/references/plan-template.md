@@ -65,5 +65,5 @@ Use the <`execution` | `debugging`> skill to implement this plan and track progr
 - Keep durable decisions out of the phases when they apply globally.
 - Use exact file paths only when they are durable and important.
 - Copy the relevant `**User Stories**:` into each phase from the approved PRD.
-- Give each phase enough context that a fresh subagent does not need to rediscover scope.
+- Give each phase enough context that a subagent does not need to rediscover scope.
 - Choose the downstream skill based on the plan's content and PRD context. If the plan is feature-oriented, it should hand off to `execution`. If the plan is bug-oriented, it should hand off to `debugging`.

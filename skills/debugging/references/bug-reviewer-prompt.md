@@ -1,6 +1,6 @@
 # Bug Reviewer Prompt Template
 
-Use this template when dispatching a fresh reviewer subagent for one bug-fix loop in `debugging`.
+Use this template when starting a fresh bug-reviewer subagent for one bug-fix loop in `debugging`.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
@@ -83,7 +83,7 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Treat the diagnosis gate as required, not advisory.
-- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - Reject speculative or symptom-only fixes.
 - Call out missing verification or contradictory evidence explicitly.

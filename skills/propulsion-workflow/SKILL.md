@@ -1,7 +1,7 @@
 ---
 name: propulsion-workflow
 # prettier-ignore
-description: Manage software-work request routing into Propulsion before any downstream skill is loaded. Use when starting a session with software work.
+description: Manage software-work request routing into Propulsion before any downstream stage is entered. Use when starting a session with software work.
 ---
 
 # Using Propulsion Workflow
@@ -13,7 +13,7 @@ If you were dispatched as a subagent to execute a specific task, SKIP THIS SKILL
 </SUBAGENT_STOP>
 
 <EXTREMELY_IMPORTANT>
-If the user request is software work, `propulsion-workflow` applies before any clarifying question, repo scan, tool call, or downstream Propulsion skill.
+If the user request is software work, `propulsion-workflow` applies before any clarifying question, repo scan, external action, or downstream Propulsion stage.
 
 If `propulsion-workflow` applies, you MUST route first. Do NOT reload `propulsion-workflow`. Do NOT skip it because the task looks small, obvious, or familiar.
 
@@ -48,8 +48,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 2. If it is not software work, ignore Propulsion and respond normally.
 3. If it is software work, choose `exploration` as the entry point.
 4. Emit `Propulsion workflow enabled, routing to exploration...` before any other user-visible text.
-5. Load the `exploration` skill immediately.
-6. Stop routing. The loaded Propulsion skill now owns the workflow stage.
+5. Enter the `exploration` skill immediately.
+6. Stop routing. `exploration` now owns the workflow stage.
 
 ## Red Flags
 
@@ -66,4 +66,4 @@ Do not leave this skill until ALL items are complete.
 - [ ] Kept non-software-work chat outside Propulsion.
 - [ ] Routed software work to `exploration`.
 - [ ] Emitted `Propulsion workflow enabled, routing to exploration...` before any other user-visible text.
-- [ ] Loaded the `exploration` skill immediately.
+- [ ] Entered `exploration` immediately.

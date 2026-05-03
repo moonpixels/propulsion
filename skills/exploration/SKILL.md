@@ -12,20 +12,20 @@ Turn vague work into an approved PRD, including bug work that still needs expect
 
 ALL prerequisites MUST be true before following this skill.
 
-- If an approved `docs/propulsion/.../prd.md` already exists for this work, STOP. Load `planning`.
+- If an approved `docs/propulsion/.../prd.md` already exists for this work, STOP. Enter the `planning` skill.
 
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Start with a targeted exploration of the codebase using fresh explore subagents for code facts.
+1. Start with a targeted exploration of the codebase using fresh subagents for code facts.
 2. Walk down each branch of the decision tree, interviewing the user relentlessly until every branch is closed, and you have a shared understanding of the work.
-3. Ask each question using the `question` tool, one at a time, and provide your recommended answer first.
+3. Ask one structured question at a time. Provide your recommendation first, then 2-3 viable approaches for the user to choose from.
 4. If a question can be answered by inspecting the codebase, do that instead of asking the user.
 5. If the request is too large, decompose it and explore only the first phase or subsystem.
 6. After all blocking branches are closed and exploration is complete, check for relevant non-Propulsion skills and load them before writing `prd.md`.
 7. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md).
-8. Ask the user to review and approve `prd.md` before loading `planning`.
+8. Ask the user to review and approve `prd.md` before entering `planning`.
 
 ## Rules
 
@@ -33,7 +33,7 @@ These rules are MANDATORY.
 
 - ALWAYS interview the user RELENTLESSLY to close branches, ask as many questions as it takes to get a shared understanding.
 - MUST close every blocking branch before writing `prd.md`. Blocking branches include anything that would change scope, UX, architecture, sequencing, or success criteria.
-- BEFORE writing `prd.md`, ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- BEFORE writing `prd.md`, ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - MUST keep the PRD product-facing while recording durable implementation and testing decisions.
 - ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
@@ -56,7 +56,7 @@ Do NOT leave this skill until ALL items are complete.
 
 Once the completion gate is fully checked:
 
-- If `prd.md` is approved, load `planning`.
+- If `prd.md` is approved, enter the `planning` skill.
 
 ## References
 

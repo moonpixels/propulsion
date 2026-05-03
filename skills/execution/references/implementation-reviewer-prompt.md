@@ -1,6 +1,6 @@
 # Implementation Reviewer Prompt Template
 
-Use this template when dispatching a fresh implementation-reviewer subagent in the `execution` skill.
+Use this template when starting a fresh implementation-reviewer subagent in the `execution` skill.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
@@ -75,7 +75,7 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - DO NOT trust the implementers self-review report, verify all criteria yourself.
-- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - MUST review the actual implementation, not only the report text.
 - MUST inspect relevant changed files and the current diff before approving.

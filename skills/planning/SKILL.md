@@ -12,8 +12,8 @@ Turn an approved PRD into a phased implementation-ready plan using vertical slic
 
 ALL prerequisites MUST be true before following this skill.
 
-- If a `docs/propulsion/.../plan.md` already exists for this work, STOP. Determine whether the plan is feature-oriented or bug-oriented, then ask the user whether to load the correct downstream skill: `execution` for feature work or `debugging` for bug work.
-- If no approved `docs/propulsion/.../prd.md` exists, STOP. Load `exploration`.
+- If a `docs/propulsion/.../plan.md` already exists for this work, STOP. Determine whether the plan is feature-oriented or bug-oriented, then ask the user whether to enter the correct downstream skill: `execution` for feature work or `debugging` for bug work.
+- If no approved `docs/propulsion/.../prd.md` exists, STOP. Enter the `exploration` skill.
 
 ## Instructions
 
@@ -24,8 +24,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. Identify high-level durable decisions that are unlikely to change throughout implementation.
 4. Identify narrow vertical slices that cut through all integration layers end-to-end.
 5. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using the template in [references/plan-template.md](references/plan-template.md).
-6. Dispatch a fresh plan-reviewer subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
-7. Review and implement feedback from the plan-reviewer subagent.
+6. Start a plan review in a fresh subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
+7. Review and implement feedback from the plan review.
 8. Repeat steps 6 and 7 until the review returns `Status: approved`.
 9. Tell the user planning is complete, state whether the work is feature-oriented or bug-oriented, and ask whether to move to the correct downstream skill: `execution` for feature work or `debugging` for bug work.
 
@@ -52,20 +52,20 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] PRD reviewed.
 - [ ] Relevant codebase areas explored for fresh context.
 - [ ] `plan.md` written to `docs/propulsion/.../plan.md`.
-- [ ] Plan-reviewer subagent returns `Status: approved`.
+- [ ] Plan review by a subagent returns `Status: approved`.
 - [ ] User asked whether to move to the correct downstream skill for the work.
 
 ## Next Skill
 
 Once the completion gate is fully checked:
 
-- If the plan is feature-oriented and the user says to proceed, load `execution`.
-- If the plan is bug-oriented and the user says to proceed, load `debugging`.
-- If product intent is missing, load `exploration`.
+- If the plan is feature-oriented and the user says to proceed, enter the `execution` skill.
+- If the plan is bug-oriented and the user says to proceed, enter the `debugging` skill.
+- If product intent is missing, enter the `exploration` skill.
 
 ## References
 
 Use these references when you need detail.
 
 - [references/plan-template.md](references/plan-template.md) - Plan shape and phase format.
-- [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md) - Fresh plan-reviewer subagent prompt.
+- [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md) - Plan-reviewer subagent prompt.

@@ -1,6 +1,6 @@
 # Bug Implementer Prompt Template
 
-Use this template when dispatching a fresh implementer subagent for one bug-fix loop in `debugging`.
+Use this template when starting a fresh bug-fix subagent for one bug-fix loop in `debugging`.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
@@ -20,7 +20,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Review the bug context and ask questions if the diagnosis gate, scope, or repo state is unclear. Do not guess.
 2. If the diagnosis gate is not satisfied, STOP and report that `debugging` must return to diagnosis before a fix attempt.
-3. Load the `tdd` skill NOW and follow the guidance.
+3. Load the `tdd` skill NOW and follow it.
 4. Implement one bug-fix attempt for the chosen fix hypothesis.
 5. Update `debug.md` with the regression test, fix attempt, verification result, and any contradictory evidence.
 6. Return an implementation report in the exact format defined below.
@@ -58,7 +58,7 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Load the `tdd` skill NOW.
-- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - NO PRODUCTION CODE before the failing regression test.
 - Work only on the chosen fix hypothesis for this loop.

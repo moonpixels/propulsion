@@ -1,6 +1,6 @@
 # Plan Reviewer Prompt Template
 
-Use this template when dispatching a fresh plan-reviewer subagent in the `planning` skill.
+Use this template when starting plan review in a fresh subagent from the `planning` skill.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
@@ -71,7 +71,7 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Replace the plan and PRD paths with the actual paths for the plan being reviewed.
-- ALWAYS check for non-Propulsion skills that are relevant to this task and load them IMMEDIATELY using the skill tool.
+- ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - MUST return exactly one `Status:` line with either `approved` or `rejected`.
 - Status CAN be `approved` if there are only suggestions but NO findings.
