@@ -215,4 +215,4 @@ Use this before finalizing a skill.
 - [ ] The skill states what the agent must do if inputs are missing.
 - [ ] The skill uses strong explicit wording, not implied behaviour.
 - [ ] The skill keeps long detail in `references/`.
-- [ ] The skill conforms to `agentic-skills`.
+- [ ] The skill conforms to `writing-skills`.
