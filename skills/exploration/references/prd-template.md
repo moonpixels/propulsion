@@ -37,7 +37,7 @@ Describe the proposed behaviour end-to-end from the user's perspective.
 
 ## Testing Decisions
 
-- What public behavior matters
+- What public behaviour matters
 - Which modules or seams deserve tests
 - Prior art worth copying from the repo
 

@@ -55,16 +55,18 @@ Use this exact format for your output.
 - <finding title>
     - Classification: <valid | invalid | unclear>
     - Resolution: <fixed | rejected with evidence | escalated>
-    - Evidence: <brief proof from code, diff, checks, behavior, or missing context>
+    - Evidence: <brief proof from code, diff, checks, behaviour, or missing context>
 ```
 
 ## Rules
 
 These rules are MANDATORY.
 
+- Preserve the diagnosis reset and one-hypothesis discipline.
 - Triage every finding before changing code.
 - Do not continue coding once the diagnosis is contradicted.
 - Preserve the one-hypothesis, one-fix-loop discipline.
+- Do not start a second fix hypothesis inside feedback handling; if the chosen fix hypothesis fails, update `debug.md` and reset back to diagnosis.
 - Update `debug.md` before handing control back to `debugging`.
 - Follow the output format EXACTLY as defined above.
 ````

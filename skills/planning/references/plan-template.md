@@ -9,7 +9,7 @@ Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using this shape.
 
 ## For Agentic Coders
 
-Use the <`execution` | `debugging`> skill to implement this plan and track progress using the checkboxes.
+Use the `execution` skill to implement this plan and track progress using the checkboxes.
 
 ## Durable Decisions
 
@@ -66,4 +66,3 @@ Use the <`execution` | `debugging`> skill to implement this plan and track progr
 - Use exact file paths only when they are durable and important.
 - Copy the relevant `**User Stories**:` into each phase from the approved PRD.
 - Give each phase enough context that a subagent does not need to rediscover scope.
-- Choose the downstream skill based on the plan's content and PRD context. If the plan is feature-oriented, it should hand off to `execution`. If the plan is bug-oriented, it should hand off to `debugging`.

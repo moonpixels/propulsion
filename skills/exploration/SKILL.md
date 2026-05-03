@@ -6,7 +6,7 @@ description: Create an approved PRD through repo inspection and relentless user 
 
 # Exploration
 
-Turn vague work into an approved PRD, including bug work that still needs expected-behaviour capture before implementation planning.
+Turn vague feature, UX, API, product-scope, or requirements work into an approved PRD.
 
 ## Prerequisites
 

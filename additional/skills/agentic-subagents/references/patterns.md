@@ -71,7 +71,7 @@ Summary of fixes applied
 
 **Best for:** Code review, security audits, architecture analysis, any task requiring analysis without modification.
 
-**Why it works:** Tool restrictions enforce behavior that matches intent. Cannot accidentally make changes while reviewing.
+**Why it works:** Tool restrictions enforce behaviour that matches intent. Cannot accidentally make changes while reviewing.
 
 ```markdown
 ---

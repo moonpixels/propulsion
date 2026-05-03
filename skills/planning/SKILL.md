@@ -1,7 +1,7 @@
 ---
 name: planning
 # prettier-ignore
-description: Create an implementation-ready plan from an approved PRD using phases scoped as thin vertical slices. Use when an approved `docs/propulsion/.../prd.md` exists and the next step is to create a feature or bug implementation plan.
+description: Create an implementation-ready feature plan from an approved PRD using phases scoped as thin vertical slices. Use when an approved `docs/propulsion/.../prd.md` exists.
 ---
 
 # Planning
@@ -12,7 +12,7 @@ Turn an approved PRD into a phased implementation-ready plan using vertical slic
 
 ALL prerequisites MUST be true before following this skill.
 
-- If a `docs/propulsion/.../plan.md` already exists for this work, STOP. Determine whether the plan is feature-oriented or bug-oriented, then ask the user whether to enter the correct downstream skill: `execution` for feature work or `debugging` for bug work.
+- If a `docs/propulsion/.../plan.md` already exists for this work, STOP. Ask the user whether to enter `execution`.
 - If no approved `docs/propulsion/.../prd.md` exists, STOP. Enter the `exploration` skill.
 
 ## Instructions
@@ -27,7 +27,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 6. Start a plan review in a fresh subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
 7. Review and implement feedback from the plan review.
 8. Repeat steps 6 and 7 until the review returns `Status: approved`.
-9. Tell the user planning is complete, state whether the work is feature-oriented or bug-oriented, and ask whether to move to the correct downstream skill: `execution` for feature work or `debugging` for bug work.
+9. Tell the user planning is complete and ask whether to move to `execution`.
 
 ## Rules
 
@@ -36,14 +36,12 @@ These rules are MANDATORY.
 - MUST output the `plan.md` in the exact shape specified in the template reference.
 - DO NOT output the plan in the chat, ONLY in the `plan.md` file.
 - MUST keep phases thin, ordered, and implementation-ready.
-- MUST make the plan's downstream ownership explicit: `execution` for feature implementation, `debugging` for bug diagnosis and bug-fix loops.
-- MUST determine the downstream skill from the plan and PRD context. DO NOT ask the user to choose between `execution` and `debugging`.
 - DO NOT loose ANY information from the PRD that is relevant to implementation, otherwise you risk misalignment and rework.
-- MUST treat `Status: approved` as the only valid approval signal for downstream readiness.
+- MUST treat `Status: approved` as the only valid approval signal for implementation readiness.
 - MUST treat `findings` as fixable planning issues inside `planning`.
-- MUST treat `suggestions` as improvable aspects that should be implemented IF they make downstream implementation or debugging smoother.
+- MUST treat `suggestions` as improvable aspects that should be implemented IF they make implementation smoother.
 - DO NOT invent missing product decisions.
-- DO NOT auto-start `execution` or `debugging`, ALWAYS ask the user whether to proceed.
+- DO NOT auto-start `execution`; ALWAYS ask the user whether to proceed.
 
 ## Completion Gate
 
@@ -53,14 +51,13 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Relevant codebase areas explored for fresh context.
 - [ ] `plan.md` written to `docs/propulsion/.../plan.md`.
 - [ ] Plan review by a subagent returns `Status: approved`.
-- [ ] User asked whether to move to the correct downstream skill for the work.
+- [ ] User asked whether to move to `execution`.
 
 ## Next Skill
 
 Once the completion gate is fully checked:
 
-- If the plan is feature-oriented and the user says to proceed, enter the `execution` skill.
-- If the plan is bug-oriented and the user says to proceed, enter the `debugging` skill.
+- If the user says to proceed, enter the `execution` skill.
 - If product intent is missing, enter the `exploration` skill.
 
 ## References

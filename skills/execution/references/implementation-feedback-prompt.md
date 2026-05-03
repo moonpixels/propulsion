@@ -55,14 +55,14 @@ Use this exact format for your output.
 **Acceptance Criteria Status**:
 
 - <criterion>: <met | not met | unclear>
-    - Evidence: <brief proof from diff, test output, behavior, or missing input>
+    - Evidence: <brief proof from diff, test output, behaviour, or missing input>
 
 **Review Feedback Triage**:
 
 - <finding title>
     - Classification: <valid | invalid | unclear>
     - Resolution: <fixed | rejected with evidence | escalated>
-    - Evidence: <brief proof from code, diff, checks, behavior, or missing context>
+    - Evidence: <brief proof from code, diff, checks, behaviour, or missing context>
 ```
 
 ## Rules

@@ -53,7 +53,7 @@ Use this exact format for your output.
 **Acceptance Criteria Status**:
 
 - <criterion>: <met | not met | unclear>
-    - Evidence: <brief proof from diff, test output, behavior, or missing input>
+    - Evidence: <brief proof from diff, test output, behaviour, or missing input>
 ```
 
 ## Rules

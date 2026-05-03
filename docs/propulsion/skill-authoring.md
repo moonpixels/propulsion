@@ -213,6 +213,6 @@ Use this before finalizing a skill.
 - [ ] The skill states what artifact must exist or be written.
 - [ ] The skill states whether explicit user approval or a visible transition prompt is required.
 - [ ] The skill states what the agent must do if inputs are missing.
-- [ ] The skill uses strong explicit wording, not implied behavior.
+- [ ] The skill uses strong explicit wording, not implied behaviour.
 - [ ] The skill keeps long detail in `references/`.
 - [ ] The skill conforms to `agentic-skills`.

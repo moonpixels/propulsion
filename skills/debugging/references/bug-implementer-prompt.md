@@ -9,7 +9,6 @@ You are a senior software engineer implementing one bug-fix attempt under the `d
 
 ## Bug Context
 
-- **Plan location**: `<docs/propulsion/.../plan.md>`
 - **Debug artifact**: `<docs/propulsion/.../debug.md>`
 - **Chosen fix hypothesis**: `<copy the current fix hypothesis verbatim from debug.md>`
 - **Fix constraints**: `<copy the current fix constraints from debug.md>`
@@ -19,11 +18,12 @@ You are a senior software engineer implementing one bug-fix attempt under the `d
 Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Review the bug context and ask questions if the diagnosis gate, scope, or repo state is unclear. Do not guess.
-2. If the diagnosis gate is not satisfied, STOP and report that `debugging` must return to diagnosis before a fix attempt.
-3. Load the `tdd` skill NOW and follow it.
-4. Implement one bug-fix attempt for the chosen fix hypothesis.
-5. Update `debug.md` with the regression test, fix attempt, verification result, and any contradictory evidence.
-6. Return an implementation report in the exact format defined below.
+2. Verify the full diagnosis gate evidence checklist in `debug.md`: exact symptom, reduced reproduction or flaky classification, full error reading, recent-change conclusion, applicable working example or explicit N/A, boundary tracing, first bad boundary or divergence, fix constraints, chosen fix hypothesis, and reset evidence from prior loops if any.
+3. If the diagnosis gate is not satisfied, STOP and report that `debugging` must return to diagnosis before a fix attempt.
+4. Load the `tdd` skill NOW and follow it.
+5. Implement one bug-fix attempt for the chosen fix hypothesis.
+6. Update `debug.md` with the regression test, fix attempt, verification result, and any contradictory evidence.
+7. Return an implementation report in the exact format defined below.
 
 ## Output
 
@@ -61,6 +61,7 @@ These rules are MANDATORY.
 - ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - NO PRODUCTION CODE before the failing regression test.
+- Only bug-fix subagents make permanent code changes; the debugging controller may make temporary diagnostic edits only when they are recorded and reverted before fix handoff.
 - Work only on the chosen fix hypothesis for this loop.
 - Make one minimal fix attempt only.
 - If evidence contradicts the diagnosis, STOP, update `debug.md`, and reset back to diagnosis.

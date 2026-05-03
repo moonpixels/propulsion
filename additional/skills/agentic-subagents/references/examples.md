@@ -418,7 +418,7 @@ Guidelines:
 
 ```markdown
 ---
-description: Debugging specialist for errors, test failures, and unexpected behavior. Automatically invoke this agent when encountering issues.
+description: Debugging specialist for errors, test failures, and unexpected behaviour. Automatically invoke this agent when encountering issues.
 mode: subagent
 temperature: 0.3
 steps: 25
@@ -471,7 +471,7 @@ Guidelines:
 - Focus on understanding before fixing
 - Make minimal changes
 - Verify fixes with tests
-- Consider runtime-specific behavior (SSR vs client)
+- Consider runtime-specific behaviour (SSR vs client)
 - Restart dev server and clear browser cache if caching suspected
 ```
 

@@ -34,4 +34,4 @@ If tests fail, list each failure with file:line and suggest fixes.
 ## References
 
 - [references/examples.md](references/examples.md) - Compact, safe command templates
-- [references/agent-basics.md](references/agent-basics.md) - Agent selection and subtask behavior
+- [references/agent-basics.md](references/agent-basics.md) - Agent selection and subtask behaviour

@@ -21,13 +21,13 @@ This is the full self-review implementation report submitted by the implementer.
 
 ## Review Criteria
 
-| Category             | What to verify                                                                                                           |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Phase Scope          | The implementation matches the current phase goal, likely areas, and constraints without drifting into unrelated work.   |
-| Acceptance Criteria  | Every current-phase acceptance criterion is verified against the real implementation with explicit evidence.             |
-| Correctness          | The code, prompts, workflow, and behavior actually do what the phase claims, with no broken logic or contradictory text. |
-| Verification Quality | Checks run are relevant, results support the claims made, and no obvious verification gap hides a real issue.            |
-| Regression Risk      | The change does not introduce obvious breakage, dead steps, or workflow gaps in the surrounding execution loop.          |
+| Category             | What to verify                                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Phase Scope          | The implementation matches the current phase goal, likely areas, and constraints without drifting into unrelated work.    |
+| Acceptance Criteria  | Every current-phase acceptance criterion is verified against the real implementation with explicit evidence.              |
+| Correctness          | The code, prompts, workflow, and behaviour actually do what the phase claims, with no broken logic or contradictory text. |
+| Verification Quality | Checks run are relevant, results support the claims made, and no obvious verification gap hides a real issue.             |
+| Regression Risk      | The change does not introduce obvious breakage, dead steps, or workflow gaps in the surrounding execution loop.           |
 
 Flag only real issues you can support with evidence from the code, diff, prompts, plan, or verification output.
 
@@ -55,7 +55,7 @@ Use this exact format for your output.
 **Acceptance Criteria Status**
 
 - <criterion>: <met | not met | unclear>
-    - Evidence: <brief proof from code, diff, checks, behavior, or missing verification>
+    - Evidence: <brief proof from code, diff, checks, behaviour, or missing verification>
 
 <if findings, include this section>
 
