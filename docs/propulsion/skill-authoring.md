@@ -10,7 +10,7 @@ Propulsion skills are workflow contracts. Nothing important should be implied. S
 
 ## Core Rules
 
-- Use exact supported skill names in backticks: `propulsion-workflow`, `exploration`, `planning`, `execution`, `tdd`, `debugging`.
+- Use exact supported skill names in backticks: `propulsion-workflow`, `exploration`, `planning`, `execution`, `tdd`, `debugging`, `questioning`.
 - State every stage boundary explicitly. Never imply what should happen next.
 - All bug work enters through `exploration`, reaches `planning` from an approved `prd.md`, and hands off to `debugging` after planning.
 - `execution` owns feature implementation only. `debugging` owns bug diagnosis, bug-fix orchestration, review feedback loops, and closure.

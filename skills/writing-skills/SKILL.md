@@ -11,7 +11,7 @@ Create concise skills that package repeatable workflows without bloating context
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Confirm the skill's job, gather concrete use cases, expected inputs, expected outputs, and trigger phrases.
+1. Load `questioning` skill to gather the skill's job, concrete use cases, expected inputs, expected outputs, and trigger phrases before drafting.
 2. Choose the default output path `.agents/skills/{skill-name}/`; keep `name` equal to the directory name.
 3. Draft or update `SKILL.md` with the required shape in [assets/skill-template.md](assets/skill-template.md).
 4. Put only essential workflow in `SKILL.md`; move supporting artefacts into appropriate directories.
@@ -36,6 +36,7 @@ These rules are MANDATORY.
 Do NOT leave this skill until ALL items are complete.
 
 - [ ] Skill path and frontmatter name match.
+- [ ] Used `questioning` skill to resolve the skill job, use cases, expected inputs, expected outputs, and trigger phrases before drafting.
 - [ ] `SKILL.md` contains only essential workflow and required sections.
 - [ ] Supporting artefacts are placed under `assets/`, `references/`, or `scripts/` by purpose.
 - [ ] Checklist review is complete with blocking issues fixed.
