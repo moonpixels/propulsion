@@ -22,13 +22,31 @@ async function PropulsionPlugin() {
             }
         },
         'experimental.chat.messages.transform': async (_input, output) => {
-            output.messages = [
-                {
-                    role: 'system',
-                    content: getPropulsionBootstrapGuidance(),
-                },
-                ...(output.messages ?? []),
-            ];
+            const bootstrap = getPropulsionBootstrapGuidance();
+            const firstUser = output.messages?.find(
+                (message) => message.info.role === 'user',
+            );
+
+            if (!firstUser?.parts?.length) {
+                return;
+            }
+
+            if (
+                firstUser.parts.some(
+                    (part) =>
+                        part.type === 'text' &&
+                        part.text.includes('<EXTREMELY_IMPORTANT>'),
+                )
+            ) {
+                return;
+            }
+
+            const ref = firstUser.parts[0];
+            firstUser.parts.unshift({
+                ...ref,
+                type: 'text',
+                text: bootstrap,
+            });
         },
     };
 }

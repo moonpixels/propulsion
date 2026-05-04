@@ -41,7 +41,7 @@
         ],
         "brandColor": "#FF4F00",
         "composerIcon": "./assets/propulsion_icon_square.png",
-        "logo": "./assets/banner.png",
+        "logo": "./assets/propulsion_icon_square.png",
         "screenshots": []
     }
 }
