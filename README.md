@@ -2,31 +2,13 @@
 
 # Propulsion
 
-Propulsion is a compact skill set for agentic coding.
-
-It gives coding agents a stronger workflow: route concrete failures directly to evidence-first debugging, or explore product work first, write a PRD, turn it into a plan, and execute in thin slices with an objective implementation-review loop.
+Propulsion is a compact skill set for agentic coding. It gives coding agents a stronger workflow.
 
 ## Installation
 
-Propulsion is installed as an OpenCode plugin.
+### Codex
 
-Install it for a project by adding it to that project's `opencode.json`:
-
-```json
-{
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
-}
-```
-
-Or install it globally in `~/.config/opencode/opencode.json`:
-
-```json
-{
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
-}
-```
+### OpenCode
 
 ## Acknowledgements
 
