@@ -36,9 +36,8 @@ These rules are MANDATORY.
 - ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
 - You CAN create supporting documents such as `docs/propulsion/.../research.md` or `docs/propulsion/.../diagrams.md` if needed, but the PRD must include all durable decisions.
 - DO include the supporting documents as implementation inputs in the PRD, but DO NOT rely on them for durable decisions.
-- DO NOT print the PRD, plan, or other workflow artefact content in chat instead of writing files.
-- DO NOT start `plan` here.
-- If you cannot write files, STOP, ask the user to switch to build mode, and tell them to return to `brainstorm` so you can write `prd.md`.
+- DO NOT print the PRD, or other workflow artefacts in the chat, keep them in files. 
+- If you cannot write files, STOP, ask the user to switch to write mode, then continue to write the PRD.
 
 ## Completion Gate
 
