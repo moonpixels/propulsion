@@ -29,7 +29,7 @@ These rules are MANDATORY.
 - MUST provide the recommended answer first, then 2-3 viable alternatives.
 - MUST use explorer subagents for entry exploration and focused project-answerable questions.
 - DO NOT ask the user questions that codebase inspection can answer.
-- MUST walk the decision tree until every blocking branch is closed or explicitly documented as an assumption.
+- MUST walk the decision tree until every blocking branch is closed by project facts or user answers.
 
 ## Completion Gate
 
@@ -38,7 +38,7 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Fresh explorer subagent completed entry project-context inspection.
 - [ ] Decision tree branches were explored and attempted to answer with code exploration.
 - [ ] Remaining open branches were closed by relentlessly interrogating the user.
-- [ ] Shared understanding was reached or remaining assumptions were stated.
+- [ ] Shared understanding was reached with no open blocking branches.
 - [ ] Resolved decisions were summarised for the caller.
 
 ## References

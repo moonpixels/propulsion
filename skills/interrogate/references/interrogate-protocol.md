@@ -8,7 +8,7 @@ Launch a fresh explorer subagent to inspect available project context before ask
 
 ## Decision Tree
 
-Track unresolved branches, then walk down each branch of the decision tree that could affect the answer or next action. Work the highest-impact blocking branch first. A branch is closed when it is answered by project facts, answered by the user, or explicitly recorded as an assumption accepted by the caller.
+Track unresolved branches, then walk down each branch of the decision tree that could affect the answer or next action. Work the highest-impact blocking branch first. A branch is closed only when it is answered by project facts or answered by the user.
 
 ## Codebase-Answerable Branches
 
@@ -35,7 +35,7 @@ Do not list more than 3 alternatives beyond the recommendation. Do not ask multi
 
 ## Shared Understanding
 
-Continue walking the decision tree until no blocking branches remain. Shared understanding means the agent can state the intended outcome, constraints, important tradeoffs, accepted assumptions, and the next workflow action without inventing product or codebase facts.
+Continue walking the decision tree until no blocking branches remain. Shared understanding means the agent can state the intended outcome, constraints, important tradeoffs, and the next workflow action without inventing product or codebase facts.
 
 ## Handoff Summary
 
@@ -49,12 +49,4 @@ Resolved decisions:
 Project facts:
 
 - <fact learned from exploration>
-
-Accepted assumptions:
-
-- <assumption, or "None">
-
-Next workflow action:
-
-- <caller-owned next action>
 ```
