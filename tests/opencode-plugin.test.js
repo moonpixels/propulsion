@@ -1,5 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { readFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { getPropulsionBootstrapGuidance } from '../lib/bootstrap-guidance.js';
 
@@ -19,6 +21,55 @@ describe('OpenCode Propulsion bootstrap guidance', () => {
                         typeof value.server === 'function'),
             ),
         ).toBe(true);
+    });
+
+    test('publishes Propulsion through a non-empty Codex marketplace plugin path', async () => {
+        const marketplace = JSON.parse(
+            await readFile('.agents/plugins/marketplace.json', 'utf8'),
+        );
+        const plugin = marketplace.plugins.find(
+            ({ name }) => name === 'propulsion',
+        );
+
+        expect(plugin.source).toEqual({
+            source: 'local',
+            path: './plugins/propulsion',
+        });
+
+        const pluginManifest = JSON.parse(
+            await readFile(
+                'plugins/propulsion/.codex-plugin/plugin.json',
+                'utf8',
+            ),
+        );
+
+        expect(pluginManifest.name).toBe('propulsion');
+    });
+
+    test('registers bundled skills with OpenCode config', async () => {
+        const pluginPackage = (await import('../index.mjs')).default;
+        const PropulsionPlugin = pluginPackage.server;
+        const hooks = await PropulsionPlugin({});
+        const config = {};
+        const skillsDir = join(
+            dirname(fileURLToPath(import.meta.url)),
+            '..',
+            'skills',
+        );
+
+        expect(hooks).toEqual(
+            expect.objectContaining({
+                config: expect.any(Function),
+            }),
+        );
+
+        await hooks.config(config);
+        await hooks.config(config);
+
+        expect(config.skills.paths).toEqual([skillsDir]);
+        await expect(
+            readFile(join(skillsDir, 'debug', 'SKILL.md'), 'utf8'),
+        ).resolves.toContain('# Debug');
     });
 
     test('provides high-priority Propulsion routing guidance', () => {

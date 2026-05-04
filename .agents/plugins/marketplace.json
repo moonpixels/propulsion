@@ -9,7 +9,7 @@
             "name": "propulsion",
             "source": {
                 "source": "local",
-                "path": "./"
+                "path": "./plugins/propulsion"
             },
             "policy": {
                 "installation": "AVAILABLE",
