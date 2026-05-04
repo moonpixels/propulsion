@@ -51,7 +51,7 @@ describe('PropulsionPlugin config', () => {
         const hooks = await PropulsionPlugin({}, { additional: true });
         const config = {
             command: {
-                commit: {
+                review: {
                     template: 'user override',
                     description: 'local command wins',
                 },
@@ -62,12 +62,23 @@ describe('PropulsionPlugin config', () => {
 
         expect(config.skills.paths).toContain(skillsDir);
         expect(config.skills.paths).toContain(additionalSkillsDir);
-        expect(config.command.commit).toEqual({
+        expect(config.command.review).toEqual({
             template: 'user override',
             description: 'local command wins',
         });
-        expect(config.command.pr.description).toContain('pull request');
+        expect(config.command.commit).toBeUndefined();
+        expect(config.command.pr).toBeUndefined();
         expect(config.command.init).toBeUndefined();
+    });
+
+    test('loads the remaining bundled review command when additional assets are enabled', async () => {
+        const hooks = await PropulsionPlugin({}, { additional: true });
+        const config = {};
+
+        await hooks.config?.(config);
+
+        expect(config.command.review.description).toContain('code review');
+        expect(config.command.review.template).toContain('code-review');
     });
 });
 
