@@ -8,8 +8,9 @@
         {
             "name": "propulsion",
             "source": {
-                "source": "local",
-                "path": "./plugins/propulsion"
+                "source": "url",
+                "url": "https://github.com/moonpixels/propulsion.git",
+                "ref": "main"
             },
             "policy": {
                 "installation": "AVAILABLE",

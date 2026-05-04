@@ -23,29 +23,6 @@ describe('OpenCode Propulsion bootstrap guidance', () => {
         ).toBe(true);
     });
 
-    test('publishes Propulsion through a non-empty Codex marketplace plugin path', async () => {
-        const marketplace = JSON.parse(
-            await readFile('.agents/plugins/marketplace.json', 'utf8'),
-        );
-        const plugin = marketplace.plugins.find(
-            ({ name }) => name === 'propulsion',
-        );
-
-        expect(plugin.source).toEqual({
-            source: 'local',
-            path: './plugins/propulsion',
-        });
-
-        const pluginManifest = JSON.parse(
-            await readFile(
-                'plugins/propulsion/.codex-plugin/plugin.json',
-                'utf8',
-            ),
-        );
-
-        expect(pluginManifest.name).toBe('propulsion');
-    });
-
     test('registers bundled skills with OpenCode config', async () => {
         const pluginPackage = (await import('../index.mjs')).default;
         const PropulsionPlugin = pluginPackage.server;

@@ -21,11 +21,9 @@ Relentlessly ask the user one question at a time. Keep each question decision-or
 ```markdown
 Question: <single question the user must decide>
 
-Recommendation: <best answer and why it fits the current facts>
-
 Options:
 
-- <recommended option, repeated concisely>
+- <recommended option> (recommended)
 - <viable alternative 1>
 - <viable alternative 2, if useful>
 - <viable alternative 3, only if genuinely viable>
