@@ -29,6 +29,7 @@ These rules are MANDATORY.
 - MUST make `description` one line, triggerable, and clear about when the skill should be used.
 - MUST place artefacts directly under `assets/`, `references/`, or `scripts/` and link each from final references as `- [path](path) - text`.
 - MUST use progressive disclosure: metadata first, essential instructions second, artefacts only when needed.
+- MUST write short, direct, instructional prose: remove filler, pleasantries, hedging, and verbose phrases while preserving exact technical meaning.
 - MUST review [references/checklist.md](references/checklist.md) and run [scripts/validate-skill.js](scripts/validate-skill.js) before handoff.
 
 ## Completion Gate
@@ -38,6 +39,7 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Skill path and frontmatter name match.
 - [ ] Used `questioning` skill to resolve the skill job, use cases, expected inputs, expected outputs, and trigger phrases before drafting.
 - [ ] `SKILL.md` contains only essential workflow and required sections.
+- [ ] Skill wording is concise, no-fluff, and technically precise.
 - [ ] Supporting artefacts are placed under `assets/`, `references/`, or `scripts/` by purpose.
 - [ ] Checklist review is complete with blocking issues fixed.
 - [ ] Validator has been run against the skill and all errors are fixed.

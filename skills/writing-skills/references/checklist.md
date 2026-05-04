@@ -49,6 +49,14 @@ Use this checklist before handing off a new or updated skill.
 - [ ] Body stays at or below 50 non-empty lines to avoid validator warnings.
 - [ ] Body stays at or below 80 non-empty lines to avoid validator errors.
 
+## Language Quality
+
+- [ ] Removes filler words such as just, really, basically, actually, and simply.
+- [ ] Removes pleasantries and chatty setup such as sure, certainly, happy to, and please.
+- [ ] Removes hedging when the instruction is required, including likely, maybe, should probably, and may want to.
+- [ ] Replaces verbose phrasing with short direct wording without changing the instruction.
+- [ ] Preserves explicit technical meaning: commands, paths, APIs, error text, safety warnings, conditions, and ordering constraints stay exact.
+
 ## Progressive Disclosure
 
 - [ ] Level 1 metadata is enough to decide whether to load the skill.

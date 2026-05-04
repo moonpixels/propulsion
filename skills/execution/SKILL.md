@@ -43,6 +43,7 @@ These rules are MANDATORY.
 - NEVER resolve `Status: unclear` or `Status: blocked` by guessing. If the information is not in the plan, codebase, or tools, escalate to the user for resolution.
 - ALWAYS update `plan.md` checkboxes after each successful implementation-review cycle.
 - ALWAYS use the prompts in the references when starting subagents and sending feedback.
+- DO NOT directly implement user feedback once the completion gate is passed; loop back to `exploration` instead.
 - You CAN use parallel implementer subagents for different phases ONLY IF the phases are truly independent with no shared dependencies or risk of conflicts.
 - DO NOT claim completion without final repo-wide checks.
 
@@ -56,11 +57,12 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Final repo-wide checks pass.
 - [ ] Completion evidence is provided to the user.
 
-## Next Skill
+## Next Steps
 
 Once the completion gate is fully checked:
 
 - Tell the user the plan is fully executed and ask whether they have any feedback on the implementation.
+- If the user provides feedback after this completion handoff, do not implement it in `execution`; load `exploration` to update the PRD, then `planning` to create or update a phase, then return to `execution` for implementation.
 
 ## References
 

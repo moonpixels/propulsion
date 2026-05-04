@@ -72,6 +72,14 @@ Use these references when you need detail.
 - Reference bullets for artefacts must be exactly `- [path](path) - text`; link text must match href and the short description after the separator is required.
 - Only links in the final `## References` section count for artefact coverage.
 
+## Prose Style
+
+- Write commands, not essays: use direct verbs like Load, Check, Run, Fix, Stop, or Return.
+- Delete filler, pleasantries, hedging, and setup phrases such as just, really, basically, actually, simply, please, likely, may want to, and happy to.
+- Prefer short concrete words over verbose phrasing: use fix instead of implement a solution for, use check instead of perform validation of.
+- Keep exact technical meaning: preserve required keywords, file paths, commands, API names, error text, safety warnings, and ordering constraints.
+- Use fragments when clear, but expand any sentence where compression could hide a condition, risk, or handoff.
+
 ## Artefact Placement
 
 - `assets/`: templates, starter files, static examples, images, prompts, and other resources copied or adapted into outputs.

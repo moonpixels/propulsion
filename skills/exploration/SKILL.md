@@ -22,7 +22,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 2. If the request is too large, decompose it and explore only the first phase or subsystem.
 3. After all blocking branches are closed and exploration is complete, check for relevant non-Propulsion skills and load them before writing `prd.md`.
 4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md), including resolved decisions and assumptions from `questioning`.
-5. Ask the user to review and approve `prd.md` before entering `planning`.
+5. Compare `prd.md` against the conversation for missing decisions, constraints, assumptions, requested behaviours, or success criteria; update `prd.md` before approval if relevant content is missing.
+6. Ask the user to review and approve `prd.md` before entering `planning`.
 
 ## Rules
 
@@ -45,6 +46,7 @@ Do NOT leave this skill until ALL items are complete.
 
 - [ ] Used `questioning` skill to reach shared understanding and close every blocking branch.
 - [ ] `prd.md` written to `docs/propulsion/.../prd.md`.
+- [ ] `prd.md` sanity-checked against the conversation and updated if relevant content was missing.
 - [ ] User asked to review and approve `prd.md`.
 
 ## Next Steps
