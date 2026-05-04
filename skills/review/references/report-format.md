@@ -2,14 +2,14 @@
 
 Use this reference when producing the final review report.
 
-Use this exact report shape for both PR review and local fallback review.
+Use this exact report shape for both PR and `base...head` reviews.
 
 If the resolved review scope is empty, still return this exact format.
 
 ```markdown
 # Review Report
 
-**Scope**: <PR #123 | branch <base>...HEAD | uncommitted changes>
+**Scope**: <PR #123 | PR URL | base...head>
 
 **Intent Summary**: <1-3 sentences describing the change goal from PR context or explicit user intent>
 

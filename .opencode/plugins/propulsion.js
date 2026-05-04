@@ -4,11 +4,6 @@ import { fileURLToPath } from 'node:url';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillsDir = path.resolve(dirname, '../../skills');
-const additionalSkillsDir = path.resolve(dirname, '../../additional/skills');
-const additionalCommandsDir = path.resolve(
-    dirname,
-    '../../additional/commands',
-);
 const propulsionWorkflowPath = path.join(
     skillsDir,
     'propulsion-workflow',
@@ -48,7 +43,7 @@ const extractFrontmatter = (raw) => {
     const content = match[2] ?? '';
 
     // This intentionally supports the tiny flat frontmatter surface used by bundled
-    // commands. It is not a general YAML parser.
+    // skills. It is not a general YAML parser.
     for (const line of frontmatterBlock.split(/\r?\n/)) {
         const entryMatch = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
 
@@ -103,59 +98,6 @@ const addSkillsPath = (config, skillsPath) => {
     }
 };
 
-const loadAdditionalCommands = () => {
-    if (!fs.existsSync(additionalCommandsDir)) {
-        return {};
-    }
-
-    const commands = {};
-
-    for (const entry of fs.readdirSync(additionalCommandsDir, {
-        withFileTypes: true,
-    })) {
-        if (!entry.isFile() || !entry.name.endsWith('.md')) {
-            continue;
-        }
-
-        const filePath = path.join(additionalCommandsDir, entry.name);
-        const raw = fs.readFileSync(filePath, 'utf8');
-        const { frontmatter, content } = extractFrontmatter(raw);
-
-        if (!content.trim()) {
-            continue;
-        }
-
-        commands[path.basename(entry.name, '.md')] = {
-            template: content,
-            ...(frontmatter.description
-                ? { description: frontmatter.description }
-                : {}),
-            ...(frontmatter.agent ? { agent: frontmatter.agent } : {}),
-            ...(frontmatter.model ? { model: frontmatter.model } : {}),
-            ...(typeof frontmatter.subtask === 'boolean'
-                ? { subtask: frontmatter.subtask }
-                : {}),
-        };
-    }
-
-    return commands;
-};
-
-const mergeAdditionalCommands = (config, additionalCommands) => {
-    if (Object.keys(additionalCommands).length === 0) {
-        return;
-    }
-
-    config.command = config.command ?? {};
-
-    // Bundled commands are defaults only. A user command with the same name wins.
-    for (const [name, definition] of Object.entries(additionalCommands)) {
-        if (!(name in config.command)) {
-            config.command[name] = definition;
-        }
-    }
-};
-
 const getBootstrapContent = () => {
     if (!fs.existsSync(propulsionWorkflowPath)) {
         return null;
@@ -175,18 +117,10 @@ ${content}
 </EXTREMELY_IMPORTANT>`;
 };
 
-export const PropulsionPlugin = async (_pluginInput, options = {}) => {
-    const { additional = false } = options;
-    const additionalCommands = additional ? loadAdditionalCommands() : {};
-
+export const PropulsionPlugin = async () => {
     return {
         config: async (config) => {
             addSkillsPath(config, skillsDir);
-
-            if (additional && fs.existsSync(additionalSkillsDir)) {
-                addSkillsPath(config, additionalSkillsDir);
-                mergeAdditionalCommands(config, additionalCommands);
-            }
         },
 
         'experimental.chat.messages.transform': async (

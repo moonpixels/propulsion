@@ -7,7 +7,7 @@ Use this reference when validating candidate findings and questions before final
 1. Assume the finding is wrong.
 2. Search the diff, full changed files, scoped rules/contracts, and gathered adjacent context for counter-evidence.
 3. Reject if evidence is incomplete, ambiguous, pre-existing, or out of scope.
-4. Confirm only if objective evidence supports the claim and the issue is one the PR author would likely fix.
+4. Confirm only if objective evidence supports the claim and the issue is one the PR author would fix.
 
 ## Candidate types
 
@@ -47,7 +47,7 @@ Use this reference when validating candidate findings and questions before final
 ## Automatic reject conditions
 
 - Style-only or subjective guidance without strong precedent or principle evidence.
-- Potential issues requiring context beyond the sanctioned review window (changed files, scoped rules/contracts, allowed adjacent files, and explicitly linked PR artefacts).
+- Potential issues requiring context beyond the sanctioned review window: changed files, scoped rules/contracts, allowed adjacent files, and explicitly linked PR artefacts.
 - Pre-existing issues not introduced by reviewed diff.
 - Linter-catch issues.
 - Consistency findings when multiple equally accepted patterns exist.

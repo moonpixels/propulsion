@@ -28,8 +28,6 @@ Or install it globally in `~/.config/opencode/opencode.json`:
 }
 ```
 
-Optional extras, including agent-authoring helpers and extra workflow commands, are documented in [`additional/README.md`](additional/README.md).
-
 ## Acknowledgements
 
 Propulsion is heavily inspired by:

@@ -10,7 +10,6 @@ import { PropulsionPlugin } from '../.opencode/plugins/propulsion.js';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(dirname, '..');
 const skillsDir = path.join(repoRoot, 'skills');
-const additionalSkillsDir = path.join(repoRoot, 'additional/skills');
 
 const createTransformOutput = () => ({
     messages: [
@@ -47,38 +46,28 @@ describe('PropulsionPlugin config', () => {
         expect(config.skills.paths).toEqual([skillsDir]);
     });
 
-    test('preserves user commands while merging additional defaults', async () => {
-        const hooks = await PropulsionPlugin({}, { additional: true });
-        const config = {
-            command: {
-                review: {
-                    template: 'user override',
-                    description: 'local command wins',
-                },
-            },
-        };
-
-        await hooks.config?.(config);
-
-        expect(config.skills.paths).toContain(skillsDir);
-        expect(config.skills.paths).toContain(additionalSkillsDir);
-        expect(config.command.review).toEqual({
-            template: 'user override',
-            description: 'local command wins',
-        });
-        expect(config.command.commit).toBeUndefined();
-        expect(config.command.pr).toBeUndefined();
-        expect(config.command.init).toBeUndefined();
-    });
-
-    test('loads the remaining bundled review command when additional assets are enabled', async () => {
-        const hooks = await PropulsionPlugin({}, { additional: true });
+    test('does not add removed bundled commands', async () => {
+        const hooks = await PropulsionPlugin({});
         const config = {};
 
         await hooks.config?.(config);
 
-        expect(config.command.review.description).toContain('code review');
-        expect(config.command.review.template).toContain('code-review');
+        expect(config.skills.paths).toEqual([skillsDir]);
+        expect(config.command).toBeUndefined();
+    });
+
+    test('preserves existing local command config without adding bundled commands', async () => {
+        const hooks = await PropulsionPlugin({});
+        const config = {
+            command: {},
+        };
+
+        await hooks.config?.(config);
+
+        expect(config.skills.paths).toEqual([skillsDir]);
+        expect(config.command.commit).toBeUndefined();
+        expect(config.command.pr).toBeUndefined();
+        expect(config.command.init).toBeUndefined();
     });
 });
 
@@ -168,6 +157,14 @@ describe('published package contract', () => {
             );
 
             expect(output).toContain('IMPORT_OK');
+
+            const additionalPath = path.join(
+                appDir,
+                'node_modules',
+                'propulsion',
+                'additional',
+            );
+            expect(fs.existsSync(additionalPath)).toBe(false);
         } finally {
             fs.rmSync(tempRoot, { recursive: true, force: true });
         }

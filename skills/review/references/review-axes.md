@@ -20,7 +20,7 @@ Use this reference when dispatching the focused reviewer passes.
 
 - Review like a senior PR reviewer, not a lint pass.
 - Improve overall code health; do not seek perfection.
-- Prefer concrete, merge-relevant issues the author would likely fix.
+- Prefer concrete, merge-relevant issues the author would fix.
 - Read code in context, not only the diff hunk.
 - Treat tests and trust-boundary changes as first-class review scope.
 - Use exact evidence, quoted rules, and nearby precedent before broad principles.
@@ -43,7 +43,7 @@ Use this reference when dispatching the focused reviewer passes.
 
 - The complaint is aesthetic or stylistic.
 - The claim depends on hidden requirements.
-- The issue is too small for a real review comment.
+- The issue is too small for a final report finding.
 - Multiple local patterns exist and no dominant precedent is clear.
 - The suggestion is speculative future-proofing instead of a concrete fix for this diff.
 

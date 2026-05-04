@@ -46,7 +46,7 @@ Use this reference when normalising candidate findings and questions before vali
 
 Use `(kind, file, line, severity, category, normalised summary)`.
 
-Only one final finding and one final inline comment per dedupe key.
+Only one final finding per dedupe key.
 
 ## Rules
 

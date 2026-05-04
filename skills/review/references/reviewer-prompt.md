@@ -54,6 +54,6 @@ Return `[]` when no candidates survive the reviewer pass.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - DO return only normalised candidates.
 - MUST replace the output placeholders with the exact JSON object shape from `references/issue-schema.md` before dispatching the reviewer.
-- DO NOT write final report sections, verdicts, inline comments, or fix patches.
+- DO NOT write final report sections, verdicts, or fix patches.
 - DO NOT keep stylistic, speculative, or low-value complaints.
 ````

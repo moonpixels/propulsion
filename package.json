@@ -15,10 +15,7 @@
         ".opencode/package.json",
         ".opencode/plugins/propulsion.js",
         "skills",
-        "additional/commands",
-        "additional/skills",
-        "README.md",
-        "additional/README.md"
+        "README.md"
     ],
     "type": "module",
     "main": "./.opencode/plugins/propulsion.js",
