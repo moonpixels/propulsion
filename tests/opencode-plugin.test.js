@@ -86,13 +86,33 @@ describe('OpenCode Propulsion bootstrap guidance', () => {
         );
     });
 
-    test('registers an OpenCode messages transform that prepends Propulsion guidance', async () => {
+    test('registers an OpenCode messages transform that injects Propulsion guidance into the first user message', async () => {
         const pluginPackage = (await import('../index.mjs')).default;
         const PropulsionPlugin = pluginPackage.server;
         const hooks = await PropulsionPlugin({});
+        const userPart = {
+            id: 'part-user',
+            type: 'text',
+            text: 'Build the thing',
+        };
         const output = {
             system: ['existing system prompt'],
-            messages: [{ role: 'user', content: 'Build the thing' }],
+            messages: [
+                {
+                    info: { role: 'assistant' },
+                    parts: [
+                        {
+                            id: 'part-assistant',
+                            type: 'text',
+                            text: 'Ready',
+                        },
+                    ],
+                },
+                {
+                    info: { role: 'user' },
+                    parts: [userPart],
+                },
+            ],
         };
 
         expect(hooks).toEqual(
@@ -103,14 +123,18 @@ describe('OpenCode Propulsion bootstrap guidance', () => {
         expect(hooks).not.toHaveProperty('experimental.chat.system.transform');
 
         await hooks['experimental.chat.messages.transform']({}, output);
+        await hooks['experimental.chat.messages.transform']({}, output);
 
         expect(output.system).toEqual(['existing system prompt']);
-        expect(output.messages).toEqual([
+        expect(output.messages).toHaveLength(2);
+        expect(output.messages[0].info.role).toBe('assistant');
+        expect(output.messages[1].parts).toEqual([
             {
-                role: 'system',
-                content: getPropulsionBootstrapGuidance(),
+                ...userPart,
+                type: 'text',
+                text: getPropulsionBootstrapGuidance(),
             },
-            { role: 'user', content: 'Build the thing' },
+            userPart,
         ]);
     });
 });
