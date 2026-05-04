@@ -15,7 +15,6 @@ Use this checklist before handing off a new or updated skill.
 - [ ] `description` includes `Use when`, `Use for`, or `Use to`.
 - [ ] `description` front-loads the main use case and strongest trigger words because crowded skill lists can shorten descriptions.
 - [ ] `description` includes natural trigger keywords a user would say.
-- [ ] `description` was tested against 3-5 trigger phrases and 1-2 non-trigger phrases.
 - [ ] `description` is third person and action-oriented.
 - [ ] `description` starts with a strong action verb such as Create, Validate, Review, Manage, or Execute.
 
