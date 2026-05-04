@@ -25,7 +25,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 4. Complete targeted codebase exploration in `debug.md` before reproduction, diagnosis, or fix work: relevant files, existing tests, commands, logs, ownership, and likely seams only.
 5. Reproduce, reduce, isolate, diagnose, reset, and escalate with [references/investigation-loop.md](references/investigation-loop.md).
 6. Do not allow production-code changes until `debug.md` contains a grounded diagnosis, supporting evidence, fix constraints, and one chosen fix hypothesis.
-7. Start a fresh bug-fix subagent with [references/bug-implementer-prompt.md](references/bug-implementer-prompt.md), then review with [references/bug-reviewer-prompt.md](references/bug-reviewer-prompt.md).
+7. Start a fresh bug-worker subagent with [references/bug-worker-prompt.md](references/bug-worker-prompt.md), then review with [references/bug-reviewer-prompt.md](references/bug-reviewer-prompt.md).
 8. If review rejects the fix, send findings back with [references/bug-feedback-prompt.md](references/bug-feedback-prompt.md). Repeat until approved, reset when evidence contradicts the diagnosis, or reassess architecture and patterns before escalating after 3 failed fix loops.
 9. If the fix is verified and approved, record closure in `debug.md` and finish.
 
@@ -56,6 +56,6 @@ Use these references when you need detail.
 
 - [references/debug-template.md](references/debug-template.md) - Living `debug.md` template for the full bug dossier.
 - [references/investigation-loop.md](references/investigation-loop.md) - Core bug loop for reproduce, reduce, isolate, diagnose, reset, and escalate.
-- [references/bug-implementer-prompt.md](references/bug-implementer-prompt.md) - Prompt template for one diagnosis-gated TDD fix attempt.
+- [references/bug-worker-prompt.md](references/bug-worker-prompt.md) - Prompt template for one diagnosis-gated TDD fix attempt.
 - [references/bug-reviewer-prompt.md](references/bug-reviewer-prompt.md) - Prompt template for independent review of one bug fix attempt.
 - [references/bug-feedback-prompt.md](references/bug-feedback-prompt.md) - Prompt template for feeding review findings back into the active bug fix attempt.

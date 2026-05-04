@@ -1,6 +1,6 @@
-# Implementer Prompt Template
+# Worker Prompt Template
 
-Use this template when starting a fresh implementer subagent in the `execution` skill.
+Use this template when starting a fresh worker subagent in the `execution` skill.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**

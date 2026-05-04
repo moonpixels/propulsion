@@ -1,6 +1,6 @@
-# Bug Implementer Prompt Template
+# Bug Worker Prompt Template
 
-Use this template when starting a fresh bug-fix subagent for one bug-fix loop in `debugging`.
+Use this template when starting a fresh bug-worker subagent for one bug-fix loop in `debugging`.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
@@ -61,7 +61,7 @@ These rules are MANDATORY.
 - ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - NO PRODUCTION CODE before the failing regression test.
-- Only bug-fix subagents make permanent code changes; the debugging controller may make temporary diagnostic edits only when they are recorded and reverted before fix handoff.
+- Only bug-worker subagents make permanent code changes; the debugging controller may make temporary diagnostic edits only when they are recorded and reverted before fix handoff.
 - Work only on the chosen fix hypothesis for this loop.
 - Make one minimal fix attempt only.
 - If evidence contradicts the diagnosis, STOP, update `debug.md`, and reset back to diagnosis.

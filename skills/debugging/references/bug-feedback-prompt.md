@@ -1,6 +1,6 @@
 # Bug Feedback Prompt Template
 
-Use this template when returning reviewer findings to the active implementer during a bug-fix loop in `debugging`.
+Use this template when returning reviewer findings to the active bug-worker during a bug-fix loop in `debugging`.
 
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
