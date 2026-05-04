@@ -2,15 +2,47 @@
 
 # Propulsion
 
-Propulsion is a compact skill set for agentic coding.
-
-It gives coding agents a stronger workflow: explore unclear work first, write a PRD, turn it into a plan, execute in thin slices with an objective implementation-review loop, and debug from evidence instead of guesses.
+Propulsion is a compact skill set for agentic coding. It gives coding agents a stronger workflow.
 
 ## Installation
 
-Propulsion is installed as an OpenCode plugin.
+### Codex CLI
 
-Install it for a project by adding it to that project's `opencode.json`:
+Add the Propulsion marketplace:
+
+```sh
+codex plugin marketplace add moonpixels/propulsion
+```
+
+Open Codex, run `/plugins`, select the Propulsion marketplace, install
+Propulsion, then restart Codex.
+
+To update:
+
+```sh
+codex plugin marketplace upgrade propulsion
+```
+
+### Codex Desktop
+
+Add the Propulsion marketplace with the Codex CLI:
+
+```sh
+codex plugin marketplace add moonpixels/propulsion
+```
+
+Open the desktop app's Plugins page, select the Propulsion marketplace, install
+Propulsion, then restart the app.
+
+To update:
+
+```sh
+codex plugin marketplace upgrade propulsion
+```
+
+### OpenCode
+
+Add Propulsion to `opencode.json`:
 
 ```json
 {
@@ -18,17 +50,6 @@ Install it for a project by adding it to that project's `opencode.json`:
     "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
 }
 ```
-
-Or install it globally in `~/.config/opencode/opencode.json`:
-
-```json
-{
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
-}
-```
-
-Optional extras, including agent-authoring helpers and extra workflow commands, are documented in [`additional/README.md`](additional/README.md).
 
 ## Acknowledgements
 

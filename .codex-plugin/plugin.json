@@ -1,0 +1,47 @@
+{
+    "name": "propulsion",
+    "version": "1.0.0",
+    "description": "Propulsion workflow routing and skills for agentic coding.",
+    "author": {
+        "name": "Moon Pixels"
+    },
+    "homepage": "https://github.com/moonpixels/propulsion",
+    "repository": "https://github.com/moonpixels/propulsion",
+    "license": "MIT",
+    "keywords": [
+        "propulsion",
+        "codex",
+        "codex-plugin",
+        "opencode",
+        "opencode-plugin",
+        "agentic-coding",
+        "skills",
+        "workflow",
+        "planning",
+        "tdd",
+        "debugging",
+        "review",
+        "guardrails",
+        "developer-tools"
+    ],
+    "skills": "./skills/",
+    "hooks": "./hooks/hooks.json",
+    "interface": {
+        "displayName": "Propulsion",
+        "shortDescription": "Workflow routing and skills for agentic coding.",
+        "longDescription": "Propulsion adds a compact workflow skill set and high-priority startup routing guidance while preserving Codex tools and permissions.",
+        "developerName": "Moon Pixels",
+        "category": "Coding",
+        "capabilities": ["Interactive", "Read", "Write"],
+        "websiteURL": "https://github.com/moonpixels/propulsion",
+        "defaultPrompt": [
+            "Turn my idea into an implementation-ready plan with Propulsion",
+            "Debug and fix this bug with Propulsion guardrails",
+            "Review these changes with the Propulsion review workflow"
+        ],
+        "brandColor": "#FF4F00",
+        "composerIcon": "./assets/propulsion_icon_square.png",
+        "logo": "./assets/banner.png",
+        "screenshots": []
+    }
+}

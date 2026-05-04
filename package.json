@@ -1,37 +1,14 @@
 {
     "name": "propulsion",
-    "version": "0.10.0",
-    "description": "Compact workflow skills for agentic coding in OpenCode.",
-    "homepage": "https://github.com/moonpixels/propulsion#readme",
-    "bugs": {
-        "url": "https://github.com/moonpixels/propulsion/issues"
-    },
-    "license": "ISC",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/moonpixels/propulsion.git"
-    },
-    "files": [
-        ".opencode/package.json",
-        ".opencode/plugins/propulsion.js",
-        "skills",
-        "additional/commands",
-        "additional/skills",
-        "README.md",
-        "additional/README.md"
-    ],
-    "type": "module",
-    "main": "./.opencode/plugins/propulsion.js",
-    "exports": {
-        ".": "./.opencode/plugins/propulsion.js"
-    },
+    "version": "1.0.0",
+    "main": "./index.mjs",
+    "exports": "./index.mjs",
     "scripts": {
         "checks": "bun run lint && bun run format && bun run test",
         "format": "oxfmt .",
         "format:check": "oxfmt --check .",
         "lint": "oxlint",
-        "test": "bun test ./tests && bash tests/opencode/run-tests.sh",
-        "test:opencode": "bash tests/opencode/run-tests.sh",
+        "test": "bun test ./tests",
         "test:unit": "bun test ./tests"
     },
     "devDependencies": {

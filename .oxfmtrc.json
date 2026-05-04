@@ -2,19 +2,17 @@
     "$schema": "./node_modules/oxfmt/configuration_schema.json",
     "ignorePatterns": ["node_modules/**", ".opencode/node_modules/**"],
     "printWidth": 80,
+    "tabWidth": 4,
     "singleQuote": true,
     "sortImports": {
         "groups": [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index"
+            ["builtin", "external"],
+            ["internal", "subpath"],
+            ["parent", "sibling", "index"],
+            "unknown"
         ]
     },
     "sortPackageJson": {
         "sortScripts": true
-    },
-    "tabWidth": 4
+    }
 }

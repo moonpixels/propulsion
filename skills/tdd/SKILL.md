@@ -1,12 +1,12 @@
 ---
 name: tdd
 # prettier-ignore
-description: Build observable behaviour with one failing test at a time through red-green-refactor. Use when a slice changes user-facing behaviour, API contracts, or durable business logic, including bug fixes proven with regression tests.
+description: Build observable behaviour one failing test at a time. Use when a slice changes user-facing behaviour, API contracts, or durable business logic.
 ---
 
 # TDD
 
-Default to red-green-refactor when a valuable behavioural test exists. Do not fabricate brittle tests when work cannot be proven through a public interface or stable seam.
+Use red-green-refactor when a valuable behavioural test exists.
 
 ## Prerequisites
 
@@ -35,6 +35,7 @@ These rules are MANDATORY.
 
 - ONLY use `tdd` on observable user-visible behaviour or business logic changes.
 - NO production code before a failing test WHEN a valuable behavioural test exists.
+- DO NOT fabricate brittle tests when work cannot be proven through a public interface or stable seam.
 - ALWAYS write ONE test at a time for ONE observable behaviour.
 - ENSURE the test initially fails for the EXPECTED reason before writing production code.
 - ONLY write the minimal amount of code to make the test pass.
@@ -55,6 +56,8 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Where possible, refactors were applied after the tests were green.
 
 ## References
+
+Use these references when you need detail.
 
 - [references/testing-patterns.md](references/testing-patterns.md) - Testing patterns for guidance on how to write effective tests.
 - [references/refactor-candidates.md](references/refactor-candidates.md) - Refactor candidates to identify good opportunities for refactor after the tests are green.
