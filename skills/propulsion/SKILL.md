@@ -1,7 +1,7 @@
 ---
 name: propulsion
 # prettier-ignore
-description: Manage software-work request routing into Propulsion before any downstream stage is entered. Use when starting a session with software work.
+description: Execute structured AI software development from planning through execution. Use when implementing or updating code, debugging issues, or starting repo software work.
 ---
 
 # Propulsion
