@@ -67,7 +67,7 @@ describe('PropulsionPlugin config', () => {
             description: 'local command wins',
         });
         expect(config.command.pr.description).toContain('pull request');
-        expect(config.command.init.template).toContain('agentic-config');
+        expect(config.command.init).toBeUndefined();
     });
 });
 
