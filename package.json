@@ -1,6 +1,8 @@
 {
     "name": "propulsion",
     "version": "0.10.0",
+    "main": "./index.mjs",
+    "exports": "./index.mjs",
     "scripts": {
         "checks": "bun run lint && bun run format && bun run test",
         "format": "oxfmt .",
