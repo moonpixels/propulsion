@@ -22,7 +22,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 1. Create or resume `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` using [references/debug-template.md](references/debug-template.md).
 2. Load `interrogate` skill for missing user-answerable intake: report provenance, expected behaviour, actual behaviour, impact, environment, reproduction, and questions answered.
 3. Record answers and assumptions from `interrogate` in `debug.md`; if expected behaviour is unknowable, stay in `debug` and ask or block.
-4. Complete targeted codebase exploration in `debug.md` before reproduction, diagnosis, or fix work: relevant files, existing tests, commands, logs, ownership, and likely seams only.
+4. Complete targeted codebase exploration in `debug.md` before reproduction, diagnosis, or fix work: relevant files, existing tests, commands, logs, ownership, and candidate boundaries only.
 5. Reproduce, reduce, isolate, diagnose, reset, and escalate with [references/investigation-loop.md](references/investigation-loop.md).
 6. Do not allow production-code changes until `debug.md` contains a grounded diagnosis, supporting evidence, fix constraints, and one chosen fix hypothesis.
 7. Start a fresh bug-worker subagent with [references/bug-worker-prompt.md](references/bug-worker-prompt.md), then review with [references/bug-reviewer-prompt.md](references/bug-reviewer-prompt.md).

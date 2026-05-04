@@ -1,11 +1,18 @@
 ---
 name: review
-description: Review PRs and ref ranges with senior-level findings, validation, and exact reports. Use when reviewing PR's or base...head changes.
+description: Review PRs and ref ranges with senior-level findings, validation, and exact reports. Use when reviewing PRs or base...head changes.
 ---
 
 # Review
 
 Review a PR or ref range like a senior engineer and return a validated report.
+
+## Prerequisites
+
+ALL prerequisites MUST be true before following this skill.
+
+- If review scope is unclear, STOP. Ask for a PR number, PR URL, or `base...head` ref range.
+- GitHub CLI `gh` is installed and authenticated when reviewing a PR number or PR URL.
 
 ## Instructions
 

@@ -6,7 +6,7 @@ description: Build observable behaviour one failing test at a time. Use when a s
 
 # TDD
 
-Default to red-green-refactor when a valuable behavioural test exists. Do not fabricate brittle tests when work cannot be proven through a public interface or stable seam.
+Use red-green-refactor when a valuable behavioural test exists.
 
 ## Prerequisites
 
@@ -35,6 +35,7 @@ These rules are MANDATORY.
 
 - ONLY use `tdd` on observable user-visible behaviour or business logic changes.
 - NO production code before a failing test WHEN a valuable behavioural test exists.
+- DO NOT fabricate brittle tests when work cannot be proven through a public interface or stable seam.
 - ALWAYS write ONE test at a time for ONE observable behaviour.
 - ENSURE the test initially fails for the EXPECTED reason before writing production code.
 - ONLY write the minimal amount of code to make the test pass.

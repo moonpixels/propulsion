@@ -17,7 +17,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. Close any branch the project can answer through a focused explorer subagent instead of asking the user.
 4. Ask the user questions for each unresolved branch, using the format in [references/interrogate-protocol.md](references/interrogate-protocol.md).
 5. Update the decision tree after each answer, then repeat focused explorer-subagent exploration or user interrogation until shared understanding is reached.
-6. Summarise the resolved decisions and remaining assumptions, if any, before handing control back to the caller.
+6. Return the handoff summary format in [references/interrogate-protocol.md](references/interrogate-protocol.md) before handing control back to the caller.
 
 ## Rules
 

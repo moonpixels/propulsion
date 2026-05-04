@@ -7,6 +7,12 @@ description: Create one safe local git commit from current changes. Use when ask
 
 Create exactly one local git commit from safe current changes and report the result.
 
+## Prerequisites
+
+ALL prerequisites MUST be true before following this skill.
+
+- The current directory is inside a git repository with a writable index.
+
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
@@ -28,7 +34,7 @@ These rules are MANDATORY.
 - MUST stage with `git add -A` before applying exclusions.
 - MUST unstage secret-like files before committing when they are staged.
 - MUST stop with exactly `No changes to commit.` when exclusions leave no committable changes.
-- NEVER commit likely secret files.
+- NEVER commit secret-like files.
 - NEVER push, open pull requests, amend, reset, force, or run destructive git commands unless user explicitly instructs.
 
 ## Completion Gate

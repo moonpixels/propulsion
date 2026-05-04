@@ -31,12 +31,12 @@ gh pr list --head <branch> --state open --json url,number,title,body,baseRefName
 ```
 
 - If the PR base differs from `<base>`, stop and ask whether to correct the PR base.
-- If the user agrees, update the base before any title or body refresh: `gh pr edit --base <base>`.
-- If the user declines, stop and ask them to rerun the PR skill with the intended base branch.
+- If the user explicitly agrees, update the base before any title or body refresh: `gh pr edit --base <base>`.
+- If the user declines or gives an unclear answer, stop and ask them to rerun the PR skill with the intended base branch.
 - If the PR base matches `<base>` and no commit delta exists, reuse the PR unchanged, verify it, and report the success output.
 - If the PR base matches `<base>` and a commit delta exists, show the URL and ask whether to refresh title and summary.
-- If the user agrees, update only title and body with `gh pr edit --title "<title>" --body "<body>"`.
-- If the user declines, reuse the PR unchanged, verify it, and report the success output.
+- If the user explicitly agrees, update only title and body with `gh pr edit --title "<title>" --body "<body>"`.
+- If the user declines or gives an unclear answer, reuse the PR unchanged, verify it, and report the success output.
 
 ## Push Safety
 

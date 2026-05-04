@@ -39,4 +39,22 @@ Continue walking the decision tree until no blocking branches remain. Shared und
 
 ## Handoff Summary
 
-When interrogation is complete, return a concise summary to the caller with resolved decisions, project facts learned from exploration, and any accepted assumptions. Keep the summary in chat; this skill does not create or edit durable artefacts.
+When interrogation is complete, return a concise summary to the caller. Keep the summary in chat; this skill does not create or edit durable artefacts.
+
+```markdown
+Resolved decisions:
+
+- <decision>
+
+Project facts:
+
+- <fact learned from exploration>
+
+Accepted assumptions:
+
+- <assumption, or "None">
+
+Next workflow action:
+
+- <caller-owned next action>
+```

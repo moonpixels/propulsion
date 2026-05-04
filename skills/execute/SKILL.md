@@ -31,7 +31,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 10. Repeat steps 4-9 until the worker reports `Status: done` and the latest implementation-reviewer reports `Status: approved`.
 11. Check off the current phase acceptance criteria and phase completion in `plan.md`.
 12. Repeat steps 2-11 for the next incomplete phase in `plan.md` until all phases are complete.
-13. After the last phase is complete, infer and run the final repo-wide checks before claiming the plan complete (tests, lint, formatting, build etc., depending on the repo and work).
+13. After the last phase is complete, infer and run the final repo-wide checks from the target repository's docs, scripts, and conventions before claiming the plan complete.
 
 ## Rules
 
@@ -45,7 +45,7 @@ These rules are MANDATORY.
 - ALWAYS use the prompts in the references when starting subagents and sending feedback.
 - DO NOT directly implement user feedback once the completion gate is passed; loop back to `brainstorm` instead.
 - You CAN use parallel worker subagents for different phases ONLY IF the phases are truly independent with no shared dependencies or risk of conflicts.
-- DO NOT claim completion without final repo-wide checks.
+- DO NOT claim completion without final repo-wide checks chosen from the target repository's docs, scripts, and conventions.
 
 ## Completion Gate
 

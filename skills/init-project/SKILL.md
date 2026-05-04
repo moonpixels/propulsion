@@ -16,7 +16,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. Preserve or add the default correction rule near the top of `AGENTS.md`.
 4. Apply the line admission test to every candidate rule: global, non-discoverable, and operationally important.
 5. Challenge weak or bloated candidate instructions before keeping them; remove any rule that fails the admission test or belongs in code, config, docs, skills, or commands.
-6. Draft the smallest useful `AGENTS.md`, keeping always-followed rules near the top and explaining kept, removed, or challenged categories at handoff.
+6. Draft the smallest useful `AGENTS.md`, keeping always-followed rules near the top.
+7. Handoff with the changed file path plus kept, removed, and challenged rule categories.
 
 ## Rules
 

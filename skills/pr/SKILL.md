@@ -25,7 +25,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 5. Push safely: use `git push -u origin <branch>` when no upstream exists; otherwise use `git push`.
 6. Check for an existing open PR for the current head branch.
 7. If an open PR exists with a different base, stop and ask whether to update the base; only if confirmed, run `gh pr edit --base <base>` before title or body refresh.
-8. If an open PR exists on the chosen base, reuse it unchanged when no commit delta exists; otherwise ask whether to refresh title and body, then use `gh pr edit` only if confirmed.
+8. If an open PR exists on the chosen base, reuse it unchanged when no commit delta exists; otherwise ask whether to refresh title and body, then use `gh pr edit` only after explicit confirmation.
 9. If no open PR exists and no commit delta exists, output exactly `No PR changes to open.`
 10. Generate a Conventional Commit PR title and summary body from the complete `<base>...HEAD` history and diff.
 11. Create the PR with `gh pr create --base <base> --title "<title>" --body "<body>"` when no reusable open PR exists.

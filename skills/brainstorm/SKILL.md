@@ -23,7 +23,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. After all blocking branches are closed and brainstorming is complete, check for relevant non-Propulsion skills and load them before writing `prd.md`.
 4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md), including resolved decisions and assumptions from `interrogate`.
 5. Compare `prd.md` against the conversation for missing decisions, constraints, assumptions, requested behaviours, or success criteria; update `prd.md` before approval if relevant content is missing.
-6. Ask the user to review and approve `prd.md` before entering `plan`.
+6. Ask the user to review `prd.md`; treat only explicit approval, such as "approved" or "yes, proceed", as approval before entering `plan`.
 
 ## Rules
 
