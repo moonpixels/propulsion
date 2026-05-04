@@ -19,9 +19,9 @@ Before asking the user, decide whether project inspection could answer the branc
 Relentlessly ask the user one question at a time. Keep each question decision-oriented and easy to answer. There is no limit on the number of questions; keep going until shared understanding is reached.
 
 ```markdown
-Recommendation: <best answer and why it fits the current facts>
-
 Question: <single question the user must decide>
+
+Recommendation: <best answer and why it fits the current facts>
 
 Options:
 
