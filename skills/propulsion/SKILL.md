@@ -35,7 +35,7 @@ These rules are MANDATORY.
 - Feature and product-scope work routes to `brainstorm`: new features, unclear scope, UX/product shaping, requirements discovery, PRDs, and broad implementation requests.
 - If `propulsion` applies, route first. Do NOT reload `propulsion` or skip it because the task looks small, obvious, or familiar.
 - Once following Propulsion workflow, DO NOT leave it until completion. ALWAYS follow the rules of each skill.
-- Red flags: "I need more context first", "I'll inspect the repo first", "This is too small for Propulsion" are all FALSE. Route first.
+- ALWAYS route first. DO NOT rationalise skipping with thoughts like: "I need more context first", "I'll inspect the repo first", "This is too small for Propulsion". They are all FALSE.
 
 ## Completion Gate
 
