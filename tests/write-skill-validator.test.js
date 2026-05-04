@@ -1,6 +1,12 @@
 import { describe, expect, test } from 'bun:test';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import {
+    existsSync,
+    mkdirSync,
+    mkdtempSync,
+    readdirSync,
+    writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -9,6 +15,7 @@ const validatorPath = join(
     repoRoot,
     'skills/write-skill/scripts/validate-skill.js',
 );
+const shippedSkillsPath = join(repoRoot, 'skills');
 
 function runValidator(args = []) {
     const result = spawnSync('bun', [validatorPath, ...args], {
@@ -20,6 +27,27 @@ function runValidator(args = []) {
         ...result,
         report: JSON.parse(result.stdout),
     };
+}
+
+function shippedSkillPaths() {
+    return readdirSync(shippedSkillsPath, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => `skills/${entry.name}`)
+        .toSorted();
+}
+
+function validatorOutput(result) {
+    const details = [];
+
+    if (result.stdout.trim()) {
+        details.push(`stdout:\n${result.stdout.trim()}`);
+    }
+
+    if (result.stderr.trim()) {
+        details.push(`stderr:\n${result.stderr.trim()}`);
+    }
+
+    return details.join('\n\n') || 'Validator produced no stdout or stderr.';
 }
 
 function validSkillMd(overrides = {}) {
@@ -105,6 +133,22 @@ describe('write-skill validator', () => {
                 artifacts: expect.any(Number),
             }),
         });
+    });
+
+    test('validates every shipped skill', () => {
+        const skillPaths = shippedSkillPaths();
+
+        expect(skillPaths.length).toBeGreaterThan(0);
+
+        for (const skillPath of skillPaths) {
+            const result = runValidator([skillPath]);
+
+            if (result.status !== 0) {
+                throw new Error(
+                    `Validator failed for ${skillPath}.\n\n${validatorOutput(result)}`,
+                );
+            }
+        }
     });
 
     test('rejects unknown flags instead of supporting legacy options', () => {
