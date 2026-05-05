@@ -14,9 +14,9 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Launch a fresh explorer subagent to inspect available project context for facts relevant to the request.
 2. Interrogate the user relentlessly about every aspect of the request until a shared understanding is reached.
-   - Ask questions one at a time, provide your recommended answer first, then 2-3 viable alternatives.
-   - Walk down each branch of the decision tree resolving dependencies between decisions.
-   - There are no limits on the number of questions; keep asking until shared understanding is reached.
+    - Ask questions one at a time, provide your recommended answer first, then 2-3 viable alternatives.
+    - Walk down each branch of the decision tree resolving dependencies between decisions.
+    - There are no limits on the number of questions; keep asking until shared understanding is reached.
 3. Return a concise summary to the caller.
 
 ## Rules
