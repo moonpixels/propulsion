@@ -6,7 +6,9 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "./hooks/run-hook.cmd session-start"
+                        "command": "\"${CODEX_PLUGIN_ROOT}/hooks/run-hook.cmd\" session-start",
+                        "timeout": 10,
+                        "statusMessage": "Loading Propulsion workflow"
                     }
                 ]
             }
