@@ -6,29 +6,28 @@ description: Manage interrogation, intake, interviews, scope clarification, requ
 
 # Interrogate
 
-Reach shared understanding by interrogating one decision at a time, backed by available project context.
+Reach a shared understanding by exploring the project for context and interrogating the user one question at a time.
 
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Start every interrogation session by launching a fresh explorer subagent to inspect available project context for facts relevant to the request.
-2. Build the decision tree for the request, then walk down each branch that could affect the answer or next action.
-3. Close any branch the project can answer through a focused explorer subagent instead of asking the user.
-4. Ask the user questions for each unresolved branch, using the format in [references/interrogate-protocol.md](references/interrogate-protocol.md).
-5. Update the decision tree after each answer, then repeat focused explorer-subagent exploration or user interrogation until shared understanding is reached.
-6. Return the handoff summary format in [references/interrogate-protocol.md](references/interrogate-protocol.md) before handing control back to the caller.
+1. Launch a fresh explorer subagent to inspect available project context for facts relevant to the request.
+2. Interrogate the user relentlessly about every aspect of the request until a shared understanding is reached.
+   - Ask questions one at a time, provide your recommended answer first, then 2-3 viable alternatives.
+   - Walk down each branch of the decision tree resolving dependencies between decisions.
+   - There are no limits on the number of questions; keep asking until shared understanding is reached.
+3. Return a concise summary to the caller.
 
 ## Rules
 
 These rules are MANDATORY.
 
-- MUST keep this skill chat-only; DO NOT create or edit durable artefacts from this skill.
-- MUST ask exactly one user question at a time.
-- MUST relentlessly continue user interrogation until shared understanding is reached; there is no limit on the number of questions.
-- MUST provide the recommended answer first, then 2-3 viable alternatives.
-- MUST use explorer subagents for entry exploration and focused project-answerable questions.
-- DO NOT ask the user questions that codebase inspection can answer.
+- MUST use explorer subagent for entry exploration.
+- ALWAYS relentlessly interrogate the user until a shared understanding is reached.
+- DO NOT limit the number of questions; keep asking until every blocking branch is closed.
+- MUST ask user exactly one question at a time, provide a recommended answer, then 2-3 viable alternatives.
+- ALWAYS check if a question can be answered by project inspection before asking.
 - MUST walk the decision tree until every blocking branch is closed by project facts or user answers.
 
 ## Completion Gate
