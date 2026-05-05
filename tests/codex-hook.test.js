@@ -10,6 +10,27 @@ async function readJson(path) {
     return JSON.parse(await readFile(path, 'utf8'));
 }
 
+async function runConfiguredHook(env) {
+    const config = await readJson('hooks/hooks.json');
+    const command = config.hooks.SessionStart[0].hooks[0].command;
+
+    const result = Bun.spawnSync({
+        cmd: ['sh', '-c', command],
+        cwd: '/private/tmp',
+        env: {
+            ...process.env,
+            ...env,
+        },
+        stdout: 'pipe',
+        stderr: 'pipe',
+    });
+
+    expect(result.exitCode).toBe(0);
+
+    const output = new TextDecoder().decode(result.stdout).trim();
+    return JSON.parse(output);
+}
+
 describe('Codex Propulsion bootstrap guidance', () => {
     test('uses the shared Propulsion bootstrap contract', () => {
         expect(getPropulsionBootstrapGuidance()).toBe(
@@ -27,7 +48,7 @@ describe('Codex Propulsion bootstrap guidance', () => {
                     {
                         type: 'command',
                         command:
-                            '"${CODEX_PLUGIN_ROOT}/hooks/run-hook.cmd" session-start',
+                            '"${CODEX_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-}}/hooks/run-hook.cmd" session-start',
                         timeout: 10,
                         statusMessage: 'Loading Propulsion workflow',
                     },
@@ -36,25 +57,22 @@ describe('Codex Propulsion bootstrap guidance', () => {
         ]);
     });
 
-    test('runs configured hook command from outside the plugin cwd', async () => {
-        const config = await readJson('hooks/hooks.json');
-        const command = config.hooks.SessionStart[0].hooks[0].command;
-
-        const result = Bun.spawnSync({
-            cmd: ['sh', '-c', command],
-            cwd: '/private/tmp',
-            env: {
-                ...process.env,
-                CODEX_PLUGIN_ROOT: process.cwd(),
-            },
-            stdout: 'pipe',
-            stderr: 'pipe',
+    test('runs configured hook command with CODEX_PLUGIN_ROOT', async () => {
+        const payload = await runConfiguredHook({
+            CODEX_PLUGIN_ROOT: process.cwd(),
         });
 
-        expect(result.exitCode).toBe(0);
+        expect(payload.hookSpecificOutput).toEqual({
+            hookEventName: 'SessionStart',
+            additionalContext: PROPULSION_BOOTSTRAP_GUIDANCE,
+        });
+    });
 
-        const output = new TextDecoder().decode(result.stdout).trim();
-        const payload = JSON.parse(output);
+    test('runs configured hook command with CLAUDE_PLUGIN_ROOT fallback', async () => {
+        const payload = await runConfiguredHook({
+            CODEX_PLUGIN_ROOT: '',
+            CLAUDE_PLUGIN_ROOT: process.cwd(),
+        });
 
         expect(payload.hookSpecificOutput).toEqual({
             hookEventName: 'SessionStart',
