@@ -17,7 +17,7 @@ describe('Codex Propulsion bootstrap guidance', () => {
         );
     });
 
-    test('registers a compact plugin-local session-start hook matcher', async () => {
+    test('registers a plugin-root session-start hook matcher', async () => {
         const config = await readJson('hooks/hooks.json');
 
         expect(config.hooks.SessionStart).toEqual([
@@ -26,11 +26,40 @@ describe('Codex Propulsion bootstrap guidance', () => {
                 hooks: [
                     {
                         type: 'command',
-                        command: './hooks/run-hook.cmd session-start',
+                        command:
+                            '"${CODEX_PLUGIN_ROOT}/hooks/run-hook.cmd" session-start',
+                        timeout: 10,
+                        statusMessage: 'Loading Propulsion workflow',
                     },
                 ],
             },
         ]);
+    });
+
+    test('runs configured hook command from outside the plugin cwd', async () => {
+        const config = await readJson('hooks/hooks.json');
+        const command = config.hooks.SessionStart[0].hooks[0].command;
+
+        const result = Bun.spawnSync({
+            cmd: ['sh', '-c', command],
+            cwd: '/private/tmp',
+            env: {
+                ...process.env,
+                CODEX_PLUGIN_ROOT: process.cwd(),
+            },
+            stdout: 'pipe',
+            stderr: 'pipe',
+        });
+
+        expect(result.exitCode).toBe(0);
+
+        const output = new TextDecoder().decode(result.stdout).trim();
+        const payload = JSON.parse(output);
+
+        expect(payload.hookSpecificOutput).toEqual({
+            hookEventName: 'SessionStart',
+            additionalContext: PROPULSION_BOOTSTRAP_GUIDANCE,
+        });
     });
 
     test('prints Codex SessionStart additional context as parseable JSON', async () => {

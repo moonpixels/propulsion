@@ -1,6 +1,6 @@
 {
     "name": "propulsion",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Opinionated agentic coding workflow that guides software work from exploration and planning through execution and review.",
     "author": {
         "name": "Moon Pixels"
