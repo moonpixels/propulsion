@@ -23,7 +23,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. Wait for the worker to finish and handle the status:
     - If `Status: unclear`, provide additional context or clarification.
     - If `Status: blocked`, triage the blocker and resolve it.
-    - If you cannot resolve `unclear` or `blocked` from the plan, codbase, or tools, escalate to the user.
+    - If you cannot resolve `unclear` or `blocked` from the plan, codebase, or tools, escalate to the user.
     - If `Status: done`, continue to review.
 4. Start a fresh reviewer subagent with the prompt in [references/reviewer-prompt.md](references/reviewer-prompt.md).
 5. Wait for the reviewer to finish and handle the status:
@@ -45,9 +45,9 @@ These rules are MANDATORY.
 - ALWAYS update `plan.md` checkboxes after each successful implementation-review cycle.
 - MUST infer and run relevant repo-wide checks before claiming completion.
 - NEVER implement user feedback directly in `execute`, instead:
-  - Loop back to `brainstorm` to update the PRD.
-  - Move to `plan` to create or update a phase if needed.
-  - Return to `execute` for implementation.
+    - Loop back to `brainstorm` to update the PRD.
+    - Move to `plan` to create or update a phase if needed.
+    - Return to `execute` for implementation.
 
 ## Completion Gate
 
