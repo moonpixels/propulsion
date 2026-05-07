@@ -1,6 +1,6 @@
 # Interrogate Protocol
 
-Use this protocol when a workflow needs missing information resolved before it can proceed safely.
+Use this protocol when a request needs missing information resolved before it can proceed safely.
 
 ## Entry Exploration
 

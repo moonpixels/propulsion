@@ -354,7 +354,7 @@ Start with another reference explanation.
 
         expect(result.status).toBe(1);
         expect(result.report.errors).toContain(
-            'Start ## Prerequisites with: ALL prerequisites MUST be true before following this skill.',
+            'Start ## Prerequisites with: ALL prerequisites MUST be satisfied BEFORE following this skill.',
         );
         expect(result.report.errors).toContain(
             'Start ## Instructions with: Follow these steps IN ORDER. Do NOT skip steps.',

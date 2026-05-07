@@ -12,11 +12,11 @@ Reach a shared understanding by exploring the project for context and interrogat
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Launch a fresh explorer subagent to inspect available project context for facts relevant to the request.
+1. Gather context by launching a fresh explorer subagent to inspect the project for facts relevant to the request.
 2. Interrogate the user relentlessly about every aspect of the request until a shared understanding is reached.
     - Ask questions one at a time, provide your recommended answer first, then 2-3 viable alternatives.
     - Walk down each branch of the decision tree resolving dependencies between decisions.
-    - There are no limits on the number of questions; keep asking until shared understanding is reached.
+    - There are no limits on the number of questions; keep asking until a shared understanding is reached.
 3. Return a concise summary to the caller.
 
 ## Rules
@@ -25,10 +25,10 @@ These rules are MANDATORY.
 
 - MUST use explorer subagent for entry exploration.
 - ALWAYS relentlessly interrogate the user until a shared understanding is reached.
-- DO NOT limit the number of questions; keep asking until every blocking branch is closed.
+- DO NOT limit the number of questions; keep asking until EVERY blocking branch is closed.
 - MUST ask user exactly one question at a time, provide a recommended answer, then 2-3 viable alternatives.
 - ALWAYS check if a question can be answered by project inspection before asking.
-- MUST walk the decision tree until every blocking branch is closed by project facts or user answers.
+- MUST walk the decision tree until EVERY blocking branch is closed by project facts or user answers.
 
 ## Completion Gate
 

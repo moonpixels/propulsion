@@ -9,7 +9,7 @@ Create or reuse one GitHub pull request from the current branch and report the v
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - GitHub CLI `gh` is installed and authenticated for the target repository (may need to run outside sandbox).
 - The current directory is a git repository with an `origin` remote.

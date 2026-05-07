@@ -14,7 +14,7 @@ description: {One-line action-oriented summary with the main use case and trigge
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - {Only include when the skill must stop, route, or require a condition before work starts.}
 

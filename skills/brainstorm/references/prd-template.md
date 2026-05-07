@@ -3,37 +3,58 @@
 Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using this exact section order.
 
 ```md
-# <Feature Title>
+# <Feature Title> PRD
 
 ## Problem Statement
 
-State the user problem in user language.
+State the problem in user language.
+
+## Solution
+
+Describe the proposed behaviour end-to-end from the user's perspective.
 
 ## Goals
 
 - Goal 1
 - Goal 2
 
+## Non-Goals
+
+- Explicit non-goal 1
+- Explicit non-goal 2
+
 ## User Stories
 
-1. As a <actor>, I want <behaviour>, so that <benefit>
-2. As a <actor>, I want <behaviour>, so that <benefit>
+| ID     | User Story                                           |
+| ------ | ---------------------------------------------------- |
+| US-001 | As a <actor>, I want <behaviour>, so that <benefit>. |
+| US-002 | As a <actor>, I want <behaviour>, so that <benefit>. |
 
-## Solution
+## Functional Requirements
 
-Describe the proposed behaviour end-to-end from the user's perspective.
+| ID     | Requirement                                  |
+| ------ | -------------------------------------------- |
+| FR-001 | When <context>, the system must <behaviour>. |
+| FR-002 | The system must <behaviour> when <context>.  |
 
-## Implementation Inputs
+## Non-Functional Requirements
 
-- External links or references to check out
-- Business rules or constraints that must be respected
-- References to tickets, docs, or other internal resources that are relevant to implementation
+| ID      | Category    | Requirement                                   |
+| ------- | ----------- | --------------------------------------------- |
+| NFR-001 | Performance | <operation> must complete within <threshold>. |
+| NFR-002 | Security    | The system must <security requirement>.       |
 
 ## Implementation Decisions
 
 - Durable module or boundary decisions
 - Data shape or API contract decisions
 - Interaction rules that the `plan` skill should not re-litigate
+
+## Implementation Inputs
+
+- External links or references to check out
+- Business rules or constraints that must be respected
+- References to tickets, docs, or other internal resources that are relevant to implementation
 
 ## Testing Decisions
 
@@ -43,20 +64,29 @@ Describe the proposed behaviour end-to-end from the user's perspective.
 
 ## Out Of Scope
 
-- Explicit non-goals
+- Deferred idea
+- Thing that must not be implemented
 
-## Risks / Open Questions
+## Notes
 
-- Only non-blocking risks or future questions
+- Any further notes about the feature
 ```
 
 ## Rules
 
 These rules are MANDATORY.
 
-- Keep it product-facing.
-- Include durable decisions, not file paths or code.
-- Resolve blocking branches before writing.
-- Write the PRD to the correct path using the correct shape.
-- Use the first explored phase only if the request was decomposed.
-- Self-review for placeholders, contradictions, and scope drift before asking for approval.
+- ALWAYS follow the template structure and section order exactly as specified.
+- MUST use the following non-functional requirement categories:
+    - Performance: Response times, throughput, and resource utilisation under normal and peak loads.
+    - Reliability: System availability, fault tolerance, and error recovery capabilities.
+    - Security: Data protection, authentication, authorisation, and compliance with relevant standards.
+    - Usability: User experience, accessibility, and ease of use across different user groups.
+    - Scalability: Ability to handle increased load and growth in users or data volume.
+    - Maintainability: Code quality, documentation, and ease of future modifications.
+    - Compatibility: Cross-platform support, browser compatibility, and integration capabilities.
+    - Portability: Ability to deploy across different environments and infrastructure.
+    - Compliance: Adherence to industry standards, regulations, and organisational policies.
+    - Monitoring: Observability, logging, and alerting capabilities for operational support.
+- MUST ensure there's a LONG and EXTENSIVE list of user stories, functional requirements, and non-functional requirements to cover all aspects of the feature.
+- DO create supporting documents with mermaid diagrams, data models, or other relevant artefacts if they help clarify the feature or implementation.

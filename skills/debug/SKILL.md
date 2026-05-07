@@ -10,7 +10,7 @@ Use when a concrete failure or bug report needs diagnosis and repair.
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - The work is a bug, regression, crash, incorrect output, flaky behaviour, or other concrete failure.
 - If the work is feature-shaped or expected behaviour is intentionally being designed, STOP. Load `brainstorm`.

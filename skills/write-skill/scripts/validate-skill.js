@@ -15,7 +15,7 @@ const allowedSections = [
 ];
 const sectionIntroLines = {
     Prerequisites:
-        'ALL prerequisites MUST be true before following this skill.',
+        'ALL prerequisites MUST be satisfied BEFORE following this skill.',
     Instructions: 'Follow these steps IN ORDER. Do NOT skip steps.',
     Rules: 'These rules are MANDATORY.',
     'Completion Gate': 'Do NOT leave this skill until ALL items are complete.',

@@ -10,7 +10,7 @@ Use red-green-refactor when a valuable behavioural test exists.
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - The work includes a change to observable user-facing behaviour, a public contract, or durable business logic.
 - The codebase has a test framework installed, and tests can be run locally.
