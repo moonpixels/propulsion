@@ -9,7 +9,7 @@ Review a PR or ref range like a senior engineer and return a validated report.
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - If review scope is unclear, STOP. Ask for a PR number, PR URL, or `base...head` ref range.
 - GitHub CLI `gh` is installed and authenticated when reviewing a PR number or PR URL.

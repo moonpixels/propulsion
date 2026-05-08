@@ -1,63 +1,59 @@
 ---
 name: tdd
-# prettier-ignore
-description: Build observable behaviour one failing test at a time. Use when a slice changes user-facing behaviour, API contracts, or durable business logic.
+description: Execute TDD red-green-refactor for behaviour changes. Use when changing observable behaviour, public contracts, or durable business logic.
 ---
 
 # TDD
 
-Use red-green-refactor when a valuable behavioural test exists.
+Drive behaviour changes with one failing behavioural test, minimal green code, then safe refactor.
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
-- The work includes a change to observable user-facing behaviour, a public contract, or durable business logic.
-- The codebase has a test framework installed, and tests can be run locally.
-- The work is not solely for CI-only changes, linting, formatting, dependency maintenance, build or development script changes, repo hygiene, or internal refactors with no behaviour change.
-
-If the work mixes behaviour change with tooling or maintenance updates, use `tdd` on the behaviour change ONLY.
+- The task changes observable behaviour, a public contract, or durable business logic.
+- A local test runner and relevant test command are available. If not, STOP and ask whether adding or fixing the test path is in scope.
+- Maintenance-only work is invalid for TDD. STOP for docs/comments/prompts/spec text, styling-only UI changes, copy-only edits unless copy is the contract, config/build/dev-tool text edits, dependency bumps, generated files, data/schema migrations without logic changes, or pure refactors.
+- If work mixes behaviour change with maintenance, apply TDD ONLY to the behaviour-changing slice.
 
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Choose the smallest thin vertical slice that delivers one observable behaviour end-to-end.
-2. Apply the test-quality/applicability gate in [references/testing-patterns.md](references/testing-patterns.md) before writing or keeping a test.
-3. If a valuable behavioural test exists, write one failing test for that behaviour through a public interface or stable seam, verify it fails for the expected reason, implement the smallest passing code, then verify it passes.
-4. If no valuable behavioural test exists, document the no-test rationale, run the strongest appropriate fallback verification, implement the smallest change, then rerun fallback verification.
-5. Repeat for the next behaviour until complete; refactor only while tests or fallback checks are green. Refer to [references/refactor-candidates.md](references/refactor-candidates.md).
-6. For bug fixes, prefer a regression test that reproduces the bug; if none is valuable, document why and use the strongest fallback verification.
+1. Choose the smallest thin vertical slice that delivers one observable behaviour end-to-end; state the interface, expected outcome, and narrowest test command.
+2. Apply the gate in [references/testing-patterns.md](references/testing-patterns.md). If no valuable behavioural test exists, record the no-test rationale and strongest fallback verification before changing code.
+3. Write ONE failing test through a public interface or stable seam for the next behaviour only.
+4. Run the narrowest test command and confirm the test fails for the expected reason.
+5. Write the minimum production code to pass; keep fixtures small and mock only real external, slow, unstable, or nondeterministic boundaries.
+6. Re-run the narrowest test command and confirm green.
+7. Review refactor candidates only after green using [references/refactor-candidates.md](references/refactor-candidates.md); refactor in small behaviour-preserving steps and rerun relevant checks.
+8. Repeat slice by slice until the requested behaviour is complete.
 
 ## Rules
 
 These rules are MANDATORY.
 
-- ONLY use `tdd` on observable user-visible behaviour or business logic changes.
-- NO production code before a failing test WHEN a valuable behavioural test exists.
-- DO NOT fabricate brittle tests when work cannot be proven through a public interface or stable seam.
-- ALWAYS write ONE test at a time for ONE observable behaviour.
-- ENSURE the test initially fails for the EXPECTED reason before writing production code.
-- ONLY write the minimal amount of code to make the test pass.
-- ALWAYS use the public interface for testing, and test through stable seams if necessary.
-- NEVER write speculative, brittle, implementation-detail, or private-structure tests.
-- ALWAYS document no-test rationale plus fallback verification when no valuable behavioural test exists.
-- ALWAYS look for refactor opportunities AFTER the test is green.
+- NEVER write production code before a failing test WHEN a valuable behavioural test exists.
+- ALWAYS test observable behaviour through a public interface or stable seam.
+- NEVER add source-text checks, private-structure checks, internal call choreography, broad snapshots, speculative tests, or implementation-detail tests as behavioural proof.
+- DO NOT over-mock; ONLY mock real boundaries that are external, slow, unstable, nondeterministic, or too expensive for the selected test scope.
+- STOP and ask if the behaviour, acceptance rule, stable seam, or relevant test command is unclear.
+- NEVER refactor while red.
+- ALWAYS prefer a regression test first for bug fixes.
 
 ## Completion Gate
 
 Do NOT leave this skill until ALL items are complete.
 
 - [ ] Work was implemented in thin vertical slices.
-- [ ] Each slice passed the test-quality/applicability gate.
-- [ ] Each testable slice started with a failing test that failed for the expected reason.
-- [ ] Untestable slices documented no-test rationale and strongest appropriate fallback verification.
-- [ ] Each slice was completed with passing tests or fallback checks.
-- [ ] Where possible, refactors were applied after the tests were green.
+- [ ] Each testable slice has red proof that failed for the expected reason, then green proof after the smallest implementation.
+- [ ] Tests prove behaviour through a public interface or stable seam, with no brittle, speculative, implementation-detail, or over-mocked tests kept.
+- [ ] No-test fallback rationale was documented only where no valuable behavioural test exists.
+- [ ] Refactor opportunities were reviewed after green, and refactors happened only while checks were green.
 
 ## References
 
 Use these references when you need detail.
 
-- [references/testing-patterns.md](references/testing-patterns.md) - Testing patterns for guidance on how to write effective tests.
-- [references/refactor-candidates.md](references/refactor-candidates.md) - Refactor candidates to identify good opportunities for refactor after the tests are green.
+- [references/testing-patterns.md](references/testing-patterns.md) - Test scope, behavioural seams, mocks, anti-patterns, fallback verification, and concise templates.
+- [references/refactor-candidates.md](references/refactor-candidates.md) - Safe refactor candidates and post-green refactor gates.

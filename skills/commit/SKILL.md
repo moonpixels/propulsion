@@ -9,7 +9,7 @@ Create exactly one local git commit from safe current changes and report the res
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - The current directory is inside a git repository with a writable index.
 

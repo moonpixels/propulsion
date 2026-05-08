@@ -1,6 +1,5 @@
 ---
 name: brainstorm
-# prettier-ignore
 description: Create an approved PRD through repo inspection and interrogation. Use when scope, UX, constraints, or success criteria are unclear, or when user needs a PRD.
 ---
 
@@ -10,43 +9,40 @@ Turn vague feature, UX, API, product-scope, or requirements work into an approve
 
 ## Prerequisites
 
-ALL prerequisites MUST be true before following this skill.
+ALL prerequisites MUST be satisfied BEFORE following this skill.
 
-- If an approved `docs/propulsion/.../prd.md` already exists for this work, STOP. Enter the `plan` skill.
+- If user provides an approved `docs/propulsion/.../prd.md`, STOP. Enter the `plan` skill.
 
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Load `interrogate` skill to close blocking branches and reach shared understanding before PRD writing.
-2. If the request is too large, decompose it and explore only the first phase or subsystem.
-3. After all blocking branches are closed and brainstorming is complete, check for relevant non-Propulsion skills and load them before writing `prd.md`.
-4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md), including resolved decisions, project facts, and constraints from `interrogate`.
-5. Compare `prd.md` against the conversation for missing decisions, facts, constraints, requested behaviours, or success criteria; update `prd.md` before approval if relevant content is missing.
-6. Ask the user to review `prd.md`; treat only explicit approval, such as "approved" or "yes, proceed", as approval before entering `plan`.
+1. Load `interrogate` skill and interview the user about their request.
+2. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` using the template in [references/prd-template.md](references/prd-template.md).
+3. Maliciously sanity-check `prd.md` against the conversation and add any missing decisions, facts, constraints, behaviours, or success criteria.
+4. Ask the user to review and approve `prd.md`.
+5. After explicit approval, enter the `plan` skill.
 
 ## Rules
 
 These rules are MANDATORY.
 
-- MUST close every blocking branch before writing `prd.md`. Blocking branches include anything that would change scope, UX, architecture, sequencing, or success criteria.
-- BEFORE writing `prd.md`, ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
-- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
+- ALWAYS use `interrogate` skill to reach a shared understanding BEFORE writing the PRD.
+- ALWAYS use the PRD template for structure and section order.
 - MUST keep the PRD product-facing while recording durable implementation and testing decisions.
 - ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
-- You CAN create supporting documents such as `docs/propulsion/.../research.md` or `docs/propulsion/.../diagrams.md` if needed, but the PRD must include all durable decisions.
-- DO include the supporting documents as implementation inputs in the PRD, but DO NOT rely on them for durable decisions.
-- DO NOT print the PRD, or other workflow artefacts in the chat, keep them in files.
-- If you cannot write files, STOP, ask the user to switch to write mode, then continue to write the PRD.
+- USE supporting documents such as `docs/propulsion/.../diagrams.md` if needed.
+- If you cannot write files, STOP, ask the user to enable write mode before continuing the PRD.
+- NEVER print the full PRD in the chat, ONLY write it to the file.
 
 ## Completion Gate
 
 Do NOT leave this skill until ALL items are complete.
 
-- [ ] Used `interrogate` skill to reach shared understanding and close every blocking branch.
-- [ ] `prd.md` written to `docs/propulsion/.../prd.md`.
-- [ ] `prd.md` sanity-checked against the conversation and updated if relevant content was missing.
-- [ ] User has explicitly approved `prd.md` after self-review.
+- [ ] Used `interrogate` skill to gather every last detail about the request.
+- [ ] Written PRD to `docs/propulsion/.../prd.md`.
+- [ ] Compared PRD against conversation and added any missing content.
+- [ ] User has explicitly approved `prd.md`.
 
 ## Next Steps
 
