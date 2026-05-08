@@ -24,7 +24,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using the template in [references/plan-template.md](references/plan-template.md).
 5. Start a fresh plan review subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
 6. Review and implement feedback from the plan review.
-7. Repeat steps 6 and 7 until the review returns `Status: approved`.
+7. Repeat steps 5 and 6 until the review returns `Status: approved`.
 8. Ask the user to review and approve the plan.
 9. After explicit approval, enter the `execute` skill.
 
