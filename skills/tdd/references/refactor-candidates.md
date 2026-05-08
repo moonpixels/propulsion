@@ -1,135 +1,109 @@
 # Refactor Candidates
 
-Use this guide after the tests are green. Make the current behaviour easier to understand, safer to change, and cheaper to extend for needs already proven by the tests.
+Use this guide after tests are green. Refactor to make current behaviour easier to change, not to satisfy hypotheticals.
 
 ## Start Here
 
 Refactor only when all relevant tests are passing.
 
-Ask these gate questions before changing the structure:
+Ask these gate questions before changing structure:
 
-- Does the code or test suite show a present problem, not a hypothetical future one?
-- Can I describe the refactor without changing behaviour?
-- Is this the smallest change that removes the problem?
-- Will the tests still verify the same behaviour through the same public interface?
+- Is there a present pain in the code or test suite?
+- Can I describe the change without changing behaviour?
+- Is this the smallest move that removes that pain?
+- Will the existing tests still prove the same behaviour?
 - If I stop after this step, is the code already better?
 
 If any answer is no, do less or stop.
 
-## Good Refactor Signals
+## Good Signals
 
-### Duplication
+### Duplication of meaning
 
-Refactor when the same decision, transformation, or workflow appears in more than one place and the copies are starting to drift.
+The same decision, rule, or workflow appears in more than one place and the copies are drifting.
 
 Useful moves:
 
 - Extract a function for repeated logic.
-- Move shared behaviour to the object or module that owns it.
+- Move behaviour to the module that owns it.
 - Introduce a small abstraction only after at least two real call sites need it.
 
-Do not refactor duplicated syntax alone. Refactor duplicated meaning.
+### Long or mixed methods
 
-### Long Methods
-
-Refactor when one method is hard to scan, mixes multiple decisions, or forces the reader to hold too much state in their head.
+A method is hard to scan, mixes decisions with orchestration, or carries too much state.
 
 Useful moves:
 
-- Extract helpers around distinct steps.
-- Name intermediate concepts so the flow reads at the domain level.
-- Separate orchestration from detailed work.
+- Extract helpers around named steps.
+- Separate orchestration from detail.
+- Name domain concepts before adding abstractions.
 
-Prefer small extractions that clarify intent. Do not split a method into many tiny helpers with no clearer names or boundaries.
+### Poor names
 
-### Poor Naming
-
-Refactor when a name hides purpose, uses generic placeholders, or no longer matches the behaviour proven by the tests.
+Names hide intent, use placeholders, or no longer match behaviour proven by the tests.
 
 Useful moves:
 
-- Rename variables, functions, types, and tests to describe the business meaning.
-- Replace temporary or misleading names with names that explain the decision being made.
+- Rename variables, functions, types, and tests to match business meaning.
 
-Prefer better names before new abstractions.
+### Feature envy
 
-### Feature Envy
-
-Refactor when logic reaches repeatedly into another object or data structure to do work that clearly belongs there.
+Logic repeatedly reaches into another object’s data to do work that belongs there.
 
 Useful moves:
 
-- Move behaviour closer to the data it uses.
-- Replace chains of field access with a message to the owning object.
+- Move behaviour closer to the data.
+- Replace field chains with messages to the owner.
 
-This often improves cohesion and reduces knowledge spread.
+### Primitive obsession
 
-### Primitive Obsession
-
-Refactor when the same primitive values travel together, need repeated validation, or encode domain rules informally.
+Primitives travel together, repeat validation, or encode a domain concept informally.
 
 Useful moves:
 
 - Introduce a small value object.
-- Replace magic strings, flags, or loosely related parameters with a named concept.
-- Move validation and formatting onto that concept.
+- Replace flags or magic strings with a named concept.
 
-Do this only when the domain concept already exists in the current behaviour. YAGNI still applies.
+### Brittle conditionals
 
-### Brittle Conditionals
-
-Refactor when conditionals are nested, repeated, order-sensitive, or hard to extend without fear.
+Branches are nested, repeated, order-sensitive, or awkward to extend.
 
 Useful moves:
 
-- Extract predicate functions with clear names.
-- Flatten control flow with guard clauses.
-- Separate distinct cases into focused helpers.
-- Replace branching with polymorphism only when multiple concrete cases already exist and the branch is a real maintenance problem.
+- Add guard clauses.
+- Extract predicates.
+- Split distinct cases into focused helpers.
+- Use polymorphism only after real duplication appears.
 
-Prefer the smallest change that makes the branch understandable today.
+### Misplaced responsibility
 
-### Misplaced Responsibilities
-
-Refactor when a module has become a grab bag for unrelated work or when one change requires touching many places because ownership is unclear.
+One unit has unrelated reasons to change, or one change forces edits in many places.
 
 Useful moves:
 
 - Move behaviour to the module with the strongest reason to change.
-- Keep one unit focused on one kind of responsibility.
-- Let high-level code coordinate and low-level code perform detailed work.
-
-Use SOLID as a decision tool here. If one unit has multiple unrelated reasons to change, the design is likely fighting the current behaviour.
+- Let coordinators coordinate and workers work.
 
 ## When Not To Refactor
 
-Do not refactor just because the code looks inelegant.
+Do not refactor when:
 
-Hold off when:
-
-- The tests are not green yet.
-- You do not understand the problem well enough to name the improvement.
-- The change is driven by a guessed future requirement.
-- The abstraction would serve only one caller or one code path today.
-- The code is awkward but stable, isolated, and not blocking current work.
-- The tests are not giving enough confidence to separate structural change from behaviour change.
-
-YAGNI matters most after green. If the current tests and code do not show the need, keep the simpler structure.
+- tests are not green;
+- the pain is hypothetical;
+- the abstraction serves one caller only;
+- you cannot explain the improvement clearly;
+- the code is awkward but isolated and not blocking current work.
 
 ## DRY, SOLID, YAGNI As Filters
 
 - DRY: remove repeated knowledge, not every repeated line.
-- SOLID: prefer clearer ownership and narrower responsibilities when the current design already shows those pressures.
-- YAGNI: reject abstractions for possibilities the code does not yet need.
-
-Use these principles to choose less code and better boundaries, not to justify a larger rewrite.
+- SOLID: improve ownership when the current design already shows pressure.
+- YAGNI: reject abstractions for futures the code does not need today.
 
 ## Safe Refactor Rules
 
 - Keep refactors behaviour-preserving.
 - Change one structural idea at a time.
-- Run the relevant tests after each meaningful step.
-- Keep tests aimed at public behaviour so they survive the refactor.
-- Stop once the current pain is removed.
-
-The best refactor is usually the smallest one that makes the next change easier.
+- Run relevant tests after each meaningful step.
+- Prefer rename, extract, move, and simplify before new abstractions.
+- Stop when the current pain is removed.
