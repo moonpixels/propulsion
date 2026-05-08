@@ -1,6 +1,5 @@
 ---
 name: plan
-# prettier-ignore
 description: Create an implementation-ready feature plan from an approved PRD using phases scoped as thin vertical slices. Use when an approved `docs/propulsion/.../prd.md` exists.
 ---
 

@@ -1,6 +1,5 @@
 ---
 name: execute
-# prettier-ignore
 description: Execute a feature plan through subagent implementation and review one phase at a time. Use when current `plan.md` exists and the user wants feature implementation to start.
 ---
 

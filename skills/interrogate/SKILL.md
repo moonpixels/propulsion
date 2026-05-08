@@ -1,6 +1,5 @@
 ---
 name: interrogate
-# prettier-ignore
 description: Manage interrogation, intake, interviews, scope clarification, requirements gathering, and shared understanding. Use when missing decisions must be resolved.
 ---
 
