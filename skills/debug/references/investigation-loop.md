@@ -1,83 +1,84 @@
 # Investigation Loop
 
-Use this reference to keep `debug` aligned with systematic, evidence-first bug resolution.
+Use this loop to keep `debug.md` evidence-first and to stop fixes before root cause is grounded.
 
-## Iron Law
+## Loop
 
-No fixes before grounded root-cause investigation. Do not choose a fix hypothesis, dispatch production-code work, or edit production code until the evidence explains the earliest bad state or divergence. Temporary diagnostic edits are allowed only when recorded in `debug.md`, used for investigation, and reverted before fix handoff.
+1. Capture the feedback signal.
 
-Work the loop in this order and keep `debug.md` current after each step.
+- Record the exact symptom: failing command, assertion, crash, wrong output, visible behaviour, alert, or metric.
+- Record expected versus actual behaviour and the user impact.
+- Freeze relevant environment facts: revision, runtime, platform, flags, config, inputs, time/locale, dataset, tenant, CI/prod scope.
 
-1. Reproduce and stabilise.
+2. Reproduce or block.
 
-- Capture the exact symptom, failing assertion, wrong output, or visible bad behaviour.
-- Read the failure fully: full error, stack, warning, assertion, logs, exit code, and first meaningful frame before summarising.
-- Freeze the environment facts that matter: revision, runtime, flags, config, inputs, time, locale, dataset, and scope.
-- Reduce moving parts until one command, script, or exact manual path reproduces the issue, or classify it explicitly as flaky.
+- Reproduce before theorising using one command, script, URL, or manual path.
+- If it will not reproduce, record no-repro attempts, environment gaps, and the next needed signal before blocking or asking.
+- For flaky failures, prove pass/fail variation, capture run counts, freeze seed/time/order where possible, and record what changes between runs.
 
-2. Scan recent changes.
+3. Read the failure fully.
 
-- Check recent changes before broad code reading: working tree diff, staged diff, recent commits, dependencies, config changes, environment changes, CI changes, and runtime drift.
-- Record the smallest credible good/bad window when one exists.
-- Treat drift as evidence, not a diagnosis, until tied to the reproduced symptom.
+- Read the complete error, stack, warning, assertion, logs, exit code, and first meaningful frame before summarising.
+- Separate what the output proves from what it merely suggests.
 
-3. Reduce the case.
+4. Scan recent changes.
 
-- Minimise setup, fixtures, services, flags, and data while preserving the same symptom.
-- Prefer the smallest practical failing case. This follows the delta-debugging idea: remove variables until the bug survives in less space.
-- If the symptom changes, record that you changed the problem.
+- Check working tree diff, staged diff, recent commits, dependencies, config, environment, CI, runtime drift, and release delta before broad code reading.
+- If a good/bad window exists, record the smallest credible window and isolate it before guessing.
 
-4. Compare working examples.
+5. Reduce the case.
 
-- When applicable, compare against a working example, reference implementation, adjacent passing test, prior release, documented sample, or known-good trace.
-- Record the first meaningful divergence between broken and working paths.
-- If no useful working example exists, record why.
+- Remove fixtures, services, flags, data, timing, and setup while preserving the same symptom.
+- If the symptom changes, record that the problem changed and reset the reduction.
+- For performance/resource failures, reduce to the threshold and boundary where the cost first diverges from a good baseline.
+- For data-dependent failures, shrink to the smallest input, fixture, stored state, or tenant dataset that still fails.
 
-5. Isolate the first bad boundary.
+6. Compare with working evidence.
 
-- Compare broken versus working inputs, environments, traces, or outputs.
-- Find the first component, layer, handoff, or state transition where the signal changes from good to bad.
-- Trace boundary data explicitly: ingress, egress, config propagation, and state at each component handoff.
-- If a good/bad history window exists, isolate it before broad code reading. Diff debugging beats guessing.
+- Compare against a passing test, adjacent feature, prior release, reference implementation, known-good trace, or good environment.
+- For environment/config failures, compare runtime, flags, env, and config propagation at each boundary.
+- Record the first meaningful broken-versus-working difference.
 
-6. Diagnose with one ranked hypothesis at a time.
+7. Isolate the first bad boundary.
 
-- Keep a short list: current best hypothesis, strongest alternative, and unexplained evidence.
-- Run one discriminating experiment at a time and record the expected result first.
-- Trace backward from the late symptom to the earliest explainable bad state or divergence.
-- Use existing logs, traces, dumps, breakpoints, logpoints, watchpoints, and debugger-led inspection before mutating logic.
+- Trace ingress, egress, config propagation, data, state, and timing at each component handoff.
+- For concurrency/order bugs, serialise when possible, use logpoints/watchpoints, and capture the first ordering change that turns good into bad.
+- For multi-component failures, inspect each handoff until the earliest bad boundary is visible.
 
-7. Gate the fix.
+8. Hypothesize one cause.
 
-- Do not choose a fix until the diagnosis explains the first bad state or divergence, not just the late symptom.
-- Record one chosen fix hypothesis, the falsifier, and fix constraints in `debug.md`.
-- If the evidence no longer fits, reset the diagnosis instead of pushing through.
+- Keep one current best hypothesis plus the strongest alternative and unexplained evidence.
+- Define the falsifier and one discriminating experiment before running it.
+- Prefer existing logs, traces, dumps, breakpoints, logpoints, watchpoints, and debugger inspection before mutating code.
 
-8. Verify the fix loop result.
+9. Experiment once.
 
-- If a dispatched fix attempt fails verification or contradicts the diagnosis, return to step 1 or 2 with the new evidence.
-- After 3 failed fix loops, reassess architecture and patterns before user escalation, then escalate with the failed loops and reassessment summarised in `debug.md`.
+- Run one experiment at a time and record expected result, actual result, and conclusion.
+- Temporary diagnostic edits are allowed only for investigation; record file, purpose, tag/comment marker when relevant, observation, and revert status in `debug.md`.
+- Revert temporary diagnostic edits before fix handoff.
 
-Use these narrowing moves when the failure clearly fits one:
+10. Diagnose and gate the fix.
 
-- Flaky: prove pass/fail variation, freeze time/seed/order, and record what changes between runs before theorising.
-- Regression window exists: isolate the smallest credible good/bad window and bisect it before broad code reading.
-- Performance or resource failure: record the failing threshold, compare against a good baseline, and isolate the slow or wasteful boundary before proposing a fix.
-- Environment or config mismatch: compare broken versus working runtime, flags, and config propagation at each boundary.
-- Data-dependent failure: shrink to the smallest failing input, stored state, or fixture that still produces the same symptom.
-- Concurrency or ordering bug: serialise the workload when possible, add logpoints or watchpoints, and capture the first ordering change that makes good turn bad.
-- Multi-component boundary failure: inspect ingress and egress at each handoff until the first bad boundary is visible.
+- Ground the diagnosis only when evidence explains the earliest bad state or divergence, not just the late symptom.
+- Record root cause, falsifier, fix constraints, and one chosen fix hypothesis.
+- Dispatch one fix at a time; if evidence no longer fits, reset diagnosis instead of pushing through.
+
+11. Reset or escalate.
+
+- If verification, review, or new evidence contradicts the model, return to the earliest loop step affected and record the reset reason.
+- After 3 failed fix loops, reassess architecture and patterns before escalating to the user.
+- Escalate with reproduced facts, failed hypotheses, experiments, fix attempts, reassessment, and the exact decision or access needed.
 
 ## Rules
 
-- No fixes before grounded root-cause investigation.
+- No permanent production-code changes in the controller before a grounded diagnosis.
 - Reproduce before theorising.
-- Read the full error before summarising.
-- Scan recent changes before widening the search.
-- Reduce before widening the search.
+- Read full errors before summarising.
+- Scan changes and reduce before widening search.
 - Isolate before fixing.
-- Compare against a working example or reference when applicable.
-- Trace ingress, egress, config propagation, and state at each component handoff.
-- One hypothesis, one experiment, one fix at a time.
-- Reset immediately when verification or evidence breaks the current model.
-- Reassess architecture and patterns after 3 failed fix loops before escalating to the user.
+- Use one hypothesis, one experiment, and one fix at a time.
+- Record expected experiment results before running experiments.
+- Record, tag where relevant, and revert temporary diagnostic edits before fix handoff.
+- Treat flaky, regression-window, performance, environment/config, data-dependent, concurrency, and multi-component cases as evidence patterns, not shortcuts to a fix.
+- Reset when evidence breaks the current model.
+- Reassess architecture and patterns after 3 failed fix loops before user escalation.
