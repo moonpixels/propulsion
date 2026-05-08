@@ -25,7 +25,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 3. Write ONE failing test through a public interface or stable seam for the next behaviour only.
 4. Run the narrowest test command and confirm the test fails for the expected reason.
 5. Write the minimum production code to pass; keep fixtures small and mock only real external, slow, unstable, or nondeterministic boundaries.
-6. Re-run the narrowest test command and confirm green, then run the impacted fast suite or strongest local fallback.
+6. Re-run the narrowest test command and confirm green.
 7. Review refactor candidates only after green using [references/refactor-candidates.md](references/refactor-candidates.md); refactor in small behaviour-preserving steps and rerun relevant checks.
 8. Repeat slice by slice until the requested behaviour is complete.
 
@@ -50,7 +50,6 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Tests prove behaviour through a public interface or stable seam, with no brittle, speculative, implementation-detail, or over-mocked tests kept.
 - [ ] No-test fallback rationale was documented only where no valuable behavioural test exists.
 - [ ] Refactor opportunities were reviewed after green, and refactors happened only while checks were green.
-- [ ] Impacted fast tests and required local verification passed, or unresolved failures were reported clearly.
 
 ## References
 
