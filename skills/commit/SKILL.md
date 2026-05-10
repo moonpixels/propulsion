@@ -5,7 +5,7 @@ description: Create one safe local git commit from current changes. Use when ask
 
 # Commit
 
-Create exactly one local git commit from safe current changes and report the result.
+Create one safe local git commit and report the result.
 
 ## Prerequisites
 
@@ -17,10 +17,10 @@ ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Inspect current state with `git status --short`, `git diff HEAD`, and `git branch --show-current`.
+1. Inspect state with `git status --short`, `git diff HEAD`, and `git branch --show-current`.
 2. Stage all local changes with `git add -A`, including untracked files.
 3. Unstage every staged secret-like file matching [references/workflow.md](references/workflow.md).
-4. Check staged changes after exclusions. If none remain, stop and output exactly `No changes to commit.`
+4. Check staged changes after exclusions; if none remain, stop and output exactly `No changes to commit.`
 5. Generate a one-line imperative commit subject from the staged diff.
 6. Create exactly one local commit with that subject.
 7. Run `git status --short` before the final response.

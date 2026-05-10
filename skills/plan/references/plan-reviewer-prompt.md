@@ -5,29 +5,29 @@ Use this template when starting a fresh plan review subagent in the `plan` skill
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
 
-You are a plan document reviewer. Verify that the plan is implementation ready and conforms to the plan template.
+Review whether the plan is implementation-ready and conforms to the plan template.
 
 **Plan document location**: `docs/propulsion/.../plan.md`
 **Source PRD location**: `docs/propulsion/.../prd.md`
 
 ## Review Criteria
 
-| Category                     | What to verify                                                                                                                                                                              |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Source Alignment             | The plan preserves all relevant PRD decisions, implementation inputs, testing decisions, constraints, and scope boundaries.                                                                 |
-| Requirements Traceability    | Every PRD user story, functional requirement, and non-functional requirement appears in the Requirements Coverage Matrix and is covered by at least one phase and one acceptance criterion. |
-| Acceptance Criteria Coverage | Acceptance criteria use exact PRD IDs, cover the mapped requirements, are observable/testable, and are specific enough to verify implementation.                                            |
-| Vertical Slice Design        | Phases are thin vertical slices delivering narrow end-to-end behaviour, not horizontal layers or vague milestones.                                                                          |
-| Phase Completeness           | Each phase includes enough schema, backend, API, UI, validation, authorisation, testing, logging, documentation, or other relevant layer work to deliver its stated behaviour.              |
-| Skills Coverage              | Relevant skills are recommended globally and per phase, no obviously required skill is missing, and no irrelevant skill is recommended.                                                     |
-| Testing Coverage             | Each phase has a testing plan that validates its acceptance criteria and covers the important public behaviours and seams.                                                                  |
-| Scope Control                | Required work is included, speculative work is excluded, and no product behaviour is invented beyond the approved PRD.                                                                      |
-| Sequencing & Dependencies    | Phase order is workable, dependencies are respected, and the plan will not force avoidable rework or dead ends later.                                                                       |
-| Phase Specificity            | Each phase gives the worker enough context to act: clear goal, demo / verification outcome, likely areas, constraints, implementation notes, acceptance criteria, and testing plan.         |
-| Decision Hygiene             | Durable decisions are captured once at the right level, with no contradictions or re-litigation points across phases.                                                                       |
-| Template Conformity          | The plan follows the required template structure, section order, tables, and conventions.                                                                                                   |
+| Category                     | Verify                                                                                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Source Alignment             | Preserves PRD decisions, inputs, testing decisions, constraints, and scope boundaries.                                                                 |
+| Requirements Traceability    | Every PRD user story, functional requirement, and non-functional requirement appears in the matrix and is covered by at least one phase and criterion. |
+| Acceptance Criteria Coverage | Criteria use exact PRD IDs, cover mapped requirements, are observable/testable, and specific enough to verify.                                         |
+| Vertical Slice Design        | Phases are thin vertical slices delivering narrow end-to-end behaviour, not horizontal layers or vague milestones.                                     |
+| Phase Completeness           | Each phase includes enough relevant layer work to deliver its stated behaviour.                                                                        |
+| Skills Coverage              | Relevant skills are recommended globally/per phase; no obviously required skill is missing; no irrelevant skill is recommended.                        |
+| Testing Coverage             | Each phase has a testing plan that validates criteria and important public behaviours/seams.                                                           |
+| Scope Control                | Required work is included, speculative work is excluded, and no product behaviour is invented beyond the PRD.                                          |
+| Sequencing & Dependencies    | Phase order is workable, dependencies are respected, and avoidable rework/dead ends are not forced.                                                    |
+| Phase Specificity            | Each phase gives enough context: goal, demo outcome, likely areas, constraints, notes, criteria, and testing plan.                                     |
+| Decision Hygiene             | Durable decisions are captured once at the right level without contradictions or re-litigation points.                                                 |
+| Template Conformity          | Required template structure, section order, tables, and conventions are followed.                                                                      |
 
-Flag only issues that would cause implementation to build the wrong thing, miss required scope, get stuck, or need re-planning.
+Flag only issues that would make implementation build the wrong thing, miss required scope, get stuck, or require re-planning.
 
 ## Instructions
 
@@ -73,7 +73,7 @@ Use this exact format for your output.
 
 These rules are MANDATORY.
 
-- NEVER skip any part of the review criteria
+- NEVER skip any review criterion.
 - ENSURE every part of the PRD is considered in the review, even if it seems obvious or minor.
 - EVERY PRD user story, functional requirement, and non-functional requirement MUST be traceable to at least one phase and one acceptance criterion in the plan.
 - MUST return exactly one `Status:` line with either `approved` or `rejected`.

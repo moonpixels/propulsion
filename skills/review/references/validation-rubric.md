@@ -1,19 +1,18 @@
 # Validation Rubric
 
-Use this reference when validating candidate findings and questions before final report generation.
+Use when validating candidate findings and questions before final report generation.
 
 ## Disprove-first flow
 
 1. Assume the finding is wrong.
-2. Search the diff, full changed files, scoped rules/contracts, and gathered adjacent context for counter-evidence.
+2. Search diff, changed files, scoped rules/contracts, and gathered adjacent context for counter-evidence.
 3. Reject if evidence is incomplete, ambiguous, pre-existing, or out of scope.
 4. Confirm only if objective evidence supports the claim and the issue is one the PR author would fix.
 
 ## Candidate types
 
 - Validate `finding` candidates and `question` candidates separately.
-- A `question` is valid only when missing context materially blocks the final decision or severity.
-- A `question` must cite the exact missing artefact, assumption, or unresolved behaviour.
+- A `question` is valid only when missing context materially blocks final decision or severity and cites the exact missing artefact, assumption, or unresolved behaviour.
 
 ## Severity confirmation requirements
 
@@ -38,11 +37,10 @@ Use this reference when validating candidate findings and questions before final
 
 ## Evidence requirements
 
-- Evidence must come from changed code, scoped rules/contracts, allowed adjacent context, nearby precedent, or explicitly linked intent artefacts.
-- Rule or contract violations must quote exact text and source path.
-- Consistency claims must cite dominant local precedent.
-- Principle-backed claims must name the principle and explain the concrete maintenance, ownership, testing, or correctness cost.
-- Test-gap claims must tie directly to changed behaviour and realistic failure modes.
+- Evidence must come from changed code, scoped rules/contracts, allowed adjacent context, nearby precedent, or linked intent artefacts.
+- Rule/contract violations quote exact text and source path; consistency claims cite dominant local precedent.
+- Principle-backed claims name the principle and concrete maintenance, ownership, testing, or correctness cost.
+- Test-gap claims tie directly to changed behaviour and realistic failure modes.
 
 ## Automatic reject conditions
 

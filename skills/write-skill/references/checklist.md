@@ -13,7 +13,7 @@ Use this checklist before handing off a new or updated skill.
 - [ ] `description` is 300 characters or fewer to avoid validator errors.
 - [ ] `description` includes what the skill does.
 - [ ] `description` includes `Use when`, `Use for`, or `Use to`.
-- [ ] `description` front-loads the main use case and strongest trigger words because crowded skill lists can shorten descriptions.
+- [ ] `description` front-loads the main use case and trigger words because crowded skill lists can shorten descriptions.
 - [ ] `description` includes natural trigger keywords a user would say.
 - [ ] `description` is third person and action-oriented.
 - [ ] `description` starts with a strong action verb such as Create, Validate, Review, Manage, or Execute.
@@ -21,13 +21,13 @@ Use this checklist before handing off a new or updated skill.
 ## Artefact Layout
 
 - [ ] Repository skill path defaults to `.agents/skills/{skill-name}/SKILL.md`.
-- [ ] `SKILL.md` exists and contains required `name` and `description` frontmatter.
+- [ ] `SKILL.md` has required `name` and `description` frontmatter.
 - [ ] `assets/` contains only reusable templates or static resources.
 - [ ] `references/` contains detailed documentation, examples, rubrics, or checklists.
 - [ ] `scripts/` contains only executable helpers and documents how to run them.
 - [ ] Scripts are used only when deterministic behavior or external tooling is needed.
 - [ ] Scripts are self-contained, dependency-light, and report actionable errors.
-- [ ] Artefact files are directly under `assets/`, `references/`, or `scripts/`; no nested artefact directories or files exist.
+- [ ] Artefacts are directly under `assets/`, `references/`, or `scripts/`; no nested artefact paths exist.
 - [ ] No unnecessary README, changelog, or duplicate auxiliary files were added.
 
 ## SKILL.md Body
@@ -50,11 +50,11 @@ Use this checklist before handing off a new or updated skill.
 
 ## Language Quality
 
-- [ ] Removes filler words such as just, really, basically, actually, and simply.
-- [ ] Removes pleasantries and chatty setup such as sure, certainly, happy to, and please.
-- [ ] Removes hedging when the instruction is required, including likely, maybe, should probably, and may want to.
-- [ ] Replaces verbose phrasing with short direct wording without changing the instruction.
-- [ ] Preserves explicit technical meaning: commands, paths, APIs, error text, safety warnings, conditions, and ordering constraints stay exact.
+- [ ] Removes filler: just, really, basically, actually, simply.
+- [ ] Removes pleasantries/chatty setup: sure, certainly, happy to, please.
+- [ ] Removes hedging from required instructions: likely, maybe, should probably, may want to.
+- [ ] Replaces verbose phrasing with short direct wording without changing meaning.
+- [ ] Preserves exact commands, paths, APIs, error text, safety warnings, conditions, and ordering constraints.
 
 ## Progressive Disclosure
 

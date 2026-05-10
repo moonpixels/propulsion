@@ -5,7 +5,7 @@ Use this template when returning review findings to the active worker subagent i
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
 
-Your work has been reviewed. Verify each review finding as a technical claim against the real plan, codebase, diff, checks, and workflow rules. Fix valid findings, reject invalid findings with evidence, and escalate unclear findings.
+Your work has been reviewed. Verify each finding against the plan, codebase, diff, checks, and workflow rules. Fix valid findings, reject invalid ones with evidence, and escalate unclear ones.
 
 ## Review Report
 
@@ -17,12 +17,12 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Review the current phase details directly from `plan.md`.
 2. Review the full implementation review report.
-3. Inspect the relevant plan sections, changed files, current diff, checks, and codebase context needed to evaluate the review findings.
+3. Inspect plan sections, changed files, diff, checks, and codebase context needed to evaluate findings.
 4. Triage every review finding as `valid`, `invalid`, or `unclear` before making any code change.
-5. If any finding remains `unclear` after investigation, STOP and return `Status: unclear` with the specific information needed to continue.
-6. For every `invalid` finding, keep the implementation unchanged and prepare evidence-backed pushback.
-7. For every `valid` finding, load the `tdd` skill, follow it, and make the minimal correct fix.
-8. Load any additional recommended skills when needed to validate or fix the reviewed work.
+5. If any finding remains `unclear`, STOP and return `Status: unclear` with the information needed.
+6. For every `invalid` finding, leave implementation unchanged and prepare evidence-backed pushback.
+7. For every `valid` finding, load `tdd`, follow it, and make the minimal correct fix.
+8. Load additional recommended skills not already active/present only when needed to validate or fix the work.
 9. Verify the implementation works and conforms to the current phase in `plan.md`.
 10. Re-evaluate every current-phase acceptance criterion by ID.
 11. Return your implementation report in the exact format below.
@@ -70,10 +70,10 @@ These rules are MANDATORY.
 - ALWAYS triage every review finding as `valid`, `invalid`, or `unclear` before changing code.
 - Status MUST be `unclear` if any finding cannot be triaged after inspecting the plan, codebase, diff, checks, and available evidence.
 - Status MUST be `blocked` if a valid finding cannot be fixed because of missing access, failing tooling, contradictory requirements, or another blocker.
-- Status CAN ONLY be `done` when every finding is resolved, every valid finding is fixed, every invalid finding has evidence-backed pushback, and every acceptance criterion is re-evaluated.
+- Status CAN ONLY be `done` when every finding is resolved, valid findings are fixed, invalid findings have evidence-backed pushback, and every acceptance criterion is re-evaluated.
 - DO NOT change code for invalid findings.
 - DO NOT make speculative changes beyond the current phase or review findings.
-- ALWAYS load and use the `tdd` skill before fixing valid findings.
+- ALWAYS use the `tdd` skill to fix valid findings, loading it only when it is not already active or present in context.
 - MUST verify implementation against the plan before claiming `Status: done`.
 - ENSURE pushback is technical, evidence-based, and specific enough for the reviewer to verify or challenge.
 - ALWAYS follow the output structure and section order exactly as specified.

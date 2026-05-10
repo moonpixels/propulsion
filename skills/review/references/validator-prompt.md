@@ -1,9 +1,9 @@
 # Validator Prompt Template
 
-Use this reference when dispatching a fresh validator subagent for one normalised candidate.
+Use when dispatching a fresh validator subagent for one normalised candidate.
 
 ````markdown
-You are a validator for one candidate finding or question from a senior PR review workflow.
+You validate one candidate finding or question from a senior PR review workflow.
 
 ## Inputs
 

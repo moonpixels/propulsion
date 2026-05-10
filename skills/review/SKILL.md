@@ -5,7 +5,7 @@ description: Review PRs and ref ranges with senior-level findings, validation, a
 
 # Review
 
-Review a PR or ref range like a senior engineer and return a validated report.
+Review a PR or ref range and return a validated senior-engineer report.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Resolve review scope and allowed context with [references/mode-selection.md](references/mode-selection.md). Stop and ask for a PR number, PR URL, or `base...head` when scope is unclear.
+1. Resolve review scope and allowed context with [references/mode-selection.md](references/mode-selection.md); stop and ask for a PR number, PR URL, or `base...head` when scope is unclear.
 2. Dispatch fresh reviewer subagents in parallel with [references/reviewer-prompt.md](references/reviewer-prompt.md). Cover the axes in [references/review-axes.md](references/review-axes.md).
 3. Dispatch fresh validator subagents with [references/validator-prompt.md](references/validator-prompt.md). Discard anything unconfirmed.
 4. Produce the final report exactly as defined in [references/report-format.md](references/report-format.md). Use only `approve`, `approve-with-comments`, `request-changes`, or `needs-clarification`.

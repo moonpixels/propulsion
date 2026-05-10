@@ -38,6 +38,7 @@ These rules are MANDATORY.
 - MUST route feature and product-scope work to `brainstorm` (new features, unclear scope, UX/product shaping, requirements discovery, behaviour changes, refactors, optimisations).
 - ALWAYS fall back to `brainstorm` if the request is ambiguous.
 - DO NOT leave a Propulsion skill until ALL completion gate items are complete.
+- NEVER reload skills (Propulsion or non-Propulsion) that are already active or present in context; continue following the loaded copy instead.
 - NEVER rationalise skipping Propulsion with thoughts like:
     - "I need more context first"
     - "I'll inspect the repo first"
@@ -52,7 +53,6 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Routed concrete failures to `debug`.
 - [ ] Routed feature and product-scope work to `brainstorm`.
 - [ ] Emitted the route-specific required response before any other user-visible text.
-- [ ] Loaded the chosen skill immediately.
 
 ## References
 

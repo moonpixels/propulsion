@@ -5,7 +5,7 @@ description: Create an implementation-ready feature plan from an approved PRD us
 
 # Plan
 
-Turn an approved PRD into a phased implementation-ready plan using vertical slices.
+Turn an approved PRD into a phased, vertical-slice implementation plan.
 
 ## Prerequisites
 
@@ -18,10 +18,10 @@ ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Review the approved `prd.md` to get a complete understanding of the feature.
+1. Review the approved `prd.md` to understand the feature completely.
 2. Explore relevant areas of the codebase for fresh context.
-3. Load any non-Propulsion skills relevant to the PRD and use them to help inform the plan.
-4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using the template in [references/plan-template.md](references/plan-template.md).
+3. Load relevant non-Propulsion skills not already active or present in context, and use them to inform the plan.
+4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` from [references/plan-template.md](references/plan-template.md).
 5. Start a fresh plan review subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
 6. Review and implement feedback from the plan review.
 7. Repeat steps 5 and 6 until the review returns `Status: approved`.
@@ -32,8 +32,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 These rules are MANDATORY.
 
-- NEVER skip reviewing the PRD, exploring the codebase, or loading relevant skills.
-- ALWAYS use the plan template reference for structure, section order, and completion rules.
+- NEVER skip reviewing the PRD, exploring the codebase, or loading missing relevant skills.
+- ALWAYS use the plan template for structure, section order, and completion rules.
 - NEVER print the full plan in the chat, ONLY write it to the file.
 - MUST use ALL information from the PRD, DO NOT leave any details out even if they seem obvious or minor.
 - USE `Status: approved` as the ONLY valid review approval signal.
@@ -53,7 +53,7 @@ Do NOT leave this skill until ALL items are complete.
 
 Once the completion gate is fully checked:
 
-- If `prd.md` is approved, enter the `execute` skill.
+- If `plan.md` is approved, enter the `execute` skill.
 
 ## References
 

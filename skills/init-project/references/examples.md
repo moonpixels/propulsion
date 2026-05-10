@@ -1,6 +1,6 @@
 # AGENTS.md Examples
 
-These examples show minimal protocol-style `AGENTS.md` files and pruning decisions.
+Examples of minimal protocol-style `AGENTS.md` files and pruning decisions.
 
 ## Default Rule Only
 
@@ -14,7 +14,7 @@ Use this when no repo-specific rule passes the admission test.
 
 ## Environment Gotcha
 
-Keep invisible environment constraints that can cause repeated failures.
+Keep invisible environment constraints causing repeated failures.
 
 ```markdown
 # AGENTS.md
@@ -25,7 +25,7 @@ Keep invisible environment constraints that can cause repeated failures.
 
 ## Hidden Landmine
 
-Keep repo-wide operational facts that code structure hides.
+Keep repo-wide operational facts hidden by code structure.
 
 ```markdown
 # AGENTS.md
@@ -51,7 +51,7 @@ Keep mandatory verification timing when the obligation or timing is not discover
 - After implementing changes run `bun run test` before handoff.
 ```
 
-Reason: this is not a command inventory; it defines mandatory per-change timing that scripts alone do not reveal.
+Reason: this defines mandatory per-change timing that scripts alone do not reveal.
 
 Remove command inventories:
 
@@ -59,7 +59,7 @@ Remove command inventories:
 - Run `bun test` for tests and `bun run lint` for linting.
 ```
 
-Reason: scripts and CI already document commands. Keep only a non-discoverable command caveat, such as a cache flag required to avoid false positives.
+Reason: scripts and CI already document commands. Keep only non-discoverable caveats, such as a cache flag required to avoid false positives.
 
 Challenge vague preferences:
 
@@ -67,7 +67,7 @@ Challenge vague preferences:
 - Write clean code and keep files organized.
 ```
 
-Reason: not operationally specific. Ask for a concrete repo-wide failure mode or delete it.
+Reason: not operationally specific. Ask for a concrete repo-wide failure mode or delete.
 
 Relocate task-specific workflow:
 

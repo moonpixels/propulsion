@@ -1,49 +1,32 @@
 # Testing Patterns
 
-Use this reference before writing or keeping a TDD test. Keep tests behavioural, refactor-safe, and cheap enough to run during red-green.
+Use before writing or keeping a TDD test. Keep tests behavioural, refactor-safe, and cheap enough for red-green.
 
 ## When TDD Applies
 
-Use TDD when the task changes observable behaviour, a public contract, or durable business logic.
-
-Do not force TDD for prose-only docs, comments, prompts, formatting, config text, dependency bumps, generated files, or pure refactors with no behaviour change. Record the no-test rationale and run fallback verification instead.
-
-If a task mixes behaviour with maintenance, TDD only the behaviour-changing slice.
+Use TDD for observable behaviour, public contracts, or durable business logic. Do not force it for prose-only docs, comments, prompts, formatting, config text, dependency bumps, generated files, or pure refactors; record no-test rationale and run fallback verification. If work mixes behaviour and maintenance, TDD only the behaviour-changing slice.
 
 ## Test Type Choice
 
-Choose the highest-level test that proves the behaviour while staying quick, deterministic, and cheap.
+Choose the highest-level quick, deterministic test that proves behaviour.
 
 1. Prefer feature or integration tests first. Test the public path a caller, user, endpoint, CLI, message handler, or upstream module uses.
 2. Use unit tests second for isolated important logic, especially rules with many cases, edge conditions, or awkward setup through the full path.
 3. Use browser or end-to-end tests sparingly for UI interaction patterns, smoke coverage, or behaviour that lower-level tests cannot prove.
 
-Drop lower only when the higher-level path is slow, flaky, too broad, or expensive to control. Drop to a stable seam with domain meaning, not a private helper.
+Drop lower only when the higher-level path is slow, flaky, too broad, or expensive to control; use a stable domain seam, not a private helper.
 
 ## Red-Green Test Quality
 
 Write one failing test for one missing behaviour.
 
-Good red tests:
+Good red tests name caller-visible behaviour, fail for the expected reason before production changes, imply the next smallest code change, assert observable outcomes, and avoid future requirements.
 
-- name the behaviour in caller language;
-- fail for the expected reason before production changes;
-- tell you the next smallest code change;
-- assert an observable outcome;
-- avoid future requirements.
-
-Weak red tests:
-
-- assert helper calls, call order, source text, hook names, class names, or private state;
-- require large mock choreography;
-- fail when internals move but behaviour stays the same;
-- cover hypothetical edge cases not requested now.
+Weak red tests assert helper calls, call order, source text, hook names, class names, or private state; require large mock choreography; fail when internals move but behaviour stays; or cover hypothetical edge cases.
 
 ## Refactor-Safe Tests
 
-Refactor-safe tests keep passing when internals are rewritten but behaviour stays the same.
-
-Assert through public interfaces or stable seams:
+Refactor-safe tests keep passing when internals change but behaviour does not. Assert through public interfaces or stable seams:
 
 - returned values;
 - persisted state through supported reads;
@@ -79,37 +62,19 @@ test('calls validateCart before createOrder', async () => {
 
 ## Good Tests
 
-Good tests prove a behaviour someone depends on.
+Good tests prove a depended-on behaviour through exported functions, endpoints, commands, UI interactions, handlers, or stable domain seams. Keep setup small and realistic; use multiple assertions only for one outcome from one cause; prefer cheap builders, fixtures, in-memory adapters, and real collaborators; make failures describe broken behaviour.
 
-- Test through exported functions, endpoints, commands, UI interactions, handlers, or stable domain seams.
-- Keep setup small and realistic.
-- Use multiple assertions only when they describe one outcome from one cause.
-- Prefer builders, fixtures, in-memory adapters, and real collaborators when they stay cheap.
-- Make failures describe broken behaviour, not changed structure.
-
-Examples:
-
-- `login(email, password)` rejects invalid credentials.
-- `publishPost()` makes the post visible in `listPublishedPosts()`.
-- Clicking `Save` shows a success message.
+Examples: `login(email, password)` rejects invalid credentials; `publishPost()` makes the post visible in `listPublishedPosts()`; clicking `Save` shows a success message.
 
 ## Bad Tests
 
-Reject tests that prove structure instead of behaviour.
-
-- `checkout()` calls `paymentService.charge()` once.
-- `login()` calls `validatePasswordHash()`.
-- A component contains `aria-label` as source text.
-- A broad snapshot proves a button opens a menu.
-- A test exists only because an edge case might matter later.
+Reject structure tests: `checkout()` calls `paymentService.charge()` once; `login()` calls `validatePasswordHash()`; source text contains `aria-label`; a broad snapshot proves a menu opens; a test exists only because an edge case might matter later.
 
 Replace bad tests with behavioural assertions. If none exists, do not keep a weak test; document the no-test rationale and run fallback verification.
 
 ## Mocks And Doubles
 
-Mock only real boundaries that are external, slow, unstable, nondeterministic, or too expensive for the selected scope.
-
-Good mock targets:
+Mock only real boundaries that are external, slow, unstable, nondeterministic, or too expensive for the selected scope. Good targets:
 
 - payment gateways;
 - clocks and time;
@@ -118,9 +83,7 @@ Good mock targets:
 - file systems;
 - third-party APIs.
 
-Keep core logic real. Prefer fakes that preserve behaviour, such as an in-memory repository or mailer that records sent messages.
-
-Avoid over-mocking. If mock setup dominates the test, the test likely proves mocks agree with each other. If mock data is required, mirror the real schema enough that consumers cannot accidentally rely on missing fields.
+Keep core logic real. Prefer behaviour-preserving fakes, such as an in-memory repository or mailer. If mock setup dominates, the test likely proves mocks agree. If mock data is required, mirror enough real schema to avoid accidental reliance on missing fields.
 
 ## Anti-Patterns
 

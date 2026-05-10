@@ -5,17 +5,17 @@ description: Create or improve reusable skills with compact progressive-disclosu
 
 # Write Skill
 
-Create concise skills that package repeatable workflows without bloating context.
+Create concise skills for repeatable workflows without bloating context.
 
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Load `interrogate` skill to gather the skill's job, concrete use cases, expected inputs, expected outputs, and trigger phrases before drafting.
+1. Load `interrogate` to gather the skill's job, use cases, expected inputs, expected outputs, and trigger phrases before drafting.
 2. Choose the default output path `.agents/skills/{skill-name}/`; keep `name` equal to the directory name.
-3. Draft or update `SKILL.md` with the required shape in [assets/skill-template.md](assets/skill-template.md).
+3. Draft or update `SKILL.md` using [assets/skill-template.md](assets/skill-template.md).
 4. Put only essential workflow in `SKILL.md`; move supporting artefacts into appropriate directories.
-5. Put reusable templates or static resources in `assets/`, executable helpers in `scripts/`, and detailed docs in `references/`.
+5. Put templates/static resources in `assets/`, executable helpers in `scripts/`, and detailed docs in `references/`.
 6. Validate the result with [scripts/validate-skill.js](scripts/validate-skill.js), then fix every blocking issue.
 
 ## Rules
@@ -28,7 +28,7 @@ These rules are MANDATORY.
 - MUST keep `SKILL.md` compact: target about 50 body lines and never exceed 80 body lines.
 - MUST make `description` one line, triggerable, and clear about when the skill should be used.
 - MUST place artefacts directly under `assets/`, `references/`, or `scripts/` and link each from final references as `- [path](path) - text`.
-- MUST use progressive disclosure: metadata first, essential instructions second, artefacts only when needed.
+- MUST use progressive disclosure: metadata first, essential instructions second, artefacts as needed.
 - MUST write short, direct, instructional prose: remove filler, pleasantries, hedging, and verbose phrases while preserving exact technical meaning.
 - MUST review [references/checklist.md](references/checklist.md) and run [scripts/validate-skill.js](scripts/validate-skill.js) before handoff.
 

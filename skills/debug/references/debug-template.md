@@ -7,13 +7,13 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
 
 ## Intake
 
-- Source and timestamp: `<user report, issue, PR, alert, log, support ticket, or prior debug.md>`
+- Source/time: `<user report, issue, PR, alert, log, support ticket, or prior debug.md>`
 - Original report: `<verbatim excerpt or link>`
 - Exact symptom: `<failing command, crash, assertion, wrong output, visible behaviour>`
 - Expected behaviour: `<known expected result, or blocker if unknowable>`
 - Actual behaviour: `<observed result>`
 - Impact: `<severity, frequency, users/workflows affected>`
-- Environment reported: `<OS, runtime, browser, device, CI/prod, tenant, dataset, versions>`
+- Environment: `<OS, runtime, browser, device, CI/prod, tenant, dataset, versions>`
 - Questions answered: `<Q/A list or None>`
 - Open blockers: `<missing expected behaviour, reproduction, environment, data, access, or None>`
 
@@ -30,23 +30,23 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
 - Status: `<reproduced | flaky | no-repro | blocked>`
 - Exact command/path: `<single command, script, URL, or manual flow>`
 - Expected vs actual: `<short comparison>`
-- Full output location: `<inline excerpt or linked complete output>`
+- Full output: `<inline excerpt or linked complete output>`
 - Reduced repro: `<smallest stable failing case, flaky proof, or no-repro attempts>`
 - No-repro/blocking rationale: `<attempts made, missing signal, user input needed, or N/A>`
 
 ## Full Error Reading
 
-- Complete error evidence: `<full error, stack, warning, assertion, logs, and exit code>`
+- Complete error: `<full error, stack, warning, assertion, logs, exit code>`
 - First meaningful frame/signal: `<earliest useful app, config, dependency, data, or boundary frame>`
 - Surrounding context: `<only logs/traces needed to interpret the failure>`
-- Conclusion: `<what the full output proves, and what it does not prove>`
+- Conclusion: `<what the output proves and does not prove>`
 
 ## Environment And Recent Changes
 
 - Revision/build: `<commit, branch, release, image, artifact>`
-- Runtime/platform/config/data: `<versions, flags, env, inputs, time/locale, tenant/dataset>`
-- Working tree/staged diff: `<relevant changes or None>`
-- Recent commits/release delta: `<good/bad window, candidate commits, dependencies, CI/runtime drift>`
+- Runtime/config/data: `<versions, flags, env, inputs, time/locale, tenant/dataset>`
+- Worktree/staged diff: `<relevant changes or None>`
+- Recent delta: `<good/bad window, candidate commits, dependencies, CI/runtime drift>`
 - Change conclusion: `<plausible changes tied to the symptom, or none>`
 
 ## Reduction And Comparison
@@ -54,13 +54,13 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
 - Smallest failing case: `<input, request, fixture, test, path, or workload>`
 - Variables removed/controlled: `<services, flags, data, timing, seed, order, config>`
 - Working example: `<passing test, adjacent feature, prior release, known-good trace, or N/A>`
-- Broken vs working differences: `<input, output, state, config, trace, timing, boundary behaviour>`
+- Broken vs working diff: `<input, output, state, config, trace, timing, boundary behaviour>`
 - First observed divergence: `<earliest point where good and bad paths differ>`
 
 ## Boundary Tracing
 
 - Boundary map: `<components, layers, services, files, processes crossed>`
-- Ingress/egress observations: `<input and output at each relevant handoff>`
+- Handoff observations: `<input and output at each relevant boundary>`
 - Config/data/state propagation: `<where values are read, transformed, lost, raced, or corrupted>`
 - First bad boundary: `<component, frame, state, handoff, or transition where good turns bad>`
 
@@ -74,7 +74,6 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
 
 - E1. `<command/log/trace/dump/screenshot/debugger/diagnostic edit observation>`
 - E2. `<next evidence item>`
-- E3. `<next evidence item>`
 
 ## Hypotheses And Experiments
 
@@ -86,7 +85,7 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
     - Actual result: `<observed outcome>`
     - Falsifier: `<what disproves it>`
     - Conclusion: `<supported | disproved | unclear>`
-- H2. `<next hypothesis only after H1 is concluded or reset>`
+- H2. `<next hypothesis only after H1 concludes or resets>`
 
 ## Diagnosis Gate
 
@@ -128,7 +127,7 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
 ## Closure
 
 - Final status: `<fixed | blocked | no-repro | reset | escalated>`
-- User-visible resolution: `<what changed, or why not>`
+- Resolution: `<what changed, or why not>`
 - Closure evidence: `<verification, no-repro proof, blocker, or escalation evidence>`
 - Follow-ups: `<cleanup, hardening, or None>`
 ```
@@ -140,8 +139,7 @@ Create or resume one living `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` dos
 - If expected behaviour, reproduction, or environment is unknowable, record the blocker and do not dispatch a fix.
 - Ground the diagnosis gate before any production-code change or fix dispatch.
 - Use one hypothesis, one experiment, and one fix at a time; record expected experiment results before running them.
-- Record flaky, no-repro, regression-window, performance, environment/config, data-dependent, concurrency, and multi-component evidence using the same sections.
-- Record temporary diagnostic edits with file, purpose, tag/comment marker when relevant, observation, and revert status.
-- Revert temporary diagnostic edits before fix handoff.
+- Use the same sections for flaky, no-repro, regression-window, performance, environment/config, data-dependent, concurrency, and multi-component evidence.
+- Record diagnostic edits with file, purpose, marker when relevant, observation, and revert status; revert them before fix handoff.
 - Preserve failed hypotheses, contradicted evidence, rejected reviews, reset reasons, failed fix loops, and escalations.
 - After 3 failed fix loops, reassess architecture and patterns before escalating.
