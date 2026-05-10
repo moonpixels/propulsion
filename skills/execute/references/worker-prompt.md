@@ -5,7 +5,7 @@ Use this template when starting a fresh worker subagent in the `execute` skill.
 ````markdown
 **You are a subagent completing work in the Propulsion workflow.**
 
-You are a senior software engineer implementing the current phase of work defined below.
+Implement the current phase defined below.
 
 ## Task Context
 
@@ -16,9 +16,9 @@ You are a senior software engineer implementing the current phase of work define
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Review the current phase details in `plan.md`.
+1. Review current phase details in `plan.md`.
 2. Load any recommended skills for this phase immediately.
-3. Gather additional context from the codebase, PRD, and any relevant tools as needed.
+3. Gather needed context from the codebase, PRD, and tools.
 4. Ask any clarifying questions if the requirements, scope, or repo state are unclear.
 5. Load the `tdd` skill and follow it to implement the requirements.
 6. Verify your implementation works and conforms to the plan.

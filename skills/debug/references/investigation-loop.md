@@ -1,12 +1,12 @@
 # Investigation Loop
 
-Use this loop to keep `debug.md` evidence-first and to stop fixes before root cause is grounded.
+Use this loop to keep `debug.md` evidence-first and block fixes before root cause is grounded.
 
 ## Loop
 
 1. Capture the feedback signal.
 
-- Record the exact symptom: failing command, assertion, crash, wrong output, visible behaviour, alert, or metric.
+- Record the exact symptom: failing command, assertion, crash, wrong output, visible behaviour, alert, metric.
 - Record expected versus actual behaviour and the user impact.
 - Freeze relevant environment facts: revision, runtime, platform, flags, config, inputs, time/locale, dataset, tenant, CI/prod scope.
 
@@ -14,7 +14,7 @@ Use this loop to keep `debug.md` evidence-first and to stop fixes before root ca
 
 - Reproduce before theorising using one command, script, URL, or manual path.
 - If it will not reproduce, record no-repro attempts, environment gaps, and the next needed signal before blocking or asking.
-- For flaky failures, prove pass/fail variation, capture run counts, freeze seed/time/order where possible, and record what changes between runs.
+- For flaky failures, prove pass/fail variation, capture run counts, freeze seed/time/order where possible, and record changing factors.
 
 3. Read the failure fully.
 
@@ -23,19 +23,19 @@ Use this loop to keep `debug.md` evidence-first and to stop fixes before root ca
 
 4. Scan recent changes.
 
-- Check working tree diff, staged diff, recent commits, dependencies, config, environment, CI, runtime drift, and release delta before broad code reading.
+- Check working tree diff, staged diff, recent commits, dependencies, config, environment, CI, runtime drift, release delta before broad code reading.
 - If a good/bad window exists, record the smallest credible window and isolate it before guessing.
 
 5. Reduce the case.
 
 - Remove fixtures, services, flags, data, timing, and setup while preserving the same symptom.
 - If the symptom changes, record that the problem changed and reset the reduction.
-- For performance/resource failures, reduce to the threshold and boundary where the cost first diverges from a good baseline.
+- For performance/resource failures, reduce to the threshold and boundary where cost first diverges from a good baseline.
 - For data-dependent failures, shrink to the smallest input, fixture, stored state, or tenant dataset that still fails.
 
 6. Compare with working evidence.
 
-- Compare against a passing test, adjacent feature, prior release, reference implementation, known-good trace, or good environment.
+- Compare against a passing test, adjacent feature, prior release, reference implementation, known-good trace, good environment.
 - For environment/config failures, compare runtime, flags, env, and config propagation at each boundary.
 - Record the first meaningful broken-versus-working difference.
 
@@ -49,17 +49,17 @@ Use this loop to keep `debug.md` evidence-first and to stop fixes before root ca
 
 - Keep one current best hypothesis plus the strongest alternative and unexplained evidence.
 - Define the falsifier and one discriminating experiment before running it.
-- Prefer existing logs, traces, dumps, breakpoints, logpoints, watchpoints, and debugger inspection before mutating code.
+- Prefer logs, traces, dumps, breakpoints, logpoints, watchpoints, and debugger inspection before mutating code.
 
 9. Experiment once.
 
 - Run one experiment at a time and record expected result, actual result, and conclusion.
-- Temporary diagnostic edits are allowed only for investigation; record file, purpose, tag/comment marker when relevant, observation, and revert status in `debug.md`.
+- Temporary diagnostic edits are allowed only for investigation; record file, purpose, tag/comment marker when relevant, observation, revert status in `debug.md`.
 - Revert temporary diagnostic edits before fix handoff.
 
 10. Diagnose and gate the fix.
 
-- Ground the diagnosis only when evidence explains the earliest bad state or divergence, not just the late symptom.
+- Ground the diagnosis only when evidence explains the earliest bad state or divergence, not just late symptoms.
 - Record root cause, falsifier, fix constraints, and one chosen fix hypothesis.
 - Dispatch one fix at a time; if evidence no longer fits, reset diagnosis instead of pushing through.
 

@@ -8,10 +8,9 @@
 
 ## Secret-Like Exclusions
 
-Never commit likely secret files. Always unstage staged files matching these patterns before committing:
+Never commit likely secret files. Always unstage these patterns before committing:
 
 - `.env`
-- `.env.*`
 - `*.pem`
 - `*.key`
 - `*.p12`
@@ -24,12 +23,10 @@ Never commit likely secret files. Always unstage staged files matching these pat
 
 ## Commit Message
 
-Use a normal imperative commit subject with this format:
+Use a normal imperative commit subject:
 
 - one line only
-- short descriptive subject line
-- imperative mood
-- normal natural wording
+- short, descriptive, imperative, natural wording
 - no trailing punctuation
 
 ## No Committable Changes Output

@@ -11,14 +11,14 @@ Use the `execute` skill to implement this plan and track progress using the chec
 
 ## Durable Decisions
 
-List decisions that apply globally across all phases.
+List global phase decisions.
 
 - Decision 1
 - Decision 2
 
 ## Relevant Skills
 
-List every agentic skill that may be needed while implementing this plan.
+List every agentic skill that may be needed during implementation.
 
 | Skill          | Required For     | Details                                    |
 | -------------- | ---------------- | ------------------------------------------ |
@@ -26,9 +26,7 @@ List every agentic skill that may be needed while implementing this plan.
 
 ## Requirements Coverage Matrix
 
-Every PRD user story, functional requirement, and non-functional requirement MUST be represented here.
-
-Use exact IDs from the PRD. Do NOT rename, merge, or invent IDs.
+Every PRD user story, functional requirement, and non-functional requirement MUST appear here. Use exact PRD IDs; do NOT rename, merge, or invent IDs.
 
 | PRD ID  | Type                       | Covered By Phase(s) | Covered By Acceptance Criteria | Notes |
 | ------- | -------------------------- | ------------------- | ------------------------------ | ----- |
@@ -40,7 +38,7 @@ Use exact IDs from the PRD. Do NOT rename, merge, or invent IDs.
 
 **Status**: [ ] Phase complete
 
-**Goal**: Describe the narrow end-to-end behaviour this phase implements. The goal MUST describe a complete user-visible, system-visible, or test-verifiable outcome.
+**Goal**: Describe the narrow end-to-end behaviour this phase implements as a complete user-visible, system-visible, or test-verifiable outcome.
 
 **Demo / Verification Outcome**: Describe exactly how someone can verify this phase is complete without inspecting implementation details.
 
@@ -52,38 +50,36 @@ Use exact IDs from the PRD. Do NOT rename, merge, or invent IDs.
 
 **Likely Areas**:
 
-Use exact file paths only when they are durable and important. Prefer directories or modules when exact files may change.
+Use exact paths only when durable and important. Prefer directories or modules when files may change.
 
 - `src/...`
 - `tests/...`
 
 **Constraints**:
 
-List the durable constraints this phase MUST respect.
+List durable constraints this phase MUST respect.
 
 - Constraint 1
 - Constraint 2
 
 **Implementation Notes**:
 
-Provide enough implementation context that a subagent can start work without rediscovering scope. Do NOT invent product decisions that are absent from the PRD.
+Provide enough context to start without rediscovering scope. Do NOT invent product decisions absent from the PRD.
 
 - Note 1
 - Note 2
 
 **Acceptance Criteria**:
 
-Each acceptance criterion MUST reference at least one PRD user story, functional requirement, or non-functional requirement unless the criterion is purely functional and no NFR applies.
+Each acceptance criterion MUST reference at least one PRD user story, functional requirement, or non-functional requirement unless purely functional with no NFR.
 
-| ID     | Acceptance Criterion                                         | User Story ID(s) | Functional Requirement ID(s) | Non-Functional Requirement ID(s) |
-| ------ | ------------------------------------------------------------ | ---------------- | ---------------------------- | -------------------------------- |
-| AC-001 | Given <context>, when <action>, then <observable outcome>.   | US-001           | FR-001                       | NFR-001                          |
-| AC-002 | Given <edge case>, when <action>, then <expected behaviour>. | US-001           | FR-002                       | NFR-002                          |
-| AC-003 | <actor> can <behaviour> <condition>.                         | US-001           | FR-001, FR-002               | NFR-001                          |
+| ID     | Acceptance Criterion                                       | User Story ID(s) | Functional Requirement ID(s) | Non-Functional Requirement ID(s) |
+| ------ | ---------------------------------------------------------- | ---------------- | ---------------------------- | -------------------------------- |
+| AC-001 | Given <context>, when <action>, then <observable outcome>. | US-001           | FR-001                       | NFR-001                          |
 
 **Testing Plan**:
 
-Describe the public behaviours and seams that MUST be tested for this phase.
+Describe public behaviours and seams that MUST be tested for this phase.
 
 | Test Level            | Required Coverage |
 | --------------------- | ----------------- |

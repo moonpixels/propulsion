@@ -1,6 +1,6 @@
 # Issue Schema
 
-Use this reference when normalising candidate findings and questions before validation.
+Use when normalising candidate findings and questions before validation.
 
 ```json
 {
@@ -28,13 +28,13 @@ Use this reference when normalising candidate findings and questions before vali
 
 - `kind`, `severity`, `category`, `summary`, `evidence`, `evidence_type`, `impact`, `confidence`, and `validator_verdict` are mandatory.
 - `kind` MUST be `finding` or `question`.
-- `file` and `line` are required for code-based findings. DO omit them only for pure intent or rule questions.
+- `file` and `line` are required for code-based findings; omit them only for pure intent or rule questions.
 - `severity` MUST be one of `critical`, `high`, `medium`, `low`, `nitpick`, `question`.
 - `category` MUST be one of `rule-violation`, `skill-contract-violation`, `bug`, `compile-break`, `logic-error`, `security`, `performance`, `architecture`, `maintainability`, `duplication`, `test-gap`, `requirement-drift`, or `consistency-drift`.
-- `evidence` MUST be concrete and directly tied to changed code, scoped rule text, or cited precedent.
+- `evidence` MUST be concrete and tied to changed code, scoped rule text, or cited precedent.
 - `evidence_type` MUST be `diff`, `rule-text`, `precedent`, `principle`, or `intent-context`.
 - `confidence` MUST be integer `0-100`.
-- `blocking` is required for findings. Set it to `true` only when shipping the issue would create material production, security, UX, or maintenance risk.
+- `blocking` is required for findings; set `true` only for material production, security, UX, or maintenance risk.
 - `rule_source` is required for `rule-violation` and `skill-contract-violation`.
 - `precedent_refs` is required for `consistency-drift` and any precedent-backed finding.
 - `intent_refs` is required for `requirement-drift` and any intent-backed finding.

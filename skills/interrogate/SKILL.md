@@ -5,17 +5,17 @@ description: Manage interrogation, intake, interviews, scope clarification, requ
 
 # Interrogate
 
-Reach a shared understanding by exploring the project for context and interrogating the user one question at a time.
+Reach shared understanding through project context and one-question-at-a-time user interrogation.
 
 ## Instructions
 
 Follow these steps IN ORDER. Do NOT skip steps.
 
-1. Gather context by launching a fresh explorer subagent to inspect the project for facts relevant to the request.
-2. Interrogate the user relentlessly about every aspect of the request until a shared understanding is reached.
+1. Launch a fresh explorer subagent to inspect project facts relevant to the request.
+2. Interrogate the user about every aspect of the request until shared understanding is reached.
     - Ask questions one at a time, provide your recommended answer first, then 2-3 viable alternatives.
     - Walk down each branch of the decision tree resolving dependencies between decisions.
-    - There are no limits on the number of questions; keep asking until a shared understanding is reached.
+    - Keep asking until shared understanding is reached.
 3. Return a concise summary to the caller.
 
 ## Rules
@@ -23,7 +23,8 @@ Follow these steps IN ORDER. Do NOT skip steps.
 These rules are MANDATORY.
 
 - MUST use explorer subagent for entry exploration.
-- ALWAYS relentlessly interrogate the user until a shared understanding is reached.
+- ALWAYS interrogate the user until shared understanding is reached.
+- NEVER think "this is too many questions", it isn't.
 - DO NOT limit the number of questions; keep asking until EVERY blocking branch is closed.
 - MUST ask user exactly one question at a time, provide a recommended answer, then 2-3 viable alternatives.
 - ALWAYS check if a question can be answered by project inspection before asking.

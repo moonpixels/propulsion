@@ -5,7 +5,7 @@ description: Handle concrete failures through intake, diagnosis, one-hypothesis 
 
 # Debug
 
-Diagnose concrete failures before dispatching one evidence-backed fix loop.
+Diagnose concrete failures before one evidence-backed fix loop.
 
 ## Prerequisites
 
@@ -19,15 +19,15 @@ ALL prerequisites MUST be satisfied BEFORE following this skill.
 Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Create or resume `docs/propulsion/{yyyymmdd}-{bug-slug}/debug.md` from [references/debug-template.md](references/debug-template.md) before diagnosis work.
-2. Record report provenance, expected behaviour, actual behaviour, impact, environment, reproduction, prior attempts, and open blockers in `debug.md`.
+2. Record provenance, expected and actual behaviour, impact, environment, reproduction, prior attempts, and blockers in `debug.md`.
 3. Load `interrogate` ONLY when missing user-answerable intake blocks expected behaviour, reproduction, impact, or environment; record answers and resolved decisions in `debug.md`.
-4. Explore only the relevant code, tests, logs, recent changes, ownership, and likely boundaries; record facts and intentional limits in `debug.md`.
+4. Explore only relevant code, tests, logs, recent changes, ownership, and likely boundaries; record facts and limits in `debug.md`.
 5. Use [references/investigation-loop.md](references/investigation-loop.md) to reproduce, read the full error, reduce, compare working examples, isolate the first bad boundary, and test one diagnosis hypothesis at a time.
 6. Gate fix dispatch until `debug.md` has grounded diagnosis evidence, the first bad state or divergence, fix constraints, a falsifier, and one chosen fix hypothesis.
 7. Dispatch one fresh bug-worker with [references/bug-worker-prompt.md](references/bug-worker-prompt.md), then dispatch one fresh reviewer with [references/bug-reviewer-prompt.md](references/bug-reviewer-prompt.md).
-8. If review rejects the fix, return findings to the active worker with [references/bug-feedback-prompt.md](references/bug-feedback-prompt.md) while the diagnosis still holds.
+8. If review rejects the fix and diagnosis still holds, return findings to the active worker with [references/bug-feedback-prompt.md](references/bug-feedback-prompt.md).
 9. If verification, review, or new evidence contradicts the diagnosis, reset to investigation and record the contradicted evidence before any new fix attempt.
-10. After 3 failed fix loops, reassess architecture and patterns, record the reassessment, then escalate to the user with evidence and next options.
+10. After 3 failed fix loops, reassess architecture and patterns, record it, then escalate with evidence and next options.
 11. Close only when fixed and verified, blocked by missing intake, no-repro after documented attempts, or escalated after the 3-loop reassessment path.
 
 ## Rules
@@ -37,7 +37,7 @@ These rules are MANDATORY.
 - MUST keep `debug.md` current from entry through closure.
 - MUST diagnose before fixing; NEVER make permanent production-code edits in the controller stage.
 - MUST use `interrogate` only for missing user-answerable intake, not repo facts the agent can inspect.
-- MUST reset instead of pushing through when evidence contradicts the diagnosis or chosen fix hypothesis.
+- MUST reset when evidence contradicts the diagnosis or chosen fix hypothesis.
 - EVERY fix loop MUST target one chosen fix hypothesis and start with a failing regression test unless `tdd` declares no valuable test.
 - MUST record failed hypotheses, blocked/no-repro status, rejected reviews, resets, failed loops, verification, escalation, and closure.
 

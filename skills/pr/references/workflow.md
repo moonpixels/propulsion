@@ -2,8 +2,8 @@
 
 ## Inputs
 
-- Optional base branch input: treat any explicit user-provided branch name as `<base>`.
-- If no base is provided, use the repo's main development branch, such as `main` or the branch pointed to by `origin/HEAD`.
+- Treat any explicit user-provided branch name as `<base>`.
+- If no base is provided, use the repo's main development branch, such as `main` or `origin/HEAD`.
 
 ## Context Commands
 
@@ -24,7 +24,7 @@ After invoking the `commit` skill for a dirty worktree, refresh:
 
 ## Existing PR Handling
 
-Check for an existing open PR for the current head branch:
+Check for an open PR for the current head branch:
 
 ```sh
 gh pr list --head <branch> --state open --json url,number,title,body,baseRefName,headRefName
@@ -33,21 +33,21 @@ gh pr list --head <branch> --state open --json url,number,title,body,baseRefName
 - If the PR base differs from `<base>`, stop and ask whether to correct the PR base.
 - If the user explicitly agrees, update the base before any title or body refresh: `gh pr edit --base <base>`.
 - If the user declines or gives an unclear answer, stop and ask them to rerun the PR skill with the intended base branch.
-- If the PR base matches `<base>` and no commit delta exists, reuse the PR unchanged, verify it, and report the success output.
+- If the PR base matches `<base>` and no commit delta exists, reuse unchanged, verify, and report success output.
 - If the PR base matches `<base>` and a commit delta exists, show the URL and ask whether to refresh title and summary.
 - If the user explicitly agrees, update only title and body with `gh pr edit --title "<title>" --body "<body>"`.
-- If the user declines or gives an unclear answer, reuse the PR unchanged, verify it, and report the success output.
+- If the user declines or gives an unclear answer, reuse unchanged, verify, and report success output.
 
 ## Push Safety
 
 - If the branch has no upstream, run `git push -u origin <branch>`.
 - If the branch has an upstream, run `git push`.
 - Never force push.
-- If push fails because authentication, permissions, or remote access requires user action, stop and report the failing command with one concrete unblock action.
+- If push fails due to auth, permissions, or remote access, stop and report the failing command plus one concrete unblock action.
 
 ## PR Metadata
 
-Infer the title and summary from the full `<base>...HEAD` commit history, diff, and diff stat.
+Infer title and summary from the full `<base>...HEAD` commit history, diff, and diff stat.
 
 Allowed Conventional Commit title types:
 

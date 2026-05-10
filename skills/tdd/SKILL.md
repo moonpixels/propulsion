@@ -21,19 +21,19 @@ ALL prerequisites MUST be satisfied BEFORE following this skill.
 Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Choose the smallest thin vertical slice that delivers one observable behaviour end-to-end; state the interface, expected outcome, and narrowest test command.
-2. Apply the gate in [references/testing-patterns.md](references/testing-patterns.md). If no valuable behavioural test exists, record the no-test rationale and strongest fallback verification before changing code.
+2. Apply [references/testing-patterns.md](references/testing-patterns.md). If no valuable behavioural test exists, record the no-test rationale and strongest fallback verification before changing code.
 3. Write ONE failing test through a public interface or stable seam for the next behaviour only.
 4. Run the narrowest test command and confirm the test fails for the expected reason.
-5. Write the minimum production code to pass; keep fixtures small and mock only real external, slow, unstable, or nondeterministic boundaries.
+5. Write minimum passing production code; keep fixtures small and mock only real external, slow, unstable, or nondeterministic boundaries.
 6. Re-run the narrowest test command and confirm green.
-7. Review refactor candidates only after green using [references/refactor-candidates.md](references/refactor-candidates.md); refactor in small behaviour-preserving steps and rerun relevant checks.
+7. Review refactor candidates only after green using [references/refactor-candidates.md](references/refactor-candidates.md); refactor in small behaviour-preserving steps and rerun checks.
 8. Repeat slice by slice until the requested behaviour is complete.
 
 ## Rules
 
 These rules are MANDATORY.
 
-- NEVER write production code before a failing test WHEN a valuable behavioural test exists.
+- NEVER write production code before a failing test when a valuable behavioural test exists.
 - ALWAYS test observable behaviour through a public interface or stable seam.
 - NEVER add source-text checks, private-structure checks, internal call choreography, broad snapshots, speculative tests, or implementation-detail tests as behavioural proof.
 - DO NOT over-mock; ONLY mock real boundaries that are external, slow, unstable, nondeterministic, or too expensive for the selected test scope.

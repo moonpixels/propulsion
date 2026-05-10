@@ -1,10 +1,6 @@
 # Report Format
 
-Use this reference when producing the final review report.
-
-Use this exact report shape for both PR and `base...head` reviews.
-
-If the resolved review scope is empty, still return this exact format.
+Use this exact final report shape for PR and `base...head` reviews, including empty scopes.
 
 ```markdown
 # Review Report
@@ -31,37 +27,19 @@ If the resolved review scope is empty, still return this exact format.
 
 - None
 
-<or>
-
-- <short title>
-    - Location: <path:line | scope area>
-    - Why it matters: <concrete impact>
-    - Evidence: <quoted diff, rule text, precedent, or intent evidence>
-    - Recommended action: <smallest safe improvement>
+<or same finding item shape as Critical>
 
 **Medium Findings**
 
 - None
 
-<or>
-
-- <short title>
-    - Location: <path:line | scope area>
-    - Why it matters: <concrete impact>
-    - Evidence: <quoted diff, rule text, precedent, or intent evidence>
-    - Recommended action: <smallest safe improvement>
+<or same finding item shape as Critical>
 
 **Low Findings**
 
 - None
 
-<or>
-
-- <short title>
-    - Location: <path:line | scope area>
-    - Why it matters: <concrete impact>
-    - Evidence: <quoted diff, rule text, precedent, or intent evidence>
-    - Recommended action: <smallest safe improvement>
+<or same finding item shape as Critical>
 
 **Nitpicks**
 

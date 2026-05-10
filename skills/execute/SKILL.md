@@ -18,13 +18,13 @@ ALL prerequisites MUST be satisfied BEFORE following this skill.
 Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Review and select the first incomplete phase in `plan.md`.
-2. Start a fresh worker subagent with the prompt in [references/worker-prompt.md](references/worker-prompt.md).
+2. Start a fresh worker subagent with [references/worker-prompt.md](references/worker-prompt.md).
 3. Wait for the worker to finish and handle the status:
     - If `Status: unclear`, provide additional context or clarification.
     - If `Status: blocked`, triage the blocker and resolve it.
     - If you cannot resolve `unclear` or `blocked` from the plan, codebase, or tools, escalate to the user.
     - If `Status: done`, continue to review.
-4. Start a fresh reviewer subagent with the prompt in [references/reviewer-prompt.md](references/reviewer-prompt.md).
+4. Start a fresh reviewer subagent with [references/reviewer-prompt.md](references/reviewer-prompt.md).
 5. Wait for the reviewer to finish and handle the status:
     - If `Status: approved`, mark the current phase complete in `plan.md`.
     - If `Status: rejected`, send the findings back to the same worker subagent with the prompt in [references/worker-feedback-prompt.md](references/worker-feedback-prompt.md).
@@ -39,11 +39,11 @@ Follow these steps IN ORDER. Do NOT skip steps.
 These rules are MANDATORY.
 
 - NEVER implement a phase without a worker subagent.
-- ALWAYS user a fresh reviewer subagent for every review.
-- NEVER resolve `Status: unclear` or `Status: blocked` by guessing; if the information is not in the plan, codebase, or tools, escalate to the user for resolution.
+- ALWAYS use a fresh reviewer subagent for every review.
+- NEVER resolve `Status: unclear` or `Status: blocked` by guessing; if the answer is not in the plan, codebase, or tools, escalate to the user.
 - ALWAYS update `plan.md` checkboxes after each successful implementation-review cycle.
 - MUST infer and run relevant repo-wide checks before claiming completion.
-- NEVER implement user feedback directly in `execute`, instead:
+- NEVER implement user feedback directly in `execute`; instead:
     - Loop back to `brainstorm` to update the PRD.
     - Move to `plan` to create or update a phase if needed.
     - Return to `execute` for implementation.

@@ -15,34 +15,29 @@ Describe the proposed behaviour end-to-end from the user's perspective.
 
 ## Goals
 
-- Goal 1
-- Goal 2
+- Goal
 
 ## Non-Goals
 
-- Explicit non-goal 1
-- Explicit non-goal 2
+- Explicit non-goal
 
 ## User Stories
 
 | ID     | User Story                                           |
 | ------ | ---------------------------------------------------- |
 | US-001 | As a <actor>, I want <behaviour>, so that <benefit>. |
-| US-002 | As a <actor>, I want <behaviour>, so that <benefit>. |
 
 ## Functional Requirements
 
 | ID     | Requirement                                  |
 | ------ | -------------------------------------------- |
 | FR-001 | When <context>, the system must <behaviour>. |
-| FR-002 | The system must <behaviour> when <context>.  |
 
 ## Non-Functional Requirements
 
 | ID      | Category    | Requirement                                   |
 | ------- | ----------- | --------------------------------------------- |
 | NFR-001 | Performance | <operation> must complete within <threshold>. |
-| NFR-002 | Security    | The system must <security requirement>.       |
 
 ## Implementation Decisions
 
@@ -52,9 +47,8 @@ Describe the proposed behaviour end-to-end from the user's perspective.
 
 ## Implementation Inputs
 
-- External links or references to check out
-- Business rules or constraints that must be respected
-- References to tickets, docs, or other internal resources that are relevant to implementation
+- External links, tickets, docs, or references
+- Business rules or constraints
 
 ## Testing Decisions
 
@@ -78,15 +72,15 @@ These rules are MANDATORY.
 
 - ALWAYS follow the template structure and section order exactly as specified.
 - MUST use the following non-functional requirement categories:
-    - Performance: Response times, throughput, and resource utilisation under normal and peak loads.
-    - Reliability: System availability, fault tolerance, and error recovery capabilities.
-    - Security: Data protection, authentication, authorisation, and compliance with relevant standards.
-    - Usability: User experience, accessibility, and ease of use across different user groups.
-    - Scalability: Ability to handle increased load and growth in users or data volume.
-    - Maintainability: Code quality, documentation, and ease of future modifications.
-    - Compatibility: Cross-platform support, browser compatibility, and integration capabilities.
-    - Portability: Ability to deploy across different environments and infrastructure.
-    - Compliance: Adherence to industry standards, regulations, and organisational policies.
-    - Monitoring: Observability, logging, and alerting capabilities for operational support.
-- MUST ensure there's a LONG and EXTENSIVE list of user stories, functional requirements, and non-functional requirements to cover all aspects of the feature.
+    - Performance: response times, throughput, resource use.
+    - Reliability: availability, fault tolerance, recovery.
+    - Security: data protection, authn/authz, compliance.
+    - Usability: UX, accessibility, ease of use.
+    - Scalability: growth in load, users, or data.
+    - Maintainability: code quality, docs, future changes.
+    - Compatibility: platform, browser, integration support.
+    - Portability: deployment across environments.
+    - Compliance: standards, regulations, policies.
+    - Monitoring: observability, logging, alerting.
+- MUST ensure user stories, functional requirements, and non-functional requirements cover all feature aspects.
 - DO create supporting documents with mermaid diagrams, data models, or other relevant artefacts if they help clarify the feature or implementation.
