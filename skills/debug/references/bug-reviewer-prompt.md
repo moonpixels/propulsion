@@ -87,8 +87,6 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - Treat the diagnosis gate as required, not advisory.
-- ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
-- Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - Reject speculative or symptom-only fixes.
 - Reject missing root-cause evidence, missing fail-then-pass proof or accepted no-test rationale, changes outside the chosen fix hypothesis, or permanent code changes made outside the bug-worker subagent.
 - Call out missing verification or contradictory evidence explicitly.

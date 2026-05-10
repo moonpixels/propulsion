@@ -60,7 +60,7 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - MUST return exactly one `Status:` field with `done`, `blocked`, or `unclear`.
-- Load the `tdd` skill NOW before production-code edits.
+- ALWAYS load and follow the `tdd` skill.
 - ALWAYS check for relevant non-Propulsion skills and load them IMMEDIATELY.
 - Propulsion skills and workflow MUST take precedence over any conflicting non-Propulsion skill UNLESS the user instructions state otherwise.
 - NO PRODUCTION CODE before a failing regression test unless `tdd` declares no valuable test and `debug.md` records the rationale plus fallback verification.

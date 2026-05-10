@@ -22,7 +22,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 5. If any finding remains `unclear` after investigation, STOP and return `Status: unclear` with the specific information needed to continue.
 6. For every `invalid` finding, keep the implementation unchanged and prepare evidence-backed pushback.
 7. For every `valid` finding, load the `tdd` skill, follow it, and make the minimal correct fix.
-8. Load any additional recommended skills when needed to validate or fix the reviewed work.
+8. Load any additional recommended skills not already active or present in context when needed to validate or fix the reviewed work.
 9. Verify the implementation works and conforms to the current phase in `plan.md`.
 10. Re-evaluate every current-phase acceptance criterion by ID.
 11. Return your implementation report in the exact format below.
@@ -73,7 +73,7 @@ These rules are MANDATORY.
 - Status CAN ONLY be `done` when every finding is resolved, every valid finding is fixed, every invalid finding has evidence-backed pushback, and every acceptance criterion is re-evaluated.
 - DO NOT change code for invalid findings.
 - DO NOT make speculative changes beyond the current phase or review findings.
-- ALWAYS load and use the `tdd` skill before fixing valid findings.
+- ALWAYS use the `tdd` skill to fix valid findings, loading it only when it is not already active or present in context.
 - MUST verify implementation against the plan before claiming `Status: done`.
 - ENSURE pushback is technical, evidence-based, and specific enough for the reviewer to verify or challenge.
 - ALWAYS follow the output structure and section order exactly as specified.

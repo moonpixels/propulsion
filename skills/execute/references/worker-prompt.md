@@ -57,7 +57,7 @@ Use this exact format for your output.
 These rules are MANDATORY.
 
 - MUST start by reviewing the current phase details in `plan.md`.
-- ALWAYS load any recommended skills and gather additional context before asking questions or implementing.
+- ALWAYS load missing recommended skills and gather additional context before asking questions or implementing.
 - ALWAYS ask questions if anything in the task is unclear, NEVER guess or make assumptions.
 - ALWAYS load and use the `tdd` skill.
 - MUST verify implementation against the plan before claiming `Status: done`.
@@ -68,7 +68,7 @@ These rules are MANDATORY.
 Do NOT output your response until ALL items are complete.
 
 - [ ] Reviewed the current phase details in `plan.md`.
-- [ ] Loaded any recommended skills and gathered additional context.
+- [ ] Loaded any missing recommended skills and gathered additional context.
 - [ ] Asked clarifying questions for any unclear requirements, scope, or repo state.
 - [ ] Followed the `tdd` skill to implement the requirements.
 - [ ] Verified implementation works and conforms to the plan.

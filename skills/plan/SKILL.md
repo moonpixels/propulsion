@@ -20,7 +20,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Review the approved `prd.md` to get a complete understanding of the feature.
 2. Explore relevant areas of the codebase for fresh context.
-3. Load any non-Propulsion skills relevant to the PRD and use them to help inform the plan.
+3. Load any non-Propulsion skills relevant to the PRD that are not already active or present in context, and use them to help inform the plan.
 4. Write `docs/propulsion/{yyyymmdd}-{feature-name}/plan.md` using the template in [references/plan-template.md](references/plan-template.md).
 5. Start a fresh plan review subagent with the prompt in [references/plan-reviewer-prompt.md](references/plan-reviewer-prompt.md).
 6. Review and implement feedback from the plan review.
@@ -32,7 +32,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 These rules are MANDATORY.
 
-- NEVER skip reviewing the PRD, exploring the codebase, or loading relevant skills.
+- NEVER skip reviewing the PRD, exploring the codebase, or loading missing relevant skills.
 - ALWAYS use the plan template reference for structure, section order, and completion rules.
 - NEVER print the full plan in the chat, ONLY write it to the file.
 - MUST use ALL information from the PRD, DO NOT leave any details out even if they seem obvious or minor.
@@ -53,7 +53,7 @@ Do NOT leave this skill until ALL items are complete.
 
 Once the completion gate is fully checked:
 
-- If `prd.md` is approved, enter the `execute` skill.
+- If `plan.md` is approved, enter the `execute` skill.
 
 ## References
 
