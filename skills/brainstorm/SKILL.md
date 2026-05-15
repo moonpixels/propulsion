@@ -19,7 +19,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 
 1. Load `interrogate` skill and interview the user about their request.
 2. Write `docs/propulsion/{yyyymmdd}-{feature-name}/prd.md` from [references/prd-template.md](references/prd-template.md).
-3. Maliciously sanity-check `prd.md` against the conversation and add any missing decisions, facts, constraints, behaviours, or success criteria.
+3. Meticulously sanity-check `prd.md` against the conversation and add any missing decisions, facts, constraints, behaviours, or success criteria.
 4. Ask the user to review and approve `prd.md`.
 5. After explicit approval, enter the `plan` skill.
 
