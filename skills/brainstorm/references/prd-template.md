@@ -25,7 +25,7 @@ Describe the proposed behaviour end-to-end from the user's perspective.
 
 | ID     | User Story                                           |
 | ------ | ---------------------------------------------------- |
-| US-001 | As a <actor>, I want <behaviour>, so that <benefit>. |
+| US-001 | As a <actor>, I want <behaviour>, so that <outcome>. |
 
 ## Functional Requirements
 
