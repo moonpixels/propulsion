@@ -24,7 +24,9 @@ Follow these steps IN ORDER. Do NOT skip steps.
 4. Research competitors, alternatives, market, and positioning claims when they need current evidence.
 5. Write `<target-project-root>/project-brief.md` from [references/project-brief-template.md](references/project-brief-template.md).
 6. Sanity-check the brief against the conversation, research, and repo context. Remove contradictions, placeholders, and unanswered questions.
-7. Ask the user to review and approve `project-brief.md`.
+7. Start a fresh project brief reviewer subagent with [references/project-brief-reviewer-prompt.md](references/project-brief-reviewer-prompt.md).
+8. Fix reviewer findings, then repeat step 7 until the latest review returns exact `Status: approved`.
+9. Ask the user to review and approve `project-brief.md`.
 
 ## Rules
 
@@ -37,6 +39,8 @@ These rules are MANDATORY.
 - MUST include monetisation or business model, with explicit `N/A` allowed.
 - MUST record explicit user-chosen architecture, language, framework, storage, deployment, and integrations.
 - MUST include a full feature inventory grouped by product area with MVP, later, and suggested PRD slices.
+- USE `Status: approved` as the ONLY valid project brief reviewer approval signal.
+- MUST block user approval and repeat review when reviewer status is rejected, missing, or unclear.
 - DO NOT decide detailed UI style beyond minimal platform or UI-presence context; defer UI style to feature PRDs.
 - DO NOT write `plan.md`; discovery output is root `project-brief.md` only.
 
@@ -48,6 +52,7 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Interrogation closed every discovery question.
 - [ ] Current evidence supports all competitor, market, and positioning claims.
 - [ ] Root `project-brief.md` is written and cross-checked.
+- [ ] Project brief reviewer returned exact `Status: approved`.
 - [ ] User explicitly approved `project-brief.md`.
 
 ## Next Steps
@@ -62,3 +67,4 @@ Use these references when you need detail.
 
 - [references/discovery-checklist.md](references/discovery-checklist.md) - Required discovery decision tree.
 - [references/project-brief-template.md](references/project-brief-template.md) - Root project brief structure.
+- [references/project-brief-reviewer-prompt.md](references/project-brief-reviewer-prompt.md) - Project brief reviewer subagent prompt.
