@@ -12,6 +12,8 @@ Turn feature, UX, API, product-scope, or requirements work into an approved PRD.
 ALL prerequisites MUST be satisfied BEFORE following this skill.
 
 - If user provides an approved `docs/propulsion/.../prd.md`, STOP. Enter the `plan` skill.
+- If the request is greenfield project discovery and no target-root `project-brief.md` exists, STOP. Enter the `discover-project` skill.
+- If an approved target-root `project-brief.md` exists, read it before interrogation and treat approved discovery decisions as durable PRD inputs.
 
 ## Instructions
 
@@ -30,6 +32,7 @@ These rules are MANDATORY.
 - ALWAYS use `interrogate` skill to reach shared understanding BEFORE writing the PRD.
 - ALWAYS use the PRD template for structure and section order.
 - MUST keep the PRD product-facing and record durable implementation and testing decisions.
+- MUST preserve approved discovery decisions from target-root `project-brief.md` unless the user asks to revise them.
 - ENSURE the PRD includes ALL relevant decisions, even if they seem obvious or minor.
 - USE supporting documents such as `docs/propulsion/.../diagrams.md` if needed.
 - If you cannot write files, STOP, ask the user to enable write mode before continuing the PRD.
