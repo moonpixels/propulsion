@@ -27,6 +27,7 @@ Follow these steps IN ORDER. Do NOT skip steps.
 7. Start a fresh project brief reviewer subagent with [references/project-brief-reviewer-prompt.md](references/project-brief-reviewer-prompt.md).
 8. Fix reviewer findings, then repeat step 7 until the latest review returns exact `Status: approved`.
 9. Ask the user to review and approve `project-brief.md`.
+10. After user approval, update `<target-project-root>/project-brief.md` metadata to `Status: Approved` and set `Last reviewed` to the approval date.
 
 ## Rules
 
@@ -54,12 +55,13 @@ Do NOT leave this skill until ALL items are complete.
 - [ ] Root `project-brief.md` is written and cross-checked.
 - [ ] Project brief reviewer returned exact `Status: approved`.
 - [ ] User explicitly approved `project-brief.md`.
+- [ ] Approved `project-brief.md` metadata was written with `Status: Approved` and `Last reviewed` set to the approval date.
 
 ## Next Steps
 
 Once the completion gate is fully checked:
 
-- STOP after approval. Do not enter `brainstorm` until the user chooses a feature for PRD work.
+- STOP after approved metadata is written. Do not enter `brainstorm` until the user chooses a feature for PRD work.
 
 ## References
 
