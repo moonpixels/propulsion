@@ -1,5 +1,3 @@
 - When the user corrects you with a reusable, global rule, ask if they want it added to `AGENTS.md`.
 - After implementing changes run `bun run checks` before handoff.
 - When raising a PR, update `package.json` to the appropriate semantic version for the PR contents and keep mirrored manifest versions in sync.
-- Design every skill as an independently invocable, composable capability. Keep orchestration optional and avoid making any skill depend on completing the full workflow.
-- Prefer a small set of cohesive skills. Split a responsibility only when it is independently useful, reused by multiple workflows, or requires a distinct invocation policy; avoid one-skill-per-step fragmentation.
