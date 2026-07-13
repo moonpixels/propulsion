@@ -7,7 +7,7 @@
         "checks": "bun run lint && bun run format",
         "format": "oxfmt .",
         "format:check": "oxfmt --check .",
-        "lint": "oxlint"
+        "lint": "oxlint --no-error-on-unmatched-pattern"
     },
     "devDependencies": {
         "oxfmt": "^0.44.0",

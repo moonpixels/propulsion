@@ -26,6 +26,10 @@ _Avoid_: Invocation flag, frontmatter setting
 A skill that guides an agent through creating or updating another skill with an explicit process. It makes execution predictable without prescribing the authored skill's outcome.
 _Avoid_: Design guide, skill reference
 
+**Composable skill**:
+An independently useful skill that may be invoked alone or coordinated by another skill without requiring the rest of a prescribed workflow.
+_Avoid_: Workflow stage, mandatory step
+
 **Description**:
 A concise statement of what a skill does and the conditions under which it should be invoked.
 _Avoid_: Summary, tagline
@@ -39,7 +43,7 @@ A distinct route through a skill for a particular use case or condition. Branche
 _Avoid_: Separate workflow, mode
 
 **Leading word**:
-An established concept specific enough for the agent to identify the intended technique without additional explanation. A skill explains only its Propulsion-specific adaptation or constraints.
+A recognised term from a proven methodology or technique in established literature, specific enough to invoke the agent's existing knowledge without further explanation. A skill explains only its Propulsion-specific adaptation or constraints.
 _Avoid_: Coined term, theme, slogan
 
 **Lossless compression**:
@@ -81,3 +85,61 @@ _Avoid_: Background, resource
 **Dry run**:
 A semantic validation that traces concrete use cases through a finished skill before handoff.
 _Avoid_: Checklist, structural validation
+
+### Work tracking
+
+**Project**:
+A documented initiative that gives a related group of tickets a shared outcome, scope, and constraints. Every ticket belongs to exactly one project through its project key.
+_Avoid_: Epic, ticket group
+
+**Ticket**:
+A durable Markdown record of a coherent unit of work, containing the context and completion conditions an agent needs to deliver it.
+_Avoid_: Issue, task
+
+**Ticket tracker**:
+The repository-native system that stores tickets in status directories and treats moving a ticket between them as a workflow transition.
+_Avoid_: Issue tracker, external tracker
+
+**Ticket status**:
+The current lifecycle state of a ticket, determined solely by the status directory containing its file. The canonical states are `backlog`, `ready`, `in-progress`, `blocked`, `done`, and `cancelled`.
+_Avoid_: Frontmatter status, ticket state field
+
+**Backlog ticket**:
+A fully specified, actionable ticket that has been deliberately postponed rather than selected for execution.
+_Avoid_: Draft ticket, incomplete ticket
+
+**Backlog refinement**:
+The recurring review that keeps backlog tickets current, ordered, and aligned with project goals, and selects appropriate work for promotion to `ready`.
+_Avoid_: Ticket completion, requirements discovery
+
+**Ready ticket**:
+A fully specified, actionable ticket that has been selected for execution and whose blocking dependencies have been completed.
+_Avoid_: Todo ticket, open ticket
+
+**Blocked ticket**:
+A selected or in-progress ticket that encounters an unexpected impediment and cannot continue until an explicitly recorded dependency, decision, or external condition is resolved.
+_Avoid_: Stalled ticket, paused ticket
+
+**Done ticket**:
+A ticket whose implementation, executable verification, and material review findings are complete. Commit and pull-request state do not affect ticket status.
+_Avoid_: Committed ticket, merged ticket
+
+**Project key**:
+A short uppercase identifier that prefixes related ticket IDs so their files remain grouped and recognisable across the ticket tracker.
+_Avoid_: Project prefix, namespace
+
+**Ticket ID**:
+The stable identifier formed from a project key and project-local sequence number, such as `CACHE-001`. References use the ticket ID even if the descriptive filename slug changes.
+_Avoid_: Filename, ticket number
+
+**Ticket filename**:
+The path-safe representation of a ticket in the form `{PROJECT-KEY}-{SEQUENCE}-{SLUG}.md`, such as `CACHE-001-add-redis-driver.md`.
+_Avoid_: Ticket ID, title
+
+**Ticket estimate**:
+An evidence-based relative size on the Fibonacci scale `1, 2, 3, 5, 8`, calibrated without contingency padding. Work above 5 points should be considered for decomposition when it can be split into independently verifiable outcomes.
+_Avoid_: Time estimate, deadline, buffer
+
+**Material review finding**:
+An evidence-backed issue whose effect on intent, correctness, security, reliability, or maintainability justifies resolving it before the current implementation is considered complete.
+_Avoid_: Nit, optional suggestion
