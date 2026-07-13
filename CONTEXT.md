@@ -20,10 +20,18 @@ _Avoid_: Automatic skill
 Client-specific metadata within a skill bundle that controls whether an agent may select that skill implicitly. The same intent may require different policy fields in different clients.
 _Avoid_: Invocation flag, frontmatter setting
 
+**Elicitation**:
+Requirements elicitation adapted to establish discoverable facts, resolve a dependency-ordered decision tree with the user, and confirm shared understanding before downstream action.
+_Avoid_: Interrogation, clarification
+
+**Theoretical saturation**:
+The point at which further elicitation reveals no new material branches, allowing the complete shared understanding to be presented for confirmation.
+_Avoid_: Question limit, exhaustive questioning
+
 ### Skill anatomy
 
 **Authoring workflow**:
-A skill that guides an agent through creating or updating another skill with an explicit process. It makes execution predictable without prescribing the authored skill's outcome.
+A skill that guides an agent through creating, reviewing, or improving another skill with an explicit process. It makes execution predictable without prescribing the authored skill's outcome.
 _Avoid_: Design guide, skill reference
 
 **Composable skill**:
@@ -43,7 +51,7 @@ A distinct route through a skill for a particular use case or condition. Branche
 _Avoid_: Separate workflow, mode
 
 **Leading word**:
-A recognised term from a proven methodology or technique in established literature, specific enough to invoke the agent's existing knowledge without further explanation. A skill explains only its Propulsion-specific adaptation or constraints.
+A recognised term from an established method, principle, theory, or technique, specific enough to invoke the agent's existing knowledge without further explanation. A skill explains only its context-specific adaptation or constraints.
 _Avoid_: Coined term, theme, slogan
 
 **Lossless compression**:
@@ -54,8 +62,8 @@ _Avoid_: Trimming, shortening, minimalism
 The amount of judgement a skill leaves to the agent. Match it to the work's fragility so the process is predictable without predetermining valid outcomes.
 _Avoid_: Flexibility, strictness
 
-**Positive framing**:
-Steering that states the desired behaviour directly. Use a negative instruction only for a necessary hard guardrail and pair it with the corrective behaviour.
+**Ironic process theory**:
+The tendency for a negated concept to become more salient. Skills state the positive target behaviour and pair an essential safety boundary with the safe action that satisfies it.
 _Avoid_: Prohibition-only rule, negative prompting
 
 **Prerequisite**:
@@ -82,6 +90,10 @@ _Avoid_: Next step, final step
 Focused supporting documentation linked once beside the condition that requires it and loaded only when that branch is reached.
 _Avoid_: Background, resource
 
-**Dry run**:
-A semantic validation that traces concrete use cases through a finished skill before handoff.
+**Acceptance testing**:
+A semantic validation that traces every elicited invocation through a finished skill's branches, resource pointers, and observable postconditions.
 _Avoid_: Checklist, structural validation
+
+**Characterization testing**:
+Capturing an existing skill's observable invocation and process before improvement so intentional changes remain distinct from regressions.
+_Avoid_: Snapshot, preservation rule

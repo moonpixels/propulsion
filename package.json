@@ -4,10 +4,11 @@
     "main": "./index.mjs",
     "exports": "./index.mjs",
     "scripts": {
-        "checks": "bun run lint && bun run format",
+        "checks": "bun run lint && bun run format && bun run validate:skills",
         "format": "oxfmt .",
         "format:check": "oxfmt --check .",
-        "lint": "oxlint --no-error-on-unmatched-pattern"
+        "lint": "oxlint --no-error-on-unmatched-pattern",
+        "validate:skills": "bun scripts/validate-skills.js"
     },
     "devDependencies": {
         "oxfmt": "^0.44.0",

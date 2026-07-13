@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Write Skill'
+    short_description: 'Create, review, and improve agent skills'
+policy:
+    allow_implicit_invocation: false

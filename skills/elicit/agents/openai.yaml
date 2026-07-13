@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Elicit'
+    short_description: 'Reach shared understanding through elicitation'
+policy:
+    allow_implicit_invocation: true
