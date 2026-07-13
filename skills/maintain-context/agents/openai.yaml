@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Maintain Context'
+    short_description: 'Maintain project language and decision records'
+policy:
+    allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Elicit with Context'
+    short_description: 'Interview while maintaining language and decisions'
+policy:
+    allow_implicit_invocation: false
