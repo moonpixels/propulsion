@@ -1,53 +1,39 @@
 ---
 name: write-skill
-description: Create or improve reusable skills with compact progressive-disclosure artefacts. Use when authoring, updating, or migrating any skill.
+description: User-invoked workflow for predictable agent-skill authoring. Use when creating or updating a skill.
+metadata:
+    invocation: user
+disable-model-invocation: true
 ---
 
-# Write Skill
+A skill makes an agent's process predictable without fixing the outcome.
 
-Create concise skills for repeatable workflows without bloating context.
+## Steps
 
-## Instructions
+Start with the applicable discovery branch, then complete the shared stages.
 
-Follow these steps IN ORDER. Do NOT skip steps.
+### Create — use-case modeling
 
-1. Load `interrogate` to gather the skill's job, use cases, expected inputs, expected outputs, and trigger phrases before drafting.
-2. Choose the default output path `.agents/skills/{skill-name}/`; keep `name` equal to the directory name.
-3. Draft or update `SKILL.md` using [assets/skill-template.md](assets/skill-template.md).
-4. Put only essential workflow in `SKILL.md`; move supporting artefacts into appropriate directories.
-5. Put templates/static resources in `assets/`, executable helpers in `scripts/`, and detailed docs in `references/`.
-6. Validate the result with [scripts/validate-skill.js](scripts/validate-skill.js), then fix every blocking issue.
+Ground the skill in concrete prompts and expected agent behaviour. Identify its job, inputs, outputs, invocation conditions, branches, and constraints until every intended use case has an explicit route.
+
+### Update — characterization
+
+Read the complete skill bundle, direct references, callers, and reported failures. Distinguish behaviour that remains intentional or relied upon from obsolete material until every current branch and requested change is accounted for.
+
+### Design
+
+Read [the skill format](references/FORMAT.md), then choose the name, invocation policy, description, structure, and bundled resources. Select one dominant established concept that identifies the skill's technique; add another only when it governs a distinct concern. Give fragile work narrow degrees of freedom and judgement-heavy work explicit boundaries. Finish when every use case has a route and every ordered step has a clear postcondition.
+
+### Write
+
+Write an explicit workflow using the natural structure of the work. Keep common instructions inline, link each branch-specific reference once beside its condition, and delete obsolete files. Frame instructions around the desired behaviour; pair every necessary prohibition with its positive correction. Continue until the complete bundle expresses the designed process.
+
+### Validate
+
+Dry-run every use case through the finished bundle. Confirm that the invocation conditions, branches, rules, references, and postconditions produce the requested process and that each meaning appears once. Exercise executable helpers, run applicable repository checks, and forward-test complex or uncertain behaviour. Apply final lossless compression, then repeat the dry runs until the shortest wording preserves every behaviour and constraint.
 
 ## Rules
 
-These rules are MANDATORY.
-
-- Required authored-skill sections are title, one-line purpose, `## Instructions`, and `## References`.
-- Optional sections become REQUIRED when prerequisites, durable rules, completion gates, or next steps exist.
-- MUST use only canonical H2 sections in order; `## References` must be the final H2.
-- MUST keep `SKILL.md` compact: target about 50 body lines and never exceed 80 body lines.
-- MUST make `description` one line, triggerable, and clear about when the skill should be used.
-- MUST place artefacts directly under `assets/`, `references/`, or `scripts/` and link each from final references as `- [path](path) - text`.
-- MUST use progressive disclosure: metadata first, essential instructions second, artefacts as needed.
-- MUST write short, direct, instructional prose: remove filler, pleasantries, hedging, and verbose phrases while preserving exact technical meaning.
-- MUST review [references/checklist.md](references/checklist.md) and run [scripts/validate-skill.js](scripts/validate-skill.js) before handoff.
-
-## Completion Gate
-
-Do NOT leave this skill until ALL items are complete.
-
-- [ ] Skill path and frontmatter name match.
-- [ ] Used `interrogate` skill to resolve the skill job, use cases, expected inputs, expected outputs, and trigger phrases before drafting.
-- [ ] `SKILL.md` contains only essential workflow and required sections.
-- [ ] Skill wording is concise, no-fluff, and technically precise.
-- [ ] Supporting artefacts are placed under `assets/`, `references/`, or `scripts/` by purpose.
-- [ ] Checklist review is complete with blocking issues fixed.
-- [ ] Validator has been run against the skill and all errors are fixed.
-
-## References
-
-Use these references when you need detail.
-
-- [assets/skill-template.md](assets/skill-template.md) - Section-by-section authoring template.
-- [references/checklist.md](references/checklist.md) - Skill quality and validation checklist.
-- [scripts/validate-skill.js](scripts/validate-skill.js) - Bun validator for skill metadata, body limits, and artefacts.
+- Keep the authored skill self-contained: place required guidance in its shipped bundle rather than relying on repository-only context.
+- Invoke established techniques by their recognised names. Explain only the skill-specific adaptation or constraints.
+- Apply DRY to instructions and definitions, YAGNI to speculative branches and files, and lossless compression to the entire bundle.

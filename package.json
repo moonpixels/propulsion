@@ -4,12 +4,10 @@
     "main": "./index.mjs",
     "exports": "./index.mjs",
     "scripts": {
-        "checks": "bun run lint && bun run format && bun run test",
+        "checks": "bun run lint && bun run format",
         "format": "oxfmt .",
         "format:check": "oxfmt --check .",
         "lint": "oxlint",
-        "test": "bun test ./tests",
-        "test:unit": "bun test ./tests"
     },
     "devDependencies": {
         "oxfmt": "^0.44.0",
