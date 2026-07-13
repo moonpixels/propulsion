@@ -22,7 +22,7 @@ Read the complete skill bundle, direct references, callers, and reported failure
 
 ### Design
 
-Read [the skill format](references/FORMAT.md), then choose the name, invocation policy, description, structure, and bundled resources. Select one dominant established concept that identifies the skill's technique; add another only when it governs a distinct concern. Give fragile work narrow degrees of freedom and judgement-heavy work explicit boundaries. Finish when every use case has a route and every ordered step has a clear postcondition.
+Read [the skill format](references/FORMAT.md), then choose the name, invocation policy, description, structure, and bundled resources. Choose one dominant **leading word** grounded in a proven methodology or technique from sources including, but not limited to, The Pragmatic Programmer, Martin Fowler, Robert C. Martin's Clean Code, The Mythical Man-Month, Code Complete, or The Art of Computer Programming. It must be recognised terminology that invokes the agent's existing knowledge; add another only when it governs a distinct concern. Give fragile work narrow degrees of freedom and judgement-heavy work explicit boundaries. Finish when every use case has a route and every ordered step has a clear postcondition.
 
 ### Write
 
@@ -35,5 +35,4 @@ Dry-run every use case through the finished bundle. Confirm that the invocation 
 ## Rules
 
 - Keep the authored skill self-contained: place required guidance in its shipped bundle rather than relying on repository-only context.
-- Invoke established techniques by their recognised names. Explain only the skill-specific adaptation or constraints.
 - Apply DRY to instructions and definitions, YAGNI to speculative branches and files, and lossless compression to the entire bundle.
