@@ -1,3 +1,2 @@
 - When the user corrects you with a reusable, global rule, ask if they want it added to `AGENTS.md`.
 - After implementing changes run `bun run checks` before handoff.
-- When raising a PR, update `package.json` to the appropriate semantic version for the PR contents and keep mirrored manifest versions in sync.

@@ -20,6 +20,10 @@ _Avoid_: Automatic skill
 Client-specific metadata within a skill bundle that controls whether an agent may select that skill implicitly. The same intent may require different policy fields in different clients.
 _Avoid_: Invocation flag, frontmatter setting
 
+**Skill-only distribution**:
+Distributing Propulsion directly as Agent Skills, using the skills installer for remote sources and filesystem links for local sources. Propulsion does not require client-specific plugin packaging.
+_Avoid_: Plugin distribution
+
 **Elicitation**:
 Requirements elicitation adapted to establish discoverable facts, resolve a dependency-ordered decision tree with the user, and confirm shared understanding before downstream action.
 _Avoid_: Interrogation, clarification

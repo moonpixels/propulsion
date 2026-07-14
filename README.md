@@ -6,50 +6,29 @@ Propulsion is a compact skill set for agentic coding. It gives coding agents a s
 
 ## Installation
 
-### Codex CLI
+### Remote
 
-Add the Propulsion marketplace:
-
-```sh
-codex plugin marketplace add moonpixels/propulsion
-```
-
-Open Codex, run `/plugins`, select the Propulsion marketplace, install
-Propulsion, then restart Codex.
-
-To update:
+Install Propulsion from GitHub with the skills installer:
 
 ```sh
-codex plugin marketplace upgrade propulsion
+bunx skills@latest add moonpixels/propulsion
 ```
 
-### Codex Desktop
+Choose the skills and coding agents you want when prompted.
 
-Add the Propulsion marketplace with the Codex CLI:
+### Local
+
+When developing Propulsion from a local clone, link each skill you want to use
+into the shared Agent Skills directory:
 
 ```sh
-codex plugin marketplace add moonpixels/propulsion
+mkdir -p ~/.agents/skills
+ln -s /absolute/path/to/propulsion/skills/elicit ~/.agents/skills/elicit
 ```
 
-Open the desktop app's Plugins page, select the Propulsion marketplace, install
-Propulsion, then restart the app.
-
-To update:
-
-```sh
-codex plugin marketplace upgrade propulsion
-```
-
-### OpenCode
-
-Add Propulsion to `opencode.json`:
-
-```json
-{
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
-}
-```
+Repeat the link for each selected skill. Codex and OpenCode both discover skills
+from `~/.agents/skills`; edits in the clone are available through the links
+without reinstalling or publishing a new version.
 
 ## Acknowledgements
 
