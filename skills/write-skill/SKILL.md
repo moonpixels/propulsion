@@ -48,10 +48,11 @@ processes and context-sensitive outcomes.
    material intent decision remains unresolved. The review scope and available
    contract are explicit.
 2. Read [Skill Sections](references/SECTIONS.md), run
-   [scripts/validate-skill.js](scripts/validate-skill.js), and acceptance-test
-   the representative invocations. Assess the governing methodology, supporting
+   [scripts/validate-skill.js](scripts/validate-skill.js), execute every bundled
+   script in an isolated disposable environment, and acceptance-test the
+   representative invocations. Assess the governing methodology, supporting
    concepts, predictability, composition, structure, language, resources, and
-   observable postconditions while preserving the bundle unchanged.
+   observable postconditions while preserving the bundle and user work unchanged.
 3. Return concise, prioritised findings. For each, name the governing concept,
    cite the evidence and behavioural consequence, and recommend the smallest
    effective improvement. Affirm the skill plainly when no material finding

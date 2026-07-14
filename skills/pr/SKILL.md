@@ -38,8 +38,9 @@ prerequisite cannot be resolved.
 5. Push the current branch without rewriting remote history and create a ready
    pull request against the selected base, or a draft only when the user
    explicitly requested one. When an open pull request already represents the
-   branch, use it instead of creating a duplicate. The remote branch and one
-   corresponding pull request exist.
+   branch, reuse it and reconcile its base, title, body, and ready or draft state
+   with the selected publication context. The remote branch and one
+   corresponding pull request exist with the requested metadata and state.
 6. Verify the pull request's head, base, draft state, title, and body against the
    inspected scope and repository requirements. Return its URL and report any
    failed publication or verification with the resulting local and remote

@@ -29,9 +29,10 @@ messages state each change's intent.
    atomic change while unselected work remains intact.
 4. Write an accurate Conventional Commit message in the form
    `type[(scope)][!]: description` for the staged diff.
-5. Create the commit and allow configured Git hooks to run. A failed hook
-   remains authoritative; report its output and the resulting Git state for
-   user direction.
+5. Create the commit and allow configured Git hooks to run. On any failure,
+   treat hook output as authoritative when present, preserve the index and
+   working tree, and report the exact output and resulting Git state. Obtain
+   user direction for any repository or user Git configuration change.
 6. Verify each created commit against its recorded diff, inspect the remaining
    status before continuing, and return each hash and subject plus work left
    uncommitted.
