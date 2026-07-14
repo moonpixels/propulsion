@@ -1,5 +1,5 @@
 interface:
     display_name: 'Elicit'
-    short_description: 'Resolve requirements one decision at a time'
+    short_description: 'Reach shared understanding one decision at a time'
 policy:
     allow_implicit_invocation: true
