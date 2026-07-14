@@ -38,6 +38,15 @@ _Avoid_: Design guide, skill reference
 An independently useful skill that may be invoked alone or coordinated by another skill without requiring the rest of a prescribed workflow.
 _Avoid_: Workflow stage, mandatory step
 
+**Implement skill**:
+The user-invoked workflow that uses tracer bullets to deliver a clear implementation request in verified slices, applying TDD when appropriate. It remediates review findings until verified and elicits user intent when a finding would change behaviour, contracts, architecture, or scope.
+
+**TDD skill**:
+The model-invoked workflow that applies red-green-refactor to behaviour changes when the repository has a runnable test suite. It uses Test Desiderata to favour valuable tests that respond to behaviour without coupling to code structure.
+
+**Review skill**:
+The model-invoked workflow that assesses a scoped code change independently for requirements and code health, then reports evidence-validated findings including code smells and refactor opportunities without changing the code.
+
 **Description**:
 A concise statement of what a skill does and the conditions under which it should be invoked.
 _Avoid_: Summary, tagline

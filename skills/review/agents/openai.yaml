@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Review'
+    short_description: 'Review scoped code changes with validated evidence'
+policy:
+    allow_implicit_invocation: true
