@@ -42,14 +42,51 @@ _Avoid_: Design guide, skill reference
 An independently useful skill that may be invoked alone or coordinated by another skill without requiring the rest of a prescribed workflow.
 _Avoid_: Workflow stage, mandatory step
 
+**Router skill**:
+A lightweight skill that invokes other skills to produce a combined outcome. It contains only coordination unique to that outcome; called skills remain authoritative and the router neither repeats nor overrides their context.
+_Avoid_: Pipeline skill
+
 **Implement skill**:
-The user-invoked workflow that uses tracer bullets to deliver a clear implementation request in verified slices, applying TDD when appropriate. It remediates review findings until verified and elicits user intent when a finding would change behaviour, contracts, architecture, or scope.
+The user-invoked workflow that uses tracer bullets to deliver a clear implementation request in verified slices, applying TDD when appropriate. It remediates code-review findings until verified and elicits user intent when a finding would change behaviour, contracts, architecture, or scope.
 
 **TDD skill**:
 The model-invoked workflow that applies red-green-refactor to behaviour changes when the repository has a runnable test suite. It uses Test Desiderata to favour valuable tests that respond to behaviour without coupling to code structure.
 
-**Review skill**:
+**Code-review skill**:
 The model-invoked workflow that assesses a scoped code change independently for requirements and code health, then reports evidence-validated findings including code smells and refactor opportunities without changing the code.
+_Avoid_: Review skill
+
+**Review-architecture skill**:
+The user-invoked workflow that analyses a project's architecture and produces an HTML report of high-value, context-aware redesign opportunities without changing the implementation.
+_Avoid_: Improve-architecture skill
+
+**Architecture review report**:
+A self-contained interactive artifact named `docs/architecture/YYYYMMDD-{scope}-architecture-review.html` that guides the user through a small set of prioritised recommendations in concise plain language. It uses visualisation and progressive disclosure to explain affected architecture, expected improvements, evidence, and trade-offs without presenting a wall of technical detail.
+_Avoid_: Static architecture audit
+
+**Architecture module**:
+A cohesive capability with a small explicit contract and a hidden implementation. Other modules depend on the contract rather than its internal classes, adapters, or framework wiring.
+_Avoid_: Directory, namespace
+
+**Deep module**:
+An architecture module whose small, stable interface hides substantial cohesive implementation. The implementation may be decomposed into focused internal actions for reuse and maintainability without exposing that decomposition to consumers.
+_Avoid_: Large class, shallow module
+
+**Debug skill**:
+The user-invoked workflow that reproduces a code issue, establishes its root cause, applies the smallest correction, and verifies the result. An explicit diagnosis-only request stops before mutation.
+_Avoid_: Diagnose skill
+
+**Primary source**:
+Original high-trust evidence such as official documentation, source code, standards, publications, first-party APIs, or first-party data. Secondary sources may aid discovery but findings trace their claims back to primary evidence.
+_Avoid_: Trusted write-up
+
+**Research report**:
+A cited Markdown snapshot named `docs/research/YYYYMMDD-{research-title}.md` that answers a research question from primary evidence and records its scope, findings, and unresolved limitations. Substantive re-research creates a linked superseding snapshot; minor corrections update the existing report and its metadata.
+_Avoid_: Research answer
+
+**Research skill**:
+The model-invoked workflow that uses evidence synthesis to answer a scoped question from primary sources and writes a cited research report. It delegates source discovery, appraisal, and report writing to a background agent when available so the caller receives only the durable report and concise findings; other skills invoke it only when the evidence warrants that durable record.
+_Avoid_: Web search
 
 **Description**:
 A concise statement of what a skill does and the conditions under which it should be invoked.
@@ -66,6 +103,18 @@ _Avoid_: Separate workflow, mode
 **Leading word**:
 A recognised term from an established method, principle, theory, or technique, specific enough to invoke the agent's existing knowledge without further explanation. A skill explains only its context-specific adaptation or constraints.
 _Avoid_: Coined term, theme, slogan
+
+**Governing methodology**:
+The single established methodology that determines a skill's process. Research validates the choice, while the plan and skill use only its canonical name without source attribution.
+_Avoid_: Core concept, main theme
+
+**Supporting concept**:
+An established principle, theory, or technique that reinforces the governing methodology for a distinct concern without competing with it.
+_Avoid_: Secondary concept
+
+**Skills plan**:
+The self-contained high-level handoff for Propulsion's fixed v1 skill suite. It records suite principles, the skill catalogue and standard briefs, composition and invocation, implementation order, and acceptance criteria without carrying source citations, discarded scope, or finished skill instructions.
+_Avoid_: Skill specification, backlog
 
 **Lossless compression**:
 Reducing a skill to the fewest words and structures that preserve its behaviour, conditions, constraints, and technical meaning.
