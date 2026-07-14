@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Elicit with Context'
+    short_description: 'Elicit while maintaining project context'
+policy:
+    allow_implicit_invocation: false

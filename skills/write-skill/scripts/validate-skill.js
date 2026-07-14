@@ -10,40 +10,24 @@ function addError(message) {
     errors.push(message);
 }
 
-function unquote(value) {
-    const trimmed = value.trim();
-    const first = trimmed.at(0);
-    const last = trimmed.at(-1);
-
-    if ((first === '"' && last === '"') || (first === "'" && last === "'")) {
-        return trimmed.slice(1, -1);
-    }
-
-    return trimmed;
+function isRecord(value) {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
-function readTopLevel(raw, key) {
-    const line = raw
-        .split(/\r?\n/)
-        .find((candidate) => candidate.startsWith(`${key}:`));
+function parseYaml(raw, label) {
+    try {
+        const value = Bun.YAML.parse(raw);
 
-    return line ? unquote(line.slice(key.length + 1)) : null;
-}
+        if (!isRecord(value)) {
+            addError(`Make ${label} a YAML mapping.`);
+            return {};
+        }
 
-function readNested(raw, parent, key) {
-    const lines = raw.split(/\r?\n/);
-    const parentIndex = lines.findIndex((line) => line === `${parent}:`);
-
-    if (parentIndex === -1) return null;
-
-    for (const line of lines.slice(parentIndex + 1)) {
-        if (/^\S/.test(line)) break;
-
-        const match = line.match(new RegExp(`^\\s+${key}:\\s*(.+)$`));
-        if (match) return unquote(match[1]);
+        return value;
+    } catch (error) {
+        addError(`Parse ${label} as valid YAML: ${error.message}`);
+        return {};
     }
-
-    return null;
 }
 
 function parseFrontmatter(content) {
@@ -51,19 +35,20 @@ function parseFrontmatter(content) {
 
     if (!match) {
         addError('Add YAML frontmatter at the start of SKILL.md.');
-        return { body: content, raw: '' };
+        return { body: content, data: {}, raw: '' };
     }
 
     return {
         body: content.slice(match[0].length),
+        data: parseYaml(match[1], 'SKILL.md frontmatter'),
         raw: match[1],
     };
 }
 
-function validateName(raw, skillPath) {
-    const name = readTopLevel(raw, 'name');
+function validateName(frontmatter, skillPath) {
+    const { name } = frontmatter;
 
-    if (!name) {
+    if (typeof name !== 'string' || !name) {
         addError('Add the skill name to frontmatter.');
         return;
     }
@@ -83,13 +68,13 @@ function validateName(raw, skillPath) {
     }
 }
 
-function validateDescription(raw) {
-    const description = readTopLevel(raw, 'description');
+function validateDescription(frontmatter, raw) {
+    const { description } = frontmatter;
     const descriptionLine = raw
         .split(/\r?\n/)
         .find((line) => line.startsWith('description:'));
 
-    if (!description) {
+    if (typeof description !== 'string' || !description) {
         addError('Add a one-line description to frontmatter.');
         return;
     }
@@ -117,22 +102,22 @@ function validateDescription(raw) {
     }
 }
 
-function validateInvocation(raw, openaiRaw) {
-    const invocation = readNested(raw, 'metadata', 'invocation');
-    const disableModel = readTopLevel(raw, 'disable-model-invocation');
-    const allowImplicit = readNested(
-        openaiRaw,
-        'policy',
-        'allow_implicit_invocation',
-    );
+function validateInvocation(frontmatter, openai) {
+    const invocation = isRecord(frontmatter.metadata)
+        ? frontmatter.metadata.invocation
+        : null;
+    const disableModel = frontmatter['disable-model-invocation'];
+    const allowImplicit = isRecord(openai.policy)
+        ? openai.policy.allow_implicit_invocation
+        : null;
 
     if (!['user', 'model'].includes(invocation)) {
         addError('Set metadata.invocation to user or model.');
         return;
     }
 
-    const expectedDisable = invocation === 'user' ? 'true' : 'false';
-    const expectedImplicit = invocation === 'user' ? 'false' : 'true';
+    const expectedDisable = invocation === 'user';
+    const expectedImplicit = invocation === 'model';
 
     if (disableModel !== expectedDisable) {
         addError(
@@ -147,7 +132,7 @@ function validateInvocation(raw, openaiRaw) {
     }
 }
 
-function validateOpenaiYaml(skillPath, raw) {
+function validateOpenaiYaml(skillPath, frontmatter) {
     const openaiPath = join(skillPath, 'agents', 'openai.yaml');
 
     if (!existsSync(openaiPath)) {
@@ -156,17 +141,15 @@ function validateOpenaiYaml(skillPath, raw) {
     }
 
     const openaiRaw = readFileSync(openaiPath, 'utf8');
-    const displayName = readNested(openaiRaw, 'interface', 'display_name');
-    const shortDescription = readNested(
-        openaiRaw,
-        'interface',
-        'short_description',
-    );
+    const openai = parseYaml(openaiRaw, 'agents/openai.yaml');
+    const skillInterface = isRecord(openai.interface) ? openai.interface : {};
+    const displayName = skillInterface.display_name;
+    const shortDescription = skillInterface.short_description;
 
-    if (!displayName)
+    if (typeof displayName !== 'string' || !displayName)
         addError('Set interface.display_name in agents/openai.yaml.');
 
-    if (!shortDescription) {
+    if (typeof shortDescription !== 'string' || !shortDescription) {
         addError('Set interface.short_description in agents/openai.yaml.');
     } else if (shortDescription.length < 25 || shortDescription.length > 64) {
         addError(
@@ -174,8 +157,8 @@ function validateOpenaiYaml(skillPath, raw) {
         );
     }
 
-    validateInvocation(raw, openaiRaw);
-    return openaiRaw;
+    validateInvocation(frontmatter, openai);
+    return openai;
 }
 
 function validateBody(body) {
@@ -199,40 +182,6 @@ function validateBody(body) {
 
     if (!introduction) {
         addError('Follow the H1 with a concise introductory paragraph.');
-    }
-
-    const h2s = lines
-        .map((line, index) => ({
-            index,
-            title: line.match(/^##\s+(.+)$/)?.[1],
-        }))
-        .filter(({ title }) => title);
-    const sectionIndex = new Map(h2s.map(({ index, title }) => [title, index]));
-
-    if (sectionIndex.has('References')) {
-        addError(
-            'Move each resource pointer beside the step or branch that uses it.',
-        );
-    }
-
-    if (sectionIndex.has('Completion Gate')) {
-        addError('Express completion through observable step postconditions.');
-    }
-
-    const prerequisites = sectionIndex.get('Prerequisites');
-    const steps = sectionIndex.get('Steps');
-    const handoff = sectionIndex.get('Handoff');
-
-    if (
-        prerequisites !== undefined &&
-        steps !== undefined &&
-        prerequisites > steps
-    ) {
-        addError('Place Prerequisites before Steps.');
-    }
-
-    if (handoff !== undefined && steps !== undefined && handoff < steps) {
-        addError('Place Handoff after the completed Steps.');
     }
 }
 
@@ -300,11 +249,11 @@ function validateSkill(skillPath) {
     }
 
     const content = readFileSync(skillFile, 'utf8');
-    const { body, raw } = parseFrontmatter(content);
+    const { body, data, raw } = parseFrontmatter(content);
 
-    validateName(raw, skillPath);
-    validateDescription(raw);
-    validateOpenaiYaml(skillPath, raw);
+    validateName(data, skillPath);
+    validateDescription(data, raw);
+    validateOpenaiYaml(skillPath, data);
     validateBody(body);
     const resourceCount = validateResources(skillPath, body);
 

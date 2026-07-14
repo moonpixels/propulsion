@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Review Architecture'
+    short_description: 'Review architecture and explain redesigns'
+policy:
+    allow_implicit_invocation: false

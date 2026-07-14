@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Commit'
+    short_description: 'Create coherent conventional commits'
+policy:
+    allow_implicit_invocation: true

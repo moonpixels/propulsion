@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Research'
+    short_description: 'Research primary sources into cited reports'
+policy:
+    allow_implicit_invocation: true
