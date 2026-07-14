@@ -8,4 +8,6 @@ disable-model-invocation: true
 
 # Elicit with Context
 
-Implementation is pending; its confirmed contract is documented in `SKILLS_PLAN.md`.
+Invoke `$elicit`, applying `$maintain-context` throughout. Treat `$elicit`'s
+final confirmation as the acceptance boundary for qualifying ADRs, then return
+the elicitation state, context changes, and unresolved language or decisions.
