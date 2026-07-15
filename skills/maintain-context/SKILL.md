@@ -25,10 +25,12 @@ choices that shape the codebase.
 2. As soon as a term is validated and agreed, create or update the single root
    `CONTEXT.md` using the [context template](assets/context-template.md). Keep
    definitions to one or two sentences, add `_Avoid_` only for aliases or
-   ambiguous alternatives that actually occur, and define domain meaning rather
-   than implementation, specifications, or general programming concepts. Give
-   each domain meaning one authoritative entry and link supporting material from
-   it. The glossary reflects each resolved term before the discussion continues.
+   ambiguous alternatives that actually occur, and group terms under descriptive
+   subheadings when natural clusters emerge; keep a flat list when all terms form
+   one cohesive area. Define domain meaning rather than implementation,
+   specifications, or general programming concepts. Give each domain meaning one
+   authoritative entry and link supporting material from it. The glossary
+   reflects each resolved term before the discussion continues.
 3. Test an accepted codebase decision against all three ADR gates:
     - changing it later has meaningful cost;
     - a future reader would find it surprising without context; and
