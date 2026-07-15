@@ -76,6 +76,12 @@ _Avoid_: Large class, shallow module
 The user-invoked workflow that reproduces a code issue, establishes its root cause, applies the smallest correction, and verifies the result. An explicit diagnosis-only request stops before mutation.
 _Avoid_: Diagnose skill
 
+**Maintain-agents skill**:
+The user-invoked workflow that creates or aggressively compresses the root `AGENTS.md` into project-wide runtime guidance and one canonical completion check. It removes narrower workflows from permanent context and reports their appropriate destinations.
+
+**Define-product skill**:
+The user-invoked Product Vision Board workflow that composes contextual elicitation and conditional research to maintain an evidence-aware root `PRODUCT.md` and domain language in `CONTEXT.md`. It defines strategic direction and capabilities without becoming a roadmap or implementation plan.
+
 **Primary source**:
 Original high-trust evidence such as official documentation, source code, standards, publications, first-party APIs, or first-party data. Secondary sources may aid discovery but findings trace their claims back to primary evidence.
 _Avoid_: Trusted write-up
