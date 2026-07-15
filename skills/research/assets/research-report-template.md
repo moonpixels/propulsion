@@ -16,8 +16,7 @@ status: current
 
 **Intended use:** {The decision or caller this evidence informs}
 
-**Scope:** {Included and excluded concerns, applicable versions or environments,
-and evidence currency}
+**Scope:** {Included and excluded concerns, applicable versions or environments, and evidence currency}
 
 ## Conclusion
 
@@ -27,8 +26,7 @@ and evidence currency}
 
 ### {Finding}
 
-{Material claims with direct links to supporting primary sources. Identify
-inferences explicitly.}
+{Material claims with direct links to supporting primary sources. Identify inferences explicitly.}
 
 ## Conflicts
 
@@ -40,11 +38,8 @@ inferences explicitly.}
 
 ## Method
 
-{How sources were discovered, appraised, compared, and falsified; include the
-research date and any reproducibility constraints without retaining the raw
-search trail.}
+{How sources were discovered, appraised, compared, and falsified; include the research date and any reproducibility constraints without retaining the raw search trail.}
 
 ## Primary sources
 
-- [{Source title}]({URL or repository-relative path}) — {publisher or owner,
-  version or publication date, accessed YYYY-MM-DD, and relevance}
+- [{Source title}]({URL or repository-relative path}) — {publisher or owner, version or publication date, accessed YYYY-MM-DD, and relevance}

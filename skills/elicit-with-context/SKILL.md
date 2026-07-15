@@ -8,11 +8,8 @@ disable-model-invocation: true
 
 # Elicit with Context
 
-Shared understanding stays aligned with durable project language and
-qualifying architecture decisions.
+Shared understanding stays aligned with durable project language and qualifying architecture decisions.
 
 ## Process
 
-Invoke `$elicit`, applying `$maintain-context` throughout. Treat `$elicit`'s
-final confirmation as the acceptance boundary for qualifying ADRs, then return
-the elicitation state, context changes, and unresolved language or decisions.
+Invoke `$elicit`, applying `$maintain-context` throughout. Treat `$elicit`'s final confirmation as the acceptance boundary for qualifying ADRs, then return the elicitation state, context changes, and unresolved language or decisions.
