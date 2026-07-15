@@ -1,6 +1,6 @@
 ---
 name: write-skill
-description: Creates, reviews, and rewrites predictable agent skills through confirmed behavioural contracts, evidence-backed concepts, and forward testing. Use when authoring or assessing a skill.
+description: Creates and updates predictable agent skills through confirmed behavioural contracts, evidence-backed concepts, and forward testing. Use when authoring or revising a skill.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -26,34 +26,36 @@ material exceptions.
 
 ### 2. Compare governing methodologies
 
+Use the confirmed behavioural contract as the fixed scope and decision authority
+for both research passes; evidence selects how to teach the confirmed behaviour.
 Invoke `$research` to compare credible governing methodologies, then **design it
 twice**: continue until at least two credible options emerge or the evidence
 reaches saturation. Present the supported options, behavioural consequences,
-and recommendation for the user to choose. Never manufacture a weak alternative;
-when only one survives, also offer no governing methodology. The user's
-selection or evidence-backed absence is explicit.
+and recommendation for the user to choose. Offer only evidence-supported
+alternatives; when one methodology survives, compare it with a methodology-free
+process. The user's selection or evidence-backed absence is explicit.
 
 ### 3. Select supporting concepts
 
 Invoke `$research` to find established principles, theories, methods, or
 techniques that reinforce distinct concerns without competing with the selected
 governor. Explain each candidate's intended behavioural effect and let the user
-decide; require no minimum or maximum count. Every retained concept earns a
+decide; let the evidence determine the count. Every retained concept earns a
 distinct role.
 
 ### 4. Confirm the design
 
 Present one complete synthesis of the behavioural contract, selected concepts,
 structure, resources, main success scenario, material exceptions, and observable
-success conditions. For an existing skill, include concise evidence-backed
-findings prioritised by impact on the dominant behaviour and limited by the same
-exception threshold. Obtain explicit confirmation before following the
-remaining process.
+success conditions. Obtain explicit confirmation before following the remaining
+process.
 
 ### 5. Write the bundle
 
-Create or rewrite through one path. Give every `SKILL.md` frontmatter, one H1, a
-concise introduction, and exactly one `## Process`; place a selected governing
+Create or update through one path. Treat the confirmed design as closed: encode
+its main success scenario and retained material exceptions without adding new
+behaviour during drafting. Give every `SKILL.md` frontmatter, one H1, a concise
+introduction, and exactly one `## Process`; place a selected governing
 methodology in bold where it fits naturally in the introduction. Bold each
 supporting concept at its first behaviour-governing use. Consult [Skill
 Sections](references/SECTIONS.md) when invocation metadata, optional sections,
@@ -66,23 +68,27 @@ behavioural idea and observable outcome. Split independently actionable
 instructions, concepts, or completion criteria; keep sentences together when
 they jointly govern the same action. Consult [Skill Craft](references/CRAFT.md)
 when the split, vocabulary, emphasis, or disclosure boundary is unclear. Every
-section is focused without becoming fragmentary.
+section remains focused and substantial.
 
 ### 7. Compress the language
 
 Apply minimalist instruction and **DRY** until every remaining word changes
 behaviour, preserves a condition, or improves navigation. Replace explanations
-with canonical leading words when the agent already knows the concept, state the
-positive target behaviour, and keep each meaning in one authoritative location.
-The bundle contains no behavioural no-op or duplicated meaning.
+with canonical leading words when the agent already knows the concept and keep
+each meaning in one authoritative location. Use **ironic process theory** as a
+salience check: state the positive target behaviour and pair an essential
+prohibition with the safe action that satisfies it. Consult [Skill
+Craft](references/CRAFT.md) when negative framing or semantic duplication remains
+unclear. Every remaining instruction is behaviourally necessary, authoritative,
+and positively framed.
 
 ### 8. Validate the mechanics
 
 Run [scripts/validate-skill.js](scripts/validate-skill.js), inspect every bundled
 script, and execute each within a disposable filesystem using inert fixtures,
-blocked external mutation, and no production credentials. When that boundary is
-unavailable, leave the script unexecuted and report the limitation. The
-mechanical contract passes without unsafe execution.
+isolated credentials, and an environment incapable of external mutation. When
+that boundary is unavailable, leave the script unexecuted and report the
+limitation. The mechanical contract passes within the safe execution boundary.
 
 ### 9. Forward-test the behaviour
 

@@ -41,8 +41,8 @@ behavioural idea; each ordered step ends in an observable postcondition.
 
 ## Optional sections
 
-Add an H2 only when its content cannot communicate more clearly beside the
-process instruction it governs:
+Add an H2 when it communicates the content more clearly than placement beside
+the process instruction it governs:
 
 - `## Prerequisites` states external conditions and the safe route when absent.
 - `## Rules` holds invariants that constrain multiple instructions or the
@@ -51,7 +51,7 @@ process instruction it governs:
   uncertainty.
 
 Rename or combine optional sections when that improves the confirmed behaviour.
-Never add them to complete a template.
+Every optional section earns its place through clearer execution.
 
 ## Bundled resources
 

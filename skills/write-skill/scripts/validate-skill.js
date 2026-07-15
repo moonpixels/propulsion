@@ -161,14 +161,52 @@ function validateOpenaiYaml(skillPath, frontmatter) {
     return openai;
 }
 
+function collectMarkdownHeadings(lines) {
+    const headings = [];
+    let fence = null;
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        const fenceMatch = trimmed.match(/^(`{3,}|~{3,})/);
+
+        if (fenceMatch) {
+            const marker = fenceMatch[1];
+
+            if (fence === null) {
+                fence = marker;
+            } else if (
+                marker[0] === fence[0] &&
+                marker.length >= fence.length
+            ) {
+                fence = null;
+            }
+
+            continue;
+        }
+
+        if (fence === null && /^#{1,6}\s+\S/.test(trimmed)) {
+            headings.push(trimmed);
+        }
+    }
+
+    return headings;
+}
+
 function validateBody(body) {
     const lines = body.split(/\r?\n/);
+    const headings = collectMarkdownHeadings(lines);
     const firstContentIndex = lines.findIndex((line) => line.trim());
     const firstContent = lines[firstContentIndex]?.trim();
 
     if (!firstContent?.match(/^#\s+\S/)) {
         addError('Start the skill body with a human-readable H1.');
         return;
+    }
+
+    const h1Headings = headings.filter((line) => /^#\s+\S/.test(line));
+
+    if (h1Headings.length !== 1) {
+        addError('Add exactly one H1 heading to the skill body.');
     }
 
     const firstH2Index = lines.findIndex((line) =>
@@ -184,9 +222,7 @@ function validateBody(body) {
         addError('Follow the H1 with a concise introductory paragraph.');
     }
 
-    const processHeadings = lines.filter(
-        (line) => line.trim() === '## Process',
-    );
+    const processHeadings = headings.filter((line) => line === '## Process');
 
     if (processHeadings.length !== 1) {
         addError('Add exactly one ## Process heading to the skill body.');

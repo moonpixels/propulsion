@@ -33,7 +33,7 @@ The point at which further elicitation within the agreed scope reveals no new ma
 _Avoid_: Question limit, exhaustive questioning
 
 **Main success scenario**:
-The representative invocation path that delivers a skill's intended outcome and remains dominant during design, review, and forward testing.
+The representative invocation path that delivers a skill's intended outcome and remains dominant during design, refinement, and forward testing.
 _Avoid_: Every possible path, exhaustive scenario set
 
 **Material exception**:
@@ -43,7 +43,7 @@ _Avoid_: Edge case, hypothetical branch
 ### Skill anatomy
 
 **Authoring workflow**:
-A skill that guides an agent through creating, reviewing, or improving another skill with an explicit process. It makes execution predictable without prescribing the authored skill's outcome.
+A skill that guides an agent through creating or updating another skill with an explicit process. It makes execution predictable without prescribing the authored skill's outcome.
 _Avoid_: Design guide, skill reference
 
 **Composable skill**:

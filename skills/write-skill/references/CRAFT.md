@@ -15,16 +15,16 @@ familiarity. Use **design it twice** to compare credible candidates through:
 - the evidence supporting its published meaning.
 
 Continue until multiple credible choices emerge or further research is unlikely
-to change the set. Recommend the strongest fit without hiding trade-offs. When
-only one survives, compare it with proceeding without a governing methodology.
+to change the set. Recommend the strongest fit and expose its trade-offs. When
+only one survives, compare it with a methodology-free process.
 
 ## Select supporting concepts
 
 A supporting concept earns inclusion only when it governs a concern the selected
 methodology leaves unresolved. Name its behavioural job in one sentence and test
-whether removing it changes the instructions. Retain none when the governor and
-plain language already determine the behaviour; retain as many as distinct
-concerns require.
+whether removing it changes the instructions. Use the governor and plain
+language alone when they already determine the behaviour; retain as many
+concepts as distinct concerns require.
 
 ## Choose leading words
 
@@ -49,9 +49,9 @@ content.
 
 Keep knowledge inline when every invocation needs it to act correctly. Move a
 retained exception to a reference when its detail would obscure the common path.
-Write the pointer as a loading condition, not a generic invitation to read more.
-Pull must-have material back inline only when a sharper pointer still produces
-missed behaviour in forward tests.
+Write every pointer as the precise loading condition. Pull must-have material
+back inline when forward tests show that a sharper pointer still misses the
+behaviour.
 
 ## Remove no-ops
 
@@ -70,7 +70,8 @@ authorities.
 
 ## State positive behaviour
 
-Describe the action the agent should perform. Reserve prohibitions for essential
-safety boundaries that cannot be expressed positively, and pair each with the
-safe action that satisfies it. The instruction leaves the intended behaviour,
-not the failure, most salient.
+Use ironic process theory as a salience check during final compression. Describe
+the action the agent should perform, replace avoidable negative framing with that
+target, and reserve prohibitions for essential safety boundaries that cannot be
+expressed positively. Pair each retained prohibition with the safe action that
+satisfies it. The instruction keeps the intended behaviour most salient.
