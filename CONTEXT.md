@@ -74,7 +74,7 @@ _Avoid_: Trusted write-up
 **Research report**: A cited Markdown snapshot named `docs/research/YYYYMMDD-{research-title}.md` that answers a research question from primary evidence and records its scope, findings, and unresolved limitations. Substantive re-research creates a linked superseding snapshot; minor corrections update the existing report and its metadata.\
 _Avoid_: Research answer
 
-**Research skill**: The model-invoked workflow that uses evidence synthesis to answer a scoped question from primary sources and writes a cited research report. It delegates source discovery, appraisal, and report writing to a background agent when available so the caller receives only the durable report and concise findings; other skills invoke it only when the evidence warrants that durable record.\
+**Research skill**: The model-invoked rapid evidence assessment workflow that gives a fresh agent ownership of primary-source discovery, appraisal, synthesis, and report writing. The caller verifies the cited research report and receives its concise findings; other skills invoke it only when the evidence warrants that durable record.\
 _Avoid_: Web search
 
 **Description**: A concise statement of what a skill does and the conditions under which it should be invoked.\

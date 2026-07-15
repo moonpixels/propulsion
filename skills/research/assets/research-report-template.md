@@ -38,7 +38,7 @@ status: current
 
 ## Method
 
-{How sources were discovered, appraised, compared, and falsified; include the research date and any reproducibility constraints without retaining the raw search trail.}
+{The research date, material search locations, terms or approaches, appraisal basis, triangulation and falsification method, and auditability constraints without the raw search trail.}
 
 ## Primary sources
 
