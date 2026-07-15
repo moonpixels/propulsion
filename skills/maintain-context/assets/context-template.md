@@ -4,5 +4,7 @@
 
 ## Language
 
+### {Optional descriptive concept group}
+
 **{Canonical term}**: {Define what the term is in one or two sentences.}\
 _Avoid_: {List observed aliases or ambiguous alternatives; omit when none exist.}
