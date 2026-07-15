@@ -1,7 +1,7 @@
 # Forward Testing
 
 Use this reference when scenario selection, context isolation, or observable
-pass evidence needs more detail than a single representative invocation.
+pass evidence needs more detail than the main success scenario.
 
 ## Preserve the evaluation boundary
 
@@ -13,18 +13,18 @@ author context cannot supply the result.
 
 ## Select scenarios
 
-Run at least one common-path invocation for every created or rewritten skill.
-Add the smallest scenarios that expose each distinct risk:
+Run the main success scenario for every created or rewritten skill. Add the
+smallest scenario for a retained material exception when it distinguishes:
 
-- alternate and failure branches;
-- optional reference-loading conditions;
-- composition with another skill;
-- permission or prerequisite boundaries;
-- fragile scripts or deterministic output contracts; and
+- an evidenced invocation that changes the required process or result;
+- a necessary safety, permission, or prerequisite boundary;
+- an optional reference needed by the retained exception;
+- a fragile script or deterministic output contract; or
 - wording whose effect depends on a leading word.
 
 Prefer one scenario that distinguishes several competing behaviours when its
-failure remains diagnosable.
+failure remains diagnosable. The scenario set contains only confirmed behaviour
+or material risk rather than hypothetical combinations.
 
 ## Define evidence
 

@@ -2,7 +2,8 @@
 title: 'Agent skill authoring methods'
 createdAt: 2026-07-15
 updatedAt: 2026-07-15
-status: current
+status: superseded
+supersededBy: './20260715-agent-skill-authoring-methods-2.md'
 ---
 
 # Agent skill authoring methods

@@ -16,11 +16,13 @@ bundle that reliably teaches them.
 ### 1. Establish the behavioural contract
 
 Inspect the request, complete target bundle, discoverable callers, and host
-conventions. Invoke `$elicit` and use **use-case modelling** to confirm the
-skill's purpose, intended agent behaviour, representative invocations, inputs,
-outputs, prerequisites, branches, failures, composition, permissions,
-postconditions, and resource needs. Existing and new skills reach the same
-explicit behavioural contract.
+conventions. Invoke `$elicit` and use the **main success scenario** to confirm
+the skill's purpose, trigger, primary behaviour, required inputs, observable
+result, and resource needs. Apply **YAGNI** to speculative branches: retain an
+exception only when representative evidence, the primary behaviour, or a
+necessary safety or permission boundary requires it. Existing and new skills
+reach one explicit behavioural contract with a dominant thread and only its
+material exceptions.
 
 ### 2. Compare governing methodologies
 
@@ -42,9 +44,11 @@ distinct role.
 ### 4. Confirm the design
 
 Present one complete synthesis of the behavioural contract, selected concepts,
-structure, resources, scenarios, and observable success conditions. For an
-existing skill, include concise evidence-backed findings against that contract.
-Obtain explicit confirmation before following the remaining process.
+structure, resources, main success scenario, material exceptions, and observable
+success conditions. For an existing skill, include concise evidence-backed
+findings prioritised by impact on the dominant behaviour and limited by the same
+exception threshold. Obtain explicit confirmation before following the
+remaining process.
 
 ### 5. Write the bundle
 
@@ -82,12 +86,12 @@ mechanical contract passes without unsafe execution.
 
 ### 9. Forward-test the behaviour
 
-Give a fresh agent only the finished bundle and a realistic invocation, then
-compare its observable process and result with every confirmed scenario. Test
-additional branches and reference-loading conditions in proportion to their
-variety and risk. Consult [Forward Testing](references/TESTING.md) when scenario
-selection, isolation, or pass evidence needs detail. Repair, recompress,
-revalidate, and retest until the skill reliably invokes the intended behaviour.
+Give a fresh agent only the finished bundle and a realistic main-success
+invocation, then compare its observable process and result with the confirmed
+contract. Add the smallest scenario for each retained material exception.
+Consult [Forward Testing](references/TESTING.md) when scenario selection,
+isolation, or pass evidence needs detail. Repair, recompress, revalidate, and
+retest until the skill reliably invokes the intended behaviour.
 
 ### 10. Report the result
 

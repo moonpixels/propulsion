@@ -29,8 +29,16 @@ Requirements elicitation adapted to establish discoverable facts, resolve a depe
 _Avoid_: Interrogation, clarification
 
 **Theoretical saturation**:
-The point at which further elicitation reveals no new material branches, allowing the complete shared understanding to be presented for confirmation.
+The point at which further elicitation within the agreed scope reveals no new material decisions, allowing the shared understanding to be presented for confirmation.
 _Avoid_: Question limit, exhaustive questioning
+
+**Main success scenario**:
+The representative invocation path that delivers a skill's intended outcome and remains dominant during design, review, and forward testing.
+_Avoid_: Every possible path, exhaustive scenario set
+
+**Material exception**:
+A non-common path that earns explicit skill behaviour because representative evidence, the main success scenario, or a necessary safety or permission boundary requires it. Speculative variation remains agent judgement.
+_Avoid_: Edge case, hypothetical branch
 
 ### Skill anatomy
 

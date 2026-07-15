@@ -10,7 +10,7 @@ familiarity. Use **design it twice** to compare credible candidates through:
 
 - the process each method would impose;
 - the behaviours it strengthens or suppresses;
-- its fit across normal, alternate, and failure scenarios;
+- its fit across the main success scenario and retained material exceptions;
 - the local adaptations it would require; and
 - the evidence supporting its published meaning.
 
@@ -47,11 +47,11 @@ content.
 
 ## Disclose depth
 
-Keep knowledge inline when every invocation needs it to act correctly. Move it
-to a reference when only some branches need it or its detail would obscure the
-common path. Write the pointer as a loading condition, not a generic invitation
-to read more. Pull must-have material back inline only when a sharper pointer
-still produces missed behaviour in forward tests.
+Keep knowledge inline when every invocation needs it to act correctly. Move a
+retained exception to a reference when its detail would obscure the common path.
+Write the pointer as a loading condition, not a generic invitation to read more.
+Pull must-have material back inline only when a sharper pointer still produces
+missed behaviour in forward tests.
 
 ## Remove no-ops
 

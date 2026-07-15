@@ -62,8 +62,8 @@ Use **progressive disclosure** as an information hierarchy:
 - Put files consumed or copied into generated output in `assets/`.
 - Put deterministic, repeated, or fragile operations in `scripts/`.
 
-Add a resource whenever its conditional depth improves execution. Link every
-resource directly from `SKILL.md` beside a precise condition that tells the
-agent when it may help. Keep references one level deep and each meaning in one
-authoritative location. References contain runtime guidance rather than general
-concept explanations.
+Add a resource when a retained material exception or other conditional depth
+improves execution. Link every resource directly from `SKILL.md` beside a
+precise condition that tells the agent when it may help. Keep references one
+level deep and each meaning in one authoritative location. References contain
+runtime guidance rather than general concept explanations.
