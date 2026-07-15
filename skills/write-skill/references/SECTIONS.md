@@ -1,9 +1,8 @@
 # Skill Sections
 
 Structure serves behaviour. Every `SKILL.md` has frontmatter, a human-readable
-H1, and a strong introduction; every other heading is optional. Use the fewest
-clear headings that make the confirmed workflow easy to execute. A small router
-may finish after its introduction.
+H1, a strong introduction, and one `## Process` section. Use the fewest other
+clear headings that make the confirmed instructions easy to execute.
 
 ## Frontmatter
 
@@ -46,28 +45,31 @@ For a router, directly invoke the called skills and state only coordination
 unique to their combined outcome. The router leaves their methodologies and
 instructions authoritative.
 
-## Common Headings
+## Process
 
-These headings are available when their inclusion criterion is met. Rename,
-combine, nest, or omit them when another structure communicates the behaviour
-more directly.
+Every skill uses `## Process` for its instructions. Use direct prose or
+descriptive H3 headings when order does not matter. When order matters, use
+numbered H3 headings with the instructions in paragraphs beneath them. For
+branched processes, use unnumbered H3 branch headings and numbered H4 step
+headings within each branch. End each ordered step in an observable
+postcondition through **design by contract**.
+
+## Optional Headings
+
+These H2 headings are available when their inclusion criterion is met. Rename,
+combine, or omit them when another structure communicates the behaviour more
+directly.
 
 ### Prerequisites
 
 Use when external conditions must already be true before execution can begin.
-State the condition and the safe route when it is absent. Put setup work the
-agent can perform in `Steps`.
-
-### Steps
-
-Use for executable work whose sequence matters. Number dependent actions,
-introduce branches or stages only for distinct flows, and end each step in an
-observable postcondition through **design by contract**.
+State the condition and the safe route when it is absent. This heading may
+precede `## Process`. Put setup work the agent can perform in `Process`.
 
 ### Rules
 
-Use for an invariant that constrains multiple steps or the finished result.
-Keep a condition used by only one step beside that step.
+Use for an invariant that constrains multiple instructions or the finished
+result. Keep a condition used by only one step beside that step.
 
 ### Handoff
 
@@ -83,5 +85,6 @@ confirmed use case:
 - `assets/` holds files used in generated output.
 - `scripts/` holds deterministic, repeated, or fragile operations.
 
-Place each resource pointer beside the step or branch that loads or uses it.
+Place each resource pointer beside the instruction or branch that loads or uses
+it.
 Execute every script and keep each meaning in one authoritative location.

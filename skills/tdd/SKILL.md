@@ -21,30 +21,44 @@ reshape a public contract. Apply TDD to observable behaviour, including
 configuration with observable effects; leave documentation, configuration-only
 maintenance, and behaviour-preserving refactors with the caller.
 
-## Steps
+## Process
 
-1. Read repository instructions, identify the relevant test command, and run the
-   existing suite to establish a known baseline. Separate unrelated existing
-   failures from the change, then select the smallest observable behaviour. The
-   baseline, test seam, and next behaviour are explicit.
-2. **Red:** use **Arrange-Act-Assert** to add one focused test through a stable
-   public interface. For a bug, reproduce the incorrect behaviour; adopt an
-   already-failing regression test only when it independently specifies the
-   desired behaviour. Run the test and confirm that it fails for the expected
-   behavioural reason rather than a test defect or environment error. When it
-   does not, remain in Red: correct an in-scope test defect or report an
-   environment blocker, then rerun until the expected failure is observed.
-   Meaningful red evidence is recorded before Green begins.
-3. **Green:** implement only enough production code to satisfy the behaviour,
-   then run the focused test and relevant nearby tests. The new behaviour passes
-   without hiding baseline failures.
-4. **Refactor:** improve the test and production code while keeping behaviour
-   fixed. Run the focused tests after each material change until the design is
-   clear and green. The cycle ends with no refactor regression.
-5. Repeat Red, Green, and Refactor for each remaining behaviour, then run the
-   complete relevant suite. Report the behaviours delivered, red and green
-   evidence, refactors, commands, results, and unresolved baseline failures. The
-   requested behaviour and retained tests are verified.
+### 1. Establish the baseline
+
+Read repository instructions, identify the relevant test command, and run the
+existing suite to establish a known baseline. Separate unrelated existing
+failures from the change, then select the smallest observable behaviour. The
+baseline, test seam, and next behaviour are explicit.
+
+### 2. Red
+
+Use **Arrange-Act-Assert** to add one focused test through a stable
+public interface. For a bug, reproduce the incorrect behaviour; adopt an
+already-failing regression test only when it independently specifies the
+desired behaviour. Run the test and confirm that it fails for the expected
+behavioural reason rather than a test defect or environment error. When it
+does not, remain in Red: correct an in-scope test defect or report an
+environment blocker, then rerun until the expected failure is observed.
+Meaningful red evidence is recorded before Green begins.
+
+### 3. Green
+
+Implement only enough production code to satisfy the behaviour,
+then run the focused test and relevant nearby tests. The new behaviour passes
+without hiding baseline failures.
+
+### 4. Refactor
+
+Improve the test and production code while keeping behaviour
+fixed. Run the focused tests after each material change until the design is
+clear and green. The cycle ends with no refactor regression.
+
+### 5. Complete the cycles
+
+Repeat Red, Green, and Refactor for each remaining behaviour, then run the
+complete relevant suite. Report the behaviours delivered, red and green
+evidence, refactors, commands, results, and unresolved baseline failures. The
+requested behaviour and retained tests are verified.
 
 ## Test Quality
 

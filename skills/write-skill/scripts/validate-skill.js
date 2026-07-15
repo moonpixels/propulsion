@@ -183,6 +183,14 @@ function validateBody(body) {
     if (!introduction) {
         addError('Follow the H1 with a concise introductory paragraph.');
     }
+
+    const processHeadings = lines.filter(
+        (line) => line.trim() === '## Process',
+    );
+
+    if (processHeadings.length !== 1) {
+        addError('Add exactly one ## Process heading to the skill body.');
+    }
 }
 
 function collectFiles(directory, prefix) {

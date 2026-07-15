@@ -19,29 +19,46 @@ and a distinct base branch are required. Use the user-supplied base or the
 remote's default branch. Report the missing condition and stop when a
 prerequisite cannot be resolved.
 
-## Steps
+## Process
 
-1. Inspect repository instructions and pull-request templates, Git status and
-   current operation, the current branch, GitHub remotes, authentication, the
-   selected base, and any existing pull request for the branch. The publication
-   context and applicable repository requirements are explicit before mutation.
-2. Invoke `$commit` when eligible uncommitted work exists. Continue with its
-   reported commits and intentionally excluded work visible.
-3. Fetch the selected remote base, find its merge base with `HEAD`, and inspect
-   the complete commit history and diff from that point. Stop when the branch
-   has no publishable diff; otherwise the full pull-request scope is explicit.
-4. Derive an accurate Conventional Commit title in the form
-   `type[(scope)][!]: description` for the complete diff. Populate every required
-   repository-template section; without a required template, write one short
-   **BLUF** paragraph explaining what changed and why. The title and body
-   represent the complete branch rather than one commit.
-5. Push the current branch without rewriting remote history and create a ready
-   pull request against the selected base, or a draft only when the user
-   explicitly requested one. When an open pull request already represents the
-   branch, reuse it and reconcile its base, title, body, and ready or draft state
-   with the selected publication context. The remote branch and one
-   corresponding pull request exist with the requested metadata and state.
-6. Verify the pull request's head, base, draft state, title, and body against the
-   inspected scope and repository requirements. Return its URL and report any
-   failed publication or verification with the resulting local and remote
-   state.
+### 1. Inspect the publication context
+
+Inspect repository instructions and pull-request templates, Git status and
+current operation, the current branch, GitHub remotes, authentication, the
+selected base, and any existing pull request for the branch. The publication
+context and applicable repository requirements are explicit before mutation.
+
+### 2. Commit eligible work
+
+Invoke `$commit` when eligible uncommitted work exists. Continue with its
+reported commits and intentionally excluded work visible.
+
+### 3. Establish the pull-request scope
+
+Fetch the selected remote base, find its merge base with `HEAD`, and inspect
+the complete commit history and diff from that point. Stop when the branch
+has no publishable diff; otherwise the full pull-request scope is explicit.
+
+### 4. Write the pull request
+
+Derive an accurate Conventional Commit title in the form
+`type[(scope)][!]: description` for the complete diff. Populate every required
+repository-template section; without a required template, write one short
+**BLUF** paragraph explaining what changed and why. The title and body
+represent the complete branch rather than one commit.
+
+### 5. Publish the branch
+
+Push the current branch without rewriting remote history and create a ready
+pull request against the selected base, or a draft only when the user
+explicitly requested one. When an open pull request already represents the
+branch, reuse it and reconcile its base, title, body, and ready or draft state
+with the selected publication context. The remote branch and one
+corresponding pull request exist with the requested metadata and state.
+
+### 6. Verify the pull request
+
+Verify the pull request's head, base, draft state, title, and body against the
+inspected scope and repository requirements. Return its URL and report any
+failed publication or verification with the resulting local and remote
+state.

@@ -106,6 +106,10 @@ _Avoid_: Title, label
 A distinct route through a skill for a particular use case or condition. Branches share the skill's common process without duplicating it.
 _Avoid_: Separate workflow, mode
 
+**Process section**:
+The required `## Process` section that contains a skill's instructions. It uses numbered subheadings only when order matters and descriptive subheadings or direct prose otherwise.
+_Avoid_: Steps section, instructions section
+
 **Leading word**:
 A recognised term from an established method, principle, theory, or technique, specific enough to invoke the agent's existing knowledge without further explanation. A skill explains only its context-specific adaptation or constraints.
 _Avoid_: Coined term, theme, slogan
@@ -139,7 +143,7 @@ A condition that must be true before a skill can begin. Its failure stops the sk
 _Avoid_: Setup step, pre-flight check
 
 **Step**:
-An action the agent performs as part of the skill, ordered when sequence matters and ended by an observable postcondition.
+A numbered subheading used when actions within a process or branch must occur in order. Its paragraphs describe the action and end in an observable postcondition.
 _Avoid_: Instruction, rule
 
 **Postcondition**:
@@ -147,11 +151,11 @@ An observable state that marks a step complete without requiring a separate comp
 _Avoid_: Completion criterion, completion gate
 
 **Rule**:
-A cross-cutting invariant that constrains multiple steps or the finished output.
+A cross-cutting invariant that constrains multiple instructions or the finished output.
 _Avoid_: Step, reminder
 
 **Handoff**:
-A transfer or route that becomes available after the skill's steps are complete.
+A transfer or route that becomes available after the skill's process is complete.
 _Avoid_: Next step, final step
 
 **Reference**:
