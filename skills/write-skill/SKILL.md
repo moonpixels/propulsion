@@ -15,8 +15,11 @@ processes and context-sensitive outcomes.
 
 1. Inspect the request, complete target bundle, discoverable callers, and host
    conventions. Select the `Create`, `Review`, or `Improve` branch from the
-   user's authorised outcome. The branch, evidence, and change boundary are
-   explicit.
+   user's authorised outcome. Before executing a bundled script, establish a
+   disposable filesystem, inert fixtures, blocked external mutation, and no
+   production credentials; when that boundary is unavailable, leave the script
+   unexecuted and record the limitation. The branch, evidence, change boundary,
+   and script-execution boundary are explicit.
 2. Follow the selected branch.
 
 ### Create
@@ -48,8 +51,8 @@ processes and context-sensitive outcomes.
    material intent decision remains unresolved. The review scope and available
    contract are explicit.
 2. Read [Skill Sections](references/SECTIONS.md), run
-   [scripts/validate-skill.js](scripts/validate-skill.js), execute every bundled
-   script in an isolated disposable environment, and acceptance-test the
+   [scripts/validate-skill.js](scripts/validate-skill.js), inspect every bundled
+   script, execute each safely isolated script, and acceptance-test the
    representative invocations. Assess the governing methodology, supporting
    concepts, predictability, composition, structure, language, resources, and
    observable postconditions while preserving the bundle and user work unchanged.
@@ -73,8 +76,9 @@ processes and context-sensitive outcomes.
 1. Apply **lossless compression** until every remaining word changes behaviour,
    preserves a condition, or improves navigation. Each meaning has one
    authoritative location.
-2. Run [scripts/validate-skill.js](scripts/validate-skill.js) and execute every
-   bundled script until the mechanical contract passes.
+2. Run [scripts/validate-skill.js](scripts/validate-skill.js) and execute each
+   safely isolated bundled script until the mechanical contract passes. Report
+   any script that the common isolation boundary leaves unexecuted.
 3. Use **acceptance testing** to replay every confirmed invocation through its
    branches, resource pointers, and postconditions. Repeat writing, compression,
    and validation until every scenario passes.

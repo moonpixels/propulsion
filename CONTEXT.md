@@ -50,7 +50,7 @@ _Avoid_: Pipeline skill
 The user-invoked workflow that uses tracer bullets to deliver a clear implementation request in verified slices, applying TDD when appropriate. It remediates code-review findings until verified and elicits user intent when a finding would change behaviour, contracts, architecture, or scope.
 
 **TDD skill**:
-The model-invoked workflow that applies red-green-refactor to behaviour changes when the repository has a runnable test suite. It uses Test Desiderata to favour valuable tests that respond to behaviour without coupling to code structure.
+The model-invoked workflow that applies red-green-refactor when an existing runnable test suite can exercise the behaviour change through a stable public seam. It uses Test Desiderata to favour valuable tests that respond to behaviour without coupling to code structure.
 
 **Code-review skill**:
 The model-invoked workflow that assesses a scoped code change independently for requirements and code health, then reports evidence-validated findings including code smells and refactor opportunities without changing the code.
@@ -61,7 +61,7 @@ The user-invoked workflow that analyses a project's architecture and produces an
 _Avoid_: Improve-architecture skill
 
 **Architecture review report**:
-A self-contained interactive artifact named `docs/architecture/YYYYMMDD-{scope}-architecture-review.html` that guides the user through a small set of prioritised recommendations in concise plain language. It uses visualisation and progressive disclosure to explain affected architecture, expected improvements, evidence, and trade-offs without presenting a wall of technical detail.
+A single-file interactive artifact named `docs/architecture/YYYYMMDD-{scope}-architecture-review.html` that guides the user through a small set of prioritised recommendations in concise plain language. It uses visualisation and progressive disclosure to explain affected architecture, expected improvements, evidence, and trade-offs without presenting a wall of technical detail. Verified CDN dependencies may supply scripts, styles, fonts, and diagram libraries.
 _Avoid_: Static architecture audit
 
 **Architecture module**:

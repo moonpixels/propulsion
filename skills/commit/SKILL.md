@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Creates coherent conventional commits from uncommitted work. Use when changes are ready to be inspected, separated, staged, and committed.
+description: Creates coherent conventional commits from uncommitted work. Use when the user or an authorised publishing workflow requests ready changes be inspected, separated, staged, and committed.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -13,10 +13,13 @@ messages state each change's intent.
 
 ## Steps
 
-1. Inspect `git status`, the repository's Git instructions and current
+1. Establish commit authority from an explicit user request or authorised
+   caller. Inspect `git status`, the repository's Git instructions and current
    operation, staged, unstaged, and untracked changes, and recent commit messages.
    Honour user-supplied scope or message constraints and compatible repository
-   conventions. The complete candidate diff and commit context are explicit.
+   conventions. When authority is absent or no eligible change remains, report
+   it and stop without changing Git state. Otherwise the complete candidate diff
+   and commit context are explicit.
 2. Partition eligible changes by coherent intent using **atomic commits**.
    Keep related implementation, tests, and documentation together while
    leaving unrelated or ambiguous work uncommitted. Treat a coherent,

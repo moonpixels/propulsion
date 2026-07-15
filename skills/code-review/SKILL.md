@@ -48,8 +48,7 @@ refactor opportunities independently visible.
 5. Apply **falsification** to every candidate against the scoped change, full
    context, requirements, and repository standards. Run targeted non-mutating
    tests, type checks, linting, or other checks when they can settle a claim.
-   Discard personal preferences, unsupported speculation, unrelated pre-existing
-   debt, and candidates without a demonstrated consequence. Every remaining
+   Discard any candidate without a demonstrated consequence. Every remaining
    finding is reproducible or directly evidenced.
 6. Use **risk-based prioritisation**: `critical` for immediate data loss,
    security compromise, or production failure; `high` for incorrect requirements

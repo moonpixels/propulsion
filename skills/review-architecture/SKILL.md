@@ -58,8 +58,8 @@ small, stable contracts hide cohesive implementation and change-prone decisions.
    architecture fitness checks. Stop before changing implementation or
    producing a file-by-file implementation plan. Every recommendation is
    independently understandable, actionable, and verifiable.
-8. Read [Report Design](references/report-design.md), then create one interactive
-   HTML file at
+8. Read [Report Design](references/report-design.md), then create one single-file
+   interactive HTML report at
    `docs/architecture/YYYYMMDD-{scope}-architecture-review.html`. Preserve an
    existing path by adding `-2`, `-3`, and so on before `.html` unless the user
    explicitly requests replacement. Generate the overview, comparison,

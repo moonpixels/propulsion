@@ -76,10 +76,12 @@ the current report. Tailwind and Mermaid are suitable defaults:
 </script>
 ```
 
-The artifact must be one generated HTML file, but it need not work offline or
-preserve CDN compatibility indefinitely. Verify every selected dependency in
-the rendered report at generation time. Escape repository-derived text before
-placing it in HTML, attributes, scripts, or diagram definitions.
+The artifact is a single generated HTML file whose markup and behaviour remain
+together; verified CDN dependencies may provide scripts, styles, fonts, and
+diagram libraries. It need not work offline or preserve CDN compatibility
+indefinitely. Verify every selected dependency in the rendered report at
+generation time. Escape repository-derived text before placing it in HTML,
+attributes, scripts, or diagram definitions.
 
 Prefer semantic HTML controls and disclosure elements. Filters update results
 immediately, preserve an obvious current state, and remain operable without a

@@ -43,12 +43,11 @@ report whose material claims trace to primary sources.
    [the research report template](assets/research-report-template.md). Use a
    concise lowercase hyphenated title and claim-level links to the primary
    evidence. Replace every placeholder and retain only applicable lifecycle
-   fields. Record enough method and source detail for **reproducibility**, but
-   omit the raw search trail. The report contains the question and scope,
-   conclusion, cited findings, method, conflicts, limitations, and primary
-   sources. When a distinct report already occupies the same dated path, append
-   `-2` to the filename slug and increment it until available without changing
-   the frontmatter title or H1.
+   fields. Complete every applicable template section and record enough method
+   and source detail for **reproducibility**, but omit the raw search trail. When
+   a distinct report already occupies the same dated path, append `-2` to the
+   filename slug and increment it until available without changing the
+   frontmatter title or H1.
 6. Preserve **provenance** when related research already exists. Apply a minor
    correction in place only when it repairs wording, formatting, or the link to
    the same evidence without changing a material claim; retain `createdAt` and

@@ -124,7 +124,9 @@ an existing skill without unintentionally changing its contract.
 
 **Boundaries and exclusions:** It authors skill bundles, not the domain work the
 new skill will later perform. It does not select a governing methodology without
-the user's approval or retain source attribution in the finished skill.
+the user's approval or retain source attribution in the finished skill. It
+executes bundled scripts only within a boundary that blocks external mutation
+and production credentials.
 
 **Governing methodology:** Use-case modelling.
 
@@ -164,8 +166,9 @@ mechanical and semantic validation.
 **Intended outcome:** Inspect uncommitted work and create one or more coherent
 conventional commits without losing or conflating changes.
 
-**Use cases:** Commit one coherent working-tree change; separate mixed concerns
-into multiple commits; provide the commit operation used by **pr**.
+**Use cases:** Commit one coherent working-tree change at the user's request;
+separate mixed concerns into multiple commits; provide the authorised commit
+operation used by **pr**.
 
 **Boundaries and exclusions:** It does not push, open a pull request, discard
 changes, or force unrelated work into one commit.
@@ -175,7 +178,8 @@ changes, or force unrelated work into one commit.
 **Supporting concepts:** Atomic commits and interactive staging.
 
 **Invocation and composition:** Model-invoked and directly user-invokable. It
-has no skill dependencies and is called by **pr**.
+acts only from an explicit user request or authorised caller, has no skill
+dependencies, and is called by **pr**.
 
 **High-level workflow:**
 
@@ -388,8 +392,8 @@ no unresolved in-scope finding.
 **Intended outcome:** Build observable behaviour one test at a time through
 durable red-green-refactor cycles.
 
-**Use cases:** Features and bug fixes in repositories that already have a
-runnable test suite.
+**Use cases:** Features and bug fixes that an existing runnable test suite can
+exercise through a stable public seam.
 
 **Boundaries and exclusions:** Do not create a test harness merely to make TDD
 applicable. Documentation, configuration-only changes, and
@@ -587,7 +591,7 @@ report.
    benefits, risks, trade-offs, effort, and migration paths.
 4. Keep only the highest-value recommendations and define architecture fitness
    evidence for each.
-5. Generate a self-contained interactive report at
+5. Generate a single-file interactive report at
    docs/architecture/YYYYMMDD-{scope}-architecture-review.html using
    references/report-design.md for tone, hierarchy, accessibility, diagrams,
    interaction patterns, and visual QA.

@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Builds observable behaviour through red-green-refactor. Use when a feature or bug fix has a runnable test suite.
+description: Builds observable behaviour through red-green-refactor. Use when a feature or bug fix can be exercised by an existing runnable test suite through a stable seam.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -14,11 +14,12 @@ internal collaborators, introducing doubles mainly at uncontrollable boundaries.
 
 ## Prerequisite
 
-Use an existing runnable test suite. When none exists, report that TDD is not
-applicable and return control without creating a test harness. Apply TDD to
-observable behaviour, including configuration with observable effects; leave
-documentation, configuration-only maintenance, and behaviour-preserving
-refactors with the caller.
+TDD applies when an existing runnable test suite can exercise the requested
+behaviour through a stable public seam. Otherwise return control with the
+missing condition; the caller owns any decision to create a test harness or
+reshape a public contract. Apply TDD to observable behaviour, including
+configuration with observable effects; leave documentation, configuration-only
+maintenance, and behaviour-preserving refactors with the caller.
 
 ## Steps
 
