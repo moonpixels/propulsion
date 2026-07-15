@@ -1,8 +1,7 @@
 # Skill Sections
 
-Structure serves behaviour. Every `SKILL.md` has frontmatter, a human-readable
-H1, a strong introduction, and one `## Process` section. Use the fewest other
-clear headings that make the confirmed instructions easy to execute.
+Use this reference when invocation metadata, optional sections, or bundled
+resource placement needs more detail than the fixed skill spine.
 
 ## Frontmatter
 
@@ -10,14 +9,13 @@ Include the skill's discovery and invocation contract:
 
 - `name` matches its directory, uses lowercase letters, digits, and single
   hyphens, and reads naturally when invoked.
-- `description` is one action-oriented line that states both capability and
-  natural trigger conditions. Put all triggering guidance here because the body
-  loads only after invocation.
+- `description` is one action-oriented line containing the capability and
+  natural trigger conditions.
 - `metadata.invocation` records `user` or `model`.
 - `disable-model-invocation` and `agents/openai.yaml` use the matching policy.
 
 Use user invocation by default. Use model invocation when composition or broad
-reuse justifies the permanent description context.
+reuse earns the permanent description context.
 
 | Invocation | `disable-model-invocation` | `policy.allow_implicit_invocation` |
 | ---------- | -------------------------- | ---------------------------------- |
@@ -26,65 +24,46 @@ reuse justifies the permanent description context.
 
 Add `agents/openai.yaml` with a human-readable `interface.display_name`, a
 25–64-character `interface.short_description`, and the matching policy.
-`interface.default_prompt` remains optional.
-
-## H1
-
-Start the body with one human-readable H1 that makes the skill immediately
-recognisable. It may expand an abbreviated directory name when that improves
-clarity.
 
 ## Introduction
 
-For a workflow skill, lead with the canonical governing methodology in bold and
-state how it governs the capability in one strong sentence or short paragraph.
-Explain only the context-specific adaptation and keep source attribution in the
-research evidence rather than the skill.
+The fixed spine and emphasis rules in the main workflow are authoritative. Use
+the introduction to explain only the selected methodology's context-specific
+adaptation.
 
-For a router, directly invoke the called skills and state only coordination
-unique to their combined outcome. The router leaves their methodologies and
-instructions authoritative.
+## Process details
 
-## Process
+Within `## Process`, use numbered H3 headings when order matters, descriptive H3
+headings for distinct non-sequential concerns, or direct prose for a truly thin
+process. For branches, use descriptive H3 headings and numbered H4 steps only
+when the nested sequence improves execution. Each section carries one coherent
+behavioural idea; each ordered step ends in an observable postcondition.
 
-Every skill uses `## Process` for its instructions. Use direct prose or
-descriptive H3 headings when order does not matter. When order matters, use
-numbered H3 headings with the instructions in paragraphs beneath them. For
-branched processes, use unnumbered H3 branch headings and numbered H4 step
-headings within each branch. End each ordered step in an observable
-postcondition through **design by contract**.
+## Optional sections
 
-## Optional Headings
+Add an H2 only when its content cannot communicate more clearly beside the
+process instruction it governs:
 
-These H2 headings are available when their inclusion criterion is met. Rename,
-combine, or omit them when another structure communicates the behaviour more
-directly.
+- `## Prerequisites` states external conditions and the safe route when absent.
+- `## Rules` holds invariants that constrain multiple instructions or the
+  finished result.
+- `## Handoff` states a meaningful transfer, its evidence, and unresolved
+  uncertainty.
 
-### Prerequisites
+Rename or combine optional sections when that improves the confirmed behaviour.
+Never add them to complete a template.
 
-Use when external conditions must already be true before execution can begin.
-State the condition and the safe route when it is absent. This heading may
-precede `## Process`. Put setup work the agent can perform in `Process`.
+## Bundled resources
 
-### Rules
+Use **progressive disclosure** as an information hierarchy:
 
-Use for an invariant that constrains multiple instructions or the finished
-result. Keep a condition used by only one step beside that step.
+- Keep the common execution path in `SKILL.md`.
+- Put conditional or extensive runtime guidance in `references/`.
+- Put files consumed or copied into generated output in `assets/`.
+- Put deterministic, repeated, or fragile operations in `scripts/`.
 
-### Handoff
-
-Use when completion creates a meaningful transfer to the user or another skill.
-State the result, evidence, and unresolved uncertainty that cross the boundary.
-
-## Bundled Resources
-
-Use **progressive disclosure** and **YAGNI** to add only resources required by a
-confirmed use case:
-
-- `references/` holds conditional knowledge loaded into context.
-- `assets/` holds files used in generated output.
-- `scripts/` holds deterministic, repeated, or fragile operations.
-
-Place each resource pointer beside the instruction or branch that loads or uses
-it.
-Execute every script and keep each meaning in one authoritative location.
+Add a resource whenever its conditional depth improves execution. Link every
+resource directly from `SKILL.md` beside a precise condition that tells the
+agent when it may help. Keep references one level deep and each meaning in one
+authoritative location. References contain runtime guidance rather than general
+concept explanations.

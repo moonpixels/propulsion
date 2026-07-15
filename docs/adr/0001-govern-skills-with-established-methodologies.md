@@ -1,5 +1,6 @@
 ---
-status: accepted
+status: superseded
+superseded-by: './0002-ground-skill-methodologies-in-research.md'
 ---
 
 # Govern skills with established methodologies

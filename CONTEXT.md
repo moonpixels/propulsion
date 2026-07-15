@@ -115,7 +115,7 @@ A recognised term from an established method, principle, theory, or technique, s
 _Avoid_: Coined term, theme, slogan
 
 **Governing methodology**:
-The single established methodology that determines a skill's process. Research validates the choice, while the plan and skill use only its canonical name without source attribution.
+An established methodology selected through research to determine a skill's process when one credibly fits. Research may conclude that none is suitable; a selected methodology appears by canonical name in the skill without source attribution.
 _Avoid_: Core concept, main theme
 
 **Supporting concept**:
@@ -143,7 +143,7 @@ A condition that must be true before a skill can begin. Its failure stops the sk
 _Avoid_: Setup step, pre-flight check
 
 **Step**:
-A numbered subheading used when actions within a process or branch must occur in order. Its paragraphs describe the action and end in an observable postcondition.
+A numbered subheading used when actions within a process or branch must occur in order. It isolates one coherent behavioural concern, describes the action, and ends in an observable postcondition.
 _Avoid_: Instruction, rule
 
 **Postcondition**:
@@ -159,7 +159,7 @@ A transfer or route that becomes available after the skill's process is complete
 _Avoid_: Next step, final step
 
 **Reference**:
-Focused supporting documentation linked once beside the condition that requires it and loaded only when that branch is reached.
+Conditional or extensive runtime guidance linked once beside a precise loading condition. The agent loads it only when that branch or decision needs the additional depth.
 _Avoid_: Background, resource
 
 **Acceptance testing**:

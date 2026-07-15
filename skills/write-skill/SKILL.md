@@ -1,6 +1,6 @@
 ---
 name: write-skill
-description: Creates, reviews, and improves predictable agent skills through approved use cases and established methodologies. Use when authoring or assessing a skill's behaviour, structure, or wording.
+description: Creates, reviews, and rewrites predictable agent skills through confirmed behavioural contracts, evidence-backed concepts, and forward testing. Use when authoring or assessing a skill.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,127 +8,89 @@ disable-model-invocation: true
 
 # Write Skill
 
-**Use-case modelling** turns confirmed needs into skills with predictable
-processes and context-sensitive outcomes.
+**Minimalist instruction** turns confirmed behaviours into the smallest skill
+bundle that reliably teaches them.
 
 ## Process
 
-### 1. Select the branch
+### 1. Establish the behavioural contract
 
 Inspect the request, complete target bundle, discoverable callers, and host
-conventions. Select the `Create`, `Review`, or `Improve` branch from the
-user's authorised outcome. Before executing a bundled script, establish a
-disposable filesystem, inert fixtures, blocked external mutation, and no
-production credentials; when that boundary is unavailable, leave the script
-unexecuted and record the limitation. The branch, evidence, change boundary,
-and script-execution boundary are explicit.
+conventions. Invoke `$elicit` and use **use-case modelling** to confirm the
+skill's purpose, intended agent behaviour, representative invocations, inputs,
+outputs, prerequisites, branches, failures, composition, permissions,
+postconditions, and resource needs. Existing and new skills reach the same
+explicit behavioural contract.
 
-Follow the selected branch.
+### 2. Compare governing methodologies
 
-### Create
+Invoke `$research` to compare credible governing methodologies, then **design it
+twice**: continue until at least two credible options emerge or the evidence
+reaches saturation. Present the supported options, behavioural consequences,
+and recommendation for the user to choose. Never manufacture a weak alternative;
+when only one survives, also offer no governing methodology. The user's
+selection or evidence-backed absence is explicit.
 
-#### 1. Confirm the contract
+### 3. Select supporting concepts
 
-Invoke `$elicit` to confirm concrete invocations, goals, inputs, outputs,
-prerequisites, flows, branches, failures, composition, permissions,
-postconditions, and resource needs. During the interview, invoke `$research`
-when selecting the methodology or another material question warrants durable
-evidence. Recommend one governing methodology and supporting concepts only
-for distinct concerns; `$elicit`'s final confirmation approves the complete
-contract and authorises writing.
+Invoke `$research` to find established principles, theories, methods, or
+techniques that reinforce distinct concerns without competing with the selected
+governor. Explain each candidate's intended behavioural effect and let the user
+decide; require no minimum or maximum count. Every retained concept earns a
+distinct role.
 
-#### 2. Design the bundle
+### 4. Confirm the design
 
-Choose a short verb-led name through **ubiquitous language** and an invocation
-policy whose context cost matches expected use. Read
-[Skill Sections](references/SECTIONS.md), then use **Unix philosophy** and
-**YAGNI** to choose the smallest independently useful bundle. The name,
-invocation, structure, and resources serve the confirmed use cases.
+Present one complete synthesis of the behavioural contract, selected concepts,
+structure, resources, scenarios, and observable success conditions. For an
+existing skill, include concise evidence-backed findings against that contract.
+Obtain explicit confirmation before following the remaining process.
 
-#### 3. Write the bundle
+### 5. Write the bundle
 
-Write the bundle with canonical **leading words** where they govern
-behaviour. Apply **progressive disclosure** to conditional knowledge,
-**degrees of freedom** to instruction precision, **DRY** to authority, and
-**ironic process theory** to steer language toward the intended action. The
-complete bundle expresses the confirmed contract through canonical terms;
-source provenance remains in the research evidence.
+Create or rewrite through one path. Give every `SKILL.md` frontmatter, one H1, a
+concise introduction, and exactly one `## Process`; place a selected governing
+methodology in bold where it fits naturally in the introduction. Bold each
+supporting concept at its first behaviour-governing use. Consult [Skill
+Sections](references/SECTIONS.md) when invocation metadata, optional sections,
+or resource placement needs detail. The bundle expresses the confirmed design.
 
-#### 4. Validate the bundle
+### 6. Separate the concerns
 
-Follow `Validate Create or Improve`.
+Apply **separation of concerns** so each step or subsection carries one coherent
+behavioural idea and observable outcome. Split independently actionable
+instructions, concepts, or completion criteria; keep sentences together when
+they jointly govern the same action. Consult [Skill Craft](references/CRAFT.md)
+when the split, vocabulary, emphasis, or disclosure boundary is unclear. Every
+section is focused without becoming fragmentary.
 
-### Review
+### 7. Compress the language
 
-#### 1. Recover the contract
+Apply minimalist instruction and **DRY** until every remaining word changes
+behaviour, preserves a condition, or improves navigation. Replace explanations
+with canonical leading words when the agent already knows the concept, state the
+positive target behaviour, and keep each meaning in one authoritative location.
+The bundle contains no behavioural no-op or duplicated meaning.
 
-Recover the intended contract from the complete bundle, callers, host
-conventions, and representative prompts. Invoke `$elicit` only when a
-material intent decision remains unresolved. The review scope and available
-contract are explicit.
+### 8. Validate the mechanics
 
-#### 2. Assess the bundle
+Run [scripts/validate-skill.js](scripts/validate-skill.js), inspect every bundled
+script, and execute each within a disposable filesystem using inert fixtures,
+blocked external mutation, and no production credentials. When that boundary is
+unavailable, leave the script unexecuted and report the limitation. The
+mechanical contract passes without unsafe execution.
 
-Read [Skill Sections](references/SECTIONS.md), run
-[scripts/validate-skill.js](scripts/validate-skill.js), inspect every bundled
-script, execute each safely isolated script, and acceptance-test the
-representative invocations. Assess the governing methodology, supporting
-concepts, predictability, composition, structure, language, resources, and
-observable postconditions while preserving the bundle and user work unchanged.
+### 9. Forward-test the behaviour
 
-#### 3. Return the findings
+Give a fresh agent only the finished bundle and a realistic invocation, then
+compare its observable process and result with every confirmed scenario. Test
+additional branches and reference-loading conditions in proportion to their
+variety and risk. Consult [Forward Testing](references/TESTING.md) when scenario
+selection, isolation, or pass evidence needs detail. Repair, recompress,
+revalidate, and retest until the skill reliably invokes the intended behaviour.
 
-Return concise, prioritised findings. For each, name the governing concept,
-cite the evidence and behavioural consequence, and recommend the smallest
-effective improvement. Affirm the skill plainly when no material finding
-remains.
+### 10. Report the result
 
-### Improve
-
-#### 1. Characterize the contract
-
-Complete `Review`, then use **characterization testing** to fix the existing
-invocation and behaviour that should survive the change.
-
-#### 2. Write the confirmed improvement
-
-Invoke `$elicit` for material changes to intent, behaviour, invocation,
-composition, or scope. Apply already-authorised mechanical corrections, then
-use the `Create` branch's naming, structure, and language guidance to write
-the confirmed change while preserving the characterised contract.
-
-#### 3. Validate the improvement
-
-Follow `Validate Create or Improve`.
-
-### Validate Create or Improve
-
-#### 1. Compress the bundle
-
-Apply **lossless compression** until every remaining word changes behaviour,
-preserves a condition, or improves navigation. Each meaning has one
-authoritative location.
-
-#### 2. Run mechanical validation
-
-Run [scripts/validate-skill.js](scripts/validate-skill.js) and execute each
-safely isolated bundled script until the mechanical contract passes. Report
-any script that the common isolation boundary leaves unexecuted.
-
-#### 3. Run acceptance testing
-
-Use **acceptance testing** to replay every confirmed invocation through its
-branches, resource pointers, and postconditions. Repeat writing, compression,
-and validation until every scenario passes.
-
-#### 4. Forward-test when warranted
-
-Forward-test complex or high-risk skills with a fresh agent given only the
-finished bundle and a realistic request. Resolve material evidence through
-the same loop; let simple skills and thin routers finish without this extra
-test.
-
-#### 5. Report the result
-
-Report changed files, mechanical results, acceptance scenarios, forward-test
-evidence when used, and any remaining uncertainty.
+Return the changed files, research evidence, mechanical results, forward-test
+scenarios and outcomes, unexecuted scripts, and remaining uncertainty. The user
+receives the finished bundle and evidence that its contract holds.
