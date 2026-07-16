@@ -6,54 +6,72 @@ Propulsion is a compact skill set for agentic coding. It gives coding agents a s
 
 ## Installation
 
-### Codex CLI
+### Remote
 
-Add the Propulsion marketplace:
-
-```sh
-codex plugin marketplace add moonpixels/propulsion
-```
-
-Open Codex, run `/plugins`, select the Propulsion marketplace, install
-Propulsion, then restart Codex.
-
-To update:
+Install Propulsion from GitHub with the skills installer:
 
 ```sh
-codex plugin marketplace upgrade propulsion
+bunx skills@latest add moonpixels/propulsion
 ```
 
-### Codex Desktop
+Choose the skills and coding agents you want when prompted.
 
-Add the Propulsion marketplace with the Codex CLI:
+### Local
+
+When developing Propulsion from a local clone, link each skill you want to use into the shared Agent Skills directory:
 
 ```sh
-codex plugin marketplace add moonpixels/propulsion
+mkdir -p ~/.agents/skills
+ln -s /absolute/path/to/propulsion/skills/elicit ~/.agents/skills/elicit
 ```
 
-Open the desktop app's Plugins page, select the Propulsion marketplace, install
-Propulsion, then restart the app.
+Repeat the link for each selected skill. Codex and OpenCode both discover skills from `~/.agents/skills`; edits in the clone are available through the links without reinstalling or publishing a new version.
 
-To update:
+## Usage
 
-```sh
-codex plugin marketplace upgrade propulsion
+Propulsion skills are independently invocable. For most feature and change requests, use this recommended workflow:
+
+1. Shape the idea with `$elicit-with-context` until the request is understood and confirmed.
+
+    ```text
+    $elicit-with-context Help me work through an idea for <desired outcome>.
+    ```
+
+2. Implement the confirmed request with `$implement`.
+
+    ```text
+    $implement the request we just confirmed.
+    ```
+
+3. Review the working-tree changes yourself. Ask the agent to explain or adjust anything necessary, and repeat until you are satisfied with the result.
+
+4. Commit the reviewed changes, then create the pull request.
+
+    ```text
+    $commit the reviewed changes.
+    Create a $pr for the current branch.
+    ```
+
+### Alternative entry points
+
+For a bug, start with `$debug` instead of elicitation and implementation:
+
+```text
+$debug Fix <observed problem>.
 ```
 
-### OpenCode
+After the repair, rejoin the recommended workflow at human review, followed by `$commit` and `$pr`.
 
-Add Propulsion to `opencode.json`:
+For codebase improvements, start with `$review-architecture` to produce an architecture report:
 
-```json
-{
-    "$schema": "https://opencode.ai/config.json",
-    "plugin": ["propulsion@git+https://github.com/moonpixels/propulsion.git"]
-}
+```text
+$review-architecture Review <scope> for high-value architecture improvements.
 ```
+
+Review the report, then take each accepted recommendation through the recommended workflow separately, beginning with `$elicit-with-context`.
 
 ## Acknowledgements
 
 Propulsion is heavily inspired by:
 
-- [obra/superpowers](https://github.com/obra/superpowers) for workflow discipline, review loops, debugging process, and OpenCode plugin ideas
 - [mattpocock/skills](https://github.com/mattpocock/skills) for brevity, wording discipline, and the question-by-question discovery style

@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Debug'
+    short_description: 'Debug issues through verified repair'
+policy:
+    allow_implicit_invocation: true

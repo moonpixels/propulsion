@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Define Product'
+    short_description: 'Discover and document a product direction'
+policy:
+    allow_implicit_invocation: false

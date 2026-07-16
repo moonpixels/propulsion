@@ -1,59 +1,39 @@
 ---
 name: tdd
-description: Execute TDD red-green-refactor for behaviour changes. Use when changing observable behaviour, public contracts, or durable business logic.
+description: Implements observable features and bug fixes through red-green-refactor. Use when an existing runnable test suite can exercise the change at a stable public seam.
+metadata:
+    invocation: model
+disable-model-invocation: false
 ---
 
-# TDD
+# Test-Driven Development
 
-Drive behaviour changes with one failing behavioural test, minimal green code, then safe refactor.
+**Classicist TDD** builds one observable behaviour at a time through red-green-refactor, testing the narrowest stable public seam with real internal collaborators and doubling only uncontrollable boundaries.
 
-## Prerequisites
+## Prerequisite
 
-ALL prerequisites MUST be satisfied BEFORE following this skill.
+TDD applies when an existing runnable test suite can exercise the requested behaviour through a stable public seam. Otherwise return control with the missing condition; the caller owns any decision to create a test harness or reshape a public contract. Apply TDD to observable behaviour, including configuration with observable effects; leave documentation, configuration-only maintenance, and behaviour-preserving refactors with the caller.
 
-- The task changes observable behaviour, a public contract, or durable business logic.
-- A local test runner and relevant test command are available. If not, STOP and ask whether adding or fixing the test path is in scope.
-- Maintenance-only work is invalid for TDD. STOP for docs/comments/prompts/spec text, styling-only UI changes, copy-only edits unless copy is the contract, config/build/dev-tool text edits, dependency bumps, generated files, data/schema migrations without logic changes, or pure refactors.
-- If work mixes behaviour change with maintenance, apply TDD ONLY to the behaviour-changing slice.
+## Process
 
-## Instructions
+### 1. Establish the baseline
 
-Follow these steps IN ORDER. Do NOT skip steps.
+Read repository instructions, identify the relevant test command, and run the existing suite. Use **tracer bullets** to select the smallest end-to-end behaviour that advances the request, then choose the narrowest stable public seam that can observe the slice without exposing hidden structure. Invoke `$modular-design` when the slice changes modular architecture. Identify a **test oracle**—a requirement, worked example, invariant, contract, trusted reference, accepted prior behaviour, or explicit domain decision—capable of distinguishing the expected outcome from the implementation. Consult [Test Quality](references/TEST-QUALITY.md) when the seam, oracle, or proposed assertion could couple to representation. The baseline, behaviour, seam, oracle, and applicable modular constraints are explicit.
 
-1. Choose the smallest thin vertical slice that delivers one observable behaviour end-to-end; state the interface, expected outcome, and narrowest test command.
-2. Apply [references/testing-patterns.md](references/testing-patterns.md). If no valuable behavioural test exists, record the no-test rationale and strongest fallback verification before changing code.
-3. Write ONE failing test through a public interface or stable seam for the next behaviour only.
-4. Run the narrowest test command and confirm the test fails for the expected reason.
-5. Write minimum passing production code; keep fixtures small and mock only real external, slow, unstable, or nondeterministic boundaries.
-6. Re-run the narrowest test command and confirm green.
-7. Review refactor candidates only after green using [references/refactor-candidates.md](references/refactor-candidates.md); refactor in small behaviour-preserving steps and rerun checks.
-8. Repeat slice by slice until the requested behaviour is complete.
+### 2. Red
 
-## Rules
+Use **Arrange-Act-Assert** to add one focused test. Apply the **Test Desiderata**, especially behavioural sensitivity, structure insensitivity, specificity, determinism, readability, and production prediction. Keep internal collaborators real. When an uncontrollable boundary must be controlled or observed, choose the least powerful **Test Double** that supplies the required evidence; consult [Test Doubles](references/TEST-DOUBLES.md) before introducing a double or interaction assertion.
 
-These rules are MANDATORY.
+For a bug, reproduce the incorrect behaviour; adopt an already-failing regression test only when it independently specifies the desired behaviour. Run the focused test and confirm that it fails for the expected behavioural reason. When it fails because of the test or environment, remain in Red: correct an in-scope defect or report the blocker, then rerun until the intended failure is observed. Meaningful red evidence exists before Green begins.
 
-- NEVER write production code before a failing test when a valuable behavioural test exists.
-- ALWAYS test observable behaviour through a public interface or stable seam.
-- NEVER add source-text checks, private-structure checks, internal call choreography, broad snapshots, speculative tests, or implementation-detail tests as behavioural proof.
-- DO NOT over-mock; ONLY mock real boundaries that are external, slow, unstable, nondeterministic, or too expensive for the selected test scope.
-- STOP and ask if the behaviour, acceptance rule, stable seam, or relevant test command is unclear.
-- NEVER refactor while red.
-- ALWAYS prefer a regression test first for bug fixes.
+### 3. Green
 
-## Completion Gate
+Implement only enough production code to satisfy the behaviour, then run the focused test and relevant nearby tests. The new behaviour passes without speculative production code or hidden baseline failures.
 
-Do NOT leave this skill until ALL items are complete.
+### 4. Refactor
 
-- [ ] Work was implemented in thin vertical slices.
-- [ ] Each testable slice has red proof that failed for the expected reason, then green proof after the smallest implementation.
-- [ ] Tests prove behaviour through a public interface or stable seam, with no brittle, speculative, implementation-detail, or over-mocked tests kept.
-- [ ] No-test fallback rationale was documented only where no valuable behavioural test exists.
-- [ ] Refactor opportunities were reviewed after green, and refactors happened only while checks were green.
+Improve the test and production code while keeping behaviour fixed. Preserve the test across changes to algorithms, collaborators, storage, rendering, or other hidden structure; when structure alone breaks it, move the observation back to the public outcome. Run the focused tests after each material change until the design is clear and green. The cycle ends without a refactor regression.
 
-## References
+### 5. Complete the cycles
 
-Use these references when you need detail.
-
-- [references/testing-patterns.md](references/testing-patterns.md) - Test scope, behavioural seams, mocks, anti-patterns, fallback verification, and concise templates.
-- [references/refactor-candidates.md](references/refactor-candidates.md) - Safe refactor candidates and post-green refactor gates.
+Repeat Red, Green, and Refactor for each remaining behaviour, then run the complete relevant suite. Report the behaviours delivered, red and green evidence, refactors, commands, results, and unresolved baseline failures. The requested behaviour and retained tests are verified.

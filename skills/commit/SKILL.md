@@ -1,54 +1,29 @@
 ---
 name: commit
-description: Create one safe local git commit from current changes. Use when asked to commit, save changes, or make a local checkpoint.
+description: Creates coherent Conventional Commits from eligible changed work. Use to commit reviewed changes.
+metadata:
+    invocation: user
+disable-model-invocation: true
 ---
 
 # Commit
 
-Create one safe local git commit and report the result.
+**Conventional Commits** turns eligible changed work into coherent commits whose messages state each change's intent.
 
-## Prerequisites
+## Process
 
-ALL prerequisites MUST be satisfied BEFORE following this skill.
+### 1. Inspect the changed work
 
-- The current directory is inside a git repository with a writable index.
+Inspect repository instructions, the current Git state, staged, unstaged, and untracked changes, and recent commit subjects. Apply any requested scope or message constraint. When no eligible change remains, report it and stop; otherwise the complete candidate work is explicit.
 
-## Instructions
+### 2. Group coherent changes
 
-Follow these steps IN ORDER. Do NOT skip steps.
+Partition the candidate work into **atomic commits** by coherent intent. Keep changes together when they serve the same purpose and leave unrelated or ambiguous work untouched. Each group has one explainable purpose.
 
-1. Inspect state with `git status --short`, `git diff HEAD`, and `git branch --show-current`.
-2. Stage all local changes with `git add -A`, including untracked files.
-3. Unstage every staged secret-like file matching [references/workflow.md](references/workflow.md).
-4. Check staged changes after exclusions; if none remain, stop and output exactly `No changes to commit.`
-5. Generate a one-line imperative commit subject from the staged diff.
-6. Create exactly one local commit with that subject.
-7. Run `git status --short` before the final response.
-8. Report the result using the exact success format in [references/workflow.md](references/workflow.md).
+### 3. Create the commits
 
-## Rules
+For each group, stage its exact files or hunks, inspect the staged diff, and commit it with an accurate `type[(scope)][!]: description` message using the repository's Git setup. Ask before altering ambiguous user-staged work. On failure, preserve the resulting Git state and report the blocker.
 
-These rules are MANDATORY.
+### 4. Verify the result
 
-- MUST create exactly one local commit when committable changes remain after exclusions.
-- MUST stage with `git add -A` before applying exclusions.
-- MUST unstage secret-like files before committing when they are staged.
-- MUST stop with exactly `No changes to commit.` when exclusions leave no committable changes.
-- NEVER commit secret-like files.
-- NEVER push, open pull requests, amend, reset, force, or run destructive git commands unless user explicitly instructs.
-
-## Completion Gate
-
-Do NOT leave this skill until ALL items are complete.
-
-- [ ] `git add -A` was run.
-- [ ] Secret-like staged files were unstaged or none were present.
-- [ ] Exactly one local commit was created, or `No changes to commit.` was returned.
-- [ ] No push, pull request, amend, reset, force, or destructive git command was run.
-- [ ] Final output matches the required contract.
-
-## References
-
-Use these references when you need detail.
-
-- [references/workflow.md](references/workflow.md) - Secret-like exclusion patterns, commit message rules, and output contract.
+Verify each created commit and inspect the remaining status. Return each hash and subject plus any work left uncommitted.

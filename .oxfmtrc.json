@@ -2,6 +2,7 @@
     "$schema": "./node_modules/oxfmt/configuration_schema.json",
     "ignorePatterns": ["node_modules/**", ".opencode/node_modules/**"],
     "printWidth": 80,
+    "proseWrap": "never",
     "tabWidth": 4,
     "singleQuote": true,
     "sortImports": {

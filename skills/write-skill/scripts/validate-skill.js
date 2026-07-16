@@ -1,426 +1,328 @@
 #!/usr/bin/env bun
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
-import { basename, join, relative, resolve } from 'node:path';
 
-const args = process.argv.slice(2);
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { basename, join, relative, resolve, sep } from 'node:path';
+
 const errors = [];
 const warnings = [];
-const allowedSections = [
-    'Prerequisites',
-    'Instructions',
-    'Rules',
-    'Completion Gate',
-    'Next Steps',
-    'References',
-];
-const sectionIntroLines = {
-    Prerequisites:
-        'ALL prerequisites MUST be satisfied BEFORE following this skill.',
-    Instructions: 'Follow these steps IN ORDER. Do NOT skip steps.',
-    Rules: 'These rules are MANDATORY.',
-    'Completion Gate': 'Do NOT leave this skill until ALL items are complete.',
-    'Next Steps': 'Once the completion gate is fully checked:',
-    References: 'Use these references when you need detail.',
-};
 
 function addError(message) {
     errors.push(message);
 }
 
-function addWarning(message) {
-    warnings.push(message);
+function isRecord(value) {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
-function report(path, stats = null) {
-    return {
-        path,
-        valid: errors.length === 0,
-        errors,
-        warnings,
-        stats,
-    };
+function parseYaml(raw, label) {
+    try {
+        const value = Bun.YAML.parse(raw);
+
+        if (!isRecord(value)) {
+            addError(`Make ${label} a YAML mapping.`);
+            return {};
+        }
+
+        return value;
+    } catch (error) {
+        addError(`Parse ${label} as valid YAML: ${error.message}`);
+        return {};
+    }
 }
 
 function parseFrontmatter(content) {
     const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+
     if (!match) {
-        addError(
-            'Add YAML frontmatter with name and description at the top of SKILL.md.',
-        );
-        return { name: null, description: null, body: content, raw: '' };
+        addError('Add YAML frontmatter at the start of SKILL.md.');
+        return { body: content, data: {}, raw: '' };
     }
 
-    const raw = match[1];
-    const name = raw.match(/^name:\s*(.+)$/m)?.[1]?.trim() || null;
-    const description = readDescription(raw);
-
-    return { name, description, body: content.slice(match[0].length), raw };
+    return {
+        body: content.slice(match[0].length),
+        data: parseYaml(match[1], 'SKILL.md frontmatter'),
+        raw: match[1],
+    };
 }
 
-function readDescription(raw) {
-    const lines = raw.split(/\r?\n/);
-    const index = lines.findIndex((line) => line.startsWith('description:'));
-    if (index === -1) return null;
+function validateName(frontmatter, skillPath) {
+    const { name } = frontmatter;
 
-    const firstValue = lines[index].replace(/^description:\s*/, '').trim();
-    if (firstValue === '|' || firstValue === '>') {
-        return lines
-            .slice(index + 1)
-            .filter((line) => /^\s+\S/.test(line))
-            .map((line) => line.trim())
-            .join(' ');
-    }
-
-    return firstValue || null;
-}
-
-function hasMultilineDescription(raw) {
-    const lines = raw.split(/\r?\n/);
-    const index = lines.findIndex((line) => line.startsWith('description:'));
-    if (index === -1) return false;
-    const firstValue = lines[index].replace(/^description:\s*/, '').trim();
-    if (firstValue === '|' || firstValue === '>') return true;
-
-    return lines.slice(index + 1).some((line) => /^\s+\S/.test(line));
-}
-
-function validateName(name, dirName) {
-    if (!name) {
-        addError(
-            'Add frontmatter name and set it to the skill directory name.',
-        );
+    if (typeof name !== 'string' || !name) {
+        addError('Add the skill name to frontmatter.');
         return;
     }
-    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(name)) {
+
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name)) {
         addError(
-            `Fix frontmatter name "${name}" to match ^[a-z0-9]+(-[a-z0-9]+)*$.`,
+            `Use lowercase letters, digits, and single hyphens for name: ${name}`,
         );
     }
+
     if (name.length > 64) {
+        addError(`Keep name at most 64 characters; found ${name.length}.`);
+    }
+
+    if (name !== basename(skillPath)) {
+        addError(`Match name "${name}" to directory "${basename(skillPath)}".`);
+    }
+}
+
+function validateDescription(frontmatter, raw) {
+    const { description } = frontmatter;
+    const descriptionLine = raw
+        .split(/\r?\n/)
+        .find((line) => line.startsWith('description:'));
+
+    if (typeof description !== 'string' || !description) {
+        addError('Add a one-line description to frontmatter.');
+        return;
+    }
+
+    if (descriptionLine?.match(/^description:\s*[|>]/)) {
+        addError('Write description on one YAML line.');
+    }
+
+    if (description.length > 200) {
         addError(
-            `Shorten frontmatter name "${name}" to 64 characters or fewer.`,
+            `Keep description at most 200 characters; found ${description.length}.`,
         );
     }
-    if (name !== dirName) {
+
+    if (!/\bUse (?:when|for|to)\b/.test(description)) {
         addError(
-            `Set frontmatter name to "${dirName}" so it matches the skill directory.`,
+            'State invocation conditions with Use when, Use for, or Use to.',
+        );
+    }
+
+    if (/\b(?:I|me|my|mine|we|us|our|ours)\b/i.test(description)) {
+        addError(
+            'Write description in third-person, action-oriented language.',
         );
     }
 }
 
-function validateDescription(description, raw) {
-    if (!description) {
-        addError(
-            'Add a one-line frontmatter description with Use when, Use for, or Use to.',
-        );
+function validateInvocation(frontmatter, openai) {
+    const invocation = isRecord(frontmatter.metadata)
+        ? frontmatter.metadata.invocation
+        : null;
+    const disableModel = frontmatter['disable-model-invocation'];
+    const allowImplicit = isRecord(openai.policy)
+        ? openai.policy.allow_implicit_invocation
+        : null;
+
+    if (!['user', 'model'].includes(invocation)) {
+        addError('Set metadata.invocation to user or model.');
         return;
     }
-    if (hasMultilineDescription(raw)) {
-        addError('Rewrite frontmatter description as a single YAML line.');
-    }
-    if (description.length > 300) {
+
+    const expectedDisable = invocation === 'user';
+    const expectedImplicit = invocation === 'model';
+
+    if (disableModel !== expectedDisable) {
         addError(
-            `Shorten description to 300 characters or fewer. Current length: ${description.length}.`,
-        );
-    } else if (description.length > 200) {
-        addWarning(
-            `Shorten description to 200 characters or fewer for easier skill selection. Current length: ${description.length}.`,
+            `Set disable-model-invocation to ${expectedDisable} for ${invocation} invocation.`,
         );
     }
-    if (!/\bUse (when|for|to)\b/.test(description)) {
+
+    if (allowImplicit !== expectedImplicit) {
         addError(
-            'Add Use when, Use for, or Use to to the one-line description so agents know when to load the skill.',
+            `Set policy.allow_implicit_invocation to ${expectedImplicit} for ${invocation} invocation.`,
         );
     }
-    if (/\b(I|me|my|mine|we|us|our|ours)\b/i.test(description)) {
-        addWarning(
-            'Rewrite description in third person; avoid first-person wording like I, me, my, we, or our.',
+}
+
+function validateOpenaiYaml(skillPath, frontmatter) {
+    const openaiPath = join(skillPath, 'agents', 'openai.yaml');
+
+    if (!existsSync(openaiPath)) {
+        addError('Add agents/openai.yaml.');
+        return '';
+    }
+
+    const openaiRaw = readFileSync(openaiPath, 'utf8');
+    const openai = parseYaml(openaiRaw, 'agents/openai.yaml');
+    const skillInterface = isRecord(openai.interface) ? openai.interface : {};
+    const displayName = skillInterface.display_name;
+    const shortDescription = skillInterface.short_description;
+
+    if (typeof displayName !== 'string' || !displayName)
+        addError('Set interface.display_name in agents/openai.yaml.');
+
+    if (typeof shortDescription !== 'string' || !shortDescription) {
+        addError('Set interface.short_description in agents/openai.yaml.');
+    } else if (shortDescription.length < 25 || shortDescription.length > 64) {
+        addError(
+            `Keep interface.short_description between 25 and 64 characters; found ${shortDescription.length}.`,
         );
     }
-    if (
-        !/^(Create|Build|Design|Analyze|Test|Validate|Generate|Process|Manage|Execute|Handle|Provide|Review|Write|Author|Migrate|Improve|Add|Update|Check)\b/.test(
-            description,
-        )
-    ) {
-        addWarning(
-            'Start description with a strong action verb such as Create, Validate, Review, Manage, or Execute.',
-        );
+
+    validateInvocation(frontmatter, openai);
+    return openai;
+}
+
+function collectMarkdownHeadings(lines) {
+    const headings = [];
+    let fence = null;
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        const fenceMatch = trimmed.match(/^(`{3,}|~{3,})/);
+
+        if (fenceMatch) {
+            const marker = fenceMatch[1];
+
+            if (fence === null) {
+                fence = marker;
+            } else if (
+                marker[0] === fence[0] &&
+                marker.length >= fence.length
+            ) {
+                fence = null;
+            }
+
+            continue;
+        }
+
+        if (fence === null && /^#{1,6}\s+\S/.test(trimmed)) {
+            headings.push(trimmed);
+        }
     }
+
+    return headings;
 }
 
 function validateBody(body) {
     const lines = body.split(/\r?\n/);
-    const nonEmpty = lines
-        .map((line, index) => ({ line: line.trim(), index }))
-        .filter(({ line }) => line);
-    const bodyLines = nonEmpty.length;
+    const headings = collectMarkdownHeadings(lines);
+    const firstContentIndex = lines.findIndex((line) => line.trim());
+    const firstContent = lines[firstContentIndex]?.trim();
 
-    if (bodyLines > 80) {
-        addError(
-            `Move detail out of SKILL.md; body has ${bodyLines} non-empty lines and must stay at or below 80.`,
-        );
-    } else if (bodyLines > 50) {
-        addWarning(
-            `Move detail out of SKILL.md; body has ${bodyLines} non-empty lines and should stay at or below 50.`,
-        );
+    if (!firstContent?.match(/^#\s+\S/)) {
+        addError('Start the skill body with a human-readable H1.');
+        return;
     }
 
-    const first = nonEmpty[0];
-    if (!first || !/^#\s+\S/.test(first.line)) {
-        addError(
-            'Make the first non-empty body line an H1 title, for example: # Skill Name.',
-        );
+    const h1Headings = headings.filter((line) => /^#\s+\S/.test(line));
+
+    if (h1Headings.length !== 1) {
+        addError('Add exactly one H1 heading to the skill body.');
     }
 
     const firstH2Index = lines.findIndex((line) =>
         /^##\s+\S/.test(line.trim()),
     );
-    const titleIndex = first?.index ?? -1;
-    const purpose = lines
-        .slice(
-            titleIndex + 1,
-            firstH2Index === -1 ? lines.length : firstH2Index,
-        )
+    const introEnd = firstH2Index === -1 ? lines.length : firstH2Index;
+    const introduction = lines
+        .slice(firstContentIndex + 1, introEnd)
         .map((line) => line.trim())
-        .find((line) => line);
-    if (!purpose || purpose.startsWith('#')) {
-        addError(
-            'Add one non-empty, non-heading purpose line immediately after the H1 title and before the first H2.',
-        );
+        .find((line) => line && !line.startsWith('#'));
+
+    if (!introduction) {
+        addError('Follow the H1 with a concise introductory paragraph.');
     }
 
-    const h2Sections = nonEmpty
-        .filter(({ line }) => /^##\s+\S/.test(line))
-        .map(({ line, index }) => ({
-            title: line.replace(/^##\s+/, '').trim(),
-            index,
-        }));
-    validateSections(h2Sections, lines);
+    const processHeadings = headings.filter((line) => line === '## Process');
 
-    return { bodyLines, h2Sections: h2Sections.length };
-}
-
-function validateSections(h2Sections, lines) {
-    const titles = h2Sections.map(({ title }) => title);
-    for (const required of ['Instructions', 'References']) {
-        if (!titles.includes(required))
-            addError(`Add required section ## ${required}.`);
-    }
-
-    let lastAllowedIndex = -1;
-    for (const title of titles) {
-        const allowedIndex = allowedSections.indexOf(title);
-        if (allowedIndex === -1) {
-            addError(
-                `Remove unsupported H2 section ## ${title}. Allowed H2 sections are ${allowedSections.map((section) => `## ${section}`).join(', ')}.`,
-            );
-            continue;
-        }
-        if (allowedIndex < lastAllowedIndex) {
-            addError(
-                `Move ## ${title} before ## ${allowedSections[lastAllowedIndex]} to match the canonical section order.`,
-            );
-        } else {
-            lastAllowedIndex = allowedIndex;
-        }
-    }
-
-    const final = titles[titles.length - 1];
-    if (titles.includes('References') && final !== 'References') {
-        addError('Move ## References to the final H2 section.');
-    }
-
-    for (let index = 0; index < h2Sections.length; index++) {
-        const { title, index: lineIndex } = h2Sections[index];
-        const requiredIntro = sectionIntroLines[title];
-        if (!requiredIntro) continue;
-
-        const nextSectionIndex = h2Sections[index + 1]?.index ?? lines.length;
-        const firstContentLine = lines
-            .slice(lineIndex + 1, nextSectionIndex)
-            .map((line) => line.trim())
-            .find((line) => line);
-
-        if (!firstContentLine?.startsWith(requiredIntro)) {
-            addError(`Start ## ${title} with: ${requiredIntro}`);
-        }
+    if (processHeadings.length !== 1) {
+        addError('Add exactly one ## Process heading to the skill body.');
     }
 }
 
-function collectArtifacts(skillPath) {
-    const artifacts = [];
-    for (const dir of ['assets', 'references', 'scripts']) {
-        const dirPath = join(skillPath, dir);
-        if (!existsSync(dirPath)) continue;
+function collectFiles(directory, prefix) {
+    if (!existsSync(directory)) return [];
 
-        for (const entry of readdirSync(dirPath, { withFileTypes: true })) {
-            const artifactPath = `${dir}/${entry.name}`;
-            if (entry.isFile()) {
-                artifacts.push(artifactPath);
-                continue;
-            }
-            if (entry.isDirectory()) {
-                for (const nested of collectNestedFiles(
-                    join(dirPath, entry.name),
-                    artifactPath,
-                )) {
-                    addError(
-                        `Move nested artifact ${nested} directly under ${dir}/; nested artifact files are not allowed.`,
-                    );
-                }
-            }
-        }
-    }
-    return artifacts;
+    return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+        const absolute = join(directory, entry.name);
+        const relativePath = `${prefix}/${entry.name}`;
+
+        return entry.isDirectory()
+            ? collectFiles(absolute, relativePath)
+            : [relativePath];
+    });
 }
 
-function collectNestedFiles(dirPath, prefix) {
-    const files = [];
-    for (const entry of readdirSync(dirPath, { withFileTypes: true })) {
-        const nestedPath = `${prefix}/${entry.name}`;
-        if (entry.isFile()) files.push(nestedPath);
-        if (entry.isDirectory())
-            files.push(
-                ...collectNestedFiles(join(dirPath, entry.name), nestedPath),
-            );
-    }
-    return files;
-}
-
-function finalReferencesSection(body) {
-    const lines = body.split(/\r?\n/);
-    const start = lines.findIndex((line) => line.trim() === '## References');
-    if (start === -1) return '';
-
-    const rest = lines.slice(start + 1);
-    const nextH2 = rest.findIndex((line) => /^##\s+\S/.test(line.trim()));
-    return (nextH2 === -1 ? rest : rest.slice(0, nextH2)).join('\n');
-}
-
-function validateArtifacts(skillPath, body) {
-    const artifacts = collectArtifacts(skillPath);
+function validateResources(skillPath, body) {
+    const resources = ['references', 'assets', 'scripts'].flatMap((directory) =>
+        collectFiles(join(skillPath, directory), directory),
+    );
     const linked = new Set();
-    const references = finalReferencesSection(body);
-    const artifactLink =
-        /\[(assets|references|scripts)\/[^\]]+\]\((assets|references|scripts)\/[^)]+\)/;
+    const linkPattern = /\[[^\]]*\]\(([^)]+)\)/g;
 
-    for (const rawLine of references.split(/\r?\n/)) {
-        const line = rawLine.trimStart();
-        if (!artifactLink.test(line)) continue;
+    for (const match of body.matchAll(linkPattern)) {
+        const rawTarget = match[1].split('#')[0];
+        const target = rawTarget.startsWith('./')
+            ? rawTarget.slice(2)
+            : rawTarget;
+        const normalized = target.split('/').join(sep);
 
-        const match = line.match(
-            /^- \[((?:assets|references|scripts)\/[^\]]+)\]\(((?:assets|references|scripts)\/[^)]+)\) - (.*)$/,
-        );
-        const emptyDescriptionMatch = line.match(
-            /^- \[((?:assets|references|scripts)\/[^\]]+)\]\(((?:assets|references|scripts)\/[^)]+)\) -\s*$/,
-        );
-        const text = match?.[1];
-        const href = match?.[2];
-        const description = match?.[3]?.trim();
-        const path = href ?? text;
+        if (!/^(?:references|assets|scripts)\//.test(target)) continue;
 
-        if (
-            !match &&
-            emptyDescriptionMatch?.[1] === emptyDescriptionMatch?.[2]
-        ) {
-            linked.add(emptyDescriptionMatch[2]);
-            addError(
-                `Add a short description after " - " for artifact reference ${emptyDescriptionMatch[2]}.`,
-            );
-            if (!existsSync(join(skillPath, emptyDescriptionMatch[2]))) {
-                addError(
-                    `Create linked artifact ${emptyDescriptionMatch[2]} or remove its References bullet.`,
-                );
-            }
-            continue;
+        linked.add(target);
+        if (!existsSync(join(skillPath, normalized))) {
+            addError(`Create linked resource ${target} or update its pointer.`);
         }
+    }
 
-        if (!match || text !== href) {
-            const expected = text ?? path ?? 'artifact/path';
+    for (const resource of resources) {
+        if (!linked.has(resource)) {
             addError(
-                `Reference artifact ${expected} with matching text and href: - [${expected}](${expected}) - short description.`,
-            );
-            continue;
-        }
-
-        linked.add(href);
-        if (!description) {
-            addError(
-                `Add a short description after " - " for artifact reference ${href}.`,
-            );
-        }
-        if (!existsSync(join(skillPath, href))) {
-            addError(
-                `Create linked artifact ${href} or remove its References bullet.`,
+                `Link ${resource} beside the step or branch that uses it.`,
             );
         }
     }
 
-    for (const artifact of artifacts) {
-        if (!linked.has(artifact)) {
-            addError(
-                `Link artifact ${artifact} from the final ## References section.`,
-            );
-        }
-    }
-
-    return artifacts.length;
+    return resources.length;
 }
 
 function validateSkill(skillPath) {
     if (!existsSync(skillPath)) {
-        addError(
-            `Create the skill directory or fix the path; not found: ${skillPath}`,
-        );
-        return null;
-    }
-    if (!statSync(skillPath).isDirectory()) {
-        addError(`Provide a skill directory, not a file: ${skillPath}`);
+        addError(`Provide an existing skill directory: ${skillPath}`);
         return null;
     }
 
-    const skillMdPath = join(skillPath, 'SKILL.md');
-    if (!existsSync(skillMdPath)) {
+    if (!statSync(skillPath).isDirectory()) {
+        addError(`Provide a skill directory: ${skillPath}`);
+        return null;
+    }
+
+    const skillFile = join(skillPath, 'SKILL.md');
+    if (!existsSync(skillFile)) {
         addError('Add SKILL.md to the skill directory.');
         return null;
     }
 
-    const content = readFileSync(skillMdPath, 'utf8');
-    const { name, description, body, raw } = parseFrontmatter(content);
-    validateName(name, basename(skillPath));
-    validateDescription(description, raw);
-    const bodyStats = validateBody(body);
-    const artifacts = validateArtifacts(skillPath, body);
+    const content = readFileSync(skillFile, 'utf8');
+    const { body, data, raw } = parseFrontmatter(content);
 
-    return { ...bodyStats, artifacts };
+    validateName(data, skillPath);
+    validateDescription(data, raw);
+    validateOpenaiYaml(skillPath, data);
+    validateBody(body);
+    const resourceCount = validateResources(skillPath, body);
+
+    return {
+        resources: resourceCount,
+    };
 }
 
-let targetArg = null;
-for (const arg of args) {
-    if (arg.startsWith('--')) {
-        addError(
-            `Unsupported option ${arg}. Provide only a skill directory path.`,
-        );
-    } else if (targetArg) {
-        addError('Provide only one skill directory path.');
-    } else {
-        targetArg = arg;
-    }
+const cliArguments = process.argv.slice(2);
+let target = null;
+
+if (cliArguments.length !== 1 || cliArguments[0].startsWith('--')) {
+    addError('Run bun validate-skill.js <skill-directory>.');
+} else {
+    target = resolve(cliArguments[0]);
 }
 
-if (!targetArg && errors.length === 0) {
-    addError(
-        'Provide a skill directory path: bun validate-skill.js <skill-path>',
-    );
-}
+const stats = target ? validateSkill(target) : null;
+const result = {
+    path: target ? relative(process.cwd(), target) || '.' : null,
+    valid: errors.length === 0,
+    errors,
+    warnings,
+    stats,
+};
 
-const targetPath = targetArg ? resolve(targetArg) : null;
-const stats =
-    targetPath && errors.length === 0 ? validateSkill(targetPath) : null;
-const displayPath = targetPath
-    ? relative(process.cwd(), targetPath) || targetPath
-    : null;
-const output = report(displayPath, stats);
-
-console.log(JSON.stringify(output, null, 2));
-process.exit(output.valid ? 0 : 1);
+console.log(JSON.stringify(result, null, 2));
+process.exitCode = result.valid ? 0 : 1;
