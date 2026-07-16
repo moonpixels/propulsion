@@ -66,7 +66,7 @@ _Avoid_: Diagnose skill
 
 **Maintain-agents skill**: The user-invoked workflow that creates or aggressively compresses the root `AGENTS.md` into project-wide runtime guidance and one canonical completion check. It removes narrower workflows from permanent context and reports their appropriate destinations.
 
-**Define-product skill**: The user-invoked Product Vision Board workflow that composes contextual elicitation and conditional research to maintain an evidence-aware root `PRODUCT.md` and domain language in `CONTEXT.md`. It defines strategic direction and capabilities without becoming a roadmap or implementation plan.
+**Define-product skill**: The user-invoked workflow that inspects existing product knowledge, composes contextual elicitation and conditional research, and maintains a root `PRODUCT.md` plus canonical language in `CONTEXT.md`. Concise strategic framing leads into a journey-organised catalogue of high-level feature descriptions without becoming a delivery plan.
 
 **Primary source**: Original high-trust evidence such as official documentation, source code, standards, publications, first-party APIs, or first-party data. Secondary sources may aid discovery but findings trace their claims back to primary evidence.\
 _Avoid_: Trusted write-up

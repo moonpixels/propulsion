@@ -1,54 +1,35 @@
 # {Product name}
 
-{One sentence stating who the product serves, the outcome it enables, and what makes its approach distinct.} _Evidence: {status and source}._
+{Concise executive summary stating who the product serves, the outcome it enables, and what distinguishes its approach. Include overall product maturity only when it materially improves orientation.}
 
 ## Vision
 
-{The product's purpose and positive change, independent of a particular implementation.} _Evidence: {status and source}._
+{The product's enduring purpose and positive change, independent of a particular implementation.}
 
-## Current state
+## Intended users and needs
 
-{For an existing product, summarise its observed purpose, users, capability groups, lifecycle stage, and material constraints. Cite representative repository evidence. Omit this section for a new product without a current state.}
+- **{User or customer}**: {Prioritised need or desired outcome.}
 
-## Users and needs
+## Value proposition and market position
 
-| User or customer | Need or desired outcome | Evidence            |
-| ---------------- | ----------------------- | ------------------- |
-| {Distinct actor} | {Prioritised need}      | {Status and source} |
+{Why intended users would choose this product over meaningful alternatives, manual work, or doing nothing. Describe supported differentiation and link material external claims to the applicable research report.}
 
-## Value proposition and differentiation
+## Business model, goals, and success signals
 
-{State why each primary user would choose this product over current alternatives, including non-consumption or manual work. Keep differentiators specific and few.} _Evidence: {status and source}._
+{Describe the business model and applicable pricing decisions, then the product or business outcomes that justify investment and the observable signals of progress.}
 
-## Strategic capabilities
+## Product boundaries and non-goals
 
-| State | Capability or feature concept | Actor | Desired impact | Product or business goal | Evidence |
-| --- | --- | --- | --- | --- | --- |
-| {current, confirmed direction, or hypothesis} | {High-level capability} | {Actor} | {Behaviour change or outcome} | {Goal} | {Status and source} |
+- {A durable boundary or non-goal and the focus it preserves.}
 
-## Business goals and success signals
+<!-- Repeat the following H2 feature-area block for each natural user-facing area. Order areas by the product journey. Do not add an umbrella Features heading. -->
 
-| Goal | Observable success signal | Evidence |
-| --- | --- | --- |
-| {Desired product or business outcome} | {Measure or observable change} | {Status and source} |
+## {Feature area}
 
-## Boundaries and non-goals
+{Optional one-sentence orientation when the area's purpose is not clear from its name.}
 
-- {A durable product boundary and why it focuses the definition.} _Evidence: {status and source}._
+### {Feature name}
 
-## Risks and evidence
+_Status: {Current | Confirmed direction | Idea}._
 
-| Risk        | Current evidence      | Hypothesis or open question    |
-| ----------- | --------------------- | ------------------------------ |
-| Value       | {Evidence or unknown} | {Material uncertainty or none} |
-| Usability   | {Evidence or unknown} | {Material uncertainty or none} |
-| Feasibility | {Evidence or unknown} | {Material uncertainty or none} |
-| Viability   | {Evidence or unknown} | {Material uncertainty or none} |
-
-## Open questions
-
-- {Unresolved question, why it matters, and the evidence that could resolve it.}
-
-## Evidence
-
-- [{Repository artifact or research report}]({relative path}) — {Claim or decision it supports.}
+{Concise prose describing the feature's user value, high-level behaviour, and meaningful boundaries. Cite repository evidence only when it usefully supports a Current claim; link external claims to their authoritative research report.}

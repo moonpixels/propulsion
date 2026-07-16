@@ -1,49 +1,51 @@
 # Discovery Techniques
 
-Load only the technique needed by the active elicitation branch. These methods support product-specific discovery; `$elicit-with-context` remains authoritative for questioning, confirmation, language, and qualifying architecture decisions.
+Load only the section needed by the active discovery branch. `$elicit-with-context` remains authoritative for questioning, confirmation, and canonical language; `$research` remains authoritative for external evidence.
 
 ## Establish an existing product
 
-Use **repository archaeology** to recover observed behaviour before asking the user to restate it. Start with root documentation and manifests, then sample user entry points, routes or commands, public contracts, data boundaries, tests, and operational configuration. Follow evidence only until the major actors and capability groups are stable. Treat absence from the repository as unknown rather than proof, distinguish shipped behaviour from abandoned or planned code, and present contradictions with stated intent for resolution.
+Use **repository archaeology** to recover available behaviour before asking the user. Start with root documentation and manifests, then sample user entry points, public contracts, data boundaries, tests, and operational configuration. Follow evidence until the product areas and feature candidates stabilise. Treat absence as unknown rather than proof, distinguish shipped behaviour from abandoned or planned code, and ask the user to resolve contradictions with stated intent.
 
-## Shape the product strategy
+## Complete the product frame
 
-Use the **Product Vision Board** in needs-first order after establishing the vision:
+Use the **Product Vision Board** as a completeness check for the concise opening:
 
-1. State the positive change and enduring purpose.
-2. Separate users, customers, and other influential actors.
-3. Identify and prioritise their main needs or desired outcomes.
-4. Describe the product type and the few capabilities that make it stand out.
-5. Define the product or business outcomes that justify investment.
+1. What positive change and enduring purpose define the vision?
+2. Which users, customers, and influential actors matter, and what outcomes do they need?
+3. Why would they choose this product over alternatives, manual work, or doing nothing?
+4. What market position or differentiation makes that choice plausible?
+5. Which business model, revenue, costs, channels, goals, success signals, and pricing decisions matter now?
+6. Which boundaries and non-goals keep the product coherent?
 
-For an existing product, distinguish the observed current strategy from the user's confirmed future strategy instead of blending them.
+Keep this frame proportionate to its supporting role. Move into whole-product feature discovery once these dimensions are clear.
 
-## Clarify users and value
+## Map the big picture
 
-When needs or differentiation remain vague, use the **Value Proposition Canvas** one segment at a time. Ask what the actor is trying to accomplish, which pains or risks obstruct that outcome, which gains define success, and how the product relieves the important pains or creates the important gains. Rank the few that materially influence adoption; preserve unsupported claims as hypotheses.
+Use the **mile-wide, inch-deep** pass before local detail:
 
-## Trace strategic features
+1. Name the product's main users and their entry points.
+2. Narrate how each user moves from first contact through recurring value and eventual exit or completion.
+3. Record the user-facing product areas along that journey.
+4. Beneath each area, inventory current features, confirmed direction, and ideas at one-line resolution.
+5. Add commercial, account, trust, support, and other cross-cutting features that the main journey did not expose.
 
-Use **Impact Mapping** to test each high-level capability or feature concept:
+This pass creates a feature surface, not cards, stories, priorities, screens, releases, or architecture.
 
-1. Why: which product or business goal does it support?
-2. Who: which actor can help or hinder that goal?
-3. How: what observable behaviour or outcome should change?
-4. What: which capability might cause or enable that impact?
+## Explore a feature
 
-Discard an untraceable feature from the definition or record the missing link as an open question. Keep multiple plausible capabilities as hypotheses; this is strategic scope, not a roadmap, backlog, or implementation specification.
+Resolve only the information required by the mini-brief:
 
-## Establish differentiation
+- **User value**: who benefits and what becomes possible or easier?
+- **High-level behaviour**: what does the product do from the user's perspective?
+- **Status**: is it `Current`, `Confirmed direction`, or `Idea`?
+- **Meaningful boundaries**: what nearby behaviour could a later planner reasonably but incorrectly assume belongs to it?
 
-Compare the product with the alternatives users employ today, including manual work and doing nothing. Invoke `$research` when competitor capabilities, market conditions, standards, regulation, or user evidence would materially change the conclusion. Retain only differentiators that serve a prioritised need and can plausibly influence choice; label the remainder as hypotheses.
+Use examples or scenarios when behaviour remains ambiguous. Stop when a downstream planning session can understand the feature's product intent without receiving its implementation or delivery design.
 
-## Expose product risk
+## Walk the complete catalogue
 
-Test the emerging definition against four product-discovery risks:
+Read the mapped product back as one narrative. Change perspective across intended users and check entry, recurring-use, recovery, commercial, trust, support, and exit paths where applicable. Look for missing transitions, duplicated features, false journey positions, contradictions, and feature descriptions that hide more than one distinct product behaviour. Resolve each finding during elicitation, then repeat the walk until it exposes nothing new.
 
-- **Value**: users or customers may not choose, adopt, or pay for it.
-- **Usability**: users may not understand or successfully use it.
-- **Feasibility**: the product may not be buildable with the available technology, skills, time, or constraints.
-- **Viability**: it may not work for the organisation, operating model, legal obligations, economics, channels, or brand.
+## Establish external position
 
-For each material risk, record the available evidence, the remaining hypothesis, and the smallest evidence that could resolve it. The definition may finish with uncertainty when that uncertainty is visible and actionable.
+Compare the product with alternatives users employ today, including manual work and doing nothing. Invoke `$research` when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision. Keep researched claims in the research report and bring only the decision-relevant conclusion and link into `PRODUCT.md`.
