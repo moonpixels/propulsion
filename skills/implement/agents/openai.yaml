@@ -1,5 +1,5 @@
 interface:
     display_name: 'Implement'
-    short_description: 'Implement changes in verified slices'
+    short_description: 'Implement through TDD and review'
 policy:
     allow_implicit_invocation: false
