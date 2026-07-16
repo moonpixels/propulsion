@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Reviews scoped code changes for requirements and code health. Use when assessing a diff, branch, pull request, or completed implementation.
+description: Reviews scoped code changes against a specification and applicable standards. Use when assessing a diff, branch, pull request, or completed implementation.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -8,51 +8,54 @@ disable-model-invocation: false
 
 # Code Review
 
-**Google code review** applies the code-health standard to a scoped change. Separate requirements and code-health passes keep delivery gaps, defects, and refactor opportunities independently visible.
+**Tailored software formal inspection** prepares fixed evidence packets for independent Standards and Spec inspectors, then presents their diagnostic findings without changing the reviewed work.
 
 ## Process
 
-### 1. Resolve the scope
+### 1. Fix the inspection scope
 
-Resolve the change scope in this order: an explicit caller-supplied scope, uncommitted tracked and untracked work, then the current branch from its default-branch merge base. Confirm any revision exists and the change set is non-empty; report the exact blocker and stop when either check fails, and ask the user only when multiple scopes remain plausible. Recover requirements from caller context, a supplied request, specification or ticket, then the change description and commit history. When none exists, state that there is no requirements source rather than inventing one. The exact change set and best available requirements source are explicit.
+Use the caller-supplied scope, whether uncommitted work, a revision range, a branch comparison, a pull request, or another exact change set. Resolve every revision, capture the patch and changed-path list once through read-only inspection, and include the complete contents of in-scope untracked files. Confirm that the captured change set is non-empty. Ask the user when the scope is missing or ambiguous; report the exact blocker and stop when it is invalid or empty. The inspection has one fixed work product.
 
-### 2. Gather the evidence
+### 2. Resolve the inspection sources
 
-Read repository instructions, relevant context and decisions, changed files in full, nearby tests, and the surrounding code needed to judge effects. Run non-mutating verification already required by the repository when its result materially informs the review. The review evidence and applicable standards are complete.
+Find the specification from caller context, supplied paths or tickets, issue references and change history, then relevant repository documentation. When none is found, ask the user; omit the Spec inspection only after the user confirms that no specification exists. Independently identify applicable repository instructions, architecture decisions, coding standards, language policies, configured checks, and local conventions. Read the changed files in full, relevant tests, and enough surrounding code to judge the patch. The specification and Standards authorities are explicit.
 
-### 3. Trace the requirements
+### 3. Prepare the work aids
 
-Perform a **requirements traceability** pass. Compare the change with every available requirement and identify missing, partial, incorrect, conflicting, or unrequested behaviour and relevant unhandled cases. When there is no requirements source, preserve that limitation instead of treating inferred intent as a requirement. Requirements candidates are explicit.
+Create one self-contained packet per applicable axis with the fixed patch, changed paths, relevant source context, authority sources, priority definitions, output schema, and read-only verification boundary. Exclude conversation history and the other inspector's materials.
 
-### 4. Assess code health
+The Spec packet applies **bidirectional requirements traceability**: trace every applicable requirement into the changed implementation and relevant tests, and every introduced behaviour back to specification authority. It investigates missing, partial, incorrect, conflicting, and unrequested behaviour and relevant unhandled cases.
 
-Perform an independent code-health pass across correctness, design, complexity, tests, naming, documentation, security, performance, reliability, and repository standards where relevant. Apply the **Test Desiderata** to changed tests, especially behavioural sensitivity, structure insensitivity, specificity, and determinism. Use **code smells** as a heuristic baseline: **Mysterious Name**, **Duplicated Code**, **Global Data**, **Mutable Data**, **Divergent Change**, **Shotgun Surgery**, **Feature Envy**, **Data Clumps**, **Primitive Obsession**, **Repeated Switches**, **Speculative Generality**, **Message Chains**, **Middle Man**, and **Refused Bequest**. Investigate other established smells when the changed code provides a concrete cue. A smell becomes a finding only when evidence shows a worthwhile correction. Code-health candidates are explicit.
+The Standards packet applies repository standards first, then residual **Google code-review criteria** across whole-change understanding, correctness and concurrency risks, test presence and validity, comments, and affected documentation. Include the complete [Fowler code-smell work aid](references/CODE-SMELLS.md). Add **Test Desiderata** when tests change; the relevant **ISO/IEC 25010:2023** characteristic when the repository adopts it or the change exposes a concrete residual product-quality concern; an applicable **SEI CERT** rule when supported-language code exposes its construct; and the relevant frozen **OWASP ASVS 5.0.0** requirement when Web code crosses that security boundary. Load only the implicated part of a conditional benchmark.
 
-### 5. Validate the candidates
+Within Standards, repository rules and demonstrably configured tooling govern the concerns they cover. General work aids fill uncovered diagnostic roles and yield to an explicit repository choice. A smell or benchmark cue begins an investigation; it becomes a finding only when the scoped code supplies exact evidence and a concrete consequence.
 
-Apply **falsification** to every candidate against the scoped change, full context, requirements, and repository standards. Run targeted non-mutating tests, type checks, linting, or other checks when they can settle a claim. Discard any candidate without a demonstrated consequence. Every remaining finding is reproducible or directly evidenced.
+### 4. Assign the inspections
 
-### 6. Prioritise the findings
+Give each packet to a separate fresh agent and run the Standards and Spec inspections in parallel when both apply. Each inspector owns candidate discovery, **falsification**, authority and code-evidence validation, consequence analysis, and priority validation for its axis. It may run a targeted check only when the command and execution boundary demonstrate that it cannot mutate the checkout, repository state, external systems, or durable project data; otherwise it records the limitation. Each inspector returns only findings that survive its validation.
 
-Use **risk-based prioritisation**: `critical` for immediate data loss, security compromise, or production failure; `high` for incorrect requirements or major behaviour, security, reliability, or maintenance risk; `medium` for a concrete defect or significant code, design, or test weakness; and `low` for a local but worthwhile improvement. Keep both review axes separate and order findings within each from highest to lowest priority. Every reported finding is actionable.
+Use **risk-based prioritisation** within each axis: `critical` for immediate data loss, security compromise, or production failure; `high` for incorrect requirements or major behaviour, security, reliability, or maintenance risk; `medium` for a concrete defect or significant code, design, or test weakness; and `low` for a local but worthwhile issue.
+
+### 5. Present the inspection report
+
+Check that each assigned packet produced the required output fields, returning an incomplete report to its originating inspector for completion from the same packet. Present the Standards and Spec outputs separately without substantive re-review, merging, deduplication, or cross-axis reranking. Preserve each inspector's findings and ordering. The caller receives the two independent inspection results.
 
 ## Rules
 
-- Keep the review read-only and return corrections for the caller to implement.
-- Report only issues introduced by or materially relevant to the scoped change.
-- Prefer code evidence and documented standards over personal preference.
-- Hold refactor opportunities to the same evidence, consequence, priority, and correction standard as behavioural findings.
+- Keep the inspection read-only and return evidence for the caller's implementation process.
+- Report only issues introduced by or materially relevant to the fixed change.
+- Prefer specification, repository, and code evidence over general guidance or personal preference.
+- Hold structural, test, security, and product-quality findings to the same evidence, consequence, and priority standard as behavioural defects.
 
 ## Handoff
 
-State the exact scope and requirements source, then return `## Requirements` and `## Code health`. Use `No requirements source.` when applicable and `No findings.` for a clean axis. Format each finding as:
+State the exact scope, specification source or user-confirmed absence, Standards sources, and any check that could not run. Return `## Standards` and `## Spec`; use `No findings.` for a clean axis and state when the Spec inspection was omitted. Format each finding as:
 
 ```markdown
 ### [priority] Concise finding
 
-- Evidence: exact `path:line` and observed fact
+- Evidence: exact code `path:line`, applicable authority, and observed fact
 - Consequence: concrete behaviour or code-health impact
-- Correction: smallest effective change
 ```
 
-End with `## Summary`, including the finding count for each axis and any check that could not run. When no material finding remains, say the scoped change is clean plainly.
+End with `## Summary` and the finding count for each axis. When neither axis contains a material finding, say the fixed change is clean plainly.
