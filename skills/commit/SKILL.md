@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Creates coherent conventional commits from uncommitted work. Use when the user or an authorised publishing workflow requests ready changes be inspected, separated, staged, and committed.
+description: Creates coherent Conventional Commits from eligible changed work. Use when the user or an authorised workflow asks to commit ready changes.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -8,30 +8,22 @@ disable-model-invocation: false
 
 # Commit
 
-**Conventional Commits** turns uncommitted work into atomic commits whose messages state each change's intent.
+**Conventional Commits** turns eligible changed work into coherent commits whose messages state each change's intent.
 
 ## Process
 
-### 1. Establish authority and scope
+### 1. Inspect the changed work
 
-Establish commit authority from an explicit user request or authorised caller. Inspect `git status`, the repository's Git instructions and current operation, staged, unstaged, and untracked changes, and recent commit messages. Honour user-supplied scope or message constraints and compatible repository conventions. When authority is absent or no eligible change remains, report it and stop without changing Git state. Otherwise the complete candidate diff and commit context are explicit.
+Inspect repository instructions, the current Git state, staged, unstaged, and untracked changes, and recent commit subjects. Apply any requested scope or message constraint. When no eligible change remains, report it and stop; otherwise the complete candidate work is explicit.
 
-### 2. Partition coherent concerns
+### 2. Group coherent changes
 
-Partition eligible changes by coherent intent using **atomic commits**. Keep related implementation, tests, and documentation together while leaving unrelated or ambiguous work uncommitted. Treat a coherent, independent pre-staged set as the first commit; when it mixes concerns or belongs with unstaged work, ask the user before altering the staged set. Each planned commit has one explainable purpose.
+Partition the candidate work into **atomic commits** by coherent intent. Keep changes together when they serve the same purpose and leave unrelated or ambiguous work untouched. Each group has one explainable purpose.
 
-### 3. Stage one concern
+### 3. Create the commits
 
-For each concern, retain an already exact staged selection or use **interactive staging** at file or hunk granularity to stage exactly that change, then inspect the complete staged diff. The index represents one atomic change while unselected work remains intact.
+For each group, stage its exact files or hunks, inspect the staged diff, and commit it with an accurate `type[(scope)][!]: description` message using the repository's Git setup. Ask before altering ambiguous user-staged work. On failure, preserve the resulting Git state and report the blocker.
 
-### 4. Write the message
+### 4. Verify the result
 
-Write an accurate Conventional Commit message in the form `type[(scope)][!]: description` for the staged diff.
-
-### 5. Create the commit
-
-Create the commit and allow configured Git hooks to run. On any failure, treat hook output as authoritative when present, preserve the index and working tree, and report the exact output and resulting Git state. Obtain user direction for any repository or user Git configuration change.
-
-### 6. Verify the commits
-
-Verify each created commit against its recorded diff, inspect the remaining status before continuing, and return each hash and subject plus work left uncommitted.
+Verify each created commit and inspect the remaining status. Return each hash and subject plus any work left uncommitted.
