@@ -1,96 +1,52 @@
 # Architecture Review Report Design
 
-Use this reference when generating and visually verifying the architecture review HTML. The report is a decision tool, not a static audit or a wall of technical prose.
+Load this reference after the recommendation set is complete. The Markdown report is the durable implementation record; the disposable HTML is its visual decision view. They adapt presentation to their readers without changing recommendation IDs, order, claims, or technical substance.
 
-## Information Architecture
+## Markdown Record
 
-Use one HTML document with this reading order:
+Use this reading order:
 
-1. **Header** — title, review date, scope, exclusions, evidence confidence, and a one-sentence outcome.
-2. **Current architecture** — a concise capability and boundary overview with a diagram only when it improves understanding.
-3. **Recommendations** — the complete ranked set as comparable summary cards, followed by filters and progressive detail. A zero-result state plainly says that no redesign crossed the evidence threshold.
-4. **Review coverage** — areas examined without a qualifying redesign and any evidence limitations.
-5. **Method and sources** — repository evidence conventions, invoked research reports, generation time, and visual-verification status.
+1. Title, date, scope, exclusions, one-sentence outcome, and recommendation index.
+2. `High impact`, `Medium impact`, and `Low impact` recommendation groups, omitting empty groups.
+3. Review coverage and evidence limitations.
+4. Method, invoked research reports, and validation status.
 
-The initial viewport should explain the result and expose the ranked recommendations without requiring detailed reading. Preserve the ranking as the default view. When several recommendations exist, allow filtering by affected capability, impact, effort, risk, and confidence; show the visible count and provide a clear reset.
+Name each recommendation `{ID}. {action-led title}`. Lead with three plain-language fields:
 
-## Recommendation Design
+- **Issue:** the present architecture friction and consequence.
+- **Fix:** the ownership, contract, or dependency change.
+- **Benefit:** the concrete quality improvement.
 
-Make every collapsed card comparable through:
+Then preserve the affected modules and contracts, current and target design, repository evidence with precise locations, before-and-after explanation, rejected alternative, framework and runtime fit, costs, risks, uncertainty, dependencies, migration and coexistence stages, containment or rollback, smallest useful slice, and fitness checks. A downstream agent must be able to receive the Markdown path plus an ID and understand the bounded change without reopening the review.
 
-- rank and action-led title;
-- one-sentence evidenced problem;
-- target module or boundary;
-- expected quality improvement;
-- impact, effort, risk, and confidence labels;
-- affected capabilities or contracts;
-- smallest useful first slice.
+## HTML Shortlist
 
-Its expanded detail contains:
+Apply overview first and details on demand. The initial viewport identifies the review and exposes the impact-grouped recommendation set without introductory prose. Each card shows its ID, title, impact, before-and-after visual, `Issue`, `Fix`, and `Benefit`. Put evidence, alternatives, effort, risk, confidence, migration, and fitness checks in native disclosure. Show a direct zero-result state when no redesign qualifies.
 
-- observed evidence with repository-relative paths and precise locations;
-- current and target boundary diagrams where useful;
-- the hidden knowledge and proposed public contract;
-- framework and runtime fit;
-- the alternative considered and why it lost;
-- benefits, costs, risks, and unresolved uncertainty;
-- dependencies, migration stages, coexistence, and containment or rollback;
-- fitness checks with expected results;
-- links to any durable research report.
+Use filters only when the set is large enough that impact groups alone do not support comparison. Filtering changes visibility, never IDs, ranking, or report content; show the visible count and a clear reset.
 
-Use plain language in summaries and retain exact technical names in evidence. Do not hide a recommendation's main cost, risk, or uncertainty inside the expanded content.
+## Visual Language
 
-## Visual and Interaction Language
+Apply **visual juxtaposition**: give every recommendation an aligned current/target pair that answers one question about changed ownership, hidden knowledge, dependency direction, runtime flow, or migration. Keep corresponding concepts in corresponding positions with consistent names, shapes, direction, and scale. At narrow widths, stack the pair while preserving that visual grammar. Simplify the visual rather than shrinking an unreadable whole-system map.
 
-Use strong hierarchy, generous spacing, readable line lengths, restrained colour, and consistent cards and labels. Paths, symbols, and contracts may use a monospace face. Use colour to reinforce meaning, never to carry it alone. Avoid decoration that competes with comparison or implies unsupported precision.
+Choose the smallest useful form: a boundary or dependency graph, quality-scenario flow, ownership sketch, cross-section, or staged migration. Mermaid, inline SVG, and semantic HTML/CSS are all valid. Mix techniques when the evidence benefits; avoid ornamental diagrams. Give every visual an accessible name and adjacent textual explanation.
 
-Scripts, styles, fonts, and diagram libraries may load from CDNs when they help the current report. Tailwind and Mermaid are suitable defaults:
+Use strong hierarchy, generous spacing, readable line lengths, restrained colour, and consistent cards. Paths and contracts may use monospace. Colour reinforces words and shapes rather than carrying meaning. Prefer semantic controls, visible focus, and native disclosure; interactions remain keyboard-operable. Provide responsive and print styles that preserve all content and expand technical details for printing.
 
-```html
-<script src="https://cdn.tailwindcss.com"></script>
-<script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({
-        startOnLoad: true,
-        theme: 'neutral',
-        securityLevel: 'loose',
-    });
-</script>
-```
+Scripts, styles, fonts, and diagram libraries may load from verified CDNs when useful. Keep the generated artifact in one HTML file apart from those dependencies, escape repository-derived text for its destination context, and verify every selected dependency at generation time.
 
-The artifact is a single generated HTML file whose markup and behaviour remain together; verified CDN dependencies may provide scripts, styles, fonts, and diagram libraries. It need not work offline or preserve CDN compatibility indefinitely. Verify every selected dependency in the rendered report at generation time. Escape repository-derived text before placing it in HTML, attributes, scripts, or diagram definitions.
+## Plain Language
 
-Prefer semantic HTML controls and disclosure elements. Filters update results immediately, preserve an obvious current state, and remain operable without a pointer. Avoid interactions whose only purpose is visual novelty.
-
-## Diagrams
-
-Use a diagram when boundaries, dependency direction, runtime flow, or migration stages are materially clearer visually. Choose the smallest fitting form:
-
-- a dependency or boundary graph for current and target modules;
-- a flow or sequence for a quality scenario;
-- a before-and-after comparison for changed ownership;
-- a staged flow for incremental migration.
-
-Give each diagram one question to answer. Keep nodes few, labels short, arrows directional, and current and target semantics consistent. Place a concise text explanation beside it, label the relationship in prose, and do not rely on colour alone. Avoid ornamental system maps and unreadable whole-repository graphs.
-
-## Accessibility and Layout
-
-- Use semantic landmarks, ordered headings, labelled controls, buttons for actions, and native disclosure where practical.
-- Make every interaction keyboard-operable with a visible focus indicator and logical focus order.
-- Maintain readable text and non-text contrast and pair colour with words, shapes, or symbols.
-- Give tables headers, diagrams accessible names and adjacent explanations, and icon-only controls accessible labels.
-- Reflow cards, filters, diagrams, and evidence at narrow widths without hiding content or requiring page-level horizontal scrolling.
-- Provide print styles that expand recommendation detail, remove interactive chrome, preserve diagrams and evidence, and avoid splitting short cards unnecessarily.
+Use **plain language** for `Issue`, `Fix`, and `Benefit`: state the point first, use active verbs and familiar concrete words, and keep one idea in each field. Preserve established domain, project, framework, and architecture terms when they are more precise. Move substantiation into disclosure instead of weakening or repeating the summary. A collapsed card succeeds when it is concise and distinguishable from every other recommendation.
 
 ## Visual QA
 
-Inspect the actual file rather than inferring appearance from source:
+Inspect the actual temporary file with network access:
 
-1. Open it with network access and confirm every external script, style, font, and diagram dependency loads without a material error.
-2. Check the overview, the report's actual zero-or-many recommendation state, filters, reset, and every collapsed and expanded state.
-3. Exercise controls with pointer and keyboard; verify focus visibility, order, labels, and no keyboard trap.
-4. Inspect desktop and narrow viewports for hierarchy, wrapping, overflow, diagram readability, and content order.
-5. Check that labels and diagrams remain understandable without colour and that evidence paths are legible.
-6. Inspect print preview for expanded detail, clipping, missing diagrams, and wasteful page breaks.
+1. Confirm external dependencies and every before-and-after visual render.
+2. Compare recommendation IDs, order, labels, and claims with the Markdown record.
+3. Exercise disclosure and applicable filters by pointer and keyboard; verify focus, state, count, and reset.
+4. Inspect desktop, narrow, zero-result, and print states for hierarchy, wrapping, overflow, clipping, and content loss.
+5. Confirm the report remains understandable without colour and that evidence paths remain legible.
 
-Correct material defects and rerun affected checks. If browser inspection is unavailable, validate document structure and scripts as far as the environment allows, then mark visual acceptance incomplete in both the report and handoff.
+Correct material defects and rerun affected checks. When browser inspection is unavailable, complete structural and source checks, then mark visual acceptance incomplete in both artifacts and the handoff.
