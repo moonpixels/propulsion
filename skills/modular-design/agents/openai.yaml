@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Modular Design'
+    short_description: 'Apply an evidence-backed modular design standard'
+policy:
+    allow_implicit_invocation: true

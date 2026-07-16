@@ -18,15 +18,15 @@ Establish the review scope. Use the user's explicit scope or the whole repositor
 
 ### 2. Recover the quality drivers
 
-Recover quality drivers from explicit project evidence, then apply the priority order in [Architecture Analysis](references/architecture-analysis.md). Distinguish confirmed drivers from inference. Ask the user only when an unknown priority could materially change which redesigns qualify or how they rank. The review has an evidence-backed quality hierarchy.
+Invoke `$modular-design` to load the shared architecture standard. Recover quality drivers from explicit project evidence, then apply the priority order in [Architecture Analysis](references/architecture-analysis.md). Distinguish confirmed drivers from inference. Ask the user only when an unknown priority could materially change which redesigns qualify or how they rank. The review has an evidence-backed quality hierarchy and modular baseline.
 
 ### 3. Map the architecture
 
-Use the reference's diagnostics to map cohesive capabilities, public contracts, hidden decisions, dependency direction, adapters, seams, runtime boundaries, verification, and change propagation. Treat a module as a capability with a contract, not as a directory, file, class, or service. Record repository-relative paths and precise locations for material evidence. The current architecture and its material pressures are traceable.
+Apply the shared standard through the reference's diagnostics to map cohesive capabilities, public contracts, hidden decisions, dependency direction, adapters, seams, runtime boundaries, verification, and change propagation. Record repository-relative paths and precise locations for material evidence. The current architecture and its material pressures are traceable.
 
 ### 4. Design each candidate twice
 
-Apply **design it twice** to every serious candidate. Compare at least two materially different boundaries, including their contracts, hidden decisions, dependency direction, quality effects, trade-offs, and migration seams. Use principles and patterns from the reference only when their conditions fit the evidence. Discard rearrangements, new layers, and fashionable patterns that do not materially improve a priority quality. Each candidate has a tested alternative and a codebase-specific rationale.
+Apply **design it twice** to every serious candidate. Compare at least two materially different boundaries, including their contracts, hidden decisions, dependency direction, quality effects, trade-offs, and migration seams. Load the shared standard's conditional techniques only when their conditions fit the evidence. Discard rearrangements, new layers, and fashionable patterns that do not materially improve a priority quality. Each candidate has a tested alternative and a codebase-specific rationale.
 
 ### 5. Research material external claims
 

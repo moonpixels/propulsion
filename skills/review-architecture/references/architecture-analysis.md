@@ -8,10 +8,9 @@ Apply the first applicable evidence in this order:
 
 1. Safety, correctness, security, and data integrity constraints.
 2. Explicit project quality drivers.
-3. Information hiding and change isolation.
-4. Cohesion, coupling, and interface depth.
-5. Testability and migration safety.
-6. Operability, reliability, performance, scalability, and portability when evidenced by the system.
+3. The qualities defined by `$modular-design`.
+4. Testability and migration safety.
+5. Operability, reliability, performance, scalability, and portability when evidenced by the system.
 
 Explicit project evidence overrides the baseline. Recover it from product and domain context, architecture decisions, public promises, tests, operational configuration, incidents, recurring changes, and repository history when available. Express a material driver as a concrete scenario: stimulus, affected capability or boundary, expected response, and observable measure. Label an inferred driver and its confidence. Ask the user when competing designs depend on an unknown priority that the repository cannot establish.
 
@@ -62,20 +61,6 @@ For every serious candidate, compare at least two materially different designs. 
 
 Prefer the design that hides more relevant knowledge behind the simpler stable contract while satisfying the higher-priority quality evidence. Reject an alternative explicitly; do not present the first plausible design as inevitable.
 
-## Conditional Concepts
-
-Use a concept only under its condition:
-
-| Concept | Use when | Avoid when |
-| --- | --- | --- |
-| Deep module | A cohesive capability can hide substantial knowledge behind a small stable interface. | The boundary merely combines unrelated work or grows an equally complex interface. |
-| Single responsibility | Different actors or change reasons are entangled in one boundary. | A cohesive capability has several internal implementation steps. |
-| Dependency inversion | Stable policy depends directly on a volatile mechanism and a purposeful contract can reverse that knowledge dependency. | The abstraction has one accidental consumer and hides no meaningful volatility. |
-| Ports and adapters | A purposeful application conversation needs multiple technologies, isolated verification, or replacement. | It would wrap every framework call or create ports without alternate adapters or isolation value. |
-| Seam | Verification, replacement, observation, or incremental migration needs a controlled boundary. | Direct use is already stable, observable, and local. |
-| Strangler fig | A high-risk boundary must be replaced gradually while old behaviour remains live. | A safe local replacement can be completed and verified atomically. |
-| Fitness function | A quality claim can be guarded by an objective repeatable signal. | The proposed measure is a subjective proxy unrelated to the claimed improvement. |
-
 ## Evaluation
 
 Assign each label with a one-sentence evidence-based rationale:
@@ -99,7 +84,7 @@ Report every qualifying redesign and none below the threshold. Zero is valid; th
 
 ## Migration and Fitness
 
-For a retained redesign, define stages that keep the system operable and verifiable. Name prerequisites, the smallest independently useful first slice, coexistence between old and new boundaries, data or contract transition, containment or rollback, and removal of the superseded path. Stop before a file-by-file implementation plan.
+For a retained redesign, define stages that keep the system operable and verifiable. Name prerequisites, the smallest independently useful first slice, coexistence between old and new boundaries, data or contract transition, containment or rollback, and removal of the superseded path. Route a high-risk replacement incrementally while old behaviour remains live; replace a safe local boundary atomically. Stop before a file-by-file implementation plan.
 
 Pair each claimed improvement with observable fitness evidence, such as:
 

@@ -28,6 +28,8 @@ The Spec packet applies **bidirectional requirements traceability**: trace every
 
 The Standards packet applies repository standards first, then residual **Google code-review criteria** across whole-change understanding, correctness and concurrency risks, test presence and validity, comments, and affected documentation. Include the complete [Fowler code-smell work aid](references/CODE-SMELLS.md). Add **Test Desiderata** when tests change; the relevant **ISO/IEC 25010:2023** characteristic when the repository adopts it or the change exposes a concrete residual product-quality concern; an applicable **SEI CERT** rule when supported-language code exposes its construct; and the relevant frozen **OWASP ASVS 5.0.0** requirement when Web code crosses that security boundary. Load only the implicated part of a conditional benchmark.
 
+When the fixed change alters modular architecture, invoke `$modular-design` and include the applicable standard in the Standards packet.
+
 Within Standards, repository rules and demonstrably configured tooling govern the concerns they cover. General work aids fill uncovered diagnostic roles and yield to an explicit repository choice. A smell or benchmark cue begins an investigation; it becomes a finding only when the scoped code supplies exact evidence and a concrete consequence.
 
 ### 4. Assign the inspections
