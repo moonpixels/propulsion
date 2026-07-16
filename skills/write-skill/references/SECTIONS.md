@@ -11,7 +11,7 @@ Include the skill's discovery and invocation contract:
 - `metadata.invocation` records `user` or `model`.
 - `disable-model-invocation` and `agents/openai.yaml` use the matching policy.
 
-Use user invocation by default. Use model invocation when composition or broad reuse earns the permanent description context.
+Use user invocation by default. Use model invocation only when autonomous discovery would naturally help during ordinary coding work often enough to earn the permanent description context.
 
 | Invocation | `disable-model-invocation` | `policy.allow_implicit_invocation` |
 | ---------- | -------------------------- | ---------------------------------- |

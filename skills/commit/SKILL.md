@@ -1,9 +1,9 @@
 ---
 name: commit
-description: Creates coherent Conventional Commits from eligible changed work. Use when the user or an authorised workflow asks to commit ready changes.
+description: Creates coherent Conventional Commits from eligible changed work. Use to commit reviewed changes.
 metadata:
-    invocation: model
-disable-model-invocation: false
+    invocation: user
+disable-model-invocation: true
 ---
 
 # Commit

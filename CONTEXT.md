@@ -10,7 +10,7 @@ _Avoid_: Consistency, output determinism
 **User-invoked skill**: A skill the user selects explicitly. This is the default skill type in Propulsion.\
 _Avoid_: Manual skill, command
 
-**Model-invoked skill**: A skill the agent may select autonomously or invoke from another skill. Use this exception for skills expected to be invoked often enough that automatic discovery earns its permanent context cost.\
+**Model-invoked skill**: A skill the agent may select autonomously or invoke from another skill. Use this exception only when autonomous discovery would naturally help during ordinary coding work often enough to earn its permanent context cost.\
 _Avoid_: Automatic skill
 
 **Invocation policy**: Client-specific metadata within a skill bundle that controls whether an agent may select that skill implicitly. The same intent may require different policy fields in different clients.\
@@ -61,7 +61,7 @@ _Avoid_: Directory, namespace
 **Deep module**: An architecture module whose small, stable interface hides substantial cohesive implementation. The implementation may be decomposed into focused internal actions for reuse and maintainability without exposing that decomposition to consumers.\
 _Avoid_: Large class, shallow module
 
-**Debug skill**: The user-invoked workflow that reproduces a code issue, establishes its root cause, applies the smallest correction, and verifies the result. An explicit diagnosis-only request stops before mutation.\
+**Debug skill**: The model-invoked workflow that reproduces a code issue, establishes its root cause, applies the smallest correction, and verifies the result. An explicit diagnosis-only request stops before mutation.\
 _Avoid_: Diagnose skill
 
 **Maintain-agents skill**: The user-invoked workflow that creates or aggressively compresses the root `AGENTS.md` into project-wide runtime guidance and one canonical completion check. It removes narrower workflows from permanent context and reports their appropriate destinations.
