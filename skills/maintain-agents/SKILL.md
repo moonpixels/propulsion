@@ -1,6 +1,6 @@
 ---
 name: maintain-agents
-description: Initializes and compresses repository-wide agent guidance. Use when creating or improving a root AGENTS.md.
+description: Creates and compresses lean root AGENTS.md files. Use when initializing or improving repository-wide agent guidance.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,26 +8,26 @@ disable-model-invocation: true
 
 # Maintain AGENTS.md
 
-**Lossless compression** turns repository-wide constraints into the smallest durable instruction surface an agent needs before reading the code.
+**Progressive Disclosure** keeps root `AGENTS.md` guidance limited to behaviour every repository task needs while narrower instructions remain discoverable on demand.
 
 ## Process
 
 ### 1. Inspect the instruction surface
 
-Locate the repository root and inspect the root `AGENTS.md`, applicable instruction layers, and task-relevant repository evidence. Read manifests, task-runner configuration, CI, and contributor documentation only far enough to identify the canonical project harness and recover the intent of existing guidance. The target file, active instruction chain, and candidate harness are explicit.
+Locate the repository root. Read the root `AGENTS.md`, applicable instruction layers, and enough manifests, task runners, CI, and contributor documentation to recover each rule's intent and identify project checks. The target, instruction chain, rules, and check entry points are explicit.
 
-### 2. Classify the instructions
+### 2. Allocate the guidance
 
-Classify every existing and proposed instruction. Keep only succinct project-wide behaviour that applies across tasks and cannot be reliably inferred from the relevant code, configuration, or documentation, plus a canonical command whose selection prevents ambiguous verification. Remove stale guidance, rationale, boilerplate, repository description, duplicated enforcement, personal preferences, and task-specific workflows. Report each useful displaced instruction with its smallest appropriate destination, such as an existing skill, a scoped instruction file, or executable enforcement; leave those destinations unchanged. Every retained instruction earns its permanent context cost.
+Classify every existing and proposed instruction by runtime scope. Retain only concise behaviour governing the whole repository, plus the required correction and completion instructions. Report useful narrower guidance with its smallest discoverable owner: an invocable skill for reusable workflows, a scoped instruction file for directory rules, or executable enforcement for mechanical constraints. Leave destinations unchanged. Discard stale guidance, rationale, boilerplate, repository description, personal preferences, and task-, component-, or workflow-specific instructions. Every retained rule earns its permanent context cost.
 
 ### 3. Establish the required guidance
 
-Ensure the file states: `When the user corrects you with a reusable, project-wide rule, ask whether to update AGENTS.md.` Inspect available check entry points and select one safe aggregate harness that represents completed work. When alternatives materially differ or a candidate has external side effects, invoke `$elicit`; when no trustworthy aggregate exists, omit the check instruction rather than inventing one. The correction feedback loop and, when available, one canonical completion check are explicit.
+Ensure the file states: `Ask immediately whether to add a reusable repository-wide rule to AGENTS.md when a user correction establishes it.` When project checks exist, add one instruction to run them after implementation and before handoff. Prefer one canonical aggregate command covering the configured suites; otherwise list every applicable individual command. Invoke `$elicit` when candidates materially differ or a command has unusual external effects. Omit the instruction only when no project checks exist. The correction loop and completion commands are explicit.
 
 ### 4. Write the root instructions
 
-Create or rewrite only the root `AGENTS.md`. Use direct imperative lines, merge overlapping meanings, remove headings that add no navigation, and apply lossless compression until every word changes agent behaviour or preserves a necessary condition. The file contains one authoritative expression of each retained rule.
+Create or rewrite only the root `AGENTS.md`. Use direct imperative lines. Remove headings unless they navigate multiple instruction groups. Apply **Minimalist Instruction** until every word changes behaviour or preserves a necessary condition. Apply **DRY** to meaning: when changing one rule requires changing multiple instructions, merge them into one authoritative expression. No semantic duplicates remain.
 
 ### 5. Verify and hand off
 
-Re-read every line against its repository-wide scope and runtime value. Verify the selected harness exists and run it when it is safe and applicable. Return the changed file, harness result or limitation, removed instructions with destinations, and any unresolved conflict in the active instruction chain. The user receives a thin verified root instruction file and a visible account of displaced guidance.
+Re-read every line for repository-wide scope, behavioural value, and semantic duplication. Verify each command exists; run the checks after implementation and before handoff when safe and applicable. Return the changed file, check results or limitations, displaced guidance with destinations, and unresolved conflicts. The user receives a lean verified root file and a visible account of displaced guidance.
