@@ -27,7 +27,7 @@ Create the root file lazily from the [context template](assets/context-template.
 
 ### 2. Keep the glossary rigorous
 
-Define domain meaning rather than implementation, specifications, or general programming concepts. Give each meaning one authoritative entry, keep its definition to one or two sentences, and add `_Avoid_` only for aliases or ambiguous alternatives that actually occur.
+Keep `CONTEXT.md` as a glossary of project-specific domain language: define each term's meaning in one or two sentences, leaving implementation and specifications to their authoritative sources. Give each meaning one authoritative entry, and add `_Avoid_` only for aliases or ambiguous alternatives that actually occur.
 
 Use **Conceptual Contours** to group related terms under descriptive subheadings when meaningful domain clusters emerge; keep one flat language list when the terms form a cohesive area. If context-dependent meanings conflict with the single-context structure, surface that ambiguity instead of inventing another context file.
 
