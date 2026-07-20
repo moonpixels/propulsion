@@ -42,7 +42,7 @@ _Avoid_: Workflow stage, mandatory step
 **Router skill**: A lightweight skill that invokes other skills to produce a combined outcome. It contains only coordination unique to that outcome; called skills remain authoritative and the router neither repeats nor overrides their context.\
 _Avoid_: Pipeline skill
 
-**Implement skill**: The user-invoked workflow that uses tracer bullets to deliver a clear implementation request in verified slices, applying TDD when appropriate. It remediates code-review findings until verified and elicits user intent when a finding would change behaviour, contracts, architecture, or scope.
+**Implement skill**: The user-invoked workflow that coordinates a confirmed implementation through TDD and independent code review. It technically adjudicates review findings, remediates required corrections, accepts optional improvements only when proportionate, and elicits user intent when a finding would change behaviour, contracts, architecture, or scope.
 
 **TDD skill**: The model-invoked workflow that applies red-green-refactor when an existing runnable test suite can exercise the behaviour change through a stable public seam. It uses Test Desiderata to favour valuable tests that respond to behaviour without coupling to code structure.
 
