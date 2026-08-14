@@ -63,7 +63,7 @@ Every skill:
 | Authority | Owns |
 | --- | --- |
 | `PRODUCT.md` | Product purpose, users, needs, value, outcomes, boundaries, journeys and high-level capability catalogue. |
-| `CONTEXT.md` | Ubiquitous language, domain concepts, business rules and conceptual boundaries. |
+| `CONTEXT.md` | Canonical project terms and their concise project-specific meanings. |
 | `ARCHITECTURE.md` | Enduring architecture drivers, system context, responsibilities, technology strategy, data ownership, integrations and cross-cutting technical constraints. |
 
 `CONTEXT.md` remains live throughout the lifecycle. Any skill that establishes or changes consequential domain language invokes `maintain-context` inline.
@@ -253,7 +253,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 | `elicit` | Resolves dependency-ordered material information and user decisions one question at a time until shared understanding is confirmed. |
 | `research` | Answers a material question using high-trust evidence and creates a cited report when the conclusion must survive the session. |
 | `prototype` | Creates a deliberately disposable experiment or mock-up to resolve one bounded uncertainty and preserves its conclusion. |
-| `maintain-context` | Keeps `CONTEXT.md` aligned with confirmed ubiquitous language, domain rules and conceptual boundaries. |
+| `maintain-context` | Keeps `CONTEXT.md` aligned inline with confirmed ubiquitous language. |
 | `modular-design` | Applies evidence-backed modularity, information hiding, cohesion, coupling and maintainability principles to a scoped design decision. |
 | `tdd` | Drives red-green-refactor through a stable observable seam and runnable test suite. |
 | `verify-change` | Selects and executes the applicable project and risk-triggered quality harnesses and reports reproducible evidence and limitations. |
@@ -394,7 +394,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `elicit` skill
 - [x] Update `research` skill
 - [x] Create `prototype` skill
-- [ ] Update `maintain-context` skill
+- [x] Update `maintain-context` skill
 - [ ] Update `modular-design` skill
 - [ ] Update `tdd` skill
 - [ ] Create `verify-change` skill

@@ -1,6 +1,6 @@
 ---
 name: maintain-context
-description: Actively maintains project language and architecture decisions. Use when domain terms or consequential codebase decisions emerge or change.
+description: Continually maintains confirmed project terminology and rare ADRs. Use when project language is introduced, changed, misused, or contradicted, or an accepted decision needs durable rationale.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -8,43 +8,35 @@ disable-model-invocation: false
 
 # Maintain Context
 
-**Ubiquitous Language** is an active discipline: challenge and refine project terms during ordinary discussion, then write each resolution into one root `CONTEXT.md` before the conversation moves on. Architecture decision records preserve only rare consequential choices.
+**Ubiquitous Language** keeps project-specific terminology consistent across conversation, documentation, and code. Maintain one root `CONTEXT.md` as a concise glossary during ordinary work; preserve only rare qualifying architecture decisions separately.
 
 ## Process
 
-### 1. Maintain the language inline
+### 1. Notice project language
 
-Apply this loop to each material domain term while the discussion is taking place:
+Act whenever a material project term is introduced, changed, misused, or contradicted during the caller's work. Compare its meanings in the active discussion and root `CONTEXT.md`, then inspect only the relevant code or authoritative documents needed to expose a conflict. State the conflicting meanings and their sources plainly. The term and any disagreement are explicit.
 
-- Compare it with the single root `CONTEXT.md` and inspect only the relevant code.
-- Challenge glossary misuse immediately and quote the conflicting meanings.
-- Sharpen vague or overloaded language by proposing one precise canonical term.
-- Test the proposed meaning with concrete scenarios and edge cases that expose its boundaries.
-- Use **Model-Driven Design** to surface disagreement between language and implementation. Treat code as evidence of current behaviour and the user's confirmed answer as intent.
-- When the user resolves the term, update `CONTEXT.md` before continuing the discussion. Keep a genuine uncertainty explicit and leave its glossary entry unresolved.
+### 2. Resolve the meaning
 
-Create the root file lazily from the [context template](assets/context-template.md) when the first term resolves. The durable language stays current with the conversation rather than accumulating for handoff.
+Challenge an inconsistent, vague, or overloaded meaning immediately. Propose one precise canonical term and test its project-specific meaning with concrete examples or boundary cases suited to the disagreement. Treat every source as evidence rather than automatic authority and obtain confirmation from the user or the caller's already-confirmed outcome. When the meaning remains unresolved, keep the conflict explicit and leave `CONTEXT.md`, including any existing entry, unchanged. One meaning is confirmed or its uncertainty remains visible.
 
-### 2. Keep the glossary rigorous
+### 3. Update the glossary inline
 
-Keep `CONTEXT.md` as a glossary of project-specific domain language: define each term's meaning in one or two sentences, leaving implementation and specifications to their authoritative sources. Give each meaning one authoritative entry, and add `_Avoid_` only for aliases or ambiguous alternatives that actually occur.
+As soon as a meaning is confirmed, update `CONTEXT.md` before the surrounding work continues. Create the root file lazily from the [context template](assets/context-template.md) when the first term resolves. Give each canonical term one authoritative entry and define its project-specific meaning in one or two concise sentences, including only what is needed to explain the term. Group entries under descriptive headings when natural clusters emerge; otherwise keep one flat language list.
 
-Use **Conceptual Contours** to group related terms under descriptive subheadings when meaningful domain clusters emerge; keep one flat language list when the terms form a cohesive area. If context-dependent meanings conflict with the single-context structure, surface that ambiguity instead of inventing another context file.
+Change no code, specification, product, architecture, or other project artifact. Return every remaining conflict to the caller or artifact owner. The glossary reflects the confirmed language and other authorities retain their ownership.
 
-### 3. Offer ADRs sparingly
+### 4. Offer a rare ADR
 
-Use **Architecture Decision Records** only for an accepted codebase decision that passes all three gates:
+Consider an architecture decision record only for an already accepted codebase decision that passes every gate:
 
 - changing it later has meaningful cost;
 - a future reader would find it surprising without context; and
-- viable alternatives created a genuine trade-off.
+- viable alternatives created a genuine trade-off; and
+- neither `ARCHITECTURE.md` nor a feature record already explains it adequately.
 
-Offer an ADR when all three pass and let the user decide whether to record it. A decision that misses any gate remains routine and produces no ADR.
+When every gate passes, offer the ADR and let the user decide whether to record it. A decision that misses any gate remains routine and produces no ADR. The exceptional record has explicit user agreement.
 
-### 4. Record a qualifying decision
+### 5. Record and verify the result
 
-After the user accepts the offer, create `docs/adr/` lazily and write the next record from the [ADR template](assets/adr-template.md). Derive the next four-digit sequence from filenames alone and name it `NNNN-decision-shaped-slug.md`. State the decision first, then only the context and significant ramifications needed to explain it; use exactly `Decision`, `Context`, and `Ramifications` as content sections, in that order. Link supporting material from the record. The ADR is brief, sequentially numbered, and readable from its filename.
-
-### 5. Verify and hand off
-
-Re-read each changed artifact against the resolved language, accepted decisions, and relevant code evidence. Report the files changed and the exact uncertainty behind any unresolved contradiction.
+When the user accepts the offer, create `docs/adr/` lazily and write the next record from the [ADR template](assets/adr-template.md). Derive the next four-digit sequence from filenames alone and name it `NNNN-decision-shaped-slug.md`. Use exactly `Decision`, `Context`, and `Ramifications` as content sections, in that order, and link only the supporting material needed to understand the choice. In every path, re-read each changed artifact against the confirmed language, accepted decision, and relevant evidence. Report changed files and each unresolved conflict with its owning artifact. The glossary and any qualifying ADR are concise, verified, and ready for the caller to continue.

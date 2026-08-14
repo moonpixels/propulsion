@@ -1,5 +1,5 @@
 interface:
     display_name: 'Maintain Context'
-    short_description: 'Maintain project language and decisions'
+    short_description: 'Maintain project language and rare ADRs'
 policy:
     allow_implicit_invocation: true

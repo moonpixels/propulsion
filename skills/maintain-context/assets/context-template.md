@@ -1,10 +1,7 @@
 # {Project Name} Context
 
-{Describe the project domain and why this language exists in one or two sentences.}
-
 ## Language
 
 ### {Optional descriptive concept group}
 
-**{Canonical term}**: {Define what the term is in one or two sentences.}\
-_Avoid_: {List observed aliases or ambiguous alternatives; omit when none exist.}
+**{Canonical term}**: {Define the term's project-specific meaning in one or two concise sentences.}
