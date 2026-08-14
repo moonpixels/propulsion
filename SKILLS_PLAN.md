@@ -250,7 +250,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 
 | Utility | Independently useful outcome |
 | --- | --- |
-| `elicit` | Resolves dependency-ordered user decisions one at a time until shared understanding is confirmed. |
+| `elicit` | Resolves dependency-ordered material information and user decisions one question at a time until shared understanding is confirmed. |
 | `research` | Answers a material question using high-trust evidence and creates a cited report when the conclusion must survive the session. |
 | `prototype` | Creates a deliberately disposable experiment or mock-up to resolve one bounded uncertainty and preserves its conclusion. |
 | `maintain-context` | Keeps `CONTEXT.md` aligned with confirmed ubiquitous language, domain rules and conceptual boundaries. |
