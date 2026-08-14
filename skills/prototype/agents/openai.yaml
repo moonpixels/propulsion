@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Prototype'
+    short_description: 'Resolve uncertainty with disposable visual experiments'
+policy:
+    allow_implicit_invocation: true
