@@ -22,7 +22,7 @@ Add `agents/openai.yaml` with a human-readable `interface.display_name`, a 25–
 
 ## Introduction
 
-The fixed spine and emphasis rules in the main workflow are authoritative. Use the introduction to explain only the selected methodology's context-specific adaptation.
+The fixed spine and emphasis rules in the main workflow are authoritative. State the skill's purpose concisely. When the user selected a governing methodology, explain only its context-specific adaptation; a methodology-free skill needs no substitute label.
 
 ## Process details
 
@@ -40,11 +40,12 @@ Rename or combine optional sections when that improves the confirmed behaviour. 
 
 ## Bundled resources
 
-Use **progressive disclosure** as an information hierarchy:
+Use progressive disclosure through the Agent Skills loading hierarchy:
 
-- Keep the common execution path in `SKILL.md`.
+- Put discovery conditions in frontmatter metadata.
+- Keep instructions required on every invocation in `SKILL.md`.
 - Put conditional or extensive runtime guidance in `references/`.
 - Put files consumed or copied into generated output in `assets/`.
 - Put deterministic, repeated, or fragile operations in `scripts/`.
 
-Add a resource when a retained material exception or other conditional depth improves execution. Link every resource directly from `SKILL.md` beside a precise condition that tells the agent when it may help. Keep references one level deep and each meaning in one authoritative location. References contain runtime guidance rather than general concept explanations.
+Add a resource only when retained conditional depth improves execution. Link every resource directly from `SKILL.md` beside the condition that loads it. Keep references one level deep and each meaning in one authoritative location. References contain runtime guidance rather than general concept explanations.

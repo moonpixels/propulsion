@@ -1,45 +1,43 @@
 # Skill Craft
 
-Use this reference when a methodology, supporting concept, section boundary, leading word, or disclosure decision remains unclear.
+Use this reference when recommendation strength, supporting concepts, wording, structure, authority, or direct composition remains unclear.
 
-## Compare methodologies
+## Judge recommendations
 
-Research methods against the confirmed behaviour rather than selecting one for familiarity. Use **design it twice** to compare credible candidates through:
+Research candidates against the confirmed behaviour rather than selecting one for familiarity. Compare each credible option, including no methodology, through:
 
 - the process each method would impose;
 - the behaviours it strengthens or suppresses;
-- its fit across the main success scenario and retained material exceptions;
+- its fit across the common successful path and retained material exceptions;
 - the local adaptations it would require; and
 - the evidence supporting its published meaning.
 
-Continue until multiple credible choices emerge or further research is unlikely to change the set. Recommend the strongest fit and expose its trade-offs. When only one survives, compare it with a methodology-free process.
+Stop when further evidence is unlikely to change the decision set. Call a recommendation strong only when one option materially fits the contract better than every credible alternative. Otherwise state that no strong recommendation exists. Present the evidence, adaptations, consequences, and uncertainty without manufacturing a ranking; the user decides.
 
 ## Select supporting concepts
 
-A supporting concept earns inclusion only when it governs a concern the selected methodology leaves unresolved. Name its behavioural job in one sentence and test whether removing it changes the instructions. Use the governor and plain language alone when they already determine the behaviour; retain as many concepts as distinct concerns require.
+A supporting concept earns inclusion only when its established meaning governs a distinct unresolved concern. Name its behavioural job in one sentence, test whether deleting its name changes execution, and compare it with plain language and overlapping concepts. Retain as many as distinct concerns require, including zero, and keep a short local mapping where the canonical name is broader than the required behaviour.
 
-## Choose leading words
+## Write the smallest effective bundle
 
-Prefer the canonical name of a recognised method, principle, theory, or technique already present in the agent's knowledge. A leading word earns its place when it replaces explanation and sharpens a decision, action, or stopping condition. Remove or replace a term that forward testing shows to be decorative.
+Assume the agent already knows general software practice. Retain a word only when it changes behaviour, preserves a condition, or improves navigation. Prefer a canonical term when it replaces explanation and sharpens a decision; remove it when the local rule must restate the entire useful meaning.
 
-Bold the governing methodology naturally within the introduction when one was selected. Bold a supporting concept where it first governs behaviour, then use plain text unless renewed emphasis changes the instruction.
+Bold a selected governing methodology naturally within the introduction. Bold a supporting concept where it first governs behaviour, then use plain text unless renewed emphasis changes execution.
 
-## Separate concerns
+## Shape coherent instructions
 
 Give a step or subsection one coherent behavioural idea and one observable outcome. Split it when any sentence could be acted on, tested, reordered, or completed independently. Keep supporting detail together when separating it would make the action harder to understand or create headings without meaningful content.
 
-## Disclose depth
+Match precision to the confirmed behaviour. Leave valid project-dependent choices open. Specify exact sequences, permissions, formats, assets, scripts, and other fragile or deterministic behaviour only to the degree the contract fixes them.
 
-Keep knowledge inline when every invocation needs it to act correctly. Move a retained exception to a reference when its detail would obscure the common path. Write every pointer as the precise loading condition. Pull must-have material back inline when forward tests show that a sharper pointer still misses the behaviour.
+## Preserve one authority
 
-## Remove no-ops
+Keep each rule and definition in one authoritative location. Allow deliberate summaries, emphasis, and caller-facing pointers when they navigate to that authority without becoming competing versions. Treat the environment as authoritative for readily discoverable commands, configuration, and structure; document only what inspection cannot reveal safely.
 
-Test each sentence in isolation: would deleting it change agent behaviour, preserve a necessary condition, or impair navigation? Delete the whole sentence when the answer is no. Prefer a stronger canonical term over several weak adjectives, and prefer one checkable bound over exhortations to be careful or thorough.
+## State the target behaviour
 
-## Remove duplication
+State the desired action or result first. Retain a prohibition when the excluded behaviour defines safety, permission, scope, or a deterministic contract, and pair it with the permitted route. Prefer a checkable bound over vague exhortations.
 
-Apply **DRY** to meaning rather than tokens. Give each behaviour, rule, and definition one authoritative expression. Repeating a canonical term can focus attention; repeating its explanation inflates prominence and creates competing authorities.
+## Trace direct composition
 
-## State positive behaviour
-
-Use ironic process theory as a salience check during final compression. Describe the action the agent should perform, replace avoidable negative framing with that target, and reserve prohibitions for essential safety boundaries that cannot be expressed positively. Pair each retained prohibition with the safe action that satisfies it. The instruction keeps the intended behaviour most salient.
+For each direct caller and callee, trace the trigger, inputs, authority, result, responsibility owner, and stopping boundary. Compare the real obligations rather than repeated wording. Remove gaps, contradictions, duplicated responsibility, and behaviour neither contract owns. Use the least restrictive check that still exposes an incompatible connection.

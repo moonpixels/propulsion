@@ -1,6 +1,6 @@
 ---
 name: write-skill
-description: Creates and updates predictable agent skills through confirmed behavioural contracts, evidence-backed concepts, and forward testing. Use when authoring or revising a skill.
+description: Creates and updates compact agent skills through confirmed behavioural contracts, evidence-backed choices, and fresh-agent evaluation. Use when authoring or revising a skill.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,46 +8,50 @@ disable-model-invocation: true
 
 # Write Skill
 
-**Minimalist instruction** turns confirmed behaviours into the smallest skill bundle that reliably teaches them.
+Creates or updates the smallest skill bundle that reliably teaches a confirmed process while leaving project-dependent results to runtime evidence and user decisions.
 
 ## Process
 
 ### 1. Establish the behavioural contract
 
-Inspect the request, complete target bundle, discoverable callers, and host conventions. Invoke `$elicit` and use the **main success scenario** to confirm the skill's purpose, trigger, primary behaviour, required inputs, observable result, and resource needs. Apply **YAGNI** to speculative branches: retain an exception only when representative evidence, the primary behaviour, or a necessary safety or permission boundary requires it. Existing and new skills reach one explicit behavioural contract with a dominant thread and only its material exceptions.
+Inspect the request, complete target bundle, direct callers and callees, and host conventions. Invoke `$elicit` to confirm the skill's purpose, trigger, required inputs, common successful path, observable result, and resource needs. Retain an exception only when representative evidence, the primary behaviour, or a necessary safety, permission, or prerequisite boundary requires it. Existing and new skills reach one explicit behavioural contract with a dominant path and only its material exceptions.
 
 ### 2. Compare governing methodologies
 
-Use the confirmed behavioural contract as the fixed scope and decision authority for both research passes; evidence selects how to teach the confirmed behaviour. Invoke `$research` to compare credible governing methodologies, then **design it twice**: continue until at least two credible options emerge or the evidence reaches saturation. Present the supported options, behavioural consequences, and recommendation for the user to choose. Offer only evidence-supported alternatives; when one methodology survives, compare it with a methodology-free process. The user's selection or evidence-backed absence is explicit.
+Use the confirmed behavioural contract as the fixed scope and decision authority for both research passes; evidence selects how to teach the confirmed behaviour. Invoke `$research` to compare credible governing methodologies and a methodology-free process until further evidence is unlikely to change the decision set. Analyse the report against the contract. Call a recommendation strong only when one option materially fits better than every credible alternative; otherwise state that no strong recommendation exists. Present the supported options, behavioural consequences, trade-offs, and recommendation strength for the user to choose. The user's selection, including no methodology, is explicit.
 
 ### 3. Select supporting concepts
 
-Invoke `$research` to find established principles, theories, methods, or techniques that reinforce distinct concerns without competing with the selected governor. Explain each candidate's intended behavioural effect and let the user decide; let the evidence determine the count. Every retained concept earns a distinct role.
+Invoke `$research` to find established principles, theories, methods, or techniques that reinforce distinct concerns without competing with the selected methodology or replacing an evidence-backed absence. Analyse whether each name changes behaviour, overlaps another concept, or is more precise in plain language. Apply the same recommendation-strength rule, explain each candidate's behavioural job, and let the user decide. Zero concepts is valid; every retained concept earns a distinct role.
 
 ### 4. Confirm the design
 
-Present one complete synthesis of the behavioural contract, selected concepts, structure, resources, main success scenario, material exceptions, and observable success conditions. Obtain explicit confirmation before following the remaining process.
+Present one complete synthesis of the behavioural contract, selected methodology or absence, supporting concepts, structure, resources, common successful path, material exceptions, constraint levels, and observable success conditions. Obtain explicit confirmation before following the remaining process.
 
 ### 5. Write the bundle
 
-Create or update through one path. Treat the confirmed design as closed: encode its main success scenario and retained material exceptions without adding new behaviour during drafting. Give every `SKILL.md` frontmatter, one H1, a concise introduction, and exactly one `## Process`; place a selected governing methodology in bold where it fits naturally in the introduction. Bold each supporting concept at its first behaviour-governing use. Consult [Skill Sections](references/SECTIONS.md) when invocation metadata, optional sections, or resource placement needs detail. The bundle expresses the confirmed design.
+Create or update through one path. Treat the confirmed design as closed: encode its common successful path and retained material exceptions without adding behaviour during drafting. Give every `SKILL.md` frontmatter, one H1, a concise introduction, and exactly one `## Process`; when the user selected a governing methodology, place it in bold where it fits naturally in the introduction. Bold each supporting concept at its first behaviour-governing use. Consult [Skill Sections](references/SECTIONS.md) for invocation metadata, optional sections, and resource placement. The bundle expresses the confirmed design in the fewest instructions that reliably change behaviour.
 
-### 6. Separate the concerns
+### 6. Place runtime information
 
-Apply **separation of concerns** so each step or subsection carries one coherent behavioural idea and observable outcome. Split independently actionable instructions, concepts, or completion criteria; keep sentences together when they jointly govern the same action. Consult [Skill Craft](references/CRAFT.md) when the split, vocabulary, emphasis, or disclosure boundary is unclear. Every section remains focused and substantial.
+Apply **progressive disclosure** to the Agent Skills loading model: keep discovery conditions in metadata, instructions required on every invocation in `SKILL.md`, and conditional detail in task-needed resources. Link every resource beside the condition that loads it. The common path remains complete without loading an irrelevant branch.
 
-### 7. Compress the language
+### 7. Calibrate the instructions
 
-Apply minimalist instruction and **DRY** until every remaining word changes behaviour, preserves a condition, or improves navigation. Replace explanations with canonical leading words when the agent already knows the concept and keep each meaning in one authoritative location. Use **ironic process theory** as a salience check: state the positive target behaviour and pair an essential prohibition with the safe action that satisfies it. Consult [Skill Craft](references/CRAFT.md) when negative framing or semantic duplication remains unclear. Every remaining instruction is behaviourally necessary, authoritative, and positively framed.
+Apply **degrees of freedom** to each instruction and evaluation criterion. Keep project-dependent reasoning and results flexible; make required sequences, safety, permissions, fixed formats, schemas, scripts, and other fragile deterministic behaviour correspondingly exact. Give each step one coherent action and observable outcome, keep each rule in one authoritative location, state the desired action first, and pair an essential prohibition with the permitted route. Consult [Skill Craft](references/CRAFT.md) when recommendation strength, wording, structure, authority, or composition remains unclear. Every constraint is no stronger than the confirmed behaviour requires.
 
 ### 8. Validate the mechanics
 
 Run [scripts/validate-skill.js](scripts/validate-skill.js), inspect every bundled script, and execute each within a disposable filesystem using inert fixtures, isolated credentials, and an environment incapable of external mutation. When that boundary is unavailable, leave the script unexecuted and report the limitation. The mechanical contract passes within the safe execution boundary.
 
-### 9. Forward-test the behaviour
+### 9. Verify direct composition
 
-Give a fresh agent only the finished bundle and a realistic main-success invocation, then compare its observable process and result with the confirmed contract. Add the smallest scenario for each retained material exception. Consult [Forward Testing](references/TESTING.md) when scenario selection, isolation, or pass evidence needs detail. Repair, recompress, revalidate, and retest until the skill reliably invokes the intended behaviour.
+Trace every direct caller and callee across trigger, supplied inputs and authority, promised result, responsibility owner, and stopping boundary. Remove overlap, omissions, contradictions, and invented obligations. Exercise the least restrictive connected path that would expose a genuine incompatibility. Direct compositions preserve the confirmed contract.
 
-### 10. Report the result
+### 10. Evaluate the behaviour
 
-Return the changed files, research evidence, mechanical results, forward-test scenarios and outcomes, unexecuted scripts, and remaining uncertainty. The user receives the finished bundle and evidence that its contract holds.
+Give a fresh agent only the finished bundle, a realistic request, and task-local evidence. Compare its observable process and result with the confirmed contract. Judge variable results by their correctness and suitability for the supplied evidence; inspect exact content only where the contract fixes it. Evaluate the common successful path and the smallest scenario for each retained material exception. Consult [Fresh-Agent Behavioural Evaluation](references/TESTING.md) for isolation, evidence, and repair. Repair the smallest steering cause, recompress, revalidate, and reevaluate until the contract holds.
+
+### 11. Report the result
+
+Return the changed files, research evidence, mechanical and composition results, behavioural-evaluation scenarios and outcomes, unexecuted scripts, and remaining uncertainty. The user receives the finished bundle and evidence that its contract holds.
