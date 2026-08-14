@@ -388,6 +388,39 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 6. Build the exceptional paths: `debug`, `respond-to-incident`, `review-incident` and `plan-retirement`.
 7. Remove `elicit-with-context`, update the README around the lifecycle areas and independently invokable utilities, and run the suite-wide acceptance pass.
 
+### Implementation checklist
+
+- [x] Complete quality-harness research
+- [x] Update `elicit` skill
+- [ ] Update `research` skill
+- [ ] Create `prototype` skill
+- [ ] Update `maintain-context` skill
+- [ ] Update `modular-design` skill
+- [ ] Update `tdd` skill
+- [ ] Create `verify-change` skill
+- [ ] Update `code-review` skill
+- [ ] Update `maintain-agents` skill
+- [ ] Update `define-product` skill
+- [ ] Create `define-architecture` skill
+- [ ] Create `specify-feature` skill
+- [ ] Create `design-feature` skill
+- [ ] Create `create-tickets` skill
+- [ ] Update `implement` skill
+- [ ] Update `commit` skill
+- [ ] Replace `pr` with `pull-request`
+- [ ] Create `review-pull-request` skill
+- [ ] Create `triage-work` skill
+- [ ] Create `refine-backlog` skill
+- [ ] Create `plan-iteration` skill
+- [ ] Update `review-architecture` skill
+- [ ] Update `debug` skill
+- [ ] Create `respond-to-incident` skill
+- [ ] Create `review-incident` skill
+- [ ] Create `plan-retirement` skill
+- [ ] Delete `elicit-with-context` skill
+- [ ] Update the README
+- [ ] Run the suite-wide acceptance pass
+
 Each skill is authored and forward-tested as one coherent work unit. The rewrite branch may contain incomplete groups during development, but the public cutover occurs only when the final catalogue composes coherently and replaces obsolete guidance.
 
 ## Acceptance conditions
