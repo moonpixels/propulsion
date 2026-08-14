@@ -3,7 +3,7 @@ title: '{research title}'
 createdAt: YYYY-MM-DD
 updatedAt: YYYY-MM-DD
 status: current
-# Retain each applicable relationship and remove this guidance.
+# Retain each applicable lineage field and remove this guidance.
 # supersedes: './YYYYMMDD-research-title.md'
 # supersededBy: './YYYYMMDD-research-title.md'
 ---
@@ -26,11 +26,11 @@ status: current
 
 ### {Finding}
 
-{Material claims with direct links to supporting primary sources. Identify inferences explicitly.}
+{Material claims with direct links to supporting evidence. Identify inferences explicitly.}
 
-## Conflicts
+## Conflicts and contrary evidence
 
-{Conflicting evidence and its effect on the conclusion, or "None found."}
+{Conflicting or contrary evidence and its effect on the conclusion, or "None found."}
 
 ## Limitations
 
@@ -38,8 +38,8 @@ status: current
 
 ## Method
 
-{The research date, material search locations, terms or approaches, appraisal basis, triangulation and falsification method, and auditability constraints without the raw search trail.}
+{The research date, material search locations or approaches, evidence selection, appraisal and synthesis basis, important deviations, and verification constraints without the raw search trail.}
 
-## Primary sources
+## Sources
 
-- [{Source title}]({URL or repository-relative path}) — {publisher or owner, version or publication date, accessed YYYY-MM-DD, and relevance}
+- [{Source title}]({URL or repository-relative path}) — {publisher or owner, version or publication date, accessed YYYY-MM-DD, and evidential role}
