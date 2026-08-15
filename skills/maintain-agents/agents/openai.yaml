@@ -2,4 +2,4 @@ interface:
     display_name: 'Maintain AGENTS.md'
     short_description: 'Maintain confirmed repository-wide agent guidance'
 policy:
-    allow_implicit_invocation: false
+    allow_implicit_invocation: true

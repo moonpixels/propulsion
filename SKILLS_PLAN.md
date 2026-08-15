@@ -399,7 +399,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `tdd` skill
 - [x] Create `verify-change` skill
 - [x] Update `code-review` skill
-- [ ] Update `maintain-agents` skill
+- [x] Update `maintain-agents` skill
 - [ ] Update `define-product` skill
 - [ ] Create `define-architecture` skill
 - [ ] Create `specify-feature` skill
