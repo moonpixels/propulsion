@@ -8,7 +8,7 @@ disable-model-invocation: false
 
 # Code Review
 
-Independently diagnoses a fixed code change through isolated Spec and Standards reviews, returning evidence for the caller without verifying, approving, or changing the work.
+A tailored **Software Formal Inspection** independently diagnoses a fixed code change through isolated Spec and Standards reviews, returning evidence for the caller without verifying, approving, or changing the work.
 
 ## Process
 
@@ -22,7 +22,7 @@ Identify intended behaviour from the caller's fixed authority, such as a specifi
 
 Independently resolve applicable repository instructions, architecture decisions, language and framework policies, configured checks, and established local conventions. Read every changed file in full, relevant tests, affected contracts and consumers, and enough surrounding implementation to understand each change. Reuse relevant caller-supplied `$modular-design` constraints, or invoke `$modular-design` when ownership, boundaries, dependencies, contracts, or change propagation present a material structural concern.
 
-Apply the universal Standards criteria directly: correctness and regression risk, scoped minimality, repository conventions, changed-test validity, maintainability, recognised smells, and architecture. Activate security, performance, accessibility, compatibility, resilience, concurrency, migration, or another specialist concern only when task evidence or project authority exposes it. Use ISO/IEC 25010 only when an authority adopts it. For an implicated supported-language or Web-security construct, consult the current official CERT rule or stable versioned OWASP ASVS requirement narrowly and include its exact applicability and exceptions. When a concrete maintainability shape still needs recognised diagnostic vocabulary, consult [Code Smells](references/CODE-SMELLS.md); a smell prompts investigation and is never finding authority by itself. The two axes have explicit, task-relevant evidence without a universal external checklist.
+Apply the universal Standards criteria directly: correctness and regression risk; scoped minimality; language, framework, and repository conventions, including established helpers; changed-test validity and durability; maintainability and economy; recognised smells; and modular architecture. Activate security, performance, accessibility, compatibility, resilience, concurrency, migration, or another specialist concern only when task evidence or project authority exposes it. Use ISO/IEC 25010 only when an authority adopts it. For an implicated supported-language or Web-security construct, consult the current official CERT rule or stable versioned OWASP ASVS requirement narrowly and include its exact applicability and exceptions. When a concrete maintainability shape still needs recognised diagnostic vocabulary, consult [Code Smells](references/CODE-SMELLS.md); a smell prompts investigation and is never finding authority by itself. The two axes have explicit, task-relevant evidence without a universal external checklist.
 
 ### 3. Prepare the inspection packets
 
@@ -39,7 +39,7 @@ The Standards packet directs its reviewer to:
 1. understand every changed line and the necessary whole-file and system context;
 2. follow affected contracts, states, data shapes, side effects, callers, and dependencies far enough to expose correctness and regression risks;
 3. apply the universal and triggered criteria resolved in step 2; and
-4. when tests changed, ask whether they detect a promised-behaviour defect, avoid coupling to hidden structure, remain deterministic and readable, and credibly predict the promised result.
+4. when tests changed, ask whether they detect a promised-behaviour defect, survive behaviour-preserving changes to hidden structure, remain deterministic and readable, and credibly predict the promised result.
 
 Each packet tells the reviewer how to inspect its axis rather than supplying labels alone.
 
@@ -53,13 +53,13 @@ Use consequence-based priority within each axis: `critical` for immediate data l
 
 ### 5. Preserve the independent results
 
-Check that each reviewer returned the required fields, returning an incomplete result to that same reviewer for structural completion from the original packet. Reinspect the scoped revisions, diff, paths, and in-scope untracked content. When the frozen work product drifted, identify the changed paths, mark affected findings and clean results stale, and stop without silently retargeting the review.
+Validate only that each reviewer returned the required fields, returning an incomplete result to that same reviewer for structural completion from the original packet. Reinspect the scoped revisions, diff, paths, and in-scope untracked content. When the frozen work product drifted, preserve each affected axis's frozen result, prefix it with `Status: stale` and the changed paths and basis mismatch, and stop without silently retargeting the review.
 
 Present Standards and Spec separately without substantive re-review, merging, deduplication, suppression, or cross-axis reranking. Preserve each reviewer's findings and ordering. The caller receives independent diagnostic evidence for its own adjudication.
 
 ## Handoff
 
-State the exact frozen scope, intended-behaviour authority or user-confirmed absence, Standards authorities, any omitted or unperformed axis, every probe that could not run, and any scope drift. Return `## Standards` and `## Spec`; use `No findings.` for a clean axis and state when Spec was omitted or either axis was not performed. Format each finding as:
+State the exact frozen scope, intended-behaviour authority or user-confirmed absence, Standards authorities, any omitted or unperformed axis, every probe run or omitted, and any scope drift. Return `## Standards` and `## Spec`; use `No findings.` only for a current clean axis, never for a stale clean result without its `Status: stale` prefix, and state when Spec was omitted or either axis was not performed. Format each finding as:
 
 ```markdown
 ### [priority] Concise finding
@@ -68,4 +68,4 @@ State the exact frozen scope, intended-behaviour authority or user-confirmed abs
 - Consequence: concrete behavioural or code-health impact
 ```
 
-End with `## Summary` and the finding count for each completed axis. Do not repair the code, adjudicate findings, issue a verification or approval verdict, publish review comments, or alter pull-request state.
+End with `## Summary` and the finding count for each completed axis, labelling an affected frozen count `stale`. The caller owns adjudication, remediation, re-review, verification, and any publication or pull-request decision. Do not repair the code, adjudicate findings, issue a verification or approval verdict, publish review comments, or alter pull-request state.
