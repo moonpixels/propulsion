@@ -1,6 +1,6 @@
 ---
 name: maintain-agents
-description: Creates and compresses lean root AGENTS.md files. Use when initializing or improving repository-wide agent guidance.
+description: Maintains lean root AGENTS.md files containing confirmed repository-wide guidance. Use when creating, updating, or compressing project-wide agent instructions.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,26 +8,24 @@ disable-model-invocation: true
 
 # Maintain AGENTS.md
 
-**Progressive Disclosure** keeps root `AGENTS.md` guidance limited to behaviour every repository task needs while narrower instructions remain discoverable on demand.
+**Progressive Disclosure** keeps root `AGENTS.md` guidance limited to behaviour every repository task needs while narrower instructions remain discoverable only when relevant.
 
 ## Process
 
-### 1. Inspect the instruction surface
+### 1. Establish the instruction surface
 
-Locate the repository root. Read the root `AGENTS.md`, applicable instruction layers, and enough manifests, task runners, CI, and contributor documentation to recover each rule's intent and identify project checks. The target, instruction chain, rules, and check entry points are explicit.
+Locate the repository root. Read its `AGENTS.md` when present, the applicable instruction chain, and the existing or proposed guidance confirmed by the user or caller. Inspect repository evidence only far enough to recover each rule's intent, determine whether a candidate is inferable, and verify referenced commands. Invoke `$elicit` when authority, scope, or conflicting guidance requires a material user decision. The authorised candidates and active constraints are explicit.
 
 ### 2. Allocate the guidance
 
-Classify every existing and proposed instruction by runtime scope. Retain only concise behaviour governing the whole repository, plus the required correction and completion instructions. Report useful narrower guidance with its smallest discoverable owner: an invocable skill for reusable workflows, a scoped instruction file for directory rules, or executable enforcement for mechanical constraints. Leave destinations unchanged. Discard stale guidance, rationale, boilerplate, repository description, personal preferences, and task-, component-, or workflow-specific instructions. Every retained rule earns its permanent context cost.
+Keep a rule at root only when it is confirmed, cannot be inferred reliably from repository evidence, and governs the repository as a whole. Ensure the root file itself states the immediate correction loop: when a user correction establishes a reusable repository-wide rule, ask whether to add it to `AGENTS.md`. Apply the same retention gate to checks, tools, preferences, and overrides; their existence does not authorise a new root rule.
 
-### 3. Establish the required guidance
+Remove stale, inferable, explanatory, or narrower guidance. Report useful narrower guidance with its smallest discoverable owner—an invocable skill for reusable workflows, a scoped instruction file for directory rules, or executable enforcement for mechanical constraints—and leave that destination unchanged. Every candidate is retained, displaced, or removed for an explicit reason.
 
-Ensure the file states: `Ask immediately whether to add a reusable repository-wide rule to AGENTS.md when a user correction establishes it.` When project checks exist, add one instruction to run them after implementation and before handoff. Prefer one canonical aggregate command covering the configured suites; otherwise list every applicable individual command. Invoke `$elicit` when candidates materially differ or a command has unusual external effects. Omit the instruction only when no project checks exist. The correction loop and completion commands are explicit.
+### 3. Write the root instructions
 
-### 4. Write the root instructions
+Create or rewrite only the root `AGENTS.md`. Use direct imperative lines and headings only when they navigate multiple instruction groups. Retain only words that require behaviour or preserve a necessary condition. State each repository policy once: merge instructions only when the same policy change would require both to change, and keep independently changeable rules separate. The root file is lean and unambiguous.
 
-Create or rewrite only the root `AGENTS.md`. Use direct imperative lines. Remove headings unless they navigate multiple instruction groups. Apply **Minimalist Instruction** until every word changes behaviour or preserves a necessary condition. Apply **DRY** to meaning: when changing one rule requires changing multiple instructions, merge them into one authoritative expression. No semantic duplicates remain.
+### 4. Verify and hand off
 
-### 5. Verify and hand off
-
-Re-read every line for repository-wide scope, behavioural value, and semantic duplication. Verify each command exists; run the checks after implementation and before handoff when safe and applicable. Return the changed file, check results or limitations, displaced guidance with destinations, and unresolved conflicts. The user receives a lean verified root file and a visible account of displaced guidance.
+Re-read every line for confirmed authority, non-inferability, repository-wide scope, behavioural value, conflicts, and semantic duplication. Verify each referenced command and reported destination. Inspect a command's definition before running it; run applicable checks required by active confirmed guidance only when their effects are safe and authorised, otherwise report the limitation. Return the changed root file, verification evidence or limitations, displaced guidance with destinations, and unresolved conflicts. The user receives a lean verified root file without unrequested changes to narrower owners.
