@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Verify Change'
+    short_description: 'Run proportionate quality harnesses for a fixed change'
+policy:
+    allow_implicit_invocation: true
