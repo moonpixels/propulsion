@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Reviews scoped code changes against a specification and applicable standards. Use when assessing a diff, branch, pull request, or completed implementation.
+description: Independently diagnoses a fixed code change against intended behaviour and engineering standards. Use when reviewing code directly or during implementation, debugging, or pull-request review.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -8,56 +8,64 @@ disable-model-invocation: false
 
 # Code Review
 
-**Tailored software formal inspection** prepares fixed evidence packets for independent Standards and Spec inspectors, then presents their diagnostic findings without changing the reviewed work.
+Independently diagnoses a fixed code change through isolated Spec and Standards reviews, returning evidence for the caller without verifying, approving, or changing the work.
 
 ## Process
 
-### 1. Fix the inspection scope
+### 1. Freeze the change
 
-Use the caller-supplied scope, whether uncommitted work, a revision range, a branch comparison, a pull request, or another exact change set. Resolve every revision, capture the patch and changed-path list once through read-only inspection, and include the complete contents of in-scope untracked files. Confirm that the captured change set is non-empty. Ask the user when the scope is missing or ambiguous; report the exact blocker and stop when it is invalid or empty. The inspection has one fixed work product.
+Use a caller-supplied frozen basis when available; otherwise resolve the exact uncommitted diff, revision range, branch comparison, pull-request change, repair, or other scoped work product. Read repository instructions, resolve every revision, and capture the patch, changed paths, complete in-scope changed and untracked files, and repository state once. Ask when scope is materially ambiguous. When it is invalid or empty, return the exact blocker without reviewing. The review has one explicit, non-empty work product.
 
-### 2. Resolve the inspection sources
+### 2. Resolve the authorities and context
 
-Find the specification from caller context, supplied paths or tickets, issue references and change history, then relevant repository documentation. When none is found, ask the user; omit the Spec inspection only after the user confirms that no specification exists. Independently identify applicable repository instructions, architecture decisions, coding standards, language policies, configured checks, and local conventions. Read the changed files in full, relevant tests, and enough surrounding code to judge the patch. The specification and Standards authorities are explicit.
+Identify intended behaviour from the caller's fixed authority, such as a specification, ticket, acceptance criteria, confirmed request, or another project source. Extract the authoritative statement without carrying surrounding conversation into inspection. When no intended-behaviour authority can be found, ask the user to confirm a Standards-only review unless the caller already supplied that confirmation.
 
-### 3. Prepare the work aids
+Independently resolve applicable repository instructions, architecture decisions, language and framework policies, configured checks, and established local conventions. Read every changed file in full, relevant tests, affected contracts and consumers, and enough surrounding implementation to understand each change. Reuse relevant caller-supplied `$modular-design` constraints, or invoke `$modular-design` when ownership, boundaries, dependencies, contracts, or change propagation present a material structural concern.
 
-Create one self-contained packet per applicable axis with the fixed patch, changed paths, relevant source context, authority sources, priority definitions, output schema, and read-only verification boundary. Exclude conversation history and the other inspector's materials.
+Apply the universal Standards criteria directly: correctness and regression risk, scoped minimality, repository conventions, changed-test validity, maintainability, recognised smells, and architecture. Activate security, performance, accessibility, compatibility, resilience, concurrency, migration, or another specialist concern only when task evidence or project authority exposes it. Use ISO/IEC 25010 only when an authority adopts it. For an implicated supported-language or Web-security construct, consult the current official CERT rule or stable versioned OWASP ASVS requirement narrowly and include its exact applicability and exceptions. When a concrete maintainability shape still needs recognised diagnostic vocabulary, consult [Code Smells](references/CODE-SMELLS.md); a smell prompts investigation and is never finding authority by itself. The two axes have explicit, task-relevant evidence without a universal external checklist.
 
-The Spec packet applies **bidirectional requirements traceability**: trace every applicable requirement into the changed implementation and relevant tests, and every introduced behaviour back to specification authority. It investigates missing, partial, incorrect, conflicting, and unrequested behaviour and relevant unhandled cases.
+### 3. Prepare the inspection packets
 
-The Standards packet applies repository standards first, then residual **Google code-review criteria** across whole-change understanding, correctness and concurrency risks, test presence and validity, comments, and affected documentation. Include the complete [Fowler code-smell work aid](references/CODE-SMELLS.md). Add **Test Desiderata** when tests change; the relevant **ISO/IEC 25010:2023** characteristic when the repository adopts it or the change exposes a concrete residual product-quality concern; an applicable **SEI CERT** rule when supported-language code exposes its construct; and the relevant frozen **OWASP ASVS 5.0.0** requirement when Web code crosses that security boundary. Load only the implicated part of a conditional benchmark.
+Create one self-contained, operational packet per applicable axis. Both packets receive the frozen scope, complete changed files and necessary surrounding source, their applicable authorities and criteria, the priority definitions and output schema below, and the read-only boundary. Exclude conversation history, undocumented implementation rationale, `$verify-change` results or conclusions, and the other reviewer's materials.
 
-When the fixed change presents a material structural-maintainability decision, invoke `$modular-design` and include the applicable standard in the Standards packet.
+The Spec packet directs its reviewer to:
 
-Within Standards, repository rules and demonstrably configured tooling govern the concerns they cover. General work aids fill uncovered diagnostic roles and yield to an explicit repository choice. A smell or benchmark cue begins an investigation; it becomes a finding only when the scoped code supplies exact evidence and a concrete consequence.
+1. account for every applicable statement of intended behaviour in the changed implementation and relevant tests;
+2. account for every introduced or altered behaviour against an identified authority; and
+3. follow affected contracts, states, data shapes, side effects, and consumers far enough to expose missing, partial, conflicting, excess, and regressed behaviour.
 
-### 4. Assign the inspections
+The Standards packet directs its reviewer to:
 
-Give each packet to a separate fresh agent and run the Standards and Spec inspections in parallel when both apply. Each inspector owns candidate discovery, **falsification**, authority and code-evidence validation, consequence analysis, and priority validation for its axis. It may run a targeted check only when the command and execution boundary demonstrate that it cannot mutate the checkout, repository state, external systems, or durable project data; otherwise it records the limitation. Each inspector returns only findings that survive its validation.
+1. understand every changed line and the necessary whole-file and system context;
+2. follow affected contracts, states, data shapes, side effects, callers, and dependencies far enough to expose correctness and regression risks;
+3. apply the universal and triggered criteria resolved in step 2; and
+4. when tests changed, ask whether they detect a promised-behaviour defect, avoid coupling to hidden structure, remain deterministic and readable, and credibly predict the promised result.
 
-Use **risk-based prioritisation** within each axis: `critical` for immediate data loss, security compromise, or production failure; `high` for incorrect requirements or major behaviour, security, reliability, or maintenance risk; `medium` for a concrete defect or significant code, design, or test weakness; and `low` for a local but worthwhile issue.
+Each packet tells the reviewer how to inspect its axis rather than supplying labels alone.
 
-### 5. Present the inspection report
+### 4. Run the independent reviews
 
-Check that each assigned packet produced the required output fields, returning an incomplete report to its originating inspector for completion from the same packet. Present the Standards and Spec outputs separately without substantive re-review, merging, deduplication, or cross-axis reranking. Preserve each inspector's findings and ordering. The caller receives the two independent inspection results.
+Give each applicable packet to a separate fresh agent, in parallel when possible and otherwise sequentially. Do not substitute the coordinating agent; when fresh-agent delegation is unavailable, mark the affected axis not performed and state the exact limitation.
 
-## Rules
+Each reviewer owns candidate discovery, code and authority validation, consequence analysis, and priority validation for its axis. Before retaining a candidate, actively try to disprove it through contradicting authority, an already-handled path, a repository-sanctioned exception, surrounding code, and the strongest benign interpretation. Run a targeted probe only when its command and boundary demonstrate that it cannot mutate the checkout, repository state, durable data, or an external system; otherwise omit it and record the limitation. Report a pre-existing issue only when the fixed change introduces or worsens it, makes it newly consequential, or cannot conform because of it. Return only findings that survive these checks.
 
-- Keep the inspection read-only and return evidence for the caller's implementation process.
-- Report only issues introduced by or materially relevant to the fixed change.
-- Prefer specification, repository, and code evidence over general guidance or personal preference.
-- Hold structural, test, security, and product-quality findings to the same evidence, consequence, and priority standard as behavioural defects.
+Use consequence-based priority within each axis: `critical` for immediate data loss, security compromise, or production failure; `high` for incorrect required behaviour or major security, reliability, or maintainability risk; `medium` for a concrete defect or significant code, design, or test weakness; and `low` for a local but worthwhile issue. Priority communicates impact and order, not remediation authority.
+
+### 5. Preserve the independent results
+
+Check that each reviewer returned the required fields, returning an incomplete result to that same reviewer for structural completion from the original packet. Reinspect the scoped revisions, diff, paths, and in-scope untracked content. When the frozen work product drifted, identify the changed paths, mark affected findings and clean results stale, and stop without silently retargeting the review.
+
+Present Standards and Spec separately without substantive re-review, merging, deduplication, suppression, or cross-axis reranking. Preserve each reviewer's findings and ordering. The caller receives independent diagnostic evidence for its own adjudication.
 
 ## Handoff
 
-State the exact scope, specification source or user-confirmed absence, Standards sources, and any check that could not run. Return `## Standards` and `## Spec`; use `No findings.` for a clean axis and state when the Spec inspection was omitted. Format each finding as:
+State the exact frozen scope, intended-behaviour authority or user-confirmed absence, Standards authorities, any omitted or unperformed axis, every probe that could not run, and any scope drift. Return `## Standards` and `## Spec`; use `No findings.` for a clean axis and state when Spec was omitted or either axis was not performed. Format each finding as:
 
 ```markdown
 ### [priority] Concise finding
 
-- Evidence: exact code `path:line`, applicable authority, and observed fact
-- Consequence: concrete behaviour or code-health impact
+- Evidence: exact code `path:line`, applicable authority or criterion, and observed fact
+- Consequence: concrete behavioural or code-health impact
 ```
 
-End with `## Summary` and the finding count for each axis. When neither axis contains a material finding, say the fixed change is clean plainly.
+End with `## Summary` and the finding count for each completed axis. Do not repair the code, adjudicate findings, issue a verification or approval verdict, publish review comments, or alter pull-request state.
