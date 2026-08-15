@@ -1,6 +1,6 @@
 ---
 name: define-product
-description: Discovers and maintains a durable product definition centred on high-level feature descriptions. Use when externalising a new product idea or refining an existing product.
+description: Establishes a durable whole-product foundation for later feature definition. Use when externalising a new product idea or redefining an existing product.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,34 +8,40 @@ disable-model-invocation: true
 
 # Define Product
 
-A product definition externalises product knowledge into a durable reference for later planning and development. Concise strategic framing leads into a complete catalogue of high-level features without becoming a delivery plan.
+Establishes one user-confirmed product foundation using an adapted **Product Vision Board** for strategic completeness and **User Story Mapping** for a mile-wide, inch-deep view of the whole product. The result guides later feature definition without becoming a feature specification, roadmap, or technical design.
 
 ## Process
 
-### 1. Inspect existing knowledge
+### 1. Inspect the product evidence
 
-Inspect the request, root `PRODUCT.md` and `CONTEXT.md`, applicable research and decisions, and the smallest representative repository evidence. Treat code and tests as evidence of current behaviour and the user as the authority on intent; surface contradictions between them. Derive available facts before questioning so the user supplies decisions and knowledge the existing material cannot establish. The known product and unresolved discovery surface are explicit.
+Inspect the request, root `PRODUCT.md` and `CONTEXT.md`, repository guidance, applicable research and decisions, and, for an existing system, the smallest representative public contracts, entry points, data boundaries, code, tests, and configuration. Treat the repository as evidence of current behaviour and the user as authority on intended product direction. Surface contradictions, distinguish observed behaviour from stated direction, and treat missing evidence as unknown rather than absence. Do not turn the inspection into an implementation inventory. When an existing product is difficult to establish, load [Discovery Techniques](references/DISCOVERY.md). The known product evidence, its provenance, and the unresolved product decisions are explicit.
 
-### 2. Frame the product
+### 2. Establish the product frame
 
-Invoke `$elicit-with-context` and use the **Product Vision Board** dimensions to confirm the executive summary, vision, intended users and needs, value proposition, market position, business model, goals, success signals, pricing, boundaries, and non-goals. Invoke `$research` when external evidence could materially inform a decision about competitors, market conditions, pricing, regulation, or another product claim; keep its report authoritative and link applicable findings. When a framing dimension stalls, load only the relevant section of [Discovery Techniques](references/DISCOVERY.md). The concise product frame is user-confirmed and externally supported where material.
+Invoke `$elicit` for material user-held knowledge and decisions throughout steps 2–5. Reuse the confirmed synthesis from a prior free-form `$elicit` session as resolved branches and ask only about gaps exposed by the product evidence. Establish concise executive orientation: purpose and vision; intended users, actors, and their needs and desired outcomes; value and meaningful alternatives or market position when applicable; product and business outcomes with observable success signals; business model or pricing only when material; and durable boundaries and non-goals. Derive discoverable facts before asking. The concise product frame is complete enough to orient the whole-product pass.
+
+Invoke `$maintain-context` inline whenever consequential project language is confirmed, changed, misused, or contradicted. It owns only the root `CONTEXT.md` glossary update; this skill retains the product outcome and stopping boundary.
+
+Invoke `$research` when a material external claim could change the product decision and its answer must survive this session; keep the report authoritative and link its decision-relevant conclusion rather than copying it wholesale. Use an incidental lookup when the answer need not persist. Invoke `$prototype` only when seeing, comparing, or interacting with the least elaborate disposable artefact would answer one bounded visual question better than discussion. Research and prototype results return evidence to this product session; neither owns `PRODUCT.md` or continuation.
+
+Keep `PRODUCT.md` unchanged until the complete whole-product synthesis is explicitly confirmed. Before then, supporting utilities may perform only the writes authorised by their own contracts.
 
 ### 3. Map the whole product
 
-Use **User Story Mapping's big-picture techniques** without adopting its backlog or delivery workflow. Map the product mile-wide and inch-deep: inventory the known user-facing areas and candidate features before exploring any one feature in depth. Arrange the areas as a narrative backbone following the natural user journey; place a genuinely cross-cutting feature in the smallest coherent user-facing area rather than inventing a false sequence. Include observed features, confirmed direction, and product ideas from the inspected material and the user. Load the feature-mapping guidance in [Discovery Techniques](references/DISCOVERY.md) when the product surface is difficult to expose. The whole feature surface is visible at low resolution.
+Map the product breadth-first before exploring any one capability. Walk each intended user from entry through recurring value, recovery, and exit or completion where applicable; use those journeys to expose the natural user-facing product areas and their high-level capabilities. Add commercial, account, trust, support, and genuinely cross-cutting areas only where the product needs them. Use the big-picture guidance in [Discovery Techniques](references/DISCOVERY.md) when the product surface is difficult to expose. The whole product is visible at low resolution without stories, screens, releases, or priorities.
 
-### 4. Explore each feature
+### 4. Clarify the capability catalogue
 
-Work through the mapped features with `$elicit-with-context`, asking only for unresolved knowledge. For each feature, confirm its user value, high-level behaviour, meaningful boundaries, and one status: `Current` for observed product behaviour, `Confirmed direction` for intended behaviour the user has decided, or `Idea` for direction retained without commitment. Stop at the information needed for a concise feature description; leave prioritisation, sequencing, release slicing, estimates, tickets, architecture, implementation, user-story decomposition, and acceptance criteria to downstream work. Each feature is ready to become a self-contained mini-brief.
+Clarify every mapped capability only to mini-brief depth: who benefits and the value they receive, the externally observable high-level behaviour, and meaningful boundaries that prevent a later feature session from assuming adjacent behaviour. For an existing product, distinguish `Current` observed behaviour, `Confirmed direction`, and uncommitted `Idea` where the distinction prevents conflation; these describe product truth, not delivery progress or priority. Do not manufacture current claims for a blank product. Leave detailed rules, states, scenarios, acceptance conditions, technical solution, architecture, sequencing, releases, estimates, and tickets to their owning later sessions. Each capability is independently understandable without becoming a feature specification.
 
-### 5. Walk the catalogue
+### 5. Confirm the whole-product synthesis
 
-Narrate the complete product journey area by area with the user. Correct missing, duplicate, misplaced, or contradictory features and resolve every exposed question through `$elicit-with-context`; represent genuine uncertainty through `Idea` and contextual product language rather than an unanswered-questions inventory. Obtain final confirmation of the strategic frame and complete feature catalogue. The product definition is coherent and ready to persist.
+Walk every journey and capability across the relevant user perspectives. Resolve material omissions, duplicates, false groupings, broken transitions, contradictions, and capability descriptions that conceal more than one product behaviour. Have `$elicit` present one complete synthesis of the product frame, journeys, and capability catalogue and obtain the user's explicit confirmation; if the user rejects or corrects it, reopen the affected product work and reconfirm the complete revised synthesis. The confirmed foundation is coherent and ready to persist.
 
 ### 6. Write the product definition
 
-After final confirmation, create or update the single root `PRODUCT.md` from the [Product Definition Template](assets/product-template.md). Write the executive summary beneath the title, then the strategic sections, followed by feature areas as `##` headings and individual features as `###` headings. Give every feature its status and concise prose covering user value, high-level behaviour, and meaningful boundaries. Present user-confirmed decisions as ordinary product prose, cite useful repository evidence for current claims, and link external claims to their research reports. Preserve canonical language from `CONTEXT.md` and one authoritative meaning for each statement. The durable document makes the product and its features easy to understand and use in later work.
+After explicit confirmation, create or update the single root `PRODUCT.md` using the [Product Foundation Template](assets/product-template.md) where the project has no established convention; the invocation already supplies authority for this agreed write. Preserve unrelated confirmed content and local structure when it differs only stylistically. Record the concise frame and explicit key journeys, then use natural user-facing areas as `##` headings and capabilities as `###` headings without a redundant umbrella. Preserve confirmed status distinctions only where material. Link external claims to durable research and keep canonical term meanings in `CONTEXT.md`. `PRODUCT.md` is the sole product authority, not a backlog, status tracker, assumptions ledger, or implementation mirror.
 
 ### 7. Verify the definition
 
-Verify useful `Current` claims against repository evidence, intended direction against user confirmation, `Idea` statuses against the confirmed catalogue, and external claims against linked research. Check that every mapped feature has one mini-brief, the feature order tells a coherent product story, and excluded delivery detail has stayed downstream. Reconcile the finished document with `CONTEXT.md` and applicable decisions, then return changed files, supporting research, and any limitations in repository verification. The user receives a complete product foundation ready to inform feature planning.
+Verify current claims against inspected evidence, direction and ideas against user confirmation, and material external claims against linked research. Check coverage from frame to journeys to every capability mini-brief, coherence across user perspectives, consistency with `CONTEXT.md`, preservation of unrelated confirmed content, and absence of architecture, detailed feature behaviour, priorities, roadmap, releases, tickets, or implementation detail. Verify every `$maintain-context` result and report changed files, evidence, and limitations. Stop after `PRODUCT.md` and applicable ubiquitous language are updated and verified; later architecture and feature definition remain separate sessions.

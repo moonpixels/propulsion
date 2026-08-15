@@ -1,6 +1,6 @@
 # Discovery Techniques
 
-Load only the section needed by the active discovery branch. `$elicit-with-context` remains authoritative for questioning, confirmation, and canonical language; `$research` remains authoritative for external evidence.
+Load only the section needed by the active discovery branch. `$elicit` owns material questioning and final synthesis confirmation; `$maintain-context` owns glossary persistence; `$research` owns durable external evidence; `$prototype` owns a bounded disposable visual experiment. `define-product` retains the product outcome and stopping boundary.
 
 ## Establish an existing product
 
@@ -12,12 +12,12 @@ Use the **Product Vision Board** as a completeness check for the concise opening
 
 1. What positive change and enduring purpose define the vision?
 2. Which users, customers, and influential actors matter, and what outcomes do they need?
-3. Why would they choose this product over alternatives, manual work, or doing nothing?
-4. What market position or differentiation makes that choice plausible?
-5. Which business model, revenue, costs, channels, goals, success signals, and pricing decisions matter now?
+3. Why would they choose this product over meaningful alternatives, manual work, or doing nothing?
+4. What market position or differentiation matters, when applicable?
+5. Which product or business outcomes and observable success signals matter, and are business model or pricing decisions material now?
 6. Which boundaries and non-goals keep the product coherent?
 
-Keep this frame proportionate to its supporting role. Move into whole-product feature discovery once these dimensions are clear.
+Keep this frame proportionate to its supporting role. Move into whole-product capability discovery once these dimensions are clear.
 
 ## Map the big picture
 
@@ -25,27 +25,33 @@ Use the **mile-wide, inch-deep** pass before local detail:
 
 1. Name the product's main users and their entry points.
 2. Narrate how each user moves from first contact through recurring value and eventual exit or completion.
-3. Record the user-facing product areas along that journey.
-4. Beneath each area, inventory current features, confirmed direction, and ideas at one-line resolution.
-5. Add commercial, account, trust, support, and other cross-cutting features that the main journey did not expose.
+3. Include recurring value, recovery, and exit or completion where they apply.
+4. Record the user-facing product areas along those journeys.
+5. Beneath each area, inventory capabilities at one-line resolution.
+6. For an existing product, distinguish observed current behaviour, confirmed direction, and uncommitted ideas where material.
+7. Add commercial, account, trust, support, and other cross-cutting capabilities that the main journeys did not expose.
 
-This pass creates a feature surface, not cards, stories, priorities, screens, releases, or architecture.
+This pass creates a capability surface, not cards, stories, priorities, screens, releases, or architecture.
 
-## Explore a feature
+## Clarify a capability
 
 Resolve only the information required by the mini-brief:
 
 - **User value**: who benefits and what becomes possible or easier?
 - **High-level behaviour**: what does the product do from the user's perspective?
-- **Status**: is it `Current`, `Confirmed direction`, or `Idea`?
-- **Meaningful boundaries**: what nearby behaviour could a later planner reasonably but incorrectly assume belongs to it?
+- **Meaningful boundaries**: what nearby behaviour could a later feature session reasonably but incorrectly assume belongs to it?
+- **Status when material**: for an existing product, is it observed `Current` behaviour, `Confirmed direction`, or an uncommitted `Idea`?
 
-Use examples or scenarios when behaviour remains ambiguous. Stop when a downstream planning session can understand the feature's product intent without receiving its implementation or delivery design.
+Use a concise example only when high-level behaviour remains ambiguous. Stop when a later feature-definition session can understand the capability's product intent without receiving detailed rules, states, scenarios, acceptance conditions, implementation, or delivery design.
 
 ## Walk the complete catalogue
 
-Read the mapped product back as one narrative. Change perspective across intended users and check entry, recurring-use, recovery, commercial, trust, support, and exit paths where applicable. Look for missing transitions, duplicated features, false journey positions, contradictions, and feature descriptions that hide more than one distinct product behaviour. Resolve each finding during elicitation, then repeat the walk until it exposes nothing new.
+Read the mapped product back as one narrative. Change perspective across intended users and check entry, recurring-use, recovery, commercial, trust, support, and exit paths where applicable. Look for missing transitions, duplicated capabilities, false groupings, contradictions, and mini-briefs that hide more than one distinct product behaviour. Return each material finding to elicitation, then repeat the walk until it exposes nothing new.
 
 ## Establish external position
 
-Compare the product with alternatives users employ today, including manual work and doing nothing. Invoke `$research` when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision. Keep researched claims in the research report and bring only the decision-relevant conclusion and link into `PRODUCT.md`.
+Compare the product with meaningful alternatives users employ today, including manual work and doing nothing. Invoke `$research` only when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision and the answer must survive the session. Keep researched claims in the report and bring only the decision-relevant conclusion and link into `PRODUCT.md`; use an incidental lookup when no durable evidence record is needed.
+
+## Resolve a visual product question
+
+Invoke `$prototype` only when one bounded uncertainty is better resolved by seeing, comparing, or interacting with a visual artefact than by discussion. Give it the question, audience, authentic constraints, and product decision it informs. Use its returned evidence in elicitation after the disposable artefact is removed; do not preserve prototype material in the product foundation.
