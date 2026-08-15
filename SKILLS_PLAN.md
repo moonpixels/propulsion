@@ -391,7 +391,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 ### Implementation checklist
 
 - [x] Complete quality-harness research
-- [ ] Update `elicit` skill
+- [x] Update `elicit` skill
 - [ ] Update `research` skill
 - [ ] Create `prototype` skill
 - [ ] Update `maintain-context` skill
