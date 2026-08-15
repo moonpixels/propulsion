@@ -1,6 +1,6 @@
 # Architecture Analysis
 
-Load this reference while selecting and ranking redesigns. `$modular-design` owns architecture vocabulary, information hiding, deep modules, realization, and conditional techniques; this reference owns review-specific evidence and judgment.
+Load this reference while selecting and ranking redesigns. `$modular-design` owns knowledge and boundary decisions, contracts, deep modules, locality, realization, and conditional techniques; this reference owns review-specific evidence and judgment.
 
 ## Quality Priority
 

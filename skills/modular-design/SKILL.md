@@ -1,6 +1,6 @@
 ---
 name: modular-design
-description: Defines an evidence-backed modular architecture standard. Use when designing or assessing modules, interfaces, dependencies, ownership, or seams.
+description: Applies an evidence-backed structural-maintainability standard. Use when designing or assessing ownership, boundaries, contracts, dependencies, seams, or change propagation.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -8,48 +8,32 @@ disable-model-invocation: false
 
 # Modular Design
 
-**Information hiding** makes code safer to change by assigning cohesive knowledge and change-prone decisions to modules whose callers learn only a small, stable contract.
+Supplies structural constraints inside a caller's workflow by locating each material decision with a coherent owner, making the smallest complete change, and keeping caller knowledge proportionate to the capability provided.
 
 ## Process
 
-Apply this standard inside the caller's workflow. Let the caller own repository inspection, quality priorities, design comparison, implementation, verification, and artifacts; this skill supplies architecture knowledge without starting a separate process or producing its own output. Explicit project constraints, domain language, and architecture decisions govern where they conflict with the baseline.
+### 1. Fix the behaviour and evidence
 
-## Standard
+Apply this standard inside the caller's workflow. Use the scoped behaviour, project guidance, architecture decisions, domain language, and relevant implementation evidence; explicit project authorities govern when they conflict with this baseline. Let the caller own inspection, design comparison, implementation, verification, and artifacts. Leave correctness, testing, security, performance, formatting, and general style to their applicable authorities rather than selecting their methods or outputs here. The behaviour, evidence, and material structural decision are explicit.
 
-### Name the architecture precisely
+### 2. Assign the affected knowledge
 
-- A **module** is a cohesive capability with an interface and implementation, regardless of whether code expresses it as a function, object, package, process, or tier-spanning slice.
-- An **interface** is everything callers must know to use the module correctly, including behaviour, data shapes, invariants, ordering, errors, configuration, side effects, and material performance characteristics. It is broader than a language `interface` declaration.
-- An **implementation** is the hidden representation, policy, algorithm, sequencing, framework detail, and collaboration that fulfils the interface.
-- A **seam** is a controlled place where behaviour can be observed or substituted without editing the calling location.
-- An **adapter** translates between a module's contract and a technology, protocol, framework, or external system.
+Identify the representation, invariant, policy, protocol, sequencing, or framework decision the behaviour introduces or changes. Keep it with its natural existing owner when that owner remains coherent; otherwise establish the smallest justified boundary around the complete concern. Represent each material rule once, and let code that changes for the same evidenced reason change together. The affected knowledge has one coherent owner rather than being repeated across callers.
 
-Use this vocabulary for reasoning while preserving established project and framework names in code and reports.
+### 3. Make the smallest coherent change
 
-### Hide owned knowledge
+Deliver the complete scoped behaviour without speculative abstraction or unrelated cleanup. Permit a bounded enabling refactor only when the behaviour cannot fit cleanly without it; change no more surrounding structure than the new behaviour needs. Keep a stable local concrete dependency direct unless meaningful variation, isolation, observation, migration, or policy ownership justifies a boundary.
 
-Decompose around difficult, consequential, or change-prone knowledge. Give one module ownership of each representation, invariant, policy, protocol, sequencing rule, or framework decision that other modules should not repeat. A change to hidden knowledge should remain behind its interface unless the promised behaviour changes.
+Realize the design through established project and framework idioms. Objects may own identity, state, invariants, and cohesive behaviour; functions, closures, structural types, language modules, components, and framework primitives are equally valid when they preserve the same ownership and contract. Introduce a language interface only when callers need a stable contract distinct from its realization, and use inheritance only for genuine substitutability or a required framework extension. The result is the smallest idiomatic change that completely delivers the behaviour.
 
-### Prefer deep cohesive modules
+### 4. Keep the contract deep
 
-Apply **deep modules**: make the caller-visible interface markedly simpler than the cohesive capability it exposes. Remove or absorb shallow wrappers that repeat another interface, scatter one decision across callers, or add navigation without hiding knowledge.
+Treat a module as a cohesive capability, whether code expresses it as a function, object, package, process, or tier-spanning slice. Its contract is everything callers must know, including behaviour, data, invariants, ordering, errors, configuration, side effects, and material performance characteristics.
 
-Use **cohesion and coupling** qualitatively. Keep knowledge that changes for the same reason together; separate unrelated actors, models, or policies. Reduce cross-module knowledge, coordination, cycles, and change propagation while retaining necessary collaboration. Do not optimize file size, class count, method count, or mechanical coupling scores as substitutes for architectural evidence.
+Apply **deep modules**: make the caller-visible contract markedly simpler than the cohesive capability and knowledge hidden behind it. Absorb or remove shallow forwarding layers that merely repeat another contract or redistribute navigation; retain a layer when it owns translation or another evidenced boundary responsibility. The contract repays its caller burden without combining unrelated knowledge to appear deeper.
 
-### Choose an idiomatic realization
+### 5. Check locality and applicable techniques
 
-Prefer object-oriented realization where the language and framework make it natural: objects own identity, state, invariants, and cohesive behaviour; purposeful action or use-case entry points hide a complete operation; collaborators are composed; and nominal interfaces express meaningful variation or ownership boundaries.
+Trace plausible project-evidenced changes through the owner, contract, callers, and affected code. Reconsider the boundary when one owned decision would still require scattered changes, when several elements must always change together, or when only an unrelated part of the proposed owner would change. Do not substitute file size, class count, method count, dependency scores, or speculative agent-context savings for this evidence.
 
-Treat functions, closures, structural types, and language modules as equivalent realizations when they provide the same ownership, contract, and hiding. In frontend frameworks, keep components and framework-specific state or effect primitives focused on presentation and interaction, and place durable policy behind framework-neutral modules when that separation is cohesive. Framework-owned code may use framework types at its own edge.
-
-### Load only applicable techniques
-
-Read [Modular Design Techniques](references/TECHNIQUES.md) when evidence presents a volatile mechanism, application-to-technology boundary, competing domain model, need for controlled observation or substitution, entangled deterministic policy and effects, or an architectural promise that needs repeatable protection. Use only the technique whose stated condition is present.
-
-## Rules
-
-- Keep a stable local concrete dependency direct when no meaningful knowledge, variation, isolation, observation, or migration need justifies another abstraction.
-- Introduce a language interface only when callers need a stable contract distinct from a realization; an interface that mirrors one concrete type without hiding knowledge is ceremony.
-- Let a cohesive module contain several internal actions. A class or function with one entry point is valuable only when it hides a complete capability rather than forwards the call.
-- Prefer composition in object-oriented code; use inheritance for a genuine substitutable type or required framework extension contract.
-- Optimize the knowledge callers require, not repository fragmentation or speculative token savings. Reduced agent context is an inference to verify, not proof of correctness.
+Decide from the current evidence whether it presents a policy-to-mechanism dependency, an application-to-technology conversation, competing domain models, a need for controlled substitution or observation, or deterministic decisions entangled with effects. When none is present, keep [Modular Design Techniques](references/TECHNIQUES.md) unloaded and continue with the direct process; do not open it merely to confirm that a condition is absent. Otherwise read the reference and apply only the technique whose stated condition is present. The resulting structure keeps the owned knowledge and its likely changes local without introducing an unevidenced abstraction.

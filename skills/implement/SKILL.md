@@ -12,7 +12,7 @@ A tailored **Software Formal Inspection** lifecycle routes confirmed work throug
 
 ## Process
 
-Invoke `$tdd` to implement the confirmed work, then invoke `$code-review` on the result. Validate every finding against the confirmed request and current codebase, then disposition it:
+Inspect the confirmed work, its applicable authorities, and the relevant current code. Invoke `$modular-design` when that evidence presents a material structural-maintainability decision and carry its constraints into `$tdd`, then invoke `$code-review` independently on the result. Validate every finding against the confirmed request and current codebase, then disposition it:
 
 - A required correction is a verified violation of confirmed behaviour, the specification, a repository rule, or a necessary safety boundary, or another defect that leaves the change untrustworthy.
 - A proportional improvement is valid but non-blocking; accept it only when its concrete benefit justifies the added change and complexity.
