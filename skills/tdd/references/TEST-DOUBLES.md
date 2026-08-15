@@ -14,7 +14,7 @@ Start with the real collaborator, then introduce only the capability the test ne
 | Spy | Record an otherwise invisible boundary effect | Inspect only promised boundary facts |
 | Mock | Specify a required external interaction protocol | Verify only contractually material calls |
 
-Prefer state verification: act through the public seam, then inspect its result or a recorded boundary effect. Use interaction verification when the interaction is itself observable behaviour, such as one idempotency-keyed payment request or committing only after a durable write.
+Prefer state verification: act through the selected observable boundary, then inspect its result or a recorded boundary effect. Use interaction verification when the interaction is itself observable behaviour, such as one idempotency-keyed payment request or committing only after a durable write.
 
 ## Keep the contract visible
 

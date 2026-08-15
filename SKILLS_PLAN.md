@@ -255,7 +255,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 | `prototype` | Creates a deliberately disposable experiment or mock-up to resolve one bounded uncertainty and preserves its conclusion. |
 | `maintain-context` | Keeps `CONTEXT.md` aligned inline with confirmed ubiquitous language. |
 | `modular-design` | Applies evidence-backed modularity, information hiding, cohesion, coupling and maintainability principles to a scoped design decision. |
-| `tdd` | Drives red-green-refactor through a stable observable seam and runnable test suite. |
+| `tdd` | Drives red-green-refactor through a stable observable boundary and runnable test suite. |
 | `verify-change` | Selects and executes the applicable project and risk-triggered quality harnesses and reports reproducible evidence and limitations. |
 | `code-review` | Independently assesses a scoped change for required behaviour, regressions, minimality, conventions, maintainability, code smells and architecture. |
 | `maintain-agents` | Records confirmed, non-inferable repository-wide agent guidance while keeping permanent context lean. |
@@ -396,7 +396,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `prototype` skill
 - [x] Update `maintain-context` skill
 - [x] Update `modular-design` skill
-- [ ] Update `tdd` skill
+- [x] Update `tdd` skill
 - [ ] Create `verify-change` skill
 - [ ] Update `code-review` skill
 - [ ] Update `maintain-agents` skill

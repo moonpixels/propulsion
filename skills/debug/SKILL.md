@@ -22,7 +22,7 @@ Gather evidence and state falsifiable causal hypotheses in evidence-supported or
 
 ### 3. Test one repair
 
-When the user requested diagnosis only, stop before mutation and follow the Handoff. Invoke `$modular-design` when the supported repair presents a material structural-maintainability decision, and carry its constraints into `$tdd` when the runnable-suite and stable-seam prerequisite applies; preserve the established reproduction as TDD's Red signal and let it own the minimal Green repair and regression protection. When TDD is not applicable, apply one smallest change that would repair the leading cause if the hypothesis is correct. Keep the attempt within the authorised mutation boundary and leave unrelated cleanup or refactoring outside it. One evidence-led repair is ready for a causal verdict.
+When the user requested diagnosis only, stop before mutation and follow the Handoff. Invoke `$modular-design` when the supported repair presents a material structural-maintainability decision, and carry its constraints into `$tdd` when a runnable suite can exercise the repair through a stable observable boundary; preserve the established reproduction as TDD's Red signal and let it own the minimal Green repair and regression protection. When TDD is not applicable, apply one smallest change that would repair the leading cause if the hypothesis is correct. Keep the attempt within the authorised mutation boundary and leave unrelated cleanup or refactoring outside it. One evidence-led repair is ready for a causal verdict.
 
 ### 4. Accept or revert the repair
 

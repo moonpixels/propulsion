@@ -1,8 +1,8 @@
 # Test Quality
 
-Use this guide when choosing a seam or oracle, or when an assertion may couple the test to representation rather than promised behaviour.
+Use this guide when choosing an observable boundary or oracle, or when an assertion may couple the test to representation rather than promised behaviour.
 
-## Choose the test seam
+## Choose the observable boundary
 
 Test the narrowest boundary that satisfies all three conditions:
 
@@ -10,7 +10,7 @@ Test the narrowest boundary that satisfies all three conditions:
 - **Stable:** it hides algorithms, collaborator graphs, storage layouts, rendering wrappers, generated selectors, and other decisions that may change while behaviour remains fixed.
 - **Predictive:** exercising it provides credible evidence that the behaviour will work in production.
 
-Use a coarser companion test only when the narrow seam cannot predict a material integration outcome. A substitutable private hook is not a suitable assertion boundary merely because it is convenient to replace.
+Use a coarser companion test only when the narrow boundary cannot predict a material integration outcome. A substitutable private hook is not a suitable assertion boundary merely because it is convenient to replace.
 
 ## Construct the oracle
 
@@ -36,17 +36,18 @@ When no credible oracle exists, return the missing behavioural decision instead 
 
 ## Structure one behaviour
 
-Use Arrange-Act-Assert:
+Keep the test's phases explicit:
 
 1. **Arrange** only the state and collaborators needed for the behaviour.
-2. **Act** once through the selected public seam.
+2. **Act** once through the selected observable boundary.
 3. **Assert** the complete promised outcome and material unchanged state.
+4. **Clean up** resources or external state acquired by the test.
 
-One behaviour may require several cohesive assertions. Split a test when it contains multiple independent Acts or when its name cannot state one behavioural rule. Clean up resources or external state acquired by the test.
+One behaviour may require several cohesive assertions. Split a test when it contains multiple independent Acts or when its name cannot state one behavioural rule.
 
-## Apply the Test Desiderata
+## Challenge the test's quality
 
-Retain tests that are isolated, composable, deterministic, fast, writable, readable, behavioural, structure-insensitive, automated, specific, predictive, and inspiring. Treat the properties as trade-offs: a slower test can earn its cost through prediction, while a faster test still needs credible production evidence.
+Before retaining a test, name one plausible promised-behaviour defect that it must detect and one hidden structural change that it must survive. Require deterministic, readable assertions and credible evidence for production behaviour. Treat speed, isolation, and fidelity as trade-offs: a slower test can earn its cost through prediction, while a faster test still needs credible production evidence.
 
 Use two counterfactuals:
 
