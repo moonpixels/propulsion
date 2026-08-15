@@ -39,7 +39,8 @@ Record one evidence entry per claim with:
 - the exact claim;
 - the harness, its repository or procedure provenance, why it applies, and whether it is required or risk-triggered;
 - the execution boundary;
-- `pass`, `fail`, `flaky/inconclusive`, or `not run`, with salient output, exit status, and artefact location where applicable;
+- the observed result: `pass`, `fail`, `flaky-inconclusive`, or `not run`, with salient output, exit status, and artefact location where applicable;
+- evidence integrity: `current`, or `stale` when post-basis drift applies;
 - the inputs, paths, states, rules, environments, or acceptance criteria actually exercised;
 - the limitation and residual risk; and
 - the in-scope resolution taken, or the planned work or user decision needed for stronger evidence.
@@ -48,7 +49,7 @@ Preserve every retry, seed, failing counterexample, and contradictory observatio
 
 ### 5. Reinspect scope and harness integrity
 
-Compare the final repository state and diff with the frozen basis. Account for changes to source, tests, snapshots, dependencies, generated artefacts, quality configuration, baselines, ignore lists, suppressions, and scripts. Distinguish declared temporary effects from material changes, but do not revert an unexpected change when ownership is uncertain. When any in-scope source or measurement-path change occurred after the scope was fixed, identify the paths, mark affected evidence stale, and stop without silently retargeting the run. The final evidence refers to the frozen change and an intact measurement path, or its invalidation is explicit.
+Compare the final repository state and diff with the frozen basis. Account for changes to source, tests, snapshots, dependencies, generated artefacts, quality configuration, baselines, ignore lists, suppressions, and scripts. Distinguish declared temporary effects from material changes, but do not revert an unexpected change when ownership is uncertain. When any in-scope source or measurement-path change occurred after the scope was fixed, identify the paths, retain each observed result, set its evidence integrity to `stale`, treat it as unable to satisfy the affected claim, and stop without silently retargeting the run. The final evidence refers to the frozen change and an intact measurement path, or its invalidation is explicit.
 
 ### 6. Determine the verification verdict
 
