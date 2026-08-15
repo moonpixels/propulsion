@@ -391,15 +391,15 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 ### Implementation checklist
 
 - [x] Complete quality-harness research
-- [x] Update `elicit` skill
-- [x] Update `research` skill
-- [x] Create `prototype` skill
-- [x] Update `maintain-context` skill
-- [x] Update `modular-design` skill
-- [x] Update `tdd` skill
-- [x] Create `verify-change` skill
-- [x] Update `code-review` skill
-- [x] Update `maintain-agents` skill
+- [ ] Update `elicit` skill
+- [ ] Update `research` skill
+- [ ] Create `prototype` skill
+- [ ] Update `maintain-context` skill
+- [ ] Update `modular-design` skill
+- [ ] Update `tdd` skill
+- [ ] Create `verify-change` skill
+- [ ] Update `code-review` skill
+- [ ] Update `maintain-agents` skill
 - [ ] Update `define-product` skill
 - [ ] Create `define-architecture` skill
 - [ ] Create `specify-feature` skill
