@@ -6,7 +6,7 @@
 
 ## Context
 
-{Explain the problem, forces, and serious alternatives needed to understand the decision.}
+{Explain why the decision was needed and only the rejected or constrained alternatives necessary to understand its trade-offs.}
 
 ## Ramifications
 
