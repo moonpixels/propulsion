@@ -1,5 +1,5 @@
 interface:
     display_name: 'Research'
-    short_description: 'Research evidence into verified cited reports'
+    short_description: 'Research one question into a verified cited report'
 policy:
     allow_implicit_invocation: true
