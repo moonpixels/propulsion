@@ -393,7 +393,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Complete quality-harness research
 - [x] Update `elicit` skill
 - [x] Update `research` skill
-- [ ] Create `prototype` skill
+- [x] Create `prototype` skill
 - [ ] Update `maintain-context` skill
 - [ ] Update `modular-design` skill
 - [ ] Update `tdd` skill
