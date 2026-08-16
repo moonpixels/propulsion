@@ -1,5 +1,5 @@
 interface:
     display_name: 'Review Architecture'
-    short_description: 'Review architecture and explain redesigns'
+    short_description: 'Find high-value architecture improvements'
 policy:
     allow_implicit_invocation: false
