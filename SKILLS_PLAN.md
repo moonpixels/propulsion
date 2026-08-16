@@ -418,7 +418,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `review-incident` skill
 - [x] Create `plan-retirement` skill
 - [x] Delete `elicit-with-context` skill
-- [ ] Update the README
+- [x] Update the README
 - [ ] Run the suite-wide acceptance pass
 
 Each skill is authored and forward-tested as one coherent work unit. The rewrite branch may contain incomplete groups during development, but the public cutover occurs only when the final catalogue composes coherently and replaces obsolete guidance.
