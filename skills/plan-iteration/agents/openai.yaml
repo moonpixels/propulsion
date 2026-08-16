@@ -1,0 +1,6 @@
+interface:
+    display_name: 'Plan Iteration'
+    short_description: 'Select a feasible body of ready work'
+    default_prompt: 'Use $plan-iteration to select and record a feasible body of ready work for the next delivery period.'
+policy:
+    allow_implicit_invocation: false
