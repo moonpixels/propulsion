@@ -407,7 +407,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `create-tickets` skill
 - [x] Update `implement` skill
 - [x] Update `commit` skill
-- [ ] Replace `pr` with `pull-request`
+- [x] Replace `pr` with `pull-request`
 - [ ] Create `review-pull-request` skill
 - [ ] Create `triage-work` skill
 - [ ] Create `refine-backlog` skill
