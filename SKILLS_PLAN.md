@@ -403,7 +403,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `define-product` skill
 - [x] Create `define-architecture` skill
 - [x] Create `specify-feature` skill
-- [ ] Create `design-feature` skill
+- [x] Create `design-feature` skill
 - [ ] Create `create-tickets` skill
 - [ ] Update `implement` skill
 - [ ] Update `commit` skill

@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Design Feature'
+    short_description: 'Design a buildable feature solution'
+policy:
+    allow_implicit_invocation: false
