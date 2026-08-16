@@ -1,0 +1,6 @@
+interface:
+    display_name: 'Triage Work'
+    short_description: 'Triage incoming work into verified routes'
+    default_prompt: 'Use $triage-work to triage these incoming requests into verified tracker dispositions and lifecycle routes.'
+policy:
+    allow_implicit_invocation: false
