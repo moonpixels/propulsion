@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Specify Feature'
+    short_description: 'Define one feature as observable product intent'
+policy:
+    allow_implicit_invocation: false
