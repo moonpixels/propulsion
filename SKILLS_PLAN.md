@@ -416,7 +416,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `debug` skill
 - [x] Create `respond-to-incident` skill
 - [x] Create `review-incident` skill
-- [ ] Create `plan-retirement` skill
+- [x] Create `plan-retirement` skill
 - [ ] Delete `elicit-with-context` skill
 - [ ] Update the README
 - [ ] Run the suite-wide acceptance pass

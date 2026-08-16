@@ -1,0 +1,6 @@
+interface:
+    display_name: 'Plan Retirement'
+    short_description: 'Plan a safe evidence-led capability retirement'
+    default_prompt: 'Use $plan-retirement to create an approved plan for safely retiring this obsolete capability.'
+policy:
+    allow_implicit_invocation: false
