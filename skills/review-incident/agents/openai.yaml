@@ -1,0 +1,6 @@
+interface:
+    display_name: 'Review Incident'
+    short_description: 'Review a stable incident and own its lessons'
+    default_prompt: 'Use $review-incident to explain this stabilised incident and record owned, evidence-led follow-up work.'
+policy:
+    allow_implicit_invocation: false
