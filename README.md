@@ -62,7 +62,7 @@ These are separate sessions. Product definition ends with product documentation;
 ### Plan
 
 - `$design-feature` selects a buildable, system-specific technical solution for an approved feature specification.
-- `$create-tickets` turns an approved specification and solution design into verified, dependency-aware work in the project's task-management tool.
+- `$create-tickets` turns an approved feature specification and solution design, or an approved retirement plan, into verified, dependency-aware work in the project's task-management tool.
 
 ### Refine
 

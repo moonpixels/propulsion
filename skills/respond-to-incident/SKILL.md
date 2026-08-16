@@ -38,7 +38,7 @@ Record the action and actor, execute only the agreed operation, read back the mu
 
 Invoke `$debug` only when a bounded causal diagnosis or local repair is necessary to stabilise this incident. Supply the exact signal, production boundary, time constraint, and stopping condition; retain ownership of impact, mitigation, production actions, communications, and recovery. Do not let diagnosis become open-ended or delay a safe mitigation. Invoke `$verify-change` for a frozen local code or configuration repair, or a fixed operational change that existing harnesses can appraise; its verdict supplements but never replaces current production recovery evidence. Invoke `$research` only for one material external question whose evidence must survive the session.
 
-Do not silently commit, push, publish, release, or deploy a repair. Use a project-native route only when the requested incident outcome and current operational authority explicitly include it. When stabilisation requires publication or deployment but no authorised project-native mechanism is available, stop that route with the exact handoff, owner, artefact, and service risk rather than improvising a Propulsion release process.
+Do not commit, push, publish, release, or deploy a repair. When stabilisation requires one of those project-specific actions, stop that route with the exact external handoff, owner, artefact, required mechanism, and service risk rather than performing or improvising it inside Propulsion.
 
 ### 5. Establish the service state
 

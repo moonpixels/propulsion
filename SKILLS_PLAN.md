@@ -136,9 +136,9 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 
 #### `create-tickets`
 
-- **Outcome:** An approved feature is represented by implementation-ready, dependency-aware work in the project's task-management tool.
-- **Inputs:** The approved feature specification and solution design, plus relevant project guidance and current tracker state.
-- **Output:** Native tracker items linked to their authoritative feature documents, each describing one coherent vertical outcome, acceptance evidence and genuine blocking relationships.
+- **Outcome:** An approved feature solution or retirement plan is represented by implementation-ready, dependency-aware work in the project's task-management tool.
+- **Inputs:** Either the approved feature specification and solution design or an approved retirement plan, plus relevant project guidance and current tracker state.
+- **Output:** Native tracker items linked to their applicable authoritative documents, each describing one coherent vertical outcome, acceptance evidence and genuine blocking relationships.
 - **Composition:** Conditionally invokes `elicit` for unresolved decomposition and `maintain-agents` when the task-management preference is missing.
 - **Stops:** After the created items and relationships are read back and verified. It does not select an iteration or begin implementation.
 
@@ -419,7 +419,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `plan-retirement` skill
 - [x] Delete `elicit-with-context` skill
 - [x] Update the README
-- [ ] Run the suite-wide acceptance pass
+- [x] Run the suite-wide acceptance pass
 
 Each skill is authored and forward-tested as one coherent work unit. The rewrite branch may contain incomplete groups during development, but the public cutover occurs only when the final catalogue composes coherently and replaces obsolete guidance.
 

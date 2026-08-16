@@ -30,7 +30,7 @@ Invoke `$modular-design` only when the complete candidate presents a material ow
 
 Invoke `$code-review` with the frozen base and head SHAs, complete candidate, intended-behaviour and Standards authorities, and a read-only boundary. Require its independent Standards and applicable Spec reviews. Preserve their findings, distinctions, priorities, evidence, ordering, omitted axes, and limitations without merging, suppressing, cross-axis reranking, adjudicating, or remediating them.
 
-Re-read the remote head after the review. If it differs from the pinned head, retain the result as stale for its original revision. Pin the new base and head and repeat the complete review only when the user's requested outcome still identifies the same pull request unambiguously; otherwise stop and ask for direction. The current code-review result refers to one explicit candidate.
+Re-read the remote base and head after the review. If either differs from its pinned SHA, retain the result as stale for its original candidate. Pin the new base and head and repeat the complete review only when the user's requested outcome still identifies the same pull request unambiguously; otherwise stop and ask for direction. The current code-review result refers to one explicit candidate.
 
 ### 4. Verify the same candidate
 
@@ -38,7 +38,7 @@ Invoke `$verify-change` on exactly the base and head SHAs reviewed in step 3. Su
 
 Use existing CI evidence only when its provenance ties it to the pinned head and its execution boundary and result are inspectable. When local verification cannot run safely or the repository lacks faithful infrastructure, retain the exact `not run`, partial, or unverified evidence; do not install tools, add tests or ad hoc harnesses, alter source, tests, snapshots, baselines, suppressions, dependencies, or checks, or treat static inspection as execution. Passing checks do not erase a code-review finding, and verification never certifies the pull request.
 
-Re-read the remote head after verification. If it changed, preserve both results as stale for their original revision and repeat steps 2–4 on the newly pinned revision only while the requested outcome remains clear. Stop with the stale results and exact blocker when repeated drift prevents one stable current assessment. The completed review and verification evidence refer to identical current SHAs or are explicitly stale.
+Re-read the remote base and head after verification. If either differs from its pinned SHA, preserve both results as stale for their original candidate and repeat steps 2–4 on the newly pinned candidate only while the requested outcome remains clear. Stop with the stale results and exact blocker when repeated drift prevents one stable current assessment. The completed review and verification evidence refer to identical current base and head SHAs or are explicitly stale.
 
 ### 5. Report the assessment
 
