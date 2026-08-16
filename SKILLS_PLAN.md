@@ -404,7 +404,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `define-architecture` skill
 - [x] Create `specify-feature` skill
 - [x] Create `design-feature` skill
-- [ ] Create `create-tickets` skill
+- [x] Create `create-tickets` skill
 - [x] Update `implement` skill
 - [ ] Update `commit` skill
 - [ ] Replace `pr` with `pull-request`
