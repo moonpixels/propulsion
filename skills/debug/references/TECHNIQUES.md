@@ -19,7 +19,7 @@ A passing retry does not turn an intermittent failure green. Use [Nondeterminist
 
 | Situation | Technique | Observable verdict and retained artefact |
 | --- | --- | --- |
-| A stable test seam reaches the fault | Focused failing test or minimal harness | Assert the exact behaviour and preserve the smallest fixture. If retained as regression coverage, `$tdd` remains authoritative. |
+| A stable test seam reaches the fault | Focused failing test or minimal harness | Assert the exact behaviour and preserve the smallest fixture. It is a candidate TDD Red only when it independently specifies the desired behaviour and satisfies every TDD prerequisite. |
 | The fault is at an HTTP boundary | HTTP request script | Assert the relevant status, body, and headers; retain a redacted request and response rather than relying only on process exit. |
 | The fault is a CLI contract | CLI invocation with fixture input | Assert exit status, stdout, and stderr as applicable; record flags, working directory, and relevant environment. |
 | Only a production request or event exposes the fault | Capture and replay | Use [Boundary Evidence](BOUNDARY-EVIDENCE.md) to capture the smallest authorised event and assess replay fidelity. |
@@ -46,7 +46,7 @@ An experiment is complete when its observation confirms or rejects a stated hypo
 
 ## Preserve Useful Evidence
 
-- Promote a minimised reproducer to regression protection at the strongest stable seam when appropriate; keep `$tdd` authoritative for the test and repair cycle.
+- Promote a minimised reproducer to regression protection at the strongest stable seam only when it independently specifies desired observable behaviour. Invoke `$tdd` only when its complete prerequisite holds.
 - Remove temporary instrumentation and throwaway harnesses after use, or retain them deliberately as documented diagnostics. Tag temporary probes so cleanup is mechanically checkable.
 - Store only sanitised captures and fixtures that the repository is authorised to retain. Report external artefacts without copying sensitive data into the workspace.
 - Preserve the original reproduction across repair attempts. When a repair fails its prediction, retain the observation but revert the attempt before testing the next hypothesis.

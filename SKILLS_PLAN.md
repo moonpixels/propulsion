@@ -413,7 +413,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `refine-backlog` skill
 - [x] Create `plan-iteration` skill
 - [ ] Update `review-architecture` skill
-- [ ] Update `debug` skill
+- [x] Update `debug` skill
 - [ ] Create `respond-to-incident` skill
 - [ ] Create `review-incident` skill
 - [ ] Create `plan-retirement` skill
