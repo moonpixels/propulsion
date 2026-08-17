@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Independently diagnoses a fixed code change against intended behaviour and engineering standards. Use when reviewing code directly or during implementation, debugging, or pull-request review.
+description: Diagnoses a fixed code change independently against intended behaviour and engineering standards. Use when reviewing code directly or during implementation, debugging, or pull-request review.
 metadata:
     invocation: model
 disable-model-invocation: false

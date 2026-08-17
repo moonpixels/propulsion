@@ -1,57 +1,107 @@
 ---
 name: write-skill
-description: Creates and updates compact agent skills through confirmed behavioural contracts, evidence-backed choices, and fresh-agent evaluation. Use when authoring or revising a skill.
-metadata:
-    invocation: user
+description: Creates and revises effective agent skills through confirmed requirements, minimum-sufficient design, and baseline-controlled evaluation. Use when authoring or maintaining a reusable agent skill.
 disable-model-invocation: true
 ---
 
 # Write Skill
 
-Creates or updates the smallest skill bundle that reliably teaches a confirmed process while leaving project-dependent results to runtime evidence and user decisions.
+Creates minimum-sufficient agent skills whose observed behaviour justifies their context and execution cost.
 
 ## Process
 
-### 1. Establish the behavioural contract
+### 1. Confirm the contract
 
-Inspect the request, complete target bundle, direct callers and callees, and host conventions. Invoke `$elicit` to confirm the skill's purpose, trigger, required inputs, common successful path, observable result, and resource needs. Retain an exception only when representative evidence, the primary behaviour, or a necessary safety, permission, or prerequisite boundary requires it. Existing and new skills reach one explicit behavioural contract with a dominant path and only its material exceptions.
+Inspect the request, an existing skill and its direct composition when revising, and task-scoped evidence without changing the target. Invoke `$elicit` to confirm the recurring job or capability gap; user and model triggers plus non-triggers; inputs and prerequisites; required actions, material branches, authority, and stopping boundary; expected output or handoff; direct composition; necessary resources; and observable success evidence. Keep the target unchanged until `$elicit` returns the confirmed synthesis. The authoring contract is explicit and closed.
 
-### 2. Compare governing methodologies
+### 2. Establish the matched baseline
 
-Use the confirmed behavioural contract as the fixed scope and decision authority for both research passes; evidence selects how to teach the confirmed behaviour. Invoke `$research` to compare credible governing methodologies and a methodology-free process until further evidence is unlikely to change the decision set. Analyse the report against the contract. Call a recommendation strong only when one option materially fits better than every credible alternative; otherwise state that no strong recommendation exists. Present the supported options, behavioural consequences, trade-offs, and recommendation strength for the user to choose. The user's selection, including no methodology, is explicit.
+Freeze one representative common-path task, harness, tools, permissions, and task-scoped inputs from the confirmed success evidence. Before designing the candidate, run isolated fresh agents:
 
-### 3. Select supporting concepts
+- New skill: no skill.
+- Revised skill: no skill and the current skill.
 
-Invoke `$research` to find established principles, theories, methods, or techniques that reinforce distinct concerns without competing with the selected methodology or replacing an evidence-backed absence. Analyse whether each name changes behaviour, overlaps another concept, or is more precise in plain language. Apply the same recommendation-strength rule, explain each candidate's behavioural job, and let the user decide. Zero concepts is valid; every retained concept earns a distinct role.
+Record each result, loaded path, output, tool calls, and iterations. Design only against observed failure or excess burden. Stop when no skill fulfils the confirmed behaviour and no current-skill defect, contract change, or burden remains.
 
-### 4. Confirm the design
+### 3. Bound one capability
 
-Present one complete synthesis of the behavioural contract, selected methodology or absence, supporting concepts, structure, resources, common successful path, material exceptions, constraint levels, and observable success conditions. Obtain explicit confirmation before following the remaining process.
+Apply the **KISS principle**: retain the common path and material branches; remove speculative edge cases, unnecessary artefacts, and ceremony that cannot change the evaluated outcome. Keep coupled actions and artefacts together when they serve one outcome. Split independently useful capabilities when their trigger families, outcomes, authority, or success boundaries differ. The candidate has one coherent behavioural purpose.
 
-### 5. Write the bundle
+Choose invocation from actual use. Make regularly useful skills model-invoked. Make occasional, deliberate, or composition-only skills user-invoked. Set `disable-model-invocation` and `agents/openai.yaml` consistently. The skill enters context only through its intended route.
 
-Create or update through one path. Treat the confirmed design as closed: encode its common successful path and retained material exceptions without adding behaviour during drafting. Give every `SKILL.md` frontmatter, one H1, a concise introduction, and exactly one `## Process`; when the user selected a governing methodology, place it in bold where it fits naturally in the introduction. Bold each supporting concept at its first behaviour-governing use. Consult [Skill Sections](references/SECTIONS.md) for invocation metadata, optional sections, and resource placement. The bundle expresses the confirmed design in the fewest instructions that reliably change behaviour.
+### 4. Design the loading path
 
-### 6. Place runtime information
+Use a 1-64 character lowercase name with single hyphen separators and match the directory name. Write the description as one line that starts with a third-person action verb, says what the skill does, includes `Use when`, `Use for`, or `Use to`, and front-loads natural trigger words. Add a human-readable display name and short description to `agents/openai.yaml`.
 
-Apply **progressive disclosure** to the Agent Skills loading model: keep discovery conditions in metadata, instructions required on every invocation in `SKILL.md`, and conditional detail in task-needed resources. Link every resource beside the condition that loads it. The common path remains complete without loading an irrelevant branch.
+Use **progressive disclosure**:
 
-### 7. Calibrate the instructions
+- Put concise discovery and invocation metadata in frontmatter and `agents/openai.yaml`.
+- Put every-run decisions, actions, authority, branches, and stopping conditions in `SKILL.md`.
+- Link conditional detail inline at the branch that needs it.
+- Put reusable output material in `assets/`.
+- Put deterministic transformations and checks in `scripts/`.
 
-Apply **degrees of freedom** to each instruction and evaluation criterion. Keep project-dependent reasoning and results flexible; make required sequences, safety, permissions, fixed formats, schemas, scripts, and other fragile deterministic behaviour correspondingly exact. Give each step one coherent action and observable outcome, keep each rule in one authoritative location, state the desired action first, and pair an essential prohibition with the permitted route. Consult [Skill Craft](references/CRAFT.md) when recommendation strength, wording, structure, authority, or composition remains unclear. Every constraint is no stronger than the confirmed behaviour requires.
+Keep required coupled guidance together. Prefer direct one-level references. Remove unreachable and unlinked resources. Trace direct composition across trigger, inputs, authority, result, owner, and stopping boundary. The smallest sufficient context is reachable when needed.
 
-### 8. Validate the mechanics
+### 5. Draft the isolated candidate
 
-Run [scripts/validate-skill.js](scripts/validate-skill.js), inspect every bundled script, and execute each within a disposable filesystem using inert fixtures, isolated credentials, and an environment incapable of external mutation. When that boundary is unavailable, leave the script unexecuted and report the limitation. The mechanical contract passes within the safe execution boundary.
+Create the candidate outside the requested destination. For revisions, start from the current bundle and preserve behaviour outside the confirmed change.
 
-### 9. Verify direct composition
+Use [the skill template](assets/skill-template.md). Load [the section guide](references/SECTIONS.md) only when optional sections or subsection layout are needed. Write commands, not essays:
 
-Trace every direct caller and callee across trigger, supplied inputs and authority, promised result, responsibility owner, and stopping boundary. Remove overlap, omissions, contradictions, and invented obligations. Exercise the least restrictive connected path that would expose a genuine incompatibility. Direct compositions preserve the confirmed contract.
+- Use direct verbs such as _Load_, _Check_, _Run_, _Fix_, _Stop_, and _Return_.
+- Give each step or subsection one coherent behavioural idea and one observable outcome.
+- Use short concrete words and clear fragments; expand conditions, risks, and handoffs that compression could hide.
+- State each normative meaning once. Remove filler, hedging, generic knowledge, and repeated enforcement.
+- State the intended action first. Retain prohibitions only for essential safety, permission, scope, factual, or deterministic boundaries, paired with the safe action.
+- Use a recognised method, principle, theory, or technique only when its canonical name replaces explanation or sharpens a decision, action, or stopping condition. Bold key concepts where they occur naturally. Remove terms that forward testing shows are decorative.
+- Match **degrees of freedom** to variability and fragility. Use exact commands or scripts only when the operation requires them.
+- Apply **context isolation** to every independently actionable step. Write an explicit fresh-agent step when task-scoped inputs are sufficient and main-thread context is irrelevant or could bias the result; pass only the required inputs and retain only its result. Keep shared understanding, user authority, accumulated state, and process continuity in the main thread. Name the execution boundary instead of leaving delegation optional.
+- Give agents a direct result and stopping condition. Add review or feedback only in response to observable evidence, never as recurring ceremony.
 
-### 10. Evaluate the behaviour
+The candidate contains only behaviour-changing instructions and reachable resources.
 
-Give a fresh agent only the finished bundle, a realistic request, and task-local evidence. Compare its observable process and result with the confirmed contract. Judge variable results by their correctness and suitability for the supplied evidence; inspect exact content only where the contract fixes it. Evaluate the common successful path and the smallest scenario for each retained material exception. Consult [Fresh-Agent Behavioural Evaluation](references/TESTING.md) for isolation, evidence, and repair. Repair the smallest steering cause, recompress, revalidate, and reevaluate until the contract holds.
+### 6. Validate and measure
 
-### 11. Report the result
+Run [scripts/validate-skill.js](scripts/validate-skill.js) and [scripts/measure-context.js](scripts/measure-context.js) with Bun:
 
-Return the changed files, research evidence, mechanical and composition results, behavioural-evaluation scenarios and outcomes, unexecuted scripts, and remaining uncertainty. The user receives the finished bundle and evidence that its contract holds.
+```sh
+bun scripts/validate-skill.js /path/to/candidate-skill
+bun scripts/measure-context.js /path/to/skill \
+  --include references/loaded-reference.md \
+  --output /path/to/agent-output.md
+```
+
+Fix mechanical failures. Repeat `--include` for every reference an arm loaded and `--output` for every arm output; omit unused options. Tokenize a no-skill output through an evaluated bundle and record its discovery and loaded-path cost as zero. Treat exact `o200k_base` counts as comparative evidence, not a target or quality score. Keep discovery metadata, selected path, generated output, and bundle inventory separate.
+
+### 7. Complete the forward comparison
+
+Run the candidate on the frozen common-path task in an isolated fresh agent with the same harness, tools, permissions, and task-scoped inputs as the recorded arms. Record its result, loaded path, agent output, tool calls, and iterations.
+
+Give the anonymised no-skill and candidate results, plus the current-skill result for revisions, to a separate fresh evaluator with only the confirmed behaviour, expected outcome, and efficiency criteria. Require a meaningful behavioural shift over no skill; for revisions, also require preserved or improved behaviour over the current skill. Among behaviourally equivalent candidates, prefer the lower context and execution burden. The candidate's effect is independently evidenced.
+
+### 8. Refine and publish
+
+Change the candidate only to correct a specific evaluator failure or remove measured burden, then rerun the affected mechanical and forward checks. Stop when the candidate passes, a smaller equivalent candidate wins, or further change lacks observed justification.
+
+Publish the passing candidate to the requested destination and rerun validation and measurement there. When the candidate is not justified, keep the existing destination unchanged and return the evidence. The published bundle is the smallest evaluated version that fulfils the confirmed contract.
+
+## Rules
+
+- Preserve exact technical meaning: required keywords, paths, commands, API names, error text, safety boundaries, and ordering constraints.
+- Treat output tokens, tool calls, and iterations as part of skill cost. Accept extra work only when it changes the required outcome.
+- Keep mechanical checks deterministic. Judge semantic force, routing language, useful concepts, and unnecessary ceremony through the forward comparison.
+
+## Handoff
+
+Return the destination, confirmed contract, validation result, published files, evaluator verdict, residual uncertainty, and this comparison. Use `n/a` for Current on new skills. Compare Candidate delta with No skill for creation and Current for revision; also state a revision's behavioural shift over No skill.
+
+| Metric | No skill | Current | Candidate | Candidate delta |
+| --- | --- | --- | --- | --- |
+| Behavioural result and evaluator evidence |  |  |  |  |
+| Discovery metadata tokens |  |  |  |  |
+| Loaded skill-path tokens |  |  |  |  |
+| Agent output tokens |  |  |  |  |
+| Tool calls |  |  |  |  |
+| Iterations |  |  |  |  |
+| Total measured token burden |  |  |  |  |

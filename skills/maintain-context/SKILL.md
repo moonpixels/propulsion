@@ -1,6 +1,6 @@
 ---
 name: maintain-context
-description: Continually maintains confirmed project terminology and rare ADRs. Use when project language is introduced, changed, misused, or contradicted, or an accepted decision needs durable rationale.
+description: Maintains confirmed project terminology and rare ADRs continuously. Use when project language is introduced, changed, misused, or contradicted, or an accepted decision needs durable rationale.
 metadata:
     invocation: model
 disable-model-invocation: false

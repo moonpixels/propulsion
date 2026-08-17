@@ -42,4 +42,4 @@ status: current
 
 ## Sources
 
-- [{Source title}]({URL or repository-relative path}) — {publisher or owner, version or publication date, accessed YYYY-MM-DD, and evidential role}
+- {Markdown link to source} — {publisher or owner, version or publication date, accessed YYYY-MM-DD, and evidential role}
