@@ -391,35 +391,35 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 ### Implementation checklist
 
 - [x] Complete quality-harness research
-- [x] Update `elicit` skill
-- [x] Update `research` skill
-- [x] Create `prototype` skill
-- [x] Update `maintain-context` skill
-- [x] Update `modular-design` skill
-- [x] Update `tdd` skill
-- [x] Create `verify-change` skill
-- [x] Update `code-review` skill
-- [x] Update `maintain-agents` skill
-- [x] Update `define-product` skill
-- [x] Create `define-architecture` skill
-- [x] Create `specify-feature` skill
-- [x] Create `design-feature` skill
-- [x] Create `create-tickets` skill
-- [x] Update `implement` skill
-- [x] Update `commit` skill
-- [x] Replace `pr` with `pull-request`
-- [x] Create `review-pull-request` skill
-- [x] Create `triage-work` skill
-- [x] Create `refine-backlog` skill
-- [x] Create `plan-iteration` skill
-- [x] Update `review-architecture` skill
-- [x] Update `debug` skill
-- [x] Create `respond-to-incident` skill
-- [x] Create `review-incident` skill
-- [x] Create `plan-retirement` skill
-- [x] Delete `elicit-with-context` skill
-- [x] Update the README
-- [x] Run the suite-wide acceptance pass
+- [-] Update `elicit` skill
+- [-] Update `research` skill
+- [-] Create `prototype` skill
+- [-] Update `maintain-context` skill
+- [-] Update `modular-design` skill
+- [-] Update `tdd` skill
+- [-] Create `verify-change` skill
+- [-] Update `code-review` skill
+- [-] Update `maintain-agents` skill
+- [-] Update `define-product` skill
+- [-] Create `define-architecture` skill
+- [-] Create `specify-feature` skill
+- [-] Create `design-feature` skill
+- [-] Create `create-tickets` skill
+- [-] Update `implement` skill
+- [-] Update `commit` skill
+- [-] Replace `pr` with `pull-request`
+- [-] Create `review-pull-request` skill
+- [-] Create `triage-work` skill
+- [-] Create `refine-backlog` skill
+- [-] Create `plan-iteration` skill
+- [-] Update `review-architecture` skill
+- [-] Update `debug` skill
+- [-] Create `respond-to-incident` skill
+- [-] Create `review-incident` skill
+- [-] Create `plan-retirement` skill
+- [-] Delete `elicit-with-context` skill
+- [-] Update the README
+- [-] Run the suite-wide acceptance pass
 
 Each skill is authored and forward-tested as one coherent work unit. The rewrite branch may contain incomplete groups during development, but the public cutover occurs only when the final catalogue composes coherently and replaces obsolete guidance.
 
