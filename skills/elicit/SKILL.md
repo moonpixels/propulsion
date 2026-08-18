@@ -1,6 +1,6 @@
 ---
 name: elicit
-description: Elicits material user-held information and user-authoritative decisions one question at a time until confirmed. Use when shared understanding depends on the user, not safely discoverable facts.
+description: Elicits material information and decisions from the user one question at a time until shared understanding is confirmed. Use when a request or consuming skill depends on user-held context, clarification, or choices that cannot be safely discovered.
 metadata:
     invocation: model
 disable-model-invocation: false
@@ -8,30 +8,30 @@ disable-model-invocation: false
 
 # Elicit
 
-Uses an internal **decision tree** to resolve only the material branches of shared understanding, then applies adapted **theoretical saturation** and obtains explicit confirmation of one complete synthesis.
+Builds confirmed shared understanding by resolving a bounded internal **decision tree**, then applying adapted **theoretical saturation**.
 
 ## Process
 
 ### 1. Establish the basis
 
-Inspect the request, conversation, caller context, and accessible task-scoped evidence before questioning. Derive discoverable facts and identify the user's intended outcome. Keep inspection read-only. When a required fact could be discovered only through a state change, make whether the caller should perform that lookup the active authority decision and leave the lookup to the caller. The outcome and factual basis are explicit.
+Inspect the request, conversation, caller context, and available task-scoped evidence before questioning. Use cheap read-only fact-finding and stable, confidently applicable general knowledge to close discoverable branches. Verify uncertain, contentious, or potentially current knowledge before treating it as fact. Leave material research and every state-changing action to the caller. The intended outcome, caller boundary, and factual basis are explicit.
 
 ### 2. Maintain the decision tree
 
-Build and continually recompute an internal, dependency-ordered decision tree covering only material outcome, scope, terminology, inputs, outputs, prerequisites, dependencies, constraints, flows, exceptions, permissions, risks, trade-offs, and success conditions. Open a branch only when runtime evidence or an answer exposes it and resolving it could materially change the shared understanding. Preserve compatible answers as branches open, close, become irrelevant, or reopen. Select the highest-impact unresolved branch whose prerequisites are resolved. Keep the tree internal; one active issue is explicit.
+Build and continually recompute an internal, dependency-ordered tree containing only branches whose resolution could materially change the bounded outcome. Cover relevant outcome, scope, terminology, inputs, outputs, prerequisites, dependencies, constraints, flows, exceptions, permissions, risks, trade-offs, and success conditions. Preserve compatible answers; close, discard, or reopen branches as evidence changes; and follow directly consequential issues without expanding into unrelated discovery. Select the highest-impact unresolved branch whose prerequisites are resolved. Keep the tree internal and one active issue explicit.
 
 ### 3. Ask one question
 
-Ask exactly one explicit question about the active issue, once per turn, in natural conversational language. Explain why an information question matters. For a decision, present only viable positions and their decisive trade-offs, recommending one only when the outcome, evidence, applicable conventions, consequences, and prior answers provide a defensible basis. Leave room for the user's own answer and treat the user as the sole authority over their information and decisions. The active issue has one explicit response.
+Ask exactly one explicit question per turn in natural language. Explain why an information question matters. Offer suggested answers only when grounded in the established basis. Apply **Design It Twice**: present at least two genuinely distinct viable options, state the material effect of each, and recommend the strongest when the evidence supports a clear winner. Make those options part of the one question; do not append another choice prompt. Leave room for another answer and keep the user as the sole authority over their information and decisions. The active issue receives one explicit response.
 
 ### 4. Adapt and validate
 
-Test each response internally against the root goal, previous decisions, scenarios, counterexamples, conflicts, and consequences. Keep material ambiguity open. When the response is unclear or conflicting, or the user cannot answer, scaffold the same issue through plain-language restatement, clearer choices and trade-offs, examples, scenarios, or prerequisite questions resolved one at a time. Do not offer an escape hatch or decide for the user. Recombine the answers and reopen every affected branch. The active issue is resolved consistently.
+Test every response internally against the outcome, established facts, prior answers, implications, contradictions, scenarios, and counterexamples. Surface a challenge only when it could materially change the shared understanding. Close clear answers without ceremonial repetition. For ambiguity, conflict, difficulty, or consequential interpretation, use plain-English paraphrasing, rewording, clearer options and effects, examples, scenarios, or prerequisite questions resolved one at a time. Do not invent an answer or decide for the user. Recompute the tree and reopen every affected branch. The active issue is resolved consistently.
 
 ### 5. Reach theoretical saturation
 
-Repeat steps 2–4 until every material branch is resolved. Then make an adapted theoretical-saturation pass across the tree, scenarios, counterexamples, conflicts, and consequences. Saturation is reached only when the pass adds or reopens no branch whose answer could materially change the shared understanding. The decision tree is saturated.
+Repeat steps 2–4 until every material branch is resolved. Make an adapted theoretical-saturation pass across the tree, implications, scenarios, counterexamples, and conflicts. Walk each material decision through affected actors and authority, defaults and unchanged behaviour, states and transitions, time boundaries, channels, visibility, exceptions, invalidation, and success evidence; open only consequential gaps. Saturation is reached only when the pass adds or reopens no branch whose answer could materially change the shared understanding. The bounded decision tree is saturated.
 
 ### 6. Confirm shared understanding
 
-Present one concise, self-contained synthesis of the outcome, relevant facts, decisions, scope, constraints, and observable success conditions, then ask exactly one question for explicit agreement. Only a new explicit user response confirming the complete synthesis completes elicitation; selecting an earlier option does not. Treat a correction or rejection as new evidence, reopen every affected branch, and continue from step 2 until saturation returns before presenting the revised synthesis. Return only the confirmed synthesis; the caller retains mutation, persistence, verification, downstream action, and stopping ownership.
+Present one concise, self-contained synthesis of the relevant facts, information, decisions, scope, constraints, implications, and observable success conditions. Ask exactly one question for explicit agreement. Only a new response confirming the complete synthesis ends elicitation; selecting an earlier option does not. Treat a correction or rejection as new evidence, reopen every affected branch, and repeat the saturation pass before presenting a revised synthesis. Return only the confirmed synthesis; create no durable artefact and leave mutation, persistence, verification, downstream action, and the caller's stopping boundary to the caller.
