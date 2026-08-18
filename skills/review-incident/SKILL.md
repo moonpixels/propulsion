@@ -34,7 +34,7 @@ Apply **local rationality** to explain why decisions and adaptations made sense 
 
 Explain the interacting technical, process, organisational, tooling, environmental, and dependency conditions that shaped the outcome. Examine intended and actual defenses; what worked, failed, was missing, or created surprise; detection and escalation; communication flow; mitigation effectiveness and side effects; latent conditions; goal conflicts; previous relevant signals; and credible recurrence paths. Treat a trigger as distinct from the conditions that allowed impact and recovery. Preserve multiple contributing conditions and uncertainty rather than forcing a single root cause, stopping at individual action, or making responsibility blameless by making it vague.
 
-Invoke `$research` only when one material external conclusion must survive the review, then read and verify its cited report before relying on it. Research does not replace incident evidence or turn a plausible industry explanation into a fact about this incident. The reconstructed account explains the incident proportionately without blame or false certainty.
+Invoke `$research` only when one material external subject needs durable evidence, then read its report before using its findings. Research does not replace incident evidence or turn a plausible industry explanation into a fact about this incident. The reconstructed account explains the incident proportionately without blame or false certainty.
 
 ### 3. Derive proportionate learning outcomes
 

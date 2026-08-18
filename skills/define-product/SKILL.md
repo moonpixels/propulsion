@@ -22,7 +22,7 @@ Invoke `$elicit` for material user-held knowledge and decisions throughout steps
 
 Invoke `$maintain-context` inline whenever consequential project language is confirmed, changed, misused, or contradicted. It owns only the root `CONTEXT.md` glossary update; this skill retains the product outcome and stopping boundary.
 
-Invoke `$research` when a material external claim could change the product decision and its answer must survive this session; keep the report authoritative and link its decision-relevant conclusion rather than copying it wholesale. Use an incidental lookup when the answer need not persist. Invoke `$prototype` only when seeing, comparing, or interacting with the least elaborate disposable artefact would answer one bounded visual question better than discussion. Research and prototype results return evidence to this product session; neither owns `PRODUCT.md` or continuation.
+Invoke `$research` when a material external subject could change the product decision and needs durable evidence; read and link its report rather than copying its findings wholesale. Use an incidental lookup when the evidence need not persist. Invoke `$prototype` only when seeing, comparing, or interacting with the least elaborate disposable artefact would answer one bounded visual question better than discussion. Research and prototype results return evidence to this product session; neither owns `PRODUCT.md` or continuation.
 
 Keep `PRODUCT.md` unchanged until the complete whole-product synthesis is explicitly confirmed. Before then, supporting utilities may perform only the writes authorised by their own contracts.
 

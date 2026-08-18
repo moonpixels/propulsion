@@ -24,7 +24,7 @@ Invoke `$elicit` throughout steps 2–5 for material user-held knowledge and dec
 
 Invoke `$maintain-context` inline whenever consequential project language is confirmed, changed, misused, or contradicted. It alone owns the root `CONTEXT.md` glossary update; this skill retains the specification outcome and verification.
 
-Invoke `$research` when a material external, domain, regulatory, or standards claim could change the specification and its evidence must survive this session. Link its durable conclusion instead of copying the report. Invoke `$prototype` only when seeing, comparing, or interacting with the least elaborate disposable artefact would resolve one bounded visual or interactive uncertainty better than discussion. Both return evidence to this session and own neither the specification nor continuation.
+Invoke `$research` when a material external, domain, regulatory, or standards subject could change the specification and needs durable evidence. Link its report instead of copying its findings. Invoke `$prototype` only when seeing, comparing, or interacting with the least elaborate disposable artefact would resolve one bounded visual or interactive uncertainty better than discussion. Both return evidence to this session and own neither the specification nor continuation.
 
 Keep the specification unchanged until the complete synthesis is explicitly confirmed. Supporting utilities may perform only the mutations authorised by their own contracts before then.
 

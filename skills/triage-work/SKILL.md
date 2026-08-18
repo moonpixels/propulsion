@@ -30,7 +30,7 @@ Inspect the current `PRODUCT.md`, `CONTEXT.md`, feature records, `ARCHITECTURE.m
 
 Search open and closed tracker work and relevant repository records using source identifiers, authoritative links, actors, outcomes, symptoms, affected concepts, and discriminating details. Classify a candidate internally as exact match, possible overlap, related work, or unrelated. Mark a duplicate only when the evidence establishes the same requested outcome or fault; preserve an uncertain resemblance as related or unresolved and state what would distinguish it.
 
-When a material external evidence question could change the disposition and its answer must survive this session, invoke `$research` with that bounded question, then read and verify the report's material claims and citations before using it. Invoke `$maintain-context` only when the evidence independently confirms consequential durable project language or qualifying rationale; a proposed classification or route alone does not establish either. Verify its returned context result before continuing. The evidence for classification, duplicate confidence, and remaining uncertainty is explicit.
+When a material external subject could change the disposition and needs durable evidence, invoke `$research` with that bounded subject, then read its report before using its findings. Invoke `$maintain-context` only when the evidence independently confirms consequential durable project language or qualifying rationale; a proposed classification or route alone does not establish either. Verify its returned context result before continuing. The evidence for classification, duplicate confidence, and remaining uncertainty is explicit.
 
 ### 3. Choose one honest disposition per item
 

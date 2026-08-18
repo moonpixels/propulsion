@@ -1,45 +1,23 @@
----
-title: '{research title}'
-createdAt: YYYY-MM-DD
-updatedAt: YYYY-MM-DD
-status: current
-# Retain each applicable lineage field and remove this guidance.
-# supersedes: './YYYYMMDD-research-title.md'
-# supersededBy: './YYYYMMDD-research-title.md'
----
-
 # {Research title}
 
-## Research question and scope
+## Scope
 
-**Question:** {The question this report answers}
-
-**Intended use:** {The decision or caller this evidence informs}
-
-**Scope:** {Included and excluded concerns, applicable versions or environments, and evidence currency}
-
-## Conclusion
-
-{The concise answer, qualified to match the strength of the evidence}
+{Describe what the research was for and the subject or information need it covered.}
 
 ## Findings
 
-### {Finding}
+### {Descriptive theme}
 
-{Material claims with direct links to supporting evidence. Identify inferences explicitly.}
+{Present the evidence in approachable prose. Cite each material claim with its numbered source, for example [1], and identify material inference explicitly.}
 
-## Conflicts and contrary evidence
+## Conflicts
 
-{Conflicting or contrary evidence and its effect on the conclusion, or "None found."}
+{Give each material conflict its own paragraph, with citations. Write "None identified." when applicable.}
 
 ## Limitations
 
-{Unresolved uncertainty, evidence gaps, and freshness risks, or "None known."}
-
-## Method
-
-{The research date, material search locations or approaches, evidence selection, appraisal and synthesis basis, important deviations, and verification constraints without the raw search trail.}
+{Give each material evidence gap, access constraint, unresolved uncertainty, or relevant research limitation its own paragraph. Write "None identified." when applicable.}
 
 ## Sources
 
-- {Markdown link to source} — {publisher or owner, version or publication date, accessed YYYY-MM-DD, and evidential role}
+1. [Source title](https://example.com/source) — {author, publisher, or owning organisation}

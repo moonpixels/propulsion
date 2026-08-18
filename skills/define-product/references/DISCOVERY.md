@@ -50,7 +50,7 @@ Read the mapped product back as one narrative. Change perspective across intende
 
 ## Establish external position
 
-Compare the product with meaningful alternatives users employ today, including manual work and doing nothing. Invoke `$research` only when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision and the answer must survive the session. Keep researched claims in the report and bring only the decision-relevant conclusion and link into `PRODUCT.md`; use an incidental lookup when no durable evidence record is needed.
+Compare the product with meaningful alternatives users employ today, including manual work and doing nothing. Invoke `$research` only when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision and need a durable evidence record. Keep researched claims in the report and link that report from `PRODUCT.md` rather than copying its findings; use an incidental lookup when no durable evidence record is needed.
 
 ## Resolve a visual product question
 

@@ -145,7 +145,7 @@ Utilities are independently invokable and are also composed by lifecycle skills 
 | Utility | Use it to… |
 | --- | --- |
 | `$elicit` | Resolve material user-held information and decisions one question at a time |
-| `$research` | Answer one material question with critically appraised evidence and persist a cited report |
+| `$research` | Investigate a material subject with high-trust evidence and persist a trusted cited report |
 | `$prototype` | Create a disposable visual experiment that resolves one bounded uncertainty |
 | `$maintain-context` | Keep confirmed ubiquitous language and rare qualifying decisions current |
 | `$modular-design` | Assess boundaries, ownership, contracts, dependencies, and change propagation |

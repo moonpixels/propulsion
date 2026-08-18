@@ -24,7 +24,7 @@ Map capabilities, owned knowledge, contracts, consumers, dependencies, runtime b
 
 Trace material pressure to precise current repository locations. Look for rules represented in multiple owners, unstable or leaking contracts, dependencies pointing against established responsibility, changes that repeatedly propagate across boundaries, and regression or operational evidence tied to structure. Use coherent repository history or metrics only to locate and challenge candidates, discounting bulk, generated, renamed, bot-authored, or obsolete changes; neither a metric nor a smell label proves a recommendation. Express a material quality or change pressure as a compact project-evidenced scenario when that makes its stimulus, affected capability, expected response, or observable consequence clearer. The evidence map distinguishes observations, supported inferences, and uncertainty.
 
-Invoke `$research` only when a material external claim must survive the session. Read and verify its cited report before using the conclusion, and keep that report explicitly within the review scope. Do not import a general architecture method, standard, or universal quality model when project evidence does not make it authoritative.
+Invoke `$research` only when a material external subject needs durable evidence. Read its report before using its findings, and keep that report explicitly within the review scope. Do not import a general architecture method, standard, or universal quality model when project evidence does not make it authoritative.
 
 ### 3. Compare and qualify candidates
 

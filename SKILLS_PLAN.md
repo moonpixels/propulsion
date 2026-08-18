@@ -251,7 +251,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 | Utility | Independently useful outcome |
 | --- | --- |
 | `elicit` | Resolves dependency-ordered material information and user decisions one question at a time until shared understanding is confirmed. |
-| `research` | Answers a material question using high-trust evidence and creates a cited report when the conclusion must survive the session. |
+| `research` | Investigates a material subject using high-trust evidence and creates a trusted cited report for the consumer to synthesize. |
 | `prototype` | Creates a deliberately disposable experiment or mock-up to resolve one bounded uncertainty and preserves its conclusion. |
 | `maintain-context` | Keeps `CONTEXT.md` aligned inline with confirmed ubiquitous language. |
 | `modular-design` | Applies evidence-backed modularity, information hiding, cohesion, coupling and maintainability principles to a scoped design decision. |
@@ -392,7 +392,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 
 - [x] Complete quality-harness research
 - [x] Update `elicit` skill
-- [-] Update `research` skill
+- [x] Update `research` skill
 - [-] Create `prototype` skill
 - [-] Update `maintain-context` skill
 - [-] Update `modular-design` skill

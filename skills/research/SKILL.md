@@ -1,39 +1,47 @@
 ---
 name: research
-description: Researches one material question through critically appraised evidence and persists a verified cited report. Use when the answer must survive the current conversation.
-metadata:
-    invocation: model
-disable-model-invocation: false
+description: Investigates a material subject against high-trust sources and writes a trusted cited report. Use when a user or calling skill intentionally requests durable research.
+disable-model-invocation: true
 ---
 
 # Research
 
-Answers one material question with critically appraised evidence and persists the result as a verified cited report.
+Investigates a material subject in a fresh agent and hands back a trusted report for the consumer to synthesize.
 
 ## Process
 
-### 1. Define the research contract
+### 1. Fix the subject and scope
 
-Define the research question, intended downstream use, scope, currency needs, and evidence constraints. Inspect task-local and project evidence, including related reports in `docs/research/`, before discovery. Resolve available facts and expose any material missing scope or evidence constraint rather than silently widening the investigation. The fixed research contract and applicable prior evidence are explicit.
+Use the request and caller context to state what the research is for and what it covers. Resolve discoverable scope without questioning. Ask the user only when an ambiguity could materially change the investigation. Treat every invocation as standalone; do not inspect or maintain previous research reports.
 
-### 2. Assign the investigation
+Use `docs/research/` as the default output directory unless the caller specifies another destination. Keep the investigation within authorised read and report-write boundaries.
 
-Give one fresh research agent the fixed contract, relevant runtime evidence, evidence rules, and report contract without a desired conclusion. It owns discovery, critical appraisal, synthesis, and report writing as one evidence chain. The caller later reads and verifies the finished report.
+### 2. Start the fresh investigation
 
-### 3. Discover and appraise the evidence
+Start exactly one fresh agent with the fixed subject and scope, relevant task-local evidence, available source tools, output destination, source rules, report template, and stopping rule. Do not supply a desired answer. The fresh agent owns discovery, source appraisal, thematic organisation, report writing, and report verification as one evidence chain; it does not delegate the investigation again.
 
-Identify the material claims the answer must establish and select source types capable of establishing each one. Prefer primary and high-authority sources; use secondary sources for discovery or when they are the appropriate evidence for the claim. Trace every material claim to citations the caller can verify.
+Require the fresh agent to:
 
-Apply **critical appraisal** to determine what each source can establish and the trust it warrants. Assess authority and access to the fact, methodological or technical validity, currency, applicability, completeness, incentives or bias, and consistency with the underlying evidence. Treat an originator as authoritative for the method they define, not as proof that the method produces a claimed effect. When a material source participates in a citation graph, apply **citation searching** backward to cited originals and forward to later validation, correction, extension, or criticism; keep it supplementary to direct discovery. The evidence set is relevant, current enough for the question, and traceable.
+- identify the material claims and areas needed to cover the scope, then select source types capable of establishing each one;
+- prefer primary, original, official, or owning sources; use an authoritative secondary source when it is itself appropriate to the claim, and trace its material claims to original evidence where possible;
+- treat authority as claim-relative: an originator can establish what a practice says, but that alone does not prove its effectiveness;
+- corroborate material claims through genuinely independent evidence routes where available, and seek credible disagreement, contrary evidence, and important gaps;
+- appraise what each source can establish, including its authority, validity, currency, applicability, completeness, incentives, and consistency with underlying evidence;
+- distinguish sourced fact from material inference and distinguish missing evidence from evidence against; and
+- stop when the scope has adequate high-trust coverage, conflicts and limitations are recorded, and further searching is unlikely to add materially different findings.
 
-### 4. Synthesize the findings
+### 3. Write the report
 
-Corroborate material conclusions through genuinely independent evidence routes, treating sources that repeat one upstream claim as one route. Seek contrary evidence, plausible alternatives, and conditions that would change the conclusion; distinguish missing evidence from evidence against. Separate supported evidence, inference, conflicts, contrary evidence, and unknowns. When credible evidence is insufficient, give an honest limited or unresolved conclusion. Stop discovery when each material claim is supported or explicitly unresolved and further trustworthy source work is unlikely to change the answer. Every material finding is proportionate to the evidence.
+Create a new standalone Markdown report using [the research report template](assets/research-report-template.md). Organise `Findings` by human-readable themes rather than by source. Cite every material claim with numbered references such as `[1]`, reuse a source's number, and provide the matching numbered links under `Sources`.
 
-### 5. Write the research report
+Write for human readers. Use natural language, varied sentence length, short coherent paragraphs, descriptive subheadings, and restrained bold, italics, lists, or tables where they improve comprehension. Identify material inference explicitly.
 
-Persist the result at `docs/research/YYYYMMDD-{research-title}.md` using [the research report template](assets/research-report-template.md). Use a concise lowercase hyphenated title, retain only applicable lineage fields, complete every stable section, and structure `Findings` for the subject. Give material claims direct links to the evidence that supports them. Record the research date, material search locations or approaches, evidence selection, appraisal and synthesis basis, important deviations, and verification constraints without retaining the raw search trail. When related research already exists, apply [the research report lifecycle](references/REPORT-LIFECYCLE.md). The report is concise, inspectable, and proportionate to its evidence.
+Keep the five template sections. `Scope` only explains what the research was for and what subject or information need it covered. Give each conflict and limitation its own paragraph; state `None identified.` when applicable.
 
-### 6. Verify and hand off
+### 4. Verify the trusted report
 
-The caller reads the report and verifies that every material claim is supported by the cited source, evidence routes are genuinely independent, conflicts, contrary evidence, and uncertainty are visible, every link and relative report path resolves, and the recorded method makes the investigation inspectable. Return the report path, concise conclusion, conflicts and limitations, and verification performed. Stop there: the report owns the evidence, while the caller owns every resulting product, methodology, architecture, implementation, or other downstream decision and mutation.
+Require the fresh agent to re-read the finished report and verify that every material claim is supported by its cited source; citations and source numbers resolve; links open to the identified evidence; independent routes are not duplicate retellings of one upstream claim; conflicts, limitations, and material inferences are visible; all five sections are present; and the writing is coherent and easy to navigate. It corrects report defects before returning.
+
+## Handoff
+
+Return only the finished report path to the user or caller. Retain none of the investigation transcript in the calling thread and require no duplicate caller verification. Stop after handoff; the consumer owns every overall synthesis, conclusion, recommendation, decision, and downstream mutation.
