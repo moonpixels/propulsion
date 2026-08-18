@@ -1,6 +1,6 @@
 # Discovery Techniques
 
-Load only the section needed by the active discovery branch. `$elicit-with-context` coordinates material questioning, final synthesis confirmation, and glossary maintenance; its composed skills retain their own results. `$research` owns durable external evidence; `$prototype` owns a bounded disposable visual experiment. `define-product` retains the product outcome and stopping boundary.
+Load only the section needed by the active discovery branch. `$elicit-with-context` coordinates material questioning, final synthesis confirmation, and glossary maintenance; its composed skills retain their own results. `$research` owns durable external evidence. `define-product` retains the product outcome and stopping boundary.
 
 ## Establish an existing product
 
@@ -51,7 +51,3 @@ Read the mapped product back as one narrative. Change perspective across intende
 ## Establish external position
 
 Compare the product with meaningful alternatives users employ today, including manual work and doing nothing. Invoke `$research` only when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision and need a durable evidence record. Keep researched claims in the report and link that report from `PRODUCT.md` rather than copying its findings; use an incidental lookup when no durable evidence record is needed.
-
-## Resolve a visual product question
-
-Invoke `$prototype` only when one bounded uncertainty is better resolved by seeing, comparing, or interacting with a visual artefact than by discussion. Give it the question, audience, authentic constraints, and product decision it informs. Use its returned evidence in elicitation after the disposable artefact is removed; do not preserve prototype material in the product foundation.

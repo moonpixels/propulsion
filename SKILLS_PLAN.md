@@ -103,7 +103,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A user-confirmed product foundation broad enough to guide later feature definition without becoming a roadmap or delivery plan.
 - **Inputs:** The product idea, existing `PRODUCT.md` and `CONTEXT.md`, representative repository evidence and applicable external evidence.
 - **Output:** `PRODUCT.md` and the corresponding ubiquitous language in `CONTEXT.md`.
-- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research` and `prototype`.
+- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research`.
 - **Stops:** After product purpose, users, needs, value, outcomes, boundaries, journeys and high-level capabilities are documented. It does not define technical architecture, detailed features, priorities or tickets.
 
 #### `define-architecture`
@@ -111,7 +111,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A user-confirmed technical foundation capable of constraining later feature solutions without duplicating the implementation.
 - **Inputs:** `PRODUCT.md`, `CONTEXT.md`, existing system evidence and material technical, organisational or regulatory constraints.
 - **Output:** `ARCHITECTURE.md` and any warranted focused ADRs.
-- **Composition:** Requires `elicit-with-context` and `modular-design`; conditionally invokes `research`, `prototype`, `maintain-ubiquitous-language` and `maintain-decision-records`.
+- **Composition:** Requires `elicit-with-context` and `modular-design`; conditionally invokes `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After the system context, principal boundaries, ownership, technology strategy, data, integrations and cross-cutting quality approach are established. It does not scaffold the system or create implementation work.
 
 ### Define
@@ -121,7 +121,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** One approved feature or enhancement expressed as externally observable intent.
 - **Inputs:** A capability from `PRODUCT.md`, an already-elicited conversation or another agreed feature idea, plus `CONTEXT.md`, relevant current behaviour and supporting evidence.
 - **Output:** `docs/features/<feature-slug>/specification.md`, or the project's equivalent.
-- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research` and `prototype`.
+- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research`.
 - **Stops:** After the problem, actors, behaviour, rules, states, scenarios, acceptance conditions, constraints and exclusions are unambiguous. It does not select the implementation or create tickets.
 
 ### Plan
@@ -131,7 +131,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** An approved, buildable technical solution for one feature specification.
 - **Inputs:** The approved feature specification, `ARCHITECTURE.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
 - **Output:** `docs/features/<feature-slug>/solution-design.md` and any warranted ADRs.
-- **Composition:** Requires `modular-design`; conditionally invokes `elicit-with-context`, `research`, `prototype`, `maintain-ubiquitous-language` and `maintain-decision-records`.
+- **Composition:** Requires `modular-design`; conditionally invokes `elicit-with-context`, `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After affected boundaries, interfaces, data, integrations, security, migration, operational effects and verification seams are resolved. It does not decompose or implement the work.
 
 #### `create-tickets`
@@ -183,7 +183,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** One ticket or small agreed body of work exists as a minimal, verified local change.
 - **Inputs:** The stated ticket or confirmed work, linked product and technical authorities, repository guidance and current code.
 - **Output:** Working code, tests and other in-scope artefacts with reproducible verification and no unresolved required review finding.
-- **Composition:** Requires `verify-change` and independent `code-review`; conditionally invokes `elicit-with-context`, `research`, `prototype`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
+- **Composition:** Requires `verify-change` and independent `code-review`; conditionally invokes `elicit-with-context`, `research`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After the agreed behaviour is implemented and verified. It does not commit or publish the change.
 
 #### `commit`
@@ -217,7 +217,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A defect has an evidence-backed root cause and, when authorised by the requested outcome, a minimal verified repair.
 - **Inputs:** Expected and observed behaviour, the failing signal, relevant environment evidence and current implementation authorities.
 - **Output:** A reproducible diagnosis and, for repair work, regression protection plus a reviewed local change.
-- **Composition:** Repair requires `verify-change` and `code-review`; conditionally invokes `research`, `prototype`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
+- **Composition:** Repair requires `verify-change` and `code-review`; conditionally invokes `research`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** At the diagnosis boundary when requested, otherwise after the original failure and regression evidence verify the repair. It does not commit or publish the change.
 
 #### `respond-to-incident`
@@ -253,7 +253,6 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 | `elicit` | Resolves dependency-ordered material information and user decisions one question at a time until shared understanding is confirmed. |
 | `elicit-with-context` | Routes software-project elicitation through `elicit` while maintaining confirmed project language and qualifying ADRs. |
 | `research` | Investigates a material subject using high-trust evidence and creates a trusted cited report for the consumer to synthesize. |
-| `prototype` | Creates a deliberately disposable experiment or mock-up to resolve one bounded uncertainty and preserves its conclusion. |
 | `maintain-ubiquitous-language` | Keeps `CONTEXT.md` aligned inline with confirmed project-specific language. |
 | `maintain-decision-records` | Preserves rare accepted technical and architectural decisions whose rationale warrants a focused ADR. |
 | `modular-design` | Applies evidence-backed modularity, information hiding, cohesion, coupling and maintainability principles to a scoped design decision. |
@@ -385,7 +384,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 ## Implementation order
 
 1. Complete the quality-harness research and use its conclusions to fix the engineering-quality utility contracts.
-2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `prototype`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
+2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
 3. Build the progressive foundation path: `define-product`, `define-architecture`, `specify-feature`, `design-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build recurring team workflows: `triage-work`, `refine-backlog`, `plan-iteration` and `review-architecture`.
@@ -397,7 +396,6 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Complete quality-harness research
 - [x] Update `elicit` skill
 - [x] Update `research` skill
-- [-] Create `prototype` skill
 - [x] Create `maintain-ubiquitous-language` skill
 - [x] Create `maintain-decision-records` skill
 - [-] Update `modular-design` skill

@@ -147,7 +147,6 @@ Utilities are independently invokable and are also composed by lifecycle skills 
 | `$elicit` | Resolve material user-held information and decisions one question at a time |
 | `$elicit-with-context` | Resolve software-project questions while maintaining shared project language |
 | `$research` | Investigate a material subject with high-trust evidence and persist a trusted cited report |
-| `$prototype` | Create a disposable visual experiment that resolves one bounded uncertainty |
 | `$maintain-ubiquitous-language` | Keep confirmed project-specific language current in `CONTEXT.md` |
 | `$maintain-decision-records` | Preserve rare accepted decisions whose rationale warrants an ADR |
 | `$modular-design` | Assess boundaries, ownership, contracts, dependencies, and change propagation |
