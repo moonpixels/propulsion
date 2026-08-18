@@ -145,14 +145,18 @@ Utilities are independently invokable and are also composed by lifecycle skills 
 | Utility | Use it to… |
 | --- | --- |
 | `$elicit` | Resolve material user-held information and decisions one question at a time |
+| `$elicit-with-context` | Resolve software-project questions while maintaining shared project language |
 | `$research` | Investigate a material subject with high-trust evidence and persist a trusted cited report |
 | `$prototype` | Create a disposable visual experiment that resolves one bounded uncertainty |
-| `$maintain-context` | Keep confirmed ubiquitous language and rare qualifying decisions current |
+| `$maintain-ubiquitous-language` | Keep confirmed project-specific language current in `CONTEXT.md` |
+| `$maintain-decision-records` | Preserve rare accepted decisions whose rationale warrants an ADR |
 | `$modular-design` | Assess boundaries, ownership, contracts, dependencies, and change propagation |
 | `$tdd` | Implement observable behaviour through red-green-refactor when its prerequisites hold |
 | `$verify-change` | Run applicable project and risk-triggered quality harnesses against a fixed change |
 | `$code-review` | Independently inspect a fixed change for behaviour, regressions, minimality, conventions, and maintainability |
 | `$maintain-agents` | Keep confirmed repository-wide agent guidance lean and current |
+
+Software-project skills route questions through `$elicit-with-context`. Base `$elicit` remains available for non-software work and as the router's questioning component.
 
 `$write-skill` develops and evaluates Agent Skills themselves; it is not part of the software-delivery lifecycle.
 

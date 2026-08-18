@@ -1,6 +1,6 @@
 # Discovery Techniques
 
-Load only the section needed by the active discovery branch. `$elicit` owns material questioning and final synthesis confirmation; `$maintain-context` owns glossary persistence; `$research` owns durable external evidence; `$prototype` owns a bounded disposable visual experiment. `define-product` retains the product outcome and stopping boundary.
+Load only the section needed by the active discovery branch. `$elicit-with-context` coordinates material questioning, final synthesis confirmation, and glossary maintenance; its composed skills retain their own results. `$research` owns durable external evidence; `$prototype` owns a bounded disposable visual experiment. `define-product` retains the product outcome and stopping boundary.
 
 ## Establish an existing product
 

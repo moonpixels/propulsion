@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Maintain Ubiquitous Language'
+    short_description: 'Maintain shared project terminology'
+policy:
+    allow_implicit_invocation: false

@@ -66,9 +66,9 @@ Every skill:
 | `CONTEXT.md` | Canonical project terms and their concise project-specific meanings. |
 | `ARCHITECTURE.md` | Enduring architecture drivers, system context, responsibilities, technology strategy, data ownership, integrations and cross-cutting technical constraints. |
 
-`CONTEXT.md` remains live throughout the lifecycle. Any skill that establishes or changes consequential domain language invokes `maintain-context` inline.
+`CONTEXT.md` remains live throughout the lifecycle. Any skill that establishes or changes consequential domain language invokes `maintain-ubiquitous-language` inline.
 
-Architecture documentation records boundaries, constraints and rationale that cannot be inferred reliably. It does not mirror classes, files, framework wiring, executable configuration or other implementation detail. Focused ADRs are created only when a consequential or surprising decision needs durable rationale beyond `ARCHITECTURE.md`.
+Architecture documentation records boundaries, constraints and rationale that cannot be inferred reliably. It does not mirror classes, files, framework wiring, executable configuration or other implementation detail. `maintain-decision-records` creates focused ADRs only when a consequential or surprising decision needs durable rationale beyond `ARCHITECTURE.md`.
 
 ### Feature records
 
@@ -103,7 +103,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A user-confirmed product foundation broad enough to guide later feature definition without becoming a roadmap or delivery plan.
 - **Inputs:** The product idea, existing `PRODUCT.md` and `CONTEXT.md`, representative repository evidence and applicable external evidence.
 - **Output:** `PRODUCT.md` and the corresponding ubiquitous language in `CONTEXT.md`.
-- **Composition:** Requires `elicit` and `maintain-context`; conditionally invokes `research` and `prototype`.
+- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research` and `prototype`.
 - **Stops:** After product purpose, users, needs, value, outcomes, boundaries, journeys and high-level capabilities are documented. It does not define technical architecture, detailed features, priorities or tickets.
 
 #### `define-architecture`
@@ -111,7 +111,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A user-confirmed technical foundation capable of constraining later feature solutions without duplicating the implementation.
 - **Inputs:** `PRODUCT.md`, `CONTEXT.md`, existing system evidence and material technical, organisational or regulatory constraints.
 - **Output:** `ARCHITECTURE.md` and any warranted focused ADRs.
-- **Composition:** Requires `elicit` and `modular-design`; conditionally invokes `research`, `prototype` and `maintain-context`.
+- **Composition:** Requires `elicit-with-context` and `modular-design`; conditionally invokes `research`, `prototype`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After the system context, principal boundaries, ownership, technology strategy, data, integrations and cross-cutting quality approach are established. It does not scaffold the system or create implementation work.
 
 ### Define
@@ -121,7 +121,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** One approved feature or enhancement expressed as externally observable intent.
 - **Inputs:** A capability from `PRODUCT.md`, an already-elicited conversation or another agreed feature idea, plus `CONTEXT.md`, relevant current behaviour and supporting evidence.
 - **Output:** `docs/features/<feature-slug>/specification.md`, or the project's equivalent.
-- **Composition:** Requires `elicit` and `maintain-context`; conditionally invokes `research` and `prototype`.
+- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research` and `prototype`.
 - **Stops:** After the problem, actors, behaviour, rules, states, scenarios, acceptance conditions, constraints and exclusions are unambiguous. It does not select the implementation or create tickets.
 
 ### Plan
@@ -131,7 +131,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** An approved, buildable technical solution for one feature specification.
 - **Inputs:** The approved feature specification, `ARCHITECTURE.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
 - **Output:** `docs/features/<feature-slug>/solution-design.md` and any warranted ADRs.
-- **Composition:** Requires `modular-design`; conditionally invokes `elicit`, `research`, `prototype` and `maintain-context`.
+- **Composition:** Requires `modular-design`; conditionally invokes `elicit-with-context`, `research`, `prototype`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After affected boundaries, interfaces, data, integrations, security, migration, operational effects and verification seams are resolved. It does not decompose or implement the work.
 
 #### `create-tickets`
@@ -139,7 +139,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** An approved feature solution or retirement plan is represented by implementation-ready, dependency-aware work in the project's task-management tool.
 - **Inputs:** Either the approved feature specification and solution design or an approved retirement plan, plus relevant project guidance and current tracker state.
 - **Output:** Native tracker items linked to their applicable authoritative documents, each describing one coherent vertical outcome, acceptance evidence and genuine blocking relationships.
-- **Composition:** Conditionally invokes `elicit` for unresolved decomposition and `maintain-agents` when the task-management preference is missing.
+- **Composition:** Conditionally invokes `elicit-with-context` for unresolved decomposition and `maintain-agents` when the task-management preference is missing.
 - **Stops:** After the created items and relationships are read back and verified. It does not select an iteration or begin implementation.
 
 ### Refine
@@ -149,7 +149,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** Each incoming request in scope is closed with an evidence-backed reason or routed to the appropriate lifecycle area.
 - **Inputs:** The selected incoming items, their source evidence, current product and implementation authorities and the configured task-management tool.
 - **Output:** Verified native dispositions, classifications, links and next routes.
-- **Composition:** Conditionally invokes `elicit`, `research`, `maintain-context` and `maintain-agents`.
+- **Composition:** Conditionally invokes `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records` and `maintain-agents`.
 - **Stops:** After disposition. It does not perform feature specification, debugging, implementation, retirement planning or incident response.
 
 #### `refine-backlog`
@@ -157,7 +157,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** The selected backlog is current, prioritised and honest about scope, readiness, dependencies and blockers.
 - **Inputs:** A bounded backlog view, its linked authorities, current project direction and native tracker relationships.
 - **Output:** Verified updates, splits, closures, dependencies, priorities and readiness represented in the task-management tool.
-- **Composition:** Conditionally invokes `elicit` for unresolved readiness, scope or priority decisions and `maintain-agents` when the task-management preference is missing.
+- **Composition:** Conditionally invokes `elicit-with-context` for unresolved readiness, scope or priority decisions and `maintain-agents` when the task-management preference is missing.
 - **Stops:** After backlog health and ordering are current. It does not commit the project to a sprint, cycle, milestone or implementation sequence.
 
 #### `plan-iteration`
@@ -165,7 +165,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A feasible body of ready, unblocked work is selected for the project's next delivery period.
 - **Inputs:** The refined backlog, current priorities, dependencies, available capacity and the project's native planning mechanism.
 - **Output:** A verified sprint, cycle, milestone or ordered next-work queue in the task-management tool.
-- **Composition:** Conditionally invokes `elicit` for selection trade-offs and `maintain-agents` when the task-management preference is missing.
+- **Composition:** Conditionally invokes `elicit-with-context` for selection trade-offs and `maintain-agents` when the task-management preference is missing.
 - **Stops:** After the selected body of work is recorded. It does not implement any item.
 
 #### `review-architecture`
@@ -183,7 +183,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** One ticket or small agreed body of work exists as a minimal, verified local change.
 - **Inputs:** The stated ticket or confirmed work, linked product and technical authorities, repository guidance and current code.
 - **Output:** Working code, tests and other in-scope artefacts with reproducible verification and no unresolved required review finding.
-- **Composition:** Requires `verify-change` and independent `code-review`; conditionally invokes `elicit`, `research`, `prototype`, `modular-design`, `tdd` and `maintain-context`.
+- **Composition:** Requires `verify-change` and independent `code-review`; conditionally invokes `elicit-with-context`, `research`, `prototype`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After the agreed behaviour is implemented and verified. It does not commit or publish the change.
 
 #### `commit`
@@ -217,7 +217,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A defect has an evidence-backed root cause and, when authorised by the requested outcome, a minimal verified repair.
 - **Inputs:** Expected and observed behaviour, the failing signal, relevant environment evidence and current implementation authorities.
 - **Output:** A reproducible diagnosis and, for repair work, regression protection plus a reviewed local change.
-- **Composition:** Repair requires `verify-change` and `code-review`; conditionally invokes `research`, `prototype`, `modular-design`, `tdd` and `maintain-context`.
+- **Composition:** Repair requires `verify-change` and `code-review`; conditionally invokes `research`, `prototype`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** At the diagnosis boundary when requested, otherwise after the original failure and regression evidence verify the repair. It does not commit or publish the change.
 
 #### `respond-to-incident`
@@ -233,7 +233,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** A stabilised incident produces a blameless, evidence-based explanation and owned follow-up work.
 - **Inputs:** The incident timeline, technical and operational evidence, mitigations, communications and current product and architecture context.
 - **Output:** A durable incident review and verified follow-up items routed into the normal lifecycle.
-- **Composition:** Conditionally invokes `research`, `maintain-context` and `maintain-agents` when tracker-backed follow-up work lacks a configured task-management preference.
+- **Composition:** Conditionally invokes `research`, `maintain-ubiquitous-language`, `maintain-decision-records` and `maintain-agents` when tracker-backed follow-up work lacks a configured task-management preference.
 - **Stops:** After learning and follow-up ownership are recorded. It does not implement the resulting changes.
 
 ### Retire
@@ -243,7 +243,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Outcome:** An obsolete capability has an approved plan for safe retirement.
 - **Inputs:** The capability, product intent, users, dependencies, interfaces, data, integrations, support obligations and current implementation evidence.
 - **Output:** A retirement plan covering deprecation, migration, communication, removal, archival, access, recovery and observable completion conditions.
-- **Composition:** Requires `elicit`; conditionally invokes `research` and `maintain-context`.
+- **Composition:** Requires `elicit-with-context`; conditionally invokes `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After the retirement outcome and obligations are approved. Execution returns to `create-tickets`, `implement`, `commit` and `pull-request` in later sessions.
 
 ## Reusable utility catalogue
@@ -251,14 +251,18 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 | Utility | Independently useful outcome |
 | --- | --- |
 | `elicit` | Resolves dependency-ordered material information and user decisions one question at a time until shared understanding is confirmed. |
+| `elicit-with-context` | Routes software-project elicitation through `elicit` while maintaining confirmed project language and qualifying ADRs. |
 | `research` | Investigates a material subject using high-trust evidence and creates a trusted cited report for the consumer to synthesize. |
 | `prototype` | Creates a deliberately disposable experiment or mock-up to resolve one bounded uncertainty and preserves its conclusion. |
-| `maintain-context` | Keeps `CONTEXT.md` aligned inline with confirmed ubiquitous language. |
+| `maintain-ubiquitous-language` | Keeps `CONTEXT.md` aligned inline with confirmed project-specific language. |
+| `maintain-decision-records` | Preserves rare accepted technical and architectural decisions whose rationale warrants a focused ADR. |
 | `modular-design` | Applies evidence-backed modularity, information hiding, cohesion, coupling and maintainability principles to a scoped design decision. |
 | `tdd` | Drives red-green-refactor through a stable observable boundary and runnable test suite. |
 | `verify-change` | Selects and executes the applicable project and risk-triggered quality harnesses and reports reproducible evidence and limitations. |
 | `code-review` | Independently assesses a scoped change for required behaviour, regressions, minimality, conventions, maintainability, code smells and architecture. |
 | `maintain-agents` | Records confirmed, non-inferable repository-wide agent guidance while keeping permanent context lean. |
+
+Software-project skills route user-held questions through `elicit-with-context`. Base `elicit` remains available for non-software work and as that router's questioning component.
 
 `write-skill` remains a separate suite-development tool. It is not presented as part of the software-delivery lifecycle.
 
@@ -330,7 +334,7 @@ specify-feature
 ### Deliver a small understood change
 
 ```text
-elicit when needed
+elicit-with-context when needed
     → implement
     → commit
     → pull-request
@@ -381,12 +385,12 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 ## Implementation order
 
 1. Complete the quality-harness research and use its conclusions to fix the engineering-quality utility contracts.
-2. Align the shared utilities: `elicit`, `research`, `prototype`, `maintain-context`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
+2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `prototype`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
 3. Build the progressive foundation path: `define-product`, `define-architecture`, `specify-feature`, `design-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build recurring team workflows: `triage-work`, `refine-backlog`, `plan-iteration` and `review-architecture`.
 6. Build the exceptional paths: `debug`, `respond-to-incident`, `review-incident` and `plan-retirement`.
-7. Remove `elicit-with-context`, update the README around the lifecycle areas and independently invokable utilities, and run the suite-wide acceptance pass.
+7. Align software-project elicitation through `elicit-with-context`, update the README around the lifecycle areas and independently invokable utilities, and run the suite-wide acceptance pass.
 
 ### Implementation checklist
 
@@ -394,7 +398,8 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `elicit` skill
 - [x] Update `research` skill
 - [-] Create `prototype` skill
-- [-] Update `maintain-context` skill
+- [x] Create `maintain-ubiquitous-language` skill
+- [x] Create `maintain-decision-records` skill
 - [-] Update `modular-design` skill
 - [-] Update `tdd` skill
 - [-] Create `verify-change` skill
@@ -417,7 +422,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [-] Create `respond-to-incident` skill
 - [-] Create `review-incident` skill
 - [-] Create `plan-retirement` skill
-- [-] Delete `elicit-with-context` skill
+- [x] Restore `elicit-with-context` skill
 - [-] Update the README
 - [-] Run the suite-wide acceptance pass
 

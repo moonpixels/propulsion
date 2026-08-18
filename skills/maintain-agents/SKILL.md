@@ -14,7 +14,7 @@ disable-model-invocation: false
 
 ### 1. Establish the instruction surface
 
-Locate the repository root. Read its `AGENTS.md` when present, the applicable instruction chain, and the existing or proposed guidance confirmed by the user or caller. Treat a caller handoff carrying an agreed preference as authority; do not ask for duplicate permission to record it. Inspect repository evidence only far enough to recover intent, scope, inferability, conflicts, and referenced commands. Invoke `$elicit` only when material authority, scope, or conflict remains unresolved. The authorised candidates and active constraints are explicit.
+Locate the repository root. Read its `AGENTS.md` when present, the applicable instruction chain, and the existing or proposed guidance confirmed by the user or caller. Treat a caller handoff carrying an agreed preference as authority; do not ask for duplicate permission to record it. Inspect repository evidence only far enough to recover intent, scope, inferability, conflicts, and referenced commands. Invoke `$elicit-with-context` only when material authority, scope, or conflict remains unresolved. The authorised candidates and active constraints are explicit.
 
 ### 2. Allocate the guidance
 
