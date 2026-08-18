@@ -402,7 +402,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [-] Update `tdd` skill
 - [-] Create `verify-change` skill
 - [-] Update `code-review` skill
-- [-] Update `maintain-agents` skill
+- [x] Update `maintain-agents` skill
 - [-] Update `define-product` skill
 - [-] Create `define-architecture` skill
 - [-] Create `specify-feature` skill

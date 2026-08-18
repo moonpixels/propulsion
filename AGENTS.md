@@ -1,4 +1,4 @@
-- When the user corrects you with a reusable, global rule, ask if they want it added to `AGENTS.md`.
+- When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
 - When authoring or reviewing a skill, justify its behaviour using only context available to the agent at runtime.
 - When eliciting within a software project, invoke `$elicit-with-context` instead of `$elicit`; use `$elicit` directly only for non-software work or as part of `$elicit-with-context`.
 - Assume the execution harness supports fresh agents; do not add fallback handling for their unavailability.
