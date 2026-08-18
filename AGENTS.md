@@ -1,3 +1,4 @@
 - When the user corrects you with a reusable, global rule, ask if they want it added to `AGENTS.md`.
 - When authoring or reviewing a skill, justify its behaviour using only context available to the agent at runtime.
+- Assume the execution harness supports fresh agents; do not add fallback handling for their unavailability.
 - After implementing changes run `bun run checks` before handoff.
