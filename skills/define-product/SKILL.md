@@ -1,6 +1,6 @@
 ---
 name: define-product
-description: Establishes a durable whole-product foundation for later feature definition. Use when externalising a new product idea or redefining an existing product.
+description: Defines a breadth-first product and system requirements foundation. Use when externalising a new product idea or deliberately revising PRODUCT.md.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,40 +8,56 @@ disable-model-invocation: true
 
 # Define Product
 
-Establishes one user-confirmed product foundation using an adapted **Product Vision Board** for strategic completeness and **User Story Mapping** for a mile-wide, inch-deep view of the whole product. The result guides later feature definition without becoming a feature specification, roadmap, or technical design.
+Turns a product idea or existing system into one confirmed `PRODUCT.md` that supplies product intent and system-wide requirements to later feature specification and solution design.
 
 ## Process
 
-### 1. Inspect the product evidence
+### 1. Establish the evidence boundary
 
-Inspect the request, root `PRODUCT.md` and `CONTEXT.md`, repository guidance, applicable research and decisions, and, for an existing system, the smallest representative public contracts, entry points, data boundaries, code, tests, and configuration. Treat the repository as evidence of current behaviour and the user as authority on intended product direction. Surface contradictions, distinguish observed behaviour from stated direction, and treat missing evidence as unknown rather than absence. Do not turn the inspection into an implementation inventory. When an existing product is difficult to establish, load [Discovery Techniques](references/DISCOVERY.md). The known product evidence, its provenance, and the unresolved product decisions are explicit.
+Locate the project root; read its repository guidance and check root `PRODUCT.md`, `CONTEXT.md`, applicable ADRs and research. For an existing system, also inspect the smallest representative public contracts, entry points, data, tests, configuration, and operational evidence needed to understand the product. Record absent foundation files as absent evidence rather than skipping the check.
 
-### 2. Establish the product frame
+Treat the user as authority for intended direction, repository and runtime evidence as evidence of current behaviour, and cited external sources as authority only for the claims they establish.
 
-Invoke `$elicit-with-context` for material user-held knowledge and decisions throughout steps 2–5. Reuse the confirmed synthesis from a prior free-form `$elicit-with-context` session as resolved branches and ask only about gaps exposed by the product evidence. Establish concise executive orientation: purpose and vision; intended users, actors, and their needs and desired outcomes; value and meaningful alternatives or market position when applicable; product and business outcomes with observable success signals; business model or pricing only when material; and durable boundaries and non-goals. Derive discoverable facts before asking. The concise product frame is complete enough to orient the whole-product pass.
+Separate confirmed target requirements, observed current behaviour, assumptions, and unknowns before questioning. Preserve unrelated confirmed content and local conventions when revising the foundation. When the current product is difficult to reconstruct, load [Discovery Techniques](references/DISCOVERY.md). The evidence, provenance, contradictions, and unresolved decisions are explicit.
 
-Invoke `$maintain-ubiquitous-language` inline whenever consequential project language is confirmed, changed, misused, or contradicted. It owns only the root `CONTEXT.md` glossary update; this skill retains the product outcome and stopping boundary.
+### 2. Elicit the breadth-first foundation
 
-Invoke `$research` when a material external subject could change the product decision and needs durable evidence; read and link its report rather than copying its findings wholesale. Use an incidental lookup when the evidence need not persist. Research returns evidence to this product session and owns neither `PRODUCT.md` nor continuation.
+Invoke `$elicit-with-context` for material user-held information and decisions throughout steps 2–4. Reuse compatible confirmed answers and derive discoverable facts before questioning. Invoke `$research` when a material external claim could change a requirement and its evidence must persist; link the resulting report rather than copying it.
 
-Keep `PRODUCT.md` unchanged until the complete whole-product synthesis is explicitly confirmed. Before then, supporting utilities may perform only the writes authorised by their own contracts.
+Establish the foundation from problem to design inputs:
 
-### 3. Map the whole product
+1. authority and executive orientation;
+2. purpose, problem, vision, users, actors, stakeholders, and needs;
+3. value, product and business goals, observable success measures, scope, boundaries, and non-goals;
+4. current situation and confirmed target direction when an existing system makes the distinction material;
+5. end-to-end journeys from entry through value, recovery, support, and completion or exit;
+6. a whole-product functional capability catalogue; and
+7. system-wide quality, context, interface, data, integration, security, privacy, safety, compliance, technology, platform, operational, and lifecycle requirements.
 
-Map the product breadth-first before exploring any one capability. Walk each intended user from entry through recurring value, recovery, and exit or completion where applicable; use those journeys to expose the natural user-facing product areas and their high-level capabilities. Add commercial, account, trust, support, and genuinely cross-cutting areas only where the product needs them. Use the big-picture guidance in [Discovery Techniques](references/DISCOVERY.md) when the product surface is difficult to expose. The whole product is visible at low resolution without stories, screens, releases, or priorities.
+Map the whole product before deepening any capability or technical concern. Omit a foundation concern only after establishing that it is immaterial. Record commercial or market detail only when it changes requirements. The product surface and every material system-wide design input are visible without becoming a feature specification or solution design.
 
-### 4. Clarify the capability catalogue
+### 3. Shape traceable requirements
 
-Clarify every mapped capability only to mini-brief depth: who benefits and the value they receive, the externally observable high-level behaviour, and meaningful boundaries that prevent a later feature session from assuming adjacent behaviour. For an existing product, distinguish `Current` observed behaviour, `Confirmed direction`, and uncommitted `Idea` where the distinction prevents conflation; these describe product truth, not delivery progress or priority. Do not manufacture current claims for a blank product. Leave detailed rules, states, scenarios, acceptance conditions, technical solution, architecture, sequencing, releases, estimates, and tickets to their owning later sessions. Each capability is independently understandable without becoming a feature specification.
+Group capabilities under natural product areas. Give each a stable `CAP-*` identifier and a mini-brief containing its actors and value, high-level externally observable responsibility, meaningful inclusions and exclusions, and source need, goal, journey, obligation, or evidence. Do not add routine delivery or current-state metadata. Leave user stories, detailed functional and non-functional feature requirements, business rules, states, scenarios, examples, and acceptance criteria to later feature specifications.
 
-### 5. Confirm the whole-product synthesis
+Give every material technical requirement a stable semantic identifier, such as `QUAL-*`, `INT-*`, `DATA-*`, `SEC-*`, `TECH-*`, or `OPS-*`. State the requirement, rationale and source, affected scope, and observable measure or later-verifiable response when applicable. Distinguish hard constraints from preferences. Record mandated external contracts, platforms, runtimes, database families or drivers, hosting limits, and standards as constraints; do not select internal boundaries, components, schemas, endpoints, payloads, algorithms, frameworks, deployment topology, controls, or other implementation mechanisms merely to fill the document. Later solution designs own the feature-specific technical how, and ADRs own qualifying architecture decisions and rationale.
 
-Walk every journey and capability across the relevant user perspectives. Resolve material omissions, duplicates, false groupings, broken transitions, contradictions, and capability descriptions that conceal more than one product behaviour. Have `$elicit-with-context` present one complete synthesis of the product frame, journeys, and capability catalogue and obtain the user's explicit confirmation; if the user rejects or corrects it, reopen the affected product work and reconfirm the complete revised synthesis. The confirmed foundation is coherent and ready to persist.
+Record assumptions, dependencies, constraints, risks, and open questions distinctly. A non-blocking unresolved item states its evidence, consequence if wrong, affected requirements, owner, and resolution trigger. Do not confirm the foundation while an unresolved item makes the product boundary unsafe or prevents responsible feature specification.
 
-### 6. Write the product definition
+### 4. Confirm readiness
 
-After explicit confirmation, create or update the single root `PRODUCT.md` using the [Product Foundation Template](assets/product-template.md) where the project has no established convention; the invocation already supplies authority for this agreed write. Preserve unrelated confirmed content and local structure when it differs only stylistically. Record the concise frame and explicit key journeys, then use natural user-facing areas as `##` headings and capabilities as `###` headings without a redundant umbrella. Preserve confirmed status distinctions only where material. Link external claims to durable research and keep canonical term meanings in `CONTEXT.md`. `PRODUCT.md` is the sole product authority, not a backlog, status tracker, assumptions ledger, or implementation mirror.
+Walk every intended user and lifecycle stakeholder across the journeys, capabilities, and applicable technical requirements. Resolve material omissions, duplicates, broken transitions, contradictory ownership, untraceable requirements, hidden feature depth, and requirements that prescribe unconfirmed design. Check that every normative requirement is necessary, feasible enough for this stage, unambiguous at its level, source-traceable, and capable of later verification.
 
-### 7. Verify the definition
+Have `$elicit-with-context` present one complete synthesis covering the entire proposed foundation, non-blocking unresolved items, and exact document effect. Obtain explicit confirmation of the whole synthesis. If the user rejects or corrects it, leave `PRODUCT.md` unchanged, reopen every affected branch, repeat the relevant coverage walk, and confirm the complete revision. The confirmed synthesis authorises its agreed `PRODUCT.md` write without another permission prompt.
 
-Verify current claims against inspected evidence, direction and ideas against user confirmation, and material external claims against linked research. Check coverage from frame to journeys to every capability mini-brief, coherence across user perspectives, consistency with `CONTEXT.md`, preservation of unrelated confirmed content, and absence of architecture, detailed feature behaviour, priorities, roadmap, releases, tickets, or implementation detail. Report changed files, evidence, and limitations. Stop after `PRODUCT.md` and applicable ubiquitous language are updated and verified; later architecture and feature definition remain separate sessions.
+### 5. Write the foundation
+
+Create or update the single root `PRODUCT.md` using the [Product and System Requirements Template](assets/product-template.md). Keep one authority even when some sections are omitted as immaterial. Preserve unrelated confirmed content and stylistic local structure. Use stable identifiers and direct links so later feature specifications and solution designs can trace to the foundation without copying it. Assign identifiers to capabilities, material technical requirements, product-level acceptance, and unresolved records that need downstream reference; do not number every narrative section, goal, measure, or journey by default.
+
+State each fact and requirement once, then link its identifier. Keep journeys, readiness, acceptance, and evidence from restating the catalogue; add no traceability matrix when inline source traces already establish coverage.
+
+### 6. Verify and stop
+
+Verify intended direction against the confirmed synthesis, current claims against inspected evidence, terminology against `CONTEXT.md`, and material external claims against cited research. Check authority, scope, journeys, capability and technical-requirement coverage, identifier uniqueness, source traceability, internal consistency, explicit non-blocking uncertainty, product-level acceptance, and foundation readiness. Confirm the absence of delivery status, priorities, roadmap, releases, tickets, detailed feature acceptance, selected feature implementation, internal architecture inventory, and unsupported precision.
+
+Report changed files, supporting evidence, verification, non-blocking unresolved items, and limitations. Stop after `PRODUCT.md` and the context changes owned by invoked skills are verified. Do not create feature specifications, solution designs, ADR decisions, work items, scaffolding, implementation, releases, or deployments.

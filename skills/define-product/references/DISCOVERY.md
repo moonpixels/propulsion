@@ -1,53 +1,19 @@
 # Discovery Techniques
 
-Load only the section needed by the active discovery branch. `$elicit-with-context` coordinates material questioning, final synthesis confirmation, and glossary maintenance; its composed skills retain their own results. `$research` owns durable external evidence. `define-product` retains the product outcome and stopping boundary.
+Load only the branch needed when direct inspection and ordinary elicitation do not expose the foundation. `$elicit-with-context` owns shared-understanding questioning; `$research` owns durable external evidence; `define-product` retains `PRODUCT.md` and the stopping boundary.
 
-## Establish an existing product
+## Reconstruct an existing product
 
-Use **repository archaeology** to recover available behaviour before asking the user. Start with root documentation and manifests, then sample user entry points, public contracts, data boundaries, tests, and operational configuration. Follow evidence until the product areas and feature candidates stabilise. Treat absence as unknown rather than proof, distinguish shipped behaviour from abandoned or planned code, and ask the user to resolve contradictions with stated intent.
+Inspect the smallest end-to-end slices that reveal actors, product boundaries, current behaviour, data ownership, external systems, and consequential constraints. Prefer public documentation and contracts, entry points, representative tests, schemas, configuration, and runtime evidence over an implementation inventory. Sample one normal path, one refusal or failure, one recovery path, and one operational or support path where applicable.
 
-## Complete the product frame
+Distinguish shipped behaviour from planned or abandoned code. Treat names, code structure, framework choices, and deployment configuration as evidence of the present system, not durable target requirements. Reconcile contradictory evidence with the user instead of selecting a source silently. Use legacy product or architecture documents as evidence only until their statements are confirmed into the current authority.
 
-Use the **Product Vision Board** as a completeness check for the concise opening:
+## Expose the whole product
 
-1. What positive change and enduring purpose define the vision?
-2. Which users, customers, and influential actors matter, and what outcomes do they need?
-3. Why would they choose this product over meaningful alternatives, manual work, or doing nothing?
-4. What market position or differentiation matters, when applicable?
-5. Which product or business outcomes and observable success signals matter, and are business model or pricing decisions material now?
-6. Which boundaries and non-goals keep the product coherent?
+Walk each intended user from entry through recurring value, consequential interaction, failure or refusal, recovery or support, and completion or exit. Change perspective to customers, operators, administrators, support, external-system owners, affected parties, and regulators when material. Derive natural product areas and capability mini-briefs from those journeys, then check commercial, account, trust, data, integration, operational, and lifecycle surfaces that the main journey may hide.
 
-Keep this frame proportionate to its supporting role. Move into whole-product capability discovery once these dimensions are clear.
+Use meaningful alternatives, manual work, and doing nothing to clarify value and boundaries. Invoke `$research` only when external position, regulation, standards, providers, or user evidence could materially change a requirement and the evidence must survive the session.
 
-## Map the big picture
+## Expose system-wide requirements
 
-Use the **mile-wide, inch-deep** pass before local detail:
-
-1. Name the product's main users and their entry points.
-2. Narrate how each user moves from first contact through recurring value and eventual exit or completion.
-3. Include recurring value, recovery, and exit or completion where they apply.
-4. Record the user-facing product areas along those journeys.
-5. Beneath each area, inventory capabilities at one-line resolution.
-6. For an existing product, distinguish observed current behaviour, confirmed direction, and uncommitted ideas where material.
-7. Add commercial, account, trust, support, and other cross-cutting capabilities that the main journeys did not expose.
-
-This pass creates a capability surface, not cards, stories, priorities, screens, releases, or architecture.
-
-## Clarify a capability
-
-Resolve only the information required by the mini-brief:
-
-- **User value**: who benefits and what becomes possible or easier?
-- **High-level behaviour**: what does the product do from the user's perspective?
-- **Meaningful boundaries**: what nearby behaviour could a later feature session reasonably but incorrectly assume belongs to it?
-- **Status when material**: for an existing product, is it observed `Current` behaviour, `Confirmed direction`, or an uncommitted `Idea`?
-
-Use a concise example only when high-level behaviour remains ambiguous. Stop when a later feature-definition session can understand the capability's product intent without receiving detailed rules, states, scenarios, acceptance conditions, implementation, or delivery design.
-
-## Walk the complete catalogue
-
-Read the mapped product back as one narrative. Change perspective across intended users and check entry, recurring-use, recovery, commercial, trust, support, and exit paths where applicable. Look for missing transitions, duplicated capabilities, false groupings, contradictions, and mini-briefs that hide more than one distinct product behaviour. Return each material finding to elicitation, then repeat the walk until it exposes nothing new.
-
-## Establish external position
-
-Compare the product with meaningful alternatives users employ today, including manual work and doing nothing. Invoke `$research` only when competitor capabilities, market conditions, pricing, standards, regulation, or user evidence could materially change a product decision and need a durable evidence record. Keep researched claims in the report and link that report from `PRODUCT.md` rather than copying its findings; use an incidental lookup when no durable evidence record is needed.
+For each journey and capability, ask what must remain true across likely implementations: operating conditions, measurable qualities, external ownership and exchanges, information duties, trust and harm boundaries, mandated technology, provider or organisational constraints, support and recovery, and eventual export, archival, or retirement. Record only material design inputs. Leave the selected internal structure and mechanisms to later solution design.

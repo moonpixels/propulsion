@@ -35,7 +35,7 @@ Repeat the link for each selected skill. Codex and OpenCode both discover skills
 
 | When you need to… | Start with… | Session outcome |
 | --- | --- | --- |
-| Establish a new product | `$define-product` | Durable product documentation and shared language |
+| Establish or revise a product | `$define-product` | Confirmed product and system requirements |
 | Define a substantial feature | `$specify-feature` | An approved, observable feature specification |
 | Make a small understood change | `$implement` | A minimal, reviewed, verified local change |
 | Route incoming requests | `$triage-work` | Verified dispositions and lifecycle routes |
@@ -50,10 +50,7 @@ The lifecycle areas are useful entry points, not mandatory phase gates.
 
 ### Establish
 
-- `$define-product` creates the durable product foundation in `PRODUCT.md` and establishes its ubiquitous language in `CONTEXT.md`.
-- `$define-architecture` creates the enduring technical foundation in `ARCHITECTURE.md` and records only the focused architectural decisions that need durable rationale.
-
-These are separate sessions. Product definition ends with product documentation; architecture begins later from that confirmed foundation.
+- `$define-product` turns a new or existing product into the durable breadth-first product and system requirements foundation in `PRODUCT.md`, while `elicit-with-context` maintains applicable project language and qualifying decision records through its own contract.
 
 ### Define
 
@@ -96,7 +93,6 @@ Establish a product:
 
 ```text
 define-product
-    → later define-architecture
 ```
 
 Deliver a substantial feature:

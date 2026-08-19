@@ -1,5 +1,0 @@
-interface:
-    display_name: 'Define Architecture'
-    short_description: 'Establish an enduring technical foundation'
-policy:
-    allow_implicit_invocation: false

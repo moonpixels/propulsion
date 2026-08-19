@@ -1,5 +1,5 @@
 interface:
     display_name: 'Define Product'
-    short_description: 'Establish a durable whole-product foundation'
+    short_description: 'Define product and system requirements'
 policy:
     allow_implicit_invocation: false

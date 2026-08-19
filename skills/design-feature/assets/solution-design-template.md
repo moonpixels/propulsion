@@ -4,7 +4,7 @@
 
 ## Summary and authorities
 
-<!-- Summarise the selected technical solution and link the approved specification, ARCHITECTURE.md, relevant CONTEXT.md terms and ADRs, inspected current-system evidence, and durable research. Do not restate the feature's what or why. -->
+<!-- Summarise the selected technical solution and link the approved specification, applicable PRODUCT.md system requirements, relevant CONTEXT.md terms and ADRs, inspected current-system evidence, and durable research. Do not restate the feature's what or why. -->
 
 ## Design drivers
 

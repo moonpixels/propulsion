@@ -21,7 +21,7 @@ Create an ADR only when the accepted technical or architectural decision passes 
 - changing it later has meaningful cost;
 - a future reader would find it surprising without context;
 - viable alternatives created a genuine trade-off; and
-- no existing durable authority already records the decision or is its better owner, including `PRODUCT.md`, `ARCHITECTURE.md`, a feature document, or a dedicated governance record.
+- no existing durable authority already records the decision or is its better owner, including `PRODUCT.md`, a feature document, or a dedicated governance record.
 
 Require the user's explicit agreement to preserve the rationale durably. Agreement recorded in the relevant conversation or caller handoff satisfies this gate without another prompt. When every other gate passes but agreement is absent, ask the user one direct question. A decision that misses a gate, lacks agreement, or is routine or discoverable produces no ADR.
 

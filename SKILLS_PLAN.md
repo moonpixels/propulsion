@@ -29,7 +29,7 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 
 | Area | Purpose |
 | --- | --- |
-| Establish | Create the durable product and technical foundations for a new or existing system. |
+| Establish | Create the durable product and system requirements foundation for a new or existing system. |
 | Define | Turn one product capability or enhancement into an approved statement of intended behaviour. |
 | Plan | Select a buildable solution and decompose it into implementation-ready work. |
 | Refine | Keep incoming and existing work current, prioritised, ready and feasible for the next delivery period. |
@@ -62,13 +62,12 @@ Every skill:
 
 | Authority | Owns |
 | --- | --- |
-| `PRODUCT.md` | Product purpose, users, needs, value, outcomes, boundaries, journeys and high-level capability catalogue. |
+| `PRODUCT.md` | Product purpose, users, needs, value, outcomes, boundaries, journeys, high-level capabilities and system-wide technical requirements. |
 | `CONTEXT.md` | Canonical project terms and their concise project-specific meanings. |
-| `ARCHITECTURE.md` | Enduring architecture drivers, system context, responsibilities, technology strategy, data ownership, integrations and cross-cutting technical constraints. |
 
 `CONTEXT.md` remains live throughout the lifecycle. Any skill that establishes or changes consequential domain language invokes `maintain-ubiquitous-language` inline.
 
-Architecture documentation records boundaries, constraints and rationale that cannot be inferred reliably. It does not mirror classes, files, framework wiring, executable configuration or other implementation detail. `maintain-decision-records` creates focused ADRs only when a consequential or surprising decision needs durable rationale beyond `ARCHITECTURE.md`.
+`PRODUCT.md` records requirements-first system constraints that later feature solutions must respect without selecting their internal implementation. `maintain-decision-records` creates focused ADRs only when a consequential or surprising technical or architectural decision needs durable rationale beyond the product foundation or feature records.
 
 ### Feature records
 
@@ -100,19 +99,11 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 
 #### `define-product`
 
-- **Outcome:** A user-confirmed product foundation broad enough to guide later feature definition without becoming a roadmap or delivery plan.
-- **Inputs:** The product idea, existing `PRODUCT.md` and `CONTEXT.md`, representative repository evidence and applicable external evidence.
+- **Outcome:** A user-confirmed product and system requirements foundation broad enough to guide later feature specification and solution design without becoming either.
+- **Inputs:** The product idea, existing `PRODUCT.md` and `CONTEXT.md`, applicable ADRs, representative repository evidence and applicable external evidence.
 - **Output:** `PRODUCT.md` and the corresponding ubiquitous language in `CONTEXT.md`.
-- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research`.
-- **Stops:** After product purpose, users, needs, value, outcomes, boundaries, journeys and high-level capabilities are documented. It does not define technical architecture, detailed features, priorities or tickets.
-
-#### `define-architecture`
-
-- **Outcome:** A user-confirmed technical foundation capable of constraining later feature solutions without duplicating the implementation.
-- **Inputs:** `PRODUCT.md`, `CONTEXT.md`, existing system evidence and material technical, organisational or regulatory constraints.
-- **Output:** `ARCHITECTURE.md` and any warranted focused ADRs.
-- **Composition:** Requires `elicit-with-context` and `modular-design`; conditionally invokes `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
-- **Stops:** After the system context, principal boundaries, ownership, technology strategy, data, integrations and cross-cutting quality approach are established. It does not scaffold the system or create implementation work.
+- **Composition:** Requires `elicit-with-context`; conditionally invokes `research`.
+- **Stops:** After purpose, users, needs, value, outcomes, boundaries, journeys, high-level capabilities and material quality, interface, data, integration, security, compliance, platform and operational requirements are documented. It does not define detailed feature behaviour, select feature-specific implementation or architecture, create priorities or create tickets.
 
 ### Define
 
@@ -129,7 +120,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 #### `design-feature`
 
 - **Outcome:** An approved, buildable technical solution for one feature specification.
-- **Inputs:** The approved feature specification, `ARCHITECTURE.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
+- **Inputs:** The approved feature specification, `PRODUCT.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
 - **Output:** `docs/features/<feature-slug>/solution-design.md` and any warranted ADRs.
 - **Composition:** Requires `modular-design`; conditionally invokes `elicit-with-context`, `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
 - **Stops:** After affected boundaries, interfaces, data, integrations, security, migration, operational effects and verification seams are resolved. It does not decompose or implement the work.
@@ -171,7 +162,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 #### `review-architecture`
 
 - **Outcome:** A bounded, evidence-backed assessment identifies a small number of high-value architecture or maintainability improvements.
-- **Inputs:** An explicitly scoped codebase area, `ARCHITECTURE.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
+- **Inputs:** An explicitly scoped codebase area, `PRODUCT.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
 - **Output:** An independently useful architecture review report with prioritised findings, evidence, benefits and trade-offs.
 - **Composition:** Requires `modular-design`; conditionally invokes `research`.
 - **Stops:** After reporting. It does not refactor the code or create speculative tickets automatically.
@@ -314,10 +305,9 @@ Review findings are corrected through the relevant implementation and verificati
 
 ```text
 define-product
-    → later define-architecture
 ```
 
-Product and architecture planning are separate sessions and stop after their respective documents.
+Product definition stops after the confirmed breadth-first product and system requirements foundation.
 
 ### Deliver a substantial feature
 
@@ -385,7 +375,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 
 1. Complete the quality-harness research and use its conclusions to fix the engineering-quality utility contracts.
 2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
-3. Build the progressive foundation path: `define-product`, `define-architecture`, `specify-feature`, `design-feature` and `create-tickets`.
+3. Build the progressive foundation path: `define-product`, `specify-feature`, `design-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build recurring team workflows: `triage-work`, `refine-backlog`, `plan-iteration` and `review-architecture`.
 6. Build the exceptional paths: `debug`, `respond-to-incident`, `review-incident` and `plan-retirement`.
@@ -403,8 +393,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [-] Create `verify-change` skill
 - [-] Update `code-review` skill
 - [x] Update `maintain-agents` skill
-- [-] Update `define-product` skill
-- [-] Create `define-architecture` skill
+- [x] Update `define-product` skill
 - [-] Create `specify-feature` skill
 - [-] Create `design-feature` skill
 - [-] Create `create-tickets` skill

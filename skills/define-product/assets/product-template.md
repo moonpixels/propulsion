@@ -1,45 +1,119 @@
 # {Product name}
 
-{Concise executive orientation stating who the product serves, the outcome it enables, and what distinguishes its approach. Include overall maturity only when it materially improves orientation.}
+> **Authority:** This document owns confirmed whole-product intent and system-wide requirements. Feature specifications and solution designs refine it without silently changing it.
 
-## Purpose and vision
+<!-- Git owns revision history. Do not add delivery or release status or a hand-maintained change log. -->
 
-{The product's purpose, enduring vision, and positive change, independent of a particular implementation.}
+## Executive summary
 
-## Intended users and needs
+{Orient readers with intended users, problem, product outcome, distinguishing approach, and consequential boundaries or constraints.}
 
-- **{User or customer}**: {Needs and desired outcomes.}
+## Purpose, problem, and vision
 
-## Value proposition and market position
+{Describe the problem, why it matters, the product's purpose, and the positive change sought without prescribing implementation.}
 
-{Why intended users would choose this product over meaningful alternatives, manual work, or doing nothing. Describe supported differentiation and link material external claims to the applicable research report.}
+## Users, actors, stakeholders, and needs
 
-## Outcomes and success signals
+- **{Role or group}:** {Context, needs, pain, and desired outcomes.}
 
-{Describe the product and business outcomes that justify investment and the observable signals of progress. Include the business model and pricing only when material.}
+## Value, goals, and success measures
 
-## Product boundaries and non-goals
+{Record goals with observable measures, baselines, direction or threshold, measurement source, and horizon where known. Include commercial or market position only when it changes requirements.}
 
-- {A durable boundary or non-goal and the focus it preserves.}
+## Scope, boundaries, and non-goals
 
-## Key user journeys
+### In scope
+
+- {Included outcome or responsibility.}
+
+### Non-goals
+
+- {Durable exclusion and the focus or ownership boundary it preserves.}
+
+## Current situation and target direction
+
+<!-- Use for an existing product when material. Cite observed evidence and state confirmed direction and gaps without migration or delivery status. Omit for a blank product. -->
+
+{Current evidence, target direction, and material gaps.}
+
+## Key journeys
 
 ### {Journey name}
 
-**Actors:** {Intended users or other consequential actors.}
+**Actors:** {Users, stakeholders, or external systems.}
 
-{Concise journey from entry through recurring value, recovery, and exit or completion where applicable. Reference the user-facing areas and capabilities involved without adding screen flows or acceptance criteria.}
+{Narrate entry, outcome, major stages, consequential interactions, recovery or support, and completion or exit. Reference capabilities without repeating their mini-briefs or adding feature scenarios.}
 
-<!-- Repeat the following H2 capability-area block for each natural user-facing area. Order areas by the product journeys. Do not add an umbrella Capabilities heading. -->
+## Functional capabilities
 
-## {Capability area}
+### {Natural product area}
 
-{Optional one-sentence orientation when the area's purpose is not clear from its name.}
+#### CAP-01 — {Capability name}
 
-### {Capability name}
+- **Actors and value:** {Beneficiaries, need, and enabled outcome.}
+- **High-level responsibility:** {One coherent statement of externally observable product behaviour.}
+- **Boundaries:** {Important inclusions, exclusions, and adjacent capabilities.}
+- **Source trace:** {Need, goal, journey, obligation, research, or current evidence.}
 
-<!-- Include status only for an existing product when it prevents current behaviour, decided direction, and uncommitted ideas from being conflated. Never manufacture a Current claim for a blank product. -->
+<!-- Repeat only necessary product areas and mini-briefs. Do not add a routine State field or detailed rules, scenarios, feature requirements, or acceptance criteria. -->
 
-_Status: {Current | Confirmed direction | Idea}._
+<!-- Use the compact local record below for each material technical requirement. Add an observable measure or later-verifiable response to the requirement when applicable. State each obligation once and link its ID elsewhere. -->
 
-{Concise prose stating who benefits and why, externally observable high-level behaviour, and meaningful boundaries. Leave detailed rules, states, scenarios, acceptance conditions, architecture, implementation, priorities, roadmaps, backlog items, sequencing, releases, estimates, and tickets to their owning later work. Link material external claims to their authoritative research report.}
+### {PREFIX}-01 — {Requirement name}
+
+{One direct normative requirement.}
+
+- **Source:** {Confirmed or cited rationale and evidence.}
+- **Scope:** {Journeys, capabilities, actors, data, interfaces, or environments governed.}
+
+## Quality requirements
+
+{Use `QUAL-*` records for material qualities in their operating context.}
+
+## System context and external interfaces
+
+{Briefly describe people and external systems, ownership, exchanges, direction, and trust boundaries. Use `INT-*` records for binding interaction, protocol, standard, ownership, and failure expectations without inventing endpoints, payloads, or adapters. Add a context diagram only when it materially clarifies relationships.}
+
+## Data and information requirements
+
+{Use `DATA-*` records for material purpose, categories, sources or sinks, ownership, sensitivity, lifecycle, retention, residency, provenance, scale, or transition obligations.}
+
+## Integrations and external dependencies
+
+{Use `INT-*` records for external parties or systems, purpose, exchanges, ownership, mandated contracts, support expectations, failure consequences, or substitution constraints. Link the applicable interface records instead of repeating them.}
+
+## Security, privacy, safety, and compliance
+
+{Use `SEC-*` records for protection or assurance outcomes, actor or data scope, trust boundaries, audit obligations, applicable instruments and versions, and risk tolerance.}
+
+## Technology and platform constraints
+
+{Use `TECH-*` records for mandated or prohibited platforms, runtimes, languages, database families or drivers, hosting, environments, standards, supported clients, licences, or vendors. State hard versus preferred.}
+
+## Operational and lifecycle requirements
+
+{Use `OPS-*` records for availability, support, recovery, capacity, observability, audit, deployment restrictions, maintainability, export, archival, continuity, or retirement outcomes.}
+
+## Assumptions, dependencies, constraints, risks, and open questions
+
+<!-- Keep each type explicit. Use one compact paragraph per material record. -->
+
+- **Assumption `ASM-01` — {claim}:** {Evidence; consequence if wrong and affected IDs; owner and resolution trigger.}
+- **Dependency `DEP-01` — {condition or party}:** {Evidence; consequence and affected IDs; owner and trigger.}
+- **Constraint `CON-01` — {limit}:** {Source and rationale; affected scope; change owner or trigger.}
+- **Risk `RSK-01` — {uncertainty}:** {Evidence; consequential effect and affected IDs; owner and review trigger.}
+- **Open question `OQ-01` — {question}:** {Why non-blocking; consequence and affected IDs; decision owner and trigger.}
+
+## Product-level acceptance and foundation readiness
+
+### Product-level acceptance
+
+- **ACC-01:** {Whole-product journey, system-wide outcome, or conformance obligation that one feature cannot own cleanly.}
+
+### Foundation readiness
+
+{State evidence that the foundation is coherent and safe for downstream feature specification, plus residual limitations. Do not restate the catalogue, self-certify with a checklist, or claim uninspected evidence.}
+
+## Evidence and traceability
+
+{Link supplied or inspected research, current-system evidence, applicable ADRs, and `CONTEXT.md`. Do not invent dates, roles, or provenance. Do not add a traceability matrix when the identifiers and inline source traces already establish coverage.}
