@@ -41,7 +41,7 @@ Classify each item by the lifecycle outcome it actually needs:
 - route active production impact requiring stabilisation to a later `$respond-to-incident` session;
 - route removal or deprecation intent to a later `$plan-retirement` session;
 - link an exact existing representation and use the supported duplicate or equivalent native resolution;
-- link actionable work whose intent and solution are already defined to its existing appropriate work without creating another specification, design, or ticket; or
+- link actionable work whose intent and solution are already defined to its existing appropriate work without creating another specification or ticket; or
 - close answered, invalid, not-actionable, or out-of-scope requests only with a concise reason grounded in inspected evidence.
 
 When evidence cannot yet support one of those outcomes, retain an honest native needs-information or unresolved disposition when available and identify the minimum missing fact and who can supply it. Invoke `$elicit-with-context` only when that fact or a materially different classification or disposition depends on user-held knowledge or authority. Supply the evidence and viable consequences, use only its confirmed synthesis, and retain ownership of proposal, mutation, verification, and stopping. Do not ask the user for repository or tracker facts that inspection can establish.
@@ -66,4 +66,4 @@ Read back every affected record and relationship. Verify source preservation, cl
 
 Report every selected item with its native link, applied or no-op disposition, evidence basis, duplicate or related work, next lifecycle route or missing input, read-back evidence, limitations, and unresolved uncertainty. Distinguish completed, blocked, and unchanged items so a blocker on one does not overstate or erase safe batch progress.
 
-Stop after the native dispositions and routes are verified. Do not invoke the routed lifecycle skill or perform feature elicitation or specification, solution design, ticket decomposition, backlog scope or readiness refinement, priority or iteration planning, root-cause debugging, repair, incident stabilisation, retirement planning, implementation, commit, publication, release, or deployment. Live work state remains in the configured tracker rather than a repository mirror.
+Stop after the native dispositions and routes are verified. Do not invoke the routed lifecycle skill or perform feature elicitation or specification, ticket decomposition, backlog scope or readiness refinement, priority or iteration planning, root-cause debugging, repair, incident stabilisation, retirement planning, implementation, commit, publication, release, or deployment. Live work state remains in the configured tracker rather than a repository mirror.

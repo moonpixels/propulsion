@@ -1,6 +1,6 @@
 interface:
     display_name: 'Create Tickets'
     short_description: 'Create delivery or retirement tracker work'
-    default_prompt: 'Use $create-tickets to turn this approved feature solution or retirement plan into implementation-ready tracker items.'
+    default_prompt: 'Use $create-tickets to turn this approved feature specification or retirement plan into implementation-ready tracker items.'
 policy:
     allow_implicit_invocation: false

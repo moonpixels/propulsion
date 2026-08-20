@@ -15,7 +15,7 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 ## Design principles
 
 1. **One bounded session outcome.** Each lifecycle skill represents a natural working session and ends with one independently useful outcome.
-2. **Narrow progressively.** Product intent narrows into a feature specification, solution design, implementation-ready tickets and, finally, one implemented body of work.
+2. **Narrow progressively.** Product intent narrows into a decision-complete feature specification, implementation-ready tickets and, finally, one implemented body of work.
 3. **Enter proportionately.** Substantial work uses the complete applicable chain. Small, understood work may begin directly with implementation.
 4. **Compose within the requested outcome.** A skill may invoke another skill when its outcome is required to complete the requested session. It must not silently advance into a later lifecycle outcome.
 5. **Keep authorities separate.** Product documents own intent, code and tests own implemented behaviour, Git owns change history and the task-management tool owns work state.
@@ -30,8 +30,8 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 | Area | Purpose |
 | --- | --- |
 | Establish | Create the durable product and system requirements foundation for a new or existing system. |
-| Define | Turn one product capability or enhancement into an approved statement of intended behaviour. |
-| Plan | Select a buildable solution and decompose it into implementation-ready work. |
+| Define | Turn one high-level feature request into an approved statement of intended behaviour and its selected buildable solution. |
+| Plan | Decompose an approved specification into implementation-ready work. |
 | Refine | Keep incoming and existing work current, prioritised, ready and feasible for the next delivery period. |
 | Deliver | Implement agreed work, record it, publish it for review and review work submitted by others. |
 | Debug and Respond | Diagnose and repair defects, stabilise active incidents and learn from them afterwards. |
@@ -41,7 +41,7 @@ These areas are entry points, not mandatory phase gates. Release, deployment and
 
 ## Session and authority model
 
-Lifecycle skills are explicitly user-invokable. A lifecycle skill may call another lifecycle skill only when the subordinate outcome is necessary to finish the invoked session. For example, `pull-request` may call `commit` for eligible uncommitted work, while `create-tickets` must not silently manufacture a missing feature specification or solution design.
+Lifecycle skills are explicitly user-invokable. A lifecycle skill may call another lifecycle skill only when the subordinate outcome is necessary to finish the invoked session. For example, `pull-request` may call `commit` for eligible uncommitted work, while `create-tickets` must not silently manufacture a missing or incomplete feature specification.
 
 Reusable utilities are user-invokable and may be model-invoked when their documented trigger is present. A caller remains responsible for verifying the utility's result and completing its own outcome.
 
@@ -74,12 +74,10 @@ Every skill:
 A substantial feature uses the project convention where one exists, otherwise:
 
 ```text
-docs/features/<feature-slug>/
-├── specification.md
-└── solution-design.md
+docs/features/<feature-slug>/specification.md
 ```
 
-The feature specification owns externally observable intent and constraints. The solution design owns the selected system-specific implementation. A useful test is whether a statement would remain true if the feature were rebuilt using a different architecture: if so, it normally belongs in the specification.
+The feature specification contains two visibly distinct semantic parts inside one authority. Feature intent owns the problem, outcomes, scope, actors, observable behaviour, qualities, scenarios and acceptance. Selected solution owns the system-specific responsibilities, boundaries, contracts, data, integrations, controls, migration, operational effects and verification seams. The distinction prevents implementation ideas from masquerading as requirements without creating another document or session handoff.
 
 Small, understood changes do not require feature documents merely to enter implementation.
 
@@ -99,7 +97,7 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 
 #### `define-product`
 
-- **Outcome:** A user-confirmed product and system requirements foundation broad enough to guide later feature specification and solution design without becoming either.
+- **Outcome:** A user-confirmed product and system requirements foundation broad enough to guide later feature specification without becoming one.
 - **Inputs:** The product idea, existing `PRODUCT.md` and `CONTEXT.md`, applicable ADRs, representative repository evidence and applicable external evidence.
 - **Output:** `PRODUCT.md` and the corresponding ubiquitous language in `CONTEXT.md`.
 - **Composition:** Requires `elicit-with-context`; conditionally invokes `research`.
@@ -109,26 +107,18 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 
 #### `specify-feature`
 
-- **Outcome:** One approved feature or enhancement expressed as externally observable intent.
-- **Inputs:** A capability from `PRODUCT.md`, an already-elicited conversation or another agreed feature idea, plus `CONTEXT.md`, relevant current behaviour and supporting evidence.
+- **Outcome:** One approved, decision-complete feature specification containing both feature intent and its selected buildable solution.
+- **Inputs:** Any high-level feature request, conversation, product capability or existing specification, plus whatever project and current-system evidence is available. No earlier lifecycle artefact is mandatory.
 - **Output:** `docs/features/<feature-slug>/specification.md`, or the project's equivalent.
-- **Composition:** Requires `elicit-with-context` and `maintain-ubiquitous-language`; conditionally invokes `research`.
-- **Stops:** After the problem, actors, behaviour, rules, states, scenarios, acceptance conditions, constraints and exclusions are unambiguous. It does not select the implementation or create tickets.
+- **Composition:** Requires `elicit-with-context`; conditionally invokes `research` and `modular-design`.
+- **Stops:** After the problem, actors, use cases, behaviour, rules, states, qualities, experience, scenarios, acceptance, selected responsibilities, contracts, data, integrations, controls, migration, operational effects and verification seams are resolved enough for ticket decomposition. It does not create tickets or implement the feature.
 
 ### Plan
 
-#### `design-feature`
-
-- **Outcome:** An approved, buildable technical solution for one feature specification.
-- **Inputs:** The approved feature specification, `PRODUCT.md`, `CONTEXT.md`, applicable ADRs and current implementation evidence.
-- **Output:** `docs/features/<feature-slug>/solution-design.md` and any warranted ADRs.
-- **Composition:** Requires `modular-design`; conditionally invokes `elicit-with-context`, `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
-- **Stops:** After affected boundaries, interfaces, data, integrations, security, migration, operational effects and verification seams are resolved. It does not decompose or implement the work.
-
 #### `create-tickets`
 
-- **Outcome:** An approved feature solution or retirement plan is represented by implementation-ready, dependency-aware work in the project's task-management tool.
-- **Inputs:** Either the approved feature specification and solution design or an approved retirement plan, plus relevant project guidance and current tracker state.
+- **Outcome:** An approved feature specification or retirement plan is represented by implementation-ready, dependency-aware work in the project's task-management tool.
+- **Inputs:** Either one approved, decision-complete feature specification or an approved retirement plan, plus relevant project guidance and current tracker state.
 - **Output:** Native tracker items linked to their applicable authoritative documents, each describing one coherent vertical outcome, acceptance evidence and genuine blocking relationships.
 - **Composition:** Conditionally invokes `elicit-with-context` for unresolved decomposition and `maintain-agents` when the task-management preference is missing.
 - **Stops:** After the created items and relationships are read back and verified. It does not select an iteration or begin implementation.
@@ -313,7 +303,6 @@ Product definition stops after the confirmed breadth-first product and system re
 
 ```text
 specify-feature
-    → later design-feature
     → later create-tickets
     → implement each selected ticket in a separate session
     → commit whenever a coherent unit is ready
@@ -375,7 +364,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 
 1. Complete the quality-harness research and use its conclusions to fix the engineering-quality utility contracts.
 2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
-3. Build the progressive foundation path: `define-product`, `specify-feature`, `design-feature` and `create-tickets`.
+3. Build the progressive foundation path: `define-product`, `specify-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build recurring team workflows: `triage-work`, `refine-backlog`, `plan-iteration` and `review-architecture`.
 6. Build the exceptional paths: `debug`, `respond-to-incident`, `review-incident` and `plan-retirement`.
@@ -394,8 +383,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [-] Update `code-review` skill
 - [x] Update `maintain-agents` skill
 - [x] Update `define-product` skill
-- [-] Create `specify-feature` skill
-- [-] Create `design-feature` skill
+- [x] Create `specify-feature` skill
 - [-] Create `create-tickets` skill
 - [-] Update `implement` skill
 - [x] Update `commit` skill
@@ -421,7 +409,7 @@ The revised suite is ready when:
 
 - every common lifecycle task has one obvious user-facing entry point
 - every lifecycle skill produces one bounded outcome and stops at its documented boundary
-- substantial work narrows cleanly from product foundation through specification, design, tickets and per-item implementation
+- substantial work narrows cleanly from product foundation through decision-complete specification, tickets and per-item implementation
 - small, clear work can enter implementation without ceremonial documents or tickets
 - required and conditional composition is explicit and does not duplicate supporting skill instructions
 - task-management skills use the project tool named in `AGENTS.md` and its native concepts without Propulsion configuration

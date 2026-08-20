@@ -16,4 +16,4 @@ Use meaningful alternatives, manual work, and doing nothing to clarify value and
 
 ## Expose system-wide requirements
 
-For each journey and capability, ask what must remain true across likely implementations: operating conditions, measurable qualities, external ownership and exchanges, information duties, trust and harm boundaries, mandated technology, provider or organisational constraints, support and recovery, and eventual export, archival, or retirement. Record only material design inputs. Leave the selected internal structure and mechanisms to later solution design.
+For each journey and capability, ask what must remain true across likely implementations: operating conditions, measurable qualities, external ownership and exchanges, information duties, trust and harm boundaries, mandated technology, provider or organisational constraints, support and recovery, and eventual export, archival, or retirement. Record only material design inputs. Leave the selected internal structure and mechanisms to later feature specification.

@@ -1,6 +1,6 @@
 # {Product name}
 
-> **Authority:** This document owns confirmed whole-product intent and system-wide requirements. Feature specifications and solution designs refine it without silently changing it.
+> **Authority:** This document owns confirmed whole-product intent and system-wide requirements. Feature specifications refine it without silently changing it.
 
 <!-- Git owns revision history. Do not add delivery or release status or a hand-maintained change log. -->
 

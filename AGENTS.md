@@ -2,5 +2,6 @@
 - When authoring or reviewing a skill, justify its behaviour using only context available to the agent at runtime.
 - When eliciting within a software project, invoke `$elicit-with-context` instead of `$elicit`; use `$elicit` directly only for non-software work or as part of `$elicit-with-context`.
 - When composing skills, rely on each invoked skill's public contract; do not restate or steer its internal logic.
+- Default to a user-agent workflow; introduce team roles, named accountable people, approval bodies, or third-party coordination only when the user or project evidence requires them.
 - Assume the execution harness supports fresh agents; do not add fallback handling for their unavailability.
 - After implementing changes run `bun run checks` before handoff.

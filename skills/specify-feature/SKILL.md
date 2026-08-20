@@ -1,6 +1,6 @@
 ---
 name: specify-feature
-description: Defines one substantial feature or enhancement as approved, observable product intent. Use when a product capability or agreed feature idea needs a durable specification before solution design.
+description: Creates a decision-complete specification for one feature. Use when a high-level feature request or capability needs collaborative definition before ticket creation.
 metadata:
     invocation: user
 disable-model-invocation: true
@@ -8,52 +8,36 @@ disable-model-invocation: true
 
 # Specify Feature
 
-Defines one substantial feature or enhancement without selecting its implementation. **Goal-oriented use cases** connect actors and beneficiaries to complete observable journeys; selective **Specification by Example** turns ambiguous rules and acceptance boundaries into discriminating examples rather than an implementation test inventory.
+Turns one high-level feature description into one user-confirmed specification containing both feature intent and the selected buildable solution.
 
 ## Process
 
-### 1. Inspect the feature evidence
+### 1. Build shared understanding
 
-Inspect the request, root `PRODUCT.md` and `CONTEXT.md`, repository guidance, the existing feature specification and paired solution design when present, and the project's feature-record convention. Inspect only the relevant current public contracts, documentation, tests, UI, research, and implementation evidence needed to understand observable behaviour. Treat `PRODUCT.md` as authority for the product foundation, the user as authority for the intended change, and the current system as evidence of present behaviour rather than intended future behaviour. Distinguish current, confirmed future, and unresolved claims; surface contradictions and unknowns without silently resolving them.
+Inspect the request and the project evidence relevant to the feature. Resolve discoverable facts before asking the user, and distinguish evidence of the current system from intended future behaviour.
 
-Accept one capability from `PRODUCT.md`, a confirmed synthesis returned by a prior `$elicit-with-context` session, or another agreed feature idea whose product context is sufficient. Do not manufacture a missing product foundation when the requested specification depends on one; report the exact prerequisite and stop. A direct agreed idea may proceed without a formal catalogue when its actors, value, and product boundary are sufficiently grounded. The source, authority, current evidence, convention, and unresolved feature decisions are explicit.
+Invoke `$elicit-with-context` whenever material user-held information or a decision is needed. Bring it the evidence, gaps, viable options and consequences. The user decides the feature's direction; make informed recommendations, challenge ambiguity and expose overlooked paths without turning a suggestion into a decision.
 
-### 2. Bound one proportionate feature
+Invoke `$research` when durable external evidence is needed to resolve the feature. Use its report as evidence, not as authority for a product or solution decision.
 
-Invoke `$elicit-with-context` throughout steps 2–5 for material user-held knowledge and decisions. Reuse every compatible branch from a prior confirmed synthesis and ask only about gaps exposed by inspection. Bound one coherent feature or enhancement, its problem or opportunity, beneficiaries, desired outcome, relationship to the product capability, and exclusions that separate adjacent behaviour. When inspection shows that the change is small, already understood, and needs no durable intent record, explain why a specification would add ceremony, name `$implement` as the proportionate next session, and stop without writing or invoking it. Invocation alone does not bypass this gate; proceed only when the user has separately established that a durable feature specification is required. The session owns exactly one warranted feature and a clear reason for specifying it.
+### 2. Make the feature decision-complete
 
-Invoke `$maintain-ubiquitous-language` inline whenever consequential project language is confirmed, changed, misused, or contradicted. It alone owns the root `CONTEXT.md` glossary update; this skill retains the specification outcome and verification.
+Establish **feature intent** before selecting the **solution**, and visibly reopen the affected intent when solution work exposes a behavioural gap. Use the [Feature Specification Template](assets/specification-template.md) as a coverage guide rather than a checklist: depth follows ambiguity, risk, external obligation and what ticket decomposition needs.
 
-Invoke `$research` when a material external, domain, regulatory, or standards subject could change the specification and needs durable evidence. Link its report instead of copying its findings. Research returns evidence to this session and owns neither the specification nor continuation.
+Use goal-oriented use cases to connect actors to complete outcomes. Add triggers, preconditions, alternatives, failures and recovery where they reveal material behaviour. Use concrete context-event-outcome scenarios only where they make a rule, boundary or acceptance outcome testable through the application's interface or another stable observable boundary. Do not add user stories when they contribute no further meaning.
 
-Keep the specification unchanged until the complete synthesis is explicitly confirmed. Supporting utilities may perform only the mutations authorised by their own contracts before then.
+Keep feature intent independent of internal implementation. Put consequential system-specific choices in the selected solution: enough responsibility, boundary, contract, data, integration, failure, quality, migration, operational and verification detail to constrain implementation, but not files, classes, framework wiring, exhaustive tests or ticket breakdown. Invoke `$modular-design` when a material structural choice needs resolving.
 
-### 3. Establish observable behaviour
+Resolve every decision that could change scope, observable behaviour, acceptance or the material solution. An uncertainty may remain only when ticket decomposition is still safe; record its evidence, consequence, affected decisions and the condition or later user-agent step that will resolve it. Do not invent team roles, owners, approval bodies or third-party coordination.
 
-Establish only the applicable feature-level detail: actors and their goals; scope and boundaries; externally observable behaviour and business or domain rules; material states, transitions, and lifecycle; main, adverse, recovery, and edge scenarios; and external product, regulatory, or compatibility constraints. Walk each actor from entry through goal, consequential interactions with other actors or systems, failure or refusal, recovery, and completion where applicable. Distinguish current behaviour from intended change wherever conflating them could misstate the feature.
+### 3. Write the specification
 
-Use concrete examples when an abstract rule, boundary, state transition, or scenario remains open to materially different interpretations. Include an example only when it discriminates valid from invalid behaviour or exposes a missing branch; do not expand the specification into exhaustive cases. Resolve contradictions and material ambiguity as they emerge. The feature's complete observable behaviour is understandable without assuming a technical solution.
+Once shared understanding covers the complete feature, create `docs/features/<feature-slug>/specification.md` from the template. Record only decisions established with the user and evidence-supported facts, keeping feature intent and selected solution visibly distinct. Preserve the stable section spine, omit immaterial conditional content and link supporting product, context, decision, research, design and current-system evidence rather than duplicating it.
 
-### 4. Establish acceptance and traceability
+Use stable semantic identifiers only where they make later reference and traceability clearer. Add a concise Mermaid diagram when a state model, interaction, boundary or runtime relationship is materially easier to understand visually.
 
-State acceptance conditions as unambiguous outcomes and evidence observable by an actor, consumer, or published contract. Cover the material behaviour, rules, state transitions, adverse paths, exclusions, and external constraints established for this feature. Use exact protocol or schema detail only when it is itself a published external contract; otherwise leave endpoints, components, services, tables, internal events, data models, algorithms, frameworks, libraries, deployment, and verification implementation to solution design.
+### 4. Verify and stop
 
-Apply the rebuild test to every proposed statement: it normally belongs in the specification only when it should remain true if the feature were rebuilt using a different architecture. Retain a system-specific statement only when it is an externally binding product, regulatory, or compatibility boundary. Link applicable product capability, research, context terms, current evidence, and stable material dependencies or assumptions without duplicating their authorities. The acceptance boundary is observable, testable, traceable, and independent of implementation.
+Re-read the finished document against the established decisions and cited evidence. Check that it describes one coherent feature; states each rule and decision once; covers the material use cases, adverse paths, qualities and acceptance boundaries; keeps acceptance observable; distinguishes intent from solution; traces consequential solution elements to their reason; and represents uncertainty honestly.
 
-### 5. Challenge the complete feature
-
-Walk the feature across every material actor goal, interaction, state, rule, main path, adverse path, recovery, edge condition, acceptance outcome, and exclusion. Test counterexamples at the feature boundary and look for hidden adjacent features, conflicting rules, impossible transitions, undefined ownership, unsupported current claims, and acceptance conditions that inspect private internals or prescribe a solution. Reopen only evidence-backed branches that could materially change the specification. Stop elaborating when another case would not change externally observable intent. The proposed feature is coherent and complete at feature depth without becoming solution design or an implementation backlog.
-
-### 6. Confirm one full synthesis
-
-Have `$elicit-with-context` present one concise, self-contained synthesis of the problem or opportunity, desired outcome, actors and goals, scope and exclusions, observable behaviour and rules, states and transitions, material scenarios, acceptance conditions, external constraints, traceability, and unresolved limitations. Obtain explicit confirmation of the whole synthesis. Selecting an earlier option is not confirmation. If the user rejects or corrects it, leave the specification unchanged, reopen every affected evidence-backed branch, repeat the applicable walks and counterexamples, and confirm the complete revised synthesis. The confirmed synthesis supplies authority for the agreed specification write without another application prompt.
-
-### 7. Write the specification
-
-Follow the project's established feature-record convention. Otherwise choose a stable lowercase feature slug and create `docs/features/<feature-slug>/specification.md` using the [Feature Specification Template](assets/specification-template.md). When refining an existing specification, preserve unrelated confirmed content and its local structure when differences are stylistic. Include only material sections and omit empty boilerplate. Keep canonical meanings in `CONTEXT.md`, external evidence in research reports, and implementation choices in a distinct `solution-design.md` when one exists. The durable specification records exactly the confirmed observable intent.
-
-### 8. Verify and stop
-
-Verify every statement against its authority: product foundation against `PRODUCT.md`; intended change against the confirmed synthesis; terminology against `CONTEXT.md`; current behaviour against inspected evidence; and material external claims against linked research. Rewalk traceability, actors, rules, states, scenarios, acceptance conditions, exclusions, and constraints for coherence and missing branches. Apply the rebuild test and confirm that acceptance remains observable without CSS classes, DOM or private internals, architecture, endpoints unless externally contractual, detailed data models, algorithms, frameworks, deployment, ticket breakdown, estimates, priorities, roadmaps, or releases. Verify the path, links, preservation of unrelated content, and separation from any solution design.
-
-Report changed files, supporting evidence, verification, and unresolved limitations. Stop after the approved specification and applicable ubiquitous language are written and verified; do not select a solution, create tickets, scaffold, implement, publish, prioritise, or continue into another lifecycle outcome.
+The specification is ready when `$create-tickets` can decompose it without inventing product behaviour or selecting a material solution. Report the path, evidence used, verification performed and any non-blocking uncertainty. Do not create tickets or implement the feature.

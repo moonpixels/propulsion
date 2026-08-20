@@ -6,7 +6,7 @@ Propulsion is a compact, composable set of Agent Skills for practical software d
 
 Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete. Propulsion does not require an end-to-end orchestrator, manifest, setup framework, state machine, or tracker adapter.
 
-Substantial work narrows breadth-first over several sessions: product intent becomes a feature specification, then a solution design, implementation-ready tickets, and finally one implemented body of work per ticket. Small, understood work can begin directly with `$implement`.
+Substantial work narrows breadth-first over several sessions: product intent becomes a decision-complete feature specification, then implementation-ready tickets, and finally one implemented body of work per ticket. Small, understood work can begin directly with `$implement`.
 
 ## Installation
 
@@ -36,7 +36,7 @@ Repeat the link for each selected skill. Codex and OpenCode both discover skills
 | When you need to… | Start with… | Session outcome |
 | --- | --- | --- |
 | Establish or revise a product | `$define-product` | Confirmed product and system requirements |
-| Define a substantial feature | `$specify-feature` | An approved, observable feature specification |
+| Define a substantial feature | `$specify-feature` | An approved, decision-complete feature specification |
 | Make a small understood change | `$implement` | A minimal, reviewed, verified local change |
 | Route incoming requests | `$triage-work` | Verified dispositions and lifecycle routes |
 | Diagnose or repair a defect | `$debug` | A causal diagnosis and, when requested, a verified repair |
@@ -54,12 +54,11 @@ The lifecycle areas are useful entry points, not mandatory phase gates.
 
 ### Define
 
-- `$specify-feature` turns one capability, enhancement, or agreed idea into a feature specification describing externally observable intent, without choosing its implementation.
+- `$specify-feature` turns one high-level request into a single feature specification containing approved feature intent and its selected buildable solution.
 
 ### Plan
 
-- `$design-feature` selects a buildable, system-specific technical solution for an approved feature specification.
-- `$create-tickets` turns an approved feature specification and solution design, or an approved retirement plan, into verified, dependency-aware work in the project's task-management tool.
+- `$create-tickets` turns an approved feature specification or retirement plan into verified, dependency-aware work in the project's task-management tool.
 
 ### Refine
 
@@ -99,7 +98,6 @@ Deliver a substantial feature:
 
 ```text
 specify-feature
-    → later design-feature
     → later create-tickets
     → implement each selected ticket in a separate session
     → commit whenever a coherent unit is ready
