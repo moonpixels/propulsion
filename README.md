@@ -2,7 +2,7 @@
 
 # Propulsion
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to planning work, implementation, refinement, debugging, incident response, and retirement.
+Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, debugging, incident response, and retirement.
 
 Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete. Propulsion does not require an end-to-end orchestrator, manifest, setup framework, state machine, or tracker adapter.
 
@@ -38,7 +38,6 @@ Repeat the link for each selected skill. Codex and OpenCode both discover skills
 | Establish or revise a product | `$define-product` | Confirmed product and system requirements |
 | Define a substantial feature | `$specify-feature` | An approved, decision-complete feature specification |
 | Make a small understood change | `$implement` | A minimal, reviewed, verified local change |
-| Route incoming requests | `$triage-work` | Verified dispositions and lifecycle routes |
 | Diagnose or repair a defect | `$debug` | A causal diagnosis and, when requested, a verified repair |
 | Stabilise a production incident | `$respond-to-incident` | Verified mitigation or recovery and current service state |
 | Review another contributor's PR | `$review-pull-request` | Independent findings and verification evidence |
@@ -62,9 +61,6 @@ The lifecycle areas are useful entry points, not mandatory phase gates.
 
 ### Refine
 
-- `$triage-work` closes or routes a bounded set of incoming requests without performing the routed work.
-- `$refine-backlog` keeps selected backlog work current, prioritised, and honest about readiness, dependencies, and blockers.
-- `$plan-iteration` selects feasible ready work in the project's native sprint, cycle, milestone, or next-work mechanism.
 - `$review-architecture` reports a few high-value improvements for an explicitly bounded area without changing it or creating tickets.
 
 ### Deliver
@@ -110,12 +106,6 @@ Deliver a small understood change:
 implement → commit → pull-request
 ```
 
-Refine team work:
-
-```text
-triage-work → refine-backlog → optionally plan-iteration
-```
-
 Debug, respond, or retire:
 
 ```text
@@ -155,7 +145,7 @@ Software-project skills route questions through `$elicit-with-context`. Base `$e
 
 ## Task-management tools
 
-Tracker-backed skills use the project tool named in the root `AGENTS.md` and represent work using that tool's native issues, relationships, statuses, priorities, sprints, cycles, milestones, or queues. If no tool is named, the skill asks which one the project uses, records the preference through `$maintain-agents`, and resumes. It never guesses or introduces a Propulsion configuration layer.
+Tracker-backed skills use the project tool named in the root `AGENTS.md` and represent work using that tool's native items, relationships, and statuses. If no tool is named, the skill asks which one the project uses, records the preference through `$maintain-agents`, and resumes. It never guesses or introduces a Propulsion configuration layer.
 
 ## Quality during implementation
 

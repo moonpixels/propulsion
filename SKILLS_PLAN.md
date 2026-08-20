@@ -8,7 +8,7 @@ The existing suite may be changed or replaced where necessary. Skill authoring r
 
 ## Objective
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports work from initial product discovery through feature definition, planning, backlog refinement, implementation, pull-request publication and review, debugging, incident response and retirement.
+Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports work from initial product discovery through feature definition, planning, implementation, pull-request publication and review, debugging, incident response and retirement.
 
 Propulsion is not a workflow platform. It does not carry a product automatically through its lifecycle, maintain its own work state or require a setup framework. A user may enter at any point where the necessary inputs already exist and leave when that session's outcome is complete.
 
@@ -32,7 +32,7 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 | Establish | Create the durable product and system requirements foundation for a new or existing system. |
 | Define | Turn one high-level feature request into an approved statement of intended behaviour and its selected buildable solution. |
 | Plan | Decompose an approved specification into implementation-ready work. |
-| Refine | Keep incoming and existing work current, prioritised, ready and feasible for the next delivery period. |
+| Refine | Assess a bounded area of the current architecture and identify high-value improvements. |
 | Deliver | Implement agreed work, record it, publish it for review and review work submitted by others. |
 | Debug and Respond | Diagnose and repair defects, stabilise active incidents and learn from them afterwards. |
 | Retire | Plan the safe removal of an obsolete capability and route its execution through normal delivery. |
@@ -89,7 +89,7 @@ Research reports, architecture reviews, incident reviews and retirement plans ar
 
 The project's task-management tool must be named in `AGENTS.md`. A tracker-backed skill that cannot find this preference asks the user which tool the project uses, invokes `maintain-agents` to record it and then resumes its original outcome.
 
-The skill uses the selected tool's native issues, relationships, statuses, priorities, sprints, cycles, milestones or queues. If the named tool is unavailable or not writable, the skill stops with the exact access requirement. It does not guess or fall back silently to Markdown or another tracker.
+The skill uses the selected tool's native items, relationships and statuses. If the named tool is unavailable or not writable, the skill stops with the exact access requirement. It does not guess or fall back silently to Markdown or another tracker.
 
 ## Lifecycle skill catalogue
 
@@ -121,33 +121,9 @@ The skill uses the selected tool's native issues, relationships, statuses, prior
 - **Inputs:** Either one approved, decision-complete feature specification or an approved retirement plan, plus relevant project guidance and current tracker state.
 - **Output:** Native tracker items linked to their applicable authoritative documents, each describing one coherent vertical outcome, acceptance evidence and genuine blocking relationships.
 - **Composition:** Conditionally invokes `elicit-with-context` for unresolved decomposition and `maintain-agents` when the task-management preference is missing.
-- **Stops:** After the created items and relationships are read back and verified. It does not select an iteration or begin implementation.
+- **Stops:** After the created items and relationships are read back and verified. It does not schedule the work or begin implementation.
 
 ### Refine
-
-#### `triage-work`
-
-- **Outcome:** Each incoming request in scope is closed with an evidence-backed reason or routed to the appropriate lifecycle area.
-- **Inputs:** The selected incoming items, their source evidence, current product and implementation authorities and the configured task-management tool.
-- **Output:** Verified native dispositions, classifications, links and next routes.
-- **Composition:** Conditionally invokes `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records` and `maintain-agents`.
-- **Stops:** After disposition. It does not perform feature specification, debugging, implementation, retirement planning or incident response.
-
-#### `refine-backlog`
-
-- **Outcome:** The selected backlog is current, prioritised and honest about scope, readiness, dependencies and blockers.
-- **Inputs:** A bounded backlog view, its linked authorities, current project direction and native tracker relationships.
-- **Output:** Verified updates, splits, closures, dependencies, priorities and readiness represented in the task-management tool.
-- **Composition:** Conditionally invokes `elicit-with-context` for unresolved readiness, scope or priority decisions and `maintain-agents` when the task-management preference is missing.
-- **Stops:** After backlog health and ordering are current. It does not commit the project to a sprint, cycle, milestone or implementation sequence.
-
-#### `plan-iteration`
-
-- **Outcome:** A feasible body of ready, unblocked work is selected for the project's next delivery period.
-- **Inputs:** The refined backlog, current priorities, dependencies, available capacity and the project's native planning mechanism.
-- **Output:** A verified sprint, cycle, milestone or ordered next-work queue in the task-management tool.
-- **Composition:** Conditionally invokes `elicit-with-context` for selection trade-offs and `maintain-agents` when the task-management preference is missing.
-- **Stops:** After the selected body of work is recorded. It does not implement any item.
 
 #### `review-architecture`
 
@@ -318,16 +294,6 @@ elicit-with-context when needed
     → pull-request
 ```
 
-### Refine team work
-
-```text
-triage-work
-    → refine-backlog
-    → plan-iteration when the project uses a delivery period
-```
-
-The skills may be invoked independently. Triage may route a valid defect directly to `debug` or a new capability to `specify-feature`.
-
 ### Debug a known defect
 
 ```text
@@ -366,7 +332,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
 3. Build the progressive foundation path: `define-product`, `specify-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
-5. Build recurring team workflows: `triage-work`, `refine-backlog`, `plan-iteration` and `review-architecture`.
+5. Build the architecture-assessment path: `review-architecture`.
 6. Build the exceptional paths: `debug`, `respond-to-incident`, `review-incident` and `plan-retirement`.
 7. Align software-project elicitation through `elicit-with-context`, update the README around the lifecycle areas and independently invokable utilities, and run the suite-wide acceptance pass.
 
@@ -389,9 +355,6 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `commit` skill
 - [x] Replace `pr` with `pull-request`
 - [-] Create `review-pull-request` skill
-- [-] Create `triage-work` skill
-- [-] Create `refine-backlog` skill
-- [-] Create `plan-iteration` skill
 - [-] Update `review-architecture` skill
 - [-] Update `debug` skill
 - [-] Create `respond-to-incident` skill
@@ -428,7 +391,7 @@ Propulsion will not:
 
 - provide a lifecycle navigator or end-to-end delivery orchestrator
 - require a Propulsion manifest, setup skill, state model, completion horizon or tracker adapter
-- impose Scrum, sprints or another project-management method
+- impose a project-management method
 - create separate skills for individual test types, metrics or quality commands
 - require discovery, architecture or feature documents for small work that is already sufficiently understood
 - duplicate code, CI, tracker or production state in prose documents
