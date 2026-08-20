@@ -1,80 +1,47 @@
 ---
 name: create-tickets
-description: Creates verified native tracker items from an approved feature specification or retirement plan. Use when feature delivery or capability retirement needs implementation-ready, dependency-aware tickets.
-metadata:
-    invocation: user
+description: Creates implementation-ready tickets from approved work. Use when a complete work definition needs vertical decomposition in the project's configured ticket system.
 disable-model-invocation: true
 ---
 
 # Create Tickets
 
-Turns one approved feature specification or retirement plan into the smallest coherent set of implementation-ready work in the project's configured task-management tool. **Vertical slicing** keeps each item end to end, while selected **Example Mapping** and **Specification by Example** techniques turn approved rules, examples, stages, and completion conditions into observable acceptance evidence.
+Turns one **approved work definition** into a confirmed, verified set of small vertical tickets. A work definition may be a document or confirmed conversation whose outcome, scope, behaviour or obligations, material constraints, and solution decisions are complete enough to decompose without invention.
 
 ## Prerequisites
 
-Require one applicable approved authority package and inspect it before continuing:
-
-- For feature delivery, require one approved feature specification containing decision-complete feature intent and selected solution. When it is missing, inadequate, or contradictory in a way that prevents honest decomposition, identify the exact gap and stop. Route missing observable intent or technical resolution to a later `$specify-feature` session; do not invoke it or manufacture its outcome.
-- For capability retirement, require one approved retirement plan that resolves the retirement outcome; affected parties, dependencies, interfaces, data, and integrations; applicable deprecation, migration, coexistence, disablement, removal, archival, communication, support, and recovery obligations; material risks and rollback or recovery routes; and observable stage and final completion conditions sufficiently for honest decomposition. When a needed retirement decision is missing or contradictory, identify the exact gap and stop for a later `$plan-retirement` session; do not force retirement through feature specification or manufacture the plan's outcome.
-
-A retirement plan may deliberately depend on a later feature specification for a replacement capability. Do not create implementation work for that unresolved replacement until the specification is approved. Retirement-only obligations may be decomposed when they are independently confirmed and do not require the unresolved replacement decision.
-
-Require the project's task-management tool to be named in the root `AGENTS.md`. When the preference is absent, ask the user directly which tool the project uses, invoke `$maintain-agents` with the confirmed preference, verify the root instruction, and resume. Never guess a tool or add a Propulsion manifest, adapter, configuration, or state model. When the configured tool or required account is unavailable or not writable, stop with the exact access or connection needed rather than falling back to Markdown or another tracker.
+Read the root `AGENTS.md` for an explicit ticket destination such as `The project uses Linear for tickets.` or `The project uses local Markdown for tickets.` When absent, ask the user which destination the project uses, invoke `$maintain-agents` with the answer, verify the instruction, and resume. For an external destination, require its installed integration and writable account; otherwise stop with the exact access needed. Never guess or silently fall back.
 
 ## Process
 
-### 1. Fix the authorities and native surface
+### 1. Establish the work and destination
 
-Inspect the request, repository guidance, applicable approved authority package, its linked product, context, ADR, and research authorities, and only the implementation evidence needed to understand existing work. For feature delivery, treat the specification's feature-intent part as authority for observable behaviour and its selected-solution part as authority for technical decisions and genuine prerequisites. For retirement, treat the retirement plan as authority for the approved outcome, obligations, stages, risks, recovery, and completion conditions. Treat a separately approved replacement feature specification as authority only for replacement work it actually resolves, and treat the task-management tool as authority for live work state. Discover obvious facts before asking the user.
+Inspect the request, approved work definition, repository guidance, linked product, context, decision, research, and current-system evidence needed to understand the work. Treat the definition as authority for intended outcomes and settled constraints, and the repository as evidence of the current system.
 
-Inspect the configured tool's available schema and capabilities before planning any mutation: native item types, bodies, links, parent or grouping concepts, dependency direction, duplicate or related relationships, and read-back operations. Use only concepts the tool actually supports. Keep the tracker read-only through proposal confirmation.
+For an external destination, inspect its native item, body, status, estimate, parent, dependency, and read-back capabilities before planning writes. For local Markdown, use one file per ticket under `docs/features/<work-slug>/tickets/`.
 
-The applicable authority package, tracker scope, native capabilities, and access boundary are explicit.
+### 2. Agree the vertical ticket set
 
-### 2. Reconcile existing work
+Map every material requirement, obligation, constraint, solution responsibility, transition, and acceptance boundary in both directions between the work definition and proposed tickets. Form the smallest coherent set in which each ticket delivers one observable outcome or fulfilled contract across every layer it needs. Absorb shared setup into the earliest outcome that needs it. Create separate enabling, migration, or refactor work only when it has an independently necessary, verifiable boundary or preserves a valid compatible intermediate state.
 
-Read the relevant open and closed tracker state before decomposing. Search by authoritative document links or identifiers, feature or retirement outcome language, affected project concepts, and related or parent items. Classify candidates as exact matches, partial overlaps, related work, or unrelated work. Reuse an exact match, propose a bounded reconciliation for a partial overlap, preserve merely related work, and avoid creating a second representation of the same outcome.
+Size each ticket for one fresh implementation session. Assign one project-local **complexity** bucket from `1`, `2`, `3`, `5`, or `8` by comparing the affected behaviour, technical difficulty, integrations, data or migration work, applicable quality constraints, and bounded uncertainty with the other proposed tickets. The buckets are ordered comparisons, not ratios, hours, dates, or duration promises. Split any outcome that would exceed `8`, then estimate the resulting slices again.
 
-Record the classification and evidence internally. Do not copy live tracker state into repository documentation. The later proposal can distinguish create, update, relationship-only, and no-op reuse actions without inventing a parallel backlog.
+Add a blocker only when one ticket cannot honestly begin or meet acceptance before another reaches its accepted outcome. Keep display order, likely sequence, user-journey order, and merely related work out of the dependency graph. State dependency direction explicitly and reject cycles.
 
-The decomposition starts from a current, duplicate-aware view of native work.
+Present only a compact numbered proposal containing each ticket's stable title, vertical outcome, complexity, and `Blocked by` references. Invoke `$elicit-with-context` when supported alternatives require a user decomposition decision. Iterate the compact set until the user confirms the whole proposal; do not synthesize full bodies first. Confirmation authorises the agreed synthesis and writes without another application prompt. If synthesis exposes a material gap, leave the destination unchanged and reopen the affected proposal.
 
-### 3. Form vertical outcomes
+### 3. Synthesize and write the tickets
 
-Build an internal two-way coverage map from the applicable authority package to proposed tracker outcomes. For feature delivery, cover every material specification behaviour, rule, state, scenario, constraint, and acceptance condition plus every necessary solution responsibility, transition, and verification seam. For retirement, cover every material affected party, dependency, interface, data and integration obligation, applicable stage and transition, communication and support obligation, risk control, abort, rollback or recovery route, residual obligation, and stage and final completion condition. Each outcome must trace back to an approved source, and every approved requirement or obligation necessary for the requested delivery or retirement scope must have an owner.
+Use the [Ticket Template](assets/ticket-template.md) as the minimum semantic body, omitting only inapplicable conditional content. Embed the necessary confirmed intent and solution context when no durable authority exists; never tell a fresh implementation agent to recover an unavailable conversation. Explain what must be delivered at stable boundaries without prescribing files, classes, framework wiring, code, or an exhaustive test inventory.
 
-Form the smallest set of coherent vertical outcomes. Each item spans every affected layer needed to produce one observable result or fulfilled obligation for an actor, consumer, published contract, migration, retirement stage, or operational boundary. Include a shared enabling change in the earliest outcome that needs it unless an approved authority establishes a separately observable and independently verifiable prerequisite. Do not split work by frontend, backend, database, service, class, file, architecture layer, test type, retirement phase label, or another implementation inventory merely because those parts exist. One item is correct when the approved package is already one bounded independently implementable outcome.
+For local Markdown, allocate stable sequential identifiers such as `TKT-001`, use `<ticket-id>-<ticket-slug>.md`, set new tickets to `Todo`, and write reciprocal `Blocked by` and `Blocks` references. The local status vocabulary is `Todo`, `In Progress`, `Done`, and `Cancelled`.
 
-For each item, define a concise native title, one coherent outcome, enough bounded authority context for a separate implementation session, links to the applicable approved authority package, observable acceptance evidence, and applicable relationships. A feature item links the authoritative feature specification. A retirement item links the retirement plan and any separately applicable approved replacement specification when that item includes replacement work. Derive acceptance evidence from approved rules and discriminating examples for feature delivery, or from approved stage outcomes, exit evidence, counter-signals, recovery obligations, and completion conditions for retirement. Use a concrete example only when it separates valid from invalid behaviour or exposes a consequential branch. State outcomes at stable observable boundaries without prescribing test implementation.
+For an external destination, use the closest established initial native status and map complexity, blocker, blocked, and parent meanings to exact native fields when available. When an exact capability is absent, retain the meaning explicitly in the body and surface the limitation; never substitute a different relation. Do not set priority, assignee, sprint or cycle, milestone, release, or dates unless the approved definition or user supplies them.
 
-Check each item directly for independent value, bounded size, and testability. Minimise coupling between items while representing unavoidable prerequisites honestly. Infer a blocker only when the approved solution or required state transition establishes that one outcome cannot begin or complete before another; do not convert user-journey order, convenient sequencing, or tracker display order into dependency. Interpret the configured tool's relationship direction explicitly and reject cycles.
+Create and relate exactly the confirmed set.
 
-When a question exposes missing feature intent or selected solution, stop with the owning specification gap. When it exposes a missing retirement decision, stop for a later `$plan-retirement` session. When a retirement item would implement an unresolved replacement capability, omit that item until its approved feature specification exists; retain retirement-only items only when their outcomes and dependencies are independently confirmed. Invoke `$elicit-with-context` only when the approved authorities support more than one materially different decomposition and the user must choose among them. Supply the evidence and alternatives, let it ask one question at a time, and use its confirmed decision while retaining proposal, tracker mutation, verification, and stopping ownership.
+### 4. Read back, verify, and stop
 
-The draft items are vertically coherent, source-complete, independently actionable where possible, and linked only by genuine acyclic prerequisites.
+Read every created ticket and relationship back from its destination. Verify the confirmed titles, outcomes, authority or embedded context, requirements, applicable constraints, acceptance criteria, complexity values and ceiling, status, relationship meanings and directions, acyclic dependencies, resolved local references, and two-way work-definition coverage. Correct an exact in-scope discrepancy when the agreed value and target are unambiguous; otherwise stop with the mismatch and required decision or capability.
 
-### 4. Challenge and propose the set
-
-Trace every proposed item back to its approved need or obligation and every approved need or obligation forward to exactly the necessary items. Remove unapproved scope, duplicated outcomes, speculative abstractions, horizontal work, incidental dependencies, and detail that belongs only in code. Confirm that an implementation agent could complete each item in one bounded session without rediscovering observable intent, selecting a missing technical or retirement decision, or inventing unresolved replacement behaviour.
-
-Repeat the live duplicate search using the final titles, outcomes, authority links, and concepts. Reconcile the result into one complete proposal containing every native create, update, relationship-only, and no-op reuse action; the exact item contents; relationship types and directions; and any native capability limitation or residual mismatch. Do not include estimates, priorities, sprint or cycle assignments, milestones, target dates, releases, implementation sequencing beyond genuine blockers, or speculative future work.
-
-Present the complete proposal for explicit user confirmation. Selecting an earlier decomposition option is not confirmation of the full set. If the user rejects or revises it, keep the tracker unchanged, reopen every affected coverage, slicing, relationship, and reconciliation decision, repeat the duplicate search, and present the complete revised proposal. The confirmed proposal supplies authority for exactly its agreed tracker mutations without another application question.
-
-The user and agent share one exact, duplicate-aware mutation plan.
-
-### 5. Apply the confirmed work
-
-Immediately before writing, refresh every matching candidate and affected relationship. If concurrent change materially alters the confirmed create, update, no-op, or dependency plan, make no tracker mutation and return to complete-proposal confirmation. Otherwise use the configured tool's native operations to create, update, and link exactly the agreed items. Preserve unrelated content and fields on reused items. Use native idempotency, duplicate, parent, related, and blocking concepts where available; never silently substitute a different meaning when a capability is absent.
-
-Create in dependency-safe order only where the tool requires identifiers before relationships. Agreement authorises the confirmed writes; do not ask whether to apply them again and do not extend the mutation to convenient adjacent work.
-
-The configured tracker contains exactly the agreed native representation or an explicitly surfaced tool limitation.
-
-### 6. Read back, verify, and stop
-
-Read every created or updated item and every affected relationship back from the tool. Compare titles, outcomes, bounded context, applicable authority-package links, acceptance evidence, relationship types and directions, and create, update, or reuse disposition with the confirmed proposal. Correct an in-scope discrepancy when the agreed value and affected record are unambiguous; stop and report a mismatch when correction would require a new user decision, unsupported capability, or mutation of unrelated work.
-
-Repeat the relevant duplicate search and verify two-way authority-package coverage, vertical coherence, independent actionability, observable completion, genuine acyclic blockers, and preservation of unrelated native state. For retirement, verify that stage ordering became a blocker only where an approved entry condition or required state transition makes it genuine, that retirement-only work does not depend on an unresolved replacement without authority, and that every item links its applicable approved authorities. Report exact item links, created, updated, related, and reused records, verification performed, unsupported capabilities, concurrent-state or duplicate uncertainty, and unresolved source limitations.
-
-Stop after the native items and relationships are read back and verified. Do not change product, feature, solution, retirement, architecture, or context documents; select or schedule an iteration; estimate or prioritise work; scaffold or implement code; commit or publish changes; release; or deploy.
+Return the created ticket links or local paths, verification performed, capability limitations, source limitations, and unresolved external state. Stop without changing the approved work definition, scheduling or prioritising work, implementing, committing, publishing, releasing, or deploying.

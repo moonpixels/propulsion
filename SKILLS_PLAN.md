@@ -18,7 +18,7 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 2. **Narrow progressively.** Product intent narrows into a decision-complete feature specification, implementation-ready tickets and, finally, one implemented body of work.
 3. **Enter proportionately.** Substantial work uses the complete applicable chain. Small, understood work may begin directly with implementation.
 4. **Compose within the requested outcome.** A skill may invoke another skill when its outcome is required to complete the requested session. It must not silently advance into a later lifecycle outcome.
-5. **Keep authorities separate.** Product documents own intent, code and tests own implemented behaviour, Git owns change history and the task-management tool owns work state.
+5. **Keep authorities separate.** Product documents own intent, code and tests own implemented behaviour, Git owns change history and the configured ticket system owns work state.
 6. **Document what cannot be inferred safely.** Durable documents preserve intent, language, constraints and rationale without copying observable code, configuration, CI or tracker state.
 7. **Use native project tools.** Propulsion does not introduce a manifest, tracker adapter, lifecycle state model or completion-horizon schema.
 8. **Treat agreement as authority.** Invoking a skill authorises the mutations intrinsic to its agreed outcome. Questions resolve the outcome; they are not followed by a redundant application gate.
@@ -41,7 +41,7 @@ These areas are entry points, not mandatory phase gates. Release, deployment and
 
 ## Session and authority model
 
-Lifecycle skills are explicitly user-invokable. A lifecycle skill may call another lifecycle skill only when the subordinate outcome is necessary to finish the invoked session. For example, `pull-request` may call `commit` for eligible uncommitted work, while `create-tickets` must not silently manufacture a missing or incomplete feature specification.
+Lifecycle skills are explicitly user-invokable. A lifecycle skill may call another lifecycle skill only when the subordinate outcome is necessary to finish the invoked session. For example, `pull-request` may call `commit` for eligible uncommitted work, while `create-tickets` must not silently manufacture an incomplete work definition.
 
 Reusable utilities are user-invokable and may be model-invoked when their documented trigger is present. A caller remains responsible for verifying the utility's result and completing its own outcome.
 
@@ -85,11 +85,11 @@ Small, understood changes do not require feature documents merely to enter imple
 
 Research reports, architecture reviews, incident reviews and retirement plans are repository artefacts only when their conclusions and rationale need to survive the session. They must not duplicate live operational, tracker or implementation state.
 
-### Task-management tool
+### Ticket destination
 
-The project's task-management tool must be named in `AGENTS.md`. A tracker-backed skill that cannot find this preference asks the user which tool the project uses, invokes `maintain-agents` to record it and then resumes its original outcome.
+The project's ticket destination must be named in `AGENTS.md`, for example `The project uses Linear for tickets.` or `The project uses local Markdown for tickets.` A ticket-creating skill that cannot find this preference asks the user which destination the project uses, invokes `maintain-agents` to record it and then resumes its original outcome.
 
-The skill uses the selected tool's native items, relationships and statuses. If the named tool is unavailable or not writable, the skill stops with the exact access requirement. It does not guess or fall back silently to Markdown or another tracker.
+Local Markdown uses one file per ticket under `docs/features/<work-slug>/tickets/`. An external destination uses its native items, estimates, relationships and statuses. If the named external tool is unavailable or not writable, the skill stops with the exact access requirement. It does not guess or fall back silently to Markdown or another tracker.
 
 ## Lifecycle skill catalogue
 
@@ -117,11 +117,11 @@ The skill uses the selected tool's native items, relationships and statuses. If 
 
 #### `create-tickets`
 
-- **Outcome:** An approved feature specification or retirement plan is represented by implementation-ready, dependency-aware work in the project's task-management tool.
-- **Inputs:** Either one approved, decision-complete feature specification or an approved retirement plan, plus relevant project guidance and current tracker state.
-- **Output:** Native tracker items linked to their applicable authoritative documents, each describing one coherent vertical outcome, acceptance evidence and genuine blocking relationships.
-- **Composition:** Conditionally invokes `elicit-with-context` for unresolved decomposition and `maintain-agents` when the task-management preference is missing.
-- **Stops:** After the created items and relationships are read back and verified. It does not schedule the work or begin implementation.
+- **Outcome:** One approved work definition is represented by confirmed, implementation-ready, dependency-aware tickets in the project's configured destination.
+- **Inputs:** One sufficiently complete approved document or confirmed conversation, plus relevant project guidance and implementation evidence.
+- **Output:** One local Markdown file or external native item per coherent vertical outcome, with bounded context, requirements, applicable constraints, observable acceptance, Fibonacci complexity and genuine blocking relationships.
+- **Composition:** Conditionally invokes `elicit-with-context` for unresolved decomposition and `maintain-agents` when the ticket destination is missing.
+- **Stops:** After the created tickets and relationships are read back and verified. It does not schedule the work or begin implementation.
 
 ### Refine
 
@@ -350,7 +350,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `maintain-agents` skill
 - [x] Update `define-product` skill
 - [x] Create `specify-feature` skill
-- [-] Create `create-tickets` skill
+- [x] Create `create-tickets` skill
 - [-] Update `implement` skill
 - [x] Update `commit` skill
 - [x] Replace `pr` with `pull-request`
@@ -375,7 +375,7 @@ The revised suite is ready when:
 - substantial work narrows cleanly from product foundation through decision-complete specification, tickets and per-item implementation
 - small, clear work can enter implementation without ceremonial documents or tickets
 - required and conditional composition is explicit and does not duplicate supporting skill instructions
-- task-management skills use the project tool named in `AGENTS.md` and its native concepts without Propulsion configuration
+- ticket-creating skills use the local Markdown or external destination named in `AGENTS.md` and preserve its exact concepts without Propulsion configuration
 - documentation preserves enduring intent without copying observable implementation or live tool state
 - implementation always completes applicable verification and independent review
 - absent quality infrastructure is reported honestly and never causes unrelated tooling to be installed implicitly

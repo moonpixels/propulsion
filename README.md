@@ -57,7 +57,7 @@ The lifecycle areas are useful entry points, not mandatory phase gates.
 
 ### Plan
 
-- `$create-tickets` turns an approved feature specification or retirement plan into verified, dependency-aware work in the project's task-management tool.
+- `$create-tickets` turns an approved work definition—either a sufficiently complete document or confirmed conversation—into agreed, verified, vertically sliced tickets with Fibonacci complexity.
 
 ### Refine
 
@@ -143,9 +143,9 @@ Software-project skills route questions through `$elicit-with-context`. Base `$e
 
 `$write-skill` develops and evaluates Agent Skills themselves; it is not part of the software-delivery lifecycle.
 
-## Task-management tools
+## Ticket destinations
 
-Tracker-backed skills use the project tool named in the root `AGENTS.md` and represent work using that tool's native items, relationships, and statuses. If no tool is named, the skill asks which one the project uses, records the preference through `$maintain-agents`, and resumes. It never guesses or introduces a Propulsion configuration layer.
+The root `AGENTS.md` explicitly names the project's ticket destination, such as Linear or local Markdown. If none is named, `$create-tickets` asks the user, records the answer through `$maintain-agents`, and resumes. Local tickets use one file each under `docs/features/<work-slug>/tickets/`; external destinations use their native items, estimates, relationships, and statuses. The skill never guesses, silently falls back, or introduces a Propulsion adapter layer.
 
 ## Quality during implementation
 

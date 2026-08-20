@@ -2,7 +2,7 @@
 
 > **Authority:** This document owns the approved intent and selected solution for one feature. It is ready for ticket decomposition only when its readiness statement is satisfied.
 
-<!-- Git owns revision history and the task-management tool owns delivery state. Keep the stable headings below; omit conditional subsections and prompts that are not material. State each normative item once. Add identifiers only where they make later reference and traceability clearer. -->
+<!-- Git owns revision history and the configured ticket system owns delivery state. Keep the stable headings below; omit conditional subsections and prompts that are not material. State each normative item once. Add identifiers only where they make later reference and traceability clearer. -->
 
 ## Feature overview
 
