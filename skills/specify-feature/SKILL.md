@@ -1,8 +1,6 @@
 ---
 name: specify-feature
 description: Creates a decision-complete specification for one feature. Use when a high-level feature request or capability needs collaborative definition before ticket creation.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

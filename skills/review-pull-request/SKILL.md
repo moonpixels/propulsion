@@ -1,8 +1,6 @@
 ---
 name: review-pull-request
 description: Reviews someone else's pinned pull request independently with code findings and verification evidence. Use when assessing an external contributor's pull request.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

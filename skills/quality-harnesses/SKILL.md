@@ -1,8 +1,6 @@
 ---
 name: quality-harnesses
 description: Teaches risk-triggered selection and honest interpretation of software quality harnesses for a fixed change. Use when implementing or assessing code, tests, configuration, migrations, generated artefacts, or other software changes.
-metadata:
-    invocation: model
 disable-model-invocation: false
 ---
 

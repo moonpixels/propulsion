@@ -436,4 +436,4 @@ For each skill, use `$write-skill` to confirm the closed contract, establish no-
 
 ## Current cutover boundary
 
-This planning session creates this brief, updates the lifecycle plan and removes the obsolete `verify-change` bundle. It does not rewrite the five surviving skills, `debug`, `respond-to-incident`, `review-pull-request` or the README. Those files may temporarily describe the previous composition until their scheduled authoring sessions align them with this authority.
+This planning session creates this brief, updates the lifecycle plan and removes the obsolete `verify-change` bundle. It does not rewrite the five surviving skills, `debug`, `review-pull-request` or the README. Those files may temporarily describe the previous composition until their scheduled authoring sessions align them with this authority.

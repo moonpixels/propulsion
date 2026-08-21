@@ -1,8 +1,6 @@
 ---
 name: elicit-with-context
 description: Elicits shared understanding while maintaining software-project context. Use when a software-project skill needs user-held information or decisions.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

@@ -1,8 +1,6 @@
 ---
 name: modular-design
 description: Teaches structural design through information hiding, deep modules, cohesive ownership, stable interfaces, and change locality. Use when writing or assessing code, boundaries, contracts, dependencies, seams, or change propagation.
-metadata:
-    invocation: model
 disable-model-invocation: false
 ---
 

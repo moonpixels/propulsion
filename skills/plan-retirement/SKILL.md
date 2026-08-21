@@ -1,8 +1,6 @@
 ---
 name: plan-retirement
 description: Plans the safe retirement of one obsolete capability. Use when deprecation, migration, disablement, removal, archival, or recovery need an approved durable plan before delivery work.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

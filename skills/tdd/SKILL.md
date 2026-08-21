@@ -1,8 +1,6 @@
 ---
 name: tdd
 description: Teaches test-driven development through red-green-refactor with durable behavioural tests. Use when a usable suite can exercise changed behaviour through a credible seam.
-metadata:
-    invocation: model
 disable-model-invocation: false
 ---
 

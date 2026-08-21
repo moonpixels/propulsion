@@ -1,8 +1,6 @@
 ---
 name: commit
 description: Creates atomic Conventional Commits for eligible reviewed work while preserving unrelated changes. Use when the user asks to commit completed work.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

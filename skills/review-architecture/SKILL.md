@@ -1,8 +1,6 @@
 ---
 name: review-architecture
 description: Assesses an explicitly bounded codebase area for a few high-value architecture improvements and reports the evidence without changing implementation. Use for architecture or maintainability reviews.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

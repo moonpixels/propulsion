@@ -1,6 +1,0 @@
-interface:
-    display_name: 'Respond to Incident'
-    short_description: 'Stabilise an active production incident safely'
-    default_prompt: 'Use $respond-to-incident to coordinate a safe mitigation and verify the resulting production service state.'
-policy:
-    allow_implicit_invocation: false

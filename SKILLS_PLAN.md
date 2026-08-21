@@ -8,7 +8,7 @@ The existing suite may be changed or replaced where necessary. Skill authoring r
 
 ## Objective
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports work from initial product discovery through feature definition, planning, implementation, pull-request publication and review, debugging, incident response and retirement.
+Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports work from initial product discovery through feature definition, planning, implementation, pull-request publication and review, debugging and retirement.
 
 Propulsion is not a workflow platform. It does not carry a product automatically through its lifecycle, maintain its own work state or require a setup framework. A user may enter at any point where the necessary inputs already exist and leave when that session's outcome is complete.
 
@@ -34,7 +34,7 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 | Plan | Decompose an approved specification into implementation-ready work. |
 | Refine | Assess a bounded area of the current architecture and identify high-value improvements. |
 | Deliver | Implement agreed work, record it, publish it for review and review work submitted by others. |
-| Debug and Respond | Diagnose and repair defects, stabilise active incidents and learn from them afterwards. |
+| Debug | Diagnose and repair defects. |
 | Retire | Plan the safe removal of an obsolete capability and route its execution through normal delivery. |
 
 These areas are entry points, not mandatory phase gates. Release, deployment and continuous production monitoring are outside Propulsion's core lifecycle.
@@ -83,7 +83,7 @@ Small, understood changes do not require feature documents merely to enter imple
 
 ### Bounded supporting records
 
-Research reports, architecture reviews, incident reviews and retirement plans are repository artefacts only when their conclusions and rationale need to survive the session. They must not duplicate live operational, tracker or implementation state.
+Research reports, architecture reviews and retirement plans are repository artefacts only when their conclusions and rationale need to survive the session. They must not duplicate live operational, tracker or implementation state.
 
 ### Ticket destination
 
@@ -169,7 +169,7 @@ The detailed authoring contract for the implementation skills is maintained in [
 - **Composition:** Requires `code-review`, whose Standards axis applies the implementation teaching skills; conditionally invokes `research` when external evidence is material to the review.
 - **Stops:** After reporting findings. It does not change the contributor's branch or publish comments, approvals or requested changes unless the user's invocation includes that outcome.
 
-### Debug and Respond
+### Debug
 
 #### `debug`
 
@@ -178,22 +178,6 @@ The detailed authoring contract for the implementation skills is maintained in [
 - **Output:** A reproducible diagnosis and, for repair work, regression protection plus a reviewed local change.
 - **Composition:** Repair applies `modular-design` and `quality-harnesses`, applies `tdd` for behaviour-changing work when a usable suite exists, and requires `code-review`; conditionally invokes `research` and `elicit-with-context` when their triggers apply.
 - **Stops:** At the diagnosis boundary when requested, otherwise after the original failure and regression evidence verify the repair. It does not commit or publish the change.
-
-#### `respond-to-incident`
-
-- **Outcome:** An active production incident is understood sufficiently to stabilise service safely and verify the resulting service state.
-- **Inputs:** The incident signal, production evidence, affected systems, available operational controls and current communications.
-- **Output:** A verified mitigation or recovery, concise timeline, current impact and explicit unresolved risks or follow-up needs in the owning incident system.
-- **Composition:** Conditionally invokes `debug` and `research` when they are necessary to stabilise the incident. Any local repair uses the implementation-quality model through `debug`.
-- **Stops:** When service is stable or the exact external blocker is established. It does not perform the later learning review.
-
-#### `review-incident`
-
-- **Outcome:** A stabilised incident produces a blameless, evidence-based explanation and owned follow-up work.
-- **Inputs:** The incident timeline, technical and operational evidence, mitigations, communications and current product and architecture context.
-- **Output:** A durable incident review and verified follow-up items routed into the normal lifecycle.
-- **Composition:** Conditionally invokes `research`, `maintain-ubiquitous-language`, `maintain-decision-records` and `maintain-agents` when tracker-backed follow-up work lacks a configured task-management preference.
-- **Stops:** After learning and follow-up ownership are recorded. It does not implement the resulting changes.
 
 ### Retire
 
@@ -312,14 +296,6 @@ debug
     → pull-request
 ```
 
-### Respond to an incident
-
-```text
-respond-to-incident
-    → later review-incident
-    → follow-up work enters Define, Plan, Refine or Deliver
-```
-
 ### Retire a capability
 
 ```text
@@ -343,7 +319,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 3. Build the progressive foundation path: `define-product`, `specify-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build the architecture-assessment path: `review-architecture`.
-6. Build the exceptional paths: `debug`, `respond-to-incident`, `review-incident` and `plan-retirement`.
+6. Build the remaining paths: `debug` and `plan-retirement`.
 7. Align software-project elicitation through `elicit-with-context`, update the README around the lifecycle areas and independently invokable utilities, and run the suite-wide acceptance pass.
 
 ### Implementation checklist
@@ -368,8 +344,6 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [-] Create `review-pull-request` skill
 - [-] Update `review-architecture` skill
 - [-] Update `debug` skill
-- [-] Create `respond-to-incident` skill
-- [-] Create `review-incident` skill
 - [-] Create `plan-retirement` skill
 - [x] Restore `elicit-with-context` skill
 - [-] Update the README
@@ -408,5 +382,4 @@ Propulsion will not:
 - duplicate code, CI, tracker or production state in prose documents
 - release, deploy or continuously monitor software
 - merge a pull request merely because it has been created or reviewed
-- turn incident response and incident learning into one session
 - perform retirement implementation or production decommissioning inside `plan-retirement`

@@ -1,8 +1,6 @@
 ---
 name: define-product
 description: Defines a breadth-first product and system requirements foundation. Use when externalising a new product idea or deliberately revising PRODUCT.md.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

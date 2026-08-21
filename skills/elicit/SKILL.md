@@ -1,8 +1,6 @@
 ---
 name: elicit
 description: Elicits material information and decisions from the user one question at a time until shared understanding is confirmed. Use when a request or consuming skill depends on user-held context, clarification, or choices that cannot be safely discovered.
-metadata:
-    invocation: model
 disable-model-invocation: false
 ---
 

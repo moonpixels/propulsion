@@ -1,8 +1,6 @@
 ---
 name: implement
 description: Implements one ticket or small agreed software change with proportionate quality evidence. Use when the user asks to build confirmed work locally.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

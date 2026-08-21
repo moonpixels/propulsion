@@ -1,8 +1,6 @@
 ---
 name: debug
-description: Diagnoses defects and conditionally makes verified repairs. Use for failures, regressions, runtime errors, performance faults, incorrect behaviour, or causal debugging called by incident response.
-metadata:
-    invocation: user
+description: Diagnoses defects and conditionally makes verified repairs. Use for failures, regressions, runtime errors, performance faults, incorrect behaviour, or causal debugging.
 disable-model-invocation: true
 ---
 
@@ -48,4 +46,4 @@ When verification exposes an in-scope failure, return to the causal repair path,
 
 ## Handoff
 
-Report the requested outcome; expected and observed behaviour; authority and environment boundary; original signal; hypotheses, predictions, experiments, and contradictory evidence; root cause and causal mechanism or exact unresolved evidence boundary; reverted attempts; retained change and regression protection; review scope and finding dispositions; verification scope, commands, evidence, verdict, limitations, residual risks, and next discriminating experiment or planned work. For diagnosis-only work, state that no implementation was changed. Stop after the diagnosis or verified local repair without committing, pushing, opening a pull request, changing tracker state, owning incident mitigation or communications, performing an incident review, releasing, deploying, monitoring, or adding speculative documentation.
+Report the requested outcome; expected and observed behaviour; authority and environment boundary; original signal; hypotheses, predictions, experiments, and contradictory evidence; root cause and causal mechanism or exact unresolved evidence boundary; reverted attempts; retained change and regression protection; review scope and finding dispositions; verification scope, commands, evidence, verdict, limitations, residual risks, and next discriminating experiment or planned work. For diagnosis-only work, state that no implementation was changed. Stop after the diagnosis or verified local repair without committing, pushing, opening a pull request, changing tracker state, releasing, deploying, monitoring, or adding speculative documentation.

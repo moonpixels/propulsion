@@ -1,8 +1,6 @@
 ---
 name: pull-request
 description: Publishes the current branch as one concise verified pull request. Use when the branch is ready for external review.
-metadata:
-    invocation: user
 disable-model-invocation: true
 ---
 

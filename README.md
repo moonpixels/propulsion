@@ -2,7 +2,7 @@
 
 # Propulsion
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, debugging, incident response, and retirement.
+Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, debugging, and retirement.
 
 Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete. Propulsion does not require an end-to-end orchestrator, manifest, setup framework, state machine, or tracker adapter.
 
@@ -39,7 +39,6 @@ Repeat the link for each selected skill. Codex and OpenCode both discover skills
 | Define a substantial feature | `$specify-feature` | An approved, decision-complete feature specification |
 | Make a small understood change | `$implement` | A minimal, reviewed, verified local change |
 | Diagnose or repair a defect | `$debug` | A causal diagnosis and, when requested, a verified repair |
-| Stabilise a production incident | `$respond-to-incident` | Verified mitigation or recovery and current service state |
 | Review another contributor's PR | `$review-pull-request` | Independent findings and verification evidence |
 | Remove an obsolete capability | `$plan-retirement` | An approved, safe retirement plan |
 
@@ -72,11 +71,9 @@ The lifecycle areas are useful entry points, not mandatory phase gates.
 
 The author's normal delivery flow does not invoke `$review-pull-request`: `$implement` already includes independent code review. The separate pull-request review skill is for work submitted by others.
 
-### Debug and Respond
+### Debug
 
 - `$debug` establishes an evidence-backed root cause and, when repair is requested, produces a minimal reviewed and verified local change.
-- `$respond-to-incident` coordinates evidence-led stabilisation of an active production incident and records the resulting service state.
-- `$review-incident` later explains a stabilised incident without blame and creates owned follow-up work through the normal lifecycle.
 
 ### Retire
 
@@ -106,12 +103,10 @@ Deliver a small understood change:
 implement → commit → pull-request
 ```
 
-Debug, respond, or retire:
+Debug or retire:
 
 ```text
 debug → commit → pull-request
-
-respond-to-incident → later review-incident → route follow-up work
 
 plan-retirement → later create-tickets → normal delivery sessions
 ```
