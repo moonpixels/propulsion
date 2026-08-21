@@ -1,48 +1,44 @@
 ---
 name: implement
-description: Implements one ticket or small agreed software change with proportionate quality evidence. Use when the user asks to build confirmed work locally.
+description: Implements one ticket or small confirmed software change as a minimal, locally checked, independently reviewed candidate. Use when the user asks to build agreed work locally.
 disable-model-invocation: true
 ---
 
 # Implement
 
-A tailored **Software Formal Inspection** lifecycle implements one confirmed body of work, independently reviews a fixed candidate, and verifies that same candidate. TDD supplies the implementation method only when its prerequisites hold.
+Turns one confirmed body of software work into the smallest coherent local change with applicable quality evidence and independent review.
 
 ## Process
 
-### 1. Fix the outcome
+### 1. Fix the implementation basis
 
-Inspect the stated ticket or agreed work, repository instructions, linked product and technical authorities, current code and tests, and the complete repository state. A clear small request is sufficient authority; do not manufacture a ticket, specification, or other ceremony. Invoke `$elicit-with-context` one question at a time only when user-held ambiguity could materially change behaviour, contracts, architecture, scope, or acceptance. State the observable outcome, exclusions, applicable structural constraints, material risks, and evidence expected before editing. The implementation basis is explicit and bounded.
+Inspect the work authority, repository instructions, linked product and technical authorities, current code, tests, relevant contracts, available tools, and complete repository state. State the observable outcome, exclusions, material risks, and completion evidence. Resolve discoverable facts directly. Invoke `$elicit-with-context` only when a material user-held behaviour, contract, architecture, scope, or acceptance decision remains.
 
-### 2. Build the smallest complete change
+Keep the outcome to one implementation-ready ticket, diagnosed repair, or small confirmed change. Preserve unrelated work. Stop when the work is not sufficiently defined to implement and elicitation cannot resolve it within the requested outcome.
 
-Follow established language, framework, and repository conventions and reuse fitting helpers. Add only the production code, tests, documentation, configuration, generated output, or other artefacts required by the outcome. Avoid speculative flexibility, unrelated cleanup, broad refactors, and generated churn. Invoke `$modular-design` when the work presents a material ownership, boundary, contract, dependency, seam, or change-propagation decision, then carry its constraints through the change. Invoke `$research` only for a material external-knowledge subject that needs durable evidence, and treat its cited report as an explicit in-scope artefact. Use `$maintain-ubiquitous-language` when independently confirmed durable terminology arises and `$maintain-decision-records` when a rare qualifying decision needs durable rationale; each utility returns control to this outcome.
+### 2. Load the teaching knowledge
 
-Invoke `$tdd` only when an existing runnable test suite can credibly exercise the requested observable behaviour at a stable boundary with an independent oracle. When evidence already shows any prerequisite is absent, keep control here rather than invoking TDD merely to receive that result. Let TDD own the Red-Green-Refactor cycles and returned code and tests when it applies. Otherwise implement through the smallest conventional path and use the strongest available project-native feedback; update existing tests only when they can meaningfully express changed behaviour. Do not install or invent a test or quality framework to satisfy this process. When meaningful infrastructure is absent, preserve the limitation for verification and recommend separately planned work rather than adding unrelated harness infrastructure.
+Invoke `$modular-design` and `$quality-harnesses` against the fixed work. Invoke `$tdd` when the change affects observable behaviour and an existing usable suite can exercise it through a credible seam. Retain their applicable guidance throughout implementation; they teach within this workflow while this skill retains ownership of edits, commands, evidence, and completion.
 
-Inspect the resulting diff and every in-scope untracked file. Account for each production addition against the agreed outcome or a necessary supporting change, and identify every change to tests, snapshots, baselines, suppressions, dependencies, quality configuration, scripts, or generated artefacts as part of the measurement path. The candidate is minimal, coherent, and ready for independent inspection.
+### 3. Build and check the candidate
 
-### 3. Review a fixed candidate
+Implement the smallest coherent change that completely satisfies the confirmed outcome. Follow the selected modular constraints, TDD cycles, and quality-harness guidance without adding speculative flexibility, unrelated cleanup, or project-wide quality infrastructure outside the agreed work.
 
-Freeze the complete candidate, including its exact diff or revisions, changed and untracked paths, repository state, intended-behaviour authority, applicable structural constraints, and named risks. Invoke `$code-review` independently on that basis. If the basis drifts or either applicable review axis is stale or unperformed, re-freeze and repeat the review when the scope and ownership remain clear; otherwise stop with the exact blocker. Do not treat implementation self-inspection, tests, or verification as a substitute for the independent review.
+Inspect the complete diff and every in-scope untracked file. Account for each production and test addition, dependency, generated artefact, and measurement-path change. Run every applicable repository-required and risk-triggered existing harness selected through `$quality-harnesses`. Preserve exact results, unavailable evidence, and residual risks. Freeze one complete candidate only after its local checks are current.
 
-Validate every Standards and Spec finding against the confirmed request, its authorities, and current code, then give it one technical disposition:
+### 4. Review and adjudicate
 
-- A required correction is a verified violation of confirmed behaviour, the specification, a repository rule, or a necessary safety boundary, or another defect that leaves the change untrustworthy.
-- A proportional improvement is valid but non-blocking; accept it only when its concrete benefit justifies the added change and complexity.
-- A rejected finding is falsified, unsupported, superseded, or outside the confirmed scope.
-- A user decision is required when accepting or rejecting the finding would change behaviour, contracts, architecture, or scope, or when its evidence cannot be obtained safely.
+Invoke `$code-review` on the frozen candidate and its authorities. Validate every Spec and Standards suggestion against the strongest available authority and evidence, then disposition it as:
 
-For a user-decision finding, invoke `$elicit-with-context` and stop mutation, further adjudication, and verification until its confirmed synthesis returns. Resume from the fixed outcome; when the decision changes the candidate or any review authority, freeze the resulting basis and repeat independent review.
+- **Required correction:** a confirmed violation, regression, safety defect, or evidence weakness that leaves the change untrustworthy.
+- **Proportionate improvement:** a valid in-scope benefit worth its added change and complexity.
+- **Rejected finding:** falsified, unsupported, superseded, or outside the confirmed scope.
+- **User decision:** resolution would change agreed behaviour, contracts, architecture, or scope, or needs evidence that cannot be obtained safely.
 
-Treat priority as evidence of impact and ordering, not remediation authority. Apply every accepted correction through `$tdd` when its prerequisite applies and otherwise through the conventional path. After any candidate change, freeze the complete new candidate and repeat independent review. Continue until every finding has a supported disposition, no required finding remains unresolved, and the complete current candidate has been independently reviewed. The reviewed candidate is fixed and current.
-
-### 4. Verify the reviewed candidate
-
-Invoke `$verify-change` on the exact reviewed candidate, supplying its authorities, named risks, review dispositions, relevant implementation evidence, and identified measurement-path changes. Let it select and run every applicable repository-required and risk-triggered existing harness and return claim-level evidence, reproducible commands, limitations, residual risks, and one honest verdict. Metrics support only their named claims; they never prove quality alone.
-
-When verification exposes an in-scope failure, repair it through the applicable TDD or conventional path, then repeat independent review and verification on the new fixed candidate. When verification evidence is stale because source or measurement-path state changed, establish ownership and scope, then re-freeze, re-review, and re-verify; do not silently retarget old evidence. Preserve a pre-existing or out-of-scope required-gate failure as a blocker rather than broadening the work. When missing infrastructure leaves the result partially verified or unverified and no in-scope repair can supply faithful evidence, report that limitation and explicit planned work without manufacturing a harness or claiming successful completion.
+Apply required corrections and accepted improvements through the applicable teaching skills. Invoke `$elicit-with-context` for a user decision. Rerun every affected harness after a candidate or measurement-path change. Freeze and review the complete new candidate after any material change. Continue until every finding has a supported disposition and no applicable correction or accepted improvement remains.
 
 ### 5. Hand off the local result
 
-Report the agreed behaviour delivered, changed artefacts, review scope and every finding disposition, verification scope and verdict, exact commands and material results, limitations, residual risks, and any blocker or planned follow-up. Claim successful completion only when the behaviour exists locally, applicable tests and artefacts are present, the complete current candidate has a current independent review with no unresolved required finding, and verification passed within its stated scope. A partial, unverified, or failed verdict is an explicit incomplete or blocked handoff. Stop without committing, pushing, opening a pull request, releasing, deploying, changing tracker state, or authoring unrelated product, specification, or design documents.
+Report the delivered behaviour, changed artefacts, applicable TDD and modular-design decisions, exact checks and results, unavailable evidence, residual risks, review scope and results, and every finding disposition. Successful completion requires the agreed behaviour locally, every production addition serving a current purpose, applicable evidence passed or explicitly unavailable, and current Spec and Standards review with no unresolved applicable change.
+
+Stop without committing, pushing, opening or updating a pull request, changing tracker state, releasing, or deploying. Do not conduct exploratory research, create specifications or tickets, or add unrelated quality infrastructure inside this outcome.

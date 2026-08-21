@@ -1,5 +1,5 @@
 interface:
     display_name: 'Implement'
-    short_description: 'Implement and verify one bounded change'
+    short_description: 'Implement and review one local change'
 policy:
     allow_implicit_invocation: false
