@@ -155,13 +155,13 @@ $debug → $commit → $pull-request
 
 These skills are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-| Skill | Invoke it to… |
-| --- | --- |
-| `$review-pull-request` | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested |
-| `$elicit` | Resolve material user-held information and decisions one question at a time |
+| Skill                  | Invoke it to…                                                                                                                                             |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$review-pull-request` | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested                             |
+| `$elicit`              | Resolve material user-held information and decisions one question at a time                                                                               |
 | `$elicit-with-context` | Resolve software-project questions through `$elicit`, applying `$maintain-ubiquitous-language` and `$maintain-decision-records` when their triggers apply |
-| `$research` | Investigate a material subject with high-trust evidence and persist a trusted cited report |
-| `$maintain-agents` | Keep confirmed repository-wide agent guidance lean and current |
+| `$research`            | Investigate a material subject with high-trust evidence and persist a trusted cited report                                                                |
+| `$maintain-agents`     | Keep confirmed repository-wide agent guidance lean and current                                                                                            |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
 

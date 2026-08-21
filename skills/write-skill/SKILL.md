@@ -96,12 +96,12 @@ Publish the passing candidate to the requested destination and rerun validation 
 
 Return the destination, confirmed contract, validation result, published files, evaluator verdict, residual uncertainty, and this comparison. Use `n/a` for Current on new skills. Compare Candidate delta with No skill for creation and Current for revision; also state a revision's behavioural shift over No skill.
 
-| Metric | No skill | Current | Candidate | Candidate delta |
-| --- | --- | --- | --- | --- |
-| Behavioural result and evaluator evidence |  |  |  |  |
-| Discovery metadata tokens |  |  |  |  |
-| Loaded skill-path tokens |  |  |  |  |
-| Agent output tokens |  |  |  |  |
-| Tool calls |  |  |  |  |
-| Iterations |  |  |  |  |
-| Total measured token burden |  |  |  |  |
+| Metric                                    | No skill | Current | Candidate | Candidate delta |
+| ----------------------------------------- | -------- | ------- | --------- | --------------- |
+| Behavioural result and evaluator evidence |          |         |           |                 |
+| Discovery metadata tokens                 |          |         |           |                 |
+| Loaded skill-path tokens                  |          |         |           |                 |
+| Agent output tokens                       |          |         |           |                 |
+| Tool calls                                |          |         |           |                 |
+| Iterations                                |          |         |           |                 |
+| Total measured token burden               |          |         |           |                 |

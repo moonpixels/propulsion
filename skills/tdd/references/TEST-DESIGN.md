@@ -12,15 +12,15 @@ Use the narrowest seam that is:
 
 Add a broader companion test only when the narrower seam cannot retain a material integration risk. Test a pure rule through its public function, a database guarantee against the real engine when its semantics matter, and an end-user interaction through the rendered application when wiring or accessibility is part of the promise.
 
-| Concern | Brittle or circular test | Durable behavioural test |
-| --- | --- | --- |
-| Expected value | Repeats the production reduction to calculate `expected` | Uses the accepted example `10 + 5 = 15` or an independent invariant |
-| Domain result | Calls a private pricing method or asserts helper delegation | Calls the supported quote operation and asserts its public result |
-| UI | Asserts CSS classes, wrapper tags, child indexes, or DOM depth | Interacts by role or label and asserts visible text, value, focus, state, or navigation |
-| Persistence | Inspects private tables, columns, or ORM calls | Writes and reads through supported interfaces; reloads when durability matters |
-| Error | Asserts a private branch or stack shape | Asserts caller-visible type, code, promised message, recovery, and unchanged state |
-| Snapshot | Accepts a broad incidental object or markup snapshot | Asserts selected semantic fields, unless exact bytes or markup are the contract |
-| Bug | Treats the existing crash or output as the expected result | Reproduces the wrong result, then asserts a requirement-derived correction |
+| Concern        | Brittle or circular test                                       | Durable behavioural test                                                                |
+| -------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Expected value | Repeats the production reduction to calculate `expected`       | Uses the accepted example `10 + 5 = 15` or an independent invariant                     |
+| Domain result  | Calls a private pricing method or asserts helper delegation    | Calls the supported quote operation and asserts its public result                       |
+| UI             | Asserts CSS classes, wrapper tags, child indexes, or DOM depth | Interacts by role or label and asserts visible text, value, focus, state, or navigation |
+| Persistence    | Inspects private tables, columns, or ORM calls                 | Writes and reads through supported interfaces; reloads when durability matters          |
+| Error          | Asserts a private branch or stack shape                        | Asserts caller-visible type, code, promised message, recovery, and unchanged state      |
+| Snapshot       | Accepts a broad incidental object or markup snapshot           | Asserts selected semantic fields, unless exact bytes or markup are the contract         |
+| Bug            | Treats the existing crash or output as the expected result     | Reproduces the wrong result, then asserts a requirement-derived correction              |
 
 Representation is valid only when that representation is itself a published contract.
 

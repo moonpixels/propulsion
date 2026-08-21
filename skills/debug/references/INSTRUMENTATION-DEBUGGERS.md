@@ -6,12 +6,12 @@ Use this reference when existing evidence cannot distinguish the active hypothes
 
 Choose the instrument whose observation matches the question:
 
-| Question | Probe |
-| --- | --- |
-| Which local state or branch first violates an invariant? | Conditional breakpoint, watchpoint, or stack inspection |
-| Where does one request cross a process or service boundary? | Correlated logs, metrics, trace, or narrow state endpoint |
-| Which operation consumes CPU, memory, I/O, locks, or time? | Matching profiler, counter, or targeted runtime trace |
-| Does a known fault class occur? | Repository-supported detector such as a race, memory, or query diagnostic |
+| Question                                                    | Probe                                                                     |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Which local state or branch first violates an invariant?    | Conditional breakpoint, watchpoint, or stack inspection                   |
+| Where does one request cross a process or service boundary? | Correlated logs, metrics, trace, or narrow state endpoint                 |
+| Which operation consumes CPU, memory, I/O, locks, or time?  | Matching profiler, counter, or targeted runtime trace                     |
+| Does a known fault class occur?                             | Repository-supported detector such as a race, memory, or query diagnostic |
 
 Place the fewest probes at boundaries, decisions, and state transitions that partition the hypotheses. Capture only the needed input, output, identity, correlation, time, and environment. Establish measurement overhead when the probe can affect the signal.
 

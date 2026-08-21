@@ -2,12 +2,12 @@
 
 Use an example test by default. Select one of these techniques only when its trigger applies and its oracle is independently justified.
 
-| Technique | Trigger | Oracle and limitation |
-| --- | --- | --- |
-| **Property-based** | Stable invariants over many values; parsers, serializers, algebra, collections, boundary-rich pure logic | Assert an independent invariant. Biased generators and tautological properties can pass indefinitely. |
-| **Model-based** | Stateful workflows or protocols where sequences and invalid transitions matter | Compare with a smaller independent state model. A model copied from production repeats its defects and can suffer state explosion. |
-| **Metamorphic** | Direct expected outputs are unavailable but relationships between executions are known | Assert relations such as round-trip, permutation invariance, monotonicity, or scaling. A relation detects inconsistency, not necessarily the uniquely correct result. |
-| **Differential** | Two genuinely comparable implementations, versions, backends, or conforming tools can receive the same inputs | Compare normalized outcomes. Agreement may be jointly wrong; shared code or assumptions weaken independence. |
+| Technique          | Trigger                                                                                                       | Oracle and limitation                                                                                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Property-based** | Stable invariants over many values; parsers, serializers, algebra, collections, boundary-rich pure logic      | Assert an independent invariant. Biased generators and tautological properties can pass indefinitely.                                                                 |
+| **Model-based**    | Stateful workflows or protocols where sequences and invalid transitions matter                                | Compare with a smaller independent state model. A model copied from production repeats its defects and can suffer state explosion.                                    |
+| **Metamorphic**    | Direct expected outputs are unavailable but relationships between executions are known                        | Assert relations such as round-trip, permutation invariance, monotonicity, or scaling. A relation detects inconsistency, not necessarily the uniquely correct result. |
+| **Differential**   | Two genuinely comparable implementations, versions, backends, or conforming tools can receive the same inputs | Compare normalized outcomes. Agreement may be jointly wrong; shared code or assumptions weaken independence.                                                          |
 
 ## Apply the selected technique
 

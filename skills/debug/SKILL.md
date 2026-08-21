@@ -26,17 +26,17 @@ Maintain one compact investigation record containing observations, a small ranke
 
 Select the reference whose trigger matches the current uncertainty and load only that reference. Return its evidence to this causal loop before selecting another:
 
-| Evidence shape | Load |
-| --- | --- |
-| Multiple plausible explanations remain | [Hypothesis-Driven Experiments](references/HYPOTHESIS-EXPERIMENTS.md) |
-| A component, pipeline, request, or data path has observable boundaries | [Boundary Isolation](references/BOUNDARY-ISOLATION.md) |
-| Reliable known-good and known-bad ordered states exist | [Change Bisection](references/CHANGE-BISECTION.md) |
-| A large input, state, sequence, trace, or change set can be reduced | [Delta Debugging](references/DELTA-DEBUGGING.md) |
-| Invalid state appears downstream of where it originated | [Origin Tracking](references/ORIGIN-TRACKING.md) |
-| A credible working case can be compared with the failing case | [Comparative Debugging](references/COMPARATIVE-DEBUGGING.md) |
-| Existing evidence cannot distinguish the active hypotheses | [Instrumentation and Debuggers](references/INSTRUMENTATION-DEBUGGERS.md) |
-| Outcome depends on timing, order, randomness, load, or shared state | [Nondeterministic and Concurrent Faults](references/NONDETERMINISTIC-CONCURRENT.md) |
-| The signal is latency, throughput, contention, exhaustion, leakage, or resource cost | [Performance and Resource Faults](references/PERFORMANCE-RESOURCE.md) |
+| Evidence shape                                                                       | Load                                                                                |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| Multiple plausible explanations remain                                               | [Hypothesis-Driven Experiments](references/HYPOTHESIS-EXPERIMENTS.md)               |
+| A component, pipeline, request, or data path has observable boundaries               | [Boundary Isolation](references/BOUNDARY-ISOLATION.md)                              |
+| Reliable known-good and known-bad ordered states exist                               | [Change Bisection](references/CHANGE-BISECTION.md)                                  |
+| A large input, state, sequence, trace, or change set can be reduced                  | [Delta Debugging](references/DELTA-DEBUGGING.md)                                    |
+| Invalid state appears downstream of where it originated                              | [Origin Tracking](references/ORIGIN-TRACKING.md)                                    |
+| A credible working case can be compared with the failing case                        | [Comparative Debugging](references/COMPARATIVE-DEBUGGING.md)                        |
+| Existing evidence cannot distinguish the active hypotheses                           | [Instrumentation and Debuggers](references/INSTRUMENTATION-DEBUGGERS.md)            |
+| Outcome depends on timing, order, randomness, load, or shared state                  | [Nondeterministic and Concurrent Faults](references/NONDETERMINISTIC-CONCURRENT.md) |
+| The signal is latency, throughput, contention, exhaustion, leakage, or resource cost | [Performance and Resource Faults](references/PERFORMANCE-RESOURCE.md)               |
 
 When the shape is unclear, verify the signal and inspect recent changes, then compare a working case, isolate boundaries, reduce the reproducer, trace the first invalid state, and finally add targeted probes. Enter nondeterministic or performance guidance immediately when its trigger applies. Combine techniques only when each answers a distinct unresolved question.
 

@@ -115,13 +115,13 @@
 
 ## Traceability and readiness
 
-| Intent or acceptance identifier | Selected responsibility or contract | Verification seam or evidence |
-| --- | --- | --- |
-| {REQ-01 or ACC-01} | {Design responsibility or contract.} | {Observable verification boundary.} |
+| Intent or acceptance identifier | Selected responsibility or contract  | Verification seam or evidence       |
+| ------------------------------- | ------------------------------------ | ----------------------------------- |
+| {REQ-01 or ACC-01}              | {Design responsibility or contract.} | {Observable verification boundary.} |
 
-| Introduced design element | Originating intent, constraint, evidence, or accepted decision |
-| --- | --- |
-| {Material responsibility, contract, data, integration, migration, operational, or verification element.} | {Exact identifier or linked authority.} |
+| Introduced design element                                                                                | Originating intent, constraint, evidence, or accepted decision |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| {Material responsibility, contract, data, integration, migration, operational, or verification element.} | {Exact identifier or linked authority.}                        |
 
 ### Readiness statement
 

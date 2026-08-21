@@ -4,13 +4,13 @@ Keep collaborators inside the system real. Substitute a boundary only when the r
 
 ## Choose the least powerful double
 
-| Double | Supply | Verify |
-| --- | --- | --- |
-| Dummy | An unused required value | Nothing |
-| Stub | A controlled indirect input | The public outcome |
-| Fake | A small working boundary implementation | The public outcome or recorded public effect |
-| Spy | A record of an otherwise invisible boundary effect | Only promised boundary facts |
-| Mock | An expected external interaction protocol | Only contractually material calls |
+| Double | Supply                                             | Verify                                       |
+| ------ | -------------------------------------------------- | -------------------------------------------- |
+| Dummy  | An unused required value                           | Nothing                                      |
+| Stub   | A controlled indirect input                        | The public outcome                           |
+| Fake   | A small working boundary implementation            | The public outcome or recorded public effect |
+| Spy    | A record of an otherwise invisible boundary effect | Only promised boundary facts                 |
+| Mock   | An expected external interaction protocol          | Only contractually material calls            |
 
 Prefer state verification. Interaction verification is warranted when the interaction is the promise: for example, one idempotency-keyed payment request or publishing only after a durable write.
 

@@ -8,13 +8,13 @@ Define the workload, environment, known-good baseline or expected threshold, war
 
 For early systemic triage, inspect utilization, saturation, and errors for each relevant resource. Then choose the measurement that matches the suspected cost:
 
-| Suspected cost | Evidence |
-| --- | --- |
-| CPU or call-path work | Sampling or instrumenting profile under the controlled workload |
-| Memory or allocation | Heap, allocation, retention, or growth measurement |
-| I/O, network, queue, or lock pressure | Resource counter and targeted trace |
-| Database execution | Actual plan, cardinality, I/O, locks, and query timing |
-| Version or configuration regression | Stable differential benchmark or change bisection |
+| Suspected cost                        | Evidence                                                        |
+| ------------------------------------- | --------------------------------------------------------------- |
+| CPU or call-path work                 | Sampling or instrumenting profile under the controlled workload |
+| Memory or allocation                  | Heap, allocation, retention, or growth measurement              |
+| I/O, network, queue, or lock pressure | Resource counter and targeted trace                             |
+| Database execution                    | Actual plan, cardinality, I/O, locks, and query timing          |
+| Version or configuration regression   | Stable differential benchmark or change bisection               |
 
 Connect the hotspot, plan, wait, saturation, or growth to the user-visible signal through a controlled workload or intervention. A hotspot is where cost was observed, not automatically why the system is slow.
 
