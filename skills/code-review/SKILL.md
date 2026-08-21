@@ -1,69 +1,77 @@
 ---
 name: code-review
-description: Diagnoses a fixed code change independently against intended behaviour and engineering standards. Use when reviewing code directly or during implementation, debugging, or pull-request review.
+description: Reviews a fixed code change through isolated specification and engineering-standards agents. Use for direct diff review or when another delivery skill invokes independent review.
+metadata:
+    invocation: model
 disable-model-invocation: false
 ---
 
 # Code Review
 
-A tailored **Software Formal Inspection** independently diagnoses a fixed code change through isolated Spec and Standards reviews, returning evidence for the caller without verifying, approving, or changing the work.
+Independently diagnoses one fixed code change against intended behaviour and engineering standards, returning falsifiable suggestions for its caller to adjudicate.
 
 ## Process
 
-### 1. Freeze the change
+### 1. Fix the candidate and authorities
 
-Use a caller-supplied frozen basis when available; otherwise resolve the exact uncommitted diff, revision range, branch comparison, pull-request change, repair, or other scoped work product. Read repository instructions, resolve every revision, and capture the patch, changed paths, complete in-scope changed and untracked files, and repository state once. Ask when scope is materially ambiguous. When it is invalid or empty, return the exact blocker without reviewing. The review has one explicit, non-empty work product.
+Use the caller's pinned candidate when supplied; otherwise resolve one exact non-empty diff, revision range, branch comparison, pull-request revision, repair, or local candidate. Capture its patch, changed and in-scope untracked paths, complete changed files, relevant source and tests, repository state, and exact revision identifiers where available. Ask when the target is materially ambiguous. Return the exact blocker when it is empty or cannot be fixed.
 
-### 2. Resolve the authorities and context
+Resolve intended behaviour from an implementation-independent authority such as a specification, ticket, acceptance criteria, confirmed request, contract, or another project source. When none is reasonably available, omit Spec and continue Standards without inferring intent from code, commits, or implementation rationale.
 
-Identify intended behaviour from the caller's fixed authority, such as a specification, ticket, acceptance criteria, confirmed request, or another project source. Extract the authoritative statement without carrying surrounding conversation into inspection. When no intended-behaviour authority can be found, ask the user to confirm a Standards-only review unless the caller already supplied that confirmation.
+Resolve applicable repository instructions, conventions, architecture decisions, configured checks, affected contracts and consumers, and supplied quality evidence. The review basis is explicit and sufficient to understand every changed line in context.
 
-Independently resolve applicable repository instructions, architecture decisions, language and framework policies, configured checks, and established local conventions. Read every changed file in full, relevant tests, affected contracts and consumers, and enough surrounding implementation to understand each change. Reuse relevant caller-supplied `$modular-design` constraints, or invoke `$modular-design` when ownership, boundaries, dependencies, contracts, or change propagation present a material structural concern.
+### 2. Prepare isolated review packets
 
-Apply the universal Standards criteria directly: correctness and regression risk; scoped minimality; language, framework, and repository conventions, including established helpers; changed-test validity and durability; maintainability and economy; recognised smells; and modular architecture. Activate security, performance, accessibility, compatibility, resilience, concurrency, migration, or another specialist concern only when task evidence or project authority exposes it. Use ISO/IEC 25010 only when an authority adopts it. For an implicated supported-language or Web-security construct, consult the current official CERT rule or stable versioned OWASP ASVS requirement narrowly and include its exact applicability and exceptions. When a concrete maintainability shape still needs recognised diagnostic vocabulary, consult [Code Smells](references/CODE-SMELLS.md); a smell prompts investigation and is never finding authority by itself. The two axes have explicit, task-relevant evidence without a universal external checklist.
+Give both applicable packets the fixed candidate, complete changed files and necessary surrounding source, their own authorities and criteria, the consequence ranking and finding format below, and a read-only boundary.
 
-### 3. Prepare the inspection packets
+Direct the Spec reviewer to account for every applicable requirement in code and retained tests, account for every introduced behaviour against authority, and follow affected contracts, states, data shapes, errors, effects, and consumers far enough to find missing, partial, conflicting, excessive, or regressed behaviour. Trace distinct success, failure, retry, and concurrent paths when the authority distinguishes them. When an external effect precedes durable state or acknowledgement, trace failure after the effect and before that record or response, including what a retry repeats. Report separate suggestions when a different triggering state, violated requirement, consequence, or narrow corrective outcome survives review, even if the evidence overlaps another suggestion.
 
-Create one self-contained, operational packet per applicable axis. Both packets receive the frozen scope, complete changed files and necessary surrounding source, their applicable authorities and criteria, the priority definitions and output schema below, and the read-only boundary. Exclude conversation history, undocumented implementation rationale, `$verify-change` results or conclusions, and the other reviewer's materials.
+Direct the Standards reviewer to understand every changed line in its necessary context and assess:
 
-The Spec packet directs its reviewer to:
+- correctness and regression risk;
+- the smallest coherent scope and absence of speculative or superseded work;
+- repository, language, and framework conventions;
+- changed-test validity, independent oracles, behavioural durability, and meaningful failure detection;
+- modular ownership, interface depth, dependencies, and change locality;
+- repository-required and changed-risk harness selection, measurement-path integrity, and honest evidence limits; and
+- recognised maintainability shapes and specialist risks exposed by the change.
 
-1. account for every applicable statement of intended behaviour in the changed implementation and relevant tests;
-2. account for every introduced or altered behaviour against an identified authority; and
-3. follow affected contracts, states, data shapes, side effects, and consumers far enough to expose missing, partial, conflicting, excess, and regressed behaviour.
+Require the Standards reviewer to load and apply `$modular-design` and `$quality-harnesses`, plus `$tdd` when its prerequisites hold. These skills supply teaching knowledge within the Standards review; they do not become delegated workflows or own findings, commands, remediation, or a verdict. When a concrete maintainability shape needs recognised vocabulary, load [Code Smells](references/CODE-SMELLS.md); use it to investigate a mechanism and consequence, never as finding authority or a removal checklist.
 
-The Standards packet directs its reviewer to:
+### 3. Run independent reviews
 
-1. understand every changed line and the necessary whole-file and system context;
-2. follow affected contracts, states, data shapes, side effects, callers, and dependencies far enough to expose correctness and regression risks;
-3. apply the universal and triggered criteria resolved in step 2; and
-4. when tests changed, ask whether they detect a promised-behaviour defect, survive behaviour-preserving changes to hidden structure, remain deterministic and readable, and credibly predict the promised result.
+Give each applicable packet to a separate fresh agent and run them in parallel where possible. Do not substitute coordinator self-review. If fresh-agent execution is unavailable, mark the affected axis not performed and state the exact limitation.
 
-Each packet tells the reviewer how to inspect its axis rather than supplying labels alone.
+Each reviewer may run a safe, focused, non-mutating command only to confirm or falsify a concrete concern. It does not repeat the implementation's whole quality portfolio, edit code or tests, update snapshots or baselines, install dependencies, modify durable data, or repair a finding.
 
-### 4. Run the independent reviews
+Before retaining a suggestion, try to disprove it through contradicting authority, existing handling, repository-sanctioned exceptions, surrounding code, a focused counterexample, and the strongest benign interpretation. Omit unsupported generic advice, tooling-enforced trivia, speculative best practice, and a pre-existing issue unless the candidate introduces, worsens, or makes it newly consequential.
 
-Give each applicable packet to a separate fresh agent, in parallel when possible and otherwise sequentially. Do not substitute the coordinating agent; when fresh-agent delegation is unavailable, mark the affected axis not performed and state the exact limitation.
+Rank each surviving suggestion by consequence:
 
-Each reviewer owns candidate discovery, code and authority validation, consequence analysis, and priority validation for its axis. Before retaining a candidate, actively try to disprove it through contradicting authority, an already-handled path, a repository-sanctioned exception, surrounding code, and the strongest benign interpretation. Run a targeted probe only when its command and boundary demonstrate that it cannot mutate the checkout, repository state, durable data, or an external system; otherwise omit it and record the limitation. Report a pre-existing issue only when the fixed change introduces or worsens it, makes it newly consequential, or cannot conform because of it. Return only findings that survive these checks.
+- **High:** a credible path to materially wrong required behaviour, including a duplicated, lost, or misdirected external effect; security or privacy compromise; data loss or corruption; major production or reliability failure; or a structural, test, or evidence defect that makes the change untrustworthy.
+- **Medium:** a concrete defect, regression risk, or significant maintainability, modularity, test-quality, or harness-integrity weakness with a bounded material consequence.
+- **Low:** a local evidenced issue whose narrow correction has a concrete benefit.
 
-Use consequence-based priority within each axis: `critical` for immediate data loss, security compromise, or production failure; `high` for incorrect required behaviour or major security, reliability, or maintainability risk; `medium` for a concrete defect or significant code, design, or test weakness; and `low` for a local but worthwhile issue. Priority communicates impact and order, not remediation authority.
+Priority orders attention only; it does not direct remediation.
 
-### 5. Preserve the independent results
+### 4. Preserve the results and candidate
 
-Validate only that each reviewer returned the required fields, returning an incomplete result to that same reviewer for structural completion from the original packet. Reinspect the scoped revisions, diff, paths, and in-scope untracked content. When the frozen work product drifted, preserve each affected axis's frozen result, prefix it with `Status: stale` and the changed paths and basis mismatch, and stop without silently retargeting the review.
+Validate only that each result uses the required fields. Return an incomplete result to that same reviewer for structural completion from its original packet. Do not substantively re-review, merge, deduplicate, suppress, or cross-axis rerank the independent results.
 
-Present Standards and Spec separately without substantive re-review, merging, deduplication, suppression, or cross-axis reranking. Preserve each reviewer's findings and ordering. The caller receives independent diagnostic evidence for its own adjudication.
+Reinspect the fixed revisions, diff, paths, and in-scope untracked content. When the candidate drifted, preserve each affected frozen result, prefix it with `Status: stale`, state the changed paths and basis mismatch, and stop without retargeting it.
 
 ## Handoff
 
-State the exact frozen scope, intended-behaviour authority or user-confirmed absence, Standards authorities, any omitted or unperformed axis, every probe run or omitted, and any scope drift. Return `## Standards` and `## Spec`; use `No findings.` only for a current clean axis, never for a stale clean result without its `Status: stale` prefix, and state when Spec was omitted or either axis was not performed. Format each finding as:
+State the exact frozen scope, behavioural authority or reason Spec was omitted, Standards authorities, probes and limitations, unperformed axes, and scope drift. Return `## Standards` and `## Spec` separately; for an applicable current clean axis use `No findings.` and for an omitted, unperformed, or stale axis state that status explicitly.
+
+Format each suggestion as:
 
 ```markdown
-### [priority] Concise finding
+### [high|medium|low] Concise finding
 
-- Evidence: exact code `path:line`, applicable authority or criterion, and observed fact
+- Evidence: exact code location, applicable authority or criterion, and observed fact
 - Consequence: concrete behavioural or code-health impact
+- Suggested direction: narrow outcome that addresses the concern without prescribing an unverified patch
 ```
 
-End with `## Summary` and the finding count for each completed axis, labelling an affected frozen count `stale`. The caller owns adjudication, remediation, re-review, verification, and any publication or pull-request decision. Do not repair the code, adjudicate findings, issue a verification or approval verdict, publish review comments, or alter pull-request state.
+End with axis-specific counts and review scope. Return the reviewers' substance and ordering unchanged. Do not repair the candidate, adjudicate suggestions, issue a verification, completion, or approval verdict, publish comments, or alter pull-request state. The caller owns validation, adjudication, remediation, re-review, verification, and publication.

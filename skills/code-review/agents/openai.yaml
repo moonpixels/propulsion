@@ -1,5 +1,5 @@
 interface:
     display_name: 'Code Review'
-    short_description: 'Independently diagnose a fixed code change'
+    short_description: 'Independently review a fixed code change'
 policy:
     allow_implicit_invocation: true
