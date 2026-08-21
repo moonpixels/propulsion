@@ -356,7 +356,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `maintain-decision-records` skill
 - [x] Update `modular-design` skill
 - [x] Update `tdd` skill
-- [-] Create `quality-harnesses` skill
+- [x] Create `quality-harnesses` skill
 - [-] Update `code-review` skill
 - [x] Update `maintain-agents` skill
 - [x] Update `define-product` skill
