@@ -323,7 +323,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `commit` skill
 - [x] Replace `pr` with `pull-request`
 - [x] Create `review-pull-request` skill
-- [-] Update `review-architecture` skill
+- [x] Update `review-architecture` skill
 - [-] Update `debug` skill
 - [x] Restore `elicit-with-context` skill
 - [-] Update the README

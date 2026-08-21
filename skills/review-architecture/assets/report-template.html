@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" class="bg-slate-950">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>%%PROJECT_NAME%% architecture review</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <style>
+            [x-cloak] {
+                display: none !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-slate-950 text-slate-200 antialiased">
+        <main
+            data-architecture-review
+            x-data="{ open: false }"
+            class="mx-auto max-w-5xl px-5 py-12 sm:px-8"
+        >
+            <header class="border-b border-slate-800 pb-9">
+                <p
+                    class="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400"
+                >
+                    Architecture review · %%REVIEW_DATE%%
+                </p>
+                <h1
+                    class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+                >
+                    %%PROJECT_NAME%%
+                </h1>
+                <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
+                    %%OUTCOME_SUMMARY%%
+                </p>
+                <dl class="mt-7 grid gap-4 text-sm sm:grid-cols-3">
+                    <div>
+                        <dt class="text-slate-500">Reviewed revision</dt>
+                        <dd
+                            data-reviewed-revision
+                            class="mt-1 break-all font-mono text-slate-200"
+                        >
+                            %%REVISION%%
+                        </dd>
+                    </div>
+                    <div>
+                        <dt class="text-slate-500">Recommendations</dt>
+                        <dd class="mt-1 text-slate-200">%%CANDIDATE_COUNT%%</dd>
+                    </div>
+                    <div>
+                        <dt class="text-slate-500">Scope</dt>
+                        <dd class="mt-1 text-slate-200">
+                            Whole codebase%%SCOPE_EXCLUSIONS%%
+                        </dd>
+                    </div>
+                </dl>
+            </header>
+
+            <nav
+                aria-label="Fixed recommendation order"
+                class="border-b border-slate-800 py-8"
+            >
+                <p
+                    class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500"
+                >
+                    Fixed recommendation order
+                </p>
+                <ol class="mt-4 space-y-2">
+                    %%RECOMMENDATION_LINKS%%
+                </ol>
+            </nav>
+
+            <section aria-labelledby="recommendations-title" class="py-10">
+                <div class="flex items-end justify-between gap-5">
+                    <div>
+                        <p
+                            class="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-400"
+                        >
+                            Prioritised shortlist
+                        </p>
+                        <h2
+                            id="recommendations-title"
+                            class="mt-2 text-2xl font-semibold text-white"
+                        >
+                            Highest-impact opportunities
+                        </h2>
+                    </div>
+                    <button
+                        type="button"
+                        @click="open = !open"
+                        class="rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                        x-text="open ? 'Collapse evidence' : 'Expand evidence'"
+                    ></button>
+                </div>
+
+                <div class="mt-7 space-y-6">
+                    <!-- Duplicate this article for each candidate; remove it for a zero-candidate report. -->
+                    <article
+                        id="recommendation-1"
+                        data-recommendation="1"
+                        data-top-recommendation
+                        class="rounded-2xl border border-cyan-500/30 bg-slate-900 p-6 sm:p-8"
+                    >
+                        <p
+                            class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-cyan-400"
+                        >
+                            Recommendation 01 · top recommendation
+                        </p>
+                        <h3 class="mt-2 text-2xl font-semibold text-white">
+                            %%CANDIDATE_TITLE%%
+                        </h3>
+                        <dl
+                            data-recommendation-summary
+                            class="mt-6 grid gap-6 md:grid-cols-3"
+                        >
+                            <div data-field="recommendation">
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-wide text-slate-500"
+                                >
+                                    Recommendation
+                                </dt>
+                                <dd class="mt-2 leading-7 text-slate-300">
+                                    %%RECOMMENDATION%%
+                                </dd>
+                            </div>
+                            <div data-field="why">
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-wide text-slate-500"
+                                >
+                                    Why it matters
+                                </dt>
+                                <dd class="mt-2 leading-7 text-slate-300">
+                                    %%WHY_IT_MATTERS%%
+                                </dd>
+                            </div>
+                            <div data-field="improves">
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-wide text-slate-500"
+                                >
+                                    What it improves
+                                </dt>
+                                <dd class="mt-2 leading-7 text-slate-300">
+                                    %%WHAT_IT_IMPROVES%%
+                                </dd>
+                            </div>
+                        </dl>
+
+                        <!-- Add one candidate-specific accessible visual here only when it genuinely clarifies the structure. -->
+
+                        <details
+                            :open="open"
+                            class="mt-7 border-t border-slate-800 pt-5"
+                        >
+                            <summary
+                                class="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                            >
+                                Evidence and trade-offs
+                                <span aria-hidden="true">+</span>
+                            </summary>
+                            <div
+                                class="mt-4 grid gap-6 text-sm leading-6 text-slate-400 md:grid-cols-2"
+                            >
+                                <div data-evidence>
+                                    <h4 class="font-semibold text-slate-200">
+                                        Evidence
+                                    </h4>
+                                    <div class="mt-2">%%EVIDENCE%%</div>
+                                </div>
+                                <div data-tradeoffs>
+                                    <h4 class="font-semibold text-slate-200">
+                                        Trade-offs and uncertainty
+                                    </h4>
+                                    <div class="mt-2">%%TRADEOFFS%%</div>
+                                </div>
+                            </div>
+                        </details>
+                    </article>
+                    %%ADDITIONAL_CANDIDATES_OR_ZERO_RESULT%%
+                </div>
+            </section>
+
+            <section data-coverage class="border-t border-slate-800 py-9">
+                <p
+                    class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500"
+                >
+                    Review record
+                </p>
+                <h2 class="mt-2 text-xl font-semibold text-white">
+                    Coverage and limitations
+                </h2>
+                <div
+                    class="mt-4 grid gap-5 text-sm leading-6 text-slate-400 md:grid-cols-2"
+                >
+                    <div>
+                        <h3 class="font-semibold text-slate-200">Reviewed</h3>
+                        <div class="mt-2">%%REVIEWED_COVERAGE%%</div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-200">
+                            Limitations
+                        </h3>
+                        <div class="mt-2">%%LIMITATIONS%%</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
