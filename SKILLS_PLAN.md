@@ -135,13 +135,15 @@ Local Markdown uses one file per ticket under `docs/features/<work-slug>/tickets
 
 ### Deliver
 
+The detailed authoring contract for the implementation skills is maintained in [`IMPLEMENTATION_SKILLS_PLAN.md`](IMPLEMENTATION_SKILLS_PLAN.md). This plan retains their lifecycle outcomes and composition; the implementation plan owns their teaching content, internal sequence, resources and evaluation expectations.
+
 #### `implement`
 
-- **Outcome:** One ticket or small agreed body of work exists as a minimal, verified local change.
+- **Outcome:** One ticket or small agreed body of work exists as a minimal, locally checked and independently reviewed change.
 - **Inputs:** The stated ticket or confirmed work, linked product and technical authorities, repository guidance and current code.
-- **Output:** Working code, tests and other in-scope artefacts with reproducible verification and no unresolved required review finding.
-- **Composition:** Requires `verify-change` and independent `code-review`; conditionally invokes `elicit-with-context`, `research`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
-- **Stops:** After the agreed behaviour is implemented and verified. It does not commit or publish the change.
+- **Output:** Working code, retained tests and other in-scope artefacts, applicable quality evidence and limitations, and no unresolved applicable review change.
+- **Composition:** Applies the teaching guidance from `modular-design` and `quality-harnesses`, applies `tdd` for behaviour-changing work when a usable suite exists, requires independent `code-review`, and conditionally invokes `elicit-with-context` when implementation exposes a material missing detail or decision.
+- **Stops:** After the agreed behaviour is implemented, applicable checks pass, unavailable evidence is explicit and the current candidate has completed the review-and-correction loop. It does not commit or publish the change.
 
 #### `commit`
 
@@ -164,7 +166,7 @@ Local Markdown uses one file per ticket under `docs/features/<work-slug>/tickets
 - **Outcome:** Someone else's pinned pull request receives an independent, evidence-backed assessment.
 - **Inputs:** The complete pull-request change, originating specification or work item, repository standards and relevant product and technical authorities.
 - **Output:** Prioritised findings covering behavioural conformance, regressions, minimality, conventions, maintainability, architecture and verification evidence.
-- **Composition:** Requires `verify-change` and `code-review`; conditionally invokes `modular-design` and `research`.
+- **Composition:** Requires `code-review`, whose Standards axis applies the implementation teaching skills; conditionally invokes `research` when external evidence is material to the review.
 - **Stops:** After reporting findings. It does not change the contributor's branch or publish comments, approvals or requested changes unless the user's invocation includes that outcome.
 
 ### Debug and Respond
@@ -174,7 +176,7 @@ Local Markdown uses one file per ticket under `docs/features/<work-slug>/tickets
 - **Outcome:** A defect has an evidence-backed root cause and, when authorised by the requested outcome, a minimal verified repair.
 - **Inputs:** Expected and observed behaviour, the failing signal, relevant environment evidence and current implementation authorities.
 - **Output:** A reproducible diagnosis and, for repair work, regression protection plus a reviewed local change.
-- **Composition:** Repair requires `verify-change` and `code-review`; conditionally invokes `research`, `modular-design`, `tdd`, `maintain-ubiquitous-language` and `maintain-decision-records`.
+- **Composition:** Repair applies `modular-design` and `quality-harnesses`, applies `tdd` for behaviour-changing work when a usable suite exists, and requires `code-review`; conditionally invokes `research` and `elicit-with-context` when their triggers apply.
 - **Stops:** At the diagnosis boundary when requested, otherwise after the original failure and regression evidence verify the repair. It does not commit or publish the change.
 
 #### `respond-to-incident`
@@ -182,7 +184,7 @@ Local Markdown uses one file per ticket under `docs/features/<work-slug>/tickets
 - **Outcome:** An active production incident is understood sufficiently to stabilise service safely and verify the resulting service state.
 - **Inputs:** The incident signal, production evidence, affected systems, available operational controls and current communications.
 - **Output:** A verified mitigation or recovery, concise timeline, current impact and explicit unresolved risks or follow-up needs in the owning incident system.
-- **Composition:** Conditionally invokes `debug`, `verify-change` and `research` when they are necessary to stabilise the incident.
+- **Composition:** Conditionally invokes `debug` and `research` when they are necessary to stabilise the incident. Any local repair uses the implementation-quality model through `debug`.
 - **Stops:** When service is stable or the exact external blocker is established. It does not perform the later learning review.
 
 #### `review-incident`
@@ -212,23 +214,23 @@ Local Markdown uses one file per ticket under `docs/features/<work-slug>/tickets
 | `research` | Investigates a material subject using high-trust evidence and creates a trusted cited report for the consumer to synthesize. |
 | `maintain-ubiquitous-language` | Keeps `CONTEXT.md` aligned inline with confirmed project-specific language. |
 | `maintain-decision-records` | Preserves rare accepted technical and architectural decisions whose rationale warrants a focused ADR. |
-| `modular-design` | Applies evidence-backed modularity, information hiding, cohesion, coupling and maintainability principles to a scoped design decision. |
-| `tdd` | Drives red-green-refactor through a stable observable boundary and runnable test suite. |
-| `verify-change` | Selects and executes the applicable project and risk-triggered quality harnesses and reports reproducible evidence and limitations. |
-| `code-review` | Independently assesses a scoped change for required behaviour, regressions, minimality, conventions, maintainability, code smells and architecture. |
+| `modular-design` | Teaches callers to structure code through information hiding, deep modules, cohesive ownership, stable interfaces, locality and conditional design techniques. |
+| `tdd` | Teaches callers to implement observable behaviour through red-green-refactor and retain a small, durable, independently meaningful test suite. |
+| `quality-harnesses` | Teaches callers to select and apply relevant quality harnesses from a trigger-led catalogue without overstating their evidence. |
+| `code-review` | Independently reviews a fixed change through isolated Spec and Standards agents and returns consequence-ranked suggestions for its caller to adjudicate. |
 | `maintain-agents` | Records confirmed, non-inferable repository-wide agent guidance while keeping permanent context lean. |
 
 Software-project skills route user-held questions through `elicit-with-context`. Base `elicit` remains available for non-software work and as that router's questioning component.
 
 `write-skill` remains a separate suite-development tool. It is not presented as part of the software-delivery lifecycle.
 
-## Quality model
+## Implementation quality model
 
 ### Research prerequisite
 
-Before finalising `implement`, `tdd`, `verify-change` or `code-review`, conduct focused research using primary technical sources, established standards and credible field practices. Persist one cited report that establishes:
+Before finalising `implement`, `tdd`, `modular-design`, `quality-harnesses` or `code-review`, conduct focused research using primary technical sources, established standards and credible field practices. Persist one cited report that establishes:
 
-- a small universal quality baseline
+- the obligations common to implementation regardless of harness selection
 - selection triggers for additional harnesses
 - what each harness can and cannot demonstrate
 - ways metrics and tests can be gamed
@@ -237,9 +239,15 @@ Before finalising `implement`, `tdd`, `verify-change` or `code-review`, conduct 
 
 The research evaluates practices used successfully in real projects without turning every available harness into mandatory ceremony.
 
-### Verification portfolio
+The current evidence is recorded in [`docs/research/agentic-coding-quality-guardrails-2026-08-20.md`](docs/research/agentic-coding-quality-guardrails-2026-08-20.md). The detailed implementation-skill decisions derived from it are fixed in [`IMPLEMENTATION_SKILLS_PLAN.md`](IMPLEMENTATION_SKILLS_PLAN.md).
 
-`verify-change` discovers the repository's existing commands, tests, CI-equivalent checks and QA procedures, then selects the applicable portfolio for the changed behaviour and risk. The portfolio may include:
+### Teaching utilities
+
+`modular-design`, `tdd` and `quality-harnesses` are teaching skills. They supply the calling agent with applicable knowledge; they do not become delegated workers, mutate independently, return separate workflow verdicts or take ownership from their caller. `implement` uses that knowledge to write and assess code. The Standards agent created by `code-review` uses the same knowledge to review code and evidence.
+
+### Quality-harness catalogue
+
+`quality-harnesses` directs its caller to inspect the change, repository requirements and material risks, then review a compact catalogue and apply every relevant entry. Each catalogue entry states its trigger, the narrow claim it can support, its limitations, its anti-gaming checks and the detailed reference to load when applicable. The catalogue may include:
 
 - unit, acceptance, integration, contract and system tests
 - executable business examples such as Gherkin where they improve precision
@@ -248,22 +256,24 @@ The research evaluates practices used successfully in real projects without turn
 - security, accessibility, performance, compatibility and resilience checks
 - reproducible manual or specialist QA procedures
 
-The repository's existing constraints remain authoritative. A skill may strengthen evidence for the current change but must not weaken or skip required checks silently.
+The catalogue does not divide controls into a mandatory baseline and optional extras. Applicability governs selection. Complexity, size, coverage, mutation and other metrics remain evidence for a named question rather than universal gates or composite quality scores.
 
-When an existing project cannot support meaningful verification, the skill reports the limitation and recommends explicit planned work. It does not install a project-wide test framework or quality tool merely to satisfy its own process. New projects establish required infrastructure through their architecture and initial delivery tickets.
+The repository's existing constraints remain authoritative. A caller may strengthen evidence through the existing test and quality infrastructure but must not weaken or skip required checks silently.
+
+When an existing project lacks an applicable harness, the caller records the missing evidence and residual risk. It does not install a project-wide test framework or quality tool unless establishing that infrastructure is explicitly part of the agreed work. New projects establish required infrastructure through their architecture and initial delivery tickets.
 
 ### Maintainability judgement
 
-Passing checks does not prove that a change is well designed. `code-review` and `modular-design` also require the implementation to:
+Passing checks does not prove that a change is well designed. `implement` applies `modular-design` throughout the change, and the independent Standards review uses `modular-design`, `tdd` and `quality-harnesses` to assess whether the implementation:
 
-- contain only the behaviour and code needed for the agreed outcome
-- follow the language, framework and repository conventions
-- reuse established helpers and abstractions where they fit
-- avoid duplication, speculative generality and recognised code smells
-- preserve or improve information hiding and module boundaries
-- remain understandable and economical to change
+- contains only the behaviour and code needed for the agreed outcome
+- follows the language, framework and repository conventions
+- reuses established helpers and abstractions where they fit
+- avoids duplication, speculative generality and recognised code smells
+- preserves or improves information hiding and module boundaries
+- remains understandable and economical to change
 
-Review findings are corrected through the relevant implementation and verification loop until no required finding remains unresolved.
+Spec and Standards suggestions are ranked high, medium or low by consequence. Severity never decides remediation. The implementation owner validates each suggestion against its authority and evidence, applies required corrections and proportionate in-scope improvements, rejects unsupported or out-of-scope findings, and returns material behaviour, architecture or scope decisions to the user. Review repeats after material candidate changes until no applicable change remains.
 
 ## Representative flows
 
@@ -328,8 +338,8 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 
 ## Implementation order
 
-1. Complete the quality-harness research and use its conclusions to fix the engineering-quality utility contracts.
-2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `verify-change`, `code-review` and `maintain-agents`.
+1. Complete the quality-harness research and implementation-skill authoring plan.
+2. Align the shared utilities: `elicit`, `elicit-with-context`, `research`, `maintain-ubiquitous-language`, `maintain-decision-records`, `modular-design`, `tdd`, `quality-harnesses`, `code-review` and `maintain-agents`.
 3. Build the progressive foundation path: `define-product`, `specify-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build the architecture-assessment path: `review-architecture`.
@@ -339,13 +349,14 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 ### Implementation checklist
 
 - [x] Complete quality-harness research
+- [x] Define the implementation-skill authoring plan
 - [x] Update `elicit` skill
 - [x] Update `research` skill
 - [x] Create `maintain-ubiquitous-language` skill
 - [x] Create `maintain-decision-records` skill
 - [-] Update `modular-design` skill
 - [-] Update `tdd` skill
-- [-] Create `verify-change` skill
+- [-] Create `quality-harnesses` skill
 - [-] Update `code-review` skill
 - [x] Update `maintain-agents` skill
 - [x] Update `define-product` skill
@@ -377,7 +388,7 @@ The revised suite is ready when:
 - required and conditional composition is explicit and does not duplicate supporting skill instructions
 - ticket-creating skills use the local Markdown or external destination named in `AGENTS.md` and preserve its exact concepts without Propulsion configuration
 - documentation preserves enduring intent without copying observable implementation or live tool state
-- implementation always completes applicable verification and independent review
+- implementation always applies the relevant modular-design, TDD and quality-harness guidance and completes independent review
 - absent quality infrastructure is reported honestly and never causes unrelated tooling to be installed implicitly
 - external mutations remain within the outcome authorised by the invoked skill and are read back after application
 - release, deployment and continuous monitoring remain outside the suite
