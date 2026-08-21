@@ -40,9 +40,7 @@ These areas are entry points, not mandatory phase gates. Release, deployment and
 
 ## Session and authority model
 
-Lifecycle skills are explicitly user-invokable. A lifecycle skill may call another lifecycle skill only when the subordinate outcome is necessary to finish the invoked session. For example, `pull-request` may call `commit` for eligible uncommitted work, while `create-tickets` must not silently manufacture an incomplete work definition.
-
-Reusable utilities are user-invokable and may be model-invoked when their documented trigger is present. A caller remains responsible for verifying the utility's result and completing its own outcome.
+Propulsion skills are explicitly user-invokable. Only `elicit` may also be model-invoked when its documented trigger is present. Entry skills fan out through their documented composition; a skill may call another skill only when the subordinate outcome is necessary to finish the invoked session. For example, `pull-request` may call `commit` for eligible uncommitted work, while `create-tickets` must not silently manufacture an incomplete work definition. A caller remains responsible for verifying a composed skill's result and completing its own outcome.
 
 Invoking a skill grants authority for its expected repository and external mutations once the skill has reached shared understanding. Material product, architecture, priority or scope questions remain with the user, but an agreed decision does not require a second permission prompt before it is applied. Work outside the invoked outcome remains unauthorised.
 

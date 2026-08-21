@@ -1,9 +1,7 @@
 ---
 name: code-review
 description: Reviews a fixed code change through isolated specification and engineering-standards agents. Use for direct diff review or when another delivery skill invokes independent review.
-metadata:
-    invocation: model
-disable-model-invocation: false
+disable-model-invocation: true
 ---
 
 # Code Review

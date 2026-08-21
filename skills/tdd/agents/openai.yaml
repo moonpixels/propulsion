@@ -2,4 +2,4 @@ interface:
     display_name: 'Test-Driven Development'
     short_description: 'Build durable behaviour through red-green-refactor'
 policy:
-    allow_implicit_invocation: true
+    allow_implicit_invocation: false
