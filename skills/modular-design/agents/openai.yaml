@@ -1,5 +1,5 @@
 interface:
     display_name: 'Modular Design'
-    short_description: 'Apply structural maintainability decisions'
+    short_description: 'Design deep modules with local change'
 policy:
     allow_implicit_invocation: true
