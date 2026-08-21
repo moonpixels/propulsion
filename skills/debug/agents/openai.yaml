@@ -1,5 +1,5 @@
 interface:
     display_name: 'Debug'
-    short_description: 'Find root causes and verify repairs'
+    short_description: 'Find causal defects and verify local repairs'
 policy:
     allow_implicit_invocation: false
