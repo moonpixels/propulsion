@@ -8,7 +8,7 @@ The existing suite may be changed or replaced where necessary. Skill authoring r
 
 ## Objective
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports work from initial product discovery through feature definition, planning, implementation, pull-request publication and review, debugging and retirement.
+Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports work from initial product discovery through feature definition, planning, implementation, pull-request publication and review, and debugging.
 
 Propulsion is not a workflow platform. It does not carry a product automatically through its lifecycle, maintain its own work state or require a setup framework. A user may enter at any point where the necessary inputs already exist and leave when that session's outcome is complete.
 
@@ -35,7 +35,6 @@ Propulsion is not a workflow platform. It does not carry a product automatically
 | Refine | Assess a bounded area of the current architecture and identify high-value improvements. |
 | Deliver | Implement agreed work, record it, publish it for review and review work submitted by others. |
 | Debug | Diagnose and repair defects. |
-| Retire | Plan the safe removal of an obsolete capability and route its execution through normal delivery. |
 
 These areas are entry points, not mandatory phase gates. Release, deployment and continuous production monitoring are outside Propulsion's core lifecycle.
 
@@ -83,7 +82,7 @@ Small, understood changes do not require feature documents merely to enter imple
 
 ### Bounded supporting records
 
-Research reports, architecture reviews and retirement plans are repository artefacts only when their conclusions and rationale need to survive the session. They must not duplicate live operational, tracker or implementation state.
+Research reports and architecture reviews are repository artefacts only when their conclusions and rationale need to survive the session. They must not duplicate live operational, tracker or implementation state.
 
 ### Ticket destination
 
@@ -178,16 +177,6 @@ The detailed authoring contract for the implementation skills is maintained in [
 - **Output:** A reproducible diagnosis and, for repair work, regression protection plus a reviewed local change.
 - **Composition:** Repair applies `modular-design` and `quality-harnesses`, applies `tdd` for behaviour-changing work when a usable suite exists, and requires `code-review`; conditionally invokes `research` and `elicit-with-context` when their triggers apply.
 - **Stops:** At the diagnosis boundary when requested, otherwise after the original failure and regression evidence verify the repair. It does not commit or publish the change.
-
-### Retire
-
-#### `plan-retirement`
-
-- **Outcome:** An obsolete capability has an approved plan for safe retirement.
-- **Inputs:** The capability, product intent, users, dependencies, interfaces, data, integrations, support obligations and current implementation evidence.
-- **Output:** A retirement plan covering deprecation, migration, communication, removal, archival, access, recovery and observable completion conditions.
-- **Composition:** Requires `elicit-with-context`; conditionally invokes `research`, `maintain-ubiquitous-language` and `maintain-decision-records`.
-- **Stops:** After the retirement outcome and obligations are approved. Execution returns to `create-tickets`, `implement`, `commit` and `pull-request` in later sessions.
 
 ## Reusable utility catalogue
 
@@ -296,14 +285,6 @@ debug
     → pull-request
 ```
 
-### Retire a capability
-
-```text
-plan-retirement
-    → later create-tickets
-    → normal implementation and publication sessions
-```
-
 ### Review another contributor's work
 
 ```text
@@ -319,7 +300,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 3. Build the progressive foundation path: `define-product`, `specify-feature` and `create-tickets`.
 4. Build the delivery path: `implement`, `commit`, `pull-request` and `review-pull-request`.
 5. Build the architecture-assessment path: `review-architecture`.
-6. Build the remaining paths: `debug` and `plan-retirement`.
+6. Build the remaining path: `debug`.
 7. Align software-project elicitation through `elicit-with-context`, update the README around the lifecycle areas and independently invokable utilities, and run the suite-wide acceptance pass.
 
 ### Implementation checklist
@@ -344,7 +325,6 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Create `review-pull-request` skill
 - [-] Update `review-architecture` skill
 - [-] Update `debug` skill
-- [-] Create `plan-retirement` skill
 - [x] Restore `elicit-with-context` skill
 - [-] Update the README
 - [-] Run the suite-wide acceptance pass
@@ -382,4 +362,3 @@ Propulsion will not:
 - duplicate code, CI, tracker or production state in prose documents
 - release, deploy or continuously monitor software
 - merge a pull request merely because it has been created or reviewed
-- perform retirement implementation or production decommissioning inside `plan-retirement`

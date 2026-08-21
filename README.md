@@ -2,7 +2,7 @@
 
 # Propulsion
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, debugging, and retirement.
+Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, and debugging.
 
 Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete. Propulsion does not require an end-to-end orchestrator, manifest, setup framework, state machine, or tracker adapter.
 
@@ -40,7 +40,6 @@ Repeat the link for each selected skill. Codex and OpenCode both discover skills
 | Make a small understood change | `$implement` | A minimal, reviewed, verified local change |
 | Diagnose or repair a defect | `$debug` | A causal diagnosis and, when requested, a verified repair |
 | Review another contributor's PR | `$review-pull-request` | Independent findings and verification evidence |
-| Remove an obsolete capability | `$plan-retirement` | An approved, safe retirement plan |
 
 ## Lifecycle skills
 
@@ -75,10 +74,6 @@ The author's normal delivery flow does not invoke `$review-pull-request`: `$impl
 
 - `$debug` establishes an evidence-backed root cause and, when repair is requested, produces a minimal reviewed and verified local change.
 
-### Retire
-
-- `$plan-retirement` defines the deprecation, migration, communication, removal, archival, recovery, and completion obligations for one obsolete capability. Execution happens in later planning and delivery sessions.
-
 ## Representative flows
 
 Establish a product:
@@ -103,12 +98,10 @@ Deliver a small understood change:
 implement → commit → pull-request
 ```
 
-Debug or retire:
+Debug a known defect:
 
 ```text
 debug → commit → pull-request
-
-plan-retirement → later create-tickets → normal delivery sessions
 ```
 
 Review another contributor's work:
