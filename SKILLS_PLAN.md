@@ -341,7 +341,7 @@ The author's normal flow does not invoke `review-pull-request`; `implement` alre
 - [x] Update `implement` skill
 - [x] Update `commit` skill
 - [x] Replace `pr` with `pull-request`
-- [-] Create `review-pull-request` skill
+- [x] Create `review-pull-request` skill
 - [-] Update `review-architecture` skill
 - [-] Update `debug` skill
 - [-] Create `plan-retirement` skill

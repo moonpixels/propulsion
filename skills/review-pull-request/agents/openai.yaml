@@ -1,5 +1,5 @@
 interface:
     display_name: 'Review Pull Request'
-    short_description: 'Independently assess an external pull request'
+    short_description: 'Return a read-only pull-request review'
 policy:
     allow_implicit_invocation: false
