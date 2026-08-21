@@ -4,7 +4,7 @@
 
 Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, and debugging.
 
-Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete. Propulsion does not require an end-to-end orchestrator, manifest, setup framework, state machine, or tracker adapter.
+Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete.
 
 Substantial work narrows breadth-first over several sessions: product intent becomes a decision-complete feature specification, then implementation-ready tickets, and finally one implemented body of work per ticket. Small, understood work can begin directly with `$implement`.
 
@@ -31,122 +31,143 @@ ln -s /absolute/path/to/propulsion/skills/elicit ~/.agents/skills/elicit
 
 Repeat the link for each selected skill. Codex and OpenCode both discover skills from `~/.agents/skills`; edits in the clone are available through the links without reinstalling or publishing a new version.
 
-## Where to start
-
-| When you need to… | Start with… | Session outcome |
-| --- | --- | --- |
-| Establish or revise a product | `$define-product` | Confirmed product and system requirements |
-| Define a substantial feature | `$specify-feature` | An approved, decision-complete feature specification |
-| Make a small understood change | `$implement` | A minimal, reviewed, verified local change |
-| Diagnose or repair a defect | `$debug` | A causal diagnosis and, when requested, a verified repair |
-| Review another contributor's PR | `$review-pull-request` | Independent findings and verification evidence |
-
 ## Lifecycle skills
 
-The lifecycle areas are useful entry points, not mandatory phase gates.
+The lifecycle areas below are independent entry points, not mandatory phase gates. Invoke the skill for the outcome you need, later stages do not start automatically.
 
 ### Establish
 
-- `$define-product` turns a new or existing product into the durable breadth-first product and system requirements foundation in `PRODUCT.md`, while `elicit-with-context` maintains applicable project language and qualifying decision records through its own contract.
+#### `$define-product`
+
+Enter here to establish or deliberately revise the product and system requirements foundation:
+
+```text
+$define-product
+```
+
+The session produces a user-confirmed `PRODUCT.md` and the corresponding project language in `CONTEXT.md`. It stops before defining individual features, selecting feature-specific architecture, or creating tickets.
 
 ### Define
 
-- `$specify-feature` turns one high-level request into a single feature specification containing approved feature intent and its selected buildable solution.
+#### `$specify-feature`
+
+Enter here when a high-level feature request needs enough behavioural and technical definition for planning:
+
+```text
+$specify-feature
+```
+
+The session produces one approved, decision-complete feature specification containing visibly distinct feature intent and selected solution sections. No earlier lifecycle artefact is mandatory, and the skill stops before ticket creation or implementation.
 
 ### Plan
 
-- `$create-tickets` turns an approved work definition—either a sufficiently complete document or confirmed conversation—into agreed, verified, vertically sliced tickets with Fibonacci complexity.
+#### `$create-tickets`
+
+Enter here when an approved document or confirmed conversation is complete enough to decompose without inventing behaviour or material solution decisions:
+
+```text
+$create-tickets
+```
+
+The session creates and verifies small, vertically sliced, dependency-aware tickets with Fibonacci complexity in the destination named by the project's root `AGENTS.md`. It stops before scheduling or implementing them.
+
+Local Markdown destinations use one file per ticket under `docs/features/<work-slug>/tickets/`. External destinations use their native items, estimates, relationships, and statuses. If `AGENTS.md` does not name the destination, the skill asks and records it.
 
 ### Refine
 
-- `$review-architecture` reports a few high-value improvements for an explicitly bounded area without changing it or creating tickets.
+#### `$review-architecture`
+
+Enter here to assess an explicitly bounded part of the current architecture:
+
+```text
+$review-architecture
+```
+
+The session produces an evidence-backed report containing a small number of prioritised, high-value improvements and their trade-offs. It does not refactor the code or create speculative tickets.
 
 ### Deliver
 
-- `$implement` produces one minimal, reviewed, verified local change from a ticket or other confirmed work.
-- `$commit` records eligible reviewed work as coherent Conventional Commits while preserving unrelated changes.
-- `$pull-request` commits eligible remaining work when needed, pushes the branch, and creates or updates one accurate pull request for the whole branch.
-- `$review-pull-request` independently assesses someone else's pinned pull request without changing their branch or publishing a review unless requested.
+#### `$implement`
 
-The author's normal delivery flow does not invoke `$review-pull-request`: `$implement` already includes independent code review. The separate pull-request review skill is for work submitted by others.
+Enter here with one ticket or another small, confirmed body of work:
+
+```text
+$implement
+```
+
+The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
+
+`$implement` applies `$modular-design` and `$quality-harnesses`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. It uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
+
+#### `$commit`
+
+Enter here when eligible reviewed work is ready to be recorded:
+
+```text
+$commit
+```
+
+The session creates and verifies coherent Conventional Commits while preserving unrelated staged, unstaged, and untracked work. It does not push or open a pull request.
+
+#### `$pull-request`
+
+Enter here when the current branch is ready to publish for human review:
+
+```text
+$pull-request
+```
+
+The session commits eligible remaining work when needed, pushes the branch, and creates or updates one pull request describing the complete branch. It does not merge, release, or deploy the work.
+
+A substantial feature commonly moves through separate sessions:
+
+```text
+$specify-feature
+    → later $create-tickets
+    → $implement each selected ticket
+    → $commit whenever a coherent unit is ready
+    → $pull-request when the branch is ready
+```
+
+A small, understood change may start later:
+
+```text
+$implement → $commit → $pull-request
+```
 
 ### Debug
 
-- `$debug` establishes an evidence-backed root cause and, when repair is requested, produces a minimal reviewed and verified local change.
+#### `$debug`
 
-## Representative flows
-
-Establish a product:
+Enter here with observed and expected behaviour or another usable failure signal:
 
 ```text
-define-product
+$debug
 ```
 
-Deliver a substantial feature:
+The session establishes an evidence-backed root cause and stops there when diagnosis is the requested outcome. When repair is authorised, it produces a minimal, reviewed local change with regression evidence and stops before commit or publication.
 
 ```text
-specify-feature
-    → later create-tickets
-    → implement each selected ticket in a separate session
-    → commit whenever a coherent unit is ready
-    → pull-request when the branch is ready
+$debug → $commit → $pull-request
 ```
 
-Deliver a small understood change:
+## Utility skills
 
-```text
-implement → commit → pull-request
-```
+These skills are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-Debug a known defect:
-
-```text
-debug → commit → pull-request
-```
-
-Review another contributor's work:
-
-```text
-review-pull-request
-```
-
-## Reusable utilities
-
-Utilities are independently invokable and are also composed by lifecycle skills when their trigger applies.
-
-| Utility | Use it to… |
+| Skill | Invoke it to… |
 | --- | --- |
+| `$review-pull-request` | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested |
 | `$elicit` | Resolve material user-held information and decisions one question at a time |
-| `$elicit-with-context` | Resolve software-project questions while maintaining shared project language |
+| `$elicit-with-context` | Resolve software-project questions through `$elicit`, applying `$maintain-ubiquitous-language` and `$maintain-decision-records` when their triggers apply |
 | `$research` | Investigate a material subject with high-trust evidence and persist a trusted cited report |
-| `$maintain-ubiquitous-language` | Keep confirmed project-specific language current in `CONTEXT.md` |
-| `$maintain-decision-records` | Preserve rare accepted decisions whose rationale warrants an ADR |
-| `$modular-design` | Assess boundaries, ownership, contracts, dependencies, and change propagation |
-| `$tdd` | Implement observable behaviour through red-green-refactor when its prerequisites hold |
-| `$verify-change` | Run applicable project and risk-triggered quality harnesses against a fixed change |
-| `$code-review` | Independently inspect a fixed change for behaviour, regressions, minimality, conventions, and maintainability |
 | `$maintain-agents` | Keep confirmed repository-wide agent guidance lean and current |
 
-Software-project skills route questions through `$elicit-with-context`. Base `$elicit` remains available for non-software work and as the router's questioning component.
-
-`$write-skill` develops and evaluates Agent Skills themselves; it is not part of the software-delivery lifecycle.
-
-## Ticket destinations
-
-The root `AGENTS.md` explicitly names the project's ticket destination, such as Linear or local Markdown. If none is named, `$create-tickets` asks the user, records the answer through `$maintain-agents`, and resumes. Local tickets use one file each under `docs/features/<work-slug>/tickets/`; external destinations use their native items, estimates, relationships, and statuses. The skill never guesses, silently falls back, or introduces a Propulsion adapter layer.
-
-## Quality during implementation
-
-`$implement` uses TDD when an existing runnable suite can exercise the change through a meaningful observable boundary. It always subjects the fixed candidate to independent `$code-review` and `$verify-change`, using the repository's required checks plus additional harnesses only when the change's risks justify them.
-
-The workflow does not install unrelated test or quality infrastructure merely to satisfy its process. When meaningful evidence is unavailable, it reports the limitation instead of manufacturing confidence. Implementation stops with a reviewed, verified local change; committing and publication remain separate user-controlled sessions.
-
-## Scope
-
-Propulsion does not release, deploy, merge, or continuously monitor software. Those activities remain project-specific. It also avoids duplicating discoverable code, configuration, CI, tracker, or production state in prose documentation.
+Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
 
 ## Acknowledgements
 
-Propulsion is heavily inspired by:
+Propulsion is heavily inspired by other great skill sets:
 
-- [mattpocock/skills](https://github.com/mattpocock/skills) for brevity, wording discipline, and the question-by-question discovery style
+- [obra/superpowers](https://github.com/obra/superpowers)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
