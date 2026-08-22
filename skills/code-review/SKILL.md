@@ -34,7 +34,7 @@ Direct the Standards reviewer to understand every changed line in its necessary 
 - repository-required and changed-risk harness selection, measurement-path integrity, and honest evidence limits; and
 - recognised maintainability shapes and specialist risks exposed by the change.
 
-Require the Standards reviewer to load and apply `$modular-design` and `$quality-harnesses`, plus `$tdd` when its prerequisites hold. These skills supply teaching knowledge within the Standards review; they do not become delegated workflows or own findings, commands, remediation, or a verdict. When a concrete maintainability shape needs recognised vocabulary, load [Code Smells](references/CODE-SMELLS.md); use it to investigate a mechanism and consequence, never as finding authority or a removal checklist.
+Require the Standards reviewer to load and apply `$modular-design`, plus `$tdd` when its prerequisites hold. These skills supply teaching knowledge within the Standards review; they do not become delegated workflows or own findings, commands, remediation, or a verdict. When a concrete maintainability shape needs recognised vocabulary, load [Code Smells](references/CODE-SMELLS.md); use it to investigate a mechanism and consequence, never as finding authority or a removal checklist.
 
 ### 3. Run independent reviews
 

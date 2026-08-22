@@ -46,10 +46,10 @@ If refactoring exposes a new material structural decision not resolved by the ca
 
 After production refactoring, identify the unique behaviour, boundary, invariant, or risk protected by each affected test. Remove obsolete implementation-detail assertions, broad snapshots used only as change alarms, and examples that add no distinct failure detection. Consolidate equivalent cases with a table or property only when the resulting oracle and failure diagnosis remain clear.
 
-Mentally mutate wrong constants, branches, validation, effects, and empty or default results. Strengthen the smallest test or input that would let a realistic defect survive. Use actual mutation or coverage tooling only when the caller's quality-harness guidance selects it.
+Mentally mutate wrong constants, branches, validation, effects, and empty or default results. Strengthen the smallest test or input that would let a realistic defect survive.
 
 ### 6. Complete and return
 
 Repeat Red, Green, Refactor, and rationalisation for each remaining confirmed behaviour. When example cases cannot economically cover a large input or state space, or a direct oracle is unavailable, load [Generative Testing](references/GENERATIVE-TESTING.md) and use only the triggered technique. Run the complete relevant suite.
 
-Return the behaviours delivered; retained tests and the unique protection each adds; exact Red and Green evidence; refactors; commands and results; unresolved baseline failures; fidelity limits; and other missing evidence. The caller retains ownership of broader quality harnesses, independent review, the complete work outcome, commits, and publication.
+Return the behaviours delivered; retained tests and the unique protection each adds; exact Red and Green evidence; refactors; commands and results; unresolved baseline failures; fidelity limits; and other missing evidence. The caller retains ownership of broader checks, independent review, the complete work outcome, commits, and publication.

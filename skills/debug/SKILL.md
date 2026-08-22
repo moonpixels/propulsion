@@ -52,8 +52,6 @@ Apply `$tdd` when its prerequisites hold. The established signal supplies Red on
 
 Run the original signal against the repair. Retain the attempt only when the result changes as the causal account predicted. When it does not, record the contradiction, revert only the exact changes owned by that attempt without disturbing pre-existing work, and return to the causal loop. Do not stack another unsupported fix.
 
-Apply `$quality-harnesses` to the fixed candidate and preserve its claim-level evidence and missing-evidence limits. Add or retain regression protection only through existing infrastructure and a credible behavioural seam.
-
 ### 4. Review and verify the local repair
 
 Freeze the complete candidate, intended-behaviour authority, causal account, original signal, regression evidence, selected quality evidence, changed and untracked paths, and repository state. Invoke `$code-review` on that exact candidate. Adjudicate every finding against the request, authorities, causal evidence, and current code. Correct supported required findings, ask the user about material behaviour, architecture, or scope decisions, and reject unsupported or out-of-scope findings with concrete evidence.

@@ -97,7 +97,7 @@ $implement
 
 The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
 
-`$implement` applies `$modular-design` and `$quality-harnesses`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. It uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
+`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. It uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
 
 #### `$commit`
 

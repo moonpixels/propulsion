@@ -1,5 +1,0 @@
-interface:
-    display_name: 'Quality Harnesses'
-    short_description: 'Select risk-matched software quality evidence'
-policy:
-    allow_implicit_invocation: false
