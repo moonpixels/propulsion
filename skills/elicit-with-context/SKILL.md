@@ -1,8 +1,8 @@
 ---
 name: elicit-with-context
-description: Elicits shared understanding while maintaining project context. Use when an interview should update language and qualifying architecture decisions.
+description: Elicits shared understanding while maintaining software-project context. Use when software-project work depends on material user-held information or decisions.
 metadata:
-    invocation: user
+    type: router
 disable-model-invocation: true
 ---
 
@@ -12,4 +12,4 @@ Elicits shared understanding while maintaining project context.
 
 ## Process
 
-Invoke `$elicit` for questioning, applying `$maintain-context` throughout.
+Invoke `$elicit` for questioning. Apply `$maintain-ubiquitous-language` throughout so stable project terms stay current. Invoke `$maintain-decision-records` only when its description applies. Return `$elicit`'s confirmed synthesis.

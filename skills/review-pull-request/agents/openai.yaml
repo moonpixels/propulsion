@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Review Pull Request'
+    short_description: 'Return a read-only pull-request review'
+policy:
+    allow_implicit_invocation: false

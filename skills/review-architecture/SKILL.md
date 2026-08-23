@@ -1,33 +1,41 @@
 ---
 name: review-architecture
-description: Reviews a codebase or scope for high-value modular redesigns, persists a Markdown review, and opens a disposable visual HTML shortlist. Use when modular architecture needs assessment.
+description: Reviews a whole codebase for high-impact evidence-backed modular-design improvements and writes an interactive HTML report. Use for architecture or structural maintainability reviews.
 metadata:
-    invocation: user
+    type: performer
 disable-model-invocation: true
 ---
 
 # Review Architecture
 
-The **visual information-seeking mantra** turns an evidence-backed modular review into an impact-grouped overview for people and a durable implementation reference for agents.
+Finds the most consequential current opportunities to improve a codebase's modular structure and explains them in one interactive HTML report.
 
 ## Process
 
-### 1. Establish the review
+### 1. Establish whole-codebase evidence
 
-Use the user's explicit scope or the whole repository with the slug `full-codebase`. Inspect applicable project context, architecture decisions, source, tests, contracts, schemas, dependencies, runtime configuration, and documentation. Exclude generated output, vendored dependencies, caches, and binaries unless they participate in a material boundary. Invoke `$modular-design` as the architecture authority. The scope, exclusions, project constraints, and modular baseline are explicit.
+Inspect the request, repository guidance, root `PRODUCT.md` and `GLOSSARY.md`, applicable ADRs, current revision, and starting worktree state. Treat the whole repository as the review scope while honouring explicit exclusions. Map its capabilities and inspect the source, tests, contracts, schemas, configuration, and operational evidence needed to understand current structure. Exclude dependencies, generated output, vendored code, and obsolete paths from recommendation coverage.
 
-### 2. Select the redesigns
+Inspect relevant Git history after mapping the repository. Use repeated cross-file changes and hotspots as supporting evidence and ranking signals without excluding quieter areas. Distinguish project authority, current observation, inference, and unknowns.
 
-Read [Architecture Analysis](references/architecture-analysis.md). Recover confirmed and inferred quality drivers, map the current capabilities and contracts, and trace material architecture pressure to precise repository locations. Apply **design it twice** to every serious candidate and load `$modular-design` techniques only when their conditions fit. Invoke `$research` only when a recommendation materially depends on an external claim requiring durable verification. Retain every redesign that clears the evidence threshold, assign stable two-digit IDs in ranked order, and group the set by explained `high`, `medium`, or `low` impact. Zero recommendations is valid.
+Apply `$modular-design` to the authorities and current evidence. Invoke `$research` only when a material candidate depends on external framework, platform, or technical evidence that the repository cannot establish; read its report before deciding whether the candidate qualifies.
 
-### 3. Persist the review
+### 2. Retain only top-level candidates
 
-Write the canonical report to `docs/architecture/YYYYMMDD-{scope}-architecture-review.md`; preserve an existing path with `-2`, `-3`, and so on unless replacement is explicit. For each recommendation, make the issue, fix, benefit, affected architecture, current and target design, evidence, rejected alternative, costs, risks, dependencies, migration route, smallest useful slice, containment, and fitness checks independently understandable. Record coverage without a qualifying redesign and material limitations. Stop before implementation or a file-by-file plan.
+Require each candidate to have precise current repository evidence, a credible structural cause, a material present benefit, and visible trade-offs or uncertainty. State only the recommended structural direction, why it matters, and what it improves. Claim only improvements caused by that structural direction; do not imply that it establishes correctness, safety, or another quality it cannot demonstrate. Reject cosmetic cleanup, unsupported smell labels, speculative abstractions, and changes whose benefit is minor or hypothetical.
 
-### 4. Present the visual shortlist
+Keep only the highest-impact qualifying candidates. Use no fixed count. Order them by explicit qualitative judgement of present consequence, evidence, likely benefit, and feasibility; preserve that fixed order and identify the top recommendation. Zero candidates is a valid result. Record reviewed coverage and meaningful non-qualifying areas so absence of recommendations remains trustworthy.
 
-Read [Report Design](references/report-design.md), then create a disposable `architecture-review-{timestamp}.html` in the operating system's temporary directory and open it for the user. Give it the same recommendation IDs, ordering, conclusions, and technical substance as the Markdown report. Show the complete set as `High impact`, `Medium impact`, and `Low impact`; make each collapsed card understandable through an aligned before-and-after visual and plain-language `Issue`, `Fix`, and `Benefit`, with technical depth available on demand. Add filters only when they materially improve navigation.
+### 3. Write the interactive report
 
-### 5. Verify and hand off
+Write only `docs/architecture/YYYYMMDD-full-codebase-architecture-review.html`, using `-2`, `-3`, and later numeric suffixes when a same-day path exists unless replacement was explicit. Copy and complete [the report template](assets/report-template.html). Escape repository-derived text before placing it in HTML and remove every template marker.
 
-Verify the Markdown paths, links, structure, and implementation sufficiency, then compare both artifacts for matching IDs and claims. Inspect the HTML at desktop and narrow widths, exercising disclosure, applicable filters, pointer and keyboard operation, focus, overflow, external dependencies, and print output. Correct material defects; when browser inspection is unavailable, mark visual acceptance incomplete. Return both report paths, scope and exclusions, recommendation IDs and count, invoked research, validation performed, and unresolved limitations. Preserve the reviewed implementation unchanged.
+Keep each candidate's recommendation, reason, and improvement always visible. Put exact file and history evidence, trade-offs, and uncertainty in one native expandable section. Do not add filters, reordering, scores, detailed target interfaces, file-by-file changes, migration steps, test prescriptions, tickets, or an implementation plan.
+
+Add a current-versus-recommended visual only when it makes the structural relationship materially easier to understand. Design it specifically for that candidate with accessible HTML or inline SVG; add another CDN library only when it clearly improves the explanation. Omit a weak, generic, or decorative visual.
+
+### 4. Verify and stop
+
+Run the bundled `scripts/validate-report.js` with Bun and the report path. Re-read the report against the fixed order and current evidence; verify every cited repository path and material claim, the top recommendation, coverage, limitations, HTML escaping, and absence of leftover markers. Recheck the revision for material drift and confirm that only the report changed apart from pre-existing work. Do not open the report or perform rendered visual review.
+
+Return the report path, ordered candidate titles or the zero-candidate result, reviewed revision, invoked research, verification, and limitations. Stop without changing implementation or project authorities, elaborating a detailed design, creating specifications or tickets, committing, or publishing.

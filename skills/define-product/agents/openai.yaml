@@ -1,5 +1,5 @@
 interface:
     display_name: 'Define Product'
-    short_description: 'Discover and document a product direction'
+    short_description: 'Define product and system requirements'
 policy:
     allow_implicit_invocation: false

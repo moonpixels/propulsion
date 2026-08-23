@@ -1,5 +1,5 @@
 interface:
     display_name: 'Maintain AGENTS.md'
-    short_description: 'Create or compress repository-wide agent guidance'
+    short_description: 'Write concise repository-wide agent guidance'
 policy:
     allow_implicit_invocation: false

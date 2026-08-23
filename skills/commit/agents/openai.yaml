@@ -1,5 +1,5 @@
 interface:
     display_name: 'Commit'
-    short_description: 'Create coherent conventional commits'
+    short_description: 'Create atomic conventional commits'
 policy:
     allow_implicit_invocation: false

@@ -1,5 +1,5 @@
 interface:
     display_name: 'Write Skill'
-    short_description: 'Create and update predictable agent skills'
+    short_description: 'Author skills through controlled evaluation'
 policy:
     allow_implicit_invocation: false

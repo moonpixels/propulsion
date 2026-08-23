@@ -1,6 +1,6 @@
 # Fowler Code Smells
 
-Use this complete second-edition catalogue as a diagnostic work aid for the Standards inspection. Each cue identifies a code shape to investigate, not a finding by itself. Test the relevant benign interpretation against the scoped code, repository authorities, and concrete consequence.
+Load this complete second-edition catalogue only when a concrete maintainability shape needs recognised diagnostic vocabulary. Each cue identifies a code shape to investigate, not a finding or authority by itself. Test the relevant benign interpretation against the scoped code, repository authorities, and concrete consequence.
 
 1. **Mysterious Name** — An identifier does not communicate its role, meaning, or unit in the surrounding domain. A repository-defined term or tightly conventional local name may already be precise.
 2. **Duplicated Code** — Materially similar behaviour appears in multiple locations that may need to evolve together. Superficially similar code may represent different responsibilities or change for different reasons.

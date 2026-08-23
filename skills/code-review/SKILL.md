@@ -1,63 +1,79 @@
 ---
 name: code-review
-description: Reviews scoped code changes against a specification and applicable standards. Use when assessing a diff, branch, pull request, or completed implementation.
+description: Reviews a fixed code change through isolated specification and engineering-standards agents. Use when a fixed candidate needs independent diagnostic review.
 metadata:
-    invocation: model
-disable-model-invocation: false
+    type: utility
+disable-model-invocation: true
 ---
 
 # Code Review
 
-**Tailored software formal inspection** prepares fixed evidence packets for independent Standards and Spec inspectors, then presents their diagnostic findings without changing the reviewed work.
+Independently diagnoses one fixed code change against intended behaviour and engineering standards, returning falsifiable suggestions for its caller to adjudicate.
 
 ## Process
 
-### 1. Fix the inspection scope
+### 1. Fix the candidate and authorities
 
-Use the caller-supplied scope, whether uncommitted work, a revision range, a branch comparison, a pull request, or another exact change set. Resolve every revision, capture the patch and changed-path list once through read-only inspection, and include the complete contents of in-scope untracked files. Confirm that the captured change set is non-empty. Ask the user when the scope is missing or ambiguous; report the exact blocker and stop when it is invalid or empty. The inspection has one fixed work product.
+Use the caller's pinned candidate when supplied; otherwise resolve one exact non-empty diff, revision range, branch comparison, pull-request revision, repair, or local candidate. Capture its patch, changed and in-scope untracked paths, complete changed files, relevant source and tests, repository state, and exact revision identifiers where available. Ask when the target is materially ambiguous. Return the exact blocker when it is empty or cannot be fixed.
 
-### 2. Resolve the inspection sources
+Resolve intended behaviour from an implementation-independent authority such as a specification, ticket, acceptance criteria, confirmed request, contract, or another project source. When none is reasonably available, omit Spec and continue Standards without inferring intent from code, commits, or implementation rationale.
 
-Find the specification from caller context, supplied paths or tickets, issue references and change history, then relevant repository documentation. When none is found, ask the user; omit the Spec inspection only after the user confirms that no specification exists. Independently identify applicable repository instructions, architecture decisions, coding standards, language policies, configured checks, and local conventions. Read the changed files in full, relevant tests, and enough surrounding code to judge the patch. The specification and Standards authorities are explicit.
+Resolve applicable repository instructions, conventions, architecture decisions, configured checks, affected contracts and consumers, and supplied quality evidence. The review basis is explicit and sufficient to understand every changed line in context.
 
-### 3. Prepare the work aids
+### 2. Prepare isolated review packets
 
-Create one self-contained packet per applicable axis with the fixed patch, changed paths, relevant source context, authority sources, priority definitions, output schema, and read-only verification boundary. Exclude conversation history and the other inspector's materials.
+Give both applicable packets the fixed candidate, complete changed files and necessary surrounding source, their own authorities and criteria, the consequence ranking and finding format below, and a read-only boundary.
 
-The Spec packet applies **bidirectional requirements traceability**: trace every applicable requirement into the changed implementation and relevant tests, and every introduced behaviour back to specification authority. It investigates missing, partial, incorrect, conflicting, and unrequested behaviour and relevant unhandled cases.
+Direct the Spec reviewer to account for every applicable requirement in code and retained tests, account for every introduced behaviour against authority, and follow affected contracts, states, data shapes, errors, effects, and consumers far enough to find missing, partial, conflicting, excessive, or regressed behaviour. Trace distinct success, failure, retry, and concurrent paths when the authority distinguishes them. When an external effect precedes durable state or acknowledgement, trace failure after the effect and before that record or response, including what a retry repeats. Report separate suggestions when a different triggering state, violated requirement, consequence, or narrow corrective outcome survives review, even if the evidence overlaps another suggestion.
 
-The Standards packet applies repository standards first, then residual **Google code-review criteria** across whole-change understanding, correctness and concurrency risks, test presence and validity, comments, and affected documentation. Include the complete [Fowler code-smell work aid](references/CODE-SMELLS.md). Add **Test Desiderata** when tests change; the relevant **ISO/IEC 25010:2023** characteristic when the repository adopts it or the change exposes a concrete residual product-quality concern; an applicable **SEI CERT** rule when supported-language code exposes its construct; and the relevant frozen **OWASP ASVS 5.0.0** requirement when Web code crosses that security boundary. Load only the implicated part of a conditional benchmark.
+Direct the Standards reviewer to understand every changed line in its necessary context and assess:
 
-When the fixed change alters modular architecture, invoke `$modular-design` and include the applicable standard in the Standards packet.
+- correctness and regression risk;
+- the smallest coherent scope and absence of speculative or superseded work;
+- repository, language, and framework conventions;
+- changed-test validity, independent oracles, behavioural durability, and meaningful failure detection;
+- modular ownership, interface depth, dependencies, and change locality;
+- repository-required and changed-risk harness selection, measurement-path integrity, and honest evidence limits; and
+- recognised maintainability shapes and specialist risks exposed by the change.
 
-Within Standards, repository rules and demonstrably configured tooling govern the concerns they cover. General work aids fill uncovered diagnostic roles and yield to an explicit repository choice. A smell or benchmark cue begins an investigation; it becomes a finding only when the scoped code supplies exact evidence and a concrete consequence.
+Require the Standards reviewer to load and apply `$modular-design` and `$test-design`. When a concrete maintainability shape needs recognised vocabulary, load [Code Smells](references/CODE-SMELLS.md); use it to investigate a mechanism and consequence, never as finding authority or a removal checklist.
 
-### 4. Assign the inspections
+Require the Standards reviewer to invoke `$measure-code-complexity` against the fixed candidate and comparison base with read-only authority. Treat its current output as diagnostic evidence: inspect each trigger in source and test context, and retain a review suggestion only when a concrete maintainability consequence survives falsification. Report unavailable or incomplete measurement in the review limitations.
 
-Give each packet to a separate fresh agent and run the Standards and Spec inspections in parallel when both apply. Each inspector owns candidate discovery, **falsification**, authority and code-evidence validation, consequence analysis, and priority validation for its axis. It may run a targeted check only when the command and execution boundary demonstrate that it cannot mutate the checkout, repository state, external systems, or durable project data; otherwise it records the limitation. Each inspector returns only findings that survive its validation.
+### 3. Run independent reviews
 
-Use **risk-based prioritisation** within each axis: `critical` for immediate data loss, security compromise, or production failure; `high` for incorrect requirements or major behaviour, security, reliability, or maintenance risk; `medium` for a concrete defect or significant code, design, or test weakness; and `low` for a local but worthwhile issue.
+Give each applicable packet to a separate fresh agent and run them in parallel where possible. Do not substitute coordinator self-review. If fresh-agent execution is unavailable, mark the affected axis not performed and state the exact limitation.
 
-### 5. Present the inspection report
+Each reviewer may run a safe, focused, non-mutating command only to confirm or falsify a concrete concern. It does not repeat the implementation's whole quality portfolio, edit code or tests, update snapshots or baselines, install dependencies, modify durable data, or repair a finding.
 
-Check that each assigned packet produced the required output fields, returning an incomplete report to its originating inspector for completion from the same packet. Present the Standards and Spec outputs separately without substantive re-review, merging, deduplication, or cross-axis reranking. Preserve each inspector's findings and ordering. The caller receives the two independent inspection results.
+Before retaining a suggestion, try to disprove it through contradicting authority, existing handling, repository-sanctioned exceptions, surrounding code, a focused counterexample, and the strongest benign interpretation. Omit unsupported generic advice, tooling-enforced trivia, speculative best practice, and a pre-existing issue unless the candidate introduces, worsens, or makes it newly consequential.
 
-## Rules
+Rank each surviving suggestion by consequence:
 
-- Keep the inspection read-only and return evidence for the caller's implementation process.
-- Report only issues introduced by or materially relevant to the fixed change.
-- Prefer specification, repository, and code evidence over general guidance or personal preference.
-- Hold structural, test, security, and product-quality findings to the same evidence, consequence, and priority standard as behavioural defects.
+- **High:** a credible path to materially wrong required behaviour, including a duplicated, lost, or misdirected external effect; security or privacy compromise; data loss or corruption; major production or reliability failure; or a structural, test, or evidence defect that makes the change untrustworthy.
+- **Medium:** a concrete defect, regression risk, or significant maintainability, modularity, test-quality, or harness-integrity weakness with a bounded material consequence.
+- **Low:** a local evidenced issue whose narrow correction has a concrete benefit.
+
+Priority orders attention only; it does not direct remediation.
+
+### 4. Preserve the results and candidate
+
+Validate only that each result uses the required fields. Return an incomplete result to that same reviewer for structural completion from its original packet. Do not substantively re-review, merge, deduplicate, suppress, or cross-axis rerank the independent results.
+
+Reinspect the fixed revisions, diff, paths, and in-scope untracked content. When the candidate drifted, preserve each affected frozen result, prefix it with `Status: stale`, state the changed paths and basis mismatch, and stop without retargeting it.
 
 ## Handoff
 
-State the exact scope, specification source or user-confirmed absence, Standards sources, and any check that could not run. Return `## Standards` and `## Spec`; use `No findings.` for a clean axis and state when the Spec inspection was omitted. Format each finding as:
+State the exact frozen scope, behavioural authority or reason Spec was omitted, Standards authorities, probes and limitations, unperformed axes, and scope drift. Return `## Standards` and `## Spec` separately; for an applicable current clean axis use `No findings.` and for an omitted, unperformed, or stale axis state that status explicitly.
+
+Format each suggestion as:
 
 ```markdown
-### [priority] Concise finding
+### [high|medium|low] Concise finding
 
-- Evidence: exact code `path:line`, applicable authority, and observed fact
-- Consequence: concrete behaviour or code-health impact
+- Evidence: exact code location, applicable authority or criterion, and observed fact
+- Consequence: concrete behavioural or code-health impact
+- Suggested direction: narrow outcome that addresses the concern without prescribing an unverified patch
 ```
 
-End with `## Summary` and the finding count for each axis. When neither axis contains a material finding, say the fixed change is clean plainly.
+End with axis-specific counts and review scope. Return the reviewers' substance and ordering unchanged. Do not repair the candidate, adjudicate suggestions, issue a verification, completion, or approval verdict, publish comments, or alter pull-request state. The caller owns validation, adjudication, remediation, re-review, verification, and publication.
