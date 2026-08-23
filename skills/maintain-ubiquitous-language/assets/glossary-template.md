@@ -1,4 +1,4 @@
-# {Project Name} Context
+# {Project Name} Glossary
 
 ## Language
 

@@ -14,7 +14,7 @@ Finds the most consequential current opportunities to improve a codebase's modul
 
 ### 1. Establish whole-codebase evidence
 
-Inspect the request, repository guidance, root `PRODUCT.md` and `CONTEXT.md`, applicable ADRs, current revision, and starting worktree state. Treat the whole repository as the review scope while honouring explicit exclusions. Map its capabilities and inspect the source, tests, contracts, schemas, configuration, and operational evidence needed to understand current structure. Exclude dependencies, generated output, vendored code, and obsolete paths from recommendation coverage.
+Inspect the request, repository guidance, root `PRODUCT.md` and `GLOSSARY.md`, applicable ADRs, current revision, and starting worktree state. Treat the whole repository as the review scope while honouring explicit exclusions. Map its capabilities and inspect the source, tests, contracts, schemas, configuration, and operational evidence needed to understand current structure. Exclude dependencies, generated output, vendored code, and obsolete paths from recommendation coverage.
 
 Inspect relevant Git history after mapping the repository. Use repeated cross-file changes and hotspots as supporting evidence and ranking signals without excluding quieter areas. Distinguish project authority, current observation, inference, and unknowns.
 

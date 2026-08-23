@@ -1,4 +1,4 @@
-# Propulsion Context
+# Propulsion Glossary
 
 ## Language
 

@@ -14,7 +14,7 @@ Turns a product idea or existing system into one confirmed `PRODUCT.md` that sup
 
 ### 1. Establish the evidence boundary
 
-Locate the project root; read its repository guidance and check root `PRODUCT.md`, `CONTEXT.md`, applicable ADRs and research. For an existing system, also inspect the smallest representative public contracts, entry points, data, tests, configuration, and operational evidence needed to understand the product. Record absent foundation files as absent evidence rather than skipping the check.
+Locate the project root; read its repository guidance and check root `PRODUCT.md`, `GLOSSARY.md`, applicable ADRs and research. For an existing system, also inspect the smallest representative public contracts, entry points, data, tests, configuration, and operational evidence needed to understand the product. Record absent foundation files as absent evidence rather than skipping the check.
 
 Treat the user as authority for intended direction, repository and runtime evidence as evidence of current behaviour, and cited external sources as authority only for the claims they establish.
 
@@ -58,6 +58,6 @@ State each fact and requirement once, then link its identifier. Keep journeys, r
 
 ### 6. Verify and stop
 
-Verify intended direction against the confirmed synthesis, current claims against inspected evidence, terminology against `CONTEXT.md`, and material external claims against cited research. Check authority, scope, journeys, capability and technical-requirement coverage, identifier uniqueness, source traceability, internal consistency, explicit non-blocking uncertainty, product-level acceptance, and foundation readiness. Confirm the absence of delivery status, priorities, roadmap, releases, tickets, detailed feature acceptance, selected feature implementation, internal architecture inventory, and unsupported precision.
+Verify intended direction against the confirmed synthesis, current claims against inspected evidence, terminology against `GLOSSARY.md`, and material external claims against cited research. Check authority, scope, journeys, capability and technical-requirement coverage, identifier uniqueness, source traceability, internal consistency, explicit non-blocking uncertainty, product-level acceptance, and foundation readiness. Confirm the absence of delivery status, priorities, roadmap, releases, tickets, detailed feature acceptance, selected feature implementation, internal architecture inventory, and unsupported precision.
 
-Report changed files, supporting evidence, verification, non-blocking unresolved items, and limitations. Stop after `PRODUCT.md` and the context changes owned by invoked skills are verified. Do not create feature specifications, ADR decisions, work items, scaffolding, implementation, releases, or deployments.
+Report changed files, supporting evidence, verification, non-blocking unresolved items, and limitations. Stop after `PRODUCT.md` and the glossary changes owned by invoked skills are verified. Do not create feature specifications, ADR decisions, work items, scaffolding, implementation, releases, or deployments.

@@ -45,7 +45,7 @@ Enter here to establish or deliberately revise the product and system requiremen
 $define-product
 ```
 
-The session produces a user-confirmed `PRODUCT.md` and the corresponding project language in `CONTEXT.md`. It stops before defining individual features, selecting feature-specific architecture, or creating tickets.
+The session produces a user-confirmed `PRODUCT.md` and the corresponding project language in `GLOSSARY.md`. It stops before defining individual features, selecting feature-specific architecture, or creating tickets.
 
 ### Define
 

@@ -116,4 +116,4 @@
 
 ## Evidence and traceability
 
-{Link supplied or inspected research, current-system evidence, applicable ADRs, and `CONTEXT.md`. Do not invent dates, roles, or provenance. Do not add a traceability matrix when the identifiers and inline source traces already establish coverage.}
+{Link supplied or inspected research, current-system evidence, applicable ADRs, and `GLOSSARY.md`. Do not invent dates, roles, or provenance. Do not add a traceability matrix when the identifiers and inline source traces already establish coverage.}
