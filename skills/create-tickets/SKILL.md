@@ -1,6 +1,8 @@
 ---
 name: create-tickets
 description: Creates implementation-ready tickets from approved work. Use when a complete work definition needs vertical decomposition in the project's configured ticket system.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 
@@ -10,13 +12,13 @@ Turns one **approved work definition** into a confirmed, verified set of small v
 
 ## Prerequisites
 
-Read the root `AGENTS.md` for an explicit ticket destination such as `The project uses Linear for tickets.` or `The project uses local Markdown for tickets.` When absent, ask the user which destination the project uses, invoke `$maintain-agents` with the answer, verify the instruction, and resume. For an external destination, require its installed integration and writable account; otherwise stop with the exact access needed. Never guess or silently fall back.
+Read the root `AGENTS.md` for an explicit ticket destination such as `The project uses Linear for tickets.` or `The project uses local Markdown for tickets.` When absent, ask the user which destination the project uses, invoke `$maintain-agents` with the answer, and resume from its result. For an external destination, require its installed integration and writable account; otherwise stop with the exact access needed. Never guess or silently fall back.
 
 ## Process
 
 ### 1. Establish the work and destination
 
-Inspect the request, approved work definition, repository guidance, linked product, context, decision, research, and current-system evidence needed to understand the work. Treat the definition as authority for intended outcomes and settled constraints, and the repository as evidence of the current system.
+Use the already-loaded root guidance. Inspect the request, approved work definition, and only the additional linked product, context, decision, research, and current-system evidence needed to understand the work. Treat the definition as authority for intended outcomes and settled constraints, and the repository as evidence of the current system.
 
 For an external destination, inspect its native item, body, status, estimate, parent, dependency, and read-back capabilities before planning writes. For local Markdown, use one file per ticket under `docs/features/<work-slug>/tickets/`.
 

@@ -1,6 +1,8 @@
 ---
 name: maintain-ubiquitous-language
-description: Maintains project-specific language in CONTEXT.md. Use when explicitly invoked to add, change, challenge, rename, deprecate, or reconcile a project term.
+description: Maintains project-specific language in CONTEXT.md. Use when project terminology must be added, changed, challenged, renamed, deprecated, or reconciled.
+metadata:
+    type: utility
 disable-model-invocation: true
 ---
 

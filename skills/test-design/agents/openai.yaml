@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Test Design'
+    short_description: 'Design durable behavioural tests'
+policy:
+    allow_implicit_invocation: false

@@ -1,6 +1,8 @@
 ---
 name: implement
-description: Implements one ticket or small confirmed software change as a minimal, locally checked, independently reviewed candidate. Use when the user asks to build agreed work locally.
+description: Implements one ticket or small confirmed software change as a minimal, locally checked, independently reviewed candidate. Use when agreed software work is ready to build locally.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 
@@ -18,7 +20,7 @@ Keep the outcome to one implementation-ready ticket, diagnosed repair, or small 
 
 ### 2. Load the teaching knowledge
 
-Invoke `$modular-design` against the fixed work. Invoke `$tdd` when the change affects observable behaviour and an existing usable suite can exercise it through a credible seam. Retain their applicable guidance throughout implementation; they teach within this workflow while this skill retains ownership of edits, commands, evidence, and completion.
+Invoke `$modular-design` against the fixed work. Invoke `$tdd` when the change affects observable behaviour and an existing usable suite can exercise it through a credible seam. Apply their guidance throughout implementation.
 
 ### 3. Build and check the candidate
 
@@ -26,7 +28,7 @@ Implement the smallest coherent change that completely satisfies the confirmed o
 
 Inspect the complete diff and every in-scope untracked file. Account for each production and test addition, dependency, generated artefact, and measurement-path change. Run applicable repository-required checks. Preserve exact results, unavailable evidence, and residual risks.
 
-After applicable checks are current, invoke `$measure-code-complexity` with the fixed candidate, comparison base, and implementation authority. Resolve its returned dispositions by applying authorised coherent improvements through the applicable teaching skills, retaining supported justifications, or invoking `$elicit-with-context` when resolution would change agreed behaviour, contracts, architecture, or scope. Rerun every affected harness and the measurement after a change. Freeze one complete candidate only when its checks and complexity measurement are current and every trigger is resolved or explicitly retained for handoff.
+After applicable checks are current, invoke `$measure-code-complexity` with the fixed candidate, comparison base, and implementation authority. Resolve each supported concern by applying an authorised coherent improvement, retaining a supported justification, or invoking `$elicit-with-context` when resolution would change agreed behaviour, contracts, architecture, or scope. Rerun every affected harness and invoke the measurement again after a change. Freeze one complete candidate only when its checks and complexity measurement are current and every trigger is resolved or explicitly retained for handoff.
 
 ### 4. Review and adjudicate
 
@@ -37,7 +39,7 @@ Invoke `$code-review` on the frozen candidate and its authorities. Validate ever
 - **Rejected finding:** falsified, unsupported, superseded, or outside the confirmed scope.
 - **User decision:** resolution would change agreed behaviour, contracts, architecture, or scope, or needs evidence that cannot be obtained safely.
 
-Apply required corrections and accepted improvements through the applicable teaching skills. Invoke `$elicit-with-context` for a user decision. Rerun every affected harness after a candidate or measurement-path change. Freeze and review the complete new candidate after any material change. Continue until every finding has a supported disposition and no applicable correction or accepted improvement remains.
+Apply required corrections and accepted improvements. Invoke `$elicit-with-context` for a user decision. Rerun every affected harness after a candidate or measurement-path change. Freeze and review the complete new candidate after any material change. Continue until every finding has a supported disposition and no applicable correction or accepted improvement remains.
 
 ### 5. Hand off the local result
 

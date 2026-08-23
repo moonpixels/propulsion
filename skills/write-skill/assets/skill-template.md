@@ -1,6 +1,8 @@
 ---
 name: skill-name
 description: Creates the intended outcome. Use when the skill's confirmed trigger applies.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 

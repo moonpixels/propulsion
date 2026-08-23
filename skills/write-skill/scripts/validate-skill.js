@@ -310,6 +310,23 @@ if (frontmatter) {
     if (typeof frontmatter['disable-model-invocation'] !== 'boolean') {
         fail('disable-model-invocation must be a boolean.');
     }
+
+    const metadata = frontmatter.metadata;
+    if (!metadata || typeof metadata !== 'object' || Array.isArray(metadata)) {
+        fail('metadata must be a YAML mapping.');
+    } else {
+        const allowedTypes = new Set([
+            'performer',
+            'router',
+            'teaching',
+            'utility',
+        ]);
+        if (!allowedTypes.has(metadata.type)) {
+            fail(
+                'metadata.type must be performer, router, teaching, or utility.',
+            );
+        }
+    }
 }
 
 const openai = parseYaml(openaiSource, 'agents/openai.yaml');

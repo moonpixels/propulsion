@@ -1,6 +1,8 @@
 ---
 name: tdd
 description: Teaches test-driven development through red-green-refactor with durable behavioural tests. Use when a usable suite can exercise changed behaviour through a credible seam.
+metadata:
+    type: teaching
 disable-model-invocation: true
 ---
 
@@ -10,27 +12,25 @@ Teaches a caller to implement one observable behaviour at a time and retain a sm
 
 ## Prerequisites
 
-Apply TDD only when the work adds, changes, or repairs observable behaviour and an existing usable suite can exercise it through a credible seam. Otherwise return the missing condition to the caller; proceed through the strongest project-native feedback without claiming TDD. Create a suite or framework only when that infrastructure is part of the agreed work.
+Apply TDD only when the work adds, changes, or repairs observable behaviour and an existing usable suite can exercise it through a credible seam. Otherwise surface the missing condition so the caller can use the strongest project-native feedback without claiming TDD. Create a suite or framework only when that infrastructure is part of the agreed work.
 
 ## Process
 
 ### 1. Fix the slice, seam, and oracle
 
-Read the confirmed behaviour, repository instructions, applicable modular constraints, relevant production code, and current tests. Identify the focused command and run its baseline. Keep pre-existing failures visible; continue only when they cannot hide the next Red or Green signal.
+Use the caller's confirmed behaviour, applicable modular constraints, and current production and test evidence. Inspect only evidence that is missing or stale. Identify the focused command and run its baseline. Keep pre-existing failures visible; continue only when they cannot hide the next Red or Green signal.
 
-Select a **tracer bullet**: the smallest complete vertical slice that produces one requested observable outcome. Choose the narrowest seam that exposes the promise, hides changeable structure, and retains the production risk that matters. Derive the expected result before Green from a requirement, accepted example, contract, invariant, trusted reference, separate model, or accepted prior behaviour. Current output is characterization, not proof of correctness. Load [Test Design](references/TEST-DESIGN.md) and apply its boundary, oracle, determinism, and durability rules.
+Select a **tracer bullet**: the smallest complete vertical slice that produces one requested observable outcome. Apply `$test-design` to choose its seam, oracle, test shape, and any conditional technique. Current output is characterization, not proof of correctness.
 
-If the caller already wrote this production behaviour, discard only caller-owned uncommitted implementation and restart test-first. Preserve pre-existing and user-owned work. For an existing partial implementation, demonstrate sensitivity against the pre-change revision, a safely disabled behaviour, or a controlled known-bad variant. When none is safe, retain an independently meaningful test as regression or characterization evidence without calling the work TDD.
+For an existing partial implementation, demonstrate sensitivity against the pre-change revision, a safely disabled behaviour, or a controlled known-bad variant. When none is safe, retain an independently meaningful test as regression or characterization evidence without calling the work TDD.
 
 ### 2. Red
 
-Write one focused behavioural test before its production change. Arrange only necessary state, act once through the supported seam, assert the complete promised outcome, and clean up acquired resources. Assert unchanged state only when its preservation is promised and the action can actually affect the observed value. Name one realistic production break the test must detect and one hidden structural change it must survive.
-
-Keep internal collaborators real. When an uncontrollable boundary needs substitution or observation, load [Test Doubles](references/TEST-DOUBLES.md), choose the least powerful double, and assert only contractually meaningful effects.
+Write one focused behavioural test before its production change, following the selected test design.
 
 For a bug, reproduce the incorrect result and assert the independently established desired result. Structure the test so failure is reported against the promise: an unexpected exception that aborts before any oracle assertion is not Red unless the test explicitly establishes that successful completion is the promise. When count or order at a system boundary is promised, assert it directly rather than inferring it from final state.
 
-Run the focused test. Red exists only when an oracle fails for the intended missing or incorrect behaviour; a pass, syntax error, fixture failure, or environment error is invalid. Correct an in-scope test or environment defect and rerun, or return the blocker. Preserve the exact Red command and failure.
+Run the focused test. Red exists only when an oracle fails for the intended missing or incorrect behaviour; a pass, syntax error, fixture failure, or environment error is invalid. Correct an in-scope test or environment defect and rerun, or surface the blocker in the caller's workflow. Preserve the exact Red command and failure.
 
 ### 3. Green
 
@@ -40,16 +40,14 @@ Add only enough production code for the current behaviour. Treat confirmed preco
 
 Improve production naming, cohesion, duplication, ownership, and interfaces without adding behaviour. Keep behavioural tests unchanged through production refactors. When structural movement alone breaks a test, move its observation back to the promised outcome. Clarify test names or fixtures only without weakening the oracle or counterfactuals. Run the focused tests after each material step.
 
-If refactoring exposes a new material structural decision not resolved by the caller's modular constraints, return it to the caller for resolution before continuing.
+If refactoring exposes a new material structural decision not resolved by the caller's modular constraints, pause the cycle until the caller resolves it.
 
 ### 5. Rationalise the retained suite
 
-After production refactoring, identify the unique behaviour, boundary, invariant, or risk protected by each affected test. Remove obsolete implementation-detail assertions, broad snapshots used only as change alarms, and examples that add no distinct failure detection. Consolidate equivalent cases with a table or property only when the resulting oracle and failure diagnosis remain clear.
+After production refactoring, reapply `$test-design` to the affected suite while it remains Green.
 
-Mentally mutate wrong constants, branches, validation, effects, and empty or default results. Strengthen the smallest test or input that would let a realistic defect survive.
+### 6. Complete the cycles
 
-### 6. Complete and return
+Repeat Red, Green, Refactor, and rationalisation for each remaining confirmed behaviour. Run the complete relevant suite.
 
-Repeat Red, Green, Refactor, and rationalisation for each remaining confirmed behaviour. When example cases cannot economically cover a large input or state space, or a direct oracle is unavailable, load [Generative Testing](references/GENERATIVE-TESTING.md) and use only the triggered technique. Run the complete relevant suite.
-
-Return the behaviours delivered; retained tests and the unique protection each adds; exact Red and Green evidence; refactors; commands and results; unresolved baseline failures; fidelity limits; and other missing evidence. The caller retains ownership of broader checks, independent review, the complete work outcome, commits, and publication.
+Keep the delivered behaviours, retained tests and their unique protection, exact Red and Green evidence, refactors, commands and results, unresolved baseline failures, fidelity limits, and other missing evidence current in the caller's workflow.

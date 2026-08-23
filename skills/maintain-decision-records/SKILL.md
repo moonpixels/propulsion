@@ -1,6 +1,8 @@
 ---
 name: maintain-decision-records
-description: Maintains rare architecture decision records. Use when explicitly invoked to test and preserve an accepted technical or architectural decision's durable rationale.
+description: Maintains rare architecture decision records. Use when an accepted technical or architectural decision may warrant durable rationale.
+metadata:
+    type: utility
 disable-model-invocation: true
 ---
 

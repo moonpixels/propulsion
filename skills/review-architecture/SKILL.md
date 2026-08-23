@@ -1,6 +1,8 @@
 ---
 name: review-architecture
 description: Reviews a whole codebase for high-impact evidence-backed modular-design improvements and writes an interactive HTML report. Use for architecture or structural maintainability reviews.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 
@@ -16,7 +18,7 @@ Inspect the request, repository guidance, root `PRODUCT.md` and `CONTEXT.md`, ap
 
 Inspect relevant Git history after mapping the repository. Use repeated cross-file changes and hotspots as supporting evidence and ranking signals without excluding quieter areas. Distinguish project authority, current observation, inference, and unknowns.
 
-Invoke `$modular-design` with the authorities and current evidence. Apply its structural teaching while retaining ownership of investigation, candidate qualification, ranking, the report, and stopping. Invoke `$research` only when a material candidate depends on external framework, platform, or technical evidence that the repository cannot establish; read its report before deciding whether the candidate qualifies.
+Apply `$modular-design` to the authorities and current evidence. Invoke `$research` only when a material candidate depends on external framework, platform, or technical evidence that the repository cannot establish; read its report before deciding whether the candidate qualifies.
 
 ### 2. Retain only top-level candidates
 

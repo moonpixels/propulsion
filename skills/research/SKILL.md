@@ -1,6 +1,8 @@
 ---
 name: research
-description: Investigates a material subject against high-trust sources and writes a trusted cited report. Use when a user or calling skill intentionally requests durable research.
+description: Investigates a material subject against high-trust sources and writes a trusted cited report. Use when a material question needs durable external evidence.
+metadata:
+    type: utility
 disable-model-invocation: true
 ---
 

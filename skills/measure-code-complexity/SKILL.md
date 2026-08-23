@@ -1,6 +1,8 @@
 ---
 name: measure-code-complexity
 description: Measures changed-code complexity with pinned cross-language metrics and advisory review triggers. Use when implementing, reviewing, or directly assessing code complexity.
+metadata:
+    type: utility
 disable-model-invocation: false
 ---
 
@@ -34,11 +36,11 @@ For each triggered metric, load only its named reference: [Cyclomatic Complexity
 
 Disposition every trigger as one of:
 
-- **Improved:** apply an authorised, coherent simplification; rerun affected tests and this measurement.
-- **Justified retention:** retain the shape with a concrete code- and test-based reason.
+- **Supported concern:** state the concrete maintainability consequence, evidence, and narrow improvement direction.
+- **Justified shape:** state the concrete code- and test-based reason the shape is appropriate.
 - **Unresolved:** state the missing authority or evidence and leave the trigger open.
 
-Respect the caller's boundary. An implementation caller may edit and rerun; a review caller remains read-only and returns an evidenced suggestion when the consequence warrants one.
+Measure and interpret only. Leave every source edit, test run, and decision to apply an improvement to the caller.
 
 ### 3. Return the evidence
 
@@ -49,4 +51,4 @@ Return the fixed scope, compact summary, triggered locations and values, baselin
 - Keep the bundled metric definitions and bands intact unless explicit repository policy overrides a threshold.
 - Preserve all metric components; do not combine them into Maintainability Index, CRAP, or another scalar grade.
 - Reject score-only changes that merely move branching, add indirection, hide parameters, or replace one clone with a shallow abstraction.
-- Stop after every trigger has a supported disposition or is explicitly unresolved. Do not create repository policy, durable reports, commits, pull requests, or external state unless the caller separately authorises them.
+- Stop after every trigger has a supported disposition or is explicitly unresolved. Do not modify source or tests, run implementation checks, create repository policy or durable reports, commit, publish, or change external state.

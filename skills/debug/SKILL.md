@@ -1,6 +1,8 @@
 ---
 name: debug
 description: Diagnoses software defects and conditionally makes causal, verified repairs. Use for failures, regressions, runtime errors, flaky behaviour, or performance faults.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 

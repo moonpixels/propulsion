@@ -1,6 +1,8 @@
 ---
 name: modular-design
 description: Teaches structural design through information hiding, deep modules, cohesive ownership, stable interfaces, and change locality. Use when writing or assessing code, boundaries, contracts, dependencies, seams, or change propagation.
+metadata:
+    type: teaching
 disable-model-invocation: true
 ---
 
@@ -12,7 +14,7 @@ Teaches a caller to make the smallest coherent change through deep modules whose
 
 ### 1. Fix the structural basis
 
-Read the confirmed behaviour, caller outcome, repository guidance, domain language, architecture decisions, relevant source, contracts, and tests. Follow explicit project authorities and established language and framework idioms when they conflict with this baseline.
+Use the caller's confirmed behaviour, outcome, repository guidance, domain language, architecture decisions, relevant source, contracts, and tests. Inspect only evidence that is missing or stale. Follow explicit project authorities and established language and framework idioms when they conflict with this baseline.
 
 Treat a **module** as any cohesive capability with an interface and implementation: a function, object, component, package, process, service, or tier-spanning slice. Treat its **interface** as everything callers must know, including operations, data, invariants, ordering, errors, configuration, effects, and material performance characteristics. Do not equate modules with files, classes, layers, or deployment units.
 
@@ -75,7 +77,7 @@ Trace one plausible current-project change through the proposed owner, interface
 
 Reconsider the design when the same decision remains duplicated, elements that always change together are split, an owner changes mostly for unrelated reasons, callers still coordinate hidden sequencing, or one conceptual change requires scattered edits. Do not substitute file size, class count, method count, churn, coupling scores, complexity thresholds, or speculative agent-context savings for this trace.
 
-Finish with the owner, caller-visible contract, hidden decisions, locality trace, triggered technique or material comparison, and unresolved structural uncertainty. The caller retains its outcome, edits, commands, tests, verification, review findings, artefacts, and stopping decision.
+Keep the owner, caller-visible contract, hidden decisions, locality trace, triggered technique or material comparison, and unresolved structural uncertainty explicit in the caller's workflow.
 
 ## Rules
 

@@ -97,7 +97,7 @@ $implement
 
 The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
 
-`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. It uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
+`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` teaching for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
 
 #### `$commit`
 
@@ -151,17 +151,17 @@ The session establishes an evidence-backed root cause and stops there when diagn
 $debug → $commit → $pull-request
 ```
 
-## Utility skills
+## Supporting skills
 
-These skills are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
+These utilities and routers are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-| Skill                  | Invoke it to…                                                                                                                                             |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$review-pull-request` | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested                             |
-| `$elicit`              | Resolve material user-held information and decisions one question at a time                                                                               |
-| `$elicit-with-context` | Resolve software-project questions through `$elicit`, applying `$maintain-ubiquitous-language` and `$maintain-decision-records` when their triggers apply |
-| `$research`            | Investigate a material subject with high-trust evidence and persist a trusted cited report                                                                |
-| `$maintain-agents`     | Keep confirmed repository-wide agent guidance lean and current                                                                                            |
+| Skill                  | Type    | Invoke it to…                                                                                                                 |
+| ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `$review-pull-request` | Router  | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested |
+| `$elicit`              | Utility | Resolve material user-held information and decisions one question at a time                                                   |
+| `$elicit-with-context` | Router  | Resolve software-project questions through `$elicit`, always maintaining shared language and preserving qualifying decisions  |
+| `$research`            | Utility | Investigate a material subject with high-trust evidence and persist a trusted cited report                                    |
+| `$maintain-agents`     | Utility | Keep confirmed repository-wide agent guidance lean and current                                                                |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
 

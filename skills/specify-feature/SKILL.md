@@ -1,6 +1,8 @@
 ---
 name: specify-feature
 description: Creates a decision-complete specification for one feature. Use when a high-level feature request or capability needs collaborative definition before ticket creation.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 
@@ -14,7 +16,7 @@ Turns one high-level feature description into one user-confirmed specification c
 
 Inspect the request and the project evidence relevant to the feature. Resolve discoverable facts before asking the user, and distinguish evidence of the current system from intended future behaviour.
 
-Invoke `$elicit-with-context` whenever material user-held information or a decision is needed. Bring it the evidence, gaps, viable options and consequences. The user decides the feature's direction; make informed recommendations, challenge ambiguity and expose overlooked paths without turning a suggestion into a decision.
+Invoke `$elicit-with-context` with the relevant evidence and unresolved decision whenever material user-held information or a decision is needed. Use its confirmed synthesis as authority for the feature direction.
 
 Invoke `$research` when durable external evidence is needed to resolve the feature. Use its report as evidence, not as authority for a product or solution decision.
 

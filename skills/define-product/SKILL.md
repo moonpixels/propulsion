@@ -1,6 +1,8 @@
 ---
 name: define-product
 description: Defines a breadth-first product and system requirements foundation. Use when externalising a new product idea or deliberately revising PRODUCT.md.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 
@@ -46,7 +48,7 @@ Record assumptions, dependencies, constraints, risks, and open questions distinc
 
 Walk every intended user and lifecycle stakeholder across the journeys, capabilities, and applicable technical requirements. Resolve material omissions, duplicates, broken transitions, contradictory ownership, untraceable requirements, hidden feature depth, and requirements that prescribe unconfirmed design. Check that every normative requirement is necessary, feasible enough for this stage, unambiguous at its level, source-traceable, and capable of later verification.
 
-Have `$elicit-with-context` present one complete synthesis covering the entire proposed foundation, non-blocking unresolved items, and exact document effect. Obtain explicit confirmation of the whole synthesis. If the user rejects or corrects it, leave `PRODUCT.md` unchanged, reopen every affected branch, repeat the relevant coverage walk, and confirm the complete revision. The confirmed synthesis authorises its agreed `PRODUCT.md` write without another permission prompt.
+Invoke `$elicit-with-context` with the proposed foundation, non-blocking unresolved items, and exact document effect. Use its confirmed synthesis as authority for the agreed `PRODUCT.md` write. If coverage changes afterward, resolve the affected foundation again before writing.
 
 ### 5. Write the foundation
 

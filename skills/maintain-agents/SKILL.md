@@ -1,6 +1,8 @@
 ---
 name: maintain-agents
 description: Maintains concise root AGENTS.md instructions. Use when creating the file or adding, refining, or assessing repository-wide agent guidance.
+metadata:
+    type: utility
 disable-model-invocation: true
 ---
 

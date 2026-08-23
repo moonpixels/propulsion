@@ -1,6 +1,8 @@
 ---
 name: write-skill
 description: Creates and revises effective agent skills through confirmed requirements, minimum-sufficient design, and baseline-controlled evaluation. Use when authoring or maintaining a reusable agent skill.
+metadata:
+    type: performer
 disable-model-invocation: true
 ---
 
@@ -12,7 +14,7 @@ Creates minimum-sufficient agent skills whose observed behaviour justifies their
 
 ### 1. Confirm the contract
 
-Inspect the request, an existing skill and its direct composition when revising, and task-scoped evidence without changing the target. Invoke `$elicit` to confirm the recurring job or capability gap; user and model triggers plus non-triggers; inputs and prerequisites; required actions, material branches, authority, and stopping boundary; expected output or handoff; direct composition; necessary resources; and observable success evidence. Keep the target unchanged until `$elicit` returns the confirmed synthesis. The authoring contract is explicit and closed.
+Inspect the request, an existing skill and its direct composition when revising, and task-scoped evidence without changing the target. Invoke `$elicit-with-context` in a software project and `$elicit` elsewhere to confirm the recurring job or capability gap; task triggers and non-triggers; skill type; inputs and prerequisites; required actions, material branches, authority, and stopping boundary; expected output or handoff; direct composition; necessary resources; and observable success evidence. Keep the target unchanged until elicitation returns the confirmed synthesis. The authoring contract is explicit and closed.
 
 ### 2. Establish the matched baseline
 
@@ -27,11 +29,20 @@ Record each result, loaded path, output, tool calls, and iterations. Design only
 
 Apply the **KISS principle**: retain the common path and material branches; remove speculative edge cases, unnecessary artefacts, and ceremony that cannot change the evaluated outcome. Keep coupled actions and artefacts together when they serve one outcome. Split independently useful capabilities when their trigger families, outcomes, authority, or success boundaries differ. The candidate has one coherent behavioural purpose.
 
+Classify the skill by the authority it owns, not by whether it calls tools or fresh agents:
+
+- A **performer** owns one bounded requested outcome end to end, including actions, artefacts, verification, handoff, and stopping.
+- A **router** resolves inputs and coordinates other skills' public contracts, adding only routing unique to the combined outcome.
+- A **teaching** skill supplies knowledge and decision rules inside a caller's workflow without owning an independent operation, mutation, artefact, verification, handoff, or stopping decision.
+- A **utility** owns one bounded reusable operation and returns its result.
+
+Set `metadata.type` to exactly `performer`, `router`, `teaching`, or `utility`. Remove responsibilities that belong to another type or split them when each capability is independently useful.
+
 Choose invocation from actual use. Make regularly useful skills model-invoked. Make occasional, deliberate, or composition-only skills user-invoked. Set `disable-model-invocation` and `agents/openai.yaml` consistently. The skill enters context only through its intended route.
 
 ### 4. Design the loading path
 
-Use a 1-64 character lowercase name with single hyphen separators and match the directory name. Write the description as one line that starts with a third-person action verb, says what the skill does, includes `Use when`, `Use for`, or `Use to`, and front-loads natural trigger words. Add a human-readable display name and short description to `agents/openai.yaml`.
+Use a 1-64 character lowercase name with single hyphen separators and match the directory name. Write the description as one line that starts with a third-person action verb, says what the skill does, includes `Use when`, `Use for`, or `Use to`, and front-loads natural task triggers derived from its content. Describe the skill in isolation as something the agent may select; base its trigger on the work, not whether the user, caller, or another skill invoked it or the current invocation policy. Add a human-readable display name and short description to `agents/openai.yaml`.
 
 Use **progressive disclosure**:
 
@@ -41,7 +52,7 @@ Use **progressive disclosure**:
 - Put reusable output material in `assets/`.
 - Put deterministic transformations and checks in `scripts/`.
 
-Keep required coupled guidance together. Prefer direct one-level references. Remove unreachable and unlinked resources. Trace direct composition across trigger, inputs, authority, result, owner, and stopping boundary. The smallest sufficient context is reachable when needed.
+Keep required coupled guidance together. Prefer direct one-level references. Remove unreachable and unlinked resources. Trace direct composition across trigger, inputs, authority, result, owner, and stopping boundary. A composed skill consumes current caller evidence and loads only missing or stale evidence; an independently invokable skill remains self-sufficient; a fresh agent receives a complete task-scoped packet. A router relies on each invoked skill's public contract and does not repeat its loading, process, or result handling. The smallest sufficient context is reachable when needed.
 
 ### 5. Draft the isolated candidate
 
@@ -50,6 +61,7 @@ Create the candidate outside the requested destination. For revisions, start fro
 Use [the skill template](assets/skill-template.md). Load [the section guide](references/SECTIONS.md) only when optional sections or subsection layout are needed. Write commands, not essays:
 
 - Use direct verbs such as _Load_, _Check_, _Run_, _Fix_, _Stop_, and _Return_.
+- Match commands to the declared type: performers direct the complete outcome; routers direct only input resolution, invocation, and result routing; teaching skills state principles and decisions for the caller to apply; utilities direct one operation and its result.
 - Give each step or subsection one coherent behavioural idea and one observable outcome.
 - Use short concrete words and clear fragments; expand conditions, risks, and handoffs that compression could hide.
 - State each normative meaning once. Remove filler, hedging, generic knowledge, and repeated enforcement.
