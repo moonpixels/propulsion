@@ -36,6 +36,8 @@ Direct the Standards reviewer to understand every changed line in its necessary 
 
 Require the Standards reviewer to load and apply `$modular-design`, plus `$tdd` when its prerequisites hold. These skills supply teaching knowledge within the Standards review; they do not become delegated workflows or own findings, commands, remediation, or a verdict. When a concrete maintainability shape needs recognised vocabulary, load [Code Smells](references/CODE-SMELLS.md); use it to investigate a mechanism and consequence, never as finding authority or a removal checklist.
 
+Require the Standards reviewer to invoke `$measure-code-complexity` against the fixed candidate and comparison base with read-only authority. Treat its current output as diagnostic evidence: inspect each trigger in source and test context, and retain a review suggestion only when a concrete maintainability consequence survives falsification. Report unavailable or incomplete measurement in the review limitations.
+
 ### 3. Run independent reviews
 
 Give each applicable packet to a separate fresh agent and run them in parallel where possible. Do not substitute coordinator self-review. If fresh-agent execution is unavailable, mark the affected axis not performed and state the exact limitation.

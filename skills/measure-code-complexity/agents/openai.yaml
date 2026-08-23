@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Measure Code Complexity'
+    short_description: 'Measure changed-code complexity and review triggers'
+policy:
+    allow_implicit_invocation: true

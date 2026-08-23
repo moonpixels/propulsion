@@ -24,7 +24,9 @@ Invoke `$modular-design` against the fixed work. Invoke `$tdd` when the change a
 
 Implement the smallest coherent change that completely satisfies the confirmed outcome. Follow the selected modular constraints and TDD cycles without adding speculative flexibility, unrelated cleanup, or project-wide quality infrastructure outside the agreed work.
 
-Inspect the complete diff and every in-scope untracked file. Account for each production and test addition, dependency, generated artefact, and measurement-path change. Run applicable repository-required checks. Preserve exact results, unavailable evidence, and residual risks. Freeze one complete candidate only after its local checks are current.
+Inspect the complete diff and every in-scope untracked file. Account for each production and test addition, dependency, generated artefact, and measurement-path change. Run applicable repository-required checks. Preserve exact results, unavailable evidence, and residual risks.
+
+After applicable checks are current, invoke `$measure-code-complexity` with the fixed candidate, comparison base, and implementation authority. Resolve its returned dispositions by applying authorised coherent improvements through the applicable teaching skills, retaining supported justifications, or invoking `$elicit-with-context` when resolution would change agreed behaviour, contracts, architecture, or scope. Rerun every affected harness and the measurement after a change. Freeze one complete candidate only when its checks and complexity measurement are current and every trigger is resolved or explicitly retained for handoff.
 
 ### 4. Review and adjudicate
 
