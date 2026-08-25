@@ -16,6 +16,8 @@ Turns one confirmed body of software work into the smallest coherent local chang
 
 Inspect the work authority, repository instructions, linked product and technical authorities, current code, tests, relevant contracts, available tools, and complete repository state. State the observable outcome, exclusions, material risks, and completion evidence. Resolve discoverable facts directly. Invoke `$elicit-with-context` only when a material user-held behaviour, contract, architecture, scope, or acceptance decision remains.
 
+When the work uses or changes a package, framework, SDK, platform, or external API, identify the applicable version and inspect its official documentation, source, or examples. Follow its documented convention unless the work authority, repository instructions, architecture decisions, or a deliberate local convention requires otherwise. Resolve missing or materially conflicting guidance instead of inventing an integration pattern.
+
 Keep the outcome to one implementation-ready ticket, diagnosed repair, or small confirmed change. Preserve unrelated work. Stop when the work is not sufficiently defined to implement and elicitation cannot resolve it within the requested outcome.
 
 ### 2. Load the teaching knowledge
