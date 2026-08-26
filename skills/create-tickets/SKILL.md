@@ -26,7 +26,7 @@ For an external destination, inspect its native item, body, status, estimate, pa
 
 Map every material requirement, obligation, constraint, solution responsibility, transition, and acceptance boundary in both directions between the work definition and proposed tickets. Form the smallest coherent set in which each ticket delivers one observable outcome or fulfilled contract across every layer it needs. Absorb shared setup into the earliest outcome that needs it. Create separate enabling, migration, or refactor work only when it has an independently necessary, verifiable boundary or preserves a valid compatible intermediate state.
 
-Size each ticket for one fresh implementation session. Assign one project-local **complexity** bucket from `1`, `2`, `3`, `5`, or `8` by comparing the affected behaviour, technical difficulty, integrations, data or migration work, applicable quality constraints, and bounded uncertainty with the other proposed tickets. The buckets are ordered comparisons, not ratios, hours, dates, or duration promises. Split any outcome that would exceed `8`, then estimate the resulting slices again.
+Size each ticket for one fresh implementation session. Load the [Estimation Reference](assets/estimation-reference.md), assign the lowest defensible **complexity** bucket from `1`, `2`, `3`, `5`, or `8`, and use sibling comparison only as a consistency check. Split any outcome that would exceed `8`, then estimate the resulting slices again.
 
 Add a blocker only when one ticket cannot honestly begin or meet acceptance before another reaches its accepted outcome. Keep display order, likely sequence, user-journey order, and merely related work out of the dependency graph. State dependency direction explicitly and reject cycles.
 
