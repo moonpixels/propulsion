@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Write Prose'
+    short_description: 'Write engaging reader-facing UK prose'
+policy:
+    allow_implicit_invocation: true
