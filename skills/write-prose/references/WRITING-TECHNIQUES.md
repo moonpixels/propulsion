@@ -30,4 +30,4 @@ Treat these as available tools. Choose a technique because of the job it perform
 - **Numbers:** Use for sequence, rank or a fixed count.
 - **Prose:** Keep connected reasoning in sentences and paragraphs when relationships and qualification matter more than item retrieval.
 
-Use punctuation to show relationships and pace. A full stop can isolate a conclusion, a colon can introduce an explanation and a semicolon can hold close independent clauses together. Use an em dash sparingly for a distinct interruption or aside; when several appear, check whether full stops, commas, colons or parentheses express the relationships better.
+Use punctuation to show relationships and pace. A full stop can isolate a conclusion, a colon can introduce an explanation and a semicolon can hold close independent clauses together. Choose the quietest mark that makes the relationship clear.

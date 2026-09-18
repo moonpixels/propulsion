@@ -8,6 +8,7 @@ Use a **professional but conversational** voice. Sound like a capable person exp
 - Use plain language without removing necessary technical substance. Define unfamiliar terms where the reader meets them.
 - Use first person for real choices, actions, experience and uncertainty supplied by the caller. Use ordinary contractions when the genre permits them.
 - Keep paragraphs focused and transitions meaningful. Vary connectors rather than repeatedly announcing every example, contrast or conclusion.
+- Prefer commas, full stops, colons or parentheses to em dashes. Most pieces should contain none; use one only in the rare case that a strong interruption is clearer than quieter punctuation.
 - Admit a limitation directly and follow it with what it changes.
 - Finish practically. Prefer a conclusion, implication, recommendation or next step to a broad flourish.
 
