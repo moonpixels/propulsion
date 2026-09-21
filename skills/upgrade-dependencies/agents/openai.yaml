@@ -1,0 +1,5 @@
+interface:
+    display_name: 'Upgrade Dependencies'
+    short_description: 'Upgrade compatible dependencies and required migrations'
+policy:
+    allow_implicit_invocation: false

@@ -135,6 +135,18 @@ A small, understood change may start later:
 $implement → $commit → $pull-request
 ```
 
+### Upgrade
+
+#### `$upgrade-dependencies`
+
+Enter here to upgrade package dependencies or the project's full toolchain:
+
+```text
+$upgrade-dependencies
+```
+
+The session clarifies whether majors and toolchain changes are included, discovers outdated dependencies, checks compatibility and follows official upgrade guidance. It uses official CLI commands first, applies required migrations and verifies the local changes. The handoff reports version changes, validation, blockers and optional code improvements for the user to choose. It stops before publication, deployment or machine-wide changes unless separately authorised.
+
 ### Debug
 
 #### `$debug`
