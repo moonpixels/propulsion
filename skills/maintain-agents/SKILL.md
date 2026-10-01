@@ -1,33 +1,30 @@
 ---
 name: maintain-agents
-description: Maintains concise root AGENTS.md instructions. Use when creating the file or adding, refining, or assessing repository-wide agent guidance.
+description: Create, refine, or assess concise root AGENTS.md guidance when a repository-wide agent rule needs a durable home.
 metadata:
     type: utility
-disable-model-invocation: true
 ---
 
 # Maintain AGENTS.md
 
-Uses **Progressive Disclosure** to keep the repository's always-loaded agent guidance relevant to every request.
+Keep root agent guidance concise, confirmed, and relevant across the repository.
 
-## Process
+## Inputs
 
-### 1. Establish the file
+Use the requested addition, refinement, or assessment, the relevant user decision or caller handoff, and the root `AGENTS.md`. Locate the repository root and preserve unrelated guidance.
 
-Locate the repository root and read its `AGENTS.md` when present. Create it when absent. Ensure this line appears exactly once at the top, replacing or moving equivalent wording:
+## Method
 
-```markdown
-- When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
-```
+1. Read the existing file or create it when needed. Keep this line exactly once at the top, moving or replacing equivalent wording:
 
-### 2. Assess the guidance
+    ```markdown
+    - When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
+    ```
 
-Recommend an instruction when it is user-confirmed, cannot be inferred reliably from repository evidence, governs the repository as a whole, and materially changes agent behaviour. Treat a composing caller's confirmed instruction as user-confirmed. When an instruction fails a gate, explain the concern and ask for the user's final decision; follow that decision.
+2. Recommend guidance that is user-confirmed, materially changes behaviour, applies repository-wide, and cannot be inferred reliably from repository evidence. A caller's confirmed instruction supplies confirmation. If a proposed rule fails these conditions, explain the concern and obtain the user's decision before adding it; follow that decision.
+3. Apply the requested change using a direct imperative with its necessary conditions. Update equivalent wording instead of adding a duplicate. Recommend the existing local authority for task-specific detail rather than expanding root guidance, unless the user directs otherwise.
+4. Re-read the file for the requested effect, canonical first line, and semantic duplication.
 
-### 3. Write the instruction
+## Finish
 
-Apply only the requested addition, refinement, or assessment. Use the shortest direct imperative sentence that preserves the required behaviour and conditions. State each policy once; update equivalent wording instead of adding a semantic duplicate. Leave unrelated instructions unchanged.
-
-### 4. Verify the result
-
-Re-read `AGENTS.md`. Confirm the canonical first line, requested outcome, minimal wording, and absence of semantic duplication. Return the change, no-op, or requested advice with any concerns.
+Return the change, supported no-op, or requested advice with any unresolved concern. Stop at root `AGENTS.md`; changes to tooling, skills, or other instruction files need their own task scope.

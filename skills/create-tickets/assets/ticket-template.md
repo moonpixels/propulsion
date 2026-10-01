@@ -1,4 +1,4 @@
-# {TKT-001} — {Ticket title}
+# {TKT-001}: {Ticket title}
 
 - **Status:** {Todo or destination-native status}
 - **Complexity:** {1, 2, 3, 5, or 8}

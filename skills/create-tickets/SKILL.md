@@ -1,49 +1,36 @@
 ---
 name: create-tickets
-description: Creates implementation-ready tickets from approved work. Use when a complete work definition needs vertical decomposition in the project's configured ticket system.
+description: Create confirmed implementation-ready vertical tickets from an approved work definition in the project's configured ticket destination.
 metadata:
     type: performer
-disable-model-invocation: true
 ---
 
-# Create Tickets
+# Create tickets
 
-Turns one **approved work definition** into a confirmed, verified set of small vertical tickets. A work definition may be a document or confirmed conversation whose outcome, scope, behaviour or obligations, material constraints, and solution decisions are complete enough to decompose without invention.
+Turn approved work into a confirmed, verified set of small vertical tickets. Each ticket must be executable in a fresh implementation session without inventing product behaviour or material solution decisions.
 
-## Prerequisites
+## Inputs
 
-Read the root `AGENTS.md` for an explicit ticket destination such as `The project uses Linear for tickets.` or `The project uses local Markdown for tickets.` When absent, ask the user which destination the project uses, invoke `$maintain-agents` with the answer, and resume from its result. For an external destination, require its installed integration and writable account; otherwise stop with the exact access needed. Never guess or silently fall back.
+Use the approved document or confirmed conversation, root `AGENTS.md`, relevant linked authorities, and current-system evidence. The definition must settle outcome, scope, behaviour or obligations, constraints, and material solution choices.
 
-## Process
+Find an explicit ticket destination in root guidance. If absent, ask which destination the project uses, invoke `$maintain-agents` with the answer, and resume from its result. For an external destination, require its installed integration and writable account. Report exact missing access rather than guessing or silently falling back.
 
-### 1. Establish the work and destination
+## Method
 
-Use the already-loaded root guidance. Inspect the request, approved work definition, and only the additional linked product, context, decision, research, and current-system evidence needed to understand the work. Treat the definition as authority for intended outcomes and settled constraints, and the repository as evidence of the current system.
+1. **Inspect destination capabilities.** For an external system, establish its item, body, initial status, estimate, parent, dependency, and read-back capabilities before writes. For local Markdown, use one file per ticket under `docs/features/<work-slug>/tickets/`.
+2. **Decompose complete outcomes.** Account for every material requirement, obligation, constraint, responsibility, transition, and acceptance boundary in both directions between definition and tickets. Each ticket delivers one observable outcome or fulfilled contract through the layers it needs. Absorb shared setup into the earliest outcome needing it. Separate enabling, migration, or refactor work only when it has an independently necessary verifiable boundary or preserves a compatible intermediate state.
+3. **Size and relate the set.** Use the estimation reference for complexity buckets `1`, `2`, `3`, `5`, and `8`. Choose the lowest defensible bucket; split work above `8`. Add a blocker only when another ticket's accepted outcome is necessary to begin or meet acceptance. Distinguish display order from dependencies, state direction, and reject cycles.
+4. **Confirm the proposal.** Present compact numbered titles, vertical outcomes, complexity, and `Blocked by` references. Invoke `$elicit-with-context` for material decomposition decisions. Obtain confirmation of the whole set before writing ticket bodies. Existing confirmation of that exact set suffices. Confirmation authorises synthesis and writes without another prompt. If synthesis reveals a material gap, leave the destination unchanged and reopen the affected proposal.
+5. **Write the agreed tickets.** Use the template's semantic body. Link durable authority or embed necessary confirmed intent and solution context when no durable source exists. A fresh implementer must not depend on an unavailable conversation. Describe stable outcomes and contracts rather than files, classes, wiring, code, or exhaustive tests.
+6. **Apply destination semantics.** For local files, allocate stable sequential IDs such as `TKT-001`, use `<ticket-id>-<ticket-slug>.md`, initialise `Todo`, and write reciprocal `Blocked by` and `Blocks` references. Local statuses are `Todo`, `In Progress`, `Done`, and `Cancelled`. For an external system, map to exact native fields and initial status where available. If a capability is absent, preserve its meaning in the body and report the limitation rather than substituting another relationship. Create and relate exactly the confirmed set. Set priority, assignee, cycle, milestone, release, or dates only when supplied by the user or approved definition.
 
-For an external destination, inspect its native item, body, status, estimate, parent, dependency, and read-back capabilities before planning writes. For local Markdown, use one file per ticket under `docs/features/<work-slug>/tickets/`.
+## Conditional resources
 
-### 2. Agree the vertical ticket set
+- Read [the estimation reference](references/estimation.md) when sizing the proposed outcomes.
+- Use [the ticket template](assets/ticket-template.md) when writing agreed ticket bodies, omitting inapplicable conditional content.
 
-Map every material requirement, obligation, constraint, solution responsibility, transition, and acceptance boundary in both directions between the work definition and proposed tickets. Form the smallest coherent set in which each ticket delivers one observable outcome or fulfilled contract across every layer it needs. Absorb shared setup into the earliest outcome that needs it. Create separate enabling, migration, or refactor work only when it has an independently necessary, verifiable boundary or preserves a valid compatible intermediate state.
+## Finish
 
-Size each ticket for one fresh implementation session. Load the [Estimation Reference](assets/estimation-reference.md), assign the lowest defensible **complexity** bucket from `1`, `2`, `3`, `5`, or `8`, and use sibling comparison only as a consistency check. Split any outcome that would exceed `8`, then estimate the resulting slices again.
+Read every created ticket and relationship back from its destination. Check agreed titles, outcomes, authority or embedded context, requirements, constraints, observable acceptance, complexity, status, relationship direction, acyclic dependencies, local links, and two-way definition coverage. Correct an unambiguous in-scope discrepancy; otherwise report the mismatch and needed decision or capability. After an unknown external write outcome, inspect destination state before retrying to avoid duplicates.
 
-Add a blocker only when one ticket cannot honestly begin or meet acceptance before another reaches its accepted outcome. Keep display order, likely sequence, user-journey order, and merely related work out of the dependency graph. State dependency direction explicitly and reject cycles.
-
-Present only a compact numbered proposal containing each ticket's stable title, vertical outcome, complexity, and `Blocked by` references. Invoke `$elicit-with-context` when supported alternatives require a user decomposition decision. Iterate the compact set until the user confirms the whole proposal; do not synthesize full bodies first. Confirmation authorises the agreed synthesis and writes without another application prompt. If synthesis exposes a material gap, leave the destination unchanged and reopen the affected proposal.
-
-### 3. Synthesize and write the tickets
-
-Use the [Ticket Template](assets/ticket-template.md) as the minimum semantic body, omitting only inapplicable conditional content. Embed the necessary confirmed intent and solution context when no durable authority exists; never tell a fresh implementation agent to recover an unavailable conversation. Explain what must be delivered at stable boundaries without prescribing files, classes, framework wiring, code, or an exhaustive test inventory.
-
-For local Markdown, allocate stable sequential identifiers such as `TKT-001`, use `<ticket-id>-<ticket-slug>.md`, set new tickets to `Todo`, and write reciprocal `Blocked by` and `Blocks` references. The local status vocabulary is `Todo`, `In Progress`, `Done`, and `Cancelled`.
-
-For an external destination, use the closest established initial native status and map complexity, blocker, blocked, and parent meanings to exact native fields when available. When an exact capability is absent, retain the meaning explicitly in the body and surface the limitation; never substitute a different relation. Do not set priority, assignee, sprint or cycle, milestone, release, or dates unless the approved definition or user supplies them.
-
-Create and relate exactly the confirmed set.
-
-### 4. Read back, verify, and stop
-
-Read every created ticket and relationship back from its destination. Verify the confirmed titles, outcomes, authority or embedded context, requirements, applicable constraints, acceptance criteria, complexity values and ceiling, status, relationship meanings and directions, acyclic dependencies, resolved local references, and two-way work-definition coverage. Correct an exact in-scope discrepancy when the agreed value and target are unambiguous; otherwise stop with the mismatch and required decision or capability.
-
-Return the created ticket links or local paths, verification performed, capability limitations, source limitations, and unresolved external state. Stop without changing the approved work definition, scheduling or prioritising work, implementing, committing, publishing, releasing, or deploying.
+Return ticket links or paths, verification, capability and source limitations, and unresolved external state. Stop before changing the work definition, scheduling, prioritising, implementation, commits, releases, or deployment.

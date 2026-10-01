@@ -1,63 +1,36 @@
 ---
 name: define-product
-description: Defines a breadth-first product and system requirements foundation. Use when externalising a new product idea or deliberately revising PRODUCT.md.
+description: Create or deliberately revise PRODUCT.md as a confirmed whole-product intent and system requirements foundation for later feature specification.
 metadata:
     type: performer
-disable-model-invocation: true
 ---
 
-# Define Product
+# Define product
 
-Turns a product idea or existing system into one confirmed `PRODUCT.md` that supplies product intent and system-wide requirements to later feature specifications.
+Produce one confirmed root `PRODUCT.md` that owns whole-product intent and system-wide requirements. Keep feature design and delivery work in their later authorities.
 
-## Process
+## Inputs
 
-### 1. Establish the evidence boundary
+Read project guidance and check `PRODUCT.md`, `GLOSSARY.md`, applicable ADRs, and research. For an existing system, inspect representative public contracts, entry points, tests, data, configuration, and operational evidence needed to understand its product surface. Treat absent files as absent evidence. Preserve unrelated confirmed content and local conventions.
 
-Locate the project root; read its repository guidance and check root `PRODUCT.md`, `GLOSSARY.md`, applicable ADRs and research. For an existing system, also inspect the smallest representative public contracts, entry points, data, tests, configuration, and operational evidence needed to understand the product. Record absent foundation files as absent evidence rather than skipping the check.
+The user supplies intended direction. Repository and runtime evidence establishes current behaviour. External sources establish only the claims they support. Separate confirmed targets, observed behaviour, assumptions, and unknowns.
 
-Treat the user as authority for intended direction, repository and runtime evidence as evidence of current behaviour, and cited external sources as authority only for the claims they establish.
+## Method
 
-Separate confirmed target requirements, observed current behaviour, assumptions, and unknowns before questioning. Preserve unrelated confirmed content and local conventions when revising the foundation. When the current product is difficult to reconstruct, load [Discovery Techniques](references/DISCOVERY.md). The evidence, provenance, contradictions, and unresolved decisions are explicit.
+1. **Map the whole product.** Establish purpose, problem, users and relevant actors, needs, value, goals and observable success measures, scope and non-goals. Walk journeys from entry through value, refusal or failure, recovery or support, and completion or exit. Map the functional capability catalogue before deepening any one capability. Include commercial or market detail only when it changes requirements.
+2. **Capture design inputs.** Cover material system-wide qualities, context, interfaces, information duties, integrations, security, privacy, safety, compliance, mandated technology or platforms, operations, and lifecycle. Establish immateriality before omitting a concern. Invoke `$elicit-with-context` for material user-held information or decisions. Invoke `$research` when a material external claim needs durable evidence; link its report.
+3. **Make requirements traceable.** Give capabilities stable `CAP-*` identifiers, actors and value, high-level observable responsibilities, meaningful boundaries, and source traces. Give material technical requirements semantic identifiers such as `QUAL-*`, `INT-*`, `DATA-*`, `SEC-*`, `TECH-*`, or `OPS-*`, with their requirement, rationale and source, affected scope, and observable measure or later-verifiable response where applicable. Distinguish hard constraints from preferences.
+4. **Keep the foundation at its level.** Record mandated external contracts, platforms, runtimes, database families or drivers, hosting limits, and standards. Leave detailed feature rules, scenarios, acceptance, and selected internal mechanisms to feature specifications. Qualifying architecture rationale belongs in ADRs. State each obligation once and link its identifier rather than repeating it across journeys or readiness sections.
+5. **Resolve readiness.** Walk intended users and relevant lifecycle actors through the journeys, capabilities, and system requirements. Resolve material omissions, broken transitions, contradictions, untraceable requirements, and unconfirmed design. Distinguish assumptions, dependencies, constraints, risks, and open questions. For non-blocking uncertainty, record evidence, consequence if wrong, affected requirements, and resolution condition or later user-agent step. An item that makes the product boundary unsafe or prevents responsible feature specification blocks confirmation.
+6. **Confirm and write.** Use an existing confirmed synthesis when it covers the complete foundation, remaining non-blocking items, and exact document effect without a material change since agreement. Otherwise invoke `$elicit-with-context` with those inputs. Use the confirmed synthesis for the `PRODUCT.md` write. Reopen affected understanding if coverage changes afterward. Use the template, preserve local structure, and number only records that need downstream reference.
 
-### 2. Elicit the breadth-first foundation
+## Conditional resources
 
-Invoke `$elicit-with-context` for material user-held information and decisions throughout steps 2–4. Reuse compatible confirmed answers and derive discoverable facts before questioning. Invoke `$research` when a material external claim could change a requirement and its evidence must persist; link the resulting report rather than copying it.
+- Use [the product template](assets/product-template.md) when writing the foundation, omitting only established immaterial content.
+- Read [discovery techniques](references/DISCOVERY.md) when representative inspection and ordinary elicitation cannot reconstruct the product or expose its breadth.
 
-Establish the foundation from problem to design inputs:
+## Finish
 
-1. authority and executive orientation;
-2. purpose, problem, vision, users, actors, stakeholders, and needs;
-3. value, product and business goals, observable success measures, scope, boundaries, and non-goals;
-4. current situation and confirmed target direction when an existing system makes the distinction material;
-5. end-to-end journeys from entry through value, recovery, support, and completion or exit;
-6. a whole-product functional capability catalogue; and
-7. system-wide quality, context, interface, data, integration, security, privacy, safety, compliance, technology, platform, operational, and lifecycle requirements.
+Re-read the document against confirmed direction, inspected current evidence, glossary, and cited research. Check coverage, consistency, unique identifiers, source traces, explicit uncertainty, product-level acceptance, and readiness for feature specification.
 
-Map the whole product before deepening any capability or technical concern. Omit a foundation concern only after establishing that it is immaterial. Record commercial or market detail only when it changes requirements. The product surface and every material system-wide design input are visible without becoming a feature specification.
-
-### 3. Shape traceable requirements
-
-Group capabilities under natural product areas. Give each a stable `CAP-*` identifier and a mini-brief containing its actors and value, high-level externally observable responsibility, meaningful inclusions and exclusions, and source need, goal, journey, obligation, or evidence. Do not add routine delivery or current-state metadata. Leave user stories, detailed functional and non-functional feature requirements, business rules, states, scenarios, examples, and acceptance criteria to later feature specifications.
-
-Give every material technical requirement a stable semantic identifier, such as `QUAL-*`, `INT-*`, `DATA-*`, `SEC-*`, `TECH-*`, or `OPS-*`. State the requirement, rationale and source, affected scope, and observable measure or later-verifiable response when applicable. Distinguish hard constraints from preferences. Record mandated external contracts, platforms, runtimes, database families or drivers, hosting limits, and standards as constraints; do not select internal boundaries, components, schemas, endpoints, payloads, algorithms, frameworks, deployment topology, controls, or other implementation mechanisms merely to fill the document. Later feature specifications own the feature-specific technical how, and ADRs own qualifying architecture decisions and rationale.
-
-Record assumptions, dependencies, constraints, risks, and open questions distinctly. A non-blocking unresolved item states its evidence, consequence if wrong, affected requirements, owner, and resolution trigger. Do not confirm the foundation while an unresolved item makes the product boundary unsafe or prevents responsible feature specification.
-
-### 4. Confirm readiness
-
-Walk every intended user and lifecycle stakeholder across the journeys, capabilities, and applicable technical requirements. Resolve material omissions, duplicates, broken transitions, contradictory ownership, untraceable requirements, hidden feature depth, and requirements that prescribe unconfirmed design. Check that every normative requirement is necessary, feasible enough for this stage, unambiguous at its level, source-traceable, and capable of later verification.
-
-Invoke `$elicit-with-context` with the proposed foundation, non-blocking unresolved items, and exact document effect. Use its confirmed synthesis as authority for the agreed `PRODUCT.md` write. If coverage changes afterward, resolve the affected foundation again before writing.
-
-### 5. Write the foundation
-
-Create or update the single root `PRODUCT.md` using the [Product and System Requirements Template](assets/product-template.md). Keep one authority even when some sections are omitted as immaterial. Preserve unrelated confirmed content and stylistic local structure. Use stable identifiers and direct links so later feature specifications can trace to the foundation without copying it. Assign identifiers to capabilities, material technical requirements, product-level acceptance, and unresolved records that need downstream reference; do not number every narrative section, goal, measure, or journey by default.
-
-State each fact and requirement once, then link its identifier. Keep journeys, readiness, acceptance, and evidence from restating the catalogue; add no traceability matrix when inline source traces already establish coverage.
-
-### 6. Verify and stop
-
-Verify intended direction against the confirmed synthesis, current claims against inspected evidence, terminology against `GLOSSARY.md`, and material external claims against cited research. Check authority, scope, journeys, capability and technical-requirement coverage, identifier uniqueness, source traceability, internal consistency, explicit non-blocking uncertainty, product-level acceptance, and foundation readiness. Confirm the absence of delivery status, priorities, roadmap, releases, tickets, detailed feature acceptance, selected feature implementation, internal architecture inventory, and unsupported precision.
-
-Report changed files, supporting evidence, verification, non-blocking unresolved items, and limitations. Stop after `PRODUCT.md` and the glossary changes owned by invoked skills are verified. Do not create feature specifications, ADR decisions, work items, scaffolding, implementation, releases, or deployments.
+Return paths, evidence, checks, and unresolved limitations. Stop after the foundation and context changes owned by invoked skills. Keep delivery status, priorities, roadmaps, releases, tickets, detailed feature acceptance, and selected feature implementation out of the foundation; create no downstream work or deployment.

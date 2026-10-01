@@ -48,7 +48,7 @@
 
 ### {Natural product area}
 
-#### CAP-01 — {Capability name}
+#### CAP-01: {Capability name}
 
 - **Actors and value:** {Beneficiaries, need, and enabled outcome.}
 - **High-level responsibility:** {One coherent statement of externally observable product behaviour.}
@@ -59,7 +59,7 @@
 
 <!-- Use the compact local record below for each material technical requirement. Add an observable measure or later-verifiable response to the requirement when applicable. State each obligation once and link its ID elsewhere. -->
 
-### {PREFIX}-01 — {Requirement name}
+### {PREFIX}-01: {Requirement name}
 
 {One direct normative requirement.}
 
@@ -98,11 +98,11 @@
 
 <!-- Keep each type explicit. Use one compact paragraph per material record. -->
 
-- **Assumption `ASM-01` — {claim}:** {Evidence; consequence if wrong and affected IDs; owner and resolution trigger.}
-- **Dependency `DEP-01` — {condition or party}:** {Evidence; consequence and affected IDs; owner and trigger.}
-- **Constraint `CON-01` — {limit}:** {Source and rationale; affected scope; change owner or trigger.}
-- **Risk `RSK-01` — {uncertainty}:** {Evidence; consequential effect and affected IDs; owner and review trigger.}
-- **Open question `OQ-01` — {question}:** {Why non-blocking; consequence and affected IDs; decision owner and trigger.}
+- **Assumption `ASM-01`: {claim}:** {Evidence; consequence if wrong and affected IDs; resolution condition or later user-agent step.}
+- **Dependency `DEP-01`: {condition or party}:** {Evidence; consequence and affected IDs; resolution condition.}
+- **Constraint `CON-01`: {limit}:** {Source and rationale; affected scope; change condition.}
+- **Risk `RSK-01`: {uncertainty}:** {Evidence; consequential effect and affected IDs; review condition.}
+- **Open question `OQ-01`: {question}:** {Why non-blocking; consequence and affected IDs; decision resolution condition.}
 
 ## Product-level acceptance and foundation readiness
 

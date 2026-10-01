@@ -1,27 +1,29 @@
 ---
 name: maintain-ubiquitous-language
-description: Maintains project-specific language in GLOSSARY.md. Use when project terminology must be added, changed, challenged, renamed, deprecated, or reconciled.
+description: Maintain project-specific meanings in root GLOSSARY.md when terminology is added, changed, challenged, renamed, deprecated, or reconciled.
 metadata:
     type: utility
-disable-model-invocation: true
 ---
 
-# Maintain Ubiquitous Language
+# Maintain ubiquitous language
 
-Applies **Ubiquitous Language** by keeping project-specific terminology consistent in one root `GLOSSARY.md` glossary.
+Keep one root `GLOSSARY.md` as the authority for project-specific terminology.
 
-## Process
+## Inputs
 
-### 1. Inspect the language
+Use the relevant conversation or caller handoff, existing glossary, repository guidance, and the project evidence needed to understand the affected terms. A clear stable meaning in that context is resolved; a conflicting use is not.
 
-Inspect the relevant conversation or caller handoff, root `GLOSSARY.md`, applicable repository guidance, and only the project evidence needed to understand the language. Treat a stable project-specific meaning as resolved when that context makes it clear. Challenge uses that conflict with an established term.
+## Method
 
-### 2. Update inline
+1. Compare affected meanings with existing entries. When ambiguity, conflict, rename, or deprecation could materially change a meaning, ask one direct question distinguishing the alternatives. Preserve the entry until the meaning resolves.
+2. Update resolved meanings during the surrounding work. Create the root file lazily, preserve local format and unrelated terms, and update an existing entry rather than adding a duplicate.
+3. Reconcile affected entries after a resolved change. Retain aliases or deprecations only while they help interpret current project evidence.
+4. Give each canonical term a short project-native definition. Group by domain when useful. General programming concepts, specifications, and implementation decisions belong in their own authorities.
 
-Update `GLOSSARY.md` as each meaning resolves, before the surrounding work continues. Do not request approval or announce the skill. Add no separate verification or handoff for a routine glossary update; follow the surrounding task's normal checks and reporting.
+## Conditional resources
 
-When ambiguity, conflict, rename, or deprecation could materially change the meaning, ask one direct question that distinguishes the alternatives. Preserve the existing entry until the answer resolves the meaning.
+Use [the glossary template](assets/glossary-template.md) when creating the first glossary.
 
-Create the root file lazily from the [glossary template](assets/glossary-template.md). Preserve unrelated terms and local format. Edit only affected entries, prefer updating an entry to adding a duplicate, and reconcile resolved changes across affected entries. Retain an alias or deprecation only while it helps interpret current project evidence.
+## Finish
 
-Keep `GLOSSARY.md` a glossary, not a specification or implementation record. Give each canonical term one short project-native paragraph; group terms by domain only when useful.
+Return to the surrounding task after the affected meanings are consistent. Routine updates need no separate approval, verification ceremony, or handoff; use the caller's checks and reporting. If a material meaning remains unresolved, leave it unchanged and report the needed decision.

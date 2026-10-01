@@ -1,36 +1,29 @@
 ---
 name: maintain-decision-records
-description: Maintains rare architecture decision records. Use when an accepted technical or architectural decision may warrant durable rationale.
+description: Preserve exceptional accepted technical or architectural decisions in concise ADRs when durable rationale may be warranted.
 metadata:
     type: utility
-disable-model-invocation: true
 ---
 
-# Maintain Decision Records
+# Maintain decision records
 
-Preserves the rationale for exceptional accepted technical or architectural decisions in concise Architecture Decision Records.
+Record the rationale for an exceptional accepted technical or architectural decision. Keep routine choices and decisions owned elsewhere out of `docs/adr/`.
 
-## Process
+## Inputs
 
-### 1. Inspect the decision
+Use the accepted decision, conversation or caller handoff, applicable repository guidance, existing ADRs, and only the evidence needed to establish alternatives, consequences, authority, and existing coverage.
 
-Inspect the accepted decision, relevant conversation or caller handoff, existing `docs/adr/` records, applicable repository guidance, and only the product, architecture, feature, governance, or implementation evidence needed to establish its owner and rationale. Do not scan unrelated decisions. The candidate decision, alternatives, consequences, existing coverage, and user authority are explicit.
+## Method
 
-### 2. Gate the record
+1. Create a record only when **all** conditions hold: changing the choice later has meaningful cost; it would surprise a future reader without context; viable alternatives created a real trade-off; and no existing durable authority already records it or is its better owner.
+2. Require explicit user agreement to preserve the rationale. Relevant conversation or a caller handoff can supply that agreement. If the other conditions hold but agreement is absent, ask one direct question. A routine, discoverable, unaccepted, or already-owned decision produces no ADR.
+3. Create `docs/adr/` lazily. Name the record `NNNN-decision-shaped-slug.md`, using `0001` when no sibling matches `NNNN-*.md`, otherwise one above the largest four-digit prefix. Use the template's `Decision`, `Context`, and `Consequences` sections in that order. Capture the accepted choice, reason, necessary rejected alternatives, and material consequences.
+4. Re-read the record against the accepted decision, evidence, eligibility conditions, and agreement.
 
-Create an ADR only when the accepted technical or architectural decision passes every gate:
+## Conditional resources
 
-- changing it later has meaningful cost;
-- a future reader would find it surprising without context;
-- viable alternatives created a genuine trade-off; and
-- no existing durable authority already records the decision or is its better owner, including `PRODUCT.md`, a feature document, or a dedicated governance record.
+Use [the ADR template](assets/adr-template.md) when a record qualifies and the user has agreed to preserve it.
 
-Require the user's explicit agreement to preserve the rationale durably. Agreement recorded in the relevant conversation or caller handoff satisfies this gate without another prompt. When every other gate passes but agreement is absent, ask the user one direct question. A decision that misses a gate, lacks agreement, or is routine or discoverable produces no ADR.
+## Finish
 
-### 3. Write the ADR
-
-Create `docs/adr/` lazily and write the next record from the [ADR template](assets/adr-template.md). Name it `NNNN-decision-shaped-slug.md`: use `0001` when no sibling matches `NNNN-*.md`; otherwise add one to the largest four-digit prefix. Keep exactly three substantive sections in order: `Decision`, `Context`, and `Consequences`. Record the accepted choice, why it was needed, only the rejected or constrained alternatives necessary to explain its trade-offs, and its material consequences.
-
-### 4. Verify the result
-
-Re-read the ADR against the accepted decision, every gate, the user's agreement, and relevant evidence. Return the created file or why no ADR was warranted. Change no caller-owned product, architecture, feature, code, external state, or verification outcome.
+Return the created path or why no ADR was warranted. Leave caller-owned product, feature, architecture, implementation, external state, and verification outcomes unchanged.

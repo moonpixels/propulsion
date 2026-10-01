@@ -1,43 +1,32 @@
 ---
 name: specify-feature
-description: Creates a decision-complete specification for one feature. Use when a high-level feature request or capability needs collaborative definition before ticket creation.
+description: Create a user-confirmed, decision-complete specification for one feature when a high-level request needs definition before ticket creation.
 metadata:
     type: performer
-disable-model-invocation: true
 ---
 
-# Specify Feature
+# Specify feature
 
-Turns one high-level feature description into one user-confirmed specification containing both feature intent and the selected buildable solution.
+Produce one specification with confirmed feature intent and a selected buildable solution. It is ready when tickets can be created without inventing behaviour or choosing a material solution.
 
-## Process
+## Inputs
 
-### 1. Build shared understanding
+Use the feature request and relevant product, glossary, ADR, research, and current-system evidence. Resolve discoverable facts first. Invoke `$elicit-with-context` whenever material user-held information or a decision remains throughout the work. Distinguish current behaviour from intended change, preserve unrelated decisions, and keep the scope to one coherent feature.
 
-Inspect the request and the project evidence relevant to the feature. Resolve discoverable facts before asking the user, and distinguish evidence of the current system from intended future behaviour.
+## Method
 
-Invoke `$elicit-with-context` with the relevant evidence and unresolved decision whenever material user-held information or a decision is needed. Use its confirmed synthesis as authority for the feature direction.
+1. **Establish intent.** Resolve material outcomes, scope, actors, goals, rules, adverse paths, qualities, and acceptance boundaries. Use confirmed elicitation as authority for the feature direction. Invoke `$research` when durable external evidence is needed; its report supports facts, not product decisions.
+2. **Connect complete outcomes.** Use goal-oriented use cases. Add triggers, preconditions, alternatives, failures, and recovery when they expose material behaviour. Add context-event-outcome scenarios only where they make a rule or boundary observable through an application interface or stable contract. Omit user stories that add no meaning.
+3. **Select the solution.** Keep intent independent of internal implementation. Resolve consequential responsibilities, boundaries, contracts, data, integrations, failure handling, quality, migration, operation, and verification seams to the depth needed for safe ticket decomposition. Invoke `$modular-design` when a material structural choice needs resolution. Reopen intent if design reveals a behavioural gap. Leave files, classes, framework wiring, exhaustive test lists, and ticket breakdown to implementation planning.
+4. **Resolve consequential uncertainty.** Settle every decision that could change scope, observable behaviour, acceptance, or the material solution. A remaining uncertainty needs evidence, consequence, affected decisions, and a resolution condition or later user-agent step that leaves ticket decomposition safe. Introduce other people or coordination only when the task or evidence requires them.
+5. **Write the confirmed specification.** Create `docs/features/<feature-slug>/specification.md` using the template. Keep its stable section spine, omit immaterial conditional content, and distinguish intent from solution. Link supporting authorities instead of copying them. Use identifiers where later reference needs them and a concise diagram when it materially clarifies a state, interaction, or boundary.
 
-Invoke `$research` when durable external evidence is needed to resolve the feature. Use its report as evidence, not as authority for a product or solution decision.
+## Conditional resources
 
-### 2. Make the feature decision-complete
+Use [the specification template](assets/specification-template.md) as a coverage guide when defining and writing the feature. Depth follows ambiguity, risk, external obligations, and decomposition needs.
 
-Establish **feature intent** before selecting the **solution**, and visibly reopen the affected intent when solution work exposes a behavioural gap. Use the [Feature Specification Template](assets/specification-template.md) as a coverage guide rather than a checklist: depth follows ambiguity, risk, external obligation and what ticket decomposition needs.
+## Finish
 
-Use goal-oriented use cases to connect actors to complete outcomes. Add triggers, preconditions, alternatives, failures and recovery where they reveal material behaviour. Use concrete context-event-outcome scenarios only where they make a rule, boundary or acceptance outcome testable through the application's interface or another stable observable boundary. Do not add user stories when they contribute no further meaning.
+Re-read the document against confirmed decisions and evidence. Check one-feature scope, material use cases and adverse paths, observable acceptance, honest uncertainty, and the reason for each consequential solution element. State each decision once and make intent-to-solution traceability clear.
 
-Keep feature intent independent of internal implementation. Put consequential system-specific choices in the selected solution: enough responsibility, boundary, contract, data, integration, failure, quality, migration, operational and verification detail to constrain implementation, but not files, classes, framework wiring, exhaustive tests or ticket breakdown. Invoke `$modular-design` when a material structural choice needs resolving.
-
-Resolve every decision that could change scope, observable behaviour, acceptance or the material solution. An uncertainty may remain only when ticket decomposition is still safe; record its evidence, consequence, affected decisions and the condition or later user-agent step that will resolve it. Do not invent team roles, owners, approval bodies or third-party coordination.
-
-### 3. Write the specification
-
-Once shared understanding covers the complete feature, create `docs/features/<feature-slug>/specification.md` from the template. Record only decisions established with the user and evidence-supported facts, keeping feature intent and selected solution visibly distinct. Preserve the stable section spine, omit immaterial conditional content and link supporting product, context, decision, research, design and current-system evidence rather than duplicating it.
-
-Use stable semantic identifiers only where they make later reference and traceability clearer. Add a concise Mermaid diagram when a state model, interaction, boundary or runtime relationship is materially easier to understand visually.
-
-### 4. Verify and stop
-
-Re-read the finished document against the established decisions and cited evidence. Check that it describes one coherent feature; states each rule and decision once; covers the material use cases, adverse paths, qualities and acceptance boundaries; keeps acceptance observable; distinguishes intent from solution; traces consequential solution elements to their reason; and represents uncertainty honestly.
-
-The specification is ready when `$create-tickets` can decompose it without inventing product behaviour or selecting a material solution. Report the path, evidence used, verification performed and any non-blocking uncertainty. Do not create tickets or implement the feature.
+Return the path, evidence, checks, and non-blocking uncertainty. Stop before ticket creation or implementation. If a material decision remains open, report it and the dependent work rather than declaring readiness.

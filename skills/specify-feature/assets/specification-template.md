@@ -24,11 +24,11 @@
 
 ## Actors, goals, and use cases
 
-### {ACT-01 — Actor or beneficiary}
+### {ACT-01: Actor or beneficiary}
 
 {Goal and value sought from this feature.}
 
-### {UC-01 — Use-case name}
+### {UC-01: Use-case name}
 
 - **Actor:** {Primary actor.}
 - **Trigger:** {Observable event that starts the use case.}
@@ -40,7 +40,7 @@
 
 ### Requirements and rules
 
-- **REQ-01 — {Requirement name}:** {One necessary, unambiguous, verifiable normative statement.}
+- **REQ-01: {Requirement name}:** {One necessary, unambiguous, verifiable normative statement.}
 
 ### States and transitions
 
@@ -56,7 +56,7 @@
 
 ### Scenarios and acceptance
 
-#### SC-01 — {Scenario name}
+#### SC-01: {Scenario name}
 
 - **Given:** {Observable starting context.}
 - **When:** {Actor action or external event.}
@@ -108,20 +108,14 @@
 
 <!-- Keep each category explicit. Do not invent named owners or third-party workflow. -->
 
-- **DEP-01 — {Dependency}:** {Evidence, consequence, and affected identifiers.}
-- **ASM-01 — {Assumption}:** {Evidence, consequence if wrong, and affected identifiers.}
-- **RSK-01 — {Risk}:** {Evidence, consequence, mitigation or design response, and affected identifiers.}
-- **UNR-01 — {Non-blocking uncertainty}:** {Evidence, consequence if wrong, affected decisions, and resolution condition or later user-agent step; explain why ticket decomposition remains safe.}
+- **DEP-01: {Dependency}:** {Evidence, consequence, and affected identifiers.}
+- **ASM-01: {Assumption}:** {Evidence, consequence if wrong, and affected identifiers.}
+- **RSK-01: {Risk}:** {Evidence, consequence, mitigation or design response, and affected identifiers.}
+- **UNR-01: {Non-blocking uncertainty}:** {Evidence, consequence if wrong, affected decisions, and resolution condition or later user-agent step; explain why ticket decomposition remains safe.}
 
 ## Traceability and readiness
 
-| Intent or acceptance identifier | Selected responsibility or contract  | Verification seam or evidence       |
-| ------------------------------- | ------------------------------------ | ----------------------------------- |
-| {REQ-01 or ACC-01}              | {Design responsibility or contract.} | {Observable verification boundary.} |
-
-| Introduced design element                                                                                | Originating intent, constraint, evidence, or accepted decision |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| {Material responsibility, contract, data, integration, migration, operational, or verification element.} | {Exact identifier or linked authority.}                        |
+{Trace each consequential solution element to its originating intent, constraint, evidence, or accepted decision, and identify its verification seam. Use links or compact tables when useful; avoid duplicating the same trace in several formats.}
 
 ### Readiness statement
 
