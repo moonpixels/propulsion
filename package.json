@@ -6,7 +6,7 @@
         "format": "oxfmt .",
         "format:check": "oxfmt --check .",
         "lint": "oxlint --no-error-on-unmatched-pattern",
-        "test": "bun test scripts/validate-skill.test.js",
+        "test": "bun test scripts",
         "validate:skills": "bun scripts/validate-skills.js"
     },
     "devDependencies": {

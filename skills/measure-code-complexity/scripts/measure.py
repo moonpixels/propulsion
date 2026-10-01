@@ -15,6 +15,9 @@ import sys
 import tempfile
 from typing import Any, Iterable
 
+sys.dont_write_bytecode = True
+from python_nesting import function_depths
+
 
 SCHEMA_VERSION = 1
 SCRIPT_ROOT = Path(__file__).resolve().parent
@@ -138,7 +141,8 @@ def nul_fields(data: bytes) -> list[str]:
 
 
 def normalize_path(value: str) -> str:
-    return Path(value).as_posix().removeprefix("./")
+    normalized = Path(value).as_posix()
+    return normalized[2:] if normalized.startswith("./") else normalized
 
 
 def excluded(path: str) -> bool:
@@ -151,7 +155,7 @@ def excluded(path: str) -> bool:
         or name.endswith((".min.js", ".min.css", ".generated.ts", ".generated.js"))
         or ".fixture." in name
         or ".snap." in name
-        or name.endswith((".spec.ts", ".spec.tsx", ".test.ts", ".test.tsx"))
+        or re.search(r"\.(?:spec|test)\.(?:js|jsx|mjs|cjs|ts|tsx|mts|cts)$", name)
     )
 
 
@@ -275,16 +279,33 @@ def analyze(
     duplicate_module: Any,
     duplicate_tokens: int,
 ) -> tuple[list[dict[str, Any]], list[list[dict[str, Any]]], float]:
-    nested_extension = lizardns.LizardExtension()
+    def nesting_tokens(tokens: Any, reader: Any) -> Any:
+        return lizardns.LizardExtension()(tokens, reader)
+
     duplicate_extension = duplicate_module.LizardExtension()
-    extensions = lizard.get_extensions([nested_extension, duplicate_extension])
+    extensions = lizard.get_extensions([nesting_tokens, duplicate_extension])
     absolute_paths = [str(root / path) for path in paths]
     file_infos = list(lizard.analyze_files(absolute_paths, threads=1, exts=extensions))
 
     functions: list[dict[str, Any]] = []
     for file_info in file_infos:
         relative = normalize_path(os.path.relpath(file_info.filename, root))
+        python_depths = None
+        if Path(relative).suffix.lower() in {'.py', '.pyw'}:
+            try:
+                python_depths = function_depths((root / relative).read_text(encoding='utf-8-sig'), relative)
+            except (SyntaxError, UnicodeError, RecursionError) as error:
+                raise MeasurementError(f'Python nesting unavailable for {relative}: {error}') from error
+            omitted = set(python_depths) - {function.start_line for function in file_info.function_list}
+            if omitted:
+                lines = ', '.join(str(line) for line in sorted(omitted))
+                raise MeasurementError(f'Python nesting unavailable for {relative}: analyzer omitted functions at lines {lines}')
         for function in file_info.function_list:
+            nesting = int(function.max_nested_structures)
+            if python_depths is not None:
+                if function.start_line not in python_depths:
+                    raise MeasurementError(f'Python nesting unavailable for {relative}:{function.start_line}: unmatched function')
+                nesting = python_depths[function.start_line]
             functions.append(
                 {
                     "file": relative,
@@ -295,7 +316,7 @@ def analyze(
                     "metrics": {
                         "cyclomaticComplexity": int(function.cyclomatic_complexity),
                         "nloc": int(function.nloc),
-                        "nestedStructures": int(function.max_nested_structures),
+                        "nestedStructures": nesting,
                         "parameterCount": int(function.parameter_count),
                         "tokenCount": int(function.token_count),
                     },
@@ -678,6 +699,10 @@ def main() -> int:
         tool = {
             "name": "lizard",
             "version": lizard_version,
+            "nesting": {
+                "default": {"name": "lizard-ns", "version": lizard_version},
+                "python": {"name": "python-ast-control-nesting", "version": 1, "runtime": sys.version.split()[0]},
+            },
             "cloneDetector": {
                 "name": "lizard-duplicate",
                 "version": lizard_version,

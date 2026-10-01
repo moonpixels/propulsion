@@ -1,25 +1,28 @@
 ---
 name: code-cleanup
-description: Reviews completed code changes or a bounded module for behaviour-preserving deletion and simplification. Use when implementation is finished or existing code needs cleanup.
+description: Find behaviour-preserving deletions and simplifications in completed changes or a bounded module through an independent read-only review.
 metadata:
     type: utility
-disable-model-invocation: false
 ---
 
-# Code Cleanup
+# Code cleanup
 
-Returns independent, justified opportunities to reduce code and tests while preserving behaviour and coherent design.
+Return justified opportunities to reduce code and tests while preserving behaviour and coherent ownership.
 
-## Process
+## Inputs
 
-### 1. Fix the review packet
+Fix the repository, candidate and comparison base, or the named module and its paths. Include changed and in-scope untracked files, newly orphaned artefacts, behavioural authorities, repository instructions, and available check results. Inspect outside consumers only to establish evidence. Resolve discoverable facts directly; obtain a missing user decision when it changes the review boundary.
 
-Resolve the scope from the request or completed work. For a change, identify the candidate, comparison base, and directly affected code, including untracked files and newly orphaned artefacts. For a named module, identify its paths and contracts. Inspect consumers outside the scope only to establish evidence; this does not expand the cleanup boundary.
+## Method
 
-Prepare the repository location, exact scope and candidate, behavioural authorities, applicable repository instructions, available check results, and read-only permissions. Reuse current caller evidence; load only missing task facts. Resolve discoverable facts directly; ask only for missing user-held decisions that materially change the review.
+1. Prepare a self-contained read-only packet from those inputs. Exclude implementation rationale, desired findings, and prior review conclusions.
+2. Give the packet and [review instructions](references/REVIEW.md) to a fresh agent with no conversation history. It inspects the actual code and returns findings and limitations without further delegation.
+3. Return its report unchanged. The caller validates findings, applies accepted edits, and checks the revised candidate.
 
-### 2. Dispatch the independent review
+## Conditional resources
 
-Start exactly one fresh agent with no conversation history. Pass the packet and the path to [Review Instructions](references/REVIEW.md); let the reviewer load those instructions. Exclude implementation rationale, desired findings, and prior reviewer conclusions. Require it to inspect the actual code, perform only the read-only review, and return its table and material limitations. It does not delegate again.
+The independent reviewer reads [review instructions](references/REVIEW.md) before inspecting the candidate. They define deletion evidence, preserved behaviour, and the findings table.
 
-Retain only the result. Return it unchanged to the caller; leave validation of findings, accepted edits, and checks on the revised candidate to the main thread. Stop after this handoff.
+## Finish
+
+Return the independent report, including `No findings.` when no justified change remains. Stop after the report. Source edits, adjudication, and post-edit checks belong to the caller.
