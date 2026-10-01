@@ -14,7 +14,7 @@
 
 ### Skill types
 
-**Skill type**: The authority category recorded in a skill's frontmatter as `metadata.type`. Propulsion uses exactly `performer`, `router`, `teaching`, or `utility`.
+**Skill type**: A local authority category recorded in some existing skills as `metadata.type`: `performer`, `router`, `teaching`, or `utility`. These categories describe those skills; the authoring methodology does not require a type field.
 
 **Performer skill**: Owns one bounded requested outcome end to end, including its actions, artefacts, verification, handoff, and stopping boundary.
 

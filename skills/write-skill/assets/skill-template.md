@@ -1,15 +1,29 @@
 ---
-name: skill-name
-description: Creates the intended outcome. Use when the skill's confirmed trigger applies.
-metadata:
-    type: performer
-disable-model-invocation: true
+name: task-specific-name
+description: Deliver the recognisable outcome when the decisive task condition applies.
 ---
 
-# Skill Name
+# Task name
 
-States what the skill enables in one sentence.
+Produce [output or state]. Preserve [essential invariant] and use [source of truth].
 
-## Process
+## Inputs
 
-Describe the minimum-sufficient behaviour in the form best suited to the work.
+Use [required inputs]. If [prerequisite is absent], [locate it, ask for the necessary input, or report the blocker]. Resolve [material ambiguity] before [dependent action].
+
+## Method
+
+1. Inspect [evidence needed for the first decision].
+2. Choose [default] unless [observable exception].
+3. Perform [operation], preserving [domain invariant].
+4. Validate [actual output or state] against [contract].
+
+## Conditional resources
+
+Read [reference path] when [condition], to resolve [decision]. Use [asset path] for [output type]. Run [script and arguments] for [deterministic operation], with [prerequisites, side effects, and failure response].
+
+## Finish
+
+Return [result, evidence, and unresolved items]. If [recoverable failure], [bounded recovery]. If [missing prerequisite], report [specific blocker and next step].
+
+Done when [observable success conditions]. Stop at [scope or authority boundary].
