@@ -97,7 +97,7 @@ $implement
 
 The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
 
-`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` teaching for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
+`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, invokes `$code-cleanup` before final checks, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` teaching for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
 
 #### `$commit`
 
@@ -173,6 +173,7 @@ These utilities and routers are independently invokable outside the main lifecyc
 | `$elicit`              | Utility | Resolve material user-held information and decisions one question at a time                                                   |
 | `$elicit-with-context` | Router  | Resolve software-project questions through `$elicit`, always maintaining shared language and preserving qualifying decisions  |
 | `$research`            | Utility | Investigate a material subject with high-trust evidence and persist a trusted cited report                                    |
+| `$code-cleanup`        | Utility | Independently identify justified code and test simplifications for the main thread to assess and apply                        |
 | `$maintain-agents`     | Utility | Keep confirmed repository-wide agent guidance lean and current                                                                |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
