@@ -1,0 +1,8 @@
+{
+    "record": "/private/tmp/propulsion-refactor-records/author-loading/write-skill-author-explicit-complete-root-none-1/run.json",
+    "method": "Post-run inspection of the original isolated fixture at audit time, not part of the original capture. No setup command or file fixture creates this link.",
+    "symlinks_observed": {
+        ".agents/skills/reconcile-import-schema": "../../tools/reconcile-import-schema"
+    },
+    "conclusion": "No-skill authoring installed a project-local discovery link despite the no-install boundary. This is additional root-adjudicated state evidence; original blind grade remains unchanged. No real user installation occurred."
+}

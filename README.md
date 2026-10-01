@@ -2,7 +2,7 @@
 
 # Propulsion
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, and debugging.
+Propulsion is a composable set of Agent Skills for practical software delivery, from product definition and planning to implementation, review, and debugging.
 
 Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete.
 
@@ -29,7 +29,9 @@ mkdir -p ~/.agents/skills
 ln -s /absolute/path/to/propulsion/skills/elicit ~/.agents/skills/elicit
 ```
 
-Repeat the link for each selected skill. Codex and OpenCode both discover skills from `~/.agents/skills`; edits in the clone are available through the links without reinstalling or publishing a new version.
+Repeat the link for each selected skill in clients that discover `~/.agents/skills`. Check discovery in the client you use; edits in the clone are available through the links without reinstalling.
+
+Runtime instructions use portable Markdown and core metadata. `agents/openai.yaml` supplies Codex discovery policy. Client-specific invocation controls belong to verified destination adapters: legacy Claude Code fields that blocked composed calls have been removed from the portable roots. A successful local packaging check does not establish cross-client discovery or execution compatibility.
 
 ## Lifecycle skills
 
@@ -145,7 +147,7 @@ Enter here to upgrade package dependencies or the project's full toolchain:
 $upgrade-dependencies
 ```
 
-The session clarifies whether majors and toolchain changes are included, discovers outdated dependencies, checks compatibility and follows official upgrade guidance. It uses official CLI commands first, applies required migrations and verifies the local changes. The handoff reports version changes, validation, blockers and optional code improvements for the user to choose. It stops before publication, deployment or machine-wide changes unless separately authorised.
+The session resolves the requested version and toolchain scope, discovers outdated dependencies, checks compatibility and follows official upgrade guidance. It uses official CLI commands first, applies required migrations and verifies the local changes. The handoff reports version changes, validation, blockers and optional code improvements. It stops before publication, deployment or machine-wide changes unless separately authorised.
 
 ### Debug
 
@@ -167,16 +169,27 @@ $debug → $commit → $pull-request
 
 These utilities and routers are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-| Skill                  | Type    | Invoke it to…                                                                                                                 |
-| ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$review-pull-request` | Router  | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested |
-| `$elicit`              | Utility | Resolve material user-held information and decisions one question at a time                                                   |
-| `$elicit-with-context` | Router  | Resolve software-project questions through `$elicit`, always maintaining shared language and preserving qualifying decisions  |
-| `$research`            | Utility | Investigate a material subject with high-trust evidence and persist a trusted cited report                                    |
-| `$code-cleanup`        | Utility | Independently identify justified code and test simplifications for the main thread to assess and apply                        |
-| `$maintain-agents`     | Utility | Keep confirmed repository-wide agent guidance lean and current                                                                |
+| Skill                           | Type     | Invoke it to…                                                                                                   |
+| ------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `$review-pull-request`          | Utility  | Resolve a pull request to fixed revisions and return an independent read-only code review                       |
+| `$elicit`                       | Utility  | Resolve material user-held information and decisions one question at a time                                     |
+| `$elicit-with-context`          | Utility  | Resolve software-project questions through `$elicit` while maintaining shared language and qualifying decisions |
+| `$research`                     | Utility  | Investigate a material subject with high-trust evidence and persist a trusted cited report                      |
+| `$code-cleanup`                 | Utility  | Independently identify justified code and test simplifications for the main thread to assess and apply          |
+| `$maintain-agents`              | Utility  | Keep confirmed repository-wide agent guidance lean and current                                                  |
+| `$maintain-decision-records`    | Utility  | Preserve exceptional accepted decisions when durable rationale qualifies and the user agrees                    |
+| `$maintain-ubiquitous-language` | Utility  | Reconcile project terminology in `GLOSSARY.md`                                                                  |
+| `$code-review`                  | Utility  | Review a fixed candidate independently against engineering standards and available behavioural authority        |
+| `$measure-code-complexity`      | Utility  | Measure changed code with pinned metrics and interpret signals against source and contracts                     |
+| `$modular-design`               | Teaching | Choose cohesive ownership, deep interfaces and local changes                                                    |
+| `$test-design`                  | Teaching | Design deterministic behavioural tests with stable seams and independent oracles                                |
+| `$tdd`                          | Teaching | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                        |
+| `$write-prose`                  | Teaching | Write clear reader-facing UK prose that preserves facts and fits its audience                                   |
+| `$write-skill`                  | Utility  | Create or revise reusable skill bundles, validate packaging and compare behaviour against their contracts       |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
+
+The author-maintenance inventory, source matches, conformance evidence and comparison limits for the catalogue revision are in [the refactor audit](maintenance/skill-refactor-2026-10-01/checkpoint.md). They are outside the runtime bundles.
 
 ## Acknowledgements
 

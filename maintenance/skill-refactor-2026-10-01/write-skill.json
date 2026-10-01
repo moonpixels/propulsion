@@ -1,0 +1,73 @@
+{
+    "skill": "write-skill",
+    "disposition": "retain root and useful resources; clarify isolated mutation fixtures and portable release copies in references",
+    "reviewed_last_against_starting_methodology": true,
+    "contract": {
+        "goal": "An effective reusable skill bundle for a real recurring task",
+        "inputs": "Destination, representative tasks, sources, preferences, runtime, existing bundle/callers/evidence for revisions",
+        "scope": "Requested bundle and verification; no implicit install/publication/external authority",
+        "distinct_contribution": "Contract-first units, precise triggers, conditional knowledge, portable packaging, actual clean comparisons and maintainable release evidence",
+        "completion": "Bundle present, reachable resources, applicable checks passed and outcome evidence/uncertainty assessed"
+    },
+    "sources": {
+        "mattpocock": {
+            "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+            "read": [
+                "skills/productivity/writing-for-agents/SKILL.md",
+                "skills/productivity/writing-for-agents/SKILL-MECHANICS.md"
+            ],
+            "match": "Direct authoring counterpart. Use meaningful pointers, one normative home and observable completion; do not import assumed cognitive effects or nonportable invocation mechanics."
+        },
+        "emilkowalski": {
+            "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+            "read": [
+                "skills/improve-animations/SKILL.md",
+                "skills/improve-animations/PLAN-TEMPLATE.md",
+                "skills/review-animations/STANDARDS.md"
+            ],
+            "match": "No general authoring counterpart. Closest self-contained plan and concrete review rubric analogue; retain explicit handoffs/subjective checks, reject motion defaults and cheaper-model assumptions."
+        },
+        "humanlayer": {
+            "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+            "read": [
+                "plugins/build-iterated-agentic-loop/skills/build-iterated-agentic-loop/references/skill-template.md"
+            ],
+            "match": "Direct skill-template analogue. Preserve source of truth and completion; omit duplicate checklist and deployment defaults."
+        },
+        "cursor": {
+            "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+            "read": [
+                "pstack/skills/poteto-mode/playbooks/authoring-a-skill.md",
+                "pstack/skills/poteto-mode/playbooks/eval.md"
+            ],
+            "match": "Direct authoring/evaluation counterpart. Preserve blinding, actual reads and pruning; reject skip-subjective-testing, mandatory PR and model-specific arena orchestration."
+        }
+    },
+    "guideline_mapping": {
+        "contract_unit_trigger": "Starting root Inputs/Method/Finish and typed base/router templates already conform; no forced new router.",
+        "conditional_resources": "Each root pointer has a condition and use; all 10 original resources retained, only evaluation and packaging references revised.",
+        "wording_runtime_only": "Runtime operational knowledge only; no em dashes or research history. Historical/effectiveness discussion stays in audit.",
+        "tools": "Read-only Bun validator interface/runtime/statuses documented; existing helper regression suite retained.",
+        "authority": "Existing user authorisation governs actions. Added isolated repositories/stubs for mutation evaluations.",
+        "packaging": "Portable release copies preserve actual installed adapter intent rather than silently strip native controls. Repository now preserves explicit/composed Codex policy using its supported adapter.",
+        "evaluation": "Real matched authoring runs, observable complete-root previous/candidate loading, actual generated bundles and independent fresh consumer tests; see evaluation-results.json and release-evidence.json. No installation/live import or universal efficacy claim.",
+        "maintenance": "Existing references/maintenance.md supplies pruning/release rules. This audit owns rationale/history."
+    },
+    "changes": [
+        "Root retained unchanged after last review.",
+        "Evaluation reference adds isolated fixtures for external or Git mutation trials.",
+        "Packaging reference clarifies core-only release copies and installed invocation policy."
+    ],
+    "resource_disposition": "All 10 original resources retained; templates, validator and adapters unchanged. Two reference additions.",
+    "evaluation_cases": "write-skill-cases.json",
+    "uncertainty": [
+        "One authoring task cannot establish universal efficacy, length or cross-model behaviour.",
+        "Resolved backend model identity and native client installation are not all visible from CLI JSON."
+    ],
+    "final_self_review": {
+        "order": "Last runtime bundle reviewed against frozen starting methodology after all other skill changes and helper repairs.",
+        "root_sha256": "56bfbd1b66c70e0ff26c4de3977021944edac7f13b931101d75e17d864dcc441",
+        "starting_root_identical": true,
+        "assessment": "Inputs, contract-first method, conditional resources and observable Finish conform. Two reference additions retain operational isolation and supported invocation policy; evaluation history stays outside runtime. No new router or universal ceremony justified."
+    }
+}

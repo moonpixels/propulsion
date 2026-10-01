@@ -26,6 +26,8 @@ Respect the chosen invocation policy when defining expected labels. An explicit-
 
 Run paired tasks from clean snapshots against **no skill**, the **candidate**, and the **previous version** for revisions. Hold task inputs, model identity, effort, runtime, tools, permissions, and time limits constant. Prevent one run's artefacts or conclusions from leaking into another. Retain failures. Randomise order when service variation or caching could affect the comparison.
 
+Use isolated repositories and stub services for cases that commit, publish, message, or otherwise mutate external state. Keep real user accounts and data outside the fixture. Test unknown mutation outcomes and safe retries against the stub's resulting state; permissions alone do not authorise real actions for an evaluation.
+
 Inspect the actual deliverable or environment state first, then use the transcript to diagnose how it arose. Use deterministic validators for mechanical contracts. For design, prose, or usefulness, use calibrated human or model review with a stable rubric. Blind judges to model and skill version, avoid candidate-visible evaluative labels, and withhold prior conclusions or intended answers unless the task requires them. Independent review should add confidence rather than merely repeat the author.
 
 Scale case coverage and repeated runs to risk and the uncertainty that could change the decision. A few runs can reveal a gross problem; they cannot substantiate a small gain. Record single-run performance and across-run reliability separately. A best-of-many success rate does not describe normal single-run reliability.

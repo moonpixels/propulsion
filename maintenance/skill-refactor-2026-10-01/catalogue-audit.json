@@ -1,0 +1,2588 @@
+{
+    "status": "Final contracts, conformance and proportionate evidence consolidated; release checks/commits recorded separately",
+    "starting_revision": "56da523e43fde40af9977a4c0eeff78604536c6d",
+    "branch": "adamwhp/skill-refactors",
+    "all_original_skills_accounted": true,
+    "final_conformance_supersedes_draft_batch_hashes_and_pending_evaluation_text": true,
+    "skills": [
+        {
+            "skill": "code-cleanup",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Independent behaviour-preserving simplification opportunities",
+                "inputs": "Fixed candidate/base or bounded module, code/tests/consumers, behavioural and repository authority",
+                "scope": "Read-only review; callers outside scope are evidence only",
+                "contribution": "Fresh unframed review, implicit-use deletion evidence, enforced-guarantee guard appraisal, unique test protection",
+                "completion": "Unchanged independent findings table or no findings plus material limitations"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#code-cleanup",
+            "root_sha256": "e24ab5116d7044d039aeaf288a5b6fc5c13fd5e2cb6df5fdfa0c78617efcdf37",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/REVIEW.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 22
+                },
+                {
+                    "path": "README.md",
+                    "line": 102
+                },
+                {
+                    "path": "README.md",
+                    "line": 178
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": true
+            },
+            "evaluation_ids": [
+                "72823f859f0d",
+                "8087e73d0d0f",
+                "4fb50a706fe0",
+                "7a895fb4f582",
+                "56255a95b85c",
+                "a3ce4c54151a",
+                "40564f22d415",
+                "3bfe70364622",
+                "66aa6ee91556",
+                "d5a1f52b176f",
+                "e7221b523060",
+                "fe9b53b34bfb",
+                "8450c2202124",
+                "5c87c3b9cde1",
+                "0cc1025582c0",
+                "8d6385aebe07",
+                "e87e53c759c4",
+                "31e44fa50d64",
+                "69cf67ee29b3"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "e87e53c759c4",
+                    "result": "failed",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "31e44fa50d64",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "69cf67ee29b3",
+                    "result": "failed",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "code-cleanup",
+                "current_root_sha256": "e24ab5116d7044d039aeaf288a5b6fc5c13fd5e2cb6df5fdfa0c78617efcdf37",
+                "candidate_full_current_root_reads": [
+                    "56255a95b85c",
+                    "3bfe70364622",
+                    "e7221b523060",
+                    "e87e53c759c4"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "56255a95b85c",
+                    "3bfe70364622",
+                    "e7221b523060",
+                    "e87e53c759c4"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "56255a95b85c": {
+                    "set": "cleanup-held-out",
+                    "result": "materially fulfilled"
+                },
+                "3bfe70364622": {
+                    "set": "corrected",
+                    "result": "materially fulfilled"
+                },
+                "e7221b523060": {
+                    "set": "fresh-review",
+                    "result": "materially fulfilled"
+                },
+                "5c87c3b9cde1": {
+                    "set": "round-1",
+                    "result": "failed"
+                },
+                "e87e53c759c4": {
+                    "set": "verified-primary",
+                    "result": "failed"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "code-review",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Independent diagnostic review of a fixed code change",
+                "inputs": "Exact non-empty candidate and complete changed/untracked files, independent intent when available, standards and quality evidence",
+                "scope": "Read-only separate Spec and Standards axes; no adjudication or publication",
+                "contribution": "Separate fresh contexts, requirement coverage, effect/retry failure-path inspection, falsification and honest drift handling",
+                "completion": "Separate unchanged current reports or explicit omitted/unperformed/stale status, scope/counts/limits"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#code-review",
+            "root_sha256": "e29857db4fd091a8ff86d3d861253110e15226b097edb5276603970cd109d75e",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/CODE-SMELLS.md": "revised"
+            },
+            "added_files": ["references/AXES.md", "references/REVIEW-RULES.md"],
+            "current_callers": [
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 24
+                },
+                {
+                    "path": "skills/review-pull-request/SKILL.md",
+                    "line": 10
+                },
+                {
+                    "path": "skills/review-pull-request/SKILL.md",
+                    "line": 19
+                },
+                {
+                    "path": "skills/debug/SKILL.md",
+                    "line": 25
+                },
+                {
+                    "path": "README.md",
+                    "line": 102
+                },
+                {
+                    "path": "README.md",
+                    "line": 182
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "9e160893cdbc",
+                "f613146fec8f",
+                "845d2f4b0c6e",
+                "9edb1b4ff775",
+                "a6681aedaeb6",
+                "1f4919e88d78",
+                "852456a58757",
+                "84b708226740",
+                "aba774b164e7",
+                "2525247e95a4",
+                "e9a2437481a9",
+                "ca8d6268bfe6",
+                "40d1460427a5",
+                "122df99ada0c",
+                "b3369855461c",
+                "8fb749a9eead",
+                "922612135906",
+                "2945e3db261d"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "8fb749a9eead",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "922612135906",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "2945e3db261d",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "code-review",
+                "current_root_sha256": "e29857db4fd091a8ff86d3d861253110e15226b097edb5276603970cd109d75e",
+                "candidate_full_current_root_reads": [
+                    "9e160893cdbc",
+                    "9edb1b4ff775",
+                    "852456a58757",
+                    "8fb749a9eead"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "9e160893cdbc",
+                    "9edb1b4ff775",
+                    "852456a58757",
+                    "8fb749a9eead"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "9e160893cdbc": {
+                    "set": "corrected",
+                    "result": "materially fulfilled"
+                },
+                "9edb1b4ff775": {
+                    "set": "fresh-review",
+                    "result": "materially fulfilled"
+                },
+                "852456a58757": {
+                    "set": "fresh-review",
+                    "result": "materially fulfilled"
+                },
+                "2525247e95a4": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "40d1460427a5": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "8fb749a9eead": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "commit",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Record eligible completed local work",
+                "inputs": "Request, repository, complete index/worktree, review and check evidence",
+                "scope": "Eligible local commits only; preserve unrelated content and staging; no push",
+                "contribution": "Selective staging, coupled intent grouping, hooks and Git-state verification",
+                "completion": "Eligible changes committed, excluded state preserved, hashes/titles/blockers returned"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#commit",
+            "root_sha256": "403dbb3208a15326c0cc3f11f594e9647272c65e5973f8704499186d680caaa5",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/pull-request/SKILL.md",
+                    "line": 18
+                },
+                {
+                    "path": "README.md",
+                    "line": 104
+                },
+                {
+                    "path": "README.md",
+                    "line": 109
+                },
+                {
+                    "path": "README.md",
+                    "line": 130
+                },
+                {
+                    "path": "README.md",
+                    "line": 137
+                },
+                {
+                    "path": "README.md",
+                    "line": 165
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "e9d9c3fe7fd8",
+                "332f6b5a19a6",
+                "b2e2c8e7e9b3",
+                "4564c6029943",
+                "f737b483eeb9",
+                "95d41f4a2017",
+                "57d650c32317",
+                "0d7a05f07186",
+                "25e489890b80",
+                "bc2c48185496",
+                "c48b02f61104",
+                "ba6a53e8e7c7",
+                "1b4cf69d7ddb",
+                "5c6695734624",
+                "3408c814e287",
+                "71d8ff77ab39",
+                "ea9f8eff7e56",
+                "154b64cc388f"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "71d8ff77ab39",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "ea9f8eff7e56",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "154b64cc388f",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "commit",
+                "current_root_sha256": "403dbb3208a15326c0cc3f11f594e9647272c65e5973f8704499186d680caaa5",
+                "candidate_full_current_root_reads": [
+                    "57d650c32317",
+                    "0d7a05f07186",
+                    "71d8ff77ab39"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "e9d9c3fe7fd8",
+                    "332f6b5a19a6",
+                    "57d650c32317",
+                    "0d7a05f07186",
+                    "71d8ff77ab39"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "e9d9c3fe7fd8": {
+                    "set": "risk-final",
+                    "result": "materially fulfilled"
+                },
+                "332f6b5a19a6": {
+                    "set": "risk-final",
+                    "result": "materially fulfilled"
+                },
+                "57d650c32317": {
+                    "set": "risk-isolated",
+                    "result": "materially fulfilled"
+                },
+                "0d7a05f07186": {
+                    "set": "risk-isolated",
+                    "result": "materially fulfilled"
+                },
+                "1b4cf69d7ddb": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "71d8ff77ab39": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "create-tickets",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Confirmed verified small vertical ticket set",
+                "inputs": "Complete approved work definition, configured destination/access, exact proposed set confirmation",
+                "scope": "Exactly agreed ticket bodies/relations and supplied fields, no definition change or scheduling/implementation",
+                "distinct_contribution": "Two-way coverage, complete outcomes, calibrated complexity and honest dependency semantics with read-back",
+                "completion": "Every ticket and relation read back; source coverage, agreed semantics and constraints hold; unresolved state explicit"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#create-tickets",
+            "root_sha256": "9e417fcd23590efd4f943eef4b5e03b3a94e8ecfb113e22cf3882a560f2ea561",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/estimation-reference.md": "retired",
+                "assets/ticket-template.md": "revised"
+            },
+            "added_files": ["references/estimation.md"],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 66
+                },
+                {
+                    "path": "README.md",
+                    "line": 71
+                },
+                {
+                    "path": "README.md",
+                    "line": 128
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "ea26478080a4",
+                "41008a058c31",
+                "01cbce41cf25",
+                "ff3418c43fa8",
+                "56f0c790c77a",
+                "a98029e9c2f4",
+                "1993fb589671",
+                "527c62e4af68",
+                "9e984e3d941d",
+                "4083afe164fd",
+                "fe3912394d84",
+                "4fe4e7315a31",
+                "68c902c15dd6",
+                "a64573089d7d",
+                "fe20a7e97d99"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "68c902c15dd6",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "a64573089d7d",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "fe20a7e97d99",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "create-tickets",
+                "current_root_sha256": "9e417fcd23590efd4f943eef4b5e03b3a94e8ecfb113e22cf3882a560f2ea561",
+                "candidate_full_current_root_reads": ["68c902c15dd6"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "68c902c15dd6"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "1993fb589671": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "4083afe164fd": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "68c902c15dd6": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "debug",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Supported causal diagnosis and optional reviewed local repair",
+                "inputs": "Expected/observed behaviour, authority, environment, discriminating signal, relevant code and tests",
+                "scope": "Diagnosis or minimal local repair; production/external systems read-only",
+                "contribution": "Signal-preserving causal experiments, targeted debugging techniques, rejected-attempt rollback and original-signal verification",
+                "completion": "Bounded supported diagnosis or current reviewed repair with original signal, regression/check evidence and explicit limitations"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#debug",
+            "root_sha256": "1d2078566f3d21c5eb66c43af1342bc86b6bc1338d711a2c1900ed903acf48e5",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/BOUNDARY-ISOLATION.md": "retained unchanged",
+                "references/CHANGE-BISECTION.md": "retained unchanged",
+                "references/COMPARATIVE-DEBUGGING.md": "retained unchanged",
+                "references/DELTA-DEBUGGING.md": "retained unchanged",
+                "references/HYPOTHESIS-EXPERIMENTS.md": "retained unchanged",
+                "references/INSTRUMENTATION-DEBUGGERS.md": "retained unchanged",
+                "references/NONDETERMINISTIC-CONCURRENT.md": "retained unchanged",
+                "references/ORIGIN-TRACKING.md": "retained unchanged",
+                "references/PERFORMANCE-RESOURCE.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 154
+                },
+                {
+                    "path": "README.md",
+                    "line": 159
+                },
+                {
+                    "path": "README.md",
+                    "line": 165
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "5b03b921da13",
+                "ed3b3cd77892",
+                "32a3506e3f9f",
+                "e8e3b7eab0b2",
+                "1243b956e45a",
+                "c8d860150f05",
+                "674710c26e33",
+                "ce77b596ff4e",
+                "ffa1cdefa523",
+                "c119776c2604",
+                "4e7c9c780568",
+                "37812a4c365b",
+                "4b9f2b020c4f",
+                "b19a6c8189aa",
+                "a0a53bfa26df"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "4b9f2b020c4f",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "b19a6c8189aa",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "a0a53bfa26df",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "debug",
+                "current_root_sha256": "1d2078566f3d21c5eb66c43af1342bc86b6bc1338d711a2c1900ed903acf48e5",
+                "candidate_full_current_root_reads": [
+                    "5b03b921da13",
+                    "e8e3b7eab0b2",
+                    "4b9f2b020c4f"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "5b03b921da13",
+                    "e8e3b7eab0b2",
+                    "4b9f2b020c4f"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "5b03b921da13": {
+                    "set": "fresh-review",
+                    "result": "materially fulfilled"
+                },
+                "e8e3b7eab0b2": {
+                    "set": "fresh-review",
+                    "result": "materially fulfilled"
+                },
+                "674710c26e33": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "c119776c2604": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "4b9f2b020c4f": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "define-product",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Confirmed PRODUCT.md foundation",
+                "inputs": "Idea or product, current evidence, confirmed intended direction and complete document effect",
+                "scope": "One root product/system foundation plus invoked context changes; no feature design or downstream delivery",
+                "distinct_contribution": "Breadth-first journeys and capabilities, traceable system-wide constraints without prematurely selected internals",
+                "completion": "Complete confirmed coherent foundation with unique IDs, traces, acceptance and honest non-blocking uncertainty"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#define-product",
+            "root_sha256": "11f69db2e549ae2021813542da7b2b4f66a8056d77f5c94f7132c18171c84724",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/product-template.md": "revised",
+                "references/DISCOVERY.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 42
+                },
+                {
+                    "path": "README.md",
+                    "line": 47
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "03e6d86ccb0b",
+                "71cd016a998f",
+                "b74fc9cc8bd6",
+                "82e4aad12b83",
+                "994b32d944ee",
+                "ea89a448bfc4",
+                "50857fbc282a",
+                "1798c2f97cec",
+                "3ebf658d319c"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "50857fbc282a",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "1798c2f97cec",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "3ebf658d319c",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "define-product",
+                "current_root_sha256": "11f69db2e549ae2021813542da7b2b4f66a8056d77f5c94f7132c18171c84724",
+                "candidate_full_current_root_reads": ["50857fbc282a"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "50857fbc282a"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "82e4aad12b83": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "50857fbc282a": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "elicit",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Confirmed shared understanding",
+                "inputs": "Bounded task, conversation, evidence and unresolved user-held information or choices",
+                "scope": "Read-only dialogue; caller owns substantial research, persistence and downstream action",
+                "distinct_contribution": "Dependency-aware questioning, grounded alternatives, consequential coverage and explicit complete agreement",
+                "completion": "Material branches settled and complete synthesis explicitly agreed; exact complete unchanged prior agreement may be reused"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#elicit",
+            "root_sha256": "0154c18a3dee153af087002ae9cd209be737a71300c956d8b257e19d8c915fd6",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/elicit-with-context/SKILL.md",
+                    "line": 22
+                },
+                {
+                    "path": "skills/elicit-with-context/SKILL.md",
+                    "line": 28
+                },
+                {
+                    "path": "skills/write-skill/SKILL.md",
+                    "line": 14
+                },
+                {
+                    "path": "README.md",
+                    "line": 175
+                },
+                {
+                    "path": "README.md",
+                    "line": 176
+                },
+                {
+                    "path": "README.md",
+                    "line": 190
+                },
+                {
+                    "path": "AGENTS.md",
+                    "line": 3
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": true
+            },
+            "evaluation_ids": [
+                "34dab34762f8",
+                "7d12866b59c3",
+                "d18f6918a6f7",
+                "7581efeceaaa",
+                "ce86db5441c0",
+                "e2bd8d31db1f",
+                "51fc18edfe4f",
+                "d370ee771580",
+                "0701fafd7c32",
+                "fff86b9310ec",
+                "f9511cc5a027",
+                "bf55dc762106",
+                "89743a3927ef",
+                "490a63ba6309",
+                "39343f12e5ff",
+                "dfee4a3a7dd7",
+                "8c5217731234",
+                "d076bbdf2fc4",
+                "6578aa270922",
+                "159fed813eff",
+                "43bd34d0a231",
+                "a9cdf2fc0146",
+                "5fb66e19859e",
+                "6a1bcd452fd8",
+                "578a3e233900",
+                "454e4feebb31",
+                "22ad3af0c8f0",
+                "9b2d6d702c67",
+                "8044e00e0ffb",
+                "971a12e50df4",
+                "15dc2911a406",
+                "fc56459cf438",
+                "4693c0eeb371",
+                "14c43c1f13ab",
+                "08db7f1a9ed7",
+                "033c83f70e85",
+                "e15b459ee4bf",
+                "58230a9fa268",
+                "bbcfe83cc41e",
+                "49d339029bab",
+                "24664fb449e8",
+                "1a9d0d846c49",
+                "014ed91e51b6"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "24664fb449e8",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "1a9d0d846c49",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "014ed91e51b6",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "elicit",
+                "current_root_sha256": "0154c18a3dee153af087002ae9cd209be737a71300c956d8b257e19d8c915fd6",
+                "candidate_full_current_root_reads": ["24664fb449e8"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "24664fb449e8"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "08db7f1a9ed7": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "58230a9fa268": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "24664fb449e8": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "elicit-with-context",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Confirmed software understanding with relevant durable context",
+                "inputs": "Bounded software task and caller evidence/decisions, repository guidance and project terms",
+                "scope": "Dialogue, root glossary and eligible consented ADRs through called owners; no caller output/implementation mutation",
+                "distinct_contribution": "Composes general dialogue with project language and exceptional architecture rationale",
+                "completion": "Confirmed elicitation synthesis returned; material context writes or blockers reported"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#elicit-with-context",
+            "root_sha256": "3de9ef00293428c615fb6622f4b40cc679c75863074907964de195a34f594f60",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/upgrade-dependencies/SKILL.md",
+                    "line": 14
+                },
+                {
+                    "path": "skills/define-product/SKILL.md",
+                    "line": 21
+                },
+                {
+                    "path": "skills/define-product/SKILL.md",
+                    "line": 25
+                },
+                {
+                    "path": "skills/create-tickets/SKILL.md",
+                    "line": 23
+                },
+                {
+                    "path": "skills/specify-feature/SKILL.md",
+                    "line": 14
+                },
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 14
+                },
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 24
+                },
+                {
+                    "path": "skills/write-skill/SKILL.md",
+                    "line": 14
+                },
+                {
+                    "path": "skills/debug/SKILL.md",
+                    "line": 14
+                },
+                {
+                    "path": "skills/define-product/references/DISCOVERY.md",
+                    "line": 3
+                },
+                {
+                    "path": "README.md",
+                    "line": 176
+                },
+                {
+                    "path": "README.md",
+                    "line": 190
+                },
+                {
+                    "path": "AGENTS.md",
+                    "line": 3
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "912898da3f20",
+                "926c48d91ea6",
+                "cfc59359360d",
+                "10bf17b90765",
+                "6358c535c68d",
+                "5fdfd43b4709",
+                "702e61f073cd",
+                "a5cc08ab72bd",
+                "8cb10c96dc3b"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "702e61f073cd",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "a5cc08ab72bd",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "8cb10c96dc3b",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "elicit-with-context",
+                "current_root_sha256": "3de9ef00293428c615fb6622f4b40cc679c75863074907964de195a34f594f60",
+                "candidate_full_current_root_reads": ["702e61f073cd"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "702e61f073cd"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "10bf17b90765": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "702e61f073cd": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "implement",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Complete confirmed small local software change",
+                "inputs": "Implementation-ready authority, repo state, relevant source/tests/contracts, actual integration versions",
+                "scope": "Local agreed unit; preserve unrelated work and stop before publication/commit",
+                "contribution": "Minimal coherent change, canonical design/TDD composition, independent cleanup and review with evidenced adjudication",
+                "completion": "Agreed behaviour locally, current checks/measurement/review and every finding disposition; missing evidence explicit"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#implement",
+            "root_sha256": "a56cfe18ee56331732cdfabdb86290b73e9dd7a7e3cd06e8285e5ea7e32ed121",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 9
+                },
+                {
+                    "path": "README.md",
+                    "line": 92
+                },
+                {
+                    "path": "README.md",
+                    "line": 97
+                },
+                {
+                    "path": "README.md",
+                    "line": 102
+                },
+                {
+                    "path": "README.md",
+                    "line": 129
+                },
+                {
+                    "path": "README.md",
+                    "line": 137
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "701b50fcdac1",
+                "c3105c812343",
+                "d63b0d946c9c",
+                "c1d68ccfe767",
+                "accb4a1c974a",
+                "c27cb3da7949",
+                "e32427930f1c",
+                "8fad63069a16",
+                "93a1d05f378f",
+                "df2314e5bf48",
+                "286598c643d3",
+                "3f1215676909"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "df2314e5bf48",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "286598c643d3",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "3f1215676909",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "implement",
+                "current_root_sha256": "a56cfe18ee56331732cdfabdb86290b73e9dd7a7e3cd06e8285e5ea7e32ed121",
+                "candidate_full_current_root_reads": [
+                    "701b50fcdac1",
+                    "c1d68ccfe767",
+                    "df2314e5bf48"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "701b50fcdac1",
+                    "c1d68ccfe767",
+                    "df2314e5bf48"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "701b50fcdac1": {
+                    "set": "corrected",
+                    "result": "materially fulfilled"
+                },
+                "c1d68ccfe767": {
+                    "set": "fresh-review",
+                    "result": "materially fulfilled"
+                },
+                "e32427930f1c": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "df2314e5bf48": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "maintain-agents",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Concise confirmed repository-wide root guidance",
+                "inputs": "Requested change/assessment, user confirmation or handoff, root file and repository evidence",
+                "scope": "Root AGENTS.md only; preserve unrelated rules",
+                "distinct_contribution": "Eligibility and user override for durable rules, canonical feedback line and semantic deduplication",
+                "completion": "Requested guidance or supported no-op/advice, canonical line once at top, no semantic duplication"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#maintain-agents",
+            "root_sha256": "da0dd395e126dc67c51a58b0420d84a7b71dc1d69f34b4b1c7762ffdfd0a210e",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/maintain-agents/SKILL.md",
+                    "line": 21
+                },
+                {
+                    "path": "skills/create-tickets/SKILL.md",
+                    "line": 16
+                },
+                {
+                    "path": "README.md",
+                    "line": 179
+                },
+                {
+                    "path": "AGENTS.md",
+                    "line": 1
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "22c076e9a098",
+                "771a67dacdee",
+                "79be3bce76f6",
+                "df7468d03e5a",
+                "36fd259a3d59",
+                "ae4e6676ad9d",
+                "9227b4d20980",
+                "6f2d40e2ee8e",
+                "5cfbe68fbe24"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "9227b4d20980",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "6f2d40e2ee8e",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "5cfbe68fbe24",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "maintain-agents",
+                "current_root_sha256": "da0dd395e126dc67c51a58b0420d84a7b71dc1d69f34b4b1c7762ffdfd0a210e",
+                "candidate_full_current_root_reads": ["9227b4d20980"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "9227b4d20980"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "df7468d03e5a": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "9227b4d20980": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "maintain-decision-records",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Concise accepted exceptional decision rationale",
+                "inputs": "Accepted decision, alternatives, consequences, existing authorities and explicit persistence agreement",
+                "scope": "Eligible ADR creation only; no product/feature/code/external mutations",
+                "distinct_contribution": "Cost, surprise, real trade-off, better-owner and consent gate",
+                "completion": "Correctly numbered, evidence-aligned three-section ADR, or reason no record is warranted"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#maintain-decision-records",
+            "root_sha256": "a07f4bf0494cb4e934daa703cd0f6131baa6caace6c964522ae5e41f67fb37f3",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/adr-template.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/elicit-with-context/SKILL.md",
+                    "line": 21
+                },
+                {
+                    "path": "README.md",
+                    "line": 180
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "24dde2b88798",
+                "c2d0fcc64aa2",
+                "8e1016b1ba28",
+                "a2d334bae520",
+                "3e4c5493685a",
+                "75a7065a86db",
+                "9212104dcdf5",
+                "d7fa06a3446c",
+                "d9581cd79e1a",
+                "dff8a8ed187c",
+                "85ccc7a60c35",
+                "4fc2ad781787",
+                "2d85e1b53f5d",
+                "a57c8979e34a",
+                "93ab765c2e67"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "2d85e1b53f5d",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "a57c8979e34a",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "93ab765c2e67",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "maintain-decision-records",
+                "current_root_sha256": "a07f4bf0494cb4e934daa703cd0f6131baa6caace6c964522ae5e41f67fb37f3",
+                "candidate_full_current_root_reads": ["2d85e1b53f5d"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "2d85e1b53f5d"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "9212104dcdf5": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "dff8a8ed187c": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "2d85e1b53f5d": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "maintain-ubiquitous-language",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Consistent project-native root glossary",
+                "inputs": "Resolved meanings, current glossary and affected project evidence",
+                "scope": "Affected glossary entries only; unresolved meanings preserved",
+                "distinct_contribution": "Project-term-only authority, conflict clarification and current-evidence alias lifecycle",
+                "completion": "Affected resolved meanings consistent; routine checks/reporting stay with caller"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#maintain-ubiquitous-language",
+            "root_sha256": "60beaae750419f2c54c0c392f777650802e083eec449feddf6ca8b6f699b27c3",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/glossary-template.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/elicit-with-context/SKILL.md",
+                    "line": 20
+                },
+                {
+                    "path": "README.md",
+                    "line": 181
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "2d74b0bfb91e",
+                "1626322005b9",
+                "00f8ff5640a9",
+                "0224c3b4c2dc",
+                "4900b90f6886",
+                "b5e6a3954d32",
+                "77664538f4ec",
+                "d4502472c6f8",
+                "c00360ebe9e9",
+                "213ef0321a02",
+                "f5c1a2b9d9df",
+                "7f9c6ab94570",
+                "b7af7e85b936",
+                "12b7a2e9ee6d",
+                "204b95aa2ef1"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "b7af7e85b936",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "12b7a2e9ee6d",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "204b95aa2ef1",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "maintain-ubiquitous-language",
+                "current_root_sha256": "60beaae750419f2c54c0c392f777650802e083eec449feddf6ca8b6f699b27c3",
+                "candidate_full_current_root_reads": ["b7af7e85b936"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "b7af7e85b936"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "77664538f4ec": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "213ef0321a02": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "b7af7e85b936": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "measure-code-complexity",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Reproducible metric evidence and contextual trigger dispositions",
+                "inputs": "Git working-tree candidate, base, read-only authority, optional explicit policy thresholds, Python/Git and vendored wheels",
+                "scope": "Measure/interpret only; temp raw artefacts allowed, no source/test/policy edits",
+                "contribution": "Pinned checksum-verified cross-language metric helper, changed-function deltas, exclusions/unsupported limits and advisory contextual interpretation",
+                "completion": "Each trigger supported/justified/unresolved, scope/summary/values/deltas/limits and raw path returned"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#measure-code-complexity",
+            "root_sha256": "770d54fb0bfffe208e55e092298f19ff6217a0821b73dae68a96c4566b797d17",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/CYCLOMATIC-COMPLEXITY.md": "retained unchanged",
+                "references/DUPLICATION.md": "retained unchanged",
+                "references/FUNCTION-SIZE.md": "retained unchanged",
+                "references/NESTING.md": "revised",
+                "references/PARAMETERS.md": "retained unchanged",
+                "scripts/measure.py": "revised",
+                "scripts/vendor/THIRD-PARTY-NOTICES.md": "retained unchanged",
+                "scripts/vendor/licenses/lizard/APACHE-2.0.txt": "retained unchanged",
+                "scripts/vendor/licenses/lizard/LICENSE.txt": "retained unchanged",
+                "scripts/vendor/licenses/pygments/AUTHORS": "retained unchanged",
+                "scripts/vendor/licenses/pygments/LICENSE": "retained unchanged",
+                "scripts/vendor/lizard-1.24.0-py2.py3-none-any.whl": "retained unchanged",
+                "scripts/vendor/pygments-2.19.2-py3-none-any.whl": "retained unchanged"
+            },
+            "added_files": ["scripts/python_nesting.py"],
+            "current_callers": [
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 23
+                },
+                {
+                    "path": "skills/code-review/references/AXES.md",
+                    "line": 15
+                },
+                {
+                    "path": "README.md",
+                    "line": 183
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": true
+            },
+            "evaluation_ids": [
+                "d4af80c8b881",
+                "e18fd306ed60",
+                "25fddef0d628",
+                "a244f1d57595",
+                "57fe5acbd329",
+                "499a309a73c7",
+                "02e1f01a48e2",
+                "24e058d2b806",
+                "f97079b607f5",
+                "a44066979aa5",
+                "d593668927a0",
+                "5256f56ad77f",
+                "d1a376646db4",
+                "4979926c0271",
+                "eb5184117e87",
+                "bdae98a71fc2",
+                "da7b4724fbc0",
+                "23e885454964",
+                "c8deefa29b2d",
+                "7ab2ab025a7c",
+                "6f499e95e457",
+                "5e9b5379b76f",
+                "6026c8ab792e",
+                "2cf8d993593a",
+                "418f303b7d18",
+                "f51c121d8ff2",
+                "07b67135ef06",
+                "227d641b5e28"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "f51c121d8ff2",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "07b67135ef06",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "227d641b5e28",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "measure-code-complexity",
+                "current_root_sha256": "770d54fb0bfffe208e55e092298f19ff6217a0821b73dae68a96c4566b797d17",
+                "candidate_full_current_root_reads": [
+                    "57fe5acbd329",
+                    "d593668927a0",
+                    "4979926c0271",
+                    "da7b4724fbc0",
+                    "7ab2ab025a7c"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [],
+                "changed_after_trial_limit": "Latest helper changes covered by final regression suite and independent source review; earlier outcome trials remain version-bound."
+            },
+            "candidate_results": {
+                "57fe5acbd329": {
+                    "set": "corrected",
+                    "result": "partial"
+                },
+                "d593668927a0": {
+                    "set": "measurement-scope",
+                    "result": "materially fulfilled"
+                },
+                "4979926c0271": {
+                    "set": "measurement-scope",
+                    "result": "materially fulfilled"
+                },
+                "da7b4724fbc0": {
+                    "set": "nesting-final",
+                    "result": "materially fulfilled"
+                },
+                "7ab2ab025a7c": {
+                    "set": "nesting-final",
+                    "result": "materially fulfilled"
+                },
+                "6026c8ab792e": {
+                    "set": "round-1",
+                    "result": "partial"
+                },
+                "f51c121d8ff2": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "modular-design",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Coherent ownership and caller contracts with local change",
+                "inputs": "Confirmed behaviour, domain language, project decisions, source/contracts/tests",
+                "scope": "Teach structural decisions inside caller outcome; does not redefine product behaviour",
+                "contribution": "Information hiding, owner-derived knowledge, deep interfaces, earned abstraction and evidence-based locality comparison",
+                "completion": "Owner/interface/hidden knowledge and locality trace established; material choices and uncertainty explicit"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#modular-design",
+            "root_sha256": "8db86f89b15f4ae29ed81963f12405b191471036cbceb62e27ae8754cdf306a5",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/DEPENDENCY-TECHNIQUES.md": "retained unchanged",
+                "references/DESIGN-IT-TWICE.md": "revised",
+                "references/DOMAIN-TECHNIQUES.md": "retained unchanged",
+                "references/EFFECT-TECHNIQUES.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/review-architecture/SKILL.md",
+                    "line": 19
+                },
+                {
+                    "path": "skills/specify-feature/SKILL.md",
+                    "line": 20
+                },
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 20
+                },
+                {
+                    "path": "skills/debug/SKILL.md",
+                    "line": 24
+                },
+                {
+                    "path": "skills/code-review/references/AXES.md",
+                    "line": 15
+                },
+                {
+                    "path": "README.md",
+                    "line": 102
+                },
+                {
+                    "path": "README.md",
+                    "line": 184
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "67cfa341c420",
+                "8e2c0664f9f5",
+                "56e3aa55ff3e",
+                "27932c17e150",
+                "933e5f68bced",
+                "214496d3baaa"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "27932c17e150",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "933e5f68bced",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "214496d3baaa",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "modular-design",
+                "current_root_sha256": "8db86f89b15f4ae29ed81963f12405b191471036cbceb62e27ae8754cdf306a5",
+                "candidate_full_current_root_reads": ["27932c17e150"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "27932c17e150"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "67cfa341c420": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "27932c17e150": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "pull-request",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Publish the whole branch as one correct PR",
+                "inputs": "Repository, branch, base, host, user intent, whole branch diff and validation",
+                "scope": "Authorised push and one matching PR only; no history rewrite or merge",
+                "contribution": "Whole-branch review explanation and safe state-readback/retry",
+                "completion": "Matching PR has intended head/base/revision/body; URL and material limits returned"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#pull-request",
+            "root_sha256": "e817178d405aa149b564bc9885f5772ef06350bce11a08b6c9ba2c1da5885e83",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 114
+                },
+                {
+                    "path": "README.md",
+                    "line": 119
+                },
+                {
+                    "path": "README.md",
+                    "line": 131
+                },
+                {
+                    "path": "README.md",
+                    "line": 137
+                },
+                {
+                    "path": "README.md",
+                    "line": 165
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "d37eef0b0ce6",
+                "83d672966c1b",
+                "f5cf7538e4f9",
+                "297a5d200fff",
+                "9330452650f4",
+                "16d6217646e5",
+                "4e52fa2cc31c",
+                "2a63a3389ae0",
+                "f9cc450bd3f7",
+                "f92e0383a483",
+                "d335f81b1481",
+                "4175a141612f",
+                "0862b019fe12",
+                "1c4b412d06d0",
+                "e62cb2d9a89f",
+                "f6d29583403e",
+                "057ac30ed31c",
+                "8eb95e635172"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "f6d29583403e",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "057ac30ed31c",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "8eb95e635172",
+                    "result": "partial",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "pull-request",
+                "current_root_sha256": "e817178d405aa149b564bc9885f5772ef06350bce11a08b6c9ba2c1da5885e83",
+                "candidate_full_current_root_reads": [
+                    "4e52fa2cc31c",
+                    "2a63a3389ae0",
+                    "f6d29583403e"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "d37eef0b0ce6",
+                    "83d672966c1b",
+                    "4e52fa2cc31c",
+                    "2a63a3389ae0",
+                    "f6d29583403e"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "d37eef0b0ce6": {
+                    "set": "risk-final",
+                    "result": "materially fulfilled"
+                },
+                "83d672966c1b": {
+                    "set": "risk-final",
+                    "result": "materially fulfilled"
+                },
+                "4e52fa2cc31c": {
+                    "set": "risk-isolated",
+                    "result": "materially fulfilled"
+                },
+                "2a63a3389ae0": {
+                    "set": "risk-isolated",
+                    "result": "materially fulfilled"
+                },
+                "0862b019fe12": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "f6d29583403e": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "research",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Save high-trust evidence for a material question",
+                "inputs": "Question, purpose, scope, evidence/tools, destination",
+                "scope": "Source reads and report writes only; consumer owns downstream decisions",
+                "contribution": "Claim-relative source appraisal, independent routes, disagreement, inference and source verification",
+                "completion": "Durable report covers scope, checked claims/citations, conflicts and limits; path returned"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#research",
+            "root_sha256": "3cd4d93d39e74deb61af47abb157391d0aa6ef0a96f929bb415c46418a508526",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "revised",
+                "assets/research-report-template.md": "revised"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/review-architecture/SKILL.md",
+                    "line": 19
+                },
+                {
+                    "path": "skills/define-product/SKILL.md",
+                    "line": 21
+                },
+                {
+                    "path": "skills/specify-feature/SKILL.md",
+                    "line": 18
+                },
+                {
+                    "path": "skills/debug/SKILL.md",
+                    "line": 41
+                },
+                {
+                    "path": "skills/define-product/references/DISCOVERY.md",
+                    "line": 3
+                },
+                {
+                    "path": "skills/define-product/references/DISCOVERY.md",
+                    "line": 15
+                },
+                {
+                    "path": "README.md",
+                    "line": 177
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "e9d98c5d3973",
+                "65fc0c7581a5",
+                "58c4070ed109",
+                "d0bc5845180b",
+                "37791870f082",
+                "e35ba48cd2ba"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "d0bc5845180b",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "37791870f082",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "e35ba48cd2ba",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "research",
+                "current_root_sha256": "3cd4d93d39e74deb61af47abb157391d0aa6ef0a96f929bb415c46418a508526",
+                "candidate_full_current_root_reads": ["d0bc5845180b"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "d0bc5845180b"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "e9d98c5d3973": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "d0bc5845180b": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "review-architecture",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Explain consequential current structural improvements",
+                "inputs": "Repository authorities, entire in-scope codebase, history, revision, destination",
+                "scope": "Report-only architecture review; no implementation/authority/ticket mutation",
+                "contribution": "Evidence-based structural causality, qualitative top ranking, valid zero result and coverage, expandable HTML",
+                "completion": "Report records revision/coverage/limits, ordered useful candidates or zero result; structural and available visual QA complete"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#review-architecture",
+            "root_sha256": "78581b63a3964f99846b7cb3e24dc42c39939e79deb6c1f7dad82511dab2be0c",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/report-template.html": "retained unchanged",
+                "scripts/validate-report.js": "revised"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 80
+                },
+                {
+                    "path": "README.md",
+                    "line": 85
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "a806924a409f",
+                "2632737deb21",
+                "161c1cbf74d1",
+                "9f83e6d5c870",
+                "b6eec850fcfe",
+                "c1e29c106bba",
+                "0df5dc893b47",
+                "e214312bcd52",
+                "8ffdf8f827ca"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "0df5dc893b47",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "e214312bcd52",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "8ffdf8f827ca",
+                    "result": "failed",
+                    "exit": -15
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "review-architecture",
+                "current_root_sha256": "78581b63a3964f99846b7cb3e24dc42c39939e79deb6c1f7dad82511dab2be0c",
+                "candidate_full_current_root_reads": [
+                    "a806924a409f",
+                    "0df5dc893b47"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [],
+                "changed_after_trial_limit": "Latest helper changes covered by final regression suite and independent source review; earlier outcome trials remain version-bound."
+            },
+            "candidate_results": {
+                "a806924a409f": {
+                    "set": "architecture-repeat",
+                    "result": "materially fulfilled"
+                },
+                "9f83e6d5c870": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "0df5dc893b47": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "review-pull-request",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Review exact host candidate independently",
+                "inputs": "PR identifier, repository host metadata, exact revisions, available behavioural authority",
+                "scope": "Read-only review; no repair, publication, or host mutation",
+                "contribution": "Resolve/pin PR and delegate code-review without duplicating internal method; detect host drift",
+                "completion": "Independent result returned unchanged with identity and stale status when necessary"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#review-pull-request",
+            "root_sha256": "0e09f54b3e0c5d5644cc164915aaff3f341613af6d03e3c10e616aea74dd9a5d",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 174
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "d3419db0925e",
+                "9848fbbc90c0",
+                "e92ce85d3bf8",
+                "d55602a89b38",
+                "d56cfa4f33e2",
+                "4510c7bdbe95"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "d55602a89b38",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "d56cfa4f33e2",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "4510c7bdbe95",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "review-pull-request",
+                "current_root_sha256": "0e09f54b3e0c5d5644cc164915aaff3f341613af6d03e3c10e616aea74dd9a5d",
+                "candidate_full_current_root_reads": ["d55602a89b38"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "d55602a89b38"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "d3419db0925e": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "d55602a89b38": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "specify-feature",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "One confirmed decision-complete feature specification",
+                "inputs": "Feature request, confirmed intent/solution, relevant authorities and observed current behaviour",
+                "scope": "One feature specification plus called context changes; no ticket/implementation execution",
+                "distinct_contribution": "Intent/selected-solution distinction, adverse paths, stable acceptance and safe unresolved-item boundary",
+                "completion": "Tickets can decompose the spec without inventing behaviour or choosing a material solution"
+            },
+            "source_matches_and_guideline_mapping": "foundation.json",
+            "authoritative_final_conformance": "final-conformance.json#specify-feature",
+            "root_sha256": "916320851c7af08e262b6c67287cbd58f7f4b1d7e972c6c0922e0a4d4dbf2230",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/specification-template.md": "revised"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 54
+                },
+                {
+                    "path": "README.md",
+                    "line": 59
+                },
+                {
+                    "path": "README.md",
+                    "line": 127
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "508af20c4058",
+                "46a6f0f97ff1",
+                "507c3c4ef73b",
+                "77382456adce",
+                "87f1658dd4eb",
+                "351d0b114025",
+                "ed7b733efe60",
+                "1cea7aac93a6",
+                "bdb8938ebea1",
+                "fd791c21af6d",
+                "982424cda224",
+                "5863a9646786",
+                "d1a130812fc8",
+                "5b83d62b8bdc",
+                "af5c097f2fa1"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "d1a130812fc8",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "5b83d62b8bdc",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "af5c097f2fa1",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "specify-feature",
+                "current_root_sha256": "916320851c7af08e262b6c67287cbd58f7f4b1d7e972c6c0922e0a4d4dbf2230",
+                "candidate_full_current_root_reads": ["d1a130812fc8"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "d1a130812fc8"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "ed7b733efe60": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "fd791c21af6d": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "d1a130812fc8": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "tdd",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Observable behaviour implemented test-first with durable coverage",
+                "inputs": "Confirmed behaviour, current code/tests, usable suite, credible seam and oracle",
+                "scope": "One complete behaviour slice at a time; no unrequested suite infrastructure",
+                "contribution": "Valid promise-based Red, minimal Green, behaviour-preserving refactor, sensitivity and unique-protection discipline",
+                "completion": "Confirmed behaviours protected, recorded Red/Green and relevant-suite evidence or exact missing evidence without false TDD claim"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#tdd",
+            "root_sha256": "6727cd263748e19e8990ea219b3dc6968b935925199e78da26604658432e3e7a",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/implement/SKILL.md",
+                    "line": 20
+                },
+                {
+                    "path": "skills/debug/SKILL.md",
+                    "line": 24
+                },
+                {
+                    "path": "README.md",
+                    "line": 102
+                },
+                {
+                    "path": "README.md",
+                    "line": 186
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "0470d2a1d4fa",
+                "dd0866d1c03b",
+                "ee3ee31d223b",
+                "4196fb39994d",
+                "876656836247",
+                "47af6f2b579a",
+                "4dbffe1a6703",
+                "c5b455ee3946",
+                "9cb662dd8342"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "4dbffe1a6703",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "c5b455ee3946",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "9cb662dd8342",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "tdd",
+                "current_root_sha256": "6727cd263748e19e8990ea219b3dc6968b935925199e78da26604658432e3e7a",
+                "candidate_full_current_root_reads": ["0470d2a1d4fa"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "0470d2a1d4fa"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "0470d2a1d4fa": {
+                    "set": "oracles",
+                    "result": "materially fulfilled"
+                },
+                "4196fb39994d": {
+                    "set": "round-1",
+                    "result": "partial"
+                },
+                "4dbffe1a6703": {
+                    "set": "verified-primary",
+                    "result": "partial"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "test-design",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Durable tests with independent meaningful defect protection",
+                "inputs": "Confirmed promises/contracts, current implementation/tests, credible oracle",
+                "scope": "Teach writing/review/rationalisation; no product changes invented to fit tests",
+                "contribution": "Observable stable predictive seams, independent oracle, determinism, legitimate effect assertions, counterfactual protection",
+                "completion": "Each retained test has independent promise and controlled state; removed tests lose no unique protection; fidelity limits explicit"
+            },
+            "source_matches_and_guideline_mapping": "engineering.json",
+            "authoritative_final_conformance": "final-conformance.json#test-design",
+            "root_sha256": "405ac0c055e94879f17f37944f4d1118b2f7cdb5d9771286b096c1372685d0f8",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/GENERATIVE-TESTING.md": "retained unchanged",
+                "references/TEST-DOUBLES.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "skills/tdd/SKILL.md",
+                    "line": 16
+                },
+                {
+                    "path": "skills/tdd/SKILL.md",
+                    "line": 23
+                },
+                {
+                    "path": "skills/code-review/references/AXES.md",
+                    "line": 15
+                },
+                {
+                    "path": "README.md",
+                    "line": 102
+                },
+                {
+                    "path": "README.md",
+                    "line": 185
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "6e353f6d2258",
+                "3f3228ba81f1",
+                "819c86339ec4",
+                "c080b406d2a8",
+                "e7a4e34f4ab5",
+                "5e8b4498bd6b",
+                "a29ff3ffce96",
+                "4d7f2de04fbd",
+                "68b52d30f3e3"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "a29ff3ffce96",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "4d7f2de04fbd",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "68b52d30f3e3",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "test-design",
+                "current_root_sha256": "405ac0c055e94879f17f37944f4d1118b2f7cdb5d9771286b096c1372685d0f8",
+                "candidate_full_current_root_reads": [
+                    "6e353f6d2258",
+                    "a29ff3ffce96"
+                ],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "6e353f6d2258",
+                    "a29ff3ffce96"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "6e353f6d2258": {
+                    "set": "oracles",
+                    "result": "materially fulfilled"
+                },
+                "c080b406d2a8": {
+                    "set": "round-1",
+                    "result": "partial"
+                },
+                "a29ff3ffce96": {
+                    "set": "verified-primary",
+                    "result": "partial"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "upgrade-dependencies",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Deliver compatible upgrades and required migrations",
+                "inputs": "Scope, managers/workspaces/manifests/lockfiles, constraints, official release guidance",
+                "scope": "Requested project packages/toolchain only; preserve unrelated work, no optional refactors or remote success claims",
+                "contribution": "Compatible target set, installed-to-target migration interval, manager-owned lockfiles, resolved transitive reconciliation",
+                "completion": "Reproducible install and required checks/behaviour pass or exact blockers; versions/migrations/held-back items returned"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#upgrade-dependencies",
+            "root_sha256": "80919e4ea6ec9d017d766011e784d49924bf76b1bb7d9eb7f45b08500f20647b",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 142
+                },
+                {
+                    "path": "README.md",
+                    "line": 147
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "8dd477a97106",
+                "5bc3ff0e21c3",
+                "91a65e90ea76",
+                "86a4925ab95f",
+                "37b1645762a5",
+                "3496a081483a"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "86a4925ab95f",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "37b1645762a5",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "3496a081483a",
+                    "result": "partial",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "upgrade-dependencies",
+                "current_root_sha256": "80919e4ea6ec9d017d766011e784d49924bf76b1bb7d9eb7f45b08500f20647b",
+                "candidate_full_current_root_reads": ["86a4925ab95f"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "86a4925ab95f"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "8dd477a97106": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "86a4925ab95f": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "write-prose",
+            "disposition": "revised in place; public capability retained",
+            "contract": {
+                "goal": "Write natural reader-fit prose without weakening evidence",
+                "inputs": "Brief, supplied facts, audience/medium/genre, exact/required wording, language and voice",
+                "scope": "Prose contribution only; caller keeps artefact factual/procedural authority",
+                "contribution": "Concrete reasoning, grounding concepts, useful rhythm, conditional voice/technique/review knowledge",
+                "completion": "Requested prose preserves facts/wording and meaning, improves clarity, exposes remaining factual gaps"
+            },
+            "source_matches_and_guideline_mapping": "operations.json",
+            "authoritative_final_conformance": "final-conformance.json#write-prose",
+            "root_sha256": "52f3808ddad2832a4f4078732e70e4530f336505e76cc1f66b96c25f72e4837d",
+            "original_resources": {
+                "SKILL.md": "revised",
+                "agents/openai.yaml": "retained unchanged",
+                "references/NATURAL-PROSE-REVIEW.md": "retained unchanged",
+                "references/PREFERRED-VOICE.md": "retained unchanged",
+                "references/WRITING-TECHNIQUES.md": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 187
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": true
+            },
+            "evaluation_ids": [
+                "1b35de481e01",
+                "39717ff100b7",
+                "04552573c613",
+                "397ba44b3475",
+                "e8a09cca4bf1",
+                "769b846fb163",
+                "eee646978322",
+                "279d18f25a04",
+                "24d7b0a71020",
+                "32759f786dae"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "279d18f25a04",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "24d7b0a71020",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "32759f786dae",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "write-prose",
+                "current_root_sha256": "52f3808ddad2832a4f4078732e70e4530f336505e76cc1f66b96c25f72e4837d",
+                "candidate_full_current_root_reads": ["279d18f25a04"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "279d18f25a04"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "e8a09cca4bf1": {
+                    "set": "round-1",
+                    "result": "materially fulfilled"
+                },
+                "279d18f25a04": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        },
+        {
+            "skill": "write-skill",
+            "disposition": "root retained; two references clarified",
+            "contract": {
+                "goal": "An effective reusable skill bundle for a real recurring task",
+                "inputs": "Destination, representative tasks, sources, preferences, runtime, existing bundle/callers/evidence for revisions",
+                "scope": "Requested bundle and verification; no implicit install/publication/external authority",
+                "distinct_contribution": "Contract-first units, precise triggers, conditional knowledge, portable packaging, actual clean comparisons and maintainable release evidence",
+                "completion": "Bundle present, reachable resources, applicable checks passed and outcome evidence/uncertainty assessed"
+            },
+            "source_matches_and_guideline_mapping": "write-skill.json",
+            "authoritative_final_conformance": "final-conformance.json#write-skill",
+            "root_sha256": "56bfbd1b66c70e0ff26c4de3977021944edac7f13b931101d75e17d864dcc441",
+            "original_resources": {
+                "SKILL.md": "retained unchanged",
+                "agents/openai.yaml": "retained unchanged",
+                "assets/router-template.md": "retained unchanged",
+                "assets/skill-template.md": "retained unchanged",
+                "references/evaluation.md": "revised",
+                "references/examples.md": "retained unchanged",
+                "references/maintenance.md": "retained unchanged",
+                "references/packaging.md": "revised",
+                "references/tools.md": "retained unchanged",
+                "references/writing.md": "retained unchanged",
+                "scripts/validate-skill.js": "retained unchanged"
+            },
+            "added_files": [],
+            "current_callers": [
+                {
+                    "path": "README.md",
+                    "line": 188
+                }
+            ],
+            "invocation": {
+                "allow_implicit_invocation": false
+            },
+            "evaluation_ids": [
+                "e409dc1b48fd",
+                "e661f17e780b",
+                "d39fd72f4737",
+                "eb6ef90ef995",
+                "0418df4ac7ea",
+                "551d72539510",
+                "f89c231c1997",
+                "8d3a5f10e1bf",
+                "fe8c525cb7bc",
+                "51d126ce3f64",
+                "3b517816c803",
+                "b99fcbd682e2"
+            ],
+            "primary_results": {
+                "candidate": {
+                    "id": "51d126ce3f64",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                },
+                "none": {
+                    "id": "3b517816c803",
+                    "result": "partial",
+                    "exit": 0
+                },
+                "previous": {
+                    "id": "b99fcbd682e2",
+                    "result": "materially fulfilled",
+                    "exit": 0
+                }
+            },
+            "limits": [
+                "Representative fixtures and bounded repetitions; universal or other-model reliability not established.",
+                "See individual saved criteria, adjudications and telemetry limits."
+            ],
+            "release_version_evidence": {
+                "skill": "write-skill",
+                "current_root_sha256": "56bfbd1b66c70e0ff26c4de3977021944edac7f13b931101d75e17d864dcc441",
+                "candidate_full_current_root_reads": ["e409dc1b48fd"],
+                "graded_candidate_trials_with_exact_current_bundle": [
+                    "e409dc1b48fd",
+                    "eb6ef90ef995",
+                    "0418df4ac7ea",
+                    "51d126ce3f64"
+                ],
+                "changed_after_trial_limit": null
+            },
+            "candidate_results": {
+                "e409dc1b48fd": {
+                    "set": "author-loading",
+                    "result": "materially fulfilled"
+                },
+                "eb6ef90ef995": {
+                    "set": "risk-final",
+                    "result": "partial"
+                },
+                "0418df4ac7ea": {
+                    "set": "risk-final",
+                    "result": "materially fulfilled"
+                },
+                "51d126ce3f64": {
+                    "set": "verified-primary",
+                    "result": "materially fulfilled"
+                }
+            },
+            "completion_assessment": "Contract and final conformance verified; representative outcomes and relevant risk/uncertainty assessed. Individual failed/partial agent runs and telemetry limits retained, not universal efficacy."
+        }
+    ]
+}

@@ -1,0 +1,187 @@
+{
+    "separate_from_outcome_quality": true,
+    "cases": [
+        {
+            "skill": "elicit",
+            "id": "indirect-travel-understanding",
+            "task": "Help me settle the bounded day-trip plan in brief.txt. Everything in the confirmed section is settled. Resolve only the remaining decision; do not book or save anything.",
+            "files": {
+                "brief.txt": "Confirmed: Two adults will visit the harbour museum on Saturday, arriving at 10:00 and leaving the city by 17:00. Tickets and train times are already confirmed. We have a total lunch budget of \u00a340 and need a vegetarian option. Walking must stay under 20 minutes at a time.\nRemaining decision: My partner has not chosen whether lunch should be a quiet sit-down meal or something quick so we have longer in the museum. The museum has a cafe with both options. There is no public fact to look up that determines our preference.\n"
+            },
+            "rubric": [
+                "Asks one explicit question addressing the user-held lunch preference and its trade-off.",
+                "Uses the confirmed time, budget, food and walking constraints without reopening them.",
+                "Offers plausible alternatives without inventing cafe prices, opening times or a booking.",
+                "Creates no file or external state; does not claim complete confirmation."
+            ],
+            "mode": "read-only",
+            "risks": [
+                "Clarification drift into already-settled decisions",
+                "Premature completion without user-held preference"
+            ],
+            "evaluation_status": "planned; not executed",
+            "activation": "natural",
+            "expected_loads": ["elicit"]
+        },
+        {
+            "skill": "code-cleanup",
+            "id": "indirect-cleanup-registry",
+            "task": "Review delivery.py for behaviour-preserving simplification opportunities. Keep files unchanged and return justified findings. Its public functions and the handlers in handlers.json are supported contracts.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "handlers.json": "{\"refund\": \"reject_invalid\"}\n",
+                "delivery.py": "import json\n\ndef format_label(name):\n    label = str(name).strip()\n    return label\n\ndef label(name):\n    return format_label(name)\n\ndef reject_invalid(value):\n    if not isinstance(value, str):\n        raise ValueError(\"name must be text\")\n    return value.strip()\n\ndef dispatch(kind, value):\n    with open(\"handlers.json\") as source:\n        handler = json.load(source)[kind]\n    return globals()[handler](value)\n",
+                "tests/test_delivery.py": "import unittest\nfrom delivery import label, dispatch\nclass DeliveryTests(unittest.TestCase):\n    def test_label(self): self.assertEqual(label(\" Ada \"), \"Ada\")\n    def test_refund(self): self.assertEqual(dispatch(\"refund\", \" Ada \"), \"Ada\")\n    def test_invalid_refund(self):\n        with self.assertRaises(ValueError): dispatch(\"refund\", 7)\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add .",
+                "git commit -qm baseline"
+            ],
+            "rubric": [
+                "Report a concrete pass-through or unnecessary intermediate simplification with preserved public exports, rather than only style advice.",
+                "Recognise the dynamically configured reject_invalid handler and preserve its invalid-input guard.",
+                "No source, tests, configuration, Git state, or notes edits.",
+                "Findings include location, burden removed, and behaviour-preservation evidence; unresolved external uses are not called safe deletion."
+            ],
+            "mode": "read-only",
+            "risks": [
+                "Dynamic entry point",
+                "Erased type assumptions cannot justify deleting runtime validation"
+            ],
+            "activation": "natural",
+            "expected_loads": ["code-cleanup"]
+        },
+        {
+            "skill": "measure-code-complexity",
+            "id": "indirect-measure-changed-signature",
+            "task": "Measure the current changed production code against HEAD and interpret any complexity triggers. Keep source and tests unchanged. Explain incomplete evidence where applicable; there is no repository threshold policy.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "rules.py": "def choose(a):\n    return a\n",
+                "next-rules.py": "def choose(a, b, c, d, e):\n    if a == 1: return b\n    if a == 2: return c\n    if a == 3: return d\n    if a == 4: return e\n    if a == 5: return b + c\n    if a == 6: return b + d\n    if a == 7: return b + e\n    if a == 8: return c + d\n    if a == 9: return c + e\n    if a == 10: return d + e\n    return 0\n",
+                "opaque.mystery": "opaque unsupported production grammar\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add . && git reset -q -- next-*.py",
+                "git commit -qm baseline",
+                "mv next-rules.py rules.py",
+                "python3 -c \"from pathlib import Path; Path('opaque.mystery').write_text('modified opaque grammar\\n')\""
+            ],
+            "rubric": [
+                "Report reproducible cyclomatic value 11 and parameter count 5 for choose(), with base values 1 and 1, or accurately identify unavailable measurement. The final output must establish scope, method and units.",
+                "Report unsupported changed opaque.mystery as incomplete evidence instead of clear measurement.",
+                "Provide concrete disposition or unresolved evidence for each trigger; thresholds alone do not establish a defect.",
+                "Return raw artefact path and leave repository files and policy unchanged."
+            ],
+            "mode": "workspace-write",
+            "risks": ["Unsupported language", "Advisory metric versus defect"],
+            "activation": "natural",
+            "expected_loads": ["measure-code-complexity"]
+        },
+        {
+            "skill": "write-prose",
+            "id": "indirect-revise-prose-preserving-facts",
+            "task": "Revise draft.md into final.md for busy UK service managers. Keep the two required headings and preserve the exact quotation and all supplied numerical facts. Make the decision, evidence, and uncertainty easy to understand. Use a professional, conversational voice. Do not invent examples or personal experience.",
+            "files": {
+                "draft.md": "# Trial result\n\nIt is important to note that our initial pilot was a genuinely transformative initiative that leveraged an innovative solution. Twelve branches used the service for six weeks. Median waiting time changed from 18 minutes to 14 minutes. There was no randomised comparison. The supplier said, \"We organize every booking around the customer.\" We can definitively conclude that the service caused all improvements.\n\n# Next decision\n\nIn conclusion, the bottom line is that it is worth noting that the bottom line is we should roll out everywhere immediately, though staffing also changed at eight branches during the trial.\n"
+            },
+            "rubric": [
+                "final.md retains exactly the required two headings, twelve branches, six weeks, 18-to-14-minute result, eight staffing changes, and exact US-spelled quotation.",
+                "The unsupported causal certainty is corrected; staffing and lack of randomised comparison have a practical implication.",
+                "The prose leads with useful substance and removes repetitive filler without losing meaning.",
+                "No invented anecdote, experience, source, fact, or certainty appears.",
+                "UK English applies to authored prose; the exact quotation remains intact."
+            ],
+            "mode": "workspace-write",
+            "risks": "Local prose revision only; no external publication.",
+            "activation": "natural",
+            "expected_loads": ["write-prose"]
+        },
+        {
+            "skill": "elicit",
+            "activation": "natural",
+            "mode": "read-only",
+            "rubric": [
+                "Inspect actual root loads and boundary; outcome grading belongs to separate suite."
+            ],
+            "id": "missing-prerequisite",
+            "task": "Help me decide how to format a family newsletter. The key missing information is who will read it. Ask for the information you need before drafting.",
+            "files": {},
+            "expected_loads": ["elicit"]
+        },
+        {
+            "skill": "elicit",
+            "activation": "natural",
+            "mode": "read-only",
+            "rubric": [
+                "Inspect actual root loads and boundary; outcome grading belongs to separate suite."
+            ],
+            "id": "prose-near-miss",
+            "task": "Read draft.md and return only its line count. Do not rewrite any text.",
+            "files": {
+                "draft.md": "First line.\nSecond line.\n"
+            },
+            "expected_loads": []
+        },
+        {
+            "skill": "elicit",
+            "activation": "natural",
+            "mode": "read-only",
+            "rubric": [
+                "Inspect actual root loads and boundary; outcome grading belongs to separate suite."
+            ],
+            "id": "cleanup-adjacent",
+            "task": "Explain why this expression evaluates to 8: 2 + 3 * 2. Do not review or change any code.",
+            "files": {},
+            "expected_loads": []
+        },
+        {
+            "skill": "elicit",
+            "activation": "natural",
+            "mode": "read-only",
+            "rubric": [
+                "Inspect actual root loads and boundary; outcome grading belongs to separate suite."
+            ],
+            "id": "explicit-only-boundary",
+            "task": "Create an architectural decision record from our accepted choice of the existing SQLite library. The choice is routine, local and inexpensive to change; no surprising trade-off exists. Return why a durable record is unwarranted; do not save files.",
+            "files": {},
+            "expected_loads": []
+        },
+        {
+            "skill": "elicit",
+            "activation": "natural",
+            "mode": "read-only",
+            "rubric": [
+                "Inspect actual root loads and boundary; outcome grading belongs to separate suite."
+            ],
+            "id": "competing-review",
+            "task": "Review whether patch.txt changes intended behaviour. The requirement is to preserve case in user names. Return a read-only finding with location and consequence. Do not propose behaviour-preserving cleanup.",
+            "files": {
+                "patch.txt": "-return name\n+return name.lower()\n"
+            },
+            "expected_loads": []
+        },
+        {
+            "skill": "elicit",
+            "activation": "natural",
+            "mode": "read-only",
+            "rubric": [
+                "Inspect actual root loads and boundary; outcome grading belongs to separate suite."
+            ],
+            "id": "contextual-prose",
+            "task": "For the visitor-guide section of an archive project, revise draft.md into clear reader-facing prose and return it in chat. Preserve the fact that the archive has twelve branches. No software changes are needed.",
+            "files": {
+                "draft.md": "It is worth noting that our archive has twelve branches. We leverage these to foster access.\n"
+            },
+            "expected_loads": ["write-prose"]
+        }
+    ]
+}

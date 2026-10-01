@@ -1,0 +1,1076 @@
+{
+    "batch": "operations",
+    "starting_commit": "56da523e43fde40af9977a4c0eeff78604536c6d",
+    "frozen_baseline": "/private/tmp/propulsion-refactor-20261001-start/skills",
+    "guide_read_in_full": "docs/research/modern-agent-skill-authoring-guide-2026-10-01.md",
+    "write_skill_resources_read": [
+        "SKILL.md",
+        "assets/skill-template.md",
+        "assets/router-template.md",
+        "references/writing.md",
+        "references/packaging.md",
+        "references/tools.md",
+        "references/evaluation.md",
+        "references/maintenance.md",
+        "references/examples.md"
+    ],
+    "source_collection_revisions_verified": {
+        "mattpocock": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+        "emilkowalski": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+        "humanlayer": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+        "cursor": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e"
+    },
+    "cross_cutting_source_reads": [
+        "mattpocock/skills/productivity/writing-for-agents/SKILL.md",
+        "mattpocock/skills/productivity/writing-for-agents/SKILL-MECHANICS.md"
+    ],
+    "skills": [
+        {
+            "skill": "commit",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Record eligible completed local work",
+                "inputs": "Request, repository, complete index/worktree, review and check evidence",
+                "scope": "Eligible local commits only; preserve unrelated content and staging; no push",
+                "contribution": "Selective staging, coupled intent grouping, hooks and Git-state verification",
+                "completion": "Eligible changes committed, excluded state preserved, hashes/titles/blockers returned"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/misc/git-guardrails-claude-code/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh",
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/pr/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Closest Git-boundary analogue and PR outcome; no standalone atomic selective-commit skill. Retain index preservation rather than copy broad command bans.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [],
+                    "closest_match_or_absence": "No counterpart: the 13 roots cover animation, design, native UI, and prototypes, not Git recording.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Commit task-related work is one publication stage, not an independent Git-state-preservation contract.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/poteto-mode/playbooks/opening-a-pr.md"
+                    ],
+                    "closest_match_or_absence": "Closest commit grouping/title guidance; reject reset/rebase defaults for preservation of unrelated work.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/commit/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/commit/agents/openai.yaml",
+                    "disposition": "retain",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:104:#### `$commit`",
+                "README.md:109:$commit",
+                "README.md:130:    \u2192 $commit whenever a coherent unit is ready",
+                "README.md:137:$implement \u2192 $commit \u2192 $pull-request",
+                "README.md:165:$debug \u2192 $commit \u2192 $pull-request",
+                "skills/pull-request/SKILL.md:19:1. Invoke `$commit` when eligible uncommitted work belongs to the branch. Reuse its result and preserve excluded work."
+            ],
+            "changes": [
+                "Replace compulsory fresh context with one direct workflow.",
+                "Make selective staging and unrelated index/worktree preservation actionable.",
+                "Replace universal no-check ban with reuse of evidence and exceptions for repository-required checks or material gaps."
+            ],
+            "retained_protections": [
+                "Unrelated staged/unstaged/untracked content and staging state",
+                "Eligible reviewed/verified work and exact recorded patch",
+                "Atomic intent grouping, Conventional Commits, hook execution/no bypass",
+                "No implementation change to force commit, push, or PR"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/commit",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "N/A: no changed executable helper"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        },
+        {
+            "skill": "pull-request",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Publish the whole branch as one correct PR",
+                "inputs": "Repository, branch, base, host, user intent, whole branch diff and validation",
+                "scope": "Authorised push and one matching PR only; no history rewrite or merge",
+                "contribution": "Whole-branch review explanation and safe state-readback/retry",
+                "completion": "Matching PR has intended head/base/revision/body; URL and material limits returned"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/pr/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/pr/CREDITS.md"
+                    ],
+                    "closest_match_or_absence": "Direct PR-writing counterpart. Adapt reviewer-facing evidence and useful visuals; do not require its exact Summary/Evidence/Merge Danger form. Credits show shared HumanLayer provenance.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [],
+                    "closest_match_or_absence": "No publication counterpart in the domain/design collection.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/references/pr_description_template.md",
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/references/describe_pr_final_answer.md",
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/references/show-me.md"
+                    ],
+                    "closest_match_or_absence": "Direct create/update and concise reviewer explanation. Exact sentence/bullet ceremony is author preference, not demonstrated correctness protection.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/poteto-mode/playbooks/opening-a-pr.md"
+                    ],
+                    "closest_match_or_absence": "Direct forge selection, titles, briefing, verification, and published state. Keep repo authority, user readiness/base intent, and no history rewrite; omit fixed stack/rebase/ready-only policy.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/pull-request/agents/openai.yaml",
+                    "disposition": "retain",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:114:#### `$pull-request`",
+                "README.md:119:$pull-request",
+                "README.md:131:    \u2192 $pull-request when the branch is ready",
+                "README.md:137:$implement \u2192 $commit \u2192 $pull-request",
+                "README.md:165:$debug \u2192 $commit \u2192 $pull-request"
+            ],
+            "changes": [
+                "Replace compulsory fresh agent with direct publication.",
+                "Replace exact three-sentence paragraph/title/testing ceremony with repository template and concise final-behaviour account.",
+                "Allow material check commands/results and visual evidence; preserve uncertainty instead of claiming remote CI.",
+                "Read host state after unknown outcomes before retrying."
+            ],
+            "retained_protections": [
+                "Whole branch comparison and complete final outcome",
+                "Eligible commit contract, unrelated state preservation",
+                "No remote history rewrite; exact head/base/revision readback",
+                "No review/merge/release/deploy; existing evidence and limitations"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/pull-request",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "N/A: no changed executable helper"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        },
+        {
+            "skill": "review-pull-request",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Review exact host candidate independently",
+                "inputs": "PR identifier, repository host metadata, exact revisions, available behavioural authority",
+                "scope": "Read-only review; no repair, publication, or host mutation",
+                "contribution": "Resolve/pin PR and delegate code-review without duplicating internal method; detect host drift",
+                "completion": "Independent result returned unchanged with identity and stale status when necessary"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/code-review/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Direct fixed-point, behavioural-source, and standards/spec axes counterpart; compose local code-review public contract rather than copy reviewer internals.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/emilkowalski/skills/review-animations/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/emilkowalski/skills/review-animations/STANDARDS.md"
+                    ],
+                    "closest_match_or_absence": "Adjacent source-location and constrained read-only domain-review analogue; not a whole-PR or engineering-standards counterpart.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [],
+                    "closest_match_or_absence": "No PR assessment counterpart; visual-pr authors a description, and narrow-react-prop-types implements a transformation.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/poteto-mode/playbooks/shipping.md"
+                    ],
+                    "closest_match_or_absence": "Adjacent exact head/base/patch currency checks, but shipping mutates/merges and lies outside review authority. Adapt revision drift recognition only.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/review-pull-request/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/review-pull-request/agents/openai.yaml",
+                    "disposition": "retain",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:174:| `$review-pull-request`          | Utility  | Resolve a pull request to fixed revisions and return an independent read-only code review                       |"
+            ],
+            "changes": [
+                "Change misleading router metadata to utility: one unconditional composed outcome.",
+                "Expose input resolution, code-review public invocation, and host revision drift.",
+                "Keep independent report unchanged and read-only boundary."
+            ],
+            "retained_protections": [
+                "Exact repository/base/head candidate",
+                "Independent code-review public contract and unchanged result",
+                "No repair, comment publication, or host mutation",
+                "Ambiguity/access blocker and drift disclosure"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/review-pull-request",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "N/A: no changed executable helper"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        },
+        {
+            "skill": "research",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Save high-trust evidence for a material question",
+                "inputs": "Question, purpose, scope, evidence/tools, destination",
+                "scope": "Source reads and report writes only; consumer owns downstream decisions",
+                "contribution": "Claim-relative source appraisal, independent routes, disagreement, inference and source verification",
+                "completion": "Durable report covers scope, checked claims/citations, conflicts and limits; path returned"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/research/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Direct durable primary-source research counterpart; preserve claim-relative authority, independence, contrary evidence, limits, and checked citations beyond its short baseline.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [],
+                    "closest_match_or_absence": "No source-discovery/appraisal report counterpart in the motion/design collection.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/build-iterated-agentic-loop/skills/build-iterated-agentic-loop/references/skill-template.md"
+                    ],
+                    "closest_match_or_absence": "Completion and source-of-truth analogue only; no external research counterpart or corroboration method.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/why/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/why/references/epistemics.md",
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/poteto-mode/playbooks/investigation.md"
+                    ],
+                    "closest_match_or_absence": "Closest cited investigation and confidence separation. Keep inference/missing evidence distinctions; omit seven-tool compulsory orchestration and historical model aliases.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/research/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/research/agents/openai.yaml",
+                    "disposition": "revise",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                },
+                {
+                    "path": "skills/research/assets/research-report-template.md",
+                    "disposition": "revise",
+                    "reason": "Output contract retained; source separator uses plain punctuation.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:177:| `$research`                     | Utility  | Investigate a material subject with high-trust evidence and persist a trusted cited report                      |",
+                "skills/debug/SKILL.md:42:Use nondeterministic or performance guidance as soon as that signal appears. Combine techniques only when they answer different unresolved questions. Use `$research` when a material external-knowledge question requires a durable cited report.",
+                "skills/review-architecture/SKILL.md:20:2. Apply `$modular-design` to the current evidence. Invoke `$research` only when a material candidate depends on external evidence that the repository cannot establish; read its report before deciding whether the candidate qualifies.",
+                "skills/specify-feature/SKILL.md:19:1. **Establish intent.** Resolve material outcomes, scope, actors, goals, rules, adverse paths, qualities, and acceptance boundaries. Use confirmed elicitation as authority for the feature direction. Invoke `$research` when durable external evidence is needed; its report supports facts, not product decisions.",
+                "skills/define-product/SKILL.md:22:2. **Capture design inputs.** Cover material system-wide qualities, context, interfaces, information duties, integrations, security, privacy, safety, compliance, mandated technology or platforms, operations, and lifecycle. Establish immateriality before omitting a concern. Invoke `$elicit-with-context` for material user-held information or decisions. Invoke `$research` when a material external claim needs durable evidence; link its report.",
+                "skills/research/agents/openai.yaml:4:    default_prompt: 'Use $research to investigate this subject and save a cited report.'",
+                "skills/define-product/references/DISCOVERY.md:3:Load only the branch needed when direct inspection and ordinary elicitation do not expose the foundation. `$elicit-with-context` owns shared-understanding questioning; `$research` owns durable external evidence; `define-product` retains `PRODUCT.md` and the stopping boundary.",
+                "skills/define-product/references/DISCOVERY.md:15:Use meaningful alternatives, manual work, and doing nothing to clarify value and boundaries. Invoke `$research` only when external position, regulation, standards, providers, or user evidence could materially change a requirement and the evidence must survive the session."
+            ],
+            "changes": [
+                "Make fresh investigation conditional on independence/context need and explain that context separation is not source independence.",
+                "Use requested/existing destination and format; keep conflict/limitation/citation distinctions.",
+                "Preserve existing reports unless maintenance/replacement authorised.",
+                "Return material evidence limitations alongside path; no duplicate caller verification ceremony."
+            ],
+            "retained_protections": [
+                "Claim-relative authority and original/owning evidence",
+                "Independent routes versus duplicated upstream reports",
+                "Credible contrary evidence, gaps, inference/confidence distinction",
+                "Finished report source checks, preserve prior work, bounded stopping and write authority"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/research",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "N/A: no changed executable helper"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        },
+        {
+            "skill": "review-architecture",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Explain consequential current structural improvements",
+                "inputs": "Repository authorities, entire in-scope codebase, history, revision, destination",
+                "scope": "Report-only architecture review; no implementation/authority/ticket mutation",
+                "contribution": "Evidence-based structural causality, qualitative top ranking, valid zero result and coverage, expandable HTML",
+                "completion": "Report records revision/coverage/limits, ordered useful candidates or zero result; structural and available visual QA complete"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/improve-codebase-architecture/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/engineering/improve-codebase-architecture/HTML-REPORT.md"
+                    ],
+                    "closest_match_or_absence": "Direct structural-friction and visual HTML counterpart. Keep present source evidence and structural benefit, adapt history as supporting coverage signal, no compulsory diagrams or downstream grilling/mutation.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/emilkowalski/skills/review-animations/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/emilkowalski/skills/review-animations/STANDARDS.md",
+                        "/private/tmp/skill-authoring-20261001/emilkowalski/skills/improve-animations/PLAN-TEMPLATE.md"
+                    ],
+                    "closest_match_or_absence": "No whole-codebase architecture counterpart; adjacent domain audit with exact source evidence and actual visual checks. Do not transpose motion thresholds or implementation plans.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/show-me/skills/show-me/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Closest useful HTML/structure visual analogue; no architecture assessment counterpart. Smallest useful diagram, actual display permitted, no decorative visual requirement.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/architect/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/architect/references/design-red-flags.md",
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/architect/references/rationale-template.md",
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/architect/references/runner-prompt.md"
+                    ],
+                    "closest_match_or_absence": "Closest architecture workflow and structural screens. It designs and implements; local review must remain report-only and avoid forced arena/model roles or detailed interfaces.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/review-architecture/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/review-architecture/agents/openai.yaml",
+                    "disposition": "retain",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                },
+                {
+                    "path": "skills/review-architecture/assets/report-template.html",
+                    "disposition": "retain",
+                    "reason": "HTML presentation contract retained and validator revised for requested paths and each candidate.",
+                    "read": true
+                },
+                {
+                    "path": "skills/review-architecture/scripts/validate-report.js",
+                    "disposition": "revise",
+                    "reason": "HTML presentation contract retained and validator revised for requested paths and each candidate.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:80:#### `$review-architecture`",
+                "README.md:85:$review-architecture"
+            ],
+            "changes": [
+                "Allow requested scope/destination with convention fallback and preserve existing report.",
+                "Replace ban on opening/rendering with available rendered QA and honest tool limitation.",
+                "Keep evidence/top ranking/coverage/zero result and report-only direction.",
+                "Validator accepts arbitrary .html path and validates every candidate rather than matching markers anywhere; emits JSON/help/clear statuses; no mandatory CDN dependency."
+            ],
+            "retained_protections": [
+                "Current precise source/history evidence and credible structural cause",
+                "Present material benefits only, explicit uncertainty and trade-offs",
+                "No quota, valid zero result, coverage, stable rank/top candidate",
+                "Escaping, no leftover markers, revision drift and report-only mutation",
+                "Direction-level recommendations without detailed design or implementation"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/review-architecture",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "6 passing tests, 15 assertions in scripts/validate-report.test.js"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        },
+        {
+            "skill": "upgrade-dependencies",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Deliver compatible upgrades and required migrations",
+                "inputs": "Scope, managers/workspaces/manifests/lockfiles, constraints, official release guidance",
+                "scope": "Requested project packages/toolchain only; preserve unrelated work, no optional refactors or remote success claims",
+                "contribution": "Compatible target set, installed-to-target migration interval, manager-owned lockfiles, resolved transitive reconciliation",
+                "completion": "Reproducible install and required checks/behaviour pass or exact blockers; versions/migrations/held-back items returned"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [],
+                    "closest_match_or_absence": "No compatible-version dependency-upgrade counterpart; migrate-to-shoehorn is one named migration, not solver/peer/platform selection.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [],
+                    "closest_match_or_absence": "No dependency/version upgrade counterpart; pick-ui-library selects a UI library rather than upgrading an installed graph.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/build-iterated-agentic-loop/skills/build-iterated-agentic-loop/references/skill-template.md"
+                    ],
+                    "closest_match_or_absence": "Source-of-truth, narrow change, and validation/blocker analogue only. No solver/lockfile/migration counterpart.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/poteto-mode/playbooks/opening-a-pr.md"
+                    ],
+                    "closest_match_or_absence": "No package/toolchain upgrade counterpart; publication verification analogue does not establish version compatibility. Preserve ecosystem evidence from existing local contract.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/upgrade-dependencies/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/upgrade-dependencies/agents/openai.yaml",
+                    "disposition": "retain",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:142:#### `$upgrade-dependencies`",
+                "README.md:147:$upgrade-dependencies"
+            ],
+            "changes": [
+                "Keep single compatible-upgrade contract, condense repeated stages.",
+                "Replace compulsory fresh documentation agent with bounded delegation when useful.",
+                "Keep explicit outdated, compatibility, complete migration interval, lockfile/transitive reconciliation and meaningful validation."
+            ],
+            "retained_protections": [
+                "Scope and unrelated changes",
+                "Peer/platform/runtime compatibility without bypass",
+                "Stable allowed target set and complete migration interval",
+                "Manager-generated lockfiles and resolved transitive reconciliation",
+                "Required migrations only, immutable toolchain pins",
+                "Reproducibility/security/required checks and no invented remote success"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/upgrade-dependencies",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "N/A: no changed executable helper"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        },
+        {
+            "skill": "write-prose",
+            "disposition": "rewrite in place",
+            "contract": {
+                "goal": "Write natural reader-fit prose without weakening evidence",
+                "inputs": "Brief, supplied facts, audience/medium/genre, exact/required wording, language and voice",
+                "scope": "Prose contribution only; caller keeps artefact factual/procedural authority",
+                "contribution": "Concrete reasoning, grounding concepts, useful rhythm, conditional voice/technique/review knowledge",
+                "completion": "Requested prose preserves facts/wording and meaning, improves clarity, exposes remaining factual gaps"
+            },
+            "sources": {
+                "mattpocock": {
+                    "revision": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/in-progress/writing-beats/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/in-progress/writing-shape/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/mattpocock/skills/in-progress/writing-fragments/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Closest reader-facing drafting counterparts. Ground concepts and preserve supplied material; do not import interactive paragraph-by-paragraph consent into an already-authorised revision.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "emilkowalski": {
+                    "revision": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
+                    "files_read": [],
+                    "closest_match_or_absence": "No reader-facing prose counterpart; domain review tone is not a general prose-writing method.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "humanlayer": {
+                    "revision": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/SKILL.md",
+                        "/private/tmp/skill-authoring-20261001/humanlayer/plugins/visual-pr/skills/visual-pr/references/pr_description_template.md"
+                    ],
+                    "closest_match_or_absence": "Closest concise human reader explanation; PR-only output contract, not general prose voice.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                },
+                "cursor": {
+                    "revision": "2eb7ed4613cfc8f098dfe464a23680ea44d84c5e",
+                    "files_read": [
+                        "/private/tmp/skill-authoring-20261001/cursor/pstack/skills/technical-writing/SKILL.md"
+                    ],
+                    "closest_match_or_absence": "Direct technical prose counterpart. Everyday words, useful rhythm, exact symbols; omit universal Diataxis mode splitting, sentence limits, and obligatory additional style skills.",
+                    "evidence_limit": "Author/source pattern only; not causal outcome validation of this revision."
+                }
+            },
+            "guideline_evidence": [
+                {
+                    "guideline": "coherent-unit",
+                    "application": "Keep the existing independently useful outcome; no merge/split is justified by these distinct inputs and stopping boundaries.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "precise-trigger",
+                    "application": "Front-load the requested outcome; explicit invocation intent stays in native metadata.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "observable-contract",
+                    "application": "Inputs/Method/Finish expose state/artifact, authority, and done conditions.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "consequential-rules",
+                    "application": "Retain factual, Git, revision, migration, source, and publication boundaries; no behavioural evidence yet supports deleting them.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "conditional-resources",
+                    "application": "Resources have conditions at the decision that needs them; no compulsory unrelated read.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "runtime-only",
+                    "application": "Runtime text contains operational knowledge and current-context reasons, not authoring/evaluation history.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "simple-presentation",
+                    "application": "Direct verbs, descriptive headings, selective bold, no authored em dashes.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "tool-contract",
+                    "application": "Document/report validator statuses and mutation boundaries checked; non-helper skills rely on existing native tools and their actual help.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "proportionate-verification",
+                    "application": "Reuse valid evidence; preserve required/meaningful checks; broaden only for changed risks.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "authority-and-autonomy",
+                    "application": "Default direct user-agent work; fresh research only on a material condition; no permissions invented by skill.",
+                    "evidence": "skills/write-prose/SKILL.md"
+                },
+                {
+                    "guideline": "portable-core-and-adapters",
+                    "application": "Names/descriptions/resources validate; retain native fields and adapters pending destination loading evidence.",
+                    "evidence": "write-skill validator passed with native-field destination warnings"
+                },
+                {
+                    "guideline": "matched-evaluation",
+                    "application": "Neutral isolated tasks/rubrics planned for no-skill/previous/candidate; no outcome superiority claimed from static checks.",
+                    "evidence": "operations-cases.json; candidate comparisons pending root evaluation"
+                }
+            ],
+            "resources": [
+                {
+                    "path": "skills/write-prose/agents/openai.yaml",
+                    "disposition": "retain",
+                    "reason": "Invocation/display contract remains; research prompt drops forced fresh-agent detail.",
+                    "read": true
+                },
+                {
+                    "path": "skills/write-prose/references/NATURAL-PROSE-REVIEW.md",
+                    "disposition": "retain",
+                    "reason": "Authoritative conditional prose knowledge retained; no outcome evidence supports retirement.",
+                    "read": true
+                },
+                {
+                    "path": "skills/write-prose/references/PREFERRED-VOICE.md",
+                    "disposition": "retain",
+                    "reason": "Authoritative conditional prose knowledge retained; no outcome evidence supports retirement.",
+                    "read": true
+                },
+                {
+                    "path": "skills/write-prose/references/WRITING-TECHNIQUES.md",
+                    "disposition": "retain",
+                    "reason": "Authoritative conditional prose knowledge retained; no outcome evidence supports retirement.",
+                    "read": true
+                }
+            ],
+            "callers": [
+                "README.md:187:| `$write-prose`                  | Teaching | Write clear reader-facing UK prose that preserves facts and fits its audience                                   |"
+            ],
+            "changes": [
+                "Inline concise baseline voice and core prose invariants.",
+                "Load voice/technique/naturalness resources only for their concrete decision conditions.",
+                "Ground unfamiliar concepts and reuse authorised brief; no paragraph-by-paragraph ceremony.",
+                "Treat UK English as a default when user explicitly requests another language."
+            ],
+            "retained_protections": [
+                "Exact supplied quotations/proper names/technical/required wording",
+                "Meaning, evidence, uncertainty, no invented fact/experience/personality/agreement",
+                "Reader-fit voice with genre conventions and no style quotas",
+                "Caller authority and fidelity-based stopping"
+            ],
+            "static_checks": {
+                "packaging": "Passed bun skills/write-skill/scripts/validate-skill.js skills/write-prose",
+                "runtime_em_dash": "No authored em dashes found in roots/references/templates",
+                "native_invocation": "Codex implicit policy retained; disable-model-invocation native fields retained and warned, destination loading not demonstrated",
+                "helper_fixtures": "N/A: no changed executable helper"
+            },
+            "uncertainty": [
+                "Matched outcomes are pending root evaluation; no benefit claim is made from word count, source popularity, packaging, or one trace.",
+                "Actual loaded-context, latency, and across-run reliability require telemetry from the intended runtime.",
+                "Consequential protections retained where removal evidence is inconclusive."
+            ]
+        }
+    ],
+    "evaluation": "Planned executable cases in operations-cases.json; root owns matched executions, whole-repository checks, integration, and commit.",
+    "maintained_test": "scripts/validate-report.test.js; root to include in project test command."
+}

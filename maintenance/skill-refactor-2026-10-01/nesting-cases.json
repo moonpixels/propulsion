@@ -1,0 +1,64 @@
+{
+    "cases": [
+        {
+            "skill": "measure-code-complexity",
+            "id": "measure-changed-signature",
+            "task": "Measure the current changed production code against HEAD and interpret any complexity triggers. Keep source and tests unchanged. Explain incomplete evidence where applicable; there is no repository threshold policy.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "rules.py": "def choose(a):\n    return a\n",
+                "next-rules.py": "def choose(a, b, c, d, e):\n    if a == 1: return b\n    if a == 2: return c\n    if a == 3: return d\n    if a == 4: return e\n    if a == 5: return b + c\n    if a == 6: return b + d\n    if a == 7: return b + e\n    if a == 8: return c + d\n    if a == 9: return c + e\n    if a == 10: return d + e\n    return 0\n",
+                "opaque.mystery": "opaque unsupported production grammar\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add . && git reset -q -- next-*.py",
+                "git commit -qm baseline",
+                "mv next-rules.py rules.py",
+                "python3 -c \"from pathlib import Path; Path('opaque.mystery').write_text('modified opaque grammar\\n')\""
+            ],
+            "rubric": [
+                "Report reproducible cyclomatic value 11 and parameter count 5 for choose(), with base values 1 and 1, or accurately identify unavailable measurement. The final output must establish scope, method and units.",
+                "Report unsupported changed opaque.mystery as incomplete evidence instead of clear measurement.",
+                "Provide concrete disposition or unresolved evidence for each trigger; thresholds alone do not establish a defect.",
+                "Return raw artefact path and leave repository files and policy unchanged."
+            ],
+            "mode": "workspace-write",
+            "risks": ["Unsupported language", "Advisory metric versus defect"],
+            "permission_note": "Raw temporary artefact is authorised by task; repository files and policy remain read-only. Read-only sandbox wrongly blocked the required temporary output in initial trials."
+        },
+        {
+            "skill": "measure-code-complexity",
+            "id": "held-out-nesting-expressions",
+            "task": "Measure the current changed production code against HEAD and interpret any complexity triggers. Keep source and tests unchanged. Explain incomplete evidence where applicable; there is no repository threshold policy.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "rules.py": "def choose(a):\n    return a\n",
+                "next-rules.py": "def callback(x):\n    return lambda: (1 if x else (2 if x else (3 if x else (4 if x else 5))))\n\ndef comprehension(a, b, c, d, e, f, g):\n    return [x for x in (a if b else (c if d else (e if f else g)))]\n",
+                "opaque.mystery": "opaque unsupported production grammar\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add . && git reset -q -- next-*.py",
+                "git commit -qm baseline",
+                "mv next-rules.py rules.py",
+                "python3 -c \"from pathlib import Path; Path('opaque.mystery').write_text('modified opaque grammar\\n')\""
+            ],
+            "rubric": [
+                "Report nesting 4 for callback and comprehension using the recorded AST method, or explicitly explain an unavailable supported measurement; do not report shallow or clear nesting for either function.",
+                "Report unsupported changed opaque.mystery as incomplete evidence instead of clear measurement.",
+                "Provide concrete disposition or unresolved evidence for each trigger; thresholds alone do not establish a defect.",
+                "Return raw artefact path and leave repository files and policy unchanged."
+            ],
+            "mode": "workspace-write",
+            "risks": ["Unsupported language", "Advisory metric versus defect"],
+            "permission_note": "Raw temporary artefact is authorised by task; repository files and policy remain read-only. Read-only sandbox wrongly blocked the required temporary output in initial trials."
+        }
+    ]
+}

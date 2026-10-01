@@ -1,0 +1,127 @@
+{
+    "selection": "Retained exact case inputs for the Python nesting correction and its independent-review/implementation callers.",
+    "cases": [
+        {
+            "skill": "code-cleanup",
+            "id": "cleanup-registry",
+            "task": "Review delivery.py for behaviour-preserving simplification opportunities. Keep files unchanged and return justified findings. Its public functions and the handlers in handlers.json are supported contracts.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "handlers.json": "{\"refund\": \"reject_invalid\"}\n",
+                "delivery.py": "import json\n\ndef format_label(name):\n    label = str(name).strip()\n    return label\n\ndef label(name):\n    return format_label(name)\n\ndef reject_invalid(value):\n    if not isinstance(value, str):\n        raise ValueError(\"name must be text\")\n    return value.strip()\n\ndef dispatch(kind, value):\n    with open(\"handlers.json\") as source:\n        handler = json.load(source)[kind]\n    return globals()[handler](value)\n",
+                "tests/test_delivery.py": "import unittest\nfrom delivery import label, dispatch\nclass DeliveryTests(unittest.TestCase):\n    def test_label(self): self.assertEqual(label(\" Ada \"), \"Ada\")\n    def test_refund(self): self.assertEqual(dispatch(\"refund\", \" Ada \"), \"Ada\")\n    def test_invalid_refund(self):\n        with self.assertRaises(ValueError): dispatch(\"refund\", 7)\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add .",
+                "git commit -qm baseline"
+            ],
+            "rubric": [
+                "Report a concrete pass-through or unnecessary intermediate simplification with preserved public exports, rather than only style advice.",
+                "Recognise the dynamically configured reject_invalid handler and preserve its invalid-input guard.",
+                "No source, tests, configuration, Git state, or notes edits.",
+                "Findings include location, burden removed, and behaviour-preservation evidence; unresolved external uses are not called safe deletion."
+            ],
+            "mode": "read-only",
+            "risks": [
+                "Dynamic entry point",
+                "Erased type assumptions cannot justify deleting runtime validation"
+            ]
+        },
+        {
+            "skill": "code-review",
+            "id": "review-payment-retry",
+            "task": "Review the current payment.py change against SPEC.md and project standards. The comparison base is HEAD. Keep the candidate unchanged and report findings.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "SPEC.md": "Payment requests must use the order ID as the provider idempotency key. A retry after failed persistence must not charge twice. Already persisted orders return the recorded payment.\n",
+                "payment.py": "def pay(order, gateway, store):\n    payment = gateway.charge(order[\"amount\"], key=order[\"id\"])\n    store.save(order[\"id\"], payment)\n    return payment\n",
+                "next-payment.py": "def pay(order, gateway, store):\n    if order[\"id\"] in store.paid:\n        return store.paid[order[\"id\"]]\n    payment = gateway.charge(order[\"amount\"])\n    store.save(order[\"id\"], payment)\n    return payment\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "tests/test_payment.py": "import unittest\nfrom payment import pay\nclass Gateway:\n    def __init__(self): self.calls=[]\n    def charge(self, amount, key=None):\n        self.calls.append((amount,key)); return \"p1\"\nclass Store:\n    def __init__(self): self.paid={}\n    def save(self, key, payment): self.paid[key]=payment\nclass PaymentTests(unittest.TestCase):\n    def test_success(self):\n        store=Store(); self.assertEqual(pay({\"id\":\"o1\",\"amount\":10},Gateway(),store),\"p1\")\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add . && git reset -q -- next-*.py",
+                "git commit -qm baseline",
+                "mv next-payment.py payment.py"
+            ],
+            "rubric": [
+                "Identify loss of provider idempotency key and the retry-after-charge-before-save consequence using the requirement and code location.",
+                "Do not mistake the local paid lookup for safe recovery after persistence failure.",
+                "Keep source, test and unrelated notes unchanged; report separate applicable axes and evidence limitations.",
+                "The review reports diagnostic suggestions, not an approval or completed repair."
+            ],
+            "mode": "read-only",
+            "risks": [
+                "External effect before durable state",
+                "Happy-path-only retained test"
+            ]
+        },
+        {
+            "skill": "implement",
+            "id": "implement-expiry",
+            "task": "Implement expires_at as an optional keyword argument to can_use. A token is usable only if it is enabled and either has no expiry or now is strictly earlier than expiry. now is supplied by the caller; use no wall clock. Preserve existing positional calls and disabled-token behaviour.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "access.py": "def can_use(enabled, now):\n    return enabled\n",
+                "tests/test_access.py": "import unittest\nfrom access import can_use\nclass AccessTests(unittest.TestCase):\n    def test_enabled(self): self.assertTrue(can_use(True,100))\n    def test_disabled(self): self.assertFalse(can_use(False,100))\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add .",
+                "git commit -qm baseline"
+            ],
+            "rubric": [
+                "Existing positional calls remain valid and disabled tokens remain unusable.",
+                "New tests independently distinguish before expiry, equality, after expiry, and absent expiry using supplied fixed values.",
+                "The implementation uses caller time with no extra infrastructure, speculative states, or external dependency.",
+                "Required checks and current independent review are represented by actual evidence or exact limitations; no commits or unrelated edits."
+            ],
+            "mode": "workspace-write",
+            "risks": [
+                "Expiry equality",
+                "Backward compatibility",
+                "No wall clock"
+            ]
+        },
+        {
+            "skill": "measure-code-complexity",
+            "id": "measure-changed-signature",
+            "task": "Measure the current changed production code against HEAD and interpret any complexity triggers. Keep source and tests unchanged. Explain incomplete evidence where applicable; there is no repository threshold policy.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "rules.py": "def choose(a):\n    return a\n",
+                "next-rules.py": "def choose(a, b, c, d, e):\n    if a == 1: return b\n    if a == 2: return c\n    if a == 3: return d\n    if a == 4: return e\n    if a == 5: return b + c\n    if a == 6: return b + d\n    if a == 7: return b + e\n    if a == 8: return c + d\n    if a == 9: return c + e\n    if a == 10: return d + e\n    return 0\n",
+                "opaque.mystery": "opaque unsupported production grammar\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add . && git reset -q -- next-*.py",
+                "git commit -qm baseline",
+                "mv next-rules.py rules.py",
+                "python3 -c \"from pathlib import Path; Path('opaque.mystery').write_text('modified opaque grammar\\n')\""
+            ],
+            "rubric": [
+                "Report reproducible cyclomatic value 11 and parameter count 5 for choose(), with base values 1 and 1, or accurately identify unavailable measurement. The final output must establish scope, method and units.",
+                "Report unsupported changed opaque.mystery as incomplete evidence instead of clear measurement.",
+                "Provide concrete disposition or unresolved evidence for each trigger; thresholds alone do not establish a defect.",
+                "Return raw artefact path and leave repository files and policy unchanged."
+            ],
+            "mode": "workspace-write",
+            "risks": ["Unsupported language", "Advisory metric versus defect"],
+            "permission_note": "Raw temporary artefact is authorised by task; repository files and policy remain read-only. Read-only sandbox wrongly blocked the required temporary output in initial trials."
+        }
+    ]
+}

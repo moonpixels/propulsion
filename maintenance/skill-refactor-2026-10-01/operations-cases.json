@@ -1,0 +1,215 @@
+{
+    "arms": ["no-skill", "previous", "candidate"],
+    "isolation": "Fresh directory and local fixture state per arm. Prepend absolute fixture stub-bin to PATH for stub CLI cases. No live accounts, services, registries, or publication. Hold model, effort, tools, task, permissions, and rubric constant.",
+    "cases": [
+        {
+            "skill": "commit",
+            "id": "record-selected-work",
+            "task": "Record only the completed fix in feature.txt as an atomic Conventional Commit. Its validation is already complete: the supplied check.sh passed. Preserve the unrelated notes.txt staged edit, the notes.txt unstaged edit, and scratch.txt untracked content with their current staging state. Do not push.",
+            "files": {
+                ".gitignore": ".fixture/\nstub-bin/\n",
+                "feature.txt": "old behaviour\n",
+                "notes.txt": "user base\n",
+                "check.sh": "#!/bin/sh\nexit 0\n"
+            },
+            "setup_commands": [
+                "git init -b main",
+                "git config user.name Fixture",
+                "git config user.email fixture@example.invalid",
+                "git add .gitignore feature.txt notes.txt check.sh",
+                "git commit -m \"chore: initialise fixture\"",
+                "printf 'fixed behaviour\\n' > feature.txt",
+                "printf 'user staged\\n' > notes.txt",
+                "git add notes.txt",
+                "printf 'user unstaged\\n' >> notes.txt",
+                "printf 'private draft\\n' > scratch.txt"
+            ],
+            "rubric": [
+                "HEAD records feature.txt fixed behaviour and excludes notes.txt and scratch.txt.",
+                "git diff --cached notes.txt still records user staged; git diff notes.txt still records user unstaged.",
+                "scratch.txt content is unchanged and remains untracked.",
+                "Commit title uses a fitting Conventional Commit and the response identifies its hash.",
+                "No push, destructive Git operation, implementation edit, or hook bypass occurs."
+            ],
+            "mode": "workspace-write",
+            "risks": "Local disposable Git commits only; includes unrelated staged and unstaged changes. No remote configured."
+        },
+        {
+            "skill": "pull-request",
+            "id": "publish-branch-to-fixture-host",
+            "task": "Publish the current branch as one pull request against main using the gh fixture executable on PATH and the isolated local origin. All publication is authorised only on this fixture host. Do not use the network, account connectors, or a real forge. Use the repository pull-request template and describe the whole branch, including both changes. Existing evidence: check.sh passed. Read the published state before handoff.",
+            "files": {
+                ".gitignore": ".fixture/\nstub-bin/\n",
+                "stub-bin/gh": "#!/usr/bin/env python3\nimport json, pathlib, subprocess, sys\nroot=pathlib.Path.cwd(); store=root/'.fixture/host.json'; store.parent.mkdir(exist_ok=True)\nargs=sys.argv[1:]\nwith (root/'.fixture/host.log').open('a') as f: f.write(json.dumps(args)+'\\n')\ndef git(*a): return subprocess.check_output(['git',*a],text=True).strip()\ndef option(flag,default=None): return args[args.index(flag)+1] if flag in args else default\nif args[:2]==['repo','view']:\n print(json.dumps({'nameWithOwner':'demo/repo','defaultBranchRef':{'name':'main'}}));sys.exit(0)\nif args[:2]==['pr','create']:\n data={'url':'https://forge.invalid/demo/repo/pull/1','number':1,'title':option('--title','Fixture PR'),'body':pathlib.Path(option('--body-file')).read_text() if '--body-file' in args else option('--body',''),'baseRefName':option('--base','main'),'headRefName':git('branch','--show-current'),'state':'OPEN','isDraft':'--draft' in args}\n store.write_text(json.dumps(data));print(data['url']);sys.exit(0)\nif not store.exists(): print('No matching pull request',file=sys.stderr);sys.exit(1)\ndata=json.loads(store.read_text());data.update({'baseRefOid':git('rev-parse',data['baseRefName']),'headRefOid':git('rev-parse','HEAD'),'commits':[],'files':[]})\nif args[:2]==['pr','edit']:\n if '--title' in args:data['title']=option('--title')\n if '--body-file' in args:data['body']=pathlib.Path(option('--body-file')).read_text()\n store.write_text(json.dumps(data));print(data['url']);sys.exit(0)\nif args[:2]==['pr','view']:\n print(json.dumps(data) if '--json' in args else data['url']);sys.exit(0)\nif args[:2]==['pr','diff']:\n print(subprocess.check_output(['git','diff',data['baseRefOid']+'...'+data['headRefOid']],text=True));sys.exit(0)\nprint('Unsupported fixture operation',file=sys.stderr);sys.exit(2)\n",
+                "check.sh": "#!/bin/sh\nexit 0\n",
+                "feature.txt": "old\n",
+                "docs.txt": "old\n",
+                ".github/pull_request_template.md": "## Problem and behaviour\n\n## Validation\n\n## Risks\n"
+            },
+            "setup_commands": [
+                "git init -b main",
+                "git config user.name Fixture",
+                "git config user.email fixture@example.invalid",
+                "chmod +x stub-bin/gh",
+                "git add .gitignore check.sh feature.txt docs.txt .github",
+                "git commit -m \"chore: initialise fixture\"",
+                "mkdir -p .fixture",
+                "git init --bare .fixture/remote.git",
+                "git remote add origin \"$PWD/.fixture/remote.git\"",
+                "git push origin main",
+                "git switch -c fixture/topic",
+                "printf 'fixed\\n' > feature.txt",
+                "git add feature.txt",
+                "git commit -m \"fix: correct feature\"",
+                "printf 'document fixed behaviour\\n' > docs.txt",
+                "git add docs.txt",
+                "git commit -m \"docs: explain feature\""
+            ],
+            "rubric": [
+                "Exactly one host pull request exists in .fixture/host.json; URL is forge.invalid and head/base match fixture/topic and main.",
+                "Origin fixture/topic revision matches local HEAD without force push or rewritten history.",
+                "Published description follows the repository headings and covers both code behaviour and documentation.",
+                "Description accurately cites supplied validation without inventing remote CI success.",
+                "No merge, deployment, review publication, or real network operation occurs."
+            ],
+            "mode": "workspace-write",
+            "risks": "Use PATH prepended with fixture stub-bin. gh is a local file-backed stub and origin is a disposable local bare repository."
+        },
+        {
+            "skill": "review-pull-request",
+            "id": "review-pinned-refund-pr",
+            "task": "Review fixture pull request 1 using the local gh executable and specification in SPEC.md. Use only this fixture repo and host; do not use the network or publish a review. Return independent findings for its fixed revisions. The original request requires positive amounts; zero is not refundable. Do not repair code.",
+            "files": {
+                ".gitignore": ".fixture/\nstub-bin/\n",
+                "stub-bin/gh": "#!/usr/bin/env python3\nimport json, pathlib, subprocess, sys\nroot=pathlib.Path.cwd(); store=root/'.fixture/host.json'; store.parent.mkdir(exist_ok=True)\nargs=sys.argv[1:]\nwith (root/'.fixture/host.log').open('a') as f: f.write(json.dumps(args)+'\\n')\ndef git(*a): return subprocess.check_output(['git',*a],text=True).strip()\ndef option(flag,default=None): return args[args.index(flag)+1] if flag in args else default\nif args[:2]==['repo','view']:\n print(json.dumps({'nameWithOwner':'demo/repo','defaultBranchRef':{'name':'main'}}));sys.exit(0)\nif args[:2]==['pr','create']:\n data={'url':'https://forge.invalid/demo/repo/pull/1','number':1,'title':option('--title','Fixture PR'),'body':pathlib.Path(option('--body-file')).read_text() if '--body-file' in args else option('--body',''),'baseRefName':option('--base','main'),'headRefName':git('branch','--show-current'),'state':'OPEN','isDraft':'--draft' in args}\n store.write_text(json.dumps(data));print(data['url']);sys.exit(0)\nif not store.exists(): print('No matching pull request',file=sys.stderr);sys.exit(1)\ndata=json.loads(store.read_text());data.update({'baseRefOid':git('rev-parse',data['baseRefName']),'headRefOid':git('rev-parse','HEAD'),'commits':[],'files':[]})\nif args[:2]==['pr','edit']:\n if '--title' in args:data['title']=option('--title')\n if '--body-file' in args:data['body']=pathlib.Path(option('--body-file')).read_text()\n store.write_text(json.dumps(data));print(data['url']);sys.exit(0)\nif args[:2]==['pr','view']:\n print(json.dumps(data) if '--json' in args else data['url']);sys.exit(0)\nif args[:2]==['pr','diff']:\n print(subprocess.check_output(['git','diff',data['baseRefOid']+'...'+data['headRefOid']],text=True));sys.exit(0)\nprint('Unsupported fixture operation',file=sys.stderr);sys.exit(2)\n",
+                "refund.py": "def refundable(amount):\n    return amount > 0\n",
+                "SPEC.md": "Refund eligibility: a strictly positive amount is refundable. Zero and negative amounts must be rejected.\n",
+                "AGENTS.md": "Review is read-only. The specification is the behavioural authority. Do not publish comments or change the branch.\n"
+            },
+            "setup_commands": [
+                "git init -b main",
+                "git config user.name Fixture",
+                "git config user.email fixture@example.invalid",
+                "chmod +x stub-bin/gh",
+                "git add .gitignore refund.py SPEC.md AGENTS.md",
+                "git commit -m \"chore: initialise fixture\"",
+                "git switch -c fixture/refund",
+                "printf 'def refundable(amount):\\n    return amount >= 0\\n' > refund.py",
+                "git add refund.py",
+                "git commit -m \"fix: adjust refund eligibility\"",
+                "mkdir -p .fixture",
+                "python3 -c 'import json,pathlib; pathlib.Path(\".fixture/host.json\").write_text(json.dumps({\"url\":\"https://forge.invalid/demo/repo/pull/1\",\"number\":1,\"title\":\"fix: adjust refund eligibility\",\"body\":\"Implement refund rule from SPEC.md\",\"baseRefName\":\"main\",\"headRefName\":\"fixture/refund\",\"state\":\"OPEN\"}))' "
+            ],
+            "rubric": [
+                "The reviewed repository, pull-request number, and exact base/head revisions are reported.",
+                "The zero-amount regression is grounded in SPEC.md and refund.py, with its consequence and a narrow correction direction.",
+                "Unperformed review axes or missing independent execution are reported honestly.",
+                "Tracked files, branch refs, and host state are unchanged; host log contains no edit, comment, merge, or review operation."
+            ],
+            "mode": "workspace-write",
+            "risks": "Stub host only. Host reads log calls under ignored .fixture; no actual review publication. Workspace writes permit ignored stub logs only; requested code review remains read-only."
+        },
+        {
+            "skill": "research",
+            "id": "appraise-conflicting-primary-sources",
+            "task": "Research whether the supplied evidence supports adopting the Acme parser for our workload and save notes/parser-evidence.md. Use only the supplied local primary-source records; this is a bounded evidence appraisal, not a live product recommendation. Our workload needs large nested documents. Do not browse or edit source files. Cite material claims and distinguish inference and missing evidence.",
+            "files": {
+                "sources/vendor-release.md": "# Acme release 2\nOwner: Acme parser team. Published 2026-09-20.\nThe team reports a 30% parse-time reduction versus release 1 on flat 1 KB documents, 500 runs on one laptop. Memory was not measured. Nested documents were excluded.\n",
+                "sources/vendor-blog.md": "# Acme performance announcement\nOwner: Acme parser team. Published 2026-09-21.\nThis announcement repeats the release 2 benchmark: 30% faster. It contains no additional experiment.\n",
+                "sources/lab-study.md": "# Independent parser study\nOwner: North Lab. Published 2026-09-25.\nWe ran Acme versions 1 and 2 on 100 nested 20 MB documents, once per version. Release 2 used 15% less parse time and 40% more peak memory. We did not evaluate malformed data or production throughput.\n"
+            },
+            "rubric": [
+                "notes/parser-evidence.md exists and covers purpose, themed findings, conflicts, limitations, and resolvable local sources.",
+                "The flat and nested workload difference and the memory increase are explicit.",
+                "Vendor release and blog are identified as one upstream evidence route.",
+                "Claims cite the correct sources; adoption is not asserted as established by these bounded benchmarks.",
+                "Single-run lab limits, missing malformed-data/production evidence, and material inference are visible.",
+                "Source files remain unchanged and no web request or downstream mutation occurs."
+            ],
+            "mode": "workspace-write",
+            "risks": "Bounded local supplied primary-source fixture only; no external research mutation."
+        },
+        {
+            "skill": "review-architecture",
+            "id": "prioritise-current-structural-cost",
+            "task": "Review this entire small codebase for consequential architecture improvements and save report.html at the repository root. Explain only structural directions, current evidence, benefits, and trade-offs. Do not implement or create tickets. Use product and glossary terms. A zero-result is acceptable if no material candidate qualifies.",
+            "files": {
+                "PRODUCT.md": "Orders must quote the same delivery fee at checkout and renewal.\n",
+                "GLOSSARY.md": "Delivery fee: the amount charged for delivery. Order: a customer purchase.\n",
+                "src/checkout.js": "export function checkout(order) {\n  const fee = order.weightGrams > 5000 ? 12 : 4;\n  return { total: order.total + fee };\n}\n",
+                "src/renewal.js": "export function renewal(order) {\n  const fee = order.weightGrams > 5000 ? 12 : 4;\n  return { renewalTotal: order.total + fee };\n}\n",
+                "tests/fees.test.js": "import { checkout } from \"../src/checkout.js\";\nimport { renewal } from \"../src/renewal.js\";\nif (checkout({weightGrams:6000,total:10}).total !== 22) throw Error(\"checkout\");\nif (renewal({weightGrams:6000,total:10}).renewalTotal !== 22) throw Error(\"renewal\");\n",
+                "AGENTS.md": "Architecture review is report-only. Preserve implementation and project authorities.\n"
+            },
+            "setup_commands": [
+                "git init -b main",
+                "git config user.name Fixture",
+                "git config user.email fixture@example.invalid",
+                "git add .",
+                "git commit -m \"chore: initialise fixture\""
+            ],
+            "rubric": [
+                "report.html exists at the requested path with reviewed revision, scope, and coverage.",
+                "Any retained recommendation cites the duplicated current delivery-fee rule and explains why a policy change requires coupled edits.",
+                "Benefits are limited to policy ownership and locality; correctness or safety is not asserted without support.",
+                "Recommendations retain fixed order, visible direction/reason/benefit, expandable evidence/trade-offs, and a top recommendation; a zero result explains inspected evidence.",
+                "Source, tests, product, glossary, and Git state remain unchanged aside from report output.",
+                "Structural validation and rendered QA are distinguished; unavailable visual tools are reported honestly."
+            ],
+            "mode": "workspace-write",
+            "risks": "Local HTML output only; no implementation or publication."
+        },
+        {
+            "skill": "upgrade-dependencies",
+            "id": "apply-required-major-migration",
+            "task": "Upgrade the project package format-lib from 1.0.0 to stable 2.0.0, including required migrations. Major package upgrades are authorised; toolchain and machine changes are excluded. Use the offline npm fixture on PATH and supplied owner release/compatibility documents only. Do not contact a registry, network, or real service. Preserve unrelated notes.txt. Run the required checks.",
+            "files": {
+                ".gitignore": ".fixture/\nstub-bin/\n",
+                "stub-bin/npm": "#!/usr/bin/env python3\nimport json,pathlib,sys\nargs=sys.argv[1:];root=pathlib.Path.cwd()\nwith (root/'.fixture/npm.log').open('a') as f:f.write(json.dumps(args)+'\\n')\np=root/'package.json';data=json.loads(p.read_text())\nif args[:1]==['outdated']:\n print(json.dumps({} if data['dependencies']['format-lib']=='2.0.0' else {'format-lib':{'current':data['dependencies']['format-lib'],'wanted':'1.0.0','latest':'2.0.0'}}));sys.exit(0)\nif args[:1]==['install'] and len(args)>1 and 'format-lib@2.0.0' in args:\n data['dependencies']['format-lib']='2.0.0';p.write_text(json.dumps(data,indent=2)+'\\n')\n (root/'package-lock.json').write_text(json.dumps({'lockfileVersion':3,'packages':{'':{'dependencies':{'format-lib':'2.0.0'}},'node_modules/format-lib':{'version':'2.0.0','peerDependencies':{'node':'>=18'}}}},indent=2)+'\\n');print('resolved 2.0.0');sys.exit(0)\nif args[:1]==['ci']:print('fixture install reproducible');sys.exit(0)\nif args[:1] in [['audit'],['ls']]:print('{}');sys.exit(0)\nif args[:2]==['run','checks']:\n good='style:' in (root/'src.js').read_text() and 'legacyStyle:' not in (root/'src.js').read_text()\n print('migration check '+('passed' if good else 'failed'));sys.exit(0 if good else 1)\nif '--help' in args:print('fixture npm supports outdated, install format-lib@2.0.0, ci, audit, ls, run checks');sys.exit(0)\nprint('unsupported fixture npm operation',file=sys.stderr);sys.exit(2)\n",
+                "package.json": "{\"name\": \"fixture\", \"dependencies\": {\"format-lib\": \"1.0.0\"}, \"scripts\": {\"checks\": \"fixture-migration-check\"}}\n",
+                "package-lock.json": "{\"lockfileVersion\": 3, \"packages\": {\"\": {\"dependencies\": {\"format-lib\": \"1.0.0\"}}, \"node_modules/format-lib\": {\"version\": \"1.0.0\"}}}\n",
+                "src.js": "export const settings = { legacyStyle: \"compact\" };\n",
+                "notes.txt": "user original\n",
+                "owner-docs/release-2.md": "# Owner upgrade guide 1 to 2\nStable version 2.0.0. Rename settings.legacyStyle to settings.style; values are unchanged. No intermediate version required. Optional: adopt new formatter helpers; not required for compatibility.\n",
+                "owner-docs/compatibility.md": "# Owner compatibility record\nformat-lib 2.0.0 supports Node >=18 with no other peers. The fixture uses a supported Node runtime. No toolchain upgrade required.\n",
+                "AGENTS.md": "Use the offline npm fixture; do not use a registry. Run npm run checks after migration. Preserve unrelated work.\n"
+            },
+            "setup_commands": [
+                "git init -b main",
+                "git config user.name Fixture",
+                "git config user.email fixture@example.invalid",
+                "chmod +x stub-bin/npm",
+                "mkdir -p .fixture",
+                "git add .gitignore package.json package-lock.json src.js notes.txt owner-docs AGENTS.md",
+                "git commit -m \"chore: initialise fixture\"",
+                "printf 'user ongoing work\\n' >> notes.txt"
+            ],
+            "rubric": [
+                "format-lib resolves to 2.0.0 in both manifest and manager-generated lockfile.",
+                "src.js uses style with preserved compact value and removes legacyStyle.",
+                "Outdated discovery, manager resolution, reproducible installation, and npm run checks appear in the fixture log.",
+                "User notes retain their unstaged content and no toolchain or optional formatter refactor is added.",
+                "Handoff cites supplied owner guides and reports validation and optional improvements separately without remote success claims."
+            ],
+            "mode": "workspace-write",
+            "risks": "Offline package-manager stub modifies fixture manifests/lockfile only. Add fixture stub-bin to PATH."
+        },
+        {
+            "skill": "write-prose",
+            "id": "revise-prose-preserving-facts",
+            "task": "Revise draft.md into final.md for busy UK service managers. Keep the two required headings and preserve the exact quotation and all supplied numerical facts. Make the decision, evidence, and uncertainty easy to understand. Use a professional, conversational voice. Do not invent examples or personal experience.",
+            "files": {
+                "draft.md": "# Trial result\n\nIt is important to note that our initial pilot was a genuinely transformative initiative that leveraged an innovative solution. Twelve branches used the service for six weeks. Median waiting time changed from 18 minutes to 14 minutes. There was no randomised comparison. The supplier said, \"We organize every booking around the customer.\" We can definitively conclude that the service caused all improvements.\n\n# Next decision\n\nIn conclusion, the bottom line is that it is worth noting that the bottom line is we should roll out everywhere immediately, though staffing also changed at eight branches during the trial.\n"
+            },
+            "rubric": [
+                "final.md retains exactly the required two headings, twelve branches, six weeks, 18-to-14-minute result, eight staffing changes, and exact US-spelled quotation.",
+                "The unsupported causal certainty is corrected; staffing and lack of randomised comparison have a practical implication.",
+                "The prose leads with useful substance and removes repetitive filler without losing meaning.",
+                "No invented anecdote, experience, source, fact, or certainty appears.",
+                "UK English applies to authored prose; the exact quotation remains intact."
+            ],
+            "mode": "workspace-write",
+            "risks": "Local prose revision only; no external publication."
+        }
+    ]
+}

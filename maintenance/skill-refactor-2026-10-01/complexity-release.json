@@ -1,0 +1,2651 @@
+{
+    "base": "56da523e43fde40af9977a4c0eeff78604536c6d",
+    "method": "Bundled read-only helper; production-only changed source with conventional test filename exclusions. Baselines use the same AST method. Metrics are advisory, not an outcome score.",
+    "compact": {
+        "rawArtifact": "/var/folders/3s/355db_gd11q_zcq2nhns7q3h0000gn/T/code-complexity-4qe9ysmg.json",
+        "records": {
+            "duplicates": [],
+            "functions": [
+                {
+                    "endLine": 23,
+                    "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                    "line": 12,
+                    "longName": "task_from_run( run )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 1,
+                        "nloc": 10,
+                        "parameterCount": 1,
+                        "tokenCount": 67
+                    },
+                    "symbol": "task_from_run"
+                },
+                {
+                    "endLine": 36,
+                    "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                    "line": 26,
+                    "longName": "source_fingerprint( record )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 11,
+                        "parameterCount": 1,
+                        "tokenCount": 112
+                    },
+                    "symbol": "source_fingerprint"
+                },
+                {
+                    "endLine": 48,
+                    "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                    "line": 39,
+                    "longName": "complete_packet( packet , response_required )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 1,
+                        "nloc": 10,
+                        "parameterCount": 2,
+                        "tokenCount": 87
+                    },
+                    "symbol": "complete_packet"
+                },
+                {
+                    "endLine": 114,
+                    "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                    "line": 51,
+                    "longName": "main( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 14,
+                        "nestedStructures": 4,
+                        "nloc": 60,
+                        "parameterCount": 0,
+                        "tokenCount": 608
+                    },
+                    "symbol": "main"
+                },
+                {
+                    "endLine": 26,
+                    "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                    "line": 11,
+                    "longName": "parsed_metadata( root )",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 15,
+                        "parameterCount": 1,
+                        "tokenCount": 85
+                    },
+                    "symbol": "parsed_metadata"
+                },
+                {
+                    "endLine": 38,
+                    "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                    "line": 29,
+                    "longName": "packaging_validation( validator , root )",
+                    "metrics": {
+                        "cyclomaticComplexity": 5,
+                        "nestedStructures": 1,
+                        "nloc": 10,
+                        "parameterCount": 2,
+                        "tokenCount": 144
+                    },
+                    "symbol": "packaging_validation"
+                },
+                {
+                    "endLine": 44,
+                    "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                    "line": 41,
+                    "longName": "files( root )",
+                    "metrics": {
+                        "cyclomaticComplexity": 5,
+                        "nestedStructures": 2,
+                        "nloc": 4,
+                        "parameterCount": 1,
+                        "tokenCount": 63
+                    },
+                    "symbol": "files"
+                },
+                {
+                    "endLine": 128,
+                    "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                    "line": 47,
+                    "longName": "main( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 24,
+                        "nestedStructures": 4,
+                        "nloc": 82,
+                        "parameterCount": 0,
+                        "tokenCount": 887
+                    },
+                    "symbol": "main"
+                },
+                {
+                    "endLine": 54,
+                    "file": "maintenance/skill-refactor-2026-10-01/consume-generated.py",
+                    "line": 12,
+                    "longName": "main( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 2,
+                        "nloc": 43,
+                        "parameterCount": 0,
+                        "tokenCount": 409
+                    },
+                    "symbol": "main"
+                },
+                {
+                    "endLine": 22,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 17,
+                    "longName": "digest_tree( root )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 2,
+                        "nloc": 6,
+                        "parameterCount": 1,
+                        "tokenCount": 57
+                    },
+                    "symbol": "digest_tree"
+                },
+                {
+                    "endLine": 27,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 25,
+                    "longName": "symlinks( root )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 3,
+                        "parameterCount": 1,
+                        "tokenCount": 44
+                    },
+                    "symbol": "symlinks"
+                },
+                {
+                    "endLine": 53,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 30,
+                    "longName": "communicate_trial( process , prompt , timeout , termination_grace = 10 )",
+                    "metrics": {
+                        "cyclomaticComplexity": 5,
+                        "nestedStructures": 2,
+                        "nloc": 21,
+                        "parameterCount": 4,
+                        "tokenCount": 102
+                    },
+                    "symbol": "communicate_trial"
+                },
+                {
+                    "endLine": 165,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 56,
+                    "longName": "run_case( case , arm , args , repetition )",
+                    "metrics": {
+                        "cyclomaticComplexity": 31,
+                        "nestedStructures": 3,
+                        "nloc": 110,
+                        "parameterCount": 4,
+                        "tokenCount": 1184
+                    },
+                    "symbol": "run_case"
+                },
+                {
+                    "endLine": 199,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 168,
+                    "longName": "main( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 10,
+                        "nestedStructures": 4,
+                        "nloc": 32,
+                        "parameterCount": 0,
+                        "tokenCount": 388
+                    },
+                    "symbol": "main"
+                },
+                {
+                    "endLine": 12,
+                    "file": "scripts/validate-skills.js",
+                    "line": 12,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 1,
+                        "parameterCount": 0,
+                        "tokenCount": 6
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 14,
+                    "file": "scripts/validate-skills.js",
+                    "line": 14,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 1,
+                        "parameterCount": 0,
+                        "tokenCount": 1
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 101,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 96,
+                    "longName": "sha256( path : Path )",
+                    "metrics": {
+                        "cyclomaticComplexity": 2,
+                        "nestedStructures": 2,
+                        "nloc": 6,
+                        "parameterCount": 1,
+                        "tokenCount": 58
+                    },
+                    "symbol": "sha256"
+                },
+                {
+                    "endLine": 125,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 104,
+                    "longName": "load_analyzer( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 2,
+                        "nloc": 19,
+                        "parameterCount": 0,
+                        "tokenCount": 134
+                    },
+                    "symbol": "load_analyzer"
+                },
+                {
+                    "endLine": 136,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 128,
+                    "longName": "git( repo : Path , * arguments : str , check : bool = True )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 1,
+                        "nloc": 9,
+                        "parameterCount": 3,
+                        "tokenCount": 98
+                    },
+                    "symbol": "git"
+                },
+                {
+                    "endLine": 140,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 139,
+                    "longName": "nul_fields( data : bytes )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 2,
+                        "parameterCount": 1,
+                        "tokenCount": 35
+                    },
+                    "symbol": "nul_fields"
+                },
+                {
+                    "endLine": 145,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 143,
+                    "longName": "normalize_path( value : str )",
+                    "metrics": {
+                        "cyclomaticComplexity": 2,
+                        "nestedStructures": 1,
+                        "nloc": 3,
+                        "parameterCount": 1,
+                        "tokenCount": 34
+                    },
+                    "symbol": "normalize_path"
+                },
+                {
+                    "endLine": 159,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 148,
+                    "longName": "excluded( path : str )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 0,
+                        "nloc": 12,
+                        "parameterCount": 1,
+                        "tokenCount": 87
+                    },
+                    "symbol": "excluded"
+                },
+                {
+                    "endLine": 183,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 162,
+                    "longName": "parse_name_status( data : bytes )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 3,
+                        "nloc": 22,
+                        "parameterCount": 1,
+                        "tokenCount": 155
+                    },
+                    "symbol": "parse_name_status"
+                },
+                {
+                    "endLine": 192,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 186,
+                    "longName": "all_changed_paths( repo : Path , base : str )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 2,
+                        "nloc": 7,
+                        "parameterCount": 2,
+                        "tokenCount": 95
+                    },
+                    "symbol": "all_changed_paths"
+                },
+                {
+                    "endLine": 200,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 195,
+                    "longName": "changed_paths( repo : Path , base : str )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 6,
+                        "parameterCount": 2,
+                        "tokenCount": 47
+                    },
+                    "symbol": "changed_paths"
+                },
+                {
+                    "endLine": 217,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 203,
+                    "longName": "line_ranges( repo : Path , base : str , path : str , is_untracked : bool )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 2,
+                        "nloc": 14,
+                        "parameterCount": 4,
+                        "tokenCount": 163
+                    },
+                    "symbol": "line_ranges"
+                },
+                {
+                    "endLine": 221,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 220,
+                    "longName": "intersects( start : int , end : int , ranges : Iterable [ tuple [ int , int ] ] )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 1,
+                        "nloc": 2,
+                        "parameterCount": 3,
+                        "tokenCount": 42
+                    },
+                    "symbol": "intersects"
+                },
+                {
+                    "endLine": 232,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 224,
+                    "longName": "current_paths( repo : Path )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 2,
+                        "nloc": 9,
+                        "parameterCount": 1,
+                        "tokenCount": 59
+                    },
+                    "symbol": "current_paths"
+                },
+                {
+                    "endLine": 243,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 235,
+                    "longName": "base_paths( repo : Path , base : str )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 9,
+                        "parameterCount": 2,
+                        "tokenCount": 53
+                    },
+                    "symbol": "base_paths"
+                },
+                {
+                    "endLine": 254,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 246,
+                    "longName": "source_paths( paths : Iterable [ str ] , root : Path , lizard : Any )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 2,
+                        "nloc": 9,
+                        "parameterCount": 3,
+                        "tokenCount": 98
+                    },
+                    "symbol": "source_paths"
+                },
+                {
+                    "endLine": 271,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 257,
+                    "longName": "extract_base( repo : Path , base : str , paths : Iterable [ str ] , target : Path )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 15,
+                        "parameterCount": 4,
+                        "tokenCount": 117
+                    },
+                    "symbol": "extract_base"
+                },
+                {
+                    "endLine": 283,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 282,
+                    "longName": "analyze.nesting_tokens( tokens : Any , reader : Any )",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 2,
+                        "parameterCount": 2,
+                        "tokenCount": 24
+                    },
+                    "symbol": "analyze.nesting_tokens"
+                },
+                {
+                    "endLine": 338,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 274,
+                    "longName": "analyze( root : Path , paths : list [ str ] , lizard : Any , lizardns : Any , duplicate_module : Any , duplicate_tokens : int , )",
+                    "metrics": {
+                        "cyclomaticComplexity": 14,
+                        "nestedStructures": 4,
+                        "nloc": 61,
+                        "parameterCount": 6,
+                        "tokenCount": 495
+                    },
+                    "symbol": "analyze"
+                },
+                {
+                    "endLine": 348,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 341,
+                    "longName": "cyclomatic_band( value : int )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 1,
+                        "nloc": 8,
+                        "parameterCount": 1,
+                        "tokenCount": 32
+                    },
+                    "symbol": "cyclomatic_band"
+                },
+                {
+                    "endLine": 366,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 351,
+                    "longName": "baseline_match( function : dict [ str , Any ] , base_functions : list [ dict [ str , Any ] ] , old_path : str | None )",
+                    "metrics": {
+                        "cyclomaticComplexity": 10,
+                        "nestedStructures": 2,
+                        "nloc": 16,
+                        "parameterCount": 3,
+                        "tokenCount": 158
+                    },
+                    "symbol": "baseline_match"
+                },
+                {
+                    "endLine": 384,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 369,
+                    "longName": "metric_value( value : int , baseline : int | None , band : str | None = None , is_new : bool = False , )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 1,
+                        "nloc": 16,
+                        "parameterCount": 4,
+                        "tokenCount": 95
+                    },
+                    "symbol": "metric_value"
+                },
+                {
+                    "endLine": 397,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 387,
+                    "longName": "duplicate_pairs( groups : list [ list [ dict [ str , Any ] ] ] )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 2,
+                        "nloc": 11,
+                        "parameterCount": 1,
+                        "tokenCount": 133
+                    },
+                    "symbol": "duplicate_pairs"
+                },
+                {
+                    "endLine": 468,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 400,
+                    "longName": "duplicate_triggers( candidate_groups : list [ list [ dict [ str , Any ] ] ] , base_groups : list [ list [ dict [ str , Any ] ] ] , changed : dict [ str , str | None ] , changed_lines : dict [ str , list [ tuple [ int , int ] ] ] , whole_repository : bool , minimum_tokens : int , )",
+                    "metrics": {
+                        "cyclomaticComplexity": 20,
+                        "nestedStructures": 4,
+                        "nloc": 66,
+                        "parameterCount": 6,
+                        "tokenCount": 450
+                    },
+                    "symbol": "duplicate_triggers"
+                },
+                {
+                    "endLine": 476,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 471,
+                    "longName": "write_raw( payload : dict [ str , Any ] )",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 1,
+                        "nloc": 6,
+                        "parameterCount": 1,
+                        "tokenCount": 70
+                    },
+                    "symbol": "write_raw"
+                },
+                {
+                    "endLine": 502,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 479,
+                    "longName": "parser( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 24,
+                        "parameterCount": 0,
+                        "tokenCount": 160
+                    },
+                    "symbol": "parser"
+                },
+                {
+                    "endLine": 761,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 505,
+                    "longName": "main( )",
+                    "metrics": {
+                        "cyclomaticComplexity": 43,
+                        "nestedStructures": 4,
+                        "nloc": 243,
+                        "parameterCount": 0,
+                        "tokenCount": 1393
+                    },
+                    "symbol": "main"
+                },
+                {
+                    "endLine": 43,
+                    "file": "skills/measure-code-complexity/scripts/python_nesting.py",
+                    "line": 13,
+                    "longName": "control_depth( node : ast . AST , depth : int = 0 )",
+                    "metrics": {
+                        "cyclomaticComplexity": 15,
+                        "nestedStructures": 3,
+                        "nloc": 29,
+                        "parameterCount": 2,
+                        "tokenCount": 284
+                    },
+                    "symbol": "control_depth"
+                },
+                {
+                    "endLine": 52,
+                    "file": "skills/measure-code-complexity/scripts/python_nesting.py",
+                    "line": 46,
+                    "longName": "function_depths( source : str , filename : str )",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 3,
+                        "nloc": 7,
+                        "parameterCount": 2,
+                        "tokenCount": 80
+                    },
+                    "symbol": "function_depths"
+                },
+                {
+                    "endLine": 104,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 102,
+                    "longName": "doctype ( value )",
+                    "metrics": {
+                        "cyclomaticComplexity": 2,
+                        "nestedStructures": 0,
+                        "nloc": 3,
+                        "parameterCount": 1,
+                        "tokenCount": 18
+                    },
+                    "symbol": "doctype"
+                },
+                {
+                    "endLine": 114,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 114,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 1,
+                        "parameterCount": 0,
+                        "tokenCount": 3
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 146,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 144,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 3,
+                        "parameterCount": 0,
+                        "tokenCount": 8
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 163,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 156,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 4,
+                        "nestedStructures": 2,
+                        "nloc": 8,
+                        "parameterCount": 0,
+                        "tokenCount": 42
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 181,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 179,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 2,
+                        "nestedStructures": 2,
+                        "nloc": 3,
+                        "parameterCount": 0,
+                        "tokenCount": 13
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 182,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 107,
+                    "longName": "element ( element )",
+                    "metrics": {
+                        "cyclomaticComplexity": 34,
+                        "nestedStructures": 2,
+                        "nloc": 65,
+                        "parameterCount": 1,
+                        "tokenCount": 447
+                    },
+                    "symbol": "element"
+                },
+                {
+                    "endLine": 186,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 91,
+                    "longName": "inspectReport ( source )",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 19,
+                        "parameterCount": 1,
+                        "tokenCount": 100
+                    },
+                    "symbol": "inspectReport"
+                },
+                {
+                    "endLine": 17,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 15,
+                    "longName": "isMapping ( value )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 0,
+                        "nloc": 3,
+                        "parameterCount": 1,
+                        "tokenCount": 23
+                    },
+                    "symbol": "isMapping"
+                },
+                {
+                    "endLine": 41,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 24,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 2,
+                        "nestedStructures": 0,
+                        "nloc": 18,
+                        "parameterCount": 0,
+                        "tokenCount": 37
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 49,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 45,
+                    "longName": "isEscaped ( source , index )",
+                    "metrics": {
+                        "cyclomaticComplexity": 3,
+                        "nestedStructures": 1,
+                        "nloc": 5,
+                        "parameterCount": 2,
+                        "tokenCount": 37
+                    },
+                    "symbol": "isEscaped"
+                },
+                {
+                    "endLine": 76,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 51,
+                    "longName": "linkDestination ( source , start )",
+                    "metrics": {
+                        "cyclomaticComplexity": 15,
+                        "nestedStructures": 3,
+                        "nloc": 26,
+                        "parameterCount": 2,
+                        "tokenCount": 185
+                    },
+                    "symbol": "linkDestination"
+                },
+                {
+                    "endLine": 97,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 95,
+                    "longName": "characterCount ( value )",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 3,
+                        "parameterCount": 1,
+                        "tokenCount": 15
+                    },
+                    "symbol": "characterCount"
+                },
+                {
+                    "endLine": 109,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 99,
+                    "longName": "markdownFiles ( directory )",
+                    "metrics": {
+                        "cyclomaticComplexity": 6,
+                        "nestedStructures": 3,
+                        "nloc": 11,
+                        "parameterCount": 1,
+                        "tokenCount": 107
+                    },
+                    "symbol": "markdownFiles"
+                },
+                {
+                    "endLine": 151,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 150,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 2,
+                        "parameterCount": 0,
+                        "tokenCount": 6
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 157,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 156,
+                    "longName": "(anonymous)",
+                    "metrics": {
+                        "cyclomaticComplexity": 1,
+                        "nestedStructures": 0,
+                        "nloc": 2,
+                        "parameterCount": 0,
+                        "tokenCount": 9
+                    },
+                    "symbol": "(anonymous)"
+                },
+                {
+                    "endLine": 162,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 111,
+                    "longName": "validateFrontmatter ( frontmatter , root , errors , warnings )",
+                    "metrics": {
+                        "cyclomaticComplexity": 18,
+                        "nestedStructures": 2,
+                        "nloc": 48,
+                        "parameterCount": 4,
+                        "tokenCount": 258
+                    },
+                    "symbol": "validateFrontmatter"
+                },
+                {
+                    "endLine": 229,
+                    "file": "skills/write-skill/scripts/validate-skill.js",
+                    "line": 164,
+                    "longName": "validateSkill ( directory )",
+                    "metrics": {
+                        "cyclomaticComplexity": 18,
+                        "nestedStructures": 4,
+                        "nloc": 65,
+                        "parameterCount": 1,
+                        "tokenCount": 447
+                    },
+                    "symbol": "validateSkill"
+                }
+            ]
+        },
+        "schema": 1,
+        "scope": {
+            "base": "56da523e43fde40af9977a4c0eeff78604536c6d",
+            "candidate": "working-tree@56da523e43fde40af9977a4c0eeff78604536c6d",
+            "changedFunctionsAnalyzed": 28,
+            "changedProductionFiles": 7,
+            "excludedChangedPaths": [
+                "scripts/measure-nesting.test.js",
+                "scripts/validate-report.test.js"
+            ],
+            "sourceFilesAnalyzed": 9
+        },
+        "status": "attention",
+        "summary": {
+            "cyclomaticBands": {
+                "high": 4,
+                "low": 20,
+                "moderate": 0,
+                "veryHigh": 4
+            },
+            "duplicateRate": 0.0,
+            "maxima": {
+                "cyclomaticComplexity": 43,
+                "nestedStructures": 4,
+                "nloc": 243,
+                "parameterCount": 6,
+                "tokenCount": 1393
+            },
+            "observedCloneGroups": 0,
+            "triggeredCloneGroups": 0,
+            "triggeredFunctions": 8
+        },
+        "thresholds": {
+            "cyclomaticReview": 10,
+            "duplicateTokens": 70,
+            "nestedStructuresReview": 3,
+            "nlocReview": 100,
+            "parameterCountReview": 5
+        },
+        "tool": {
+            "cloneDetector": {
+                "name": "lizard-duplicate",
+                "version": "1.24.0"
+            },
+            "name": "lizard",
+            "nesting": {
+                "default": {
+                    "name": "lizard-ns",
+                    "version": "1.24.0"
+                },
+                "python": {
+                    "name": "python-ast-control-nesting",
+                    "runtime": "3.14.7",
+                    "version": 1
+                }
+            },
+            "version": "1.24.0"
+        },
+        "triggers": {
+            "duplicates": [],
+            "functions": [
+                {
+                    "endLine": 114,
+                    "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                    "line": 51,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "high",
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 14
+                        },
+                        "nestedStructures": {
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 4
+                        }
+                    },
+                    "references": [
+                        "references/CYCLOMATIC-COMPLEXITY.md",
+                        "references/NESTING.md"
+                    ],
+                    "symbol": "main",
+                    "tokenCount": 608
+                },
+                {
+                    "endLine": 128,
+                    "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                    "line": 47,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "veryHigh",
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 24
+                        },
+                        "nestedStructures": {
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 4
+                        }
+                    },
+                    "references": [
+                        "references/CYCLOMATIC-COMPLEXITY.md",
+                        "references/NESTING.md"
+                    ],
+                    "symbol": "main",
+                    "tokenCount": 887
+                },
+                {
+                    "endLine": 165,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 56,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "veryHigh",
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 31
+                        },
+                        "nloc": {
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 110
+                        }
+                    },
+                    "references": [
+                        "references/CYCLOMATIC-COMPLEXITY.md",
+                        "references/FUNCTION-SIZE.md"
+                    ],
+                    "symbol": "run_case",
+                    "tokenCount": 1184
+                },
+                {
+                    "endLine": 199,
+                    "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                    "line": 168,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "high",
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 10
+                        },
+                        "nestedStructures": {
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 4
+                        }
+                    },
+                    "references": [
+                        "references/CYCLOMATIC-COMPLEXITY.md",
+                        "references/NESTING.md"
+                    ],
+                    "symbol": "main",
+                    "tokenCount": 388
+                },
+                {
+                    "endLine": 338,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 274,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "high",
+                            "baseline": 7,
+                            "delta": 7,
+                            "value": 14
+                        },
+                        "nestedStructures": {
+                            "baseline": 2,
+                            "delta": 2,
+                            "value": 4
+                        },
+                        "parameterCount": {
+                            "baseline": 6,
+                            "delta": 0,
+                            "value": 6
+                        }
+                    },
+                    "references": [
+                        "references/CYCLOMATIC-COMPLEXITY.md",
+                        "references/NESTING.md",
+                        "references/PARAMETERS.md"
+                    ],
+                    "symbol": "analyze",
+                    "tokenCount": 495
+                },
+                {
+                    "endLine": 761,
+                    "file": "skills/measure-code-complexity/scripts/measure.py",
+                    "line": 505,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "veryHigh",
+                            "baseline": 43,
+                            "delta": 0,
+                            "value": 43
+                        },
+                        "nestedStructures": {
+                            "baseline": 4,
+                            "delta": 0,
+                            "value": 4
+                        },
+                        "nloc": {
+                            "baseline": 239,
+                            "delta": 4,
+                            "value": 243
+                        }
+                    },
+                    "references": [
+                        "references/CYCLOMATIC-COMPLEXITY.md",
+                        "references/FUNCTION-SIZE.md",
+                        "references/NESTING.md"
+                    ],
+                    "symbol": "main",
+                    "tokenCount": 1393
+                },
+                {
+                    "endLine": 43,
+                    "file": "skills/measure-code-complexity/scripts/python_nesting.py",
+                    "line": 13,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "high",
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 15
+                        }
+                    },
+                    "references": ["references/CYCLOMATIC-COMPLEXITY.md"],
+                    "symbol": "control_depth",
+                    "tokenCount": 284
+                },
+                {
+                    "endLine": 182,
+                    "file": "skills/review-architecture/scripts/validate-report.js",
+                    "line": 107,
+                    "metrics": {
+                        "cyclomaticComplexity": {
+                            "band": "veryHigh",
+                            "baseline": "absent",
+                            "delta": "new",
+                            "value": 34
+                        }
+                    },
+                    "references": ["references/CYCLOMATIC-COMPLEXITY.md"],
+                    "symbol": "element",
+                    "tokenCount": 447
+                }
+            ]
+        }
+    },
+    "raw_sha256": "8a18c91aabef3d181100ae7a66cd259ecfa6fc66091b3bd7889b7b5b167032cf",
+    "raw_artifact": {
+        "baseDuplicateRate": 0.0,
+        "baseDuplicates": [],
+        "baseFunctions": [
+            {
+                "endLine": 12,
+                "file": "scripts/validate-skills.js",
+                "line": 12,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 1,
+                    "parameterCount": 0,
+                    "tokenCount": 6
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 14,
+                "file": "scripts/validate-skills.js",
+                "line": 14,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 1,
+                    "parameterCount": 0,
+                    "tokenCount": 1
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 98,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 93,
+                "longName": "sha256( path : Path )",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 2,
+                    "nloc": 6,
+                    "parameterCount": 1,
+                    "tokenCount": 58
+                },
+                "symbol": "sha256"
+            },
+            {
+                "endLine": 122,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 101,
+                "longName": "load_analyzer( )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 2,
+                    "nloc": 19,
+                    "parameterCount": 0,
+                    "tokenCount": 134
+                },
+                "symbol": "load_analyzer"
+            },
+            {
+                "endLine": 133,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 125,
+                "longName": "git( repo : Path , * arguments : str , check : bool = True )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 1,
+                    "nloc": 9,
+                    "parameterCount": 3,
+                    "tokenCount": 98
+                },
+                "symbol": "git"
+            },
+            {
+                "endLine": 137,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 136,
+                "longName": "nul_fields( data : bytes )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 2,
+                    "parameterCount": 1,
+                    "tokenCount": 35
+                },
+                "symbol": "nul_fields"
+            },
+            {
+                "endLine": 141,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 140,
+                "longName": "normalize_path( value : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 2,
+                    "parameterCount": 1,
+                    "tokenCount": 23
+                },
+                "symbol": "normalize_path"
+            },
+            {
+                "endLine": 155,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 144,
+                "longName": "excluded( path : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 0,
+                    "nloc": 12,
+                    "parameterCount": 1,
+                    "tokenCount": 92
+                },
+                "symbol": "excluded"
+            },
+            {
+                "endLine": 179,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 158,
+                "longName": "parse_name_status( data : bytes )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 3,
+                    "nloc": 22,
+                    "parameterCount": 1,
+                    "tokenCount": 155
+                },
+                "symbol": "parse_name_status"
+            },
+            {
+                "endLine": 188,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 182,
+                "longName": "all_changed_paths( repo : Path , base : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 7,
+                    "parameterCount": 2,
+                    "tokenCount": 95
+                },
+                "symbol": "all_changed_paths"
+            },
+            {
+                "endLine": 196,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 191,
+                "longName": "changed_paths( repo : Path , base : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 6,
+                    "parameterCount": 2,
+                    "tokenCount": 47
+                },
+                "symbol": "changed_paths"
+            },
+            {
+                "endLine": 213,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 199,
+                "longName": "line_ranges( repo : Path , base : str , path : str , is_untracked : bool )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 2,
+                    "nloc": 14,
+                    "parameterCount": 4,
+                    "tokenCount": 163
+                },
+                "symbol": "line_ranges"
+            },
+            {
+                "endLine": 217,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 216,
+                "longName": "intersects( start : int , end : int , ranges : Iterable [ tuple [ int , int ] ] )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 1,
+                    "nloc": 2,
+                    "parameterCount": 3,
+                    "tokenCount": 42
+                },
+                "symbol": "intersects"
+            },
+            {
+                "endLine": 228,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 220,
+                "longName": "current_paths( repo : Path )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 9,
+                    "parameterCount": 1,
+                    "tokenCount": 59
+                },
+                "symbol": "current_paths"
+            },
+            {
+                "endLine": 239,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 231,
+                "longName": "base_paths( repo : Path , base : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 9,
+                    "parameterCount": 2,
+                    "tokenCount": 53
+                },
+                "symbol": "base_paths"
+            },
+            {
+                "endLine": 250,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 242,
+                "longName": "source_paths( paths : Iterable [ str ] , root : Path , lizard : Any )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 9,
+                    "parameterCount": 3,
+                    "tokenCount": 98
+                },
+                "symbol": "source_paths"
+            },
+            {
+                "endLine": 267,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 253,
+                "longName": "extract_base( repo : Path , base : str , paths : Iterable [ str ] , target : Path )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 15,
+                    "parameterCount": 4,
+                    "tokenCount": 117
+                },
+                "symbol": "extract_base"
+            },
+            {
+                "endLine": 317,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 270,
+                "longName": "analyze( root : Path , paths : list [ str ] , lizard : Any , lizardns : Any , duplicate_module : Any , duplicate_tokens : int , )",
+                "metrics": {
+                    "cyclomaticComplexity": 7,
+                    "nestedStructures": 2,
+                    "nloc": 46,
+                    "parameterCount": 6,
+                    "tokenCount": 351
+                },
+                "symbol": "analyze"
+            },
+            {
+                "endLine": 327,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 320,
+                "longName": "cyclomatic_band( value : int )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 1,
+                    "nloc": 8,
+                    "parameterCount": 1,
+                    "tokenCount": 32
+                },
+                "symbol": "cyclomatic_band"
+            },
+            {
+                "endLine": 345,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 330,
+                "longName": "baseline_match( function : dict [ str , Any ] , base_functions : list [ dict [ str , Any ] ] , old_path : str | None )",
+                "metrics": {
+                    "cyclomaticComplexity": 10,
+                    "nestedStructures": 2,
+                    "nloc": 16,
+                    "parameterCount": 3,
+                    "tokenCount": 158
+                },
+                "symbol": "baseline_match"
+            },
+            {
+                "endLine": 363,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 348,
+                "longName": "metric_value( value : int , baseline : int | None , band : str | None = None , is_new : bool = False , )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 1,
+                    "nloc": 16,
+                    "parameterCount": 4,
+                    "tokenCount": 95
+                },
+                "symbol": "metric_value"
+            },
+            {
+                "endLine": 376,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 366,
+                "longName": "duplicate_pairs( groups : list [ list [ dict [ str , Any ] ] ] )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 11,
+                    "parameterCount": 1,
+                    "tokenCount": 133
+                },
+                "symbol": "duplicate_pairs"
+            },
+            {
+                "endLine": 447,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 379,
+                "longName": "duplicate_triggers( candidate_groups : list [ list [ dict [ str , Any ] ] ] , base_groups : list [ list [ dict [ str , Any ] ] ] , changed : dict [ str , str | None ] , changed_lines : dict [ str , list [ tuple [ int , int ] ] ] , whole_repository : bool , minimum_tokens : int , )",
+                "metrics": {
+                    "cyclomaticComplexity": 20,
+                    "nestedStructures": 4,
+                    "nloc": 66,
+                    "parameterCount": 6,
+                    "tokenCount": 450
+                },
+                "symbol": "duplicate_triggers"
+            },
+            {
+                "endLine": 455,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 450,
+                "longName": "write_raw( payload : dict [ str , Any ] )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 1,
+                    "nloc": 6,
+                    "parameterCount": 1,
+                    "tokenCount": 70
+                },
+                "symbol": "write_raw"
+            },
+            {
+                "endLine": 481,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 458,
+                "longName": "parser( )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 24,
+                    "parameterCount": 0,
+                    "tokenCount": 160
+                },
+                "symbol": "parser"
+            },
+            {
+                "endLine": 736,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 484,
+                "longName": "main( )",
+                "metrics": {
+                    "cyclomaticComplexity": 43,
+                    "nestedStructures": 4,
+                    "nloc": 239,
+                    "parameterCount": 0,
+                    "tokenCount": 1351
+                },
+                "symbol": "main"
+            },
+            {
+                "endLine": 17,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 15,
+                "longName": "isMapping ( value )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 0,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 23
+                },
+                "symbol": "isMapping"
+            },
+            {
+                "endLine": 41,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 24,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 0,
+                    "nloc": 18,
+                    "parameterCount": 0,
+                    "tokenCount": 37
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 49,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 45,
+                "longName": "isEscaped ( source , index )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 1,
+                    "nloc": 5,
+                    "parameterCount": 2,
+                    "tokenCount": 37
+                },
+                "symbol": "isEscaped"
+            },
+            {
+                "endLine": 76,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 51,
+                "longName": "linkDestination ( source , start )",
+                "metrics": {
+                    "cyclomaticComplexity": 15,
+                    "nestedStructures": 3,
+                    "nloc": 26,
+                    "parameterCount": 2,
+                    "tokenCount": 185
+                },
+                "symbol": "linkDestination"
+            },
+            {
+                "endLine": 97,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 95,
+                "longName": "characterCount ( value )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 15
+                },
+                "symbol": "characterCount"
+            },
+            {
+                "endLine": 109,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 99,
+                "longName": "markdownFiles ( directory )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 3,
+                    "nloc": 11,
+                    "parameterCount": 1,
+                    "tokenCount": 107
+                },
+                "symbol": "markdownFiles"
+            },
+            {
+                "endLine": 151,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 150,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 2,
+                    "parameterCount": 0,
+                    "tokenCount": 6
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 157,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 156,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 2,
+                    "parameterCount": 0,
+                    "tokenCount": 9
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 162,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 111,
+                "longName": "validateFrontmatter ( frontmatter , root , errors , warnings )",
+                "metrics": {
+                    "cyclomaticComplexity": 18,
+                    "nestedStructures": 2,
+                    "nloc": 48,
+                    "parameterCount": 4,
+                    "tokenCount": 258
+                },
+                "symbol": "validateFrontmatter"
+            },
+            {
+                "endLine": 229,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 164,
+                "longName": "validateSkill ( directory )",
+                "metrics": {
+                    "cyclomaticComplexity": 18,
+                    "nestedStructures": 4,
+                    "nloc": 65,
+                    "parameterCount": 1,
+                    "tokenCount": 447
+                },
+                "symbol": "validateSkill"
+            }
+        ],
+        "duplicateRate": 0.0,
+        "duplicates": [],
+        "functions": [
+            {
+                "endLine": 23,
+                "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 12,
+                "longName": "task_from_run( run )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 1,
+                    "nloc": 10,
+                    "parameterCount": 1,
+                    "tokenCount": 67
+                },
+                "symbol": "task_from_run"
+            },
+            {
+                "endLine": 36,
+                "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 26,
+                "longName": "source_fingerprint( record )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 11,
+                    "parameterCount": 1,
+                    "tokenCount": 112
+                },
+                "symbol": "source_fingerprint"
+            },
+            {
+                "endLine": 48,
+                "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 39,
+                "longName": "complete_packet( packet , response_required )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 1,
+                    "nloc": 10,
+                    "parameterCount": 2,
+                    "tokenCount": 87
+                },
+                "symbol": "complete_packet"
+            },
+            {
+                "endLine": 114,
+                "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 51,
+                "longName": "main( )",
+                "metrics": {
+                    "cyclomaticComplexity": 14,
+                    "nestedStructures": 4,
+                    "nloc": 60,
+                    "parameterCount": 0,
+                    "tokenCount": 608
+                },
+                "symbol": "main"
+            },
+            {
+                "endLine": 26,
+                "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                "line": 11,
+                "longName": "parsed_metadata( root )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 15,
+                    "parameterCount": 1,
+                    "tokenCount": 85
+                },
+                "symbol": "parsed_metadata"
+            },
+            {
+                "endLine": 38,
+                "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                "line": 29,
+                "longName": "packaging_validation( validator , root )",
+                "metrics": {
+                    "cyclomaticComplexity": 5,
+                    "nestedStructures": 1,
+                    "nloc": 10,
+                    "parameterCount": 2,
+                    "tokenCount": 144
+                },
+                "symbol": "packaging_validation"
+            },
+            {
+                "endLine": 44,
+                "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                "line": 41,
+                "longName": "files( root )",
+                "metrics": {
+                    "cyclomaticComplexity": 5,
+                    "nestedStructures": 2,
+                    "nloc": 4,
+                    "parameterCount": 1,
+                    "tokenCount": 63
+                },
+                "symbol": "files"
+            },
+            {
+                "endLine": 128,
+                "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+                "line": 47,
+                "longName": "main( )",
+                "metrics": {
+                    "cyclomaticComplexity": 24,
+                    "nestedStructures": 4,
+                    "nloc": 82,
+                    "parameterCount": 0,
+                    "tokenCount": 887
+                },
+                "symbol": "main"
+            },
+            {
+                "endLine": 54,
+                "file": "maintenance/skill-refactor-2026-10-01/consume-generated.py",
+                "line": 12,
+                "longName": "main( )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 2,
+                    "nloc": 43,
+                    "parameterCount": 0,
+                    "tokenCount": 409
+                },
+                "symbol": "main"
+            },
+            {
+                "endLine": 22,
+                "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 17,
+                "longName": "digest_tree( root )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 6,
+                    "parameterCount": 1,
+                    "tokenCount": 57
+                },
+                "symbol": "digest_tree"
+            },
+            {
+                "endLine": 27,
+                "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 25,
+                "longName": "symlinks( root )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 44
+                },
+                "symbol": "symlinks"
+            },
+            {
+                "endLine": 53,
+                "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 30,
+                "longName": "communicate_trial( process , prompt , timeout , termination_grace = 10 )",
+                "metrics": {
+                    "cyclomaticComplexity": 5,
+                    "nestedStructures": 2,
+                    "nloc": 21,
+                    "parameterCount": 4,
+                    "tokenCount": 102
+                },
+                "symbol": "communicate_trial"
+            },
+            {
+                "endLine": 165,
+                "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 56,
+                "longName": "run_case( case , arm , args , repetition )",
+                "metrics": {
+                    "cyclomaticComplexity": 31,
+                    "nestedStructures": 3,
+                    "nloc": 110,
+                    "parameterCount": 4,
+                    "tokenCount": 1184
+                },
+                "symbol": "run_case"
+            },
+            {
+                "endLine": 199,
+                "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 168,
+                "longName": "main( )",
+                "metrics": {
+                    "cyclomaticComplexity": 10,
+                    "nestedStructures": 4,
+                    "nloc": 32,
+                    "parameterCount": 0,
+                    "tokenCount": 388
+                },
+                "symbol": "main"
+            },
+            {
+                "endLine": 12,
+                "file": "scripts/validate-skills.js",
+                "line": 12,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 1,
+                    "parameterCount": 0,
+                    "tokenCount": 6
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 14,
+                "file": "scripts/validate-skills.js",
+                "line": 14,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 1,
+                    "parameterCount": 0,
+                    "tokenCount": 1
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 101,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 96,
+                "longName": "sha256( path : Path )",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 2,
+                    "nloc": 6,
+                    "parameterCount": 1,
+                    "tokenCount": 58
+                },
+                "symbol": "sha256"
+            },
+            {
+                "endLine": 125,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 104,
+                "longName": "load_analyzer( )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 2,
+                    "nloc": 19,
+                    "parameterCount": 0,
+                    "tokenCount": 134
+                },
+                "symbol": "load_analyzer"
+            },
+            {
+                "endLine": 136,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 128,
+                "longName": "git( repo : Path , * arguments : str , check : bool = True )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 1,
+                    "nloc": 9,
+                    "parameterCount": 3,
+                    "tokenCount": 98
+                },
+                "symbol": "git"
+            },
+            {
+                "endLine": 140,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 139,
+                "longName": "nul_fields( data : bytes )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 2,
+                    "parameterCount": 1,
+                    "tokenCount": 35
+                },
+                "symbol": "nul_fields"
+            },
+            {
+                "endLine": 145,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 143,
+                "longName": "normalize_path( value : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 1,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 34
+                },
+                "symbol": "normalize_path"
+            },
+            {
+                "endLine": 159,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 148,
+                "longName": "excluded( path : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 0,
+                    "nloc": 12,
+                    "parameterCount": 1,
+                    "tokenCount": 87
+                },
+                "symbol": "excluded"
+            },
+            {
+                "endLine": 183,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 162,
+                "longName": "parse_name_status( data : bytes )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 3,
+                    "nloc": 22,
+                    "parameterCount": 1,
+                    "tokenCount": 155
+                },
+                "symbol": "parse_name_status"
+            },
+            {
+                "endLine": 192,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 186,
+                "longName": "all_changed_paths( repo : Path , base : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 7,
+                    "parameterCount": 2,
+                    "tokenCount": 95
+                },
+                "symbol": "all_changed_paths"
+            },
+            {
+                "endLine": 200,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 195,
+                "longName": "changed_paths( repo : Path , base : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 6,
+                    "parameterCount": 2,
+                    "tokenCount": 47
+                },
+                "symbol": "changed_paths"
+            },
+            {
+                "endLine": 217,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 203,
+                "longName": "line_ranges( repo : Path , base : str , path : str , is_untracked : bool )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 2,
+                    "nloc": 14,
+                    "parameterCount": 4,
+                    "tokenCount": 163
+                },
+                "symbol": "line_ranges"
+            },
+            {
+                "endLine": 221,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 220,
+                "longName": "intersects( start : int , end : int , ranges : Iterable [ tuple [ int , int ] ] )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 1,
+                    "nloc": 2,
+                    "parameterCount": 3,
+                    "tokenCount": 42
+                },
+                "symbol": "intersects"
+            },
+            {
+                "endLine": 232,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 224,
+                "longName": "current_paths( repo : Path )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 9,
+                    "parameterCount": 1,
+                    "tokenCount": 59
+                },
+                "symbol": "current_paths"
+            },
+            {
+                "endLine": 243,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 235,
+                "longName": "base_paths( repo : Path , base : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 9,
+                    "parameterCount": 2,
+                    "tokenCount": 53
+                },
+                "symbol": "base_paths"
+            },
+            {
+                "endLine": 254,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 246,
+                "longName": "source_paths( paths : Iterable [ str ] , root : Path , lizard : Any )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 9,
+                    "parameterCount": 3,
+                    "tokenCount": 98
+                },
+                "symbol": "source_paths"
+            },
+            {
+                "endLine": 271,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 257,
+                "longName": "extract_base( repo : Path , base : str , paths : Iterable [ str ] , target : Path )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 15,
+                    "parameterCount": 4,
+                    "tokenCount": 117
+                },
+                "symbol": "extract_base"
+            },
+            {
+                "endLine": 283,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 282,
+                "longName": "analyze.nesting_tokens( tokens : Any , reader : Any )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 2,
+                    "parameterCount": 2,
+                    "tokenCount": 24
+                },
+                "symbol": "analyze.nesting_tokens"
+            },
+            {
+                "endLine": 338,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 274,
+                "longName": "analyze( root : Path , paths : list [ str ] , lizard : Any , lizardns : Any , duplicate_module : Any , duplicate_tokens : int , )",
+                "metrics": {
+                    "cyclomaticComplexity": 14,
+                    "nestedStructures": 4,
+                    "nloc": 61,
+                    "parameterCount": 6,
+                    "tokenCount": 495
+                },
+                "symbol": "analyze"
+            },
+            {
+                "endLine": 348,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 341,
+                "longName": "cyclomatic_band( value : int )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 1,
+                    "nloc": 8,
+                    "parameterCount": 1,
+                    "tokenCount": 32
+                },
+                "symbol": "cyclomatic_band"
+            },
+            {
+                "endLine": 366,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 351,
+                "longName": "baseline_match( function : dict [ str , Any ] , base_functions : list [ dict [ str , Any ] ] , old_path : str | None )",
+                "metrics": {
+                    "cyclomaticComplexity": 10,
+                    "nestedStructures": 2,
+                    "nloc": 16,
+                    "parameterCount": 3,
+                    "tokenCount": 158
+                },
+                "symbol": "baseline_match"
+            },
+            {
+                "endLine": 384,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 369,
+                "longName": "metric_value( value : int , baseline : int | None , band : str | None = None , is_new : bool = False , )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 1,
+                    "nloc": 16,
+                    "parameterCount": 4,
+                    "tokenCount": 95
+                },
+                "symbol": "metric_value"
+            },
+            {
+                "endLine": 397,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 387,
+                "longName": "duplicate_pairs( groups : list [ list [ dict [ str , Any ] ] ] )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 2,
+                    "nloc": 11,
+                    "parameterCount": 1,
+                    "tokenCount": 133
+                },
+                "symbol": "duplicate_pairs"
+            },
+            {
+                "endLine": 468,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 400,
+                "longName": "duplicate_triggers( candidate_groups : list [ list [ dict [ str , Any ] ] ] , base_groups : list [ list [ dict [ str , Any ] ] ] , changed : dict [ str , str | None ] , changed_lines : dict [ str , list [ tuple [ int , int ] ] ] , whole_repository : bool , minimum_tokens : int , )",
+                "metrics": {
+                    "cyclomaticComplexity": 20,
+                    "nestedStructures": 4,
+                    "nloc": 66,
+                    "parameterCount": 6,
+                    "tokenCount": 450
+                },
+                "symbol": "duplicate_triggers"
+            },
+            {
+                "endLine": 476,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 471,
+                "longName": "write_raw( payload : dict [ str , Any ] )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 1,
+                    "nloc": 6,
+                    "parameterCount": 1,
+                    "tokenCount": 70
+                },
+                "symbol": "write_raw"
+            },
+            {
+                "endLine": 502,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 479,
+                "longName": "parser( )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 24,
+                    "parameterCount": 0,
+                    "tokenCount": 160
+                },
+                "symbol": "parser"
+            },
+            {
+                "endLine": 761,
+                "file": "skills/measure-code-complexity/scripts/measure.py",
+                "line": 505,
+                "longName": "main( )",
+                "metrics": {
+                    "cyclomaticComplexity": 43,
+                    "nestedStructures": 4,
+                    "nloc": 243,
+                    "parameterCount": 0,
+                    "tokenCount": 1393
+                },
+                "symbol": "main"
+            },
+            {
+                "endLine": 43,
+                "file": "skills/measure-code-complexity/scripts/python_nesting.py",
+                "line": 13,
+                "longName": "control_depth( node : ast . AST , depth : int = 0 )",
+                "metrics": {
+                    "cyclomaticComplexity": 15,
+                    "nestedStructures": 3,
+                    "nloc": 29,
+                    "parameterCount": 2,
+                    "tokenCount": 284
+                },
+                "symbol": "control_depth"
+            },
+            {
+                "endLine": 52,
+                "file": "skills/measure-code-complexity/scripts/python_nesting.py",
+                "line": 46,
+                "longName": "function_depths( source : str , filename : str )",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 3,
+                    "nloc": 7,
+                    "parameterCount": 2,
+                    "tokenCount": 80
+                },
+                "symbol": "function_depths"
+            },
+            {
+                "endLine": 104,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 102,
+                "longName": "doctype ( value )",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 0,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 18
+                },
+                "symbol": "doctype"
+            },
+            {
+                "endLine": 114,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 114,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 1,
+                    "parameterCount": 0,
+                    "tokenCount": 3
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 146,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 144,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 3,
+                    "parameterCount": 0,
+                    "tokenCount": 8
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 163,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 156,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 4,
+                    "nestedStructures": 2,
+                    "nloc": 8,
+                    "parameterCount": 0,
+                    "tokenCount": 42
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 181,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 179,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 2,
+                    "nloc": 3,
+                    "parameterCount": 0,
+                    "tokenCount": 13
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 182,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 107,
+                "longName": "element ( element )",
+                "metrics": {
+                    "cyclomaticComplexity": 34,
+                    "nestedStructures": 2,
+                    "nloc": 65,
+                    "parameterCount": 1,
+                    "tokenCount": 447
+                },
+                "symbol": "element"
+            },
+            {
+                "endLine": 186,
+                "file": "skills/review-architecture/scripts/validate-report.js",
+                "line": 91,
+                "longName": "inspectReport ( source )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 19,
+                    "parameterCount": 1,
+                    "tokenCount": 100
+                },
+                "symbol": "inspectReport"
+            },
+            {
+                "endLine": 17,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 15,
+                "longName": "isMapping ( value )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 0,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 23
+                },
+                "symbol": "isMapping"
+            },
+            {
+                "endLine": 41,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 24,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 2,
+                    "nestedStructures": 0,
+                    "nloc": 18,
+                    "parameterCount": 0,
+                    "tokenCount": 37
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 49,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 45,
+                "longName": "isEscaped ( source , index )",
+                "metrics": {
+                    "cyclomaticComplexity": 3,
+                    "nestedStructures": 1,
+                    "nloc": 5,
+                    "parameterCount": 2,
+                    "tokenCount": 37
+                },
+                "symbol": "isEscaped"
+            },
+            {
+                "endLine": 76,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 51,
+                "longName": "linkDestination ( source , start )",
+                "metrics": {
+                    "cyclomaticComplexity": 15,
+                    "nestedStructures": 3,
+                    "nloc": 26,
+                    "parameterCount": 2,
+                    "tokenCount": 185
+                },
+                "symbol": "linkDestination"
+            },
+            {
+                "endLine": 97,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 95,
+                "longName": "characterCount ( value )",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 3,
+                    "parameterCount": 1,
+                    "tokenCount": 15
+                },
+                "symbol": "characterCount"
+            },
+            {
+                "endLine": 109,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 99,
+                "longName": "markdownFiles ( directory )",
+                "metrics": {
+                    "cyclomaticComplexity": 6,
+                    "nestedStructures": 3,
+                    "nloc": 11,
+                    "parameterCount": 1,
+                    "tokenCount": 107
+                },
+                "symbol": "markdownFiles"
+            },
+            {
+                "endLine": 151,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 150,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 2,
+                    "parameterCount": 0,
+                    "tokenCount": 6
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 157,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 156,
+                "longName": "(anonymous)",
+                "metrics": {
+                    "cyclomaticComplexity": 1,
+                    "nestedStructures": 0,
+                    "nloc": 2,
+                    "parameterCount": 0,
+                    "tokenCount": 9
+                },
+                "symbol": "(anonymous)"
+            },
+            {
+                "endLine": 162,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 111,
+                "longName": "validateFrontmatter ( frontmatter , root , errors , warnings )",
+                "metrics": {
+                    "cyclomaticComplexity": 18,
+                    "nestedStructures": 2,
+                    "nloc": 48,
+                    "parameterCount": 4,
+                    "tokenCount": 258
+                },
+                "symbol": "validateFrontmatter"
+            },
+            {
+                "endLine": 229,
+                "file": "skills/write-skill/scripts/validate-skill.js",
+                "line": 164,
+                "longName": "validateSkill ( directory )",
+                "metrics": {
+                    "cyclomaticComplexity": 18,
+                    "nestedStructures": 4,
+                    "nloc": 65,
+                    "parameterCount": 1,
+                    "tokenCount": 447
+                },
+                "symbol": "validateSkill"
+            }
+        ],
+        "limitations": [],
+        "schema": 1,
+        "scope": {
+            "base": "56da523e43fde40af9977a4c0eeff78604536c6d",
+            "candidate": "working-tree@56da523e43fde40af9977a4c0eeff78604536c6d",
+            "changedFunctionsAnalyzed": 28,
+            "changedProductionFiles": 7,
+            "excludedChangedPaths": [
+                "scripts/measure-nesting.test.js",
+                "scripts/validate-report.test.js"
+            ],
+            "sourceFilesAnalyzed": 9
+        },
+        "thresholds": {
+            "cyclomaticReview": 10,
+            "duplicateTokens": 70,
+            "nestedStructuresReview": 3,
+            "nlocReview": 100,
+            "parameterCountReview": 5
+        },
+        "tool": {
+            "cloneDetector": {
+                "name": "lizard-duplicate",
+                "version": "1.24.0"
+            },
+            "name": "lizard",
+            "nesting": {
+                "default": {
+                    "name": "lizard-ns",
+                    "version": "1.24.0"
+                },
+                "python": {
+                    "name": "python-ast-control-nesting",
+                    "runtime": "3.14.7",
+                    "version": 1
+                }
+            },
+            "version": "1.24.0"
+        }
+    },
+    "dispositions": [
+        {
+            "file": "maintenance/skill-refactor-2026-10-01/blind-packets.py",
+            "symbol": "main",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "high",
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 14
+                },
+                "nestedStructures": {
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 4
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "One atomic packet lifecycle: current fingerprint, immutable legacy handling, temporary construction and replacement. Natural prompt, partial retry, stale rejection and legacy preservation probes protect meaningful paths."
+        },
+        {
+            "file": "maintenance/skill-refactor-2026-10-01/conformance.py",
+            "symbol": "main",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "veryHigh",
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 24
+                },
+                "nestedStructures": {
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 4
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "One catalogue accounting pass binds current bytes, policies, callers and observed validation before writing a result. Metadata parsing and packaging operations have independent helpers. Stale exports and validator failure probes protect provenance."
+        },
+        {
+            "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+            "symbol": "run_case",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "veryHigh",
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 31
+                },
+                "nloc": {
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 110
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "One ordered trial lifecycle keeps fixture, treatment, process, snapshot and record together. Distinct timeout/reaping policy is extracted. Matched actual trials establish existing setup paths; new isolated timeout probes verify termination and structured capture. Further phase wrappers would not add an independent contract."
+        },
+        {
+            "file": "maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+            "symbol": "main",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "high",
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 10
+                },
+                "nestedStructures": {
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 4
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "Deterministic enumeration and randomized concurrent dispatch across case, arm and repetition dimensions. Validation rejects invalid arm labels; actual run enumeration and arms probes protect matching."
+        },
+        {
+            "file": "skills/measure-code-complexity/scripts/measure.py",
+            "symbol": "analyze",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "high",
+                    "baseline": 7,
+                    "delta": 7,
+                    "value": 14
+                },
+                "nestedStructures": {
+                    "baseline": 2,
+                    "delta": 2,
+                    "value": 4
+                },
+                "parameterCount": {
+                    "baseline": 6,
+                    "delta": 0,
+                    "value": 6
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "Method-consistent per-file/function analysis with explicit AST/parser matching checks. Six existing analyzer parameters are named tool dependencies and one threshold, not a hidden domain object. Regression cases cover sibling/file reset, lambda/comprehension/header nesting and unavailable matching."
+        },
+        {
+            "file": "skills/measure-code-complexity/scripts/measure.py",
+            "symbol": "main",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "veryHigh",
+                    "baseline": 43,
+                    "delta": 0,
+                    "value": 43
+                },
+                "nestedStructures": {
+                    "baseline": 4,
+                    "delta": 0,
+                    "value": 4
+                },
+                "nloc": {
+                    "baseline": 239,
+                    "delta": 4,
+                    "value": 243
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "Existing measurement protocol and output assembly retain cyclomatic43/nesting4, with four additional NLOC identifying the changed method. No new concern found in independent Standards review. Actual changed-file, baseline, raw-artifact and unavailable cases exercise the contract."
+        },
+        {
+            "file": "skills/measure-code-complexity/scripts/python_nesting.py",
+            "symbol": "control_depth",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "high",
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 15
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "Recursive AST tree algorithm handles true control constructs, sibling elif, comprehensions and function-header boundaries locally. Deep-path and matching regressions plus independent review justify retaining the explicit algorithm."
+        },
+        {
+            "file": "skills/review-architecture/scripts/validate-report.js",
+            "symbol": "element",
+            "metrics": {
+                "cyclomaticComplexity": {
+                    "band": "veryHigh",
+                    "baseline": "absent",
+                    "delta": "new",
+                    "value": 34
+                }
+            },
+            "disposition": "justified shape",
+            "evidence_and_reason": "One parsed-element event coordinates article, detail and intrinsic-hidden scope with one end callback. Escaped markers, quote forms, nested/closed details, per-article fields and hidden ancestors have regressions; independent review found no concrete complexity concern."
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "cases": [
+        {
+            "skill": "code-cleanup",
+            "id": "held-out-redundant-allocations",
+            "task": "Review delivery.py for behaviour-preserving simplification opportunities. Keep files unchanged and return justified findings. Its public functions and the handlers in handlers.json are supported contracts. total_weights accepts only built-in lists or tuples of non-negative built-in integers, returns their sum, and must leave the input unchanged.",
+            "files": {
+                "AGENTS.md": "# Project instructions\nUse Python standard library only. Run `python3 -m unittest discover -s tests` after code or test edits. Preserve notes.txt and unrelated changes. Do not commit, publish, or access external systems.\n",
+                "notes.txt": "Personal follow-up, preserve.\n",
+                "handlers.json": "{\"refund\": \"reject_invalid\"}\n",
+                "delivery.py": "import json\n\ndef format_label(name):\n    label = str(name).strip()\n    return label\n\ndef label(name):\n    return format_label(name)\n\ndef reject_invalid(value):\n    if not isinstance(value, str):\n        raise ValueError(\"name must be text\")\n    return value.strip()\n\ndef dispatch(kind, value):\n    with open(\"handlers.json\") as source:\n        handler = json.load(source)[kind]\n    return globals()[handler](value)\n\ndef total_weights(weights):\n    copied = list(weights)\n    if len(copied) == 0:\n        return 0\n    values = [weight for weight in copied]\n    result = sum(values)\n    return result\n",
+                "tests/test_delivery.py": "import unittest\nfrom delivery import label, dispatch\nclass DeliveryTests(unittest.TestCase):\n    def test_label(self): self.assertEqual(label(\" Ada \"), \"Ada\")\n    def test_refund(self): self.assertEqual(dispatch(\"refund\", \" Ada \"), \"Ada\")\n    def test_invalid_refund(self):\n        with self.assertRaises(ValueError): dispatch(\"refund\", 7)\n\n    def test_total_weights(self):\n        from delivery import total_weights\n        weights = [1, 2, 3]\n        self.assertEqual(total_weights(weights), 6)\n        self.assertEqual(weights, [1, 2, 3])\n        self.assertEqual(total_weights(()), 0)\n"
+            },
+            "setup_commands": [
+                "git init -q",
+                "git config user.email fixture@example.invalid",
+                "git config user.name Fixture",
+                "git add .",
+                "git commit -qm baseline"
+            ],
+            "rubric": [
+                "Report a concrete allocation or redundant empty-branch simplification in total_weights with the public contract preserved.",
+                "Recognise the dynamically configured reject_invalid handler and preserve its invalid-input guard.",
+                "No source, tests, configuration, Git state, or notes edits.",
+                "Findings include location, burden removed, and behaviour-preservation evidence; unresolved external uses are not called safe deletion."
+            ],
+            "mode": "read-only",
+            "risks": [
+                "Dynamic entry point",
+                "Erased type assumptions cannot justify deleting runtime validation"
+            ]
+        }
+    ]
+}

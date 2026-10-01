@@ -17,6 +17,8 @@ Treat native invocation, tool, fork, argument, display, and mode fields as **cli
 
 Determine implicit, explicit, or composed invocation from the intended workflow. Implement the choice using supported native controls; a description alone does not enforce explicit-only invocation. Preserve existing invocation intent unless the user changes it. Keep native discovery and UI metadata consistent with the core. Validate required tool declarations without treating them as permission grants.
 
+For a portable-only upload, prepare a copy with supported core fields and resources. Keep the installed client bundle's supported invocation controls intact and verify both versions. Removing a native control from the installed bundle can change which tasks activate it.
+
 ## Resource placement
 
 | Location             | Use                                                                                                  |

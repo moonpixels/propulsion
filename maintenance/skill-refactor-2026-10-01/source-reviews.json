@@ -1,0 +1,546 @@
+{
+    "method": "Fresh independent Standards and Spec axes, read-only fixed candidates, retained reports unchanged; caller adjudicates and repairs. Exact configuration, drift and probe limits retained. Last full review has one accepted low argv finding and zero Spec findings; narrow repair followed by an independent bounded Spec review with no findings and 11 passing focused tests.",
+    "historical_reviews": [
+        {
+            "temporary_location": "/private/tmp/propulsion-helper-review-pk7hy_j0",
+            "files": {
+                "standards-review.md": {
+                    "sha256": "8e2bf30328396cbb944c546db4fa7b1873f394e374acffff9de40d346fd0d8bb",
+                    "content": "## Standards\n\nStatus: current. Findings: 1 medium, 0 high, 0 low.\n\nScope: the six paths in `/private/tmp/propulsion-helper-review-pk7hy_j0/manifest.json`, compared with their complete frozen base files and `patch.diff`. New `python_nesting.py` and the two test files have no base. Authorities: copied `AGENTS.md`, package scripts, code-review Standards criteria and review rules, modular-design and test-design public contracts, measure-code-complexity contract and triggered metric references, and review-architecture's current report contract. No other snapshots, prior findings, author-maintenance explanations, or blinded mappings were used.\n\n### [medium] Escaped evidence text is mistaken for report-state attributes\n\n- Evidence: `skills/review-architecture/scripts/validate-report.js:79-88` counts `data-top-recommendation` and searches for `data-zero-result` across the entire HTML string. The current review-architecture contract requires escaped repository-derived evidence and structural validation. A complete one-recommendation report with its sole top attribute on the first article passes both validators. Changing only its escaped evidence to `src/report.js:4 &lt;article data-top-recommendation&gt;` makes the candidate reject it with \u201cOnly the first recommendation must be marked as top.\u201d Changing only the evidence to `src/report.js:4 &lt;p data-zero-result&gt;` makes it reject the report as a contradictory zero result. Both modified reports still pass the base validator, and neither contains an additional actual state attribute. The base-compatible probes satisfy the base's filename, destination and CDN requirements, isolating this regression. `scripts/validate-report.test.js` exercises escaped script evidence but does not challenge these marker words inside evidence text.\n- Consequence: legitimate source excerpts can fail the mandatory structural check even when recommendation order and result state are correct. Completing a report that discusses these markers then requires changing its evidence or ignoring a reported defect.\n- Suggested direction: derive result state and top-marker cardinality from actual element attributes, excluding escaped text and other non-attribute content; retain regression coverage for these two valid evidence excerpts alongside the existing invalid-state cases.\n\nModularity and test judgement: the AST counter owns Python nesting and exposes a small line-to-depth result; `analyze` owns matching it to the existing normalised function records. This keeps consumers independent of AST traversal. The validator retains one report-validation owner and a local visibility helper. The retained tests use independently reasoned literal depths and report outcomes, exercise the real vendored analyser or Bun subprocess, and release their temporary state. Their passing scope does not protect the marker-text regression above.\n\nComplexity: bounded fixed-state measurement used the candidate helper's `analyze` API with checksum-verified Lizard 1.24.0 wheels and Python AST counter version 1 on both candidate and base. Python runtime: 3.14.7. Default thresholds were preserved: cyclomatic >=10, NLOC >100, nesting >3, parameters >=5, clone minimum 70 tokens. Five code paths yielded 47 candidate and 24 base function records; 26 functions intersect changed lines. Changed-function maxima were cyclomatic 43, NLOC 243, nesting 4, parameters 6, tokens 1393. No clone group appeared within this bounded scope.\n\nTrigger dispositions:\n\n- `measure.py:274 analyze`: cyclomatic 11 versus 7, nesting 4 versus 2, parameters 6 unchanged. Justified shape: cohesive cross-language analysis, per-file Python parsing, fail-closed matching, and normalised record construction remain together. The six named arguments are the existing root/path/tool/configuration boundary. The supplied nesting tests protect sibling paths, independent nested functions, file isolation, decorated async functions, invalid parsing, and expression nesting. No separate structural concern survived inspection.\n- `measure.py:501 main`: cyclomatic 43 unchanged, NLOC 243 versus 239, nesting 4 unchanged. The changed lines only add nesting-method/runtime metadata to the existing CLI orchestration and report construction. This change does not introduce or worsen a separately evidenced structural defect; no metric-only finding.\n- `python_nesting.py:13 control_depth`: cyclomatic 14, new function. Justified shape: one recursive syntactic grammar owner handles definitions, comprehensions, controls, and `elif` attribution. Splitting these cases merely to reduce the number would scatter the grammar. The focused retained examples exercise the principal new branches; no score-driven extraction is proposed.\n\nProbes and audit artefacts:\n\n- `/private/tmp/propulsion-helper-review-pk7hy_j0/standards-probes.json`: raw candidate/base subprocess outputs for the ordinary and two escaped-marker reports, the initial requested-destination variants, a nested-return-annotation diagnostic probe, Bun runtime, and final manifest hash checks. HTML fixtures are under `/private/tmp/propulsion-helper-review-pk7hy_j0/standards-probes/`.\n- `/private/tmp/propulsion-helper-review-pk7hy_j0/standards-complexity.json`: complete bounded candidate/base records, changed ranges, thresholds, triggers, runtime and six candidate hashes.\n- Existing coordinator evidence: `/private/tmp/propulsion-helper-review-pk7hy_j0/focused-tests.log`, 14 passing tests, 0 failures, 30 assertions on Bun 1.4.2. This was supplied execution evidence, not an independent completeness oracle; the full quality portfolio was not repeated.\n\nLimits: direct bounded analyser measurement avoids snapshot or Git mutation but does not exercise CLI Git discovery/reporting or repository-wide clone counterparts. HTML probes establish structural subprocess behaviour, not browser rendering or factual report quality. Annotation-header attribution is not independently specified by the supplied function-body contract; the diagnostic annotation result was not promoted to a finding. No dependency installation, source edits, Git edits, repairs, or adjudication were performed. Final SHA-256 recheck matches all six manifest hashes; no candidate drift was detected.\n"
+                },
+                "spec-review.md": {
+                    "sha256": "587c29dbfa188a40251cf307cad3352733b7c07fe999d8aa3158a320476cf977",
+                    "content": "## Spec review: 1 finding\n\n**Frozen scope:** The six paths in `manifest.json`: `skills/measure-code-complexity/scripts/{measure.py,python_nesting.py}`, `skills/measure-code-complexity/references/NESTING.md`, `scripts/measure-nesting.test.js`, `skills/review-architecture/scripts/validate-report.js`, and `scripts/validate-report.test.js`. I compared the three existing files with their base files and `patch.diff`; the three added files had no baseline. **All six candidate hashes match the manifest.**\n\n**Authorities:** The current public `measure-code-complexity` skill and `NESTING.md`, the `review-architecture` skill, and the supplied repository guidance. The tests were treated as implementation evidence.\n\n### medium \u2014 Nested return annotations can hide a nesting trigger\n\n- **Evidence:** [python_nesting.py](/private/tmp/propulsion-helper-review-pk7hy_j0/candidate/skills/measure-code-complexity/scripts/python_nesting.py:13) traverses a nested function\u2019s arguments and decorators but omits its return annotation. An in-memory probe with four nested conditional expressions in `def inner() -> ...` returned depth `0` for both `outer` and `inner`; Lizard identified both functions. The public `NESTING.md` says Python nesting counts conditional expressions.\n- **Consequence:** A return annotation evaluated while the outer function runs can exceed the review threshold of `3` without producing a nesting trigger.\n- **Suggested direction:** Include evaluated nested function return annotations in the enclosing function\u2019s depth calculation, while keeping the nested function body separate.\n\n**Probes and limits:** Read-only AST and Lizard probes ran under Python 3.14.7. The supplied Bun 1.4.2 evidence reports 14 passing focused tests; I did not rerun them. The sandbox prevented temporary-file probes, so full helper and validator executions were unavailable. No other review axis was assessed."
+                },
+                "final-drift.json": {
+                    "sha256": "2b29064875aed52ca14a654841e237c2af3c4a8e353ef7bf30dfa7418631f436",
+                    "content": {
+                        "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                        "headMatches": true,
+                        "sourceHashes": {
+                            "skills/measure-code-complexity/scripts/measure.py": "cb25c1fcb5e30aa90cb8edd2fd9b8793a28ecf701022a0fa8c249024716de5cf",
+                            "skills/measure-code-complexity/scripts/python_nesting.py": "3da393928566d2fd105d6132f8f9f13650adbe30c0181c86dc95eaddb06d508a",
+                            "skills/measure-code-complexity/references/NESTING.md": "868f071671459b506b1cd917bd4be6ab4b802cdc8b20f6fd165aec7b68cff1bc",
+                            "scripts/measure-nesting.test.js": "939a77d232057b3e67acfa78b19b1f6ea956577153a27d1202f984a6713aac13",
+                            "skills/review-architecture/scripts/validate-report.js": "2794bfe426f5ea25834b6b3bcad026aadcc9211ad9e8a44d4825f7b1dc879626",
+                            "scripts/validate-report.test.js": "8ff352b8f3a08e6d6b91b4ee8eac7c9982e28c7faba752e04a3546142c315c57"
+                        },
+                        "drift": []
+                    }
+                }
+            }
+        },
+        {
+            "temporary_location": "/private/tmp/propulsion-source-review-20261001",
+            "files": {
+                "standards/report.md": {
+                    "sha256": "89e2f5f0abace626235a35583efbafa0c332526205f82eb3e74160668aaac74f",
+                    "content": "## Standards \u2014 1 finding\n\n### medium Require evidence and trade-offs to be inside expandable content\n\n- Evidence: [validate-report.js](/private/tmp/propulsion-source-review-20261001/standards/repo/skills/review-architecture/scripts/validate-report.js:149) records `expandable`, `evidence`, and `tradeoffs` independently. An in-memory probe confirmed that an article with an empty `<details><summary>\u2026</summary></details>` and both evidence fields outside it satisfies all three checks. The [review-architecture contract](/private/tmp/propulsion-source-review-20261001/standards/repo/skills/review-architecture/SKILL.md) requires detailed evidence and trade-offs in expandable sections; the [test](/private/tmp/propulsion-source-review-20261001/standards/repo/scripts/validate-report.test.js:128) covers absent expandable content, but not misplaced content.\n- Consequence: The validator can return `valid: true` for a report whose evidence and trade-offs are not expandable.\n- Suggested direction: Associate each evidence and trade-offs field with a containing expandable section, and test the misplaced-field case.\n\n**Scope and authority:** Reviewed the six specified paths against HEAD `56da523e43fde40af9977a4c0eeff78604536c6d`, including the three untracked files. Used the current code-review, modular-design, test-design, measure-code-complexity, and review-architecture contracts and the report template. All six scoped file hashes match the packet manifest.\n\n**Probes and limitations:** The validator probe used in-memory HTML. Focused in-memory measurement with the bundled analyzer covered the changed production files and available base versions: `analyze` rose from cyclomatic 7/nesting 2 to 11/4; `main` remained cyclomatic 43/nesting 4; new `control_depth` measured cyclomatic 15; the new HTML element callback measured cyclomatic 22. These values prompted source and test inspection, not separate findings. The standard complexity run could not extract its base or produce a raw artefact because the read-only environment has no writable temporary directory; full repository and clone results are unavailable. The supplied prior checks are sampled evidence and were not rerun."
+                },
+                "spec/report.md": {
+                    "sha256": "19799e6b6b281af60d2b774a6a19956eb12decf551714cb66393cc3339476e1e",
+                    "content": "## Spec\n\n**Findings: 2.** Scope: the six specified paths in the frozen checkout, compared with `56da523e43fde40af9977a4c0eeff78604536c6d`.\n\n### medium Python function-matching failures can be reported as clear measurements\n\n- Evidence: [measure.py](/private/tmp/propulsion-source-review-20261001/spec/repo/skills/measure-code-complexity/scripts/measure.py:299) checks whether each *Lizard* function has an AST match, but never checks whether every AST function has a Lizard match. The current [NESTING.md](/private/tmp/propulsion-source-review-20261001/spec/repo/skills/measure-code-complexity/references/NESTING.md:5) says a function-matching failure makes measurement unavailable. In an in-memory probe, `def f(x): return 1 if x else (2 if x else (3 if x else (4 if x else 5)))` produced AST depth `4`, while the bundled Lizard analyzer returned no function.\n- Consequence: A changed Python function above the nesting threshold can be omitted, leaving the helper able to report a clear result.\n- Suggested direction: Detect AST functions missing from Lizard\u2019s records and report nesting as unavailable for that file.\n\n### medium Validator accepts evidence outside the expandable section\n\n- Evidence: [validate-report.js](/private/tmp/propulsion-source-review-20261001/spec/repo/skills/review-architecture/scripts/validate-report.js:142) checks for a `<details>` with a `<summary>`, while lines 158\u2013159 accept `data-evidence` and `data-tradeoffs` anywhere in the article. The current [review-architecture skill](/private/tmp/propulsion-source-review-20261001/spec/repo/skills/review-architecture/SKILL.md:23) requires detailed evidence and trade-offs in expandable sections. An in-memory probe with both marked paragraphs outside an empty `<details><summary>\u2026</summary></details>` satisfied all of these validator fields.\n- Consequence: Structural validation can pass a report whose detailed evidence and trade-offs are not expandable.\n- Suggested direction: Require each recommendation\u2019s evidence and trade-off markers to be inside its expandable section.\n\n**Authority and probes:** Used the current measure-code-complexity and review-architecture skills, NESTING.md, report template, AGENTS.md, and package.json. Read the patch, complete in-scope files, and relevant base source; checked all six in-scope hashes against the manifest. Probes used in-memory inputs with the frozen checkout\u2019s bundled Lizard and Bun HTMLRewriter.\n\n**Material limitations:** No complete quality portfolio was rerun, as requested. The supplied passing checks predate snapshot capture and do not independently establish byte identity; the six in-scope file hashes do match the manifest. No rendered report was inspected."
+                },
+                "final-drift.json": {
+                    "sha256": "167d4ceabe4df3e4bfed279e07f490d225042fe4d97833a0d554ea21e49b1a22",
+                    "content": {
+                        "checked_utc": "2026-10-01T21:46:21.360300+00:00",
+                        "original_head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                        "head_matches": true,
+                        "changed_frozen_paths": [],
+                        "scope_status_matches": true,
+                        "patch_matches": true,
+                        "snapshots": {
+                            "standards": {
+                                "head_matches": true,
+                                "changed_frozen_paths": [],
+                                "scope_status_matches": true
+                            },
+                            "spec": {
+                                "head_matches": true,
+                                "changed_frozen_paths": [],
+                                "scope_status_matches": true
+                            }
+                        },
+                        "reports": {
+                            "standards": {
+                                "path": "/private/tmp/propulsion-source-review-20261001/standards/report.md",
+                                "sha256": "89e2f5f0abace626235a35583efbafa0c332526205f82eb3e74160668aaac74f",
+                                "finding_count": 1,
+                                "priority_counts": {
+                                    "medium": 1
+                                },
+                                "missing_structure": []
+                            },
+                            "spec": {
+                                "path": "/private/tmp/propulsion-source-review-20261001/spec/report.md",
+                                "sha256": "19799e6b6b281af60d2b774a6a19956eb12decf551714cb66393cc3339476e1e",
+                                "finding_count": 2,
+                                "priority_counts": {
+                                    "medium": 2
+                                },
+                                "missing_structure": []
+                            }
+                        },
+                        "status": "current"
+                    }
+                }
+            }
+        },
+        {
+            "temporary_location": "/private/tmp/propulsion-helper-review-final-2iplatn1",
+            "files": {
+                "standards/review.md": {
+                    "sha256": "2407fc04f4c70bfd10cc72633bee82be78c03e4a79603b550ce4e970567b0934",
+                    "content": "## Standards \u2014 2 findings\n\nScope: the six specified paths against HEAD `56da523e43fde40af9977a4c0eeff78604536c6d`. All six candidate files match their frozen copies.\n\n### [medium] Test files enter the production complexity measurement\n\n- Evidence: [measure.py](/private/tmp/propulsion-helper-review-final-2iplatn1/standards/candidate/skills/measure-code-complexity/scripts/measure.py:148) excludes `.test.ts` but not `.test.js`. The fresh helper run counted both new test files as production: 25 of its 35 changed functions came from them.\n- Consequence: The reported production scope and changed-function summary are misleading; test code can also create advisory triggers.\n- Suggested direction: Exclude `.test.js` consistently from candidate and baseline production measurements.\n\n### [medium] Hidden recommendation fields pass report validation\n\n- Evidence: [validate-report.js](/private/tmp/propulsion-helper-review-final-2iplatn1/standards/candidate/skills/review-architecture/scripts/validate-report.js:160) records a field marker without checking the HTML `hidden` attribute. A focused report with `data-field=\"why\" hidden` returned `valid: true`, although the current review-architecture contract requires the reason to be visible.\n- Consequence: The validator can accept a report whose required recommendation content is absent from the visible report.\n- Suggested direction: Reject required fields hidden by their element or an ancestor.\n\n**Probes and limits:** The bundled complexity helper completed with `attention`, four function triggers and no duplicate groups; none warranted a score-only finding. Its raw artefact is `/var/folders/3s/355db_gd11q_zcq2nhns7q3h0000gn/T/code-complexity-lxnu954m.json`, subject to the test-file scope defect above. Focused validator probes used a temporary directory. The supplied checks log records passing tests; I did not rerun full checks or perform a rendered-browser review."
+                },
+                "spec/review.md": {
+                    "sha256": "267ba047e74ffef98650d5276bcb42f83149fbb8ff26b5452130861f707a11fd",
+                    "content": "## Spec \u2014 1 finding\n\nScope: the six supplied paths against HEAD `56da523e43fde40af9977a4c0eeff78604536c6d`. The final hashes match the frozen manifest; no candidate drift was detected.\n\n### medium Hidden recommendation fields pass validation\n\n- Evidence: [validate-report.js](/private/tmp/propulsion-helper-review-final-2iplatn1/spec/candidate/skills/review-architecture/scripts/validate-report.js:160) treats a required field as visible whenever it is outside `<details>`. A temporary report with `hidden` on its `data-recommendation-summary` passed with exit 0 and `\"valid\": true`. The current review-architecture contract requires the recommendation, reason and improvement to remain visible.\n- Consequence: a report can pass structural validation while hiding all three required recommendation fields from readers.\n- Suggested direction: reject required fields hidden by their own element or an ancestor, and cover that case in the validator tests.\n\n## Standards \u2014 not assessed\n\nCount: not assessed. This packet assigned a fresh Spec review; a separate Standards review was not performed.\n\nProbes and limits: read-only temporary reports confirmed the finding. The bundled complexity helper completed against the specified baseline with status `attention` and four triggered functions; its raw artefact is `/var/folders/3s/355db_gd11q_zcq2nhns7q3h0000gn/T/code-complexity-_byosvy7.json`. The supplied checks log was read as existing evidence, not rerun. No source or Git state was changed."
+                },
+                "final-drift.json": {
+                    "sha256": "a3dfe76c1771bbfbfed6c495eccc72a2b21eae218df55769ea86443eb93b44c9",
+                    "content": {
+                        "frozen_head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                        "original": {
+                            "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                            "head_unchanged": true,
+                            "hashes": {
+                                "skills/measure-code-complexity/scripts/measure.py": "5c01e71f8a1c4485f129baabb75479642ad2ab68f9605d3aed0527755d8236de",
+                                "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                                "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                                "scripts/measure-nesting.test.js": "f140419d8b2dec9b1cc86e1e2b21fe9d2271c7b200a7f3f3bfa22becbd550053",
+                                "skills/review-architecture/scripts/validate-report.js": "81e536daf6ebd512d6e2650d9a3d5b4ddcd405a62183f7077749240ef5f519e4",
+                                "scripts/validate-report.test.js": "d01616fa3a6d3ad1a144d17d6da812db184b1a474f1b20f99f01adfa87bca8e0"
+                            },
+                            "changed_paths": [],
+                            "diff_unchanged": true,
+                            "index_diff_unchanged": true,
+                            "status": " M README.md\n M package.json\n M skills/code-cleanup/SKILL.md\n M skills/code-review/SKILL.md\n M skills/code-review/references/CODE-SMELLS.md\n M skills/commit/SKILL.md\n M skills/create-tickets/SKILL.md\n D skills/create-tickets/assets/estimation-reference.md\n M skills/create-tickets/assets/ticket-template.md\n M skills/debug/SKILL.md\n M skills/define-product/SKILL.md\n M skills/define-product/assets/product-template.md\n M skills/elicit-with-context/SKILL.md\n M skills/elicit/SKILL.md\n M skills/implement/SKILL.md\n M skills/maintain-agents/SKILL.md\n M skills/maintain-decision-records/SKILL.md\n M skills/maintain-ubiquitous-language/SKILL.md\n M skills/measure-code-complexity/SKILL.md\n M skills/measure-code-complexity/references/NESTING.md\n M skills/measure-code-complexity/scripts/measure.py\n M skills/modular-design/SKILL.md\n M skills/modular-design/references/DESIGN-IT-TWICE.md\n M skills/pull-request/SKILL.md\n M skills/research/SKILL.md\n M skills/research/agents/openai.yaml\n M skills/research/assets/research-report-template.md\n M skills/review-architecture/SKILL.md\n M skills/review-architecture/scripts/validate-report.js\n M skills/review-pull-request/SKILL.md\n M skills/specify-feature/SKILL.md\n M skills/specify-feature/assets/specification-template.md\n M skills/tdd/SKILL.md\n M skills/test-design/SKILL.md\n M skills/upgrade-dependencies/SKILL.md\n M skills/write-prose/SKILL.md\n M skills/write-skill/references/evaluation.md\n M skills/write-skill/references/packaging.md\n?? maintenance/\n?? scripts/measure-nesting.test.js\n?? scripts/validate-report.test.js\n?? skills/code-review/references/AXES.md\n?? skills/code-review/references/REVIEW-RULES.md\n?? skills/create-tickets/references/\n?? skills/measure-code-complexity/scripts/python_nesting.py\n",
+                            "status_unchanged": true
+                        },
+                        "axes": {
+                            "spec": {
+                                "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                                "head_unchanged": true,
+                                "hashes": {
+                                    "skills/measure-code-complexity/scripts/measure.py": "5c01e71f8a1c4485f129baabb75479642ad2ab68f9605d3aed0527755d8236de",
+                                    "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                                    "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                                    "scripts/measure-nesting.test.js": "f140419d8b2dec9b1cc86e1e2b21fe9d2271c7b200a7f3f3bfa22becbd550053",
+                                    "skills/review-architecture/scripts/validate-report.js": "81e536daf6ebd512d6e2650d9a3d5b4ddcd405a62183f7077749240ef5f519e4",
+                                    "scripts/validate-report.test.js": "d01616fa3a6d3ad1a144d17d6da812db184b1a474f1b20f99f01adfa87bca8e0"
+                                },
+                                "changed_paths": [],
+                                "status": " M skills/measure-code-complexity/references/NESTING.md\n M skills/measure-code-complexity/scripts/measure.py\n M skills/review-architecture/scripts/validate-report.js\n?? scripts/measure-nesting.test.js\n?? scripts/validate-report.test.js\n?? skills/measure-code-complexity/scripts/python_nesting.py\n",
+                                "status_unchanged": true,
+                                "index_diff": "",
+                                "index_unchanged": true,
+                                "source_matches_frozen": true,
+                                "report_sha256": "267ba047e74ffef98650d5276bcb42f83149fbb8ff26b5452130861f707a11fd",
+                                "trace_sha256": "c89ab2af9a81ad784f02a317f70fd3741158b122b1e8a251141318f73d878d45",
+                                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                "config": {
+                                    "axis": "spec",
+                                    "model": "gpt-6-sol",
+                                    "reasoning_effort": "high",
+                                    "sandbox": "workspace-write",
+                                    "cwd": "/private/tmp/propulsion-helper-review-final-2iplatn1/spec/candidate",
+                                    "ephemeral": true,
+                                    "ignore_user_config": true,
+                                    "no_daemon": true,
+                                    "authority": "strict source and Git read-only; temporary probe/output artefacts allowed outside candidate sources",
+                                    "head": "56da523e43fde40af9977a4c0eeff78604536c6d"
+                                }
+                            },
+                            "standards": {
+                                "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                                "head_unchanged": true,
+                                "hashes": {
+                                    "skills/measure-code-complexity/scripts/measure.py": "5c01e71f8a1c4485f129baabb75479642ad2ab68f9605d3aed0527755d8236de",
+                                    "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                                    "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                                    "scripts/measure-nesting.test.js": "f140419d8b2dec9b1cc86e1e2b21fe9d2271c7b200a7f3f3bfa22becbd550053",
+                                    "skills/review-architecture/scripts/validate-report.js": "81e536daf6ebd512d6e2650d9a3d5b4ddcd405a62183f7077749240ef5f519e4",
+                                    "scripts/validate-report.test.js": "d01616fa3a6d3ad1a144d17d6da812db184b1a474f1b20f99f01adfa87bca8e0"
+                                },
+                                "changed_paths": [],
+                                "status": " M skills/measure-code-complexity/references/NESTING.md\n M skills/measure-code-complexity/scripts/measure.py\n M skills/review-architecture/scripts/validate-report.js\n?? scripts/measure-nesting.test.js\n?? scripts/validate-report.test.js\n?? skills/measure-code-complexity/scripts/python_nesting.py\n",
+                                "status_unchanged": true,
+                                "index_diff": "",
+                                "index_unchanged": true,
+                                "source_matches_frozen": true,
+                                "report_sha256": "2407fc04f4c70bfd10cc72633bee82be78c03e4a79603b550ce4e970567b0934",
+                                "trace_sha256": "00c6644c7b1521f796c1eac410c29396caac6729414b4f9118f1f625924b8bd0",
+                                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                "config": {
+                                    "axis": "standards",
+                                    "model": "gpt-6-sol",
+                                    "reasoning_effort": "high",
+                                    "sandbox": "workspace-write",
+                                    "cwd": "/private/tmp/propulsion-helper-review-final-2iplatn1/standards/candidate",
+                                    "ephemeral": true,
+                                    "ignore_user_config": true,
+                                    "no_daemon": true,
+                                    "authority": "strict source and Git read-only; temporary probe/output artefacts allowed outside candidate sources",
+                                    "head": "56da523e43fde40af9977a4c0eeff78604536c6d"
+                                }
+                            }
+                        },
+                        "source_changed_snapshot_paths": [],
+                        "authorities_changed_snapshot_paths": [],
+                        "changed_original_authorities": [],
+                        "status": "current"
+                    }
+                }
+            }
+        },
+        {
+            "temporary_location": "/private/tmp/propulsion-helper-review-current-b_icy721",
+            "files": {
+                "standards/review.md": {
+                    "sha256": "c9701be0dd720e0cc80b4bd17a2f8b723371f341e793461b4c3bb9e4c82f6842",
+                    "content": "## Standards\n\n**Count: 1 low finding.** Scope: the six specified paths against HEAD `56da523e43fde40af9977a4c0eeff78604536c6d`. Their hashes still match the frozen manifest.\n\n### low Invalid `--help` invocation exits successfully\n\n- **Evidence:** [validate-report.js](/private/tmp/propulsion-helper-review-current-b_icy721/standards/candidate/skills/review-architecture/scripts/validate-report.js:7) treats `--help` as successful even when extra arguments are present. A focused probe of `--help extra` exited 0. The current validator contract assigns exit 2 to invalid usage.\n- **Consequence:** A caller can pass an invalid invocation and receive a success exit without any report being validated.\n- **Suggested direction:** Restrict successful help handling to the intended argument form and return the usage error for extra arguments.\n\nThe bundled complexity helper completed against the specified base: 14 changed functions measured across 3 production files, with 4 advisory function triggers and no clone triggers. The triggers in `analyze`, `main`, `control_depth`, and the HTML element callback did not yield a separate concrete concern after source and test inspection. Raw evidence: `/var/folders/3s/355db_gd11q_zcq2nhns7q3h0000gn/T/code-complexity-u0pydbkp.json`.\n\n**Probes and limits:** The hidden-template marker probe passed on both HEAD and candidate, so it was excluded as pre-existing. Supplied checks report 31 passing tests; I did not rerun full checks under the read-only instruction. Spec review was outside this Standards assignment."
+                },
+                "spec/review.md": {
+                    "sha256": "71645f158c9fe336d1506fa3d0135126bed74a42ec301aecf646a83f11f69fe6",
+                    "content": "## Spec \u2014 0 findings\n\n**Scope:** The six specified paths, reviewed against Git HEAD `56da523e43fde40af9977a4c0eeff78604536c6d` using the current public contracts and report template.\n\nNo findings.\n\n**Probes:** All 20 focused tests passed. The bundled complexity helper completed against the baseline: 14 changed functions measured, four advisory triggers, no reported measurement limitations. A focused probe found that the validator accepts hidden global markers, but the Git baseline accepts them too, so I excluded it under the review rule for pre-existing behaviour. The six file hashes matched the frozen manifest after probing.\n\n## Standards \u2014 not performed\n\nThis assignment was for a fresh Spec review. The complexity result is evidence only, not a Standards finding. No full checks, rendered review, or factual review were performed."
+                },
+                "standards/config.json": {
+                    "sha256": "3ddf4cc02246b1965ad1aeb342f1ce52d6ce0a7fd4c7d17131713f2271b6b85e",
+                    "content": {
+                        "axis": "standards",
+                        "model": "gpt-6-sol",
+                        "reasoning_effort": "high",
+                        "sandbox": "workspace-write",
+                        "cwd": "/private/tmp/propulsion-helper-review-current-b_icy721/standards/candidate",
+                        "ephemeral": true,
+                        "ignore_user_config": true,
+                        "no_daemon": true,
+                        "authority": "strict source and Git read-only; temporary probe/output artefacts allowed outside candidate sources",
+                        "head": "56da523e43fde40af9977a4c0eeff78604536c6d"
+                    }
+                },
+                "spec/config.json": {
+                    "sha256": "9c29534c01a54898698efd6e15a63e47fdd71d9f13d60c56d553195eee9729d5",
+                    "content": {
+                        "axis": "spec",
+                        "model": "gpt-6-sol",
+                        "reasoning_effort": "high",
+                        "sandbox": "workspace-write",
+                        "cwd": "/private/tmp/propulsion-helper-review-current-b_icy721/spec/candidate",
+                        "ephemeral": true,
+                        "ignore_user_config": true,
+                        "no_daemon": true,
+                        "authority": "strict source and Git read-only; temporary probe/output artefacts allowed outside candidate sources",
+                        "head": "56da523e43fde40af9977a4c0eeff78604536c6d"
+                    }
+                },
+                "final-drift.json": {
+                    "sha256": "f266707b7cbece793eca7a1c66bcfef1e0172c56d531705ad096e793957c0cd7",
+                    "content": {
+                        "frozen_head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                        "original": {
+                            "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                            "head_unchanged": true,
+                            "hashes": {
+                                "skills/measure-code-complexity/scripts/measure.py": "6283df7606ccac464618c4a4a354efd240198f8178d0a816b732fd1977c46a96",
+                                "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                                "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                                "scripts/measure-nesting.test.js": "2d1fe87f9c5be91fce0ae8bc3021b18d12fe95e5127c3a1ff5d391055bde6ed8",
+                                "skills/review-architecture/scripts/validate-report.js": "6ee764f42b22b1faae93f3a3a507280c9108dd28884a7412a05602d249acfee4",
+                                "scripts/validate-report.test.js": "da1e61c60b419554715eb77367185b75562ed17b3ec6f6a48c37c4687d034ce7"
+                            },
+                            "changed_paths": [],
+                            "diff_unchanged": true,
+                            "index_diff_unchanged": true,
+                            "status": " M README.md\n M package.json\n M skills/code-cleanup/SKILL.md\n M skills/code-review/SKILL.md\n M skills/code-review/references/CODE-SMELLS.md\n M skills/commit/SKILL.md\n M skills/create-tickets/SKILL.md\n D skills/create-tickets/assets/estimation-reference.md\n M skills/create-tickets/assets/ticket-template.md\n M skills/debug/SKILL.md\n M skills/define-product/SKILL.md\n M skills/define-product/assets/product-template.md\n M skills/elicit-with-context/SKILL.md\n M skills/elicit/SKILL.md\n M skills/implement/SKILL.md\n M skills/maintain-agents/SKILL.md\n M skills/maintain-decision-records/SKILL.md\n M skills/maintain-ubiquitous-language/SKILL.md\n M skills/measure-code-complexity/SKILL.md\n M skills/measure-code-complexity/references/NESTING.md\n M skills/measure-code-complexity/scripts/measure.py\n M skills/modular-design/SKILL.md\n M skills/modular-design/references/DESIGN-IT-TWICE.md\n M skills/pull-request/SKILL.md\n M skills/research/SKILL.md\n M skills/research/agents/openai.yaml\n M skills/research/assets/research-report-template.md\n M skills/review-architecture/SKILL.md\n M skills/review-architecture/scripts/validate-report.js\n M skills/review-pull-request/SKILL.md\n M skills/specify-feature/SKILL.md\n M skills/specify-feature/assets/specification-template.md\n M skills/tdd/SKILL.md\n M skills/test-design/SKILL.md\n M skills/upgrade-dependencies/SKILL.md\n M skills/write-prose/SKILL.md\n M skills/write-skill/references/evaluation.md\n M skills/write-skill/references/packaging.md\n?? maintenance/\n?? scripts/measure-nesting.test.js\n?? scripts/validate-report.test.js\n?? skills/code-review/references/AXES.md\n?? skills/code-review/references/REVIEW-RULES.md\n?? skills/create-tickets/references/\n?? skills/measure-code-complexity/scripts/python_nesting.py\n",
+                            "status_unchanged": true
+                        },
+                        "axes": {
+                            "spec": {
+                                "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                                "head_unchanged": true,
+                                "hashes": {
+                                    "skills/measure-code-complexity/scripts/measure.py": "6283df7606ccac464618c4a4a354efd240198f8178d0a816b732fd1977c46a96",
+                                    "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                                    "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                                    "scripts/measure-nesting.test.js": "2d1fe87f9c5be91fce0ae8bc3021b18d12fe95e5127c3a1ff5d391055bde6ed8",
+                                    "skills/review-architecture/scripts/validate-report.js": "6ee764f42b22b1faae93f3a3a507280c9108dd28884a7412a05602d249acfee4",
+                                    "scripts/validate-report.test.js": "da1e61c60b419554715eb77367185b75562ed17b3ec6f6a48c37c4687d034ce7"
+                                },
+                                "changed_paths": [],
+                                "status": " M skills/measure-code-complexity/references/NESTING.md\n M skills/measure-code-complexity/scripts/measure.py\n M skills/review-architecture/scripts/validate-report.js\n?? scripts/measure-nesting.test.js\n?? scripts/validate-report.test.js\n?? skills/measure-code-complexity/scripts/python_nesting.py\n",
+                                "status_unchanged": true,
+                                "index_diff": "",
+                                "index_unchanged": true,
+                                "source_matches_frozen": true,
+                                "report_sha256": "71645f158c9fe336d1506fa3d0135126bed74a42ec301aecf646a83f11f69fe6",
+                                "trace_sha256": "08be902c74476ae3937f586dfe19f89e1c2eaa6722f087d9dda9a95983d32a21",
+                                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                "config": {
+                                    "axis": "spec",
+                                    "model": "gpt-6-sol",
+                                    "reasoning_effort": "high",
+                                    "sandbox": "workspace-write",
+                                    "cwd": "/private/tmp/propulsion-helper-review-current-b_icy721/spec/candidate",
+                                    "ephemeral": true,
+                                    "ignore_user_config": true,
+                                    "no_daemon": true,
+                                    "authority": "strict source and Git read-only; temporary probe/output artefacts allowed outside candidate sources",
+                                    "head": "56da523e43fde40af9977a4c0eeff78604536c6d"
+                                }
+                            },
+                            "standards": {
+                                "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                                "head_unchanged": true,
+                                "hashes": {
+                                    "skills/measure-code-complexity/scripts/measure.py": "6283df7606ccac464618c4a4a354efd240198f8178d0a816b732fd1977c46a96",
+                                    "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                                    "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                                    "scripts/measure-nesting.test.js": "2d1fe87f9c5be91fce0ae8bc3021b18d12fe95e5127c3a1ff5d391055bde6ed8",
+                                    "skills/review-architecture/scripts/validate-report.js": "6ee764f42b22b1faae93f3a3a507280c9108dd28884a7412a05602d249acfee4",
+                                    "scripts/validate-report.test.js": "da1e61c60b419554715eb77367185b75562ed17b3ec6f6a48c37c4687d034ce7"
+                                },
+                                "changed_paths": [],
+                                "status": " M skills/measure-code-complexity/references/NESTING.md\n M skills/measure-code-complexity/scripts/measure.py\n M skills/review-architecture/scripts/validate-report.js\n?? scripts/measure-nesting.test.js\n?? scripts/validate-report.test.js\n?? skills/measure-code-complexity/scripts/python_nesting.py\n",
+                                "status_unchanged": true,
+                                "index_diff": "",
+                                "index_unchanged": true,
+                                "source_matches_frozen": true,
+                                "report_sha256": "c9701be0dd720e0cc80b4bd17a2f8b723371f341e793461b4c3bb9e4c82f6842",
+                                "trace_sha256": "7252ecf4cb9da377faf6bbb0f6a49280d08ee8375d25b917c96f710de0570e7b",
+                                "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                "config": {
+                                    "axis": "standards",
+                                    "model": "gpt-6-sol",
+                                    "reasoning_effort": "high",
+                                    "sandbox": "workspace-write",
+                                    "cwd": "/private/tmp/propulsion-helper-review-current-b_icy721/standards/candidate",
+                                    "ephemeral": true,
+                                    "ignore_user_config": true,
+                                    "no_daemon": true,
+                                    "authority": "strict source and Git read-only; temporary probe/output artefacts allowed outside candidate sources",
+                                    "head": "56da523e43fde40af9977a4c0eeff78604536c6d"
+                                }
+                            }
+                        },
+                        "source_changed_snapshot_paths": [],
+                        "authorities_changed_snapshot_paths": [],
+                        "changed_original_authorities": [],
+                        "status": "current"
+                    }
+                }
+            }
+        }
+    ],
+    "maintenance_review": {
+        "scope": [
+            "run-comparisons.py",
+            "blind-packets.py",
+            "consume-generated.py",
+            "conformance.py"
+        ],
+        "method": "Read-only source review after all blinded engineering grades were saved. Pure prompt-expression checks only; no fixture execution, network, runtime skill-body or mapping reads.",
+        "findings": [
+            {
+                "severity": "P2",
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 29,
+                "title": "Natural-activation prompts cannot be extracted reliably",
+                "problem": "The runner sets loading to an empty string for natural activation, but packet creation always discards everything through the first double newline. A single-paragraph natural task raises IndexError; a multi-paragraph task loses its first paragraph. All ten natural activation cases in activation-cases.json are single paragraphs.",
+                "evidence": [
+                    "run-comparisons.py:65-73",
+                    "blind-packets.py:29",
+                    "activation-cases.json natural task strings",
+                    "Pure evaluation of the exact extraction expression raised IndexError for a single paragraph and returned only the additional constraint for a two-paragraph task."
+                ],
+                "impact": "Natural-activation runs cannot produce complete grading packets through this script; multi-paragraph prompts can silently change the grading task.",
+                "limits": [
+                    "This does not invalidate the engineering packets already graded, whose evidence files were present."
+                ]
+            },
+            {
+                "severity": "P2",
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 22,
+                "title": "Interrupted packet creation is permanently skipped",
+                "problem": "The script treats directory existence as completion, but creates that directory before state copy, response copy and evidence creation. Any subsequent failure, including the natural-prompt IndexError, leaves a packet that reruns skip. It also skips existing packets when source records change.",
+                "evidence": [
+                    "blind-packets.py:22-29",
+                    "blind-packets.py:36-47"
+                ],
+                "impact": "Reruns can report packet counts including incomplete or stale packets because the count is the mapping length, not the count of verified complete evidence sets.",
+                "limits": [
+                    "No assertion that any of the complete graded packets was stale; this is a reproducible failure path in the packet writer."
+                ]
+            },
+            {
+                "severity": "P2",
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/conformance.py",
+                "line": 33,
+                "title": "Conformance assertions are not bound to current source metadata",
+                "problem": "Portable frontmatter and adapter policy checks use supplied JSON metadata while the output hashes current files. There is no check that the metadata was parsed from those exact bytes and no current frontmatter reparse. A stale valid metadata file can therefore certify current invalid frontmatter while recording its new hash.",
+                "evidence": [
+                    "conformance.py:23",
+                    "conformance.py:31-37",
+                    "conformance.py:48-50",
+                    "conformance.py:63-64"
+                ],
+                "impact": "The generated conformance result cannot independently establish that its core-fields or invocation metadata describe the hashed current catalogue.",
+                "limits": [
+                    "Current policy text is separately compared against the original at lines38-41. This finding does not assert that metadata was actually stale in the completed batch."
+                ]
+            },
+            {
+                "severity": "P2",
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/conformance.py",
+                "line": 66,
+                "title": "Packaging-validator result is a constant rather than observed evidence",
+                "problem": "The result always says 24 passed, zero warnings without executing a validator, accepting its output or binding a validation record to the recorded hashes.",
+                "evidence": ["conformance.py:60-74"],
+                "impact": "That field cannot substantiate packaging validation for a new or changed catalogue.",
+                "limits": [
+                    "Separate actual project checks may substantiate the completed batch; this script field itself provides no such provenance."
+                ]
+            },
+            {
+                "severity": "P2",
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 105,
+                "title": "Timeouts can lose the trial record and stop collection",
+                "problem": "After a timeout the runner sends SIGTERM then waits ten seconds without catching a second TimeoutExpired or killing a process that ignores termination. Snapshot/run.json creation occurs only afterwards. The batch propagates that exception from the future.",
+                "evidence": [
+                    "run-comparisons.py:103-111",
+                    "run-comparisons.py:122-136",
+                    "run-comparisons.py:170-173"
+                ],
+                "impact": "A stubborn timed-out process can remain running and the trial lacks its final structured record, while the collector errors. Successfully terminated timeouts also lack an explicit timed_out marker.",
+                "limits": [
+                    "No evidence that a completed graded trial followed this stubborn-process branch. This is an infrastructure/provenance failure path, not a skill outcome."
+                ]
+            }
+        ],
+        "limits": [
+            {
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/blind-packets.py",
+                "line": 33,
+                "limit": "Whole-command filtering removes every command containing .agents, including combined guidance-and-artefact operations. Missing helper execution, guidance reads or tests in a packet therefore are unavailable telemetry, not proof they did not happen. Collaboration and response content are not comprehensively redacted; the declared indirect-blinding limit remains material."
+            },
+            {
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/consume-generated.py",
+                "line": 25,
+                "limit": "Consumer trials are conditional on a generated SKILL.md existing. Missing generated bundles are silently excluded from the consumer denominator and producer mapping. End-to-end comparisons must join authoring outcomes, including missing bundles, rather than generalize successful-producer consumer grades to all producers."
+            },
+            {
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 111,
+                "limit": "State snapshots dereference symlinks; byte hashes also follow file symlinks and exclude .git. New before/after symlink fields record future topology but cannot retroactively establish older runs\u2019 original topology or absence of external side effects. The saved Git state supports final Git inspection but byte-digest equality alone is not Git-history equality."
+            },
+            {
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 131,
+                "limit": "Catalogue isolation and fresh-agent fields record requested configuration. They do not by themselves prove effective loading isolation or independent child execution on each trial; inspect actual collaboration events and delivered artefacts, retaining unavailable child internals as limits."
+            },
+            {
+                "file": "/Users/adam/Developer/propulsion/maintenance/skill-refactor-2026-10-01/run-comparisons.py",
+                "line": 41,
+                "limit": "The environment is inherited and only two GitHub token variables are removed. Filesystem/catalogue fixture isolation is not an affirmative guarantee of no host credential access or external mutation. No such mutation is established by this source review."
+            }
+        ],
+        "matching_assessment": "Cases and repetitions are deterministically enumerated for the requested arms, jobs are shuffled with a fixed seed, and generated consumers use identical CSV/schema fixtures per producer. No demonstrated mispairing in completed records was established. --arms accepts arbitrary strings; unknown non-none/non-previous values execute the candidate source, so labels require validation by the caller.",
+        "grade_completeness": {
+            "engineering": 30,
+            "fresh_review": 18,
+            "verified_engineering": 24,
+            "corrected_engineering": 12,
+            "oracles": 6,
+            "cleanup_held_out": 3,
+            "nesting_final": 6,
+            "measurement_scope": 6
+        }
+    },
+    "repairs": [
+        "Replace marker regex with native parsed attributes, preserve valid quote forms and article-local fields/evidence.",
+        "Count Python lambda expressions, generator iterable nesting and nested declaration header expressions. Reject unavailable AST/analyzer matches in either direction.",
+        "Require evidence and trade-offs inside a summarised expandable section.",
+        "Exclude conventional JavaScript and TypeScript test filenames from production measurement.",
+        "Reject intrinsically hidden summary fields and ancestors, including hidden details/evidence; CSS/render quality remains separate.",
+        "Require exactly one --help argument for successful usage; extra arguments produce JSON usage error and exit 2."
+    ],
+    "first_review_limit": "Initial axis reports were delivered as agent messages; final source file copies are not presently available. Subsequent exact reports and tested repairs retained.",
+    "initial_coordinator_summary": {
+        "sha256": "5159488d80891325a3a457f2ac48f637f81aad224542cfdccdac6ad4135ea452",
+        "content": "# First helper review \u2014 coordinator summary only\n\nThis is a later coordinator summary, not an original reviewer report. The original Standards and Spec reports were delivered through collaboration final messages. No verbatim report or fresh-agent command trace was found among this snapshot's saved files. Exact original wording, finding ordering, severities and probe output cannot be reconstructed from the retained evidence, and are not invented here.\n\nThe surviving coordinator context records two Standards findings: Python lambda bodies omitted from enclosing-expression nesting, and architecture-report validation mishandling required fields after expandable details. It records two Spec findings: comprehension iterable nesting omitted the current generator level, and the same architecture-report handling issue. These are historical summaries only; they do not describe the current candidate or supply authority for later reviewers.\n\nThe reviewed snapshot and patch remain at `/private/tmp/propulsion-helper-review/candidate/`, `/private/tmp/propulsion-helper-review/base/`, `/private/tmp/propulsion-helper-review/manifest.json`, and `/private/tmp/propulsion-helper-review/patch.diff`.\n\nThe parent subsequently reported repairs before requesting further fresh reviews. That is the available coordination record, not a reproduced original reviewer adjudication. Exact adjudication text is unavailable here and must come from the parent's own record.\n"
+    },
+    "adjudication": {
+        "all_reported_candidate_defects": "Accepted and repaired; project regressions pass. Individual historical reports preserve failed versions.",
+        "intrinsic_global_marker_visibility": "Both final reviewers observed an inherited hidden-global-marker acceptance path and excluded it under changed-code review rules. The helper validates marker structure; coverage/revision/result presentation still requires available rendered review. Do not infer visible global content or CSS/readability from its exit code.",
+        "maintenance_review": "Five collector/provenance defects accepted and repaired; 13 isolated failure-path probes in maintenance-probes.json. Legacy complete packets preserved with missing freshness fingerprint labelled."
+    },
+    "bounded_final_argv_review": {
+        "temporary_location": "/private/tmp/propulsion-argv-review-uoh13kme",
+        "files": {
+            "review.md": {
+                "sha256": "485e81837824646a0d9d50da3a494e11d7aec25149d594c788807b862ed70987",
+                "content": "## Spec review \u2014 0 findings\n\n**Scope:** Only the frozen before/after diff for `skills/review-architecture/scripts/validate-report.js` and `scripts/validate-report.test.js`. The candidate checkout\u2019s Git HEAD was not used as the baseline.\n\nNo findings.\n\n**Probes:** Compared both frozen validators with no arguments, `--help`, `--help extra`, reversed and duplicate arguments, a valid report, and a missing report. The after version returns exit 2 with invalid-usage JSON for `--help extra`; valid and defective report paths retain exits 0 and 1. The after test file passed: 11 tests, 0 failures.\n\n**Limitations:** Review and probes were confined to the two supplied paths and the public exit contract; the full repository checks were not run."
+            },
+            "final-drift.json": {
+                "sha256": "178595e1781990c1c6c639267c1d2fceb65f837670512c1765e6a3dc6034c59d",
+                "content": {
+                    "review_baseline": "frozen before copies; not Git HEAD",
+                    "head": "56da523e43fde40af9977a4c0eeff78604536c6d",
+                    "head_unchanged": true,
+                    "candidate_hashes": {
+                        "skills/measure-code-complexity/scripts/measure.py": "6283df7606ccac464618c4a4a354efd240198f8178d0a816b732fd1977c46a96",
+                        "skills/measure-code-complexity/scripts/python_nesting.py": "f262aefc37ebc0011b24c07c5b6471f6dcb2342068c2f96bcf2f072beaa59761",
+                        "skills/measure-code-complexity/references/NESTING.md": "242652af7931d4da7113f574b739eb4d8902c4922b21b2a30233ba87acd3ef51",
+                        "scripts/measure-nesting.test.js": "2d1fe87f9c5be91fce0ae8bc3021b18d12fe95e5127c3a1ff5d391055bde6ed8",
+                        "skills/review-architecture/scripts/validate-report.js": "86cf412d15e2bfe6e3e2fbd397fd6e871c881656bddce01b2fc56f2cbb84c2f0",
+                        "scripts/validate-report.test.js": "2312a82d12443cdae2821a651cf8383b545241912fbb11754f66aefef51c47a7"
+                    },
+                    "candidate_changed_paths": [],
+                    "status_unchanged": true,
+                    "index_unchanged": true,
+                    "snapshot_changed_paths": [],
+                    "original_scoped_changed_paths": [],
+                    "original_source_hashes": {
+                        "skills/review-architecture/scripts/validate-report.js": "86cf412d15e2bfe6e3e2fbd397fd6e871c881656bddce01b2fc56f2cbb84c2f0",
+                        "scripts/validate-report.test.js": "2312a82d12443cdae2821a651cf8383b545241912fbb11754f66aefef51c47a7"
+                    },
+                    "report_sha256": "485e81837824646a0d9d50da3a494e11d7aec25149d594c788807b862ed70987",
+                    "trace_sha256": "51a84b37a725e6faa0c80cf9614603aa57ac921e7ec00430bd1a1df7de4da848",
+                    "process_exit_code": 0,
+                    "configuration": {
+                        "model": "gpt-6-sol",
+                        "reasoning_effort": "high",
+                        "sandbox": "workspace-write",
+                        "axis": "bounded Spec",
+                        "cwd": "/private/tmp/propulsion-argv-review-uoh13kme/candidate",
+                        "ephemeral": true,
+                        "ignore_user_config": true,
+                        "no_daemon": true,
+                        "authority": "source/Git read-only; temporary probes allowed",
+                        "baseline": "complete frozen before files, not HEAD"
+                    },
+                    "status": "current"
+                }
+            },
+            "config.json": {
+                "sha256": "8e13e1ff620e51f21cb0b4e2f732d4c08ac36290e99599eb57b560501b31c324",
+                "content": {
+                    "model": "gpt-6-sol",
+                    "reasoning_effort": "high",
+                    "sandbox": "workspace-write",
+                    "axis": "bounded Spec",
+                    "cwd": "/private/tmp/propulsion-argv-review-uoh13kme/candidate",
+                    "ephemeral": true,
+                    "ignore_user_config": true,
+                    "no_daemon": true,
+                    "authority": "source/Git read-only; temporary probes allowed",
+                    "baseline": "complete frozen before files, not HEAD"
+                }
+            }
+        }
+    }
+}
