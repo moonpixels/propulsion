@@ -1,19 +1,27 @@
 ---
 name: pull-request
-description: Publishes the current branch as one concise verified pull request. Use when the branch is ready for external review.
+description: Push a ready branch and create or update one pull request describing its complete outcome and validation evidence.
 metadata:
     type: utility
-disable-model-invocation: true
 ---
 
-# Pull Request
+# Pull request
 
-Publishes the complete branch for review without advancing it further.
+Publish the complete branch for review using the repository's host and conventions.
 
-## Process
+## Inputs
 
-Assign the entire process below to one fresh agent with the user's request and repository path. Have it invoke `$commit` when eligible uncommitted work belongs to the branch, compare the whole branch with its base, then use the repository's native tools to push without rewriting history before creating or updating one pull request.
+Use the repository, current branch, intended base, request, and existing validation evidence. Resolve the host and target repository before external operations. Check the working tree and whole branch diff, including all commits since the comparison base. Ask only when the target or eligible work is materially ambiguous.
 
-Use one **Conventional Commit** title for the complete outcome. Write the first body paragraph as three short sentences covering what, why, and how. Add a short testing paragraph only when existing tests provide material behavioural evidence; describe the behaviour covered and any material gap, not the suite, coverage, metrics, or publication-time execution, and do not run tests.
+## Method
 
-Have the fresh agent read back the title, URL, head, base, state, and published revision. Return the title and URL, adding only a material blocker or excluded work when necessary, and retain only that result. Stop without reviewing, merging, releasing, or deploying.
+1. Invoke `$commit` when eligible uncommitted work belongs to the branch. Reuse its result and preserve excluded work.
+2. Inspect the complete branch against its base. Describe the final problem, resulting behaviour, and approach for a reviewer who has not seen the conversation. Follow a repository PR template when present; otherwise use a concise summary and material validation evidence. Include test commands, outcomes, gaps, migration needs, or risks when they help assess the change. Use a Conventional Commit title unless repository guidance requires another form.
+3. Push the intended branch without rewriting remote history. Create or update one matching pull request. Preserve the requested base and readiness state; avoid creating a duplicate after an uncertain tool result. Read host state before retrying a mutation.
+4. Read back the published title, URL, head, base, state, and revision. Confirm that the published revision matches the intended local head and that the body describes the complete diff.
+
+Reuse current checks; run additional validation only when required by repository instructions or needed to resolve a material evidence gap. Distinguish local evidence from remote CI status.
+
+## Finish
+
+Return the title and URL with any material blocker, excluded work, or validation limitation. Done when the matching pull request contains the intended revision and description. Stop before review, merge, release, or deployment.

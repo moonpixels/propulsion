@@ -3,97 +3,184 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const reportPath = process.argv[2];
-const errors = [];
-
-if (!reportPath) {
-    console.error('Usage: bun scripts/validate-report.js <report.html>');
-    process.exit(2);
-}
-
-const absolutePath = path.resolve(reportPath);
-if (!fs.existsSync(absolutePath) || !fs.statSync(absolutePath).isFile()) {
-    errors.push(`Report not found: ${absolutePath}`);
-}
-
-let html = '';
-if (!errors.length) html = fs.readFileSync(absolutePath, 'utf8');
-
-const normalized = absolutePath.split(path.sep).join('/');
-if (
-    !normalized.includes('/docs/architecture/') ||
-    path.extname(absolutePath) !== '.html'
-) {
-    errors.push('Report must be an HTML file under docs/architecture/.');
-}
-if (
-    !/^\d{8}-full-codebase-architecture-review(?:-\d+)?\.html$/.test(
-        path.basename(absolutePath),
-    )
-) {
-    errors.push(
-        'Report filename must follow the dated full-codebase convention.',
+const args = process.argv.slice(2);
+const help = args.length === 1 && args[0] === '--help';
+if (args.length !== 1 || args[0] === '--help') {
+    const usage = 'Usage: bun validate-report.js <report.html>';
+    console.log(
+        help ? usage : JSON.stringify({ valid: false, errors: [usage] }),
     );
+    process.exit(help ? 0 : 2);
 }
 
-const required = [
-    ['HTML document', /<!doctype html>/i],
-    ['language', /<html\b[^>]*\blang=/i],
-    ['UTF-8 metadata', /<meta\b[^>]*charset=["']?utf-8/i],
-    ['responsive viewport', /<meta\b[^>]*name=["']viewport["']/i],
-    [
-        'Tailwind browser CDN',
-        /cdn\.jsdelivr\.net\/npm\/@tailwindcss\/browser@4/,
-    ],
-    [
-        'deferred Alpine CDN',
-        /<script\b[^>]*\bdefer\b[^>]*alpinejs@3\.x\.x\/dist\/cdn\.min\.js/i,
-    ],
-    ['review root', /\bdata-architecture-review\b/],
-    ['reviewed revision', /\bdata-reviewed-revision\b/],
-    ['coverage', /\bdata-coverage\b/],
-];
-
-for (const [label, pattern] of required) {
-    if (!pattern.test(html)) errors.push(`Missing ${label}.`);
+const absolutePath = path.resolve(args[0]);
+const errors = [];
+let html = '';
+try {
+    if (path.extname(absolutePath).toLowerCase() !== '.html')
+        errors.push('Report must be an HTML file.');
+    if (!fs.statSync(absolutePath).isFile())
+        errors.push('Report path must name a file.');
+    if (!errors.length) html = fs.readFileSync(absolutePath, 'utf8');
+} catch (error) {
+    errors.push(`Cannot read report: ${error.message}`);
 }
 
+const report = inspectReport(html);
+for (const [label, present] of [
+    ['HTML document', report.doctype],
+    ['language', report.language],
+    ['UTF-8 metadata', report.encoding],
+    ['responsive viewport', report.viewport],
+    ['review root', report.markers.has('data-architecture-review')],
+    ['reviewed revision', report.markers.has('data-reviewed-revision')],
+    ['coverage', report.markers.has('data-coverage')],
+]) {
+    if (!present) errors.push(`Missing ${label}.`);
+}
 if (/%%[A-Z0-9_-]+%%/.test(html))
     errors.push('Unresolved template marker remains.');
 
-const candidates = [
-    ...html.matchAll(/<article\b[^>]*\bdata-recommendation=["'](\d+)["']/gi),
-];
-const numbers = candidates.map((match) => Number(match[1]));
-if (numbers.some((number, index) => number !== index + 1)) {
-    errors.push(
-        'Recommendation numbers must be contiguous and in fixed document order.',
-    );
-}
-
-if (candidates.length) {
-    if (!/\bdata-top-recommendation\b/.test(html))
-        errors.push('Missing top recommendation.');
-    for (const marker of [
+for (const [index, article] of report.articles.entries()) {
+    const label = `Recommendation ${index + 1}`;
+    if (!/^\d+$/.test(article.number) || Number(article.number) !== index + 1)
+        errors.push(
+            'Recommendation numbers must follow fixed contiguous order.',
+        );
+    for (const field of [
         'data-recommendation-summary',
-        'data-field="recommendation"',
-        'data-field="why"',
-        'data-field="improves"',
-        'data-evidence',
-        'data-tradeoffs',
+        'recommendation',
+        'why',
+        'improves',
     ]) {
-        if (!html.includes(marker))
-            errors.push(`Missing candidate field: ${marker}.`);
+        if (!article.fields.has(field))
+            errors.push(`${label}: missing visible field ${field}.`);
     }
-} else if (!/\bdata-zero-result\b/.test(html)) {
-    errors.push('A zero-candidate report must contain data-zero-result.');
+    if (!article.expandable)
+        errors.push(`${label}: missing expandable evidence.`);
+    if (!article.evidence) errors.push(`${label}: missing data-evidence.`);
+    if (!article.tradeoffs) errors.push(`${label}: missing data-tradeoffs.`);
 }
-
-if (errors.length) {
-    for (const error of errors) console.error(`- ${error}`);
-    process.exit(1);
+const topMarkers = report.markers.get('data-top-recommendation') ?? 0;
+if (report.articles.length) {
+    if (topMarkers !== 1 || !report.articles[0].top)
+        errors.push('Only the first recommendation must be marked as top.');
+    if (report.markers.has('data-zero-result'))
+        errors.push(
+            'A report with recommendations cannot also be a zero result.',
+        );
+} else {
+    if (!report.markers.has('data-zero-result'))
+        errors.push('A zero-candidate report must contain data-zero-result.');
+    if (topMarkers)
+        errors.push(
+            'A zero-candidate report cannot mark a top recommendation.',
+        );
 }
 
 console.log(
-    `Report valid: ${absolutePath} (${candidates.length} recommendations)`,
+    JSON.stringify({
+        valid: errors.length === 0,
+        path: absolutePath,
+        recommendations: report.articles.length,
+        errors,
+    }),
 );
+process.exit(errors.length ? 1 : 0);
+
+function inspectReport(source) {
+    const markers = new Map();
+    const articles = [];
+    const active = [];
+    let doctype = false;
+    let language = false;
+    let encoding = false;
+    let viewport = false;
+    let hiddenDepth = 0;
+    const rewriter = new HTMLRewriter()
+        .onDocument({
+            doctype(value) {
+                doctype ||= value.name?.toLowerCase() === 'html';
+            },
+        })
+        .on('*', {
+            element(element) {
+                const tag = element.tagName;
+                const endActions = [];
+                const hidden =
+                    element.hasAttribute('hidden') || tag === 'template';
+                if (hidden && element.canHaveContent) {
+                    hiddenDepth++;
+                    endActions.push(() => hiddenDepth--);
+                }
+                const visible = !hidden && hiddenDepth === 0;
+                for (const [name] of element.attributes) {
+                    markers.set(name, (markers.get(name) ?? 0) + 1);
+                }
+                if (tag === 'html') language ||= element.hasAttribute('lang');
+                if (tag === 'meta') {
+                    encoding ||=
+                        element.getAttribute('charset')?.toLowerCase() ===
+                        'utf-8';
+                    viewport ||=
+                        element.getAttribute('name')?.toLowerCase() ===
+                        'viewport';
+                }
+                if (
+                    tag === 'article' &&
+                    element.hasAttribute('data-recommendation')
+                ) {
+                    const article = {
+                        number: element.getAttribute('data-recommendation'),
+                        top: element.hasAttribute('data-top-recommendation'),
+                        fields: new Set(),
+                        details: [],
+                        expandable: false,
+                        evidence: false,
+                        tradeoffs: false,
+                    };
+                    articles.push(article);
+                    active.push(article);
+                    endActions.push(() => {
+                        active.pop();
+                    });
+                }
+                const article = active.at(-1);
+                if (article && tag === 'details') {
+                    const details = {
+                        summary: false,
+                        evidence: false,
+                        tradeoffs: false,
+                    };
+                    article.details.push(details);
+                    endActions.push(() => {
+                        if (details.summary) {
+                            article.expandable = true;
+                            article.evidence ||= details.evidence;
+                            article.tradeoffs ||= details.tradeoffs;
+                        }
+                        article.details.pop();
+                    });
+                }
+                if (visible && tag === 'summary' && article?.details.length)
+                    article.details.at(-1).summary = true;
+                if (visible && article && !article.details.length) {
+                    if (element.hasAttribute('data-recommendation-summary'))
+                        article.fields.add('data-recommendation-summary');
+                    const field = element.getAttribute('data-field');
+                    if (field) article.fields.add(field);
+                }
+                for (const details of visible ? (article?.details ?? []) : []) {
+                    details.evidence ||= element.hasAttribute('data-evidence');
+                    details.tradeoffs ||=
+                        element.hasAttribute('data-tradeoffs');
+                }
+                if (endActions.length)
+                    element.onEndTag(() => {
+                        for (const action of endActions) action();
+                    });
+            },
+        });
+    rewriter.transform(source);
+    return { markers, articles, doctype, language, encoding, viewport };
+}

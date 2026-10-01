@@ -1,17 +1,27 @@
 ---
 name: commit
-description: Creates atomic Conventional Commits for eligible reviewed work while preserving unrelated changes. Use when completed local work is ready to record.
+description: Record completed local work as atomic Conventional Commits while preserving unrelated changes.
 metadata:
     type: utility
-disable-model-invocation: true
 ---
 
 # Commit
 
-Records eligible local work in coherent commits without disturbing unrelated changes.
+Record the eligible work in coherent commits. Preserve unrelated **staged, unstaged, and untracked work**.
 
-## Process
+## Inputs
 
-Assign the entire process below to one fresh agent with the user's request and repository path; when already inside the fresh agent for an enclosing operation, perform it there. Use only repository evidence to inspect the complete Git state and diffs, group eligible work by intent into atomic **Conventional Commits**, preserve unrelated staged, unstaged, and untracked work, and let commit hooks run. The work is already reviewed and verified; do not run tests, project checks, or implementation verification. Verify only each commit and the final Git status, then return only the hashes, titles, and remaining work. Retain only that result.
+Use the user's request, repository path, eligible changes, and existing review and validation evidence. Inspect the complete Git state, including the index and working tree. Resolve unclear ownership before staging the affected hunks.
 
-Stop without changing the implementation, pushing, or opening a pull request.
+## Method
+
+1. Compare staged and unstaged diffs with the request. Group eligible changes by intent; keep coupled work together and separate independent outcomes.
+2. Stage only eligible paths or hunks. Preserve unrelated index entries and working-tree content, including different changes in the same file. Avoid broad staging, destructive cleanup, or history rewriting.
+3. Review the exact patch each commit will record. Use an atomic **Conventional Commit** title and let commit hooks run. Do not bypass a failing hook; report its failure and keep the work recoverable.
+4. Verify each recorded commit and the final Git status. Confirm that excluded work retains its content and staging state.
+
+Use existing validation evidence for completed work. Run a new check only when repository instructions require it or changed evidence exposes a material gap; do not alter implementation merely to make a commit succeed.
+
+## Finish
+
+Return commit hashes, titles, and remaining work or blockers. Done when every eligible change is recorded and excluded work is preserved. Stop before pushing or opening a pull request.
