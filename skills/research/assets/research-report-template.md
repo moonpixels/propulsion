@@ -20,4 +20,4 @@
 
 ## Sources
 
-1. [Source title](https://example.com/source): {author, publisher, or owning organisation}
+1. [{Source title}](https://example.com/source): {author, publisher, or owning organisation}

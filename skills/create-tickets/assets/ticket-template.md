@@ -1,4 +1,4 @@
-# {TKT-001}: {Ticket title}
+# {Ticket ID}: {Ticket title}
 
 - **Status:** {Todo or destination-native status}
 - **Complexity:** {1, 2, 3, 5, or 8}
@@ -20,9 +20,9 @@
 
 ## Non-functional requirements
 
-<!-- Include only applicable feature-specific quality, technical, regulatory, compatibility, migration, or operational constraints. Omit this section when none apply beyond project guidance. -->
+<!-- Omit this section when no feature-specific constraints apply beyond project guidance. -->
 
-- {Constraint in its operating context with an observable response or measure where established.}
+- {Applicable feature-specific quality, technical, regulatory, compatibility, migration, or operational constraint in its operating context, with an observable response or measure where established.}
 
 ## Acceptance criteria
 

@@ -36,4 +36,6 @@ A **context pointer** names material outside the active instructions and states 
 
 Use realistic examples that teach a reusable approach, not just one task's answer. Include a counterexample when it makes an important boundary concrete. Preserve exact output contracts with a template; keep short common formats inline and longer or branch-specific formats in assets.
 
+Use `{...}` for content to supply in Markdown templates. Reserve HTML comments for guidance about adapting the structure, such as omitting sections or repeating records. Replace placeholders and remove template comments from finished documents. Preserve literal Markdown syntax and markers required by executable template contracts.
+
 Adapt the base template rather than forcing all its sections into every skill. A tiny workflow may need only a few sentences. A knowledge skill may suit a flat set of decision rules. A router should expose the shared invariant and meaningful branch map without duplicating its leaves.

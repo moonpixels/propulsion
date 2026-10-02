@@ -2,7 +2,7 @@
 
 > **Authority:** This document owns the approved intent and selected solution for one feature. It is ready for ticket decomposition only when its readiness statement is satisfied.
 
-<!-- Git owns revision history and the configured ticket system owns delivery state. Keep the stable headings below; omit conditional subsections and prompts that are not material. State each normative item once. Add identifiers only where they make later reference and traceability clearer. -->
+<!-- Replace brace placeholders with content and remove template comments from the finished document. Git owns revision history and the configured ticket system owns delivery state. Keep the stable headings below; omit conditional subsections and prompts that are not material. State each normative item once. Add identifiers only where they make later reference and traceability clearer. -->
 
 ## Feature overview
 
@@ -44,15 +44,17 @@
 
 ### States and transitions
 
-<!-- Include when behaviour depends on lifecycle or allowed and forbidden transitions. A concise Mermaid state diagram may replace repetitive prose. -->
+<!-- Omit this subsection when behaviour has no material lifecycle or transition rules. -->
+
+{Describe relevant states and allowed and forbidden transitions. Use a concise Mermaid state diagram when it replaces repetitive prose.}
 
 ### Experience and design requirements
 
-<!-- Record consequential content, interaction, accessibility, and experience outcomes. Link confirmed flows, prototypes, wireframes, or design-system evidence when material. -->
+{Record consequential content, interaction, accessibility, and experience outcomes. Link confirmed flows, prototypes, wireframes, or design-system evidence when material.}
 
 ### Quality and external constraints
 
-<!-- Record only feature-relevant qualities in their operating context and binding external product, regulatory, standards, or compatibility constraints. -->
+{Record only feature-relevant qualities in their operating context and binding external product, regulatory, standards, or compatibility constraints.}
 
 ### Scenarios and acceptance
 
@@ -86,19 +88,19 @@
 
 ### Interfaces and data contracts
 
-<!-- Define consumer-relevant inputs, outputs, invariants, ordering, errors, compatibility, and data shapes only to decision-complete depth. -->
+{Define consumer-relevant inputs, outputs, invariants, ordering, errors, compatibility, and data shapes only to decision-complete depth.}
 
 ### Data and lifecycle
 
-<!-- Cover applicable ownership, states, consistency, concurrency, transactions, privacy, retention, migration, rollback, restoration, or removal. -->
+{Cover applicable ownership, states, consistency, concurrency, transactions, privacy, retention, migration, rollback, restoration, or removal.}
 
 ### Integrations and failure handling
 
-<!-- Cover applicable protocols, authentication, authorization, idempotency, retries, timeouts, partial failure, reconciliation, trust boundaries, and failure responsibility. -->
+{Cover applicable protocols, authentication, authorization, idempotency, retries, timeouts, partial failure, reconciliation, trust boundaries, and failure responsibility.}
 
 ### Cross-cutting and operational design
 
-<!-- Cover triggered security, privacy, safety, accessibility, performance, resilience, compatibility, rollout constraints, observability, support, and operation. -->
+{Cover triggered security, privacy, safety, accessibility, performance, resilience, compatibility, rollout constraints, observability, support, and operation.}
 
 ### Verification seams
 

@@ -1,4 +1,4 @@
-# {Project Name} Glossary
+# {Project name} Glossary
 
 ## Language
 

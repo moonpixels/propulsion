@@ -2,7 +2,7 @@
 
 > **Authority:** This document owns confirmed whole-product intent and system-wide requirements. Feature specifications refine it without silently changing it.
 
-<!-- Git owns revision history. Do not add delivery or release status or a hand-maintained change log. -->
+<!-- Replace brace placeholders with content and remove template comments from the finished document. Git owns revision history. Do not add delivery or release status or a hand-maintained change log. -->
 
 ## Executive summary
 
@@ -32,9 +32,9 @@
 
 ## Current situation and target direction
 
-<!-- Use for an existing product when material. Cite observed evidence and state confirmed direction and gaps without migration or delivery status. Omit for a blank product. -->
+<!-- Use for an existing product when material. Omit for a blank product. -->
 
-{Current evidence, target direction, and material gaps.}
+{Cite observed evidence and state confirmed target direction and material gaps without migration or delivery status.}
 
 ## Key journeys
 

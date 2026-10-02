@@ -56,14 +56,14 @@ Use an asset when a concrete output format makes the result easier to inspect or
 ```markdown
 # Import reconciliation
 
-Source: [path]; schema: [path and version]
+Source: {Path}; schema: {Path and version}
 
 | Input column | Schema field | Transformation | Status and evidence |
 | ------------ | ------------ | -------------- | ------------------- |
 
-Validation: [command/method, checked rows, outcome]
-Unresolved items: [field, reason and necessary decision]
-Next action: [review or authorised application, if requested]
+Validation: {Command or method, checked rows, outcome}
+Unresolved items: {Field, reason and necessary decision}
+Next action: {Review or authorised application, if requested}
 ```
 
 ## Router for distinct branches
