@@ -1,8 +1,6 @@
 ---
 name: elicit-with-context
 description: Resolve material user-held information and decisions in a software project while maintaining its shared terminology and qualifying decision rationale.
-metadata:
-    type: utility
 ---
 
 # Elicit with context

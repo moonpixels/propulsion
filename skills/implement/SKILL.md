@@ -1,8 +1,6 @@
 ---
 name: implement
 description: Implement one confirmed ticket or small software change as a minimal local candidate with checks and independent review.
-metadata:
-    type: performer
 ---
 
 # Implement

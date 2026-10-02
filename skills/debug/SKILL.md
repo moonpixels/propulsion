@@ -1,8 +1,6 @@
 ---
 name: debug
 description: Diagnose a software defect from discriminating evidence and, when requested, make a causal local repair with checks and independent review.
-metadata:
-    type: performer
 ---
 
 # Debug

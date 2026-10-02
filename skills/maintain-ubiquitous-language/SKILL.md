@@ -1,8 +1,6 @@
 ---
 name: maintain-ubiquitous-language
 description: Maintain project-specific meanings in root GLOSSARY.md when terminology is added, changed, challenged, renamed, deprecated, or reconciled.
-metadata:
-    type: utility
 ---
 
 # Maintain ubiquitous language

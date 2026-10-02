@@ -1,8 +1,6 @@
 ---
 name: review-pull-request
 description: Resolve a supplied pull request to fixed revisions and return an independent read-only code review.
-metadata:
-    type: utility
 ---
 
 # Review a pull request

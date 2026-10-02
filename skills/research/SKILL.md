@@ -1,8 +1,6 @@
 ---
 name: research
 description: Investigate a material question with high-trust evidence and save a cited report for later use.
-metadata:
-    type: utility
 ---
 
 # Research

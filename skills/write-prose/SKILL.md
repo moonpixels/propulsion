@@ -1,8 +1,6 @@
 ---
 name: write-prose
 description: Write or revise reader-facing prose in UK English with clear reasoning and a professional, conversational voice.
-metadata:
-    type: teaching
 ---
 
 # Write prose

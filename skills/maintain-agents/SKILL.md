@@ -1,8 +1,6 @@
 ---
 name: maintain-agents
 description: Create, refine, or assess concise root AGENTS.md guidance when a repository-wide agent rule needs a durable home.
-metadata:
-    type: utility
 ---
 
 # Maintain AGENTS.md

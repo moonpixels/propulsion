@@ -1,8 +1,6 @@
 ---
 name: define-product
 description: Create or deliberately revise PRODUCT.md as a confirmed whole-product intent and system requirements foundation for later feature specification.
-metadata:
-    type: performer
 ---
 
 # Define product

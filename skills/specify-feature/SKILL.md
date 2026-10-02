@@ -1,8 +1,6 @@
 ---
 name: specify-feature
 description: Create a user-confirmed, decision-complete specification for one feature when a high-level request needs definition before ticket creation.
-metadata:
-    type: performer
 ---
 
 # Specify feature

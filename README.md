@@ -99,7 +99,7 @@ $implement
 
 The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
 
-`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, invokes `$code-cleanup` before final checks, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` teaching for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
+`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, invokes `$code-cleanup` before final checks, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` guidance for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
 
 #### `$commit`
 
@@ -167,29 +167,29 @@ $debug → $commit → $pull-request
 
 ## Supporting skills
 
-These utilities and routers are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
+These skills are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-| Skill                           | Type     | Invoke it to…                                                                                                   |
-| ------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
-| `$review-pull-request`          | Utility  | Resolve a pull request to fixed revisions and return an independent read-only code review                       |
-| `$elicit`                       | Utility  | Resolve material user-held information and decisions one question at a time                                     |
-| `$elicit-with-context`          | Utility  | Resolve software-project questions through `$elicit` while maintaining shared language and qualifying decisions |
-| `$research`                     | Utility  | Investigate a material subject with high-trust evidence and persist a trusted cited report                      |
-| `$code-cleanup`                 | Utility  | Independently identify justified code and test simplifications for the main thread to assess and apply          |
-| `$maintain-agents`              | Utility  | Keep confirmed repository-wide agent guidance lean and current                                                  |
-| `$maintain-decision-records`    | Utility  | Preserve exceptional accepted decisions when durable rationale qualifies and the user agrees                    |
-| `$maintain-ubiquitous-language` | Utility  | Reconcile project terminology in `GLOSSARY.md`                                                                  |
-| `$code-review`                  | Utility  | Review a fixed candidate independently against engineering standards and available behavioural authority        |
-| `$measure-code-complexity`      | Utility  | Measure changed code with pinned metrics and interpret signals against source and contracts                     |
-| `$modular-design`               | Teaching | Choose cohesive ownership, deep interfaces and local changes                                                    |
-| `$test-design`                  | Teaching | Design deterministic behavioural tests with stable seams and independent oracles                                |
-| `$tdd`                          | Teaching | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                        |
-| `$write-prose`                  | Teaching | Write clear reader-facing UK prose that preserves facts and fits its audience                                   |
-| `$write-skill`                  | Utility  | Create or revise reusable skill bundles, validate packaging and compare behaviour against their contracts       |
+| Skill                           | Invoke it to…                                                                                                   |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review                       |
+| `$elicit`                       | Resolve material user-held information and decisions one question at a time                                     |
+| `$elicit-with-context`          | Resolve software-project questions through `$elicit` while maintaining shared language and qualifying decisions |
+| `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report                      |
+| `$code-cleanup`                 | Independently identify justified code and test simplifications for the main thread to assess and apply          |
+| `$maintain-agents`              | Keep confirmed repository-wide agent guidance lean and current                                                  |
+| `$maintain-decision-records`    | Preserve exceptional accepted decisions when durable rationale qualifies and the user agrees                    |
+| `$maintain-ubiquitous-language` | Reconcile project terminology in `GLOSSARY.md`                                                                  |
+| `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority        |
+| `$measure-code-complexity`      | Measure changed code with pinned metrics and interpret signals against source and contracts                     |
+| `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                                    |
+| `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                                |
+| `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                        |
+| `$write-prose`                  | Write clear reader-facing UK prose that preserves facts and fits its audience                                   |
+| `$write-skill`                  | Create or revise reusable skill bundles, validate packaging and compare behaviour against their contracts       |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
 
-The author-maintenance inventory, source matches, conformance evidence and comparison limits for the catalogue revision are in [the refactor audit](maintenance/skill-refactor-2026-10-01/checkpoint.md). They are outside the runtime bundles.
+The [refactor audit](maintenance/skill-refactor-2026-10-01/audit.md) records catalogue decisions and points to the detailed evidence preserved in Git history.
 
 ## Acknowledgements
 

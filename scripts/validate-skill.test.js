@@ -81,9 +81,9 @@ test('checks links relative to reference files, including spaces and parentheses
     expect(validateSkill(root).valid).toBe(true);
 });
 
-test('flags extensions for destination review without imposing a local taxonomy', () => {
+test('flags extensions for destination review and accepts local metadata', () => {
     const root = fixture(
-        'name: sample-skill\ndescription: Do the task.\ncustom-extension: true\nmetadata:\n  type: domain-specific',
+        'name: sample-skill\ndescription: Do the task.\ncustom-extension: true\nmetadata:\n  source: local-reference',
     );
     const result = validateSkill(root);
     expect(result.valid).toBe(true);

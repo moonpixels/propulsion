@@ -1,8 +1,6 @@
 ---
 name: pull-request
 description: Push a ready branch and create or update one pull request describing its complete outcome and validation evidence.
-metadata:
-    type: utility
 ---
 
 # Pull request

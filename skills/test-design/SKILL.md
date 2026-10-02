@@ -1,8 +1,6 @@
 ---
 name: test-design
 description: Write, review, or simplify behavioural tests using stable seams, independent oracles, determinism, and unique defect protection.
-metadata:
-    type: teaching
 ---
 
 # Test design

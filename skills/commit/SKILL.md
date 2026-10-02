@@ -1,8 +1,6 @@
 ---
 name: commit
 description: Record completed local work as atomic Conventional Commits while preserving unrelated changes.
-metadata:
-    type: utility
 ---
 
 # Commit

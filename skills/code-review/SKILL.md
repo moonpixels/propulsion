@@ -1,8 +1,6 @@
 ---
 name: code-review
 description: Review one fixed code change independently against intended behaviour and engineering standards, returning separate diagnostic findings.
-metadata:
-    type: utility
 ---
 
 # Code review

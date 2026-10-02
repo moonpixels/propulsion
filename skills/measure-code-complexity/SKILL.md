@@ -1,8 +1,6 @@
 ---
 name: measure-code-complexity
 description: Measure changed-code complexity with pinned cross-language tools and interpret advisory triggers in source and contract context.
-metadata:
-    type: utility
 ---
 
 # Measure code complexity

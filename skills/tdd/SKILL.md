@@ -1,8 +1,6 @@
 ---
 name: tdd
 description: Implement observable behaviour test-first through red-green-refactor when an existing suite can exercise a credible behavioural seam.
-metadata:
-    type: teaching
 ---
 
 # Test-driven development

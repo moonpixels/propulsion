@@ -1,8 +1,6 @@
 ---
 name: code-cleanup
 description: Find behaviour-preserving deletions and simplifications in completed changes or a bounded module through an independent read-only review.
-metadata:
-    type: utility
 ---
 
 # Code cleanup

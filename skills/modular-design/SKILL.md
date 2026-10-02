@@ -1,8 +1,6 @@
 ---
 name: modular-design
 description: Design or assess code ownership, interfaces, dependencies, and change locality through information hiding and deep modules.
-metadata:
-    type: teaching
 ---
 
 # Modular design

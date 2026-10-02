@@ -1,8 +1,6 @@
 ---
 name: review-architecture
 description: Review a codebase for consequential modular-design improvements and save an interactive HTML report grounded in current evidence.
-metadata:
-    type: performer
 ---
 
 # Review architecture

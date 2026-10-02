@@ -1,8 +1,6 @@
 ---
 name: create-tickets
 description: Create confirmed implementation-ready vertical tickets from an approved work definition in the project's configured ticket destination.
-metadata:
-    type: performer
 ---
 
 # Create tickets

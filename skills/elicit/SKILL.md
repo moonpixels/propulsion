@@ -1,8 +1,6 @@
 ---
 name: elicit
 description: Resolve material user-held information and decisions one question at a time until shared understanding is confirmed. Use when those inputs block a bounded outcome.
-metadata:
-    type: utility
 ---
 
 # Elicit

@@ -1,8 +1,6 @@
 ---
 name: maintain-decision-records
 description: Preserve exceptional accepted technical or architectural decisions in concise ADRs when durable rationale may be warranted.
-metadata:
-    type: utility
 ---
 
 # Maintain decision records

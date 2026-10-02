@@ -1,8 +1,6 @@
 ---
 name: upgrade-dependencies
 description: Upgrade project dependencies and toolchain versions with compatibility checks, required migrations, and local validation.
-metadata:
-    type: performer
 ---
 
 # Upgrade dependencies
