@@ -1,6 +1,5 @@
 - When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
 - When creating, reviewing or maintaining skills, invoke `$write-skill`.
-- When eliciting within a software project, invoke `$elicit-with-context` instead of `$elicit`; use `$elicit` directly only for non-software work or as part of `$elicit-with-context`.
-- Default to a user-agent workflow; introduce team roles, named accountable people, approval bodies, or third-party coordination only when the user or project evidence requires them.
+- Default to a user-agent workflow; do not introduce team roles, named accountable people, approval bodies, or third-party coordination.
 - Assume the execution harness supports fresh agents; do not add fallback handling for their unavailability.
 - After implementing changes run `bun run checks` before handoff.

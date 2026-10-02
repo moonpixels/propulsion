@@ -19,7 +19,7 @@ A human-facing setup wizard has a different contract. Make that distinction expl
 
 State the permitted scope, necessary user decisions, and observable stopping point. Separate absent facts from absent authorisation. Reuse existing authorisation; a skill cannot grant permission to message another person, publish, or mutate an external system.
 
-Default to the user and agent workflow. Introduce other people, roles, or coordination only when the task requires them. Delegate when independent seams, separate evidence routes, cold-context execution, or genuinely parallel alternatives justify it. Supply the task, raw inputs, relevant constraints, output contract, permissions, and stop condition. Keep integration and final verification owned by the calling agent. Separate agents sharing the same assumptions do not become independent evidence merely by having different roles.
+Keep decisions and follow-up steps within the user-agent workflow. Delegate to fresh agents when independent seams, separate evidence routes, cold-context execution, or genuinely parallel alternatives justify it. Supply the task, raw inputs, relevant constraints, output contract, permissions, and stop condition. Keep integration and final verification owned by the calling agent. Separate agents sharing the same assumptions do not become independent evidence merely by having different roles.
 
 Use a real context boundary when isolation matters; an inline invocation does not clear the caller's context. Keep conversational understanding, user decisions, and stateful continuity where they are needed. A handoff to another model or fresh context must contain the chosen task's complete requirements.
 
