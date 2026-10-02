@@ -31,8 +31,6 @@ ln -s /absolute/path/to/propulsion/skills/elicit ~/.agents/skills/elicit
 
 Repeat the link for each selected skill in clients that discover `~/.agents/skills`. Check discovery in the client you use; edits in the clone are available through the links without reinstalling.
 
-Runtime instructions use portable Markdown and core metadata. `agents/openai.yaml` supplies Codex discovery policy. Client-specific invocation controls belong to verified destination adapters: legacy Claude Code fields that blocked composed calls have been removed from the portable roots. A successful local packaging check does not establish cross-client discovery or execution compatibility.
-
 ## Lifecycle skills
 
 The lifecycle areas below are independent entry points, not mandatory phase gates. Invoke the skill for the outcome you need, later stages do not start automatically.
@@ -188,8 +186,6 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$write-skill`                  | Create or revise reusable skill bundles, validate packaging and compare behaviour against their contracts       |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
-
-The [refactor audit](maintenance/skill-refactor-2026-10-01/audit.md) records catalogue decisions and points to the detailed evidence preserved in Git history.
 
 ## Acknowledgements
 
