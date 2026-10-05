@@ -14,7 +14,7 @@ Use the repository, current branch, intended base, and request. Resolve the host
 ## Method
 
 1. Invoke `$commit` when eligible uncommitted work belongs to the branch. Reuse its result and preserve excluded work.
-2. Inspect the complete branch against its base. Write a **succinct summary** of what changed, why it was needed, and the resulting behaviour for a reviewer who has not seen the conversation. Use short prose; add bullets only when they clarify distinct changes. Follow a repository PR template when present, keeping required fields brief; otherwise use a short paragraph. Use a Conventional Commit title unless repository guidance requires another form.
+2. Inspect the complete branch against its base. Invoke `$write-prose` for a short description covering what changed, why, and the resulting behaviour. Supply the complete diff, a reviewer audience unfamiliar with the conversation, and any repository PR template. Use a Conventional Commit title unless repository guidance requires another form.
 3. Push the intended branch without rewriting remote history. Create or update one matching pull request. Preserve the requested base and readiness state; avoid creating a duplicate after an uncertain tool result. Read host state before retrying a mutation.
 4. Read back the published title, URL, head, base, state, and revision. Confirm that the published revision matches the intended local head and that the body describes the complete diff.
 

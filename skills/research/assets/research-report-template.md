@@ -8,7 +8,7 @@
 
 ### {Descriptive theme}
 
-{Present the evidence in approachable prose. Cite each material claim with its numbered source, for example [1], and identify material inference explicitly.}
+{Established findings and evidence. Cite each material claim with its numbered source, for example [1], and identify material inference explicitly.}
 
 ## Conflicts
 
