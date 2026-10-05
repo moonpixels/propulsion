@@ -109,7 +109,7 @@ Keep ambiguous mappings unresolved and report the missing evidence.
 
 ## Write the discovery description
 
-Name the task and decisive trigger. Use distinct branches rather than a string of synonyms. Keep execution steps in the body.
+Write one sentence naming the task and a decisive “when…” trigger, following [the template](../assets/skill-template.md). Name distinct trigger branches rather than a string of synonyms. Keep execution steps and completion gates in the body.
 
 ```yaml
 # Before
@@ -123,4 +123,4 @@ description: Reconcile a CSV import with its supplied JSON schema when fields or
 
 Use a short inline example when a phrase is enough: “be thorough” → “account for every input column”. Use a fenced block when literal Markdown, a complete instruction, or a before-and-after pair makes the distinction easier to see. Precede it with the rule and enough context to interpret it. Label illustrative facts and placeholders.
 
-Explain a rule only when its reason changes how the agent applies it. Preserve exact technical literals. Use full stops and commas instead of em dashes in authored prose.
+Explain a rule only when its reason changes how the agent applies it. Preserve exact technical literals.

@@ -29,4 +29,4 @@ Prefer an existing tool over a new helper. Bundle a script when recurring parsin
 
 Install the [validator dependencies](tokens.md) once. Use `--help` for the CLI contract. Check destination loading when discovery or invocation changes.
 
-Errors block packaging. Warnings flag missing or misordered template headings, empty sections, and an unrecognised completion gate for review. A justified tiny or router layout can pass with warnings; gate wording alone does not prove behaviour.
+Errors block packaging. Warnings flag missing or misordered template headings, empty sections, and an unrecognised completion gate for review. A justified tiny or router layout can pass with warnings. Gate wording alone does not prove behaviour.
