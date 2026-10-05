@@ -189,7 +189,7 @@ Use `$elicit-with-context` to work through questions or decisions within a softw
 
 ## Development
 
-Run `bun run checks` after changes. Checks require Bun, Python 3.9+, and [uv](https://docs.astral.sh/uv/). Token-counter tests may download their pinned tokenizer and vocabulary on the first run; subsequent runs reuse local caches.
+Run `bun install` to install dependencies, then `bun run checks` after changes. Checks require Bun and test the `write-skill` helpers. Skill validation returns one JSON summary with packaging failures and Markdown token counts.
 
 ## Acknowledgements
 

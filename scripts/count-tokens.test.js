@@ -1,35 +1,18 @@
-import { afterAll, beforeAll, expect, test } from 'bun:test';
+import { afterAll, expect, test } from 'bun:test';
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
-const script = path.resolve('skills/write-skill/scripts/count-tokens.py');
+const script = path.resolve('skills/write-skill/scripts/count-tokens.js');
 const workspace = mkdtempSync(path.join(tmpdir(), 'skill-tokens-'));
-const env = {
-    ...process.env,
-    UV_CACHE_DIR:
-        process.env.UV_CACHE_DIR ??
-        path.join(tmpdir(), 'propulsion-token-cache'),
-    UV_PYTHON_DOWNLOADS: 'never',
-};
-
 function run(args, input = '') {
-    return spawnSync('uv', ['run', '--script', script, ...args], {
+    return spawnSync(process.execPath, [script, ...args], {
         input,
         encoding: 'utf8',
-        env,
         timeout: 60000,
     });
 }
-
-beforeAll(() => {
-    const result = run(['--encoding', 'o200k_base']);
-    if (result.status !== 0)
-        throw new Error(
-            `Token counter requires uv and Python 3.9+: ${result.stderr}`,
-        );
-}, 60000);
 
 afterAll(() => rmSync(workspace, { recursive: true, force: true }));
 
@@ -43,7 +26,8 @@ test('counts separate UTF-8 inputs and sums their tokens without changing files'
     expect(result.status).toBe(0);
     expect(JSON.parse(result.stdout)).toEqual({
         encoding: 'o200k_base',
-        tokenizer_version: '0.14.0',
+        tokenizer: 'js-tiktoken',
+        tokenizer_version: '1.0.21',
         inputs: [
             { input: first, tokens: 2 },
             { input: second, tokens: 2 },
@@ -93,6 +77,6 @@ test('requires an encoding and rejects repeated stdin inputs', () => {
         const result = run(args);
         expect(result.status).toBe(2);
         expect(result.stdout).toBe('');
-        expect(result.stderr).toContain('error:');
+        expect(JSON.parse(result.stderr).error.length).toBeGreaterThan(0);
     }
 });

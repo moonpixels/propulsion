@@ -3,14 +3,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 
-const coreFields = new Set([
-    'name',
-    'description',
-    'license',
-    'compatibility',
-    'metadata',
-    'allowed-tools',
-]);
+import { countTokens, readTextFile, tokenMetadata } from './count-tokens.js';
 
 function isMapping(value) {
     return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -86,7 +79,12 @@ function localLinkTargets(source) {
             match.index + match[0].length,
         );
         const target = destination?.replace(/\\([ ()])/g, '$1').split('#')[0];
-        if (target && !/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(target))
+        if (
+            target &&
+            (/^file:/i.test(target) ||
+                /^[a-z]:[\\/]/i.test(target) ||
+                !/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(target))
+        )
             targets.push(target);
     }
     return targets;
@@ -94,6 +92,85 @@ function localLinkTargets(source) {
 
 function characterCount(value) {
     return Array.from(value).length;
+}
+
+function layoutWarnings(source) {
+    const warnings = [];
+    const prose = markdownProse(source);
+    const lines = prose.split('\n');
+    const content = source.replace(/<!--[\s\S]*?(?:-->|$)/g, '').split(/\r?\n/);
+    const headings = [];
+    for (let index = 0; index < lines.length; index += 1) {
+        const atx = lines[index].match(/^ {0,3}(#{1,6})\s+(.+?)\s*$/);
+        if (atx) {
+            headings.push({
+                level: atx[1].length,
+                title: atx[2].replace(/\s+#+$/, '').trim(),
+                start: index,
+                end: index + 1,
+            });
+        } else if (
+            index > 0 &&
+            lines[index - 1].trim() &&
+            /^ {0,3}(?:=+|-+)\s*$/.test(lines[index]) &&
+            headings.at(-1)?.start !== index - 1
+        ) {
+            headings.push({
+                level: lines[index].trim().startsWith('=') ? 1 : 2,
+                title: lines[index - 1].trim(),
+                start: index - 1,
+                end: index + 1,
+            });
+        }
+    }
+    const names = ['Inputs', 'Method', 'Finish'];
+    const sections = names.map((name) =>
+        headings.find(
+            (heading) =>
+                heading.level === 2 &&
+                heading.title.toLowerCase() === name.toLowerCase(),
+        ),
+    );
+    const missing = names.filter((_, index) => !sections[index]);
+    if (missing.length)
+        warnings.push(
+            `SKILL.md: missing default headings: ${missing.join(', ')}. Review whether a tiny or router layout is justified.`,
+        );
+    const present = sections.filter(Boolean);
+    if (
+        present.some(
+            (section, index) =>
+                index > 0 && section.start < present[index - 1].start,
+        )
+    )
+        warnings.push(
+            'SKILL.md: default headings are out of order; use Inputs, Method, Finish unless another layout is justified.',
+        );
+    for (const [index, section] of sections.entries()) {
+        if (!section) continue;
+        const next = headings.find(
+            (heading) =>
+                heading.start > section.start && heading.level <= section.level,
+        );
+        if (
+            !content
+                .slice(section.end, next?.start ?? content.length)
+                .join('\n')
+                .trim()
+        )
+            warnings.push(
+                `SKILL.md: ${names[index]} section is empty; supply content or review whether it has a useful job.`,
+            );
+    }
+    if (
+        !/\b(?:(?:done|finish(?:ed)?|complete(?:d)?)(?:\s+only)?\s+(?:when|once|after)|stop(?:\s+only)?\s+(?:when|once))\b/i.test(
+            prose,
+        )
+    )
+        warnings.push(
+            'SKILL.md: no recognisable completion gate; review whether the stopping condition is explicit.',
+        );
+    return warnings;
 }
 
 function markdownFiles(directory) {
@@ -125,86 +202,13 @@ function validateOpenAIAdapter(root, errors) {
                 if (typeof fields[key] !== 'string' || !fields[key].trim())
                     fail(`interface.${key} must be a non-empty string.`);
             }
-            for (const key of ['icon_small', 'icon_large', 'default_prompt']) {
-                if (!(key in fields)) continue;
-                const value = fields[key];
-                if (typeof value !== 'string' || !value.trim()) {
-                    fail(`interface.${key} must be a non-empty string.`);
-                    continue;
-                }
-                if (key === 'default_prompt') continue;
-                const resolved = path.resolve(root, value);
-                const relative = path.relative(root, resolved);
-                if (
-                    path.isAbsolute(value) ||
-                    /^[a-z][a-z\d+.-]*:/i.test(value) ||
-                    relative === '..' ||
-                    relative.startsWith(`..${path.sep}`) ||
-                    !existsSync(resolved) ||
-                    !statSync(resolved).isFile()
-                )
-                    fail(`interface.${key} must name a bundled relative file.`);
-            }
-            if (
-                'brand_color' in fields &&
-                (typeof fields.brand_color !== 'string' ||
-                    !/^#[\da-f]{6}$/i.test(fields.brand_color))
-            )
-                fail('interface.brand_color must be a six-digit hex colour.');
-        }
-        if ('dependencies' in adapter) {
-            if (!isMapping(adapter.dependencies)) {
-                fail('dependencies must be a mapping.');
-            } else {
-                for (const key of Object.keys(adapter.dependencies)) {
-                    if (key !== 'tools')
-                        fail(`unsupported dependencies field: ${key}.`);
-                }
-                if ('tools' in adapter.dependencies) {
-                    if (!Array.isArray(adapter.dependencies.tools)) {
-                        fail('dependencies.tools must be a list.');
-                    } else {
-                        for (const [
-                            index,
-                            tool,
-                        ] of adapter.dependencies.tools.entries()) {
-                            const label = `dependencies.tools[${index}]`;
-                            if (
-                                !isMapping(tool) ||
-                                tool.type !== 'mcp' ||
-                                typeof tool.value !== 'string' ||
-                                !tool.value.trim()
-                            ) {
-                                fail(
-                                    `${label} must declare type mcp and a non-empty value.`,
-                                );
-                                continue;
-                            }
-                            for (const key of [
-                                'description',
-                                'transport',
-                                'url',
-                            ]) {
-                                if (
-                                    key in tool &&
-                                    (typeof tool[key] !== 'string' ||
-                                        !tool[key].trim())
-                                )
-                                    fail(
-                                        `${label}.${key} must be a non-empty string.`,
-                                    );
-                            }
-                        }
-                    }
-                }
-            }
         }
     } catch (error) {
         fail(error.message);
     }
 }
 
-function validateFrontmatter(frontmatter, root, errors, warnings) {
+function validateFrontmatter(frontmatter, root, errors) {
     const { name, description } = frontmatter;
     if (
         typeof name !== 'string' ||
@@ -225,46 +229,19 @@ function validateFrontmatter(frontmatter, root, errors, warnings) {
         errors.push(
             'description must be a non-empty string of at most 1,024 characters.',
         );
-
-    for (const field of ['license', 'compatibility', 'allowed-tools']) {
-        if (field in frontmatter && typeof frontmatter[field] !== 'string')
-            errors.push(`${field} must be a string when present.`);
-    }
-    if (
-        typeof frontmatter.compatibility === 'string' &&
-        (!frontmatter.compatibility.trim() ||
-            characterCount(frontmatter.compatibility) > 500)
-    )
-        errors.push(
-            'compatibility must be non-empty and at most 500 characters.',
-        );
-
-    if ('metadata' in frontmatter) {
-        if (
-            !isMapping(frontmatter.metadata) ||
-            Object.values(frontmatter.metadata).some(
-                (value) => typeof value !== 'string',
-            )
-        )
-            errors.push('metadata must map string keys to string values.');
-    }
-    const extensions = Object.keys(frontmatter).filter(
-        (field) => !coreFields.has(field),
-    );
-    if (extensions.length)
-        warnings.push(
-            `Validate client extensions on the destination: ${extensions.join(', ')}.`,
-        );
 }
 
 export function validateSkill(directory) {
     const root = path.resolve(directory);
     const errors = [];
     const warnings = [];
+    const tokenFiles = [];
+    let frontmatterLength = 0;
     validateOpenAIAdapter(root, errors);
     try {
         const source = readFileSync(path.join(root, 'SKILL.md'), 'utf8');
         const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+        frontmatterLength = match?.[0].length ?? 0;
         if (!match) {
             errors.push(
                 'SKILL.md must start with YAML frontmatter delimited by ---.',
@@ -272,24 +249,38 @@ export function validateSkill(directory) {
         } else {
             const frontmatter = Bun.YAML.parse(match[1]);
             if (isMapping(frontmatter))
-                validateFrontmatter(frontmatter, root, errors, warnings);
+                validateFrontmatter(frontmatter, root, errors);
             else errors.push('Frontmatter must be a YAML mapping.');
-            if (!source.slice(match[0].length).trim())
-                errors.push(
-                    'SKILL.md must contain runtime instructions after frontmatter.',
-                );
         }
-        for (const file of markdownFiles(root)) {
-            const content = readFileSync(file, 'utf8');
+    } catch (error) {
+        errors.push(error.message);
+    }
+    try {
+        for (const file of markdownFiles(root).toSorted()) {
+            const content = readTextFile(file);
+            tokenFiles.push({
+                file: path.relative(root, file),
+                tokens: countTokens(content),
+            });
             const prose =
-                file === path.join(root, 'SKILL.md') && match
-                    ? content.slice(match[0].length)
+                file === path.join(root, 'SKILL.md')
+                    ? content.slice(frontmatterLength)
                     : content;
+            if (file === path.join(root, 'SKILL.md'))
+                warnings.push(...layoutWarnings(prose));
             for (const target of localLinkTargets(prose)) {
-                const resolved = path.resolve(
-                    path.dirname(file),
-                    decodeURIComponent(target),
-                );
+                const decoded = decodeURIComponent(target);
+                if (
+                    /^file:/i.test(decoded) ||
+                    path.isAbsolute(decoded) ||
+                    path.win32.isAbsolute(decoded)
+                ) {
+                    errors.push(
+                        `${path.relative(root, file)} links to an absolute local path: ${target}. Use a relative resource link.`,
+                    );
+                    continue;
+                }
+                const resolved = path.resolve(path.dirname(file), decoded);
                 if (!existsSync(resolved))
                     errors.push(
                         `${path.relative(root, file)} links to missing path: ${target}`,
@@ -306,14 +297,30 @@ export function validateSkill(directory) {
     } catch (error) {
         errors.push(error.message);
     }
-    return { skill: root, valid: errors.length === 0, errors, warnings };
+    return {
+        skill: root,
+        valid: errors.length === 0,
+        errors,
+        warnings,
+        tokens: {
+            ...tokenMetadata,
+            files: tokenFiles,
+            root_tokens:
+                tokenFiles.find((file) => file.file === 'SKILL.md')?.tokens ??
+                null,
+            markdown_tokens: tokenFiles.reduce(
+                (total, file) => total + file.tokens,
+                0,
+            ),
+        },
+    };
 }
 
 if (import.meta.main) {
     const args = process.argv.slice(2);
     if (args.length === 1 && args[0] === '--help') {
         console.log(
-            'Usage: bun validate-skill.js <skill-directory>\nRead-only core frontmatter, required OpenAI adapter, and local Markdown-link validation. Outputs JSON. Other client extensions, code examples, inline-code paths, client loading, and runtime behaviour need separate checks.',
+            'Usage: bun validate-skill.js <skill-directory>\nChecks required metadata and relative local Markdown links. Reports advisory root layout and completion-gate warnings plus o200k_base Markdown token counts. Warnings do not affect validity. Exits: 0 valid, 1 invalid, 2 usage error.',
         );
     } else if (args.length !== 1 || args[0].startsWith('--')) {
         console.error('Usage: bun validate-skill.js <skill-directory>');

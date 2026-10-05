@@ -1,15 +1,10 @@
 import { afterEach, expect, test } from 'bun:test';
-import {
-    mkdtempSync,
-    mkdirSync,
-    readFileSync,
-    rmSync,
-    writeFileSync,
-} from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 import { validateSkill } from '../skills/write-skill/scripts/validate-skill.js';
+import { validateSkills } from './validate-skills.js';
 
 const workspaces = [];
 
@@ -73,54 +68,23 @@ test('requires OpenAI UI metadata', () => {
     expect(validateSkill(root).errors).toHaveLength(1);
 });
 
-test('validates optional OpenAI resources, colour, prompts, and MCP dependencies', () => {
-    const root = fixture();
-    mkdirSync(path.join(root, 'assets'));
-    writeFileSync(path.join(root, 'assets/icon.svg'), '<svg/>');
-    writeFileSync(
-        path.join(root, 'agents/openai.yaml'),
-        'interface:\n  display_name: "Sample Skill"\n  short_description: "Handle a specific recurring task"\n  icon_small: "./assets/icon.svg"\n  brand_color: "#Ab12cd"\n  default_prompt: "Use $sample-skill."\ndependencies:\n  tools:\n    - type: mcp\n      value: example\n      transport: streamable_http\n      url: "https://example.com/mcp"',
-    );
-    expect(validateSkill(root).valid).toBe(true);
-});
-
-test('rejects invalid OpenAI optional field types and unbundled icons', () => {
-    const root = fixture();
-    writeFileSync(
-        path.join(root, 'agents/openai.yaml'),
-        'interface:\n  display_name: "Sample Skill"\n  short_description: "Handle a specific recurring task"\n  icon_small: "../sample-skill/../outside.svg"\n  icon_large: []\n  brand_color: "red"\n  default_prompt: ""\n  products: [OTHER]\n  unsupported: true\ndependencies:\n  tools:\n    - type: shell\n      value: example\n    - type: mcp\n      value: example\n      url: 7',
-    );
-    expect(validateSkill(root).errors).toHaveLength(6);
-});
-
-test('rejects malformed OpenAI dependency declarations', () => {
-    const root = fixture();
-    const adapter = path.join(root, 'agents/openai.yaml');
-    const base = readFileSync(adapter, 'utf8');
-    writeFileSync(adapter, `${base}\ndependencies: []`);
-    expect(validateSkill(root).errors).toHaveLength(1);
-    writeFileSync(
-        adapter,
-        `${base}\ndependencies:\n  unsupported: true\n  tools: {}`,
-    );
+test('enforces naming and description limits', () => {
+    const root = fixture(`name: Wrong--Name\ndescription: ${'x'.repeat(1025)}`);
     expect(validateSkill(root).errors).toHaveLength(2);
 });
 
-test('enforces naming, description limits, and optional metadata types', () => {
-    const root = fixture(
-        `name: Wrong--Name\ndescription: ${'x'.repeat(1025)}\nmetadata:\n  version: 1`,
-    );
-    expect(validateSkill(root).errors).toHaveLength(3);
-});
-
-test('reports a directory-name mismatch and empty body', () => {
-    const root = fixture('name: other-skill\ndescription: Do the task.', '');
-    expect(validateSkill(root).errors).toHaveLength(2);
+test('reports a directory-name mismatch', () => {
+    const root = fixture('name: other-skill\ndescription: Do the task.');
+    expect(validateSkill(root).errors).toEqual([
+        'name must match the skill directory name.',
+    ]);
 });
 
 test('reports malformed YAML and missing skill files', () => {
     const root = fixture('name: [');
-    expect(validateSkill(root).valid).toBe(false);
+    const invalid = validateSkill(root);
+    expect(invalid.valid).toBe(false);
+    expect(invalid.tokens.root_tokens).toBeGreaterThan(0);
     rmSync(path.join(root, 'SKILL.md'));
     expect(validateSkill(root).valid).toBe(false);
 });
@@ -152,15 +116,6 @@ test('checks links relative to reference files, including spaces and parentheses
     expect(validateSkill(root).valid).toBe(true);
 });
 
-test('flags extensions for destination review and accepts local metadata', () => {
-    const root = fixture(
-        'name: sample-skill\ndescription: Do the task.\ncustom-extension: true\nmetadata:\n  source: local-reference',
-    );
-    const result = validateSkill(root);
-    expect(result.valid).toBe(true);
-    expect(result.warnings).toHaveLength(1);
-});
-
 test('does not interpret YAML or escaped link syntax as Markdown links', () => {
     const root = fixture(
         'name: sample-skill\ndescription: Explain [example](not-a-resource.md) when useful.',
@@ -180,11 +135,135 @@ test('recognises nested parentheses and parenthesised link titles', () => {
     expect(result.errors[1]).toContain('missing.md');
 });
 
-test('validates optional field types and compatibility boundaries', () => {
+test('default headings and a completion gate pass without warnings', () => {
     const root = fixture(
-        'name: sample-skill\ndescription: Do the task.\nlicense: 7\ncompatibility: ""\nallowed-tools: [read]',
+        undefined,
+        '# Sample\n\nProduce a result.\n\n## Inputs ##\n\nUse supplied data.\n\n## Method\n\n```sh\nrun-task\n```\n\n## Finish\n\nReturn the result.\n\n**Done only when** all rows are checked.',
     );
-    expect(validateSkill(root).errors).toHaveLength(3);
+    expect(validateSkill(root).warnings).toEqual([]);
+    writeFileSync(
+        path.join(root, 'SKILL.md'),
+        '---\nname: sample-skill\ndescription: Do a task.\n---\n\nInputs\n------\nUse data.\n\nMethod\n------\nCheck data.\n\nFinish\n------\nFinish when all rows are checked.',
+    );
+    expect(validateSkill(root).warnings).toEqual([]);
+});
+
+test('tiny layouts stay valid and expose advisory warnings in CLI and summary output', () => {
+    const root = fixture(
+        undefined,
+        '# Sample\n\nUse guard clauses. Stop when behaviour is unchanged.',
+    );
+    const result = validateSkill(root);
+    expect(result.valid).toBe(true);
+    expect(result.warnings).toHaveLength(1);
+    expect(result.warnings[0]).toContain(
+        'missing default headings: Inputs, Method, Finish',
+    );
+    const validator = new URL(
+        '../skills/write-skill/scripts/validate-skill.js',
+        import.meta.url,
+    ).pathname;
+    const cli = Bun.spawnSync([process.execPath, validator, root]);
+    expect(cli.exitCode).toBe(0);
+    expect(JSON.parse(cli.stdout.toString()).warnings).toEqual(result.warnings);
+    const summary = validateSkills(path.dirname(root));
+    expect(summary.valid).toBe(true);
+    expect(summary.failures).toEqual([]);
+    expect(summary.warnings).toEqual([
+        { skill: 'sample-skill', warnings: result.warnings },
+    ]);
+});
+
+test('warns about misordered and empty sections without blocking packaging', () => {
+    const root = fixture(
+        undefined,
+        '## Method\n\n<!-- Not section content. -->\n\n## Inputs\n\n## Finish\n\nReturn the report. Done only when every row is checked.',
+    );
+    const result = validateSkill(root);
+    expect(result.valid).toBe(true);
+    expect(result.warnings).toHaveLength(3);
+    expect(result.warnings[0]).toContain('out of order');
+    expect(result.warnings[1]).toContain('Inputs section is empty');
+    expect(result.warnings[2]).toContain('Method section is empty');
+});
+
+test('root layout warnings ignore frontmatter, literal examples, comments, and references', () => {
+    const root = fixture(
+        'name: sample-skill\ndescription: Finish when a task is complete.',
+        '```markdown\n## Inputs\n## Method\n## Finish\nDone only when every row is checked.\n```\n\n`Finish when ready.`\n<!-- ## Inputs\nFinish when ready. -->\n[Details](references/details.md)',
+    );
+    mkdirSync(path.join(root, 'references'));
+    writeFileSync(
+        path.join(root, 'references/details.md'),
+        '## Inputs\nData\n## Method\nCheck\n## Finish\nDone only when every row is checked.',
+    );
+    const result = validateSkill(root);
+    expect(result.valid).toBe(true);
+    expect(result.warnings).toHaveLength(2);
+    expect(result.warnings[0]).toContain('missing default headings');
+    expect(result.warnings[1]).toContain('no recognisable completion gate');
+});
+
+test('rejects absolute local links while preserving relative and remote links', () => {
+    const root = fixture();
+    const existing = path.join(root, 'details.md');
+    writeFileSync(existing, 'Details.');
+    writeFileSync(
+        path.join(root, 'SKILL.md'),
+        `---\nname: sample-skill\ndescription: Do a task.\n---\n\n[Absolute](${existing})\n[Encoded](${encodeURIComponent(existing)})\n[Windows](C:/skills/details.md)\n[File URL](file://${existing})\n[Relative](details.md)\n[Remote](https://example.com)\n[Protocol-relative](//example.com/details.md)\n`,
+    );
+    const result = validateSkill(root);
+    expect(result.valid).toBe(false);
+    expect(result.errors).toHaveLength(4);
+    expect(
+        result.errors.every((error) => error.includes('absolute local path')),
+    ).toBe(true);
+});
+
+test('reports root and stored Markdown counts separately', () => {
+    const root = fixture();
+    mkdirSync(path.join(root, 'references'));
+    mkdirSync(path.join(root, 'assets'));
+    writeFileSync(path.join(root, 'references/details.md'), 'hello world');
+    writeFileSync(path.join(root, 'assets/example.md'), 'こんにちは世界');
+    const result = validateSkill(root);
+    expect(result.valid).toBe(true);
+    expect(result.tokens).toMatchObject({
+        encoding: 'o200k_base',
+        tokenizer: 'js-tiktoken',
+        tokenizer_version: '1.0.21',
+    });
+    expect(result.tokens.files.slice(1)).toEqual([
+        { file: 'assets/example.md', tokens: 2 },
+        { file: 'references/details.md', tokens: 2 },
+    ]);
+    expect(result.tokens.root_tokens).toBe(21);
+    expect(result.tokens.markdown_tokens).toBe(25);
+});
+
+test('all-skills summary retains counts and reports failures while checking every bundle', () => {
+    const root = fixture();
+    const parent = path.dirname(root);
+    mkdirSync(path.join(parent, 'broken-skill'));
+    const result = validateSkills(parent);
+    expect(result.checked).toBe(2);
+    expect(result.valid).toBe(false);
+    expect(result.tokens.skills.map((skill) => skill.skill)).toEqual([
+        'broken-skill',
+        'sample-skill',
+    ]);
+    expect(result.tokens.skills[1].root_tokens).toBeGreaterThan(0);
+    expect(result.failures).toHaveLength(1);
+    expect(result.failures[0].skill).toBe('broken-skill');
+    expect(
+        result.failures[0].errors.every((error) => error.includes('ENOENT')),
+    ).toBe(true);
+    rmSync(path.join(parent, 'broken-skill'), { recursive: true });
+    expect(validateSkills(parent)).toMatchObject({
+        checked: 1,
+        valid: true,
+        failures: [],
+    });
 });
 
 test('CLI emits valid JSON and distinct validity and usage exits', () => {

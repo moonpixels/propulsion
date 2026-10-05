@@ -1,6 +1,9 @@
 {
     "name": "propulsion",
     "private": true,
+    "workspaces": [
+        "skills/write-skill"
+    ],
     "scripts": {
         "checks": "bun run lint && bun run format && bun run test && bun run validate:skills",
         "format": "oxfmt .",
