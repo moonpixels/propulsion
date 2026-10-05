@@ -1,41 +1,126 @@
-# Writing instructions
+# Writing examples
 
-## Language and presentation
+These illustrative pairs show how to make an instruction shorter or more exact. The stronger wording must fit the confirmed task. Examples demonstrate a rule, rather than adding another authority for it.
 
-Write for a capable agent. Keep only content that changes a decision, contributes missing knowledge, preserves an invariant, or makes completion observable.
+## Recognise the method
 
-- Use **direct verbs** for actions: Read, Choose, Run, Fix, Report, Return, Stop. Prefer active voice and short, concrete words. Remove filler, vague quality claims, repeated exhortations, and basic knowledge the agent already has.
-- Use sentences, lists, or tables that expose the task's logic. Keep conditions, exceptions, and qualifications beside the rule they affect. Expand compression that obscures technical meaning, scope, or failure handling.
-- Avoid em dashes in authored prose. Use a full stop, comma, colon, or parentheses as appropriate. Preserve exact quoted data, code, paths, API names, error text, and other technical literals.
-- Use short descriptive Markdown headings. Number actions when order matters. Use bullets for independent items, tables for comparisons, and fenced blocks for literal templates or examples. Remove empty or decorative sections.
-- **Bold key terms** where they help identify a decision, priority, or invariant. Use emphasis sparingly; repeating the same instruction in bold, capitals, and a checklist adds cost without new meaning.
-- Use explicit delimiters for embedded examples or source data when that prevents confusion with instructions. XML-like labels can clarify boundaries; they do not enforce conditions or remove text from context by themselves.
-- Use a recognised method or concept only when its meaning sharpens execution or replaces a longer explanation. Define the intended practice when the name permits materially different interpretations. Avoid decorative terminology.
+Name an established methodology when its meaning fits the user's description. Keep any task-specific qualification beside it. Here, tests must demonstrate missing behaviour before implementation begins.
 
-## Rules, freedom, and completion
+```markdown
+// Before
+Write some tests before you implement the code. Then make the code work and improve its structure.
 
-Match specificity to **variability and fragility**. State outcomes and decision criteria where several approaches work. Keep exact commands, formats, ordering, and parameters where deviation would cause a concrete failure. Give a default and its actual exceptions rather than a menu of equally weighted alternatives.
+// After
+Use **TDD**, one behaviour at a time: red, green, refactor. Observe the test fail for the missing behaviour before implementing it.
+```
 
-Prefer the intended action. Retain a negative constraint when it protects a consequential correctness, permission, scope, or safety boundary; pair it with the safe alternative and the condition that applies. A blanket approval requirement can stop work already authorised by the user.
+The name recruits familiar knowledge. The final sentence preserves the specific requirement. A label alone cannot supply a local variation or an essential gate.
 
-Allow an evidence-backed no-change outcome when the task's contract permits it. A review or exploration should not invent changes to demonstrate activity. For subjective alternatives, fix the shared comparison conditions and evaluation criteria while leaving the proposed solutions open.
+## Preserve behavioural force
 
-Keep a brief explanation when it helps the agent apply a rule under variation. Justify it using context available during execution, such as a schema contract or irreversible side effect. Keep authoring discussions, historical evaluations, and composition rationale outside the runtime bundle.
+Retain the method, persistence, and coverage when revising. In this elicitation example, a plausible first answer must lead to further questioning where material branches remain.
 
-Give each ordered stage a checkable completion condition where premature completion would change the result. Define final coverage and evidence precisely. Replace “be thorough” with what must be accounted for and how unresolved items are reported. Add review loops only when they address a real uncertainty or failure.
+```markdown
+// Before
+Ask questions to clarify the user's requirements, then summarise what you understand.
 
-## Descriptions and context pointers
+// After
+Relentlessly traverse the **decision tree**, one question at a time. Follow each answer into its dependent branches. Continue until every material branch is resolved, explicitly delegated, or excluded by the agreed scope.
+```
 
-Front-load the recognisable task and decisive activation condition. Name distinct branches once; collapse synonyms that describe the same branch. Add a neighbouring non-trigger only when it prevents likely misrouting. Keep procedures, output formats, and most operating rules in the body.
+## Make actions concrete
 
-Prefer factual scope over assertive activation language or a required grammatical voice. Diagnose missed or excessive activation from actual loading evidence before adding keywords.
+Replace a quality adjective with the evidence or action it requires. For this import workflow, the schema owns field names and incomplete mappings must stay visible.
 
-A **context pointer** names material outside the active instructions and states the condition for reaching it. Keep a gotcha inline when the agent could not recognise the loading condition without already knowing it. If a required target is missed, sharpen its pointer or move the essential guidance to the decision point.
+```markdown
+// Before
+Carefully reconcile the data and handle problems appropriately.
 
-## Examples and templates
+// After
+Use the schema's declared field names. Account for every CSV column as mapped, intentionally ignored, or unresolved. For each unresolved column, report the conflicting evidence or missing decision.
+```
 
-Use realistic examples that teach a reusable approach, not just one task's answer. Include a counterexample when it makes an important boundary concrete. Preserve exact output contracts with a template; keep short common formats inline and longer or branch-specific formats in assets.
+## Define the completion gate
 
-Use `{...}` for content to supply in Markdown templates. Reserve HTML comments for guidance about adapting the structure, such as omitting sections or repeating records. Replace placeholders and remove template comments from finished documents. Preserve literal Markdown syntax and markers required by executable template contracts.
+Name the condition that distinguishes done from unfinished. Here, the conversation requires both full branch coverage and confirmed understanding.
 
-Adapt the base template rather than forcing all its sections into every skill. A tiny workflow may need only a few sentences. A knowledge skill may suit a flat set of decision rules. A router should expose the shared invariant and meaningful branch map without duplicating its leaves.
+```markdown
+// Before
+Finish when you have a good understanding of the user's needs.
+
+// After
+**Done only when** every material branch has a supported disposition, a fresh coverage pass opens none, and the user confirms the complete synthesis. An unanswered question leaves its dependent work unresolved.
+```
+
+Check intermediate stages too. “Observe red before implementation” gives the TDD step a local gate. Add such gates where premature progression would change the result.
+
+## Give references a trigger
+
+Tell the agent when the reference becomes useful and what it resolves.
+
+```markdown
+// Before
+See references/error-recovery.md for more information.
+
+// After
+Read [error recovery](references/error-recovery.md) when encoding or delimiter errors prevent reading the CSV.
+```
+
+Keep a non-obvious gotcha inline when the agent would need to know it to recognise the loading condition.
+
+## Apply DRY to meaning
+
+Give each instruction one authoritative home. Refer to schemas, configuration, types, and tool help for discoverable facts instead of copying them into prose. Here, the schema already defines the import fields.
+
+```markdown
+// Before
+Require customer_id as a string and total as a number. The schema also defines customer_id as a string and total as a number.
+
+// After
+Read the supplied schema for field names, types, and required fields. Validate every row against it.
+```
+
+A completion gate may refer to the same requirement to define the achieved state. Repeated terminology is not duplicated authority.
+
+## Keep conditions beside the rule
+
+Co-locate the action, its conditions, and consequential exceptions. Here, the agent must distinguish a broken input path from a missing decision.
+
+```markdown
+// Before
+Ask the user about missing inputs.
+Elsewhere: inspect supplied paths first. Ask only if inspection cannot resolve the missing input.
+
+// After
+Inspect supplied paths first. If a required input remains unavailable, ask the user for it before dependent work.
+```
+
+## State the intended action
+
+Tell the agent what to do when the boundary matters. Here, an ambiguous mapping must stay visible in the output.
+
+```markdown
+// Before
+Do not guess ambiguous mappings.
+
+// After
+Keep ambiguous mappings unresolved and report the missing evidence.
+```
+
+## Write the discovery description
+
+Name the task and decisive trigger. Use distinct branches rather than a string of synonyms. Keep execution steps in the body.
+
+```yaml
+# Before
+description: Help with importing, processing, handling, and managing data effectively.
+
+# After
+description: Reconcile a CSV import with its supplied JSON schema when fields or types fail validation.
+```
+
+## Format examples for their job
+
+Use a short inline example when a phrase is enough: “be thorough” → “account for every input column”. Use a fenced block when literal Markdown, a complete instruction, or a before-and-after pair makes the distinction easier to see. Precede it with the rule and enough context to interpret it. Label illustrative facts and placeholders.
+
+Explain a rule only when its reason changes how the agent applies it. Preserve exact technical literals. Use full stops and commas instead of em dashes in authored prose.

@@ -1,5 +1,11 @@
 import { afterEach, expect, test } from 'bun:test';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import {
+    mkdtempSync,
+    mkdirSync,
+    readFileSync,
+    rmSync,
+    writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
@@ -24,15 +30,80 @@ function fixture(
         path.join(root, 'SKILL.md'),
         `---\n${frontmatter}\n---\n\n${body}\n`,
     );
+    mkdirSync(path.join(root, 'agents'));
+    writeFileSync(
+        path.join(root, 'agents/openai.yaml'),
+        'interface:\n  display_name: "Sample Skill"\n  short_description: "Handle a specific recurring task"\n',
+    );
     return root;
 }
 
-test('portable core accepts flexible descriptions and layouts without adapters', () => {
+test('accepts flexible descriptions and layouts with the required OpenAI adapter', () => {
     const root = fixture(
         'name: sample-skill\ndescription: >-\n  Handle the task\n  when its condition applies.',
         'Read the input.\n\nReturn the checked result.',
     );
     expect(validateSkill(root).valid).toBe(true);
+});
+
+test('requires the OpenAI adapter and reports its malformed YAML', () => {
+    const root = fixture();
+    const adapter = path.join(root, 'agents/openai.yaml');
+    rmSync(adapter);
+    expect(validateSkill(root).errors[0]).toContain('agents/openai.yaml');
+    writeFileSync(adapter, 'interface: [');
+    expect(validateSkill(root).valid).toBe(false);
+    writeFileSync(adapter, '- not-a-mapping');
+    expect(validateSkill(root).errors).toEqual([
+        'agents/openai.yaml: must be a YAML mapping.',
+    ]);
+});
+
+test('requires OpenAI UI metadata', () => {
+    const root = fixture();
+    const adapter = path.join(root, 'agents/openai.yaml');
+    writeFileSync(adapter, 'interface: {}');
+    expect(validateSkill(root).errors).toHaveLength(2);
+    writeFileSync(
+        adapter,
+        'interface:\n  display_name: 7\n  short_description: " "',
+    );
+    expect(validateSkill(root).errors).toHaveLength(2);
+    writeFileSync(adapter, 'interface: []');
+    expect(validateSkill(root).errors).toHaveLength(1);
+});
+
+test('validates optional OpenAI resources, colour, prompts, and MCP dependencies', () => {
+    const root = fixture();
+    mkdirSync(path.join(root, 'assets'));
+    writeFileSync(path.join(root, 'assets/icon.svg'), '<svg/>');
+    writeFileSync(
+        path.join(root, 'agents/openai.yaml'),
+        'interface:\n  display_name: "Sample Skill"\n  short_description: "Handle a specific recurring task"\n  icon_small: "./assets/icon.svg"\n  brand_color: "#Ab12cd"\n  default_prompt: "Use $sample-skill."\ndependencies:\n  tools:\n    - type: mcp\n      value: example\n      transport: streamable_http\n      url: "https://example.com/mcp"',
+    );
+    expect(validateSkill(root).valid).toBe(true);
+});
+
+test('rejects invalid OpenAI optional field types and unbundled icons', () => {
+    const root = fixture();
+    writeFileSync(
+        path.join(root, 'agents/openai.yaml'),
+        'interface:\n  display_name: "Sample Skill"\n  short_description: "Handle a specific recurring task"\n  icon_small: "../sample-skill/../outside.svg"\n  icon_large: []\n  brand_color: "red"\n  default_prompt: ""\n  products: [OTHER]\n  unsupported: true\ndependencies:\n  tools:\n    - type: shell\n      value: example\n    - type: mcp\n      value: example\n      url: 7',
+    );
+    expect(validateSkill(root).errors).toHaveLength(6);
+});
+
+test('rejects malformed OpenAI dependency declarations', () => {
+    const root = fixture();
+    const adapter = path.join(root, 'agents/openai.yaml');
+    const base = readFileSync(adapter, 'utf8');
+    writeFileSync(adapter, `${base}\ndependencies: []`);
+    expect(validateSkill(root).errors).toHaveLength(1);
+    writeFileSync(
+        adapter,
+        `${base}\ndependencies:\n  unsupported: true\n  tools: {}`,
+    );
+    expect(validateSkill(root).errors).toHaveLength(2);
 });
 
 test('enforces naming, description limits, and optional metadata types', () => {

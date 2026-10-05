@@ -1,40 +1,26 @@
 ---
 name: write-skill
-description: Create, revise, or maintain reusable agent skills when a workflow needs specialised knowledge, decision rules, or repeatable operations.
+description: Create or refactor reusable agent skills when a recurring task needs specific methods, behaviour, or repeatable operations.
 ---
 
-# Write Skill
+# Write skill
 
-Produce a skill bundle that improves a real recurring task. Keep its purpose coherent, its triggers precise, and its required outcome observable. Apply these conventions to this skill and every skill it produces.
+Produce a concise skill bundle that reliably performs its **confirmed contract**. Keep it brief without weakening the method, required behaviour, or completion gate.
 
 ## Inputs
 
-Use the requested destination, task examples, source material, user preferences, and target runtime. For maintenance, inspect the affected skill, resources, callers, and available execution evidence. Read only what the task needs. Treat existing instructions as candidates for appraisal, rather than requirements to preserve without evidence.
-
-Resolve discoverable facts directly. When material user-held information or choices remain, invoke `$elicit-with-context` in software projects or `$elicit` elsewhere. Reuse confirmed requirements. Distinguish missing information from missing authorisation; the user's instructions and actual permissions govern the work.
+Use the requested destination, recurring task, examples, source material, observed failures, and target runtime. For revisions, inspect the existing bundle and its callers. Retain, rewrite, or delete instructions and resources to meet the confirmed contract.
 
 ## Method
 
-1. **Define the contract.** Ground the skill in real expertise, successful work, corrections, domain references, or observed failures. Establish inputs, source of truth, intended output or state, scope, required decisions, and task-specific success checks before drafting. Separate invariants from preferred methods. Identify the knowledge or behaviour the skill adds beyond an unassisted agent.
-2. **Choose the unit and trigger.** Keep coupled work that serves one outcome together. Split independently useful workflows with different triggers, inputs, resources, or success boundaries. Use a router only when a meaningful branch selection avoids irrelevant guidance. Decide explicit, implicit, or composed invocation from actual use and destination support.
-3. **Design the active path.** Keep common essentials and non-obvious gotchas visible before their decisions. Put branch-specific detail behind a pointer that states when to read it and what it supports. Give each normative meaning one authoritative home. Use called skills' public contracts without restating their internal processes. Make cold-context handoffs self-contained.
-4. **Write the bundle.** Use the base template below, or the router template for distinct branches. Adapt sections to the task. Use direct verbs, simple concrete language, short headings, and selective bold emphasis. Prefer a clear default with observable exceptions. Retain precise boundaries and fragile sequences; leave other implementation choices open. Include only runtime-useful instructions and knowledge, with explanations where they help decisions generalise.
-5. **Validate and evaluate.** Check packaging, reachable resources, dependencies, and destination loading. Run separate trigger and outcome comparisons against no skill and, for revisions, the previous version. Inspect actual artefacts, state, reads, tools, failures, stopping, and cost. Scale repetitions and experiments to the consequences and uncertainty. Correct specific failures and rerun affected checks; keep the smallest tested version that preserves required outcomes and reliability.
-6. **Release and maintain.** Place the verified bundle at the requested destination, run applicable project checks, and record its revision, compatibility assumptions, and evaluation configuration outside routine instructions. Revisit it when usage reveals a failure or its model, runtime, tools, or domain contract changes. Remove obsolete guidance rather than accumulating warnings.
-
-## Conditional resources
-
-- Use [the base template](assets/skill-template.md) for one coherent workflow, or [the router template](assets/router-template.md) for genuinely different branches.
-- Read [writing guidance](references/writing.md) when drafting or revising instructions, examples, or descriptions.
-- Read [packaging guidance](references/packaging.md) when creating, restructuring, or changing discovery, invocation, or compatibility.
-- Read [tool guidance](references/tools.md) when the skill uses commands, scripts, authenticated tools, or stateful operations.
-- Read [evaluation guidance](references/evaluation.md) when defining success checks, evaluating a candidate, or investigating a regression.
-- Read [maintenance guidance](references/maintenance.md) when revising, releasing, pruning, or retiring a skill.
-- Read [worked examples](references/examples.md) when a concrete workflow, router, or output format would clarify the design.
-- Run [the packaging validator](scripts/validate-skill.js) with `bun /path/to/write-skill/scripts/validate-skill.js /path/to/skill`. It requires Bun with `Bun.YAML`, reads local files, makes no changes or network requests, and returns JSON with exit 0 for valid packaging, 1 for invalid packaging, or 2 for usage errors. Fix reported defects and rerun it. Without that runtime, perform the documented packaging checks and report the unavailable automated check. Validate client extensions separately on their destination.
+1. **Establish the contract.** Resolve discoverable facts, then invoke [$elicit](../elicit/SKILL.md) for material user-held information and decisions. Propose inputs, outputs, triggers, scope, required behaviour, and observable completion conditions. Recognise methodologies in the user's description and check their fit. Reuse confirmed answers. Draft only after the complete contract is confirmed.
+2. **Choose the structure.** Keep one coherent outcome per skill. Use [the template](assets/skill-template.md): overview, Inputs, Method, Finish. Depart only when a section has no useful job, as in a tiny reference skill, or distinct branches need a router. Keep the purpose and completion gate explicit in either case.
+3. **Write direct instructions.** Use imperative verbs, concrete conditions, and selective **bold** emphasis. Recruit established **leading words**, such as TDD, YAGNI, and decision tree, instead of explaining familiar methods from scratch. State the required intensity and coverage: “ask questions” is weaker than “relentlessly traverse every material branch”. Give defaults, consequential exceptions, and fragile sequences. Leave routine implementation choices to the agent. Prune generic advice. Keep only instructions that change execution, add missing knowledge, or make completion checkable.
+4. **Show and package.** Demonstrate important rules that allow competing interpretations. Keep short examples inline and fuller fenced examples in references. Use [writing examples](references/writing.md) to sharpen wording and [the worked examples](references/examples.md) to shape a complete bundle. Keep common essentials in the root and branch detail behind a pointer saying when to read it. Apply **DRY**: give each rule one authoritative home. Reuse tools or bundle tested scripts for repeatable mechanical work. Follow [packaging guidance](references/packaging.md), including `agents/openai.yaml`.
+5. **Validate the candidate.** Run [the packaging validator](scripts/validate-skill.js) with `bun /path/to/write-skill/scripts/validate-skill.js /path/to/candidate`. Fix defects and rerun. Follow [scenario testing](references/evaluation.md): a fresh subagent must exercise the candidate on a realistic task, including the reported regression when revising. Inspect actual questions, actions, artefacts, and stopping against the contract. Fix failures and rerun affected checks. Use [token counting](references/tokens.md) to compare plausible wordings; prefer fewer tokens when clarity, the contract, and scenario behaviour hold. Run applicable repository checks.
 
 ## Finish
 
-Return the destination, changed files, contract, checks performed, comparison results, material trade-offs, and unresolved evidence. Distinguish verified behaviour from inspection and inconclusive results. If a prerequisite prevents completion, identify the exact blocker and required next step.
+Return the destination, changes, packaging result, scenario and observed behaviour, and remaining limitations.
 
-Done when the requested bundle is present, its resources are reachable, applicable checks pass, and its behaviour and remaining uncertainty have been assessed against the contract. A successful packaging check alone does not establish useful execution. Stop within the requested scope; installation, publication, or external actions require the corresponding user authorisation.
+**Done only when** the bundle matches the confirmed inputs, method, behaviour, and output, packaging passes, and scenario evidence demonstrates its completion gate. Report missing prerequisites or failed checks as blockers. Stop within the requested scope.

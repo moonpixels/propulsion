@@ -1,47 +1,37 @@
-# Packaging and loading
+# Packaging
 
-## Portable core
+## Required files
 
-Create a directory containing `SKILL.md` with valid YAML frontmatter delimited by `---`, followed by runtime instructions.
+Every bundle produced here includes `SKILL.md` and `agents/openai.yaml`. The OpenAI file is an authoring convention for this workflow, beyond the portable Agent Skills core.
 
-| Field           | Contract                                                                                                                           |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `name`          | Required; 1 to 64 lowercase letters, digits, or hyphens; no leading, trailing, or consecutive hyphens; matches the directory name. |
-| `description`   | Required; non-empty string, at most 1,024 characters; states the capability and its activation condition.                          |
-| `license`       | Optional string identifying the applicable licence or its file.                                                                    |
-| `compatibility` | Optional string, at most 500 characters, for real environment requirements. It describes requirements without enforcing them.      |
-| `metadata`      | Optional map of string keys to string values for relevant local metadata.                                                          |
-| `allowed-tools` | Optional experimental string; verify support and permission semantics on the actual destination.                                   |
+Start `SKILL.md` with YAML frontmatter:
 
-Treat native invocation, tool, fork, argument, display, and mode fields as **client extensions**. Keep the core portable and adaptations small. Read the destination's current authoritative documentation, apply its supported fields, and verify loading there. Local tolerance of an unknown field does not establish upload or cross-client compatibility.
+| Field                      | Requirement                                                                         |
+| -------------------------- | ----------------------------------------------------------------------------------- |
+| `name`                     | 1–64 lowercase letters, digits, or single hyphens. Match the directory name.        |
+| `description`              | Non-empty string, at most 1,024 characters. State the task and decisive trigger.    |
+| `metadata`                 | Optional map of string keys to string values.                                       |
+| `license`, `allowed-tools` | Optional strings. Check destination support for tool restrictions.                  |
+| `compatibility`            | Optional non-empty string, at most 500 characters, for actual runtime requirements. |
 
-Determine implicit, explicit, or composed invocation from the intended workflow. Implement the choice using supported native controls; a description alone does not enforce explicit-only invocation. Preserve existing invocation intent unless the user changes it. Keep native discovery and UI metadata consistent with the core. Validate required tool declarations without treating them as permission grants.
+Use this minimal OpenAI adapter, replacing the illustrative values:
 
-For a portable-only upload, prepare a copy with supported core fields and resources. Keep the installed client bundle's supported invocation controls intact and verify both versions. Removing a native control from the installed bundle can change which tasks activate it.
+```yaml
+interface:
+    display_name: 'Reconcile Import Schema'
+    short_description: 'Reconcile CSV fields against a schema'
+```
 
-## Resource placement
+The adapter fields follow [OpenAI's skill metadata guidance](https://learn.chatgpt.com/docs/build-skills#optional-metadata) and [metadata validation requirements](https://developers.openai.com/plugins/deploy/submission-errors#skill-agent-metadata-errors). Verify client-specific extensions against their current destination documentation.
 
-| Location             | Use                                                                                                  |
-| -------------------- | ---------------------------------------------------------------------------------------------------- |
-| `SKILL.md`           | Purpose, common essentials, recognition of non-obvious gotchas, meaningful routes, and completion.   |
-| `references/`        | Conditional domain knowledge, schemas, branch procedures, error catalogues, or substantial examples. |
-| `assets/`            | Output templates, images, fonts, or material copied or adapted into the result.                      |
-| `scripts/`           | Repeatable deterministic operations with a documented interface.                                     |
-| `evals/`             | Author-maintained cases, fixtures, and checks, outside routine execution context.                    |
-| Native adapter files | Destination-specific metadata and configuration.                                                     |
+## Resources and scripts
 
-Create only resources with a concrete use. Link them at the branch that needs them, preferably directly from the root. Use paths relative to the containing file for Markdown links. Give long references a contents list or search terms when useful. Remove orphaned files, duplicate authorities, circular invocation, and indexes that only lead to another index.
+Use `references/` for conditional detail and worked examples, `assets/` for templates or copied output material, and `scripts/` for deterministic operations. Create only files with a concrete use. Link resources relative to the containing file and state when to reach them. Use called skills' public contracts without restating their procedures. Remove obsolete or orphaned resources and update affected callers.
 
-When every branch is routinely loaded, combine the shared work or revise the routing. A short root that loads a large chain is still a large active path.
+Prefer an existing tool over a new helper. Bundle a script when recurring parsing, validation, or transformation can be made repeatable. Document its command, inputs, outputs, runtime, exit codes, and side effects where it is called. Use non-interactive arguments, bounded output, and actionable errors. Make retries idempotent where possible. Test changed helpers on valid and invalid inputs.
 
-## Environment and validation
+## Validator
 
-Separate **discovery**, **execution**, and **enforcement**. Prose steers the model; tools, hooks, sandbox rules, and permissions enforce actions. A skill provides guidance while a tool service provides live data, authentication, and operations. Check the actual runtime instead of assuming these facilities exist everywhere.
+The validator requires Bun with `Bun.YAML`, reads local files, makes no changes or network requests, and returns JSON. Exit 0 means packaging passed, 1 means invalid packaging, and 2 means incorrect usage. Fix reported defects and rerun.
 
-Check filesystem access, network availability, installed tools, package installation restrictions, authentication, and relevant versions. Verify the user's requested workflow fits those conditions. Resolve an unavailable prerequisite through the authorised environment or report the precise blocker.
-
-Verify uncertain or changing API, library, format, and client claims against current authoritative sources. Keep required domain schemas and version details available on the path that uses them. An illustrative recipe or historical model recommendation is not a current environment contract.
-
-Parse frontmatter, check field types and limits, confirm names and local references, inspect helper interfaces, and validate native adapters. Run changed helpers on meaningful fixtures. Verify discovery and loading on the destination separately from packaging. Existing project requirements remain applicable, but are local requirements rather than universal authoring rules.
-
-Do not impose a universal line or token cap. Prefer the shortest coherent active path that preserves necessary knowledge, contracts, and reliability. Measure execution rather than treating directory size as context cost.
+It checks core frontmatter, local Markdown links outside literal examples, and OpenAI adapter metadata. It does not establish client loading, interpret paths inside code examples, or prove behaviour. Exercise required resources in the scenario and check destination loading when discovery or invocation changes.

@@ -183,9 +183,13 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                                |
 | `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                        |
 | `$write-prose`                  | Write clear reader-facing UK prose that preserves facts and fits its audience                                   |
-| `$write-skill`                  | Create or revise reusable skill bundles, validate packaging and compare behaviour against their contracts       |
+| `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent             |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
+
+## Development
+
+Run `bun run checks` after changes. Checks require Bun, Python 3.9+, and [uv](https://docs.astral.sh/uv/). Token-counter tests may download their pinned tokenizer and vocabulary on the first run; subsequent runs reuse local caches.
 
 ## Acknowledgements
 

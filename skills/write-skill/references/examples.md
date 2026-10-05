@@ -1,8 +1,8 @@
 # Worked examples
 
-## One coherent workflow
+## A complete workflow
 
-Use this pattern when one requested outcome combines inspection, a proposed transformation, and a report. Preserve authoritative inputs, make coverage explicit, and route recovery only when needed.
+This illustrative skill has a bounded output, authoritative inputs, concrete coverage, and a completion gate. Its short instructions leave implementation choices open while defining what must be accomplished. It needs no additional references or helpers.
 
 ```markdown
 ---
@@ -12,81 +12,54 @@ description: Reconcile a CSV import with its supplied JSON schema when fields or
 
 # Reconcile an import schema
 
-Produce a proposed mapping and a reconciliation report. Preserve the source CSV
-and schema. Treat schema field names and declared types as authoritative.
+Produce a proposed mapping and reconciliation report. Preserve the source CSV and schema. Treat declared schema fields and types as authoritative.
 
 ## Inputs
 
-Use the supplied CSV and schema paths. If either is missing, locate it in the
-user's stated workspace or ask for the missing path. If the schema version is
-ambiguous, resolve that version before proposing type conversions.
+Use the CSV and schema paths supplied by the caller. Locate a missing file in the stated workspace or ask for its path. Resolve an ambiguous schema version before proposing conversions.
 
 ## Method
 
-1. Read schema fields, types and required status. Inspect the CSV header and a
-   representative sample; scan the complete file for the final coverage check.
-2. Account for every CSV column as mapped, intentionally ignored or unresolved.
-   Prefer an exact declared match. Propose a renamed match only with evidence.
-3. Record transformations in a mapping file. For each conversion, state the
-   rule and how invalid values are handled. Leave ambiguous mappings unresolved.
-4. Validate the mapping against the schema and check all rows for violations.
-   If an existing validator is provided, use it. Otherwise perform the same
-   contract checks and state how they were implemented.
-
-## Conditional resources
-
-Read `references/error-recovery.md` only when encoding, delimiter or malformed
-row errors prevent inspection. Use `assets/reconciliation-report.md` for the
-report structure.
+1. Read the schema's fields, types, and required status. Inspect the CSV header and values.
+2. Account for every CSV column as mapped, intentionally ignored, or unresolved. Prefer an exact declared match. Propose a renamed match only with supporting evidence.
+3. Write `mapping.json`. For each mapped column, record its schema field, any conversion rule, and how invalid values are handled. Keep ambiguous mappings unresolved.
+4. Check all rows against the proposed mapping and schema. Use an existing validator when available. Report violations with row numbers and examples.
 
 ## Finish
 
-Report mapping coverage, invalid-row counts and unresolved fields with examples.
-Done when every input column is accounted for and every proposed schema field
-exists. Include the validation evidence and any blocker. Application of the
-mapping to another system is a separate user-authorised action.
+Return `mapping.json` and a report containing column coverage, invalid-row counts, unresolved mappings, and the validation command or method.
+
+**Done only when** every CSV column is accounted for, every proposed schema field exists, and every row has been checked. If a missing input blocks validation, report that input and the dependent work.
 ```
 
-Create a referenced resource only when its content serves the actual skill. Example filenames do not justify empty files. Adapt inspection steps when the target agent already handles them reliably; preserve the source authority, coverage, and mutation boundary.
+Ship the adapter alongside it:
 
-## Companion output template
-
-Use an asset when a concrete output format makes the result easier to inspect or compare.
-
-```markdown
-# Import reconciliation
-
-Source: {Path}; schema: {Path and version}
-
-| Input column | Schema field | Transformation | Status and evidence |
-| ------------ | ------------ | -------------- | ------------------- |
-
-Validation: {Command or method, checked rows, outcome}
-Unresolved items: {Field, reason and necessary decision}
-Next action: {Review or authorised application, if requested}
+```yaml
+# agents/openai.yaml
+interface:
+    display_name: 'Reconcile Import Schema'
+    short_description: 'Reconcile CSV fields against a schema'
 ```
 
-## Router for distinct branches
+A useful scenario supplies a declared field, a renamed column, an unknown column, and an invalid value beyond the first few rows. Inspect the mapping and report for complete coverage, preserved source files, and the distant invalid row. A plausible header-only mapping would fail the completion gate.
 
-Keep the common invariant visible. Read only branches relevant to the request, and keep each branch's contract and dependencies clear.
+## A justified tiny layout
+
+This illustrative reference skill has no ordered operations or special inputs. The purpose, rule, and stopping condition still remain explicit.
 
 ```markdown
 ---
-name: import-reconciliation
-description: Resolve import validation failures or review an import mapping.
+name: prefer-guard-clauses
+description: Flatten nested control flow when early returns make a function easier to follow.
 ---
 
-# Import reconciliation
+# Prefer guard clauses
 
-Preserve the original input and use the declared schema as the source of truth.
+Use guard clauses to handle exceptional cases before the main path. Preserve return values, side-effect order, and cleanup.
 
-- For an existing mapping review, read `references/review.md`.
-- For failed source fields, read `references/repair.md`.
-- For a changed schema version, read `references/version-change.md`.
-
-Read the relevant branch before making its changes. Each branch defines its
-inputs, output and checks. If the request spans branches, preserve their shared
-mapping artefact and run the checks required by the branches used.
+Finish when the main path is flat and behaviour is unchanged. Keep nesting where an early return would obscure the logic or bypass cleanup.
 ```
 
-A router that always loads all three branches should be reconsidered. A wrapper that only forwards to one skill may serve a useful invocation alias, but its cost includes the target's full active path.
+## A router for distinct branches
+
+A router earns its layout when selecting a branch avoids unrelated instructions. Keep the shared purpose and final outcome explicit. For example, an import router could direct a mapping review to one reference and a failed import repair to another. Each branch must supply its own inputs, method, and completion gate. A short root that loads every branch is not a lean active path.
