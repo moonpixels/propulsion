@@ -2,5 +2,3 @@ interface:
     display_name: 'Research'
     short_description: 'Research a subject into a trusted cited report'
     default_prompt: 'Use $research to investigate this subject and save a cited report.'
-policy:
-    allow_implicit_invocation: false

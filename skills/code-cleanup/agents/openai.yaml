@@ -1,5 +1,3 @@
 interface:
     display_name: 'Code Cleanup'
     short_description: 'Find justified code and test simplifications independently'
-policy:
-    allow_implicit_invocation: true

@@ -2,5 +2,3 @@ interface:
     display_name: 'Create Tickets'
     short_description: 'Create implementation-ready vertical tickets'
     default_prompt: 'Use $create-tickets to turn this approved work definition into confirmed, implementation-ready tickets.'
-policy:
-    allow_implicit_invocation: false
