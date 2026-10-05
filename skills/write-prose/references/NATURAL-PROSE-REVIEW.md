@@ -1,6 +1,6 @@
 # Natural prose review
 
-Use these patterns to find a problem in meaning or readability. They are editing signals, not proof of AI authorship. Repair the cause instead of disguising it with synonyms, arbitrary variation, or invented detail. Apply them to the audience and genre in the brief.
+Use these patterns to find a problem in meaning or readability. Repair the cause instead of disguising it with synonyms, arbitrary variation, or invented detail. Apply them to the audience and genre in the brief.
 
 The paired examples are illustrative drafts. Bad examples deliberately contain the pattern under review. Each pair uses fixed illustrative facts established in its draft or explanation.
 
@@ -14,7 +14,7 @@ Start with the actual subject. Keep scene-setting only when a supplied situation
 
 ```markdown
 // Bad
-In a world of constant change, clear communication matters. We are writing to inform you that your replacement charger will be dispatched on Thursday.
+We are writing to inform you that your replacement charger will be dispatched on Thursday.
 
 // Good
 Your replacement charger will be dispatched on Thursday.
