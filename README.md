@@ -87,6 +87,8 @@ The session produces a minimal local change with retained tests, applicable qual
 
 `$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, invokes `$code-cleanup` before final checks, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` guidance for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
 
+Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits.
+
 #### `$commit`
 
 Enter here when all uncommitted work on the branch is ready to be recorded:
@@ -166,7 +168,7 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                            |
 | `$maintain-ubiquitous-language` | Sharpen domain language and immediately record resolved meanings in root `GLOSSARY.md`                   |
 | `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority |
-| `$measure-code-complexity`      | Measure changed code with pinned metrics and interpret signals against source and contracts              |
+| `$measure-code-complexity`      | Measure current code, collect available native CRAP and interpret attention signals                      |
 | `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                             |
 | `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                         |
 | `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                 |
@@ -179,7 +181,7 @@ The project coordinator loads the terminology skill before questioning and keeps
 
 ## Development
 
-Run `bun install` to install dependencies, then `bun run checks` after changes. Checks require Bun and test the `write-skill` helpers. Skill validation returns one JSON summary with packaging failures and Markdown token counts.
+Run `bun install` to install dependencies, then `bun run checks` after changes. Checks require Bun, Git and Python 3.9 or newer on a supported host. They exercise authoring helpers and the complexity CLI without a separate complexity-tool installation. Skill validation returns one JSON summary with packaging failures and Markdown token counts.
 
 ## Acknowledgements
 

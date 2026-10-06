@@ -12,6 +12,8 @@ Keep separate findings when their triggering state, violated requirement, conseq
 
 Understand every changed line in context. Assess correctness and regressions, coherent scope, repository and framework conventions, test validity, independent oracles, meaningful failure detection, modular ownership, dependencies, interface depth, and change locality. Check required and risk-relevant harness coverage, measurement integrity, and evidence limits. Investigate specialist risks exposed by the change.
 
-Apply `$modular-design` for structural judgement and `$test-design` for test judgement using their public contracts. Obtain current complexity evidence through `$measure-code-complexity` for the fixed candidate and base with read-only authority. Reuse supplied output only when its complete measured state and tool configuration still match. Inspect reported triggers in source and test context; retain findings only for a concrete consequence that survives falsification. Report unavailable or incomplete measurement as a limitation.
+Apply `$modular-design` for structural judgement and `$test-design` for test judgement using their public contracts.
+
+Inspect supplied complexity measurements and their interpretation in source context. A score alone is not a finding, and improving a score does not justify extra tests or abstractions. If a concrete concern depends on missing or inconsistent measurement, request current-file measurements or reuse supplied native CRAP through [$measure-code-complexity](../../measure-code-complexity/SKILL.md) within the read-only boundary. Leave new native test runs and historical comparisons to the implementation caller. Report material evidence limits without inventing a score-based gate.
 
 Read [code smells](CODE-SMELLS.md) when recognised vocabulary clarifies a concrete maintainability mechanism. Repository-sanctioned shapes and evidence can justify retaining them.

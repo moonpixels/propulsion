@@ -1,0 +1,35 @@
+{
+    "version": "1.7.0",
+    "targets": {
+        "aarch64-apple-darwin": {
+            "archive": "cccc-v1.7.0-aarch64-apple-darwin.tar.gz",
+            "archive_sha256": "babeea26b5304e41ed503b799a59924bbe90b44806bd2ad176e643159fb7213b",
+            "member": "cccc",
+            "binary_sha256": "9008bcf0ecf2f31ca07dff460316229d84234a169e995d715d11844afa2e594b"
+        },
+        "aarch64-unknown-linux-musl": {
+            "archive": "cccc-v1.7.0-aarch64-unknown-linux-musl.tar.gz",
+            "archive_sha256": "f775a19ebd58fc7a4cd64769b8d442425d8afde66207386db04eb87747ed75b8",
+            "member": "cccc",
+            "binary_sha256": "4891105e6b0d00e4eec1e8e8ed6f06dcdf728f4e7df0a9e7a268b61aa14a39ef"
+        },
+        "x86_64-apple-darwin": {
+            "archive": "cccc-v1.7.0-x86_64-apple-darwin.tar.gz",
+            "archive_sha256": "ac3edcd5e64c26933b18952df350401e1379220208cb78a414d8d4c3f1879d2e",
+            "member": "cccc",
+            "binary_sha256": "ffec2528e41111a3255f867c37f666e00b2793c5e7bfb26a9ec6635d7c1ccc46"
+        },
+        "x86_64-pc-windows-msvc": {
+            "archive": "cccc-v1.7.0-x86_64-pc-windows-msvc.zip",
+            "archive_sha256": "c9af68a559087d0d3c7c995bd19e718b091175c5f85a2dea38ecfc8803e49f35",
+            "member": "cccc.exe",
+            "binary_sha256": "29b78152c99dbe83d747e57bb91e1b0e1532b888a6edbd9c1dc20339582db6c6"
+        },
+        "x86_64-unknown-linux-musl": {
+            "archive": "cccc-v1.7.0-x86_64-unknown-linux-musl.tar.gz",
+            "archive_sha256": "75d2fb5486238eeb40a80fec2de8fe5075e6ce567b6741a56fa511ed2082e45a",
+            "member": "cccc",
+            "binary_sha256": "4f88c49816485b008b352680938e92de868ae82d9ffba48e12e1ed8a577b1509"
+        }
+    }
+}

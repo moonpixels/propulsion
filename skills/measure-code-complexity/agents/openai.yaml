@@ -1,3 +1,3 @@
 interface:
     display_name: 'Measure Code Complexity'
-    short_description: 'Measure changed-code complexity and review triggers'
+    short_description: 'Measure current code and interpret complexity signals'
