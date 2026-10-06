@@ -1,6 +1,6 @@
 # Discovery Techniques
 
-Load only the branch needed when direct inspection and ordinary elicitation do not expose the foundation. `$elicit-with-context` owns shared-understanding questioning; `$research` owns durable external evidence; `define-product` retains `PRODUCT.md` and the stopping boundary.
+Load only the branch needed when direct inspection and ordinary elicitation do not expose the foundation. `$elicit-with-context` coordinates `$elicit` and continuous project-context maintenance. `$research` owns durable external evidence. `define-product` retains `PRODUCT.md` and the stopping boundary.
 
 ## Reconstruct an existing product
 

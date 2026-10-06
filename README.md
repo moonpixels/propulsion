@@ -167,25 +167,27 @@ $debug → $commit → $pull-request
 
 These skills are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-| Skill                           | Invoke it to…                                                                                                   |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review                       |
-| `$elicit`                       | Resolve material user-held information and decisions one question at a time                                     |
-| `$elicit-with-context`          | Resolve software-project questions through `$elicit` while maintaining shared language and qualifying decisions |
-| `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report                      |
-| `$code-cleanup`                 | Independently identify justified code and test simplifications for the main thread to assess and apply          |
-| `$maintain-agents`              | Keep confirmed repository-wide agent guidance lean and current                                                  |
-| `$maintain-decision-records`    | Preserve exceptional accepted decisions when durable rationale qualifies and the user agrees                    |
-| `$maintain-ubiquitous-language` | Reconcile project terminology in `GLOSSARY.md`                                                                  |
-| `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority        |
-| `$measure-code-complexity`      | Measure changed code with pinned metrics and interpret signals against source and contracts                     |
-| `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                                    |
-| `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                                |
-| `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                        |
-| `$write-prose`                  | Write clear reader-facing UK prose that preserves facts and fits its audience                                   |
-| `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent             |
+| Skill                           | Invoke it to…                                                                                            |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review                |
+| `$elicit`                       | Resolve material user-held information and decisions one question at a time                              |
+| `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance   |
+| `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report               |
+| `$code-cleanup`                 | Independently identify justified code and test simplifications for the main thread to assess and apply   |
+| `$maintain-agents`              | Keep confirmed repository-wide agent guidance lean and current                                           |
+| `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                            |
+| `$maintain-ubiquitous-language` | Sharpen domain language and immediately record resolved meanings in root `GLOSSARY.md`                   |
+| `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority |
+| `$measure-code-complexity`      | Measure changed code with pinned metrics and interpret signals against source and contracts              |
+| `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                             |
+| `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                         |
+| `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                 |
+| `$write-prose`                  | Write clear reader-facing UK prose that preserves facts and fits its audience                            |
+| `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent      |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
+
+The project coordinator loads the terminology skill before questioning and keeps the glossary current between questions. The maintainers own glossary entries and ADR history. Callers retain their specifications, implementation, tickets, and downstream checks.
 
 ## Development
 

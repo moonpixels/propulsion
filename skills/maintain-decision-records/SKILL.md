@@ -1,27 +1,26 @@
 ---
 name: maintain-decision-records
-description: Preserve exceptional accepted technical or architectural decisions in concise ADRs when durable rationale may be warranted.
+description: Preserve exceptional technical or architectural rationale when an accepted decision qualifies for an ADR or an existing record needs correction, supersession, or deprecation.
 ---
 
 # Maintain decision records
 
-Record the rationale for an exceptional accepted technical or architectural decision. Keep routine choices and decisions owned elsewhere out of `docs/adr/`.
+Preserve exceptional accepted rationale in concise **architecture decision records**, retaining decision history when choices change.
 
 ## Inputs
 
-Use the accepted decision, conversation or caller handoff, applicable repository guidance, existing ADRs, and only the evidence needed to establish alternatives, consequences, authority, and existing coverage.
+Use the accepted decision, conversation or caller handoff, repository guidance, existing ADRs, and evidence of rationale, alternatives, consequences, and durable ownership. Separate documented rationale from inference. Code alone cannot establish why a choice was made.
 
 ## Method
 
-1. Create a record only when **all** conditions hold: changing the choice later has meaningful cost; it would surprise a future reader without context; viable alternatives created a real trade-off; and no existing durable authority already records it or is its better owner.
-2. Require explicit user agreement to preserve the rationale. Relevant conversation or a caller handoff can supply that agreement. If the other conditions hold but agreement is absent, ask one direct question. A routine, discoverable, unaccepted, or already-owned decision produces no ADR.
-3. Create `docs/adr/` lazily. Name the record `NNNN-decision-shaped-slug.md`, using `0001` when no sibling matches `NNNN-*.md`, otherwise one above the largest four-digit prefix. Use the template's `Decision`, `Context`, and `Consequences` sections in that order. Capture the accepted choice, reason, necessary rejected alternatives, and material consequences.
-4. Re-read the record against the accepted decision, evidence, eligibility conditions, and agreement.
-
-## Conditional resources
-
-Use [the ADR template](assets/adr-template.md) when a record qualifies and the user has agreed to preserve it.
+1. **Check coverage.** Read relevant existing records and other durable authorities. Reuse existing coverage instead of duplicating it. When correcting or revisiting a recorded decision, read [record lifecycle](references/lifecycle.md) before changing it.
+2. **Qualify new records.** Create an ADR only when **all** conditions hold: reversal has meaningful cost, the choice would surprise a future reader without context, viable alternatives created a real trade-off, and no existing durable authority already records it or is its better owner. A routine, unaccepted, or already-owned choice produces no new ADR.
+3. **Establish agreement.** Require explicit user agreement to preserve the qualifying rationale. Reuse agreement from the conversation or caller handoff. Acceptance of the choice alone is insufficient. If agreement is missing, ask one direct question within the active dialogue and wait before writing. A refusal produces an explained no-record outcome.
+4. **Write the content.** Invoke [$write-prose](../write-prose/SKILL.md) for ADR content, supplying the accepted decision, evidence, future-reader audience, and template or existing structure. For a new record, use [the ADR template](assets/adr-template.md) and create `docs/adr/` lazily. Use `NNNN-decision-shaped-slug.md`, starting at `0001` or one above the largest existing four-digit prefix. Preserve existing identifiers and never overwrite a sibling. Keep sections concise and record only supported rationale, necessary alternatives, material consequences, and useful reconsideration conditions.
+5. **Check the result.** Read changed records back against the accepted choice, evidence, eligibility, and agreement. Verify numbering, status, and lifecycle links. Preserve unrelated records and caller-owned artefacts.
 
 ## Finish
 
-Return the created path or why no ADR was warranted. Leave caller-owned product, feature, architecture, implementation, external state, and verification outcomes unchanged.
+Return created or changed paths, or why no ADR was warranted, and any missing evidence, agreement, or failed write.
+
+**Done only when** the qualifying agreed rationale or authorised lifecycle change is written and checked, or a supported no-record outcome is reported. Missing prerequisites leave dependent maintenance incomplete.
