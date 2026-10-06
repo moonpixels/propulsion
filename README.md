@@ -73,18 +73,6 @@ The session creates and verifies small, vertically sliced, dependency-aware tick
 
 Local Markdown destinations use one file per ticket under `docs/features/<work-slug>/tickets/`. External destinations use their native items, estimates, relationships, and statuses. If `AGENTS.md` does not name the destination, the skill asks and records it.
 
-### Refine
-
-#### `$review-architecture`
-
-Enter here to assess an explicitly bounded part of the current architecture:
-
-```text
-$review-architecture
-```
-
-The session produces an evidence-backed report containing a small number of prioritised, high-value improvements and their trade-offs. It does not refactor the code or create speculative tickets.
-
 ### Deliver
 
 #### `$implement`
