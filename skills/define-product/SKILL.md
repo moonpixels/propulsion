@@ -25,7 +25,7 @@ The user supplies intended direction. Repository and runtime evidence establishe
 ## Conditional resources
 
 - Use [the product template](assets/product-template.md) when writing the foundation, omitting only established immaterial content.
-- Read [discovery techniques](references/DISCOVERY.md) when representative inspection and ordinary elicitation cannot reconstruct the product or expose its breadth.
+- Read [discovery techniques](references/discovery.md) when representative inspection and ordinary elicitation cannot reconstruct the product or expose its breadth.
 
 ## Finish
 

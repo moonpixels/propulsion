@@ -21,7 +21,7 @@ interface:
 
 ## Resources and scripts
 
-Use `references/` for conditional detail and worked examples, `assets/` for templates or copied output material, and `scripts/` for deterministic operations. Create only files with a concrete use. Link resources relative to the containing file and state when to reach them. Use called skills' public contracts without restating their procedures. Remove obsolete or orphaned resources and update affected callers.
+Use `references/` for conditional detail and worked examples, `assets/` for templates or copied output material, and `scripts/` for deterministic operations. Name reference files in lowercase with words separated by hyphens, such as `test-doubles.md`. Create only files with a concrete use. Link resources relative to the containing file and state when to reach them. Use called skills' public contracts without restating their procedures. Remove obsolete or orphaned resources and update affected callers.
 
 Prefer an existing tool over a new helper. Bundle a script when recurring parsing, validation, or transformation can be made repeatable. Document its command, inputs, outputs, runtime, exit codes, and side effects where it is called. Use non-interactive arguments, bounded output, and actionable errors. Make retries idempotent where possible. Test changed helpers on valid and invalid inputs.
 

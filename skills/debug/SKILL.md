@@ -26,15 +26,15 @@ Keep production and external systems read-only within the user's authority. Repo
 
 | Current uncertainty                                           | Read                                                                 |
 | ------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Several plausible causes                                      | [Hypothesis experiments](references/HYPOTHESIS-EXPERIMENTS.md)       |
-| Observable boundaries along the failing path                  | [Boundary isolation](references/BOUNDARY-ISOLATION.md)               |
-| Reliable ordered good and bad states                          | [Change bisection](references/CHANGE-BISECTION.md)                   |
-| Large reducible input, sequence, state, or change set         | [Delta debugging](references/DELTA-DEBUGGING.md)                     |
-| Bad state observed downstream from its origin                 | [Origin tracking](references/ORIGIN-TRACKING.md)                     |
-| A credible working comparator                                 | [Comparative debugging](references/COMPARATIVE-DEBUGGING.md)         |
-| Existing observations cannot distinguish hypotheses           | [Instrumentation](references/INSTRUMENTATION-DEBUGGERS.md)           |
-| Timing, order, randomness, load, or shared-state dependence   | [Nondeterministic faults](references/NONDETERMINISTIC-CONCURRENT.md) |
-| Latency, throughput, contention, leakage, exhaustion, or cost | [Performance faults](references/PERFORMANCE-RESOURCE.md)             |
+| Several plausible causes                                      | [Hypothesis experiments](references/hypothesis-experiments.md)       |
+| Observable boundaries along the failing path                  | [Boundary isolation](references/boundary-isolation.md)               |
+| Reliable ordered good and bad states                          | [Change bisection](references/change-bisection.md)                   |
+| Large reducible input, sequence, state, or change set         | [Delta debugging](references/delta-debugging.md)                     |
+| Bad state observed downstream from its origin                 | [Origin tracking](references/origin-tracking.md)                     |
+| A credible working comparator                                 | [Comparative debugging](references/comparative-debugging.md)         |
+| Existing observations cannot distinguish hypotheses           | [Instrumentation](references/instrumentation-debuggers.md)           |
+| Timing, order, randomness, load, or shared-state dependence   | [Nondeterministic faults](references/nondeterministic-concurrent.md) |
+| Latency, throughput, contention, leakage, exhaustion, or cost | [Performance faults](references/performance-resource.md)             |
 
 Use nondeterministic or performance guidance as soon as that signal appears. Combine techniques only when they answer different unresolved questions. Use `$research` when a material external-knowledge question requires a durable cited report.
 
