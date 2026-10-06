@@ -1,3 +1,3 @@
 interface:
     display_name: 'Implement'
-    short_description: 'Implement and review one local change'
+    short_description: 'Deliver the smallest complete, reviewed code change'
