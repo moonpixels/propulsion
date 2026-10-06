@@ -101,13 +101,13 @@ The session produces a minimal local change with retained tests, applicable qual
 
 #### `$commit`
 
-Enter here when eligible reviewed work is ready to be recorded:
+Enter here when all uncommitted work on the branch is ready to be recorded:
 
 ```text
 $commit
 ```
 
-The session creates and verifies coherent Conventional Commits while preserving unrelated staged, unstaged, and untracked work. It does not push or open a pull request.
+The session records all staged, unstaged, and untracked changes reported by Git in atomic Conventional Commits, including work from earlier sessions. It respects normal ignore rules, lets commit hooks run, and stops before pushing or opening a pull request. It runs no separate repository checks.
 
 #### `$pull-request`
 
@@ -117,7 +117,7 @@ Enter here when the current branch is ready to publish for human review:
 $pull-request
 ```
 
-The session commits eligible remaining work when needed, pushes the branch, and creates or updates one pull request describing the complete branch. It does not merge, release, or deploy the work.
+The session invokes `$commit` for all uncommitted work, pushes the branch, and creates or updates one matching open pull request. It checks the Conventional Commit title and succinct description against the complete branch, refreshing either when needed. The description covers what changed, why, and the resulting behaviour through `$write-prose`. It stops before review, merge, release, or deployment.
 
 A substantial feature commonly moves through separate sessions:
 

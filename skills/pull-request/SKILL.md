@@ -1,25 +1,25 @@
 ---
 name: pull-request
-description: Push a ready branch and create or update one pull request with a succinct summary of the complete change.
+description: Publish a branch with a Conventional Commit title and succinct description when asked to open or update its pull request.
 ---
 
 # Pull request
 
-Publish the complete branch for review using the repository's host and conventions.
+Publish the complete branch as **one matching open pull request** with a relevant title and description.
 
 ## Inputs
 
-Use the repository, current branch, intended base, and request. Resolve the host and target repository before external operations. Check the working tree and whole branch diff, including all commits since the comparison base. Ask only when the target or eligible work is materially ambiguous.
+Use the request, repository guidance, Git configuration and state, and live host state. Resolve the host, target repository, named head branch, and base before publication. Use an existing matching PR's base and readiness unless the request changes them. Ask only when inspection leaves a material ambiguity.
 
 ## Method
 
-1. Invoke `$commit` when eligible uncommitted work belongs to the branch. Reuse its result and preserve excluded work.
-2. Inspect the complete branch against its base. Invoke `$write-prose` for a short description covering what changed, why, and the resulting behaviour. Supply the complete diff, a reviewer audience unfamiliar with the conversation, and any repository PR template. Use a Conventional Commit title unless repository guidance requires another form.
-3. Push the intended branch without rewriting remote history. Create or update one matching pull request. Preserve the requested base and readiness state; avoid creating a duplicate after an uncertain tool result. Read host state before retrying a mutation.
-4. Read back the published title, URL, head, base, state, and revision. Confirm that the published revision matches the intended local head and that the body describes the complete diff.
-
-Reuse current checks; run additional validation only when required by repository instructions or needed to resolve a material evidence gap. Distinguish local evidence from remote CI status. Keep routine check results in the user handoff.
+1. Read [$commit](../commit/SKILL.md) for the title conventions. Invoke it whenever uncommitted changes exist. Continue only after it completes.
+2. Inspect the complete branch diff against its base, including earlier commits. Invoke [$write-prose](../write-prose/SKILL.md) for a Conventional Commit title summarising the full change and a succinct description covering **what changed, why, and the resulting behaviour**. Keep required PR template fields and material evidence or limitations. Reuse valid checks and distinguish local evidence from remote CI status.
+3. Push the intended branch without rewriting remote history. Reuse a matching open PR and check its title and description against the full diff and these requirements. Update either when stale or noncompliant. Otherwise create one PR, ready by default. Preserve an existing PR's readiness unless directed to change it. After an uncertain mutation result, read host state before retrying to avoid duplicates.
+4. Read back the PR's URL, title, body, head, base, readiness, and published revision. Verify that the revision matches the intended local head and that the metadata describes the complete change.
 
 ## Finish
 
-Return the title and URL with any material blocker, excluded work, or validation limitation. Done when the matching pull request contains the intended revision and description. Stop before review, merge, release, or deployment.
+Return the PR title and URL with any blocker or material validation limitation.
+
+**Done only when** all uncommitted work is recorded and the matching open PR contains the intended revision, base, readiness, title, and description. Report failures with remaining work preserved. Stop before review, merge, release, deployment, or ongoing CI monitoring.
