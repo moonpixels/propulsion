@@ -1,28 +1,30 @@
 ---
 name: maintain-agents
-description: Create, refine, or assess concise root AGENTS.md guidance when a repository-wide agent rule needs a durable home.
+description: Create or update a project's root AGENTS.md when the user or a caller requests project instructions.
 ---
 
 # Maintain AGENTS.md
 
-Keep root agent guidance concise, confirmed, and relevant across the repository.
+Keep root `AGENTS.md` lean through **progressive disclosure**. Write short instructional sentences, one concept per bullet.
 
 ## Inputs
 
-Use the requested addition, refinement, or assessment, the relevant user decision or caller handoff, and the root `AGENTS.md`. Locate the repository root and preserve unrelated guidance.
+Use the requested change, established user decisions, and existing file. Locate the project root. Treat explicit user or caller instructions as authority. Ask only about material ambiguity.
 
 ## Method
 
-1. Read the existing file or create it when needed. Keep this line exactly once at the top, moving or replacing equivalent wording:
+1. Read the existing file. For setup, create a missing file with only this default line. Keep it first and present exactly once, replacing equivalent wording:
 
     ```markdown
-    - When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
+    - When a user correction establishes a durable project-wide instruction needed in every session, ask whether to invoke `$maintain-agents` to add it.
     ```
 
-2. Recommend guidance that is user-confirmed, materially changes behaviour, applies repository-wide, and cannot be inferred reliably from repository evidence. A caller's confirmed instruction supplies confirmation. If a proposed rule fails these conditions, explain the concern and obtain the user's decision before adding it; follow that decision.
-3. Apply the requested change using a direct imperative with its necessary conditions. Update equivalent wording instead of adding a duplicate. Recommend the existing local authority for task-specific detail rather than expanding root guidance, unless the user directs otherwise.
-4. Re-read the file for the requested effect, canonical first line, and semantic duplication.
+2. Apply the requested change with direct instructions. Preserve necessary conditions and exact commands. Update equivalent wording rather than adding duplicates. Preserve unrelated guidance during a targeted edit.
+3. For a whole-file tidy, remove repetition and obsolete material while preserving intended behaviour. Ask before a substantive deletion whose intent is uncertain.
+4. Follow explicit requests to include task-specific content. Apply the default line's strict reuse test only to proactive suggestions.
 
 ## Finish
 
-Return the change, supported no-op, or requested advice with any unresolved concern. Stop at root `AGENTS.md`; changes to tooling, skills, or other instruction files need their own task scope.
+Return the change or supported no-op and any unresolved ambiguity. Edit only root `AGENTS.md`.
+
+**Done only when** rereading confirms the requested effect, short instructions, preserved meaning, no semantic duplicates, and the canonical first line exactly once.

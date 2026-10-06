@@ -174,7 +174,7 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance   |
 | `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report               |
 | `$code-cleanup`                 | Independently identify justified code and test simplifications for the main thread to assess and apply   |
-| `$maintain-agents`              | Keep confirmed repository-wide agent guidance lean and current                                           |
+| `$maintain-agents`              | Create and maintain a lean project AGENTS.md                                                             |
 | `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                            |
 | `$maintain-ubiquitous-language` | Sharpen domain language and immediately record resolved meanings in root `GLOSSARY.md`                   |
 | `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority |

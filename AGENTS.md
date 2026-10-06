@@ -1,4 +1,4 @@
-- When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
+- When a user correction establishes a durable project-wide instruction needed in every session, ask whether to invoke `$maintain-agents` to add it.
 - When creating, reviewing or maintaining skills, invoke `$write-skill`.
 - Default to a user-agent workflow; do not introduce team roles, named accountable people, approval bodies, or third-party coordination.
 - Assume the execution harness supports fresh agents; do not add fallback handling for their unavailability.
