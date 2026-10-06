@@ -270,6 +270,44 @@ The library opens on Saturdays, giving weekend visitors another day to use it.
 
 A sentence can contain a condition and its consequences while still having one clear main point. Readability does not require making every sentence equally short.
 
+### Ambiguous reference
+
+Repeat the noun when a pronoun could identify more than one thing. Use the supplied relationship to resolve the reference.
+
+```markdown
+// Bad
+Copy the policy into the report and check that it contains the revision date.
+
+// Good
+Copy the policy into the report. Check that the report contains the revision date.
+```
+
+### Condition or modifier in the wrong place
+
+Put a condition before the instruction it governs. Place "only" beside the restricted action or object. Preserve the supplied scope instead of choosing one for readability. Here, the preview is always available, but saving requires a valid mapping.
+
+```markdown
+// Bad
+Only preview and save the import if the mapping is valid.
+
+// Good
+Preview the import. If the mapping is valid, save the import.
+```
+
+### Weakened agent instruction
+
+Cut padding while retaining the action, coverage, intensity, and stopping condition. Words such as "every", "before", and "until" can define required behaviour.
+
+```markdown
+// Bad
+Review the branches and summarise your understanding.
+
+// Good
+Relentlessly traverse every material branch. Continue until each branch is resolved, explicitly delegated, or excluded by the agreed scope. Obtain confirmation of the complete synthesis before acting.
+```
+
+The good example preserves this illustrative task's contract. A shorter instruction that loses a gate is a change in behaviour.
+
 ## Punctuation and presentation
 
 Apply the punctuation and presentation policy in [the skill](../SKILL.md). Restructure a crowded sentence before choosing a replacement mark.

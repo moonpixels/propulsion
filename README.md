@@ -182,7 +182,7 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                             |
 | `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                         |
 | `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                 |
-| `$write-prose`                  | Write clear reader-facing UK prose that preserves facts and fits its audience                            |
+| `$write-prose`                  | Write clear, succinct UK English for humans and agents while preserving meaning and required behaviour   |
 | `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent      |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.

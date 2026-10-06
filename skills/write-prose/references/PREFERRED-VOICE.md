@@ -1,6 +1,6 @@
-# Preferred voice
+# Voice and register
 
-Use a **professional but conversational** voice by default. Sound like a capable person explaining something useful. Adjust to the reader, relationship, and purpose specified in the brief.
+Match the voice to the reader, relationship, medium, and purpose.
 
 The paired examples are illustrative. Use only facts established for the actual task. Never create a number, anecdote, source, or audience preference to make writing sound grounded.
 
@@ -99,6 +99,7 @@ Reply if you would prefer a refund.
 ## Match the medium
 
 - In technical documentation, state behaviour and conditions directly. A developer familiar with queues usually needs the ordering rule, not a waiting-line analogy.
+- In agent instructions and skills, use direct commands. Preserve the required intensity, scope, conditions, and stopping rules when simplifying the wording.
 - In reports, put supplied evidence near the claim and qualify what can be inferred from it.
 - In customer correspondence, give the practical consequence, relevant reason, and available action. Keep the tone considerate without inventing reassurance or guarantees.
 - In articles and blog posts, a supplied scene can give an unfamiliar idea context. Retain a grounded point of view and enough explanation for the intended reader.
