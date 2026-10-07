@@ -9,7 +9,7 @@ Publish the complete branch as **one matching open pull request** with a relevan
 
 ## Inputs
 
-Use the request, repository guidance, Git configuration and state, and live host state. Resolve the host, target repository, named head branch, and base before publication. Use an existing matching PR's base and readiness unless the request changes them. Ask only when inspection leaves a material ambiguity.
+Take the branch to publish from the request or current Git state. Resolve the host, target repository, named head branch, and base before publication. Use an existing matching PR's base and readiness unless the request changes them. Ask only when inspection leaves a material ambiguity.
 
 ## Method
 

@@ -11,7 +11,7 @@ Use **plain language**, drawing on **ISO 24495-1** and **ASD-STE100 Simplified T
 
 ## Inputs
 
-Use the brief, purpose, audience, supplied facts, established terminology, constraints, and destination. Default to UK English. Match tone and register to the brief, audience, medium, and purpose. Follow explicit language, voice, and format requests. The caller owns factual investigation, substantive decisions, required structure, persistence, and workflow validation.
+Take the writing brief or supplied draft from the request or caller handoff. Default to UK English. Match tone and register to the brief, audience, medium, and purpose. Follow explicit language, voice, and format requests. The caller owns factual investigation, substantive decisions, required structure, persistence, and workflow validation.
 
 ## Method
 

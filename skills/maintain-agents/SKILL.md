@@ -9,7 +9,7 @@ Keep root `AGENTS.md` lean through **progressive disclosure**. Write short instr
 
 ## Inputs
 
-Use the requested change, established user decisions, and existing file. Locate the project root. Treat explicit user or caller instructions as authority. Ask only about material ambiguity.
+Take the requested instruction change from the request or caller handoff. Locate the project root. Treat explicit user or caller instructions as authority. Ask only about material ambiguity.
 
 ## Method
 

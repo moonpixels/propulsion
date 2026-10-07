@@ -9,7 +9,7 @@ Find the least code that preserves supported behaviour. **Subtract before adding
 
 ## Inputs
 
-Use the repository, fixed candidate, requested scope, behavioural authorities, constraints and available check evidence. Accept a file, diff, capability or whole codebase. Follow related files across the whole affected capability, including unchanged code. Keep unrelated work outside scope. Resolve an unclear scope before dispatch.
+Take the cleanup scope from the request. Accept a file, diff, capability or whole codebase. Follow related files across the whole affected capability, including unchanged code. Keep unrelated work outside scope. Resolve an unclear scope before dispatch.
 
 ## Method
 

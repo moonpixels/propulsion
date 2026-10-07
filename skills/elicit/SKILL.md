@@ -11,7 +11,7 @@ A branch is **material** when differing answers could change the outcome, scope,
 
 ## Inputs
 
-Use the request, conversation, caller's outcome and boundary, and task evidence. Resolve discoverable facts through task-scoped read-only inspection before dependent questioning. Verify uncertain or changing claims. Current behaviour is evidence, not authority for intended behaviour. Leave substantial research and changes to the caller.
+Take the task, intended outcome and authority boundary from the request or caller handoff. Resolve discoverable facts through task-scoped read-only inspection before dependent questioning. Verify uncertain or changing claims. Current behaviour is evidence, not authority for intended behaviour. Leave substantial research and changes to the caller.
 
 ## Method
 

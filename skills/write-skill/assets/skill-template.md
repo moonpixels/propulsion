@@ -9,7 +9,7 @@ Produce {observable outcome}. Preserve {essential invariant}.
 
 ## Inputs
 
-Use {required inputs and source of truth}. Resolve {material ambiguity or missing input} before {dependent action}.
+Take {task input} from {request, caller handoff or named source}. Resolve {material ambiguity or missing prerequisite} before {dependent action}.
 
 ## Method
 

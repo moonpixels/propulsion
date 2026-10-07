@@ -9,7 +9,7 @@ Save one severity-ranked report from **independent Spec and Standards assessment
 
 ## Inputs
 
-Use the repository, exact scope, candidate, comparison base where relevant, available behavioural authorities and check evidence. Accept a file, module, diff or whole codebase. Resolve ambiguous scope before dispatch. An empty diff has no change to review. Existing code needs no diff.
+Take the review scope from the request. Accept a file, module, diff or whole codebase. Resolve ambiguous scope before dispatch. An empty diff has no change to review. Existing code needs no diff.
 
 ## Method
 

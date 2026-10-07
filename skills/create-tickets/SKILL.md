@@ -9,7 +9,7 @@ Turn approved work into a confirmed, verified set of small vertical tickets. Eac
 
 ## Inputs
 
-Use the approved document or confirmed conversation, root `AGENTS.md`, relevant linked authorities, and current-system evidence. The definition must settle outcome, scope, behaviour or obligations, constraints, and material solution choices.
+Take the work definition from the approved document or confirmed conversation. Read its linked authorities and check relevant current-system evidence. The definition must settle outcome, scope, behaviour or obligations, constraints, and material solution choices.
 
 Find an explicit ticket destination in root guidance. If absent, ask which destination the project uses, invoke `$maintain-agents` with the answer, and resume from its result. For an external destination, require its installed integration and writable account. Report exact missing access rather than guessing or silently falling back.
 

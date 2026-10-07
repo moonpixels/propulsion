@@ -9,7 +9,7 @@ Measure current code and explain signals that warrant attention. **The caller ow
 
 ## Inputs
 
-Use the repository and selected production files. Default to every function in changed production files, including eligible untracked files. A supplied Git base selects files only, defaulting to `HEAD`. Requires Git and Python 3.9 or newer. Supports macOS and Linux on ARM64 or x64, and Windows x64 with the Visual C++ runtime.
+Measure the production files selected by the request. Default to every function in changed production files, including eligible untracked files. A supplied Git base selects files only, defaulting to `HEAD`. Requires Git and Python 3.9 or newer. Supports macOS and Linux on ARM64 or x64, and Windows x64 with the Visual C++ runtime.
 
 ## Method
 

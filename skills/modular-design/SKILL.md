@@ -9,7 +9,7 @@ Give callers a simple contract that hides substantial domain knowledge. Choose t
 
 ## Inputs
 
-Use confirmed requirements, repository instructions, domain language, architecture decisions, supported interfaces, affected code and consumers. Existing code shows current structure, not a requirement to preserve it. A module can be a function, object or feature. Its interface includes inputs, outcomes, errors, effects, ordering and invariants callers must understand.
+Start from the confirmed requirements and affected interfaces. Inspect their owners and consumers. Existing code shows current structure, not a requirement to preserve it. A module can be a function, object or feature. Its interface includes inputs, outcomes, errors, effects, ordering and invariants callers must understand.
 
 ## Method
 

@@ -9,7 +9,7 @@ Return confirmed shared understanding while keeping relevant project terminology
 
 ## Inputs
 
-Use the bounded software task, conversation, caller's evidence and unresolved questions, and repository guidance. Supply the caller's outcome and authority boundary to the loaded skills.
+Take the bounded software task from the request or caller handoff. Supply the caller's outcome and authority boundary to the loaded skills.
 
 ## Method
 

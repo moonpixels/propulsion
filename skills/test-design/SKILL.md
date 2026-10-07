@@ -9,7 +9,7 @@ Protect **behavioural promises** with the fewest meaningful tests. Exercise the 
 
 ## Inputs
 
-Use confirmed requirements, acceptance criteria, documented contracts, production entries and repository testing conventions. Derive expected results independently of the implementation. Resolve missing intended behaviour before its test. Current behaviour is authority only for explicitly requested characterisation work.
+Take the behaviour to test from confirmed requirements, acceptance criteria or documented contracts. Derive expected results independently of the implementation. Resolve missing intended behaviour before its test. Current behaviour is authority only for explicitly requested characterisation work.
 
 ## Method
 

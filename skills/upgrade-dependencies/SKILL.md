@@ -9,7 +9,7 @@ Deliver compatible upgrades and required migrations within the requested scope. 
 
 ## Inputs
 
-Use the request, repository guidance, working tree, manifests, lockfiles, runtime pins, and CI or deployment constraints. Reuse explicit scope decisions. If patch/minor versus major allowance or package versus toolchain scope remains material and unclear, invoke `$elicit-with-context`. Package scope includes development packages; toolchain scope includes project runtimes, package-manager pins, container images, and CI actions. Machine-wide changes, publication, and deployment need corresponding authorisation.
+Take the upgrade scope from the request. Inspect manifests, lockfiles, runtime pins and CI or deployment constraints. Reuse explicit scope decisions. If patch/minor versus major allowance or package versus toolchain scope remains material and unclear, invoke `$elicit-with-context`. Package scope includes development packages; toolchain scope includes project runtimes, package-manager pins, container images, and CI actions. Machine-wide changes, publication, and deployment need corresponding authorisation.
 
 ## Method
 

@@ -9,7 +9,7 @@ Preserve exceptional accepted rationale in concise **architecture decision recor
 
 ## Inputs
 
-Use the accepted decision, conversation or caller handoff, repository guidance, existing ADRs, and evidence of rationale, alternatives, consequences, and durable ownership. Separate documented rationale from inference. Code alone cannot establish why a choice was made.
+Take the accepted decision or requested record change from the conversation or caller handoff. Separate documented rationale from inference. Code alone cannot establish why a choice was made.
 
 ## Method
 

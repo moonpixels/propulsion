@@ -9,7 +9,7 @@ Actively sharpen **DDD ubiquitous language** and keep one root `GLOSSARY.md` cur
 
 ## Inputs
 
-Use the conversation or caller handoff, root glossary, repository guidance, and relevant project documents and code. A clear, stable supplied meaning is resolved. Confirmed intended meaning governs an intended change. Current behaviour is evidence, not authority for intent.
+Take affected terms and their intended meanings from the conversation or caller handoff. Read root `GLOSSARY.md` and relevant project evidence. A clear, stable supplied meaning is resolved. Confirmed intended meaning governs an intended change. Current behaviour is evidence, not authority for intent.
 
 ## Method
 

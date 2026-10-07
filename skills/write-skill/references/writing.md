@@ -2,6 +2,20 @@
 
 These illustrative pairs show how to make an instruction shorter or more exact. The stronger wording must fit the confirmed task. Examples demonstrate a rule, rather than adding another authority for it.
 
+## Name the task input
+
+Follow the input rule in [the skill](../SKILL.md). This research example identifies the question to investigate and when clarification matters.
+
+```markdown
+// Before
+Use the request, purpose, scope, relevant evidence, available sources, and destination.
+
+// After
+Take the research question or subject from the request. Ask only when missing information would materially change the investigation.
+```
+
+Keep concrete source-of-truth rules, defaults and prerequisites. For example, a CSV reconciliation skill needs both the CSV and its authoritative schema. Omit an Inputs section when it adds no useful instruction.
+
 ## Recognise the method
 
 Name an established methodology when its meaning fits the user's description. Keep any task-specific qualification beside it. Here, tests must demonstrate missing behaviour before implementation begins.

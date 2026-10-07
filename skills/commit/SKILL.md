@@ -9,7 +9,7 @@ Record **all uncommitted changes** in atomic commits by intent, including work f
 
 ## Inputs
 
-Use the repository, request, complete Git state, and repository guidance. The actual diffs determine what needs recording.
+The actual diffs determine what needs recording.
 
 ## Method
 

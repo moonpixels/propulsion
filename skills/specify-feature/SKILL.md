@@ -9,7 +9,7 @@ Produce one specification with confirmed feature intent and a selected buildable
 
 ## Inputs
 
-Use the feature request and relevant product, glossary, ADR, research, and current-system evidence. Resolve discoverable facts first. Invoke `$elicit-with-context` whenever material user-held information or a decision remains throughout the work. Distinguish current behaviour from intended change, preserve unrelated decisions, and keep the scope to one coherent feature.
+Take the feature from the request. Read relevant product, glossary, ADR and research documents, and inspect current-system evidence. Resolve discoverable facts first. Invoke `$elicit-with-context` whenever material user-held information or a decision remains throughout the work. Distinguish current behaviour from intended change, preserve unrelated decisions, and keep the scope to one coherent feature.
 
 ## Method
 

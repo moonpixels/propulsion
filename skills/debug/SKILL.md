@@ -9,7 +9,7 @@ Explain a defect through discriminating evidence. For an authorised repair, deli
 
 ## Inputs
 
-Read the request, repository instructions, expected and observed behaviour, failing evidence, environment, relevant contracts, source and tests. Resolve diagnosis-only versus repair scope. Use `$elicit-with-context` for a material user-held fact or decision that remains after inspection.
+Take the defect from the request. Inspect its failure evidence and affected code. Resolve diagnosis-only versus repair scope. Use `$elicit-with-context` for a material user-held fact or decision that remains after inspection.
 
 Keep production and external systems read-only within the user's authority. Report a required external mutation separately. Protect secrets and unnecessary personal data in commands, captures, and reports.
 
