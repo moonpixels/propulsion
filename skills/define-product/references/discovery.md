@@ -1,19 +1,38 @@
-# Discovery Techniques
+# Product discovery
 
-Load only the branch needed when direct inspection and ordinary elicitation do not expose the foundation. `$elicit-with-context` coordinates `$elicit` and continuous project-context maintenance. `$research` owns durable external evidence. `define-product` retains `PRODUCT.md` and the stopping boundary.
+Use these lenses to prepare a broad **story map** before deepening one feature.
 
-## Reconstruct an existing product
+## Find the problem and boundary
 
-Inspect the smallest end-to-end slices that reveal actors, product boundaries, current behaviour, data ownership, external systems, and consequential constraints. Prefer public documentation and contracts, entry points, representative tests, schemas, configuration, and runtime evidence over an implementation inventory. Sample one normal path, one refusal or failure, one recovery path, and one operational or support path where applicable.
+Explore the idea through the problem it solves, who experiences it, concrete situations, current alternatives and the change sought. Challenge a proposed feature that lacks a need. Distinguish confirmed intentions from evidence of demand. Consider whether a simpler product, manual process or no new software could meet the goal.
 
-Distinguish shipped behaviour from planned or abandoned code. Treat names, code structure, framework choices, and deployment configuration as evidence of the present system, not durable target requirements. Reconcile contradictory evidence with the user instead of selecting a source silently. Use legacy product or architecture documents as evidence only until their statements are confirmed into the current authority.
+Establish users, relevant system actors, accessibility needs, channels and operating conditions. Separate product responsibilities from external systems. Distinguish required constraints from preferences, including commercial limits when they change the product.
 
-## Expose the whole product
+For an existing product, inspect representative entry points, public contracts, tests, data and operations. Reconstruct actual journeys without turning every code structure or old configuration into a target requirement.
 
-Walk each intended user from entry through recurring value, consequential interaction, failure or refusal, recovery or support, and completion or exit. Change perspective to customers, operators, administrators, support, external-system owners, affected parties, and regulators when material. Derive natural product areas and capability mini-briefs from those journeys, then check commercial, account, trust, data, integration, operational, and lifecycle surfaces that the main journey may hide.
+## Walk the whole lifecycle
 
-Use meaningful alternatives, manual work, and doing nothing to clarify value and boundaries. Invoke `$research` only when external position, regulation, standards, providers, or user evidence could materially change a requirement and the evidence must survive the session.
+Tell each user's journey from its trigger to value and exit. Explore setup and onboarding, recurring use, changes and cancellation, refusal, failure, recovery, support, export and retirement where relevant. Include administrator and system-initiated paths that the main user journey hides.
 
-## Expose system-wide requirements
+Ask what each activity requires the product to do. Group those responsibilities into high-level features. Then walk the map backwards to find features with no purpose and needs with no feature. A feature can support several journeys. A journey can require several features.
 
-For each journey and capability, ask what must remain true across likely implementations: operating conditions, measurable qualities, external ownership and exchanges, information duties, trust and harm boundaries, mandated technology, provider or organisational constraints, support and recovery, and eventual export, archival, or retirement. Record only material design inputs. Leave the selected internal structure and mechanisms to later feature specification.
+For example, “a place to book rooms” can expose finding availability, booking, changing or cancelling, conflict prevention, room administration and outage recovery. Confirm which belong before diving into booking fields. Authentication and notifications earn entries only when their responsibilities are needed.
+
+## Probe shared requirements
+
+Check what must remain true across features and implementations:
+
+- Qualities in their actual operating context, such as accessibility, availability, responsiveness and scale.
+- Data purpose, ownership, sensitivity, retention, deletion, export and residency.
+- External exchanges, trust boundaries, provider limits and failure consequences.
+- Security, privacy, safety and applicable obligations.
+- Mandated platforms, supported clients, hosting and other hard constraints.
+- Operations, observability, support, recovery and eventual retirement.
+
+Turn “fast” or “secure” into the required response or guarantee in a concrete situation. Resolve uncertain factual obligations through evidence. Ask the user to decide intent and trade-offs.
+
+## Keep depth deliberate
+
+Product definition establishes the full high-level map. Feature specification settles detailed policies and consequential solution choices for selected features. Record an unresolved detail at the later level only when its alternatives leave the product boundary and high-level requirements coherent.
+
+For room booking, establish whether fair access is required and recurring bookings belong in scope. Reserve exact duration, advance-booking and cancellation-cutoff rules for feature specification unless a product-wide mandate already fixes them.

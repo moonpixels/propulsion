@@ -1,4 +1,3 @@
 interface:
     display_name: 'Create Tickets'
-    short_description: 'Create implementation-ready vertical tickets'
-    default_prompt: 'Use $create-tickets to turn this approved work definition into confirmed, implementation-ready tickets.'
+    short_description: 'Plan executable vertical slices and dependencies'

@@ -1,124 +1,48 @@
 # {Feature name}
 
-> **Authority:** This document owns the approved intent and selected solution for one feature. It is ready for ticket decomposition only when its readiness statement is satisfied.
+<!-- Replace prompts with confirmed content. Omit only immaterial conditional detail. Preserve identifiers and existing ticket links during revisions. -->
 
-<!-- Replace brace placeholders with content and remove template comments from the finished document. Git owns revision history and the configured ticket system owns delivery state. Keep the stable headings below; omit conditional subsections and prompts that are not material. State each normative item once. Add identifiers only where they make later reference and traceability clearer. -->
+## Overview and scope
 
-## Feature overview
+{Problem, beneficiary, desired outcome, current context and intended change. Link the originating request or product feature when available. State inclusions, exclusions and success conditions.}
 
-{Orient the reader with the feature, its source request or capability, current context, intended beneficiaries, and concise outcome.}
+## Behaviour
 
-## Problem, outcomes, and success measures
+### Actors and use cases
 
-{State the evidenced problem or opportunity, desired user or product outcomes, and only applicable measures with their source, baseline, direction or threshold, and horizon when known.}
+{Actors, permissions and goals. For each material use case, state trigger, preconditions, main flow, successful result, alternatives, failures, recovery and guarantees on unsuccessful exit. Include relevant system-initiated events.}
 
-## Scope and non-goals
+### Rules and requirements
 
-### In scope
+- **REQ-01:** {One unambiguous rule or requirement, including rationale where it affects interpretation.}
 
-- {Included feature outcome or observable responsibility.}
+{Add state or decision tables when transitions or combinations matter. Define material data meanings, validation, defaults, timing, visibility and interactions. Link applicable product-wide requirements precisely.}
 
-### Non-goals
+### Acceptance examples
 
-- {Excluded adjacent behaviour and the boundary it preserves.}
+#### {Scenario name}
 
-## Actors, goals, and use cases
+- **Covers:** {Requirement IDs}
+- **Given:** {Relevant initial state and concrete inputs}
+- **When:** {Action or event}
+- **Then:** {Observable result, including material state changes and forbidden effects}
 
-### {ACT-01: Actor or beneficiary}
+{Cover material happy, boundary, denial, failure and recovery cases. State general quality or acceptance conditions that examples alone cannot express.}
 
-{Goal and value sought from this feature.}
+## Consequential solution
 
-### {UC-01: Use-case name}
+{Selected approach, responsibilities and state ownership, public and shared contracts, important data shapes and invariants, integrations, failure handling, migration and operational requirements. Include only material aspects.}
 
-- **Actor:** {Primary actor.}
-- **Trigger:** {Observable event that starts the use case.}
-- **Preconditions:** {Material conditions, if any.}
-- **Successful outcome:** {Externally observable completion.}
-- **Alternatives and exceptions:** {Only material refusal, adverse, recovery, or edge paths.}
+{Explain load-bearing choices, relevant rejected alternatives and trade-offs. Link existing ADRs instead of restating their rationale. Identify the stable boundaries and evidence that can verify behaviour. Use a precise contract sketch or diagram where it communicates a decision better than prose.}
 
-## Feature intent
+## Dependencies and remaining uncertainty
 
-### Requirements and rules
+{External and existing-system dependencies, assumptions and risks with evidence, consequences and resolution conditions. Explicitly identify delegated implementation choices.}
 
-- **REQ-01: {Requirement name}:** {One necessary, unambiguous, verifiable normative statement.}
+## Evidence and readiness
 
-### States and transitions
+{Precise links to inspected sources and research. State why scoped behaviour and consequential design are settled sufficiently for ticket planning, and any limits.}
 
-<!-- Omit this subsection when behaviour has no material lifecycle or transition rules. -->
+## Tickets
 
-{Describe relevant states and allowed and forbidden transitions. Use a concise Mermaid state diagram when it replaces repetitive prose.}
-
-### Experience and design requirements
-
-{Record consequential content, interaction, accessibility, and experience outcomes. Link confirmed flows, prototypes, wireframes, or design-system evidence when material.}
-
-### Quality and external constraints
-
-{Record only feature-relevant qualities in their operating context and binding external product, regulatory, standards, or compatibility constraints.}
-
-### Scenarios and acceptance
-
-#### SC-01: {Scenario name}
-
-- **Given:** {Observable starting context.}
-- **When:** {Actor action or external event.}
-- **Then:** {User-, assistive-technology-, contract-, or operating-interface outcome.}
-
-**Covers:** {REQ-01 and any distinct acceptance identifiers evidenced by this scenario.}
-
-#### Acceptance conditions
-
-<!-- State general observable completion boundaries rather than paraphrasing scenario outcomes or requirements. A scenario may evidence an acceptance condition without becoming the only statement of its general rule. -->
-
-- **ACC-01:** {Observable acceptance boundary stated once.}
-
-## Selected solution
-
-### Design drivers and current context
-
-{Link the requirements, constraints, accepted decisions, and inspected current-system forces that shape the solution. Distinguish current evidence from selected direction.}
-
-### Strategy and material decisions
-
-{State the selected coherent approach and only the alternatives or trade-offs needed to understand a consequential choice.}
-
-### Responsibilities and boundaries
-
-{Describe affected capabilities, owned knowledge, contracts, dependency direction, and enabling changes without a file or class inventory. Use a small Mermaid context or runtime diagram when it clarifies the design.}
-
-### Interfaces and data contracts
-
-{Define consumer-relevant inputs, outputs, invariants, ordering, errors, compatibility, and data shapes only to decision-complete depth.}
-
-### Data and lifecycle
-
-{Cover applicable ownership, states, consistency, concurrency, transactions, privacy, retention, migration, rollback, restoration, or removal.}
-
-### Integrations and failure handling
-
-{Cover applicable protocols, authentication, authorization, idempotency, retries, timeouts, partial failure, reconciliation, trust boundaries, and failure responsibility.}
-
-### Cross-cutting and operational design
-
-{Cover triggered security, privacy, safety, accessibility, performance, resilience, compatibility, rollout constraints, observability, support, and operation.}
-
-### Verification seams
-
-{Identify the public or stable contract boundaries and evidence capable of establishing the selected behaviour. Do not prescribe an exhaustive test inventory.}
-
-## Dependencies, assumptions, risks, and unresolved items
-
-<!-- Keep each category explicit. Do not invent named owners or third-party workflow. -->
-
-- **DEP-01: {Dependency}:** {Evidence, consequence, and affected identifiers.}
-- **ASM-01: {Assumption}:** {Evidence, consequence if wrong, and affected identifiers.}
-- **RSK-01: {Risk}:** {Evidence, consequence, mitigation or design response, and affected identifiers.}
-- **UNR-01: {Non-blocking uncertainty}:** {Evidence, consequence if wrong, affected decisions, and resolution condition or later user-agent step; explain why ticket decomposition remains safe.}
-
-## Traceability and readiness
-
-{Trace each consequential solution element to its originating intent, constraint, evidence, or accepted decision, and identify its verification seam. Use links or compact tables when useful; avoid duplicating the same trace in several formats.}
-
-### Readiness statement
-
-{State concisely why later ticket creation can proceed without inventing observable behaviour or selecting a material solution, plus any non-blocking limitation. Do not recap the specification.}
+<!-- Leave empty until tickets are created. Keep this section last. Preserve existing completion state. -->

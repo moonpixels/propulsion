@@ -1,34 +1,26 @@
 ---
 name: define-product
-description: Create or deliberately revise PRODUCT.md as a confirmed whole-product intent and system requirements foundation for later feature specification.
+description: Define and document a whole software product when an idea or existing product needs discovery and definition.
 ---
 
 # Define product
 
-Produce one confirmed root `PRODUCT.md` that owns whole-product intent and system-wide requirements. Keep feature design and delivery work in their later authorities.
+Produce a confirmed `PRODUCT.md` with whole-product intent, system-wide requirements and a high-level feature index. Use **discovery** and **story mapping** to establish breadth before deepening individual features.
 
 ## Inputs
 
-Read project guidance and check `PRODUCT.md`, `GLOSSARY.md`, applicable ADRs, and research. For an existing system, inspect representative public contracts, entry points, tests, data, configuration, and operational evidence needed to understand its product surface. Treat absent files as absent evidence. Preserve unrelated confirmed content and local conventions.
-
-The user supplies intended direction. Repository and runtime evidence establishes current behaviour. External sources establish only the claims they support. Separate confirmed targets, observed behaviour, assumptions, and unknowns.
+Take the idea, product or requested revision from the request and its supplied context. Read relevant project guidance and linked authorities. For an existing product, inspect representative journeys and contracts. Preserve unrelated confirmed content, identifiers and specification links.
 
 ## Method
 
-1. **Map the whole product.** Establish purpose, problem, users and relevant actors, needs, value, goals and observable success measures, scope and non-goals. Walk journeys from entry through value, refusal or failure, recovery or support, and completion or exit. Map the functional capability catalogue before deepening any one capability. Include commercial or market detail only when it changes requirements.
-2. **Capture design inputs.** Cover material system-wide qualities, context, interfaces, information duties, integrations, security, privacy, safety, compliance, mandated technology or platforms, operations, and lifecycle. Establish immateriality before omitting a concern. Invoke `$elicit-with-context` for material user-held information or decisions. Invoke `$research` when a material external claim needs durable evidence; link its report.
-3. **Make requirements traceable.** Give capabilities stable `CAP-*` identifiers, actors and value, high-level observable responsibilities, meaningful boundaries, and source traces. Give material technical requirements semantic identifiers such as `QUAL-*`, `INT-*`, `DATA-*`, `SEC-*`, `TECH-*`, or `OPS-*`, with their requirement, rationale and source, affected scope, and observable measure or later-verifiable response where applicable. Distinguish hard constraints from preferences.
-4. **Keep the foundation at its level.** Record mandated external contracts, platforms, runtimes, database families or drivers, hosting limits, and standards. Leave detailed feature rules, scenarios, acceptance, and selected internal mechanisms to feature specifications. Qualifying architecture rationale belongs in ADRs. State each obligation once and link its identifier rather than repeating it across journeys or readiness sections.
-5. **Resolve readiness.** Walk intended users and relevant lifecycle actors through the journeys, capabilities, and system requirements. Resolve material omissions, broken transitions, contradictions, untraceable requirements, and unconfirmed design. Distinguish assumptions, dependencies, constraints, risks, and open questions. For non-blocking uncertainty, record evidence, consequence if wrong, affected requirements, and resolution condition or later user-agent step. An item that makes the product boundary unsafe or prevents responsible feature specification blocks confirmation.
-6. **Confirm and write.** Use an existing confirmed synthesis when it covers the complete foundation, remaining non-blocking items, and exact document effect without a material change since agreement. Otherwise invoke `$elicit-with-context` with those inputs. Invoke `$write-prose` for `PRODUCT.md`, supplying the confirmed synthesis, supporting evidence, intended product and engineering readers, and the template or existing document structure. Reopen affected understanding if coverage changes afterward. Number only records that need downstream reference.
-
-## Conditional resources
-
-- Use [the product template](assets/product-template.md) when writing the foundation, omitting only established immaterial content.
-- Read [discovery techniques](references/discovery.md) when representative inspection and ordinary elicitation cannot reconstruct the product or expose its breadth.
+1. **Prepare discovery.** Read [discovery guidance](references/discovery.md) and [the product template](assets/product-template.md) before mapping the decision tree. Treat the starting idea as a hypothesis to explore, not a complete feature list. Resolve discoverable facts through inspection or [$research](../research/SKILL.md).
+2. **Elicit the whole product.** Invoke [$elicit-with-context](../elicit-with-context/SKILL.md) for product needs, journeys, missing features and shared constraints, using the discovery guidance. Keep detailed feature rules and internal implementation for later stages.
+3. **Build the feature index.** Give each feature a stable ID, name, brief outcome and boundary, and specification field. Leave new specification fields blank. Connect features to journeys and goals. Account for every agreed need through a feature, shared requirement or explicit exclusion, and justify every indexed feature. Preserve existing IDs and use `FEAT-*` for new entries unless a convention already exists.
+4. **Check the foundation.** Check journey coverage, the feature index and shared requirements. Record the scope and consequence of detail reserved for feature specification. Supply this complete foundation to the active dialogue for confirmation.
+5. **Write and check.** Invoke [$write-prose](../write-prose/SKILL.md) with the confirmed foundation, evidence and template. Write root `PRODUCT.md`. Distinguish confirmed intent, observed facts and unresolved assumptions. Link glossary, rationale and research in their authoritative homes. Re-read for fidelity, feature coverage, consistent identifiers and intact specification links.
 
 ## Finish
 
-Re-read the document against confirmed direction, inspected current evidence, glossary, and cited research. Check coverage, consistency, unique identifiers, source traces, explicit uncertainty, product-level acceptance, and readiness for feature specification.
+Return the document path, coverage checked and material limitations. Stop after product definition and context maintenance owned by invoked skills.
 
-Return paths, evidence, checks, and unresolved limitations. Stop after the foundation and context changes owned by invoked skills. Keep delivery status, priorities, roadmaps, releases, tickets, detailed feature acceptance, and selected feature implementation out of the foundation; create no downstream work or deployment.
+**Done only when** contextual elicitation is complete and the saved document faithfully records its journeys, feature index and system-wide requirements. Report any unmet prerequisite and its dependent work. Leave feature specifications, ticket planning and implementation to subsequent requests.

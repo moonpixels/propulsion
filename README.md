@@ -45,33 +45,35 @@ Enter here to establish or deliberately revise the product and system requiremen
 $define-product
 ```
 
-The session produces a user-confirmed `PRODUCT.md` and the corresponding project language in `GLOSSARY.md`. It stops before defining individual features, selecting feature-specific architecture, or creating tickets.
+The session relentlessly explores the whole product and produces a user-confirmed `PRODUCT.md` with principal journeys, system-wide requirements and a high-level feature index. New specification fields start blank. It maintains project language through `$elicit-with-context` and stops before detailed feature specification or ticket planning.
 
 ### Define
 
 #### `$specify-feature`
 
-Enter here when a high-level feature request needs enough behavioural and technical definition for planning:
+Enter here when a feature needs a durable behavioural and technical specification:
 
 ```text
 $specify-feature
 ```
 
-The session produces one approved, decision-complete feature specification containing visibly distinct feature intent and selected solution sections. No earlier lifecycle artefact is mandatory, and the skill stops before ticket creation or implementation.
+The session produces one confirmed, decision-complete feature specification with detailed behaviour, acceptance examples and consequential technical design. It takes its input from the request or confirmed discussion and fills the matching product-index specification link when one exists. It stops before ticket creation or implementation.
 
 ### Plan
 
 #### `$create-tickets`
 
-Enter here when an approved document or confirmed conversation is complete enough to decompose without inventing behaviour or material solution decisions:
+Enter here when requested work needs a small executable breakdown:
 
 ```text
 $create-tickets
 ```
 
-The session creates and verifies small, vertically sliced, dependency-aware tickets with Fibonacci complexity in the destination named by the project's root `AGENTS.md`. It stops before scheduling or implementing them.
+The session creates and verifies small vertical tickets in dependency order, with concrete implementation guidance, verification and acceptance checkboxes. It uses `$elicit-with-context` to resolve planning gaps and confirm the breakdown, reusing settled feature decisions. It adds an ordered ticket checklist to an existing specification and stops before implementation.
 
-Local Markdown destinations use one file per ticket under `docs/features/<work-slug>/tickets/`. External destinations use their native items, estimates, relationships, and statuses. If `AGENTS.md` does not name the destination, the skill asks and records it.
+Local tickets live beside a specification in its `tickets/` directory, or under `docs/features/<work-slug>/tickets/` without one. External destinations use native items, relationships and statuses. If `AGENTS.md` does not name the destination, the skill asks and records it. Tickets carry no estimates.
+
+All three skills apply `$write-prose`. Each level takes input from the request and adds detail without requiring documents from earlier levels. Accessible authorities carry decisions across conversations. Ticket bodies embed necessary confirmed context when no durable source exists.
 
 ### Deliver
 
