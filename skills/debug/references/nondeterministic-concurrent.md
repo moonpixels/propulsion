@@ -1,4 +1,4 @@
-# Nondeterministic and Concurrent Faults
+# Nondeterministic and concurrent faults
 
 Use this reference when nominally identical inputs produce different outcomes or the failure rate changes with timing, order, isolation, load, logging, randomness, clocks, network, shared state, or scheduling. The result is a controlled failure rate or a replayable causal execution, not one passing retry.
 

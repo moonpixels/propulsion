@@ -1,4 +1,4 @@
-# Change Bisection
+# Change bisection
 
 Use this reference when the same crisp property is reliably absent in one ordered state and present in another. States may be revisions, versions, configurations, datasets, or ordered inputs. The result is the smallest reliably classified transition.
 

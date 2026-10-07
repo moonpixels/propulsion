@@ -1,4 +1,4 @@
-# Comparative Debugging
+# Comparative debugging
 
 Use this reference when a credible working version, implementation, configuration, platform, tenant, request, or input can be compared with the failing case. The result is the first material divergence relevant to the defect.
 

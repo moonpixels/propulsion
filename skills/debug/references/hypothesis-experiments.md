@@ -1,4 +1,4 @@
-# Hypothesis-Driven Experiments
+# Hypothesis-driven experiments
 
 Use this reference when more than one causal explanation remains. The result is one observation that changes the ranked hypothesis set.
 

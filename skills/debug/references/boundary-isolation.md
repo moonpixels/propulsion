@@ -1,4 +1,4 @@
-# Boundary Isolation
+# Boundary isolation
 
 Use this reference when a failure crosses a short component, process, service, pipeline, request, or data path with observable boundaries. The result is the earliest boundary where a valid state or invariant becomes invalid.
 

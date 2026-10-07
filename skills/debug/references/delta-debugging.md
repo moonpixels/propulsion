@@ -1,4 +1,4 @@
-# Delta Debugging
+# Delta debugging
 
 Use this reference when a large input, request, configuration, dataset, trace, sequence, state, or change set can be classified automatically or cheaply. The result is a smaller case that preserves the same failure.
 

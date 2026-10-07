@@ -1,4 +1,4 @@
-# Origin Tracking
+# Origin tracking
 
 Use this reference when a bad value, state transition, side effect, or decision is observed far downstream from where it arose. The result is the earliest demonstrated valid-to-invalid transition and its responsible conditions.
 

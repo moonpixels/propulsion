@@ -1,4 +1,4 @@
-# Instrumentation and Debuggers
+# Instrumentation and debuggers
 
 Use this reference when existing evidence cannot distinguish the active hypotheses. Tools are probes for a stated question, not the debugging method itself. The result is the smallest new observation that changes the causal model.
 

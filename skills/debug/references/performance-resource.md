@@ -1,4 +1,4 @@
-# Performance and Resource Faults
+# Performance and resource faults
 
 Use this reference when the defect is latency, throughput, CPU, memory, allocation, I/O, contention, queueing, exhaustion, leakage, query cost, or scale behaviour. The result is a measured causal connection between responsible work and the original user-visible regression.
 
@@ -6,7 +6,7 @@ Use this reference when the defect is latency, throughput, CPU, memory, allocati
 
 Define the workload, environment, known-good baseline or expected threshold, warm-up, measurement interval, repetitions, and distribution that distinguishes the fault. Control input size and shape, concurrency, cache state, runtime version, machine resources, data volume, and other material conditions. Route a noisy classifier through nondeterministic guidance before trusting it.
 
-For early systemic triage, inspect utilization, saturation, and errors for each relevant resource. Then choose the measurement that matches the suspected cost:
+For early systemic triage, inspect utilisation, saturation, and errors for each relevant resource. Then choose the measurement that matches the suspected cost:
 
 | Suspected cost                        | Evidence                                                        |
 | ------------------------------------- | --------------------------------------------------------------- |
