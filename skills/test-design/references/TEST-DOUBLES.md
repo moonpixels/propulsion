@@ -1,63 +1,74 @@
-# Test Doubles
+# Test arrangements and doubles
 
-Keep collaborators inside the system real. Substitute a boundary only when the real dependency is slow, unavailable, destructive, non-deterministic, externally mutating, or otherwise uncontrollable in this test.
+Read when tests need external responses, effect recording, controlled time or randomness. Use real application-owned collaborators, database access and disposable persistence. A repository mock cannot detect a broken query or transaction.
 
-## Choose the least powerful double
+## Factories and fixtures
 
-| Double | Supply                                             | Verify                                       |
-| ------ | -------------------------------------------------- | -------------------------------------------- |
-| Dummy  | An unused required value                           | Nothing                                      |
-| Stub   | A controlled indirect input                        | The public outcome                           |
-| Fake   | A small working boundary implementation            | The public outcome or recorded public effect |
-| Spy    | A record of an otherwise invisible boundary effect | Only promised boundary facts                 |
-| Mock   | An expected external interaction protocol          | Only contractually material calls            |
-
-Prefer state verification. Interaction verification is warranted when the interaction is the promise: for example, one idempotency-keyed payment request or publishing only after a durable write.
+Follow the repository's arrangement conventions. When it uses model factories, create a missing factory rather than scattering raw inserts through tests. Give factories valid defaults and explicit overrides for the values relevant to the promise. Keep each instance independent. Use plain fixture data where that is the established convention. Keep the action under test out of the factory.
 
 ```typescript
-// Brittle: replaces internal policy and specifies its call graph.
-expect(pricing.lookup).toHaveBeenCalledTimes(1);
-expect(discounts.apply).toHaveBeenCalledBefore(tax.apply);
-
-// Durable: real internal collaborators produce the supported result.
-expect(await quoteOrder(order)).toEqual({ total: 108, currency: 'GBP' });
-```
-
-At an uncontrollable external boundary, record only the promised effect:
-
-```typescript
-const mailer = new RecordingMailer();
-await registerUser({ email: 'ada@example.com' }, { mailer });
-
-expect(mailer.sent).toEqual([{ to: 'ada@example.com', template: 'welcome' }]);
-```
-
-Use a mock when interaction is the provider-facing contract:
-
-```typescript
-expect(paymentGateway.charge).toHaveBeenCalledOnceWith({
-    amount: 108,
+// Bad in a repository with model factories. Repeats incidental setup.
+await db.insert('payments', {
+    id: 'pay-1',
+    accountId: 'account-1',
+    state: 'pending',
+    amount: 1500,
     currency: 'GBP',
-    idempotencyKey: order.id,
+    createdAt: '2026-01-01',
 });
+
+// Good. The factory owns valid construction and persistence.
+const pending = await paymentFactory.create({ amount: 1500, currency: 'GBP' });
 ```
 
-When sequencing across system boundaries is promised, record those boundary events and assert their public order:
+Build missing launch, authentication, data-isolation and cleanup facilities within the existing framework. Reuse available infrastructure before adding machinery. Production API changes need behavioural or ownership justification beyond making mocks convenient.
+
+## Double only the external boundary
+
+Use the installed framework's interception or injection facility at the production boundary. Preserve the internal path that creates the request and handles the response. Replace external API calls with fixtures, not live provider calls.
+
+| Need                                  | Suitable double            | Observe                        |
+| ------------------------------------- | -------------------------- | ------------------------------ |
+| Supply a provider response or failure | Stub or response fixture   | Application outcome            |
+| Record an externally promised effect  | Spy or recording fake      | Contractual payload and effect |
+| Check an external protocol            | Mock                       | Required protocol facts        |
+| Control time or randomness            | Controlled clock or source | Application outcome            |
+
+Derive response fixtures from the provider's documented contract or an approved representative response. Include required shape and status. A type cast does not establish fidelity. Keep the fixture smaller than a simulated provider application. Report material unverified fidelity when it limits the result.
 
 ```typescript
-const events: string[] = [];
-const payments = new RecordingGateway({ events, result: { paymentId: 'p-1' } });
-const orders = new RecordingOrders({ events, initial: pendingOrder });
+// Bad. Bypasses the provider adapter and application pricing.
+pricing.total = vi.fn().mockReturnValue(1500);
+await checkoutInternal(cart);
+expect(pricing.total).toHaveBeenCalled();
 
-await checkout(pendingOrder.id, { payments, orders });
-
-expect(events).toEqual(['charge-succeeded', 'order-saved']);
+// Good. The seeded cart is £15. Only the external provider is controlled.
+provider.respondWith(paymentAcceptedFixture({ id: 'charge-1' }));
+const response = await client.request('/checkout', {
+    method: 'POST',
+    body: JSON.stringify({ cartId: 'cart-1' }),
+});
+expect(response.status).toBe(201);
+expect(await response.json()).toMatchObject({ state: 'confirmed' });
+expect(provider.requests).toEqual([
+    { amount: 1500, currency: 'GBP', idempotencyKey: 'cart-1' },
+]);
 ```
 
-This protects a payment-before-persistence promise. Ordering between pricing helpers, mappers, or other internal collaborators remains hidden structure.
+The outgoing payload is itself promised in this example. Assert counts or order only when the external protocol requires them. Internal helper order is replaceable structure. For an external refusal, provide its contract-faithful response and check the promised refusal and unchanged payment state.
 
-Do not assert logging, helper calls, object construction, or internal order unless those facts are externally promised.
+## Control nondeterminism
 
-## Preserve boundary fidelity
+Use explicit relevant factory values, controlled boundary clocks and seeded random sources. Keep identifiers or incidental timestamps out of exact equality unless promised. Give tests independent database state, temporary directories and ports. Restore patched globals and stop processes the fixture started in guaranteed teardown.
 
-Derive double responses from the external contract, not copied client logic. Keep the double smaller than the real boundary. Prefer a real database or filesystem in an isolated disposable environment when its semantics matter. When feasible, use caller-selected contract evidence against the real boundary to check that a fake, stub, or recorded request remains compatible; otherwise report the untested fidelity.
+```typescript
+// Bad. Sleeps on real time and depends on machine load.
+await sleep(1000);
+expect(await client.invoice()).toMatchObject({ state: 'expired' });
+
+// Good. The contract expires an invoice at this instant.
+clock.set('2026-01-01T12:00:00Z');
+expect(await client.invoice()).toMatchObject({ state: 'expired' });
+```
+
+If timer callbacks drive the transition, advance the controlled timers and await their completion before observing it. A frozen wall clock alone does not run queued work. For concurrency promises, coordinate the competing actions through supported entries and observable barriers rather than relying on arbitrary sleeps.

@@ -79,7 +79,7 @@ Keep public contract documentation, legal headers, factual external constraints 
 
 ## Delete tests that add no unique protection
 
-Trace the behaviour each test actually observes. Keep the smallest set protecting distinct supported results, failures and effects. Delete obsolete fixtures, private-delegation assertions and duplicate cases only when useful protection survives elsewhere or they protect no supported behaviour.
+Trace the behaviour each test actually observes. Keep the smallest set protecting supported behavioural promises. Delete obsolete fixtures, private-delegation assertions and duplicate cases only when useful protection survives elsewhere or they protect no supported behaviour.
 
 ```ts
 // Before, after a forwarding class is removed.
@@ -93,4 +93,4 @@ The illustrated literal must come from an independently established contract or 
 
 Keep legitimate absence assertions such as no charge on rejection, exact public outputs and useful compile-time checks. A test count or coverage improvement is not the objective. Keep cases exercising distinct user behaviour even when setup looks duplicated.
 
-Reuse existing behavioural checks or a focused safe comparison for preservation evidence. Suggest a characterisation or equivalence check only for a specific unresolved risk. Follow [test design](../../test-design/SKILL.md) when assessing new-test eligibility or test quality. A behaviour-preserving refactor does not automatically require new tests. With no established framework, testing is not applicable and needs no setup recommendation.
+Reuse existing behavioural checks or a focused safe comparison for preservation evidence. Follow [test design](../../test-design/SKILL.md) when assessing new-test eligibility or test quality. New coverage for a behaviour-preserving refactor requires explicitly requested testing work. Leave a preservation gap visible rather than expanding the test scope. Respect the skill's silent exit without a framework.
