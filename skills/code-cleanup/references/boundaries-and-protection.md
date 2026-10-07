@@ -93,4 +93,4 @@ The illustrated literal must come from an independently established contract or 
 
 Keep legitimate absence assertions such as no charge on rejection, exact public outputs and useful compile-time checks. A test count or coverage improvement is not the objective. Keep cases exercising distinct user behaviour even when setup looks duplicated.
 
-Reuse existing behavioural checks or a focused safe comparison for preservation evidence. Follow [test design](../../test-design/SKILL.md) when assessing new-test eligibility or test quality. New coverage for a behaviour-preserving refactor requires explicitly requested testing work. Leave a preservation gap visible rather than expanding the test scope. Respect the skill's silent exit without a framework.
+Reuse existing behavioural checks or a focused safe comparison for preservation evidence. Follow [$test-design](../../test-design/SKILL.md) for testing applicability and quality. Leave a preservation gap visible rather than expanding the test scope.
