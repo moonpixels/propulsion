@@ -129,13 +129,13 @@ $implement → $commit → $pull-request
 
 #### `$upgrade-dependencies`
 
-Enter here to upgrade package dependencies or the project's full toolchain:
+Enter here to upgrade dependencies, CI or build tooling, or requested language/runtime versions:
 
 ```text
 $upgrade-dependencies
 ```
 
-The session resolves the requested version and toolchain scope, discovers outdated dependencies, checks compatibility and follows official upgrade guidance. It uses official CLI commands first, applies required migrations and verifies the local changes. The handoff reports version changes, validation, blockers and optional code improvements. It stops before publication, deployment or machine-wide changes unless separately authorised.
+The default scope includes compatible stable major upgrades, development packages, package-manager pins, CI actions, and build or container dependencies. Language/runtime upgrades require a request and prefer compatible LTS or actively supported stable releases. The session researches official compatibility and migration guidance before each batch, uses native CLI commands, and runs repository checks before continuing. The handoff reports version changes, migrations, validation, and held-back items. Blocked or unverified work remains incomplete. Commits, publication, deployment, and machine-wide changes require separate authorisation.
 
 ### Debug
 
