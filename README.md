@@ -87,7 +87,7 @@ The session produces a minimal local change with retained tests, applicable qual
 
 `$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, invokes `$code-cleanup` before final checks, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` guidance for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
 
-Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits.
+Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits. Then `$code-cleanup` uses a fresh read-only agent to challenge the whole affected capability, including unchanged related files. The reviewer loads the detailed techniques, writes a prioritised temporary report and returns only its path. The caller reads the report, adjudicates every candidate, resolves preservation gaps and applies accepted transformations.
 
 #### `$commit`
 
@@ -163,7 +163,7 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$elicit`                       | Resolve material user-held information and decisions one question at a time                              |
 | `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance   |
 | `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report               |
-| `$code-cleanup`                 | Independently identify justified code and test simplifications for the main thread to assess and apply   |
+| `$code-cleanup`                 | Find deletions and simplifications through fresh review and save a report for the caller to assess       |
 | `$maintain-agents`              | Create and maintain a lean project AGENTS.md                                                             |
 | `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                            |
 | `$maintain-ubiquitous-language` | Sharpen domain language and immediately record resolved meanings in root `GLOSSARY.md`                   |
@@ -189,3 +189,5 @@ Propulsion is heavily inspired by other great skill sets:
 
 - [obra/superpowers](https://github.com/obra/superpowers)
 - [mattpocock/skills](https://github.com/mattpocock/skills)
+- [PStack](https://github.com/cursor/plugins/tree/main/pstack)
+- [Refactoring Guru](https://refactoring.guru/)

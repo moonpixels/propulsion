@@ -1,26 +1,24 @@
 ---
 name: code-cleanup
-description: Find behaviour-preserving deletions and simplifications in completed changes or a bounded module through an independent read-only review.
+description: Identify behaviour-preserving deletions and simplifications when a file, branch diff, capability or codebase needs independent cleanup review.
 ---
 
 # Code cleanup
 
-Return justified opportunities to reduce code and tests while preserving behaviour and coherent ownership.
+Find the least code that preserves supported behaviour. **Subtract before adding**. A fresh agent owns the read-only review. The caller owns decisions, edits and verification.
 
 ## Inputs
 
-Fix the repository, candidate and comparison base, or the named module and its paths. Include changed and in-scope untracked files, newly orphaned artefacts, behavioural authorities, repository instructions, and available check results. Inspect outside consumers only to establish evidence. Resolve discoverable facts directly; obtain a missing user decision when it changes the review boundary.
+Use the repository, fixed candidate, requested scope, behavioural authorities, constraints and available check evidence. Accept a file, diff, capability or whole codebase. Follow related files across the whole affected capability, including unchanged code. Keep unrelated work outside scope. Resolve an unclear scope before dispatch.
 
 ## Method
 
-1. Prepare a self-contained read-only packet from those inputs. Exclude implementation rationale, desired findings, and prior review conclusions.
-2. Give the packet and [review instructions](references/REVIEW.md) to a fresh agent with no conversation history. It inspects the actual code and returns findings and limitations without further delegation.
-3. Return its report unchanged. The caller validates findings, applies accepted edits, and checks the revised candidate.
-
-## Conditional resources
-
-The independent reviewer reads [review instructions](references/REVIEW.md) before inspecting the candidate. They define deletion evidence, preserved behaviour, and the findings table.
+1. **Fix the packet.** Record the candidate revision or working-tree contents, comparison base when relevant, scope and source paths. Include requirements and repository instructions. Exclude implementation history, author rationale, suggested findings and prior review conclusions.
+2. **Dispatch fresh.** Give that packet and [review instructions](references/review.md) to a fresh agent with no conversation history. Only the reviewer loads the technique references and report template. If already dispatched as that reviewer, follow the review instructions directly without spawning another agent.
+3. **Check the handoff.** Verify the returned report exists, identifies the supplied candidate and accounts for scope. Return missing coverage to the reviewer. A changed candidate requires a refreshed review.
 
 ## Finish
 
-Return the independent report, including `No findings.` when no justified change remains. Stop after the report. Source edits, adjudication, and post-edit checks belong to the caller.
+Return only the absolute path to the saved report. If no report could be written, return the exact blocker instead of a path. Leave report reading and candidate adjudication to the caller. Resolve preservation gaps before applying a transformation.
+
+**Done only when** the fresh review accounts for the whole scope, completes its final coverage pass and saves a verified report of supported or explicitly uncertain candidates, or `No findings.`. An incomplete review must identify uninspected scope and cannot claim a clean result.
