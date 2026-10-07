@@ -1,5 +1,3 @@
 interface:
     display_name: 'Modular Design'
-    short_description: 'Design deep modules with local change'
-policy:
-    allow_implicit_invocation: false
+    short_description: 'Hide domain knowledge behind simple interfaces'

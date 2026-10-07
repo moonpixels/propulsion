@@ -1,13 +1,15 @@
-# {Decision-shaped title}
+# {Decision title}
 
-## Decision
-
-{State what was decided and the essential reason first.}
+Status: Accepted
 
 ## Context
 
-{Explain why the decision was needed and only the rejected or constrained alternatives necessary to understand its trade-offs.}
+{Problem, constraints, and necessary alternatives.}
+
+## Decision
+
+{Accepted choice and essential reason.}
 
 ## Consequences
 
-{State the significant consequences, trade-offs, and conditions that could trigger reconsideration.}
+{Material benefits, costs, and reconsideration conditions.}

@@ -1,50 +1,29 @@
 ---
 name: implement
-description: Implements one ticket or small confirmed software change as a minimal, locally checked, independently reviewed candidate. Use when agreed software work is ready to build locally.
-metadata:
-    type: performer
-disable-model-invocation: true
+description: Deliver a minimal, independently reviewed code change when the user requests a software implementation or modification.
 ---
 
 # Implement
 
-Turns one confirmed body of software work into the smallest coherent local change with applicable quality evidence and independent review.
+Deliver the complete confirmed outcome with the **least justified code and complexity**. Preserve unrelated work.
 
-## Process
+## Inputs
 
-### 1. Fix the implementation basis
+Use the requested change or ticket and any supplied acceptance criteria. Invoke [$elicit-with-context](../elicit-with-context/SKILL.md) when a material user-held decision remains unresolved.
 
-Inspect the work authority, repository instructions, linked product and technical authorities, current code, tests, relevant contracts, available tools, and complete repository state. State the observable outcome, exclusions, material risks, and completion evidence. Resolve discoverable facts directly. Invoke `$elicit-with-context` only when a material user-held behaviour, contract, architecture, scope, or acceptance decision remains.
+## Method
 
-When the work uses or changes a package, framework, SDK, platform, or external API, identify the applicable version and inspect its official documentation, source, or examples. Follow its documented convention unless the work authority, repository instructions, architecture decisions, or a deliberate local convention requires otherwise. Resolve missing or materially conflicting guidance instead of inventing an integration pattern.
+1. **Prepare.** Read repository documentation and official documentation for the installed packages and frameworks involved in the change. Follow their recommended APIs and patterns unless an explicit project decision requires a different approach. Load and apply [$modular-design](../modular-design/SKILL.md).
+2. **Implement.** Load [$test-design](../test-design/SKILL.md) and follow its applicability decision and method. Implement the confirmed change and simplify locally as it takes shape. When new tests are ineligible, use existing checks and direct verification.
+3. **Improve.** Once the change works, invoke [$measure-code-complexity](../measure-code-complexity/SKILL.md) on the changed production files, using the branch base for file selection. Pass its saved report and interpretation to [$code-cleanup](../code-cleanup/SKILL.md) with the fixed candidate and affected capability. Read the returned report file and adjudicate every candidate, including changes in related unchanged files. Resolve preservation gaps before applying accepted transformations.
+4. **Verify and review.** Run required repository checks and the complete relevant existing suite. Invoke [$code-review](../code-review/SKILL.md) on the resulting candidate with its behavioural authorities and quality evidence. Read the returned report file. Check its assessment status and coverage before resolving its findings. Refresh an incomplete or stale review before treating the candidate as independently reviewed.
 
-Keep the outcome to one implementation-ready ticket, diagnosed repair, or small confirmed change. Preserve unrelated work. Stop when the work is not sufficiently defined to implement and elicitation cannot resolve it within the requested outcome.
+For both cleanup and review, **adjudicate each finding** against the request, actual code and documented constraints. Apply required corrections and proportionate improvements. Reject inapplicable findings with concrete evidence and record each disposition and its reason. For example, a request to add internal validation may be redundant when every supported entry already enforces that invariant at runtime. A preferred style or lower metric alone does not justify a change. Resolve material user-held decisions through `$elicit-with-context`.
 
-### 2. Load the teaching knowledge
+After edits, refresh affected checks and remeasure the same selected files. Keep prior reports for caller-owned comparisons. After a material edit, repeat independent review of the revised candidate.
 
-Invoke `$modular-design` against the fixed work. Invoke `$tdd` when the change affects observable behaviour and an existing usable suite can exercise it through a credible seam. Apply their guidance throughout implementation.
+## Finish
 
-### 3. Build and check the candidate
+Return delivered behaviour, significant structural changes, checks, measurement and review results, finding dispositions and material limitations.
 
-Implement the smallest coherent change that completely satisfies the confirmed outcome. Follow the selected modular constraints and TDD cycles without adding speculative flexibility, unrelated cleanup, or project-wide quality infrastructure outside the agreed work.
-
-Inspect the complete diff and every in-scope untracked file. Account for each production and test addition, dependency, generated artefact, and measurement-path change. Run applicable repository-required checks. Preserve exact results, unavailable evidence, and residual risks.
-
-After applicable checks are current, invoke `$measure-code-complexity` with the fixed candidate, comparison base, and implementation authority. Resolve each supported concern by applying an authorised coherent improvement, retaining a supported justification, or invoking `$elicit-with-context` when resolution would change agreed behaviour, contracts, architecture, or scope. Rerun every affected harness and invoke the measurement again after a change. Freeze one complete candidate only when its checks and complexity measurement are current and every trigger is resolved or explicitly retained for handoff.
-
-### 4. Review and adjudicate
-
-Invoke `$code-review` on the frozen candidate and its authorities. Validate every Spec and Standards suggestion against the strongest available authority and evidence, then disposition it as:
-
-- **Required correction:** a confirmed violation, regression, safety defect, or evidence weakness that leaves the change untrustworthy.
-- **Proportionate improvement:** a valid in-scope benefit worth its added change and complexity.
-- **Rejected finding:** falsified, unsupported, superseded, or outside the confirmed scope.
-- **User decision:** resolution would change agreed behaviour, contracts, architecture, or scope, or needs evidence that cannot be obtained safely.
-
-Apply required corrections and accepted improvements. Invoke `$elicit-with-context` for a user decision. Rerun every affected harness after a candidate or measurement-path change. Freeze and review the complete new candidate after any material change. Continue until every finding has a supported disposition and no applicable correction or accepted improvement remains.
-
-### 5. Hand off the local result
-
-Report the delivered behaviour, changed artefacts, applicable TDD and modular-design decisions, exact checks and results, unavailable evidence, residual risks, review scope and results, and every finding disposition. Successful completion requires the agreed behaviour locally, every production addition serving a current purpose, applicable evidence passed or explicitly unavailable, and current Spec and Standards review with no unresolved applicable change.
-
-Stop without committing, pushing, opening or updating a pull request, changing tracker state, releasing, or deploying. Do not conduct exploratory research, create specifications or tickets, or add unrelated quality infrastructure inside this outcome.
+**Done only when** the agreed outcome works, applicable checks are current, every finding has an evidence-backed disposition, and all required corrections and accepted improvements are complete. Report actual blockers precisely. Stop at the local handoff. Commit, publication, tracker updates and deployment require separate instructions.

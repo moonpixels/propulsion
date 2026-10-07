@@ -1,47 +1,28 @@
 ---
 name: write-prose
-description: Writes and revises clear, engaging reader-facing prose in UK English with an adaptable professional, conversational voice. Use for articles, reports, documents, websites, social posts, and substantial prose within other human-facing outputs.
-metadata:
-    type: teaching
-disable-model-invocation: false
+description: Write clear, succinct UK English when drafting or revising text for humans or agents.
 ---
 
-# Write Prose
+# Write prose
 
-Teaches a caller to produce natural, reader-fit prose without weakening meaning, evidence or the caller's authority.
+Write coherent, succinct text that its intended reader can understand on the first read. Preserve **meaning, evidence, and required wording**.
 
-## Process
+Use **plain language**, drawing on **ISO 24495-1** and **ASD-STE100 Simplified Technical English** as guides.
 
-### 1. Fix the communication job
+## Inputs
 
-Use the caller's subject, facts, purpose, audience, medium, genre, constraints and required structure. Preserve exact quotations, proper names, technical terms and mandated wording. Use UK English for all other prose.
+Take the writing brief or supplied draft from the request or caller handoff. Default to UK English. Match tone and register to the brief, audience, medium, and purpose. Follow explicit language, voice, and format requests. The caller owns factual investigation, substantive decisions, required structure, persistence, and workflow validation.
 
-Load [Preferred Voice](references/PREFERRED-VOICE.md) and use it as the baseline. Adapt its energy and register to the audience, medium and genre. Follow a different voice only when the caller explicitly requests it; retain UK English.
+## Method
 
-Let the caller own the requested artefact and its factual, structural and procedural rules; apply this skill only to the prose.
+1. **Orient the reader.** Lead with the useful point, stakes, or question. Include what the reader needs to understand or act. Use plain words and concrete actions, keeping specialist terms when their precision serves the audience. Ground unfamiliar concepts before relying on them. Read [voice guidance](references/preferred-voice.md) when tone or register is uncertain.
+2. **Connect the reasoning.** Give each paragraph a clear job and order the material so each part earns the next. Connect claims to useful reasons, evidence, examples, trade-offs, or consequences. Put evidence near its claim. State uncertainty and its practical effect. Ground experience, quotations, agreement, and certainty in supplied authority.
+3. **Make sentences unambiguous.** Use literal, complete sentences with one clear main point. Prefer active voice when the actor matters. Write instructions as direct commands, putting conditions before the actions they govern. Keep related conditions and consequences together. Give pronouns clear referents and keep terms consistent. Retain articles, verbs, and qualifications. Vary sentence length with the thought. Use lists for parallel items, numbers for sequences, and tables for comparisons. Read [writing techniques](references/writing-techniques.md) when explanation, emphasis, or structure needs a deliberate technique.
+4. Use full stops and commas for authored prose. **Do not use em dashes, semicolons, or parentheses**, or substitute another dash for an em dash. Reserve colons for lists and examples. Preserve exact quotations, technical literals, and required formatting. Use sentence-case headings, sparse emphasis, and no decorative emojis by default. Follow the destination's quotation-mark style and explicit presentation requirements.
+5. **Cut and check.** Read [natural prose review](references/natural-prose-review.md) before revising supplied text or reviewing a new draft. Repair unsupported claims, vague praise, stock framing, needless jargon, repetition, ambiguity, and over-compression. Cut words that do no useful work while preserving required behaviour, intensity, coverage, and completion gates. Read the whole piece again for fidelity, coherence, rhythm, and UK usage. End with the conclusion, implication, or next action it has earned.
 
-### 2. Lead with substance
+## Finish
 
-Make the point, stakes or useful question clear early. Prefer concrete nouns, visible actions, exact details and strong accurate verbs. Explain necessary specialist language in place.
+Return the requested text in its required form. Leave unresolved evidence gaps visible.
 
-Make reasoning inspectable. Connect a claim to the most useful explanation, example, evidence, comparison, trade-off or consequence. Put evidence near the claim it supports. State uncertainty, limitations and competing considerations plainly, then explain their practical effect.
-
-Never invent experience, personality, quotations, evidence, agreement or certainty to create a voice.
-
-### 3. Shape the reading experience
-
-Give each paragraph or section a discernible job and order information so each part earns the next. Vary sentence shape, length, pace and punctuation when meaning or emphasis changes. Use active voice when agency matters and passive voice when the receiver properly leads.
-
-For prose that needs explanation, emphasis, engagement or information design, load [Writing Techniques](references/WRITING-TECHNIQUES.md). Select only techniques that perform a real job in this piece. Do not satisfy a style quota.
-
-### 4. Revise for natural prose
-
-For multi-paragraph prose, load [Natural Prose Review](references/NATURAL-PROSE-REVIEW.md). Review the whole piece before polishing sentences:
-
-1. Preserve the intended message, factual boundaries and useful structure.
-2. Remove repetition, throat-clearing, empty intensifiers and implications already clear to the reader.
-3. Replace vague or inflated wording with the most exact familiar language.
-4. Break mechanical symmetry and monotonous cadence only where the reading experience needs it.
-5. Read for rhythm, then correct grammar, punctuation and UK usage.
-
-End by closing the central loop with the conclusion, implication, recommendation or next action the piece has earned. Stop when another change would only make the prose different rather than clearer, more engaging or more faithful to the brief.
+**Done only when** the whole piece matches the brief and supplied authority, preserves required wording and behaviour, and has been checked for coherence, ambiguity, and needless verbosity. Stop when further editing would merely make it different rather than clearer or more faithful.

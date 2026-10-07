@@ -1,738 +1,312 @@
 #!/usr/bin/env python3
-"""Measure changed-code complexity with a pinned, vendored Lizard runtime."""
+"""Measure current production files with cccc and Lizard. Save full JSON, print a compact summary."""
 
 from __future__ import annotations
 
 import argparse
+from collections import defaultdict
 import hashlib
-import itertools
 import json
+import math
 import os
 from pathlib import Path
 import re
 import subprocess
 import sys
 import tempfile
-from typing import Any, Iterable
 
+sys.dont_write_bytecode = True
+from python_nesting import function_depths
+from bundled_cccc import executable as bundled_cccc
 
-SCHEMA_VERSION = 1
 SCRIPT_ROOT = Path(__file__).resolve().parent
-VENDOR_ROOT = SCRIPT_ROOT / "vendor"
-WHEELS = (
-    (
-        "pygments-2.19.2-py3-none-any.whl",
-        "86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b",
-    ),
-    (
-        "lizard-1.24.0-py2.py3-none-any.whl",
-        "a688bc607a891ff4a7836826f25742dc9c1bf648da3075dbd495e199e8848602",
-    ),
-)
-
-DEFAULTS = {
-    "cyclomaticReview": 10,
-    "nlocReview": 100,
-    "nestedStructuresReview": 3,
-    "parameterCountReview": 5,
-    "duplicateTokens": 70,
+WHEELS = {
+    "pygments-2.19.2-py3-none-any.whl": "86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b",
+    "lizard-1.24.0-py2.py3-none-any.whl": "a688bc607a891ff4a7836826f25742dc9c1bf648da3075dbd495e199e8848602",
 }
-
-REFERENCES = {
-    "cyclomaticComplexity": "references/CYCLOMATIC-COMPLEXITY.md",
-    "nloc": "references/FUNCTION-SIZE.md",
-    "nestedStructures": "references/NESTING.md",
-    "parameterCount": "references/PARAMETERS.md",
-    "duplication": "references/DUPLICATION.md",
+EXCLUDED = {
+    ".git", ".hg", ".svn", "node_modules", "vendor", "vendors", "deps",
+    "build", "dist", "target", "coverage", "generated", "fixtures",
+    "snapshots", "__fixtures__", "__snapshots__", "__pycache__",
+    "test", "tests", "spec", "specs", "__tests__",
 }
-
-EXCLUDED_SEGMENTS = {
-    ".git",
-    ".hg",
-    ".svn",
-    "build",
-    "coverage",
-    "deps",
-    "dist",
-    "fixtures",
-    "generated",
-    "node_modules",
-    "snapshots",
-    "vendor",
-    "vendors",
-    "__fixtures__",
-    "__snapshots__",
+NON_SOURCE = {
+    ".css", ".csv", ".gif", ".html", ".ico", ".info", ".jpeg", ".jpg",
+    ".json", ".jsonc", ".lcov", ".lock", ".map", ".md", ".mdx", ".pdf",
+    ".png", ".pyc", ".snap", ".svg", ".toml", ".tsv", ".txt", ".webp",
+    ".whl", ".xml", ".yaml", ".yml",
 }
-
-TEST_SEGMENTS = {"spec", "specs", "test", "tests", "__tests__"}
-NON_SOURCE_SUFFIXES = {
-    ".css",
-    ".csv",
-    ".gif",
-    ".html",
-    ".jpeg",
-    ".jpg",
-    ".json",
-    ".lock",
-    ".md",
-    ".pdf",
-    ".png",
-    ".svg",
-    ".toml",
-    ".txt",
-    ".xml",
-    ".yaml",
-    ".yml",
+CLONE_TOKENS = 70
+# Attention routes interpretation. It never controls success or changes scores.
+ATTENTION = {
+    "cyclomatic": (10, "cyclomatic-complexity.md"),
+    "cognitive": (16, "cognitive-complexity.md"),
+    "nloc": (61, "function-size.md"),
+    "max_nesting": (4, "nesting.md"),
+    "parameters": (6, "parameters.md"),
 }
 
 
 class MeasurementError(RuntimeError):
-    """A deterministic measurement prerequisite or execution failed."""
+    pass
 
 
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
-
-
-def load_analyzer() -> tuple[Any, Any, Any, str]:
-    if sys.version_info < (3, 8):
-        raise MeasurementError("Python 3.8 or newer is required.")
-
-    for filename, expected in WHEELS:
-        wheel = VENDOR_ROOT / filename
-        if not wheel.is_file():
-            raise MeasurementError(f"Missing vendored analyzer wheel: {filename}")
-        actual = sha256(wheel)
-        if actual != expected:
-            raise MeasurementError(
-                f"Checksum mismatch for {filename}: expected {expected}, got {actual}"
-            )
-        sys.path.insert(0, str(wheel))
-
-    try:
-        import lizard  # type: ignore
-        from lizard_ext import lizardduplicate, lizardns, version  # type: ignore
-    except (ImportError, SystemExit) as error:
-        raise MeasurementError(f"Unable to load vendored Lizard: {error}") from error
-
-    return lizard, lizardns, lizardduplicate, str(version)
-
-
-def git(repo: Path, *arguments: str, check: bool = True) -> bytes:
-    command = ["git", "-C", str(repo), *arguments]
-    result = subprocess.run(command, capture_output=True, check=False)
-    if check and result.returncode != 0:
-        message = result.stderr.decode("utf-8", "replace").strip()
-        raise MeasurementError(
-            f"Command failed ({result.returncode}): {' '.join(command)}: {message}"
-        )
+def run(command, cwd=None):
+    result = subprocess.run(command, cwd=cwd, capture_output=True, text=True, timeout=60)
+    if result.returncode:
+        raise MeasurementError(f"Command failed ({result.returncode}): {' '.join(command)}: {result.stderr.strip()}")
     return result.stdout
 
 
-def nul_fields(data: bytes) -> list[str]:
-    return [field.decode("utf-8", "surrogateescape") for field in data.split(b"\0") if field]
+def git(repo, *arguments):
+    return run(["git", "-C", str(repo), *arguments])
 
 
-def normalize_path(value: str) -> str:
-    return Path(value).as_posix().removeprefix("./")
+def fields(text):
+    return [part for part in text.split("\0") if part]
 
 
-def excluded(path: str) -> bool:
-    normalized = normalize_path(path)
-    parts = set(Path(normalized).parts)
-    name = Path(normalized).name.lower()
+def excluded(path):
+    name = path.name.lower()
     return (
-        bool(parts & EXCLUDED_SEGMENTS)
-        or bool(parts & TEST_SEGMENTS)
-        or name.endswith((".min.js", ".min.css", ".generated.ts", ".generated.js"))
-        or ".fixture." in name
-        or ".snap." in name
-        or name.endswith((".spec.ts", ".spec.tsx", ".test.ts", ".test.tsx"))
+        bool(set(path.parts) & EXCLUDED)
+        or path.suffix.lower() in NON_SOURCE
+        or name.endswith((".min.js", ".generated.ts", ".generated.js"))
+        or ".fixture." in name or ".snap." in name
+        or re.search(r"\.(?:spec|test)\.(?:[cm]?[jt]sx?)$", name)
+        or (path.suffix.lower() in {".py", ".pyw"} and (name.startswith("test_") or name.endswith("_test.py") or name == "conftest.py"))
+        or name.endswith(("_test.go", "_spec.rb"))
+        or re.search(r"Tests?\.(?:java|cs)$", path.name)
     )
 
 
-def parse_name_status(data: bytes) -> dict[str, str | None]:
-    fields = nul_fields(data)
-    changed: dict[str, str | None] = {}
-    index = 0
-    while index < len(fields):
-        status = fields[index]
-        index += 1
-        if status.startswith(("R", "C")):
-            if index + 1 >= len(fields):
-                raise MeasurementError("Malformed git rename/copy status output.")
-            old_path = normalize_path(fields[index])
-            new_path = normalize_path(fields[index + 1])
-            changed[new_path] = old_path
-            index += 2
+def select_files(repo, paths, base):
+    if paths:
+        candidates = []
+        for value in paths:
+            path = Path(os.path.abspath(repo / value))
+            if not path.is_file() or not path.is_relative_to(repo) or not path.resolve().is_relative_to(repo):
+                raise MeasurementError(f"Expected a file inside --repo: {value}")
+            candidates.append(str(path.relative_to(repo)))
+        selection = {"mode": "explicit"}
+    else:
+        revision = git(repo, "rev-parse", "--verify", "--end-of-options", f"{base}^{{commit}}").strip()
+        candidates = fields(git(repo, "diff", "--name-only", "-z", "--diff-filter=ACMR", revision, "--"))
+        candidates += fields(git(repo, "ls-files", "--others", "--exclude-standard", "-z"))
+        selection = {"mode": "changed-files", "selection_base": revision}
+    selected, ignored = [], []
+    for name in sorted(set(candidates)):
+        path = repo / name
+        if excluded(Path(name)):
+            ignored.append(name)
+        elif not path.is_file() or not path.resolve().is_relative_to(repo):
+            raise MeasurementError(f"Selected source is missing or resolves outside --repo: {name}")
         else:
-            if index >= len(fields):
-                raise MeasurementError("Malformed git name-status output.")
-            path = normalize_path(fields[index])
-            index += 1
-            if not status.startswith("D"):
-                changed[path] = path
-    return changed
+            selected.append(name)
+    return selected, {**selection, "files": selected, "excluded_files": ignored}
 
 
-def all_changed_paths(repo: Path, base: str) -> dict[str, str | None]:
-    changed = parse_name_status(
-        git(repo, "diff", "--name-status", "-z", "--find-renames", base, "--")
-    )
-    for path in nul_fields(git(repo, "ls-files", "--others", "--exclude-standard", "-z")):
-        changed[normalize_path(path)] = None
-    return {path: old_path for path, old_path in changed.items() if (repo / path).is_file()}
+def content_id(repo, paths):
+    digest = hashlib.sha256()
+    for name in paths:
+        digest.update(name.encode() + b"\0")
+        digest.update(hashlib.sha256((repo / name).read_bytes()).digest())
+    return digest.hexdigest()
 
 
-def changed_paths(repo: Path, base: str) -> dict[str, str | None]:
-    return {
-        path: old_path
-        for path, old_path in all_changed_paths(repo, base).items()
-        if not excluded(path)
-    }
+def load_lizard():
+    for name, expected in WHEELS.items():
+        path = SCRIPT_ROOT / "vendor" / name
+        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise MeasurementError(f"Vendored wheel checksum mismatch: {name}")
+        sys.path.insert(0, str(path))
+    import lizard
+    from lizard_ext import lizardduplicate, lizardns, version
+    return lizard, lizardduplicate, lizardns, str(version)
 
 
-def line_ranges(repo: Path, base: str, path: str, is_untracked: bool) -> list[tuple[int, int]]:
-    if is_untracked:
-        line_count = sum(1 for _ in (repo / path).open("rb"))
-        return [(1, max(1, line_count))]
-
-    patch = git(repo, "diff", "--unified=0", "--no-color", base, "--", path).decode(
-        "utf-8", "replace"
-    )
-    ranges: list[tuple[int, int]] = []
-    for match in re.finditer(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", patch, re.MULTILINE):
-        start = int(match.group(1))
-        count = int(match.group(2) or "1")
-        if count:
-            ranges.append((start, start + count - 1))
-    return ranges
+def distribution(values):
+    values = sorted(values)
+    def percentile(percent):
+        return values[max(0, math.ceil(len(values) * percent / 100) - 1)] if values else 0
+    return {"sum": sum(values), "max": max(values, default=0), "median": percentile(50), "p90": percentile(90), "p95": percentile(95)}
 
 
-def intersects(start: int, end: int, ranges: Iterable[tuple[int, int]]) -> bool:
-    return any(start <= range_end and end >= range_start for range_start, range_end in ranges)
+def functions(tree):
+    for function in tree:
+        yield function
+        yield from functions(function.get("children", []))
 
 
-def current_paths(repo: Path) -> list[str]:
-    paths = nul_fields(git(repo, "ls-files", "-co", "--exclude-standard", "-z"))
-    return sorted(
-        {
-            normalize_path(path)
-            for path in paths
-            if (repo / path).is_file() and not excluded(path)
-        }
-    )
+def measure_cccc(repo, paths, executable):
+    version = run([executable, "--version"]).strip()
+    if not paths:
+        return {"files": [], "summary": {
+            "file_count": 0, "function_count": 0, "parse_error_count": 0,
+            "parse_error_file_count": 0, "cognitive": distribution([]), "cyclomatic": distribution([]),
+        }}, version
+    report = json.loads(run([executable, "--no-config", "--no-cache", "-j", "1", "--", *[str(repo / name) for name in paths]], cwd=repo))
+    if not isinstance(report, dict) or not isinstance(report.get("files"), list) or not isinstance(report.get("summary"), dict):
+        raise MeasurementError("cccc returned an unsupported report shape. Expected files and summary.")
+    summary = report["summary"]
+    for key in ("file_count", "function_count", "parse_error_count", "parse_error_file_count"):
+        if type(summary.get(key)) is not int or summary[key] < 0:
+            raise MeasurementError(f"Invalid cccc summary {key}")
+    for key in ("cognitive", "cyclomatic"):
+        if not isinstance(summary.get(key), dict) or any(type(summary[key].get(field)) is not int or summary[key][field] < 0 for field in ("sum", "max", "median", "p90", "p95")):
+            raise MeasurementError(f"Invalid cccc summary {key}")
+    for file in report["files"]:
+        file["path"] = str(Path(file["path"]).relative_to(repo))
+        if file["path"] not in paths:
+            raise MeasurementError(f"cccc reported a file outside the selected scope: {file['path']}")
+        for function in functions(file["functions"]):
+            for key in ("line", "cyclomatic", "cognitive"):
+                if type(function[key]) is not int or function[key] < (1 if key == "line" else 0):
+                    raise MeasurementError(f"Invalid cccc function {key} in {file['path']}")
+    if "parse_error_files" in report["summary"]:
+        report["summary"]["parse_error_files"] = [str(Path(path).relative_to(repo)) for path in report["summary"]["parse_error_files"]]
+    return report, version
 
 
-def base_paths(repo: Path, base: str) -> list[str]:
-    return sorted(
-        path
-        for path in map(
-            normalize_path,
-            nul_fields(git(repo, "ls-tree", "-r", "--name-only", "-z", base)),
-        )
-        if not excluded(path)
-    )
-
-
-def source_paths(paths: Iterable[str], root: Path, lizard: Any) -> tuple[list[str], list[str]]:
-    supported: list[str] = []
-    unsupported: list[str] = []
-    for path in paths:
-        if lizard.get_reader_for(str(root / path)):
-            supported.append(path)
-        elif Path(path).suffix.lower() not in NON_SOURCE_SUFFIXES:
-            unsupported.append(path)
-    return supported, unsupported
-
-
-def extract_base(repo: Path, base: str, paths: Iterable[str], target: Path) -> list[str]:
-    extracted: list[str] = []
-    for path in paths:
-        result = subprocess.run(
-            ["git", "-C", str(repo), "show", f"{base}:{path}"],
-            capture_output=True,
-            check=False,
-        )
-        if result.returncode != 0:
-            continue
-        destination = target / path
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.write_bytes(result.stdout)
-        extracted.append(path)
-    return extracted
-
-
-def analyze(
-    root: Path,
-    paths: list[str],
-    lizard: Any,
-    lizardns: Any,
-    duplicate_module: Any,
-    duplicate_tokens: int,
-) -> tuple[list[dict[str, Any]], list[list[dict[str, Any]]], float]:
-    nested_extension = lizardns.LizardExtension()
-    duplicate_extension = duplicate_module.LizardExtension()
-    extensions = lizard.get_extensions([nested_extension, duplicate_extension])
-    absolute_paths = [str(root / path) for path in paths]
-    file_infos = list(lizard.analyze_files(absolute_paths, threads=1, exts=extensions))
-
-    functions: list[dict[str, Any]] = []
-    for file_info in file_infos:
-        relative = normalize_path(os.path.relpath(file_info.filename, root))
-        for function in file_info.function_list:
-            functions.append(
-                {
-                    "file": relative,
-                    "line": int(function.start_line),
-                    "endLine": int(function.end_line),
-                    "symbol": str(function.name),
-                    "longName": str(function.long_name),
-                    "metrics": {
-                        "cyclomaticComplexity": int(function.cyclomatic_complexity),
-                        "nloc": int(function.nloc),
-                        "nestedStructures": int(function.max_nested_structures),
-                        "parameterCount": int(function.parameter_count),
-                        "tokenCount": int(function.token_count),
-                    },
-                }
-            )
-
-    duplicates: list[list[dict[str, Any]]] = []
-    for group in duplicate_extension.get_duplicates(duplicate_tokens):
-        duplicates.append(
-            [
-                {
-                    "file": normalize_path(os.path.relpath(snippet.file_name, root)),
-                    "line": int(snippet.start_line),
-                    "endLine": int(snippet.end_line),
-                }
-                for snippet in group
-            ]
-        )
-    return functions, duplicates, float(duplicate_extension.duplicate_rate() or 0.0)
-
-
-def cyclomatic_band(value: int) -> str:
-    if value <= 6:
-        return "low"
-    if value <= 9:
-        return "moderate"
-    if value <= 20:
-        return "high"
-    return "veryHigh"
-
-
-def baseline_match(function: dict[str, Any], base_functions: list[dict[str, Any]], old_path: str | None) -> dict[str, Any] | None:
-    if old_path is None:
-        return None
-    same_name = [
-        item
-        for item in base_functions
-        if item["file"] == old_path and item["symbol"] == function["symbol"]
+def measure_lizard(repo, paths, limitations):
+    lizard, duplicate_module, nesting_module, version = load_lizard()
+    supported = [name for name in paths if lizard.get_reader_for(str(repo / name))]
+    for name in sorted(set(paths) - set(supported)):
+        limitations.append({"path": name, "tool": "lizard", "reason": "unsupported source"})
+    duplicates = duplicate_module.LizardExtension()
+    def nesting(tokens, reader):
+        return nesting_module.LizardExtension()(tokens, reader)
+    extensions = lizard.get_extensions([nesting, duplicates])
+    records = {}
+    for info in lizard.analyze_files([str(repo / name) for name in supported], threads=1, exts=extensions):
+        name = str(Path(info.filename).relative_to(repo))
+        depths = None
+        invalid_depths = False
+        if Path(name).suffix.lower() in {".py", ".pyw"}:
+            try:
+                depths = function_depths((repo / name).read_text(encoding="utf-8-sig"), name)
+                omitted = set(depths) - {f.start_line for f in info.function_list}
+                if omitted:
+                    limitations.append({"path": name, "tool": "lizard", "reason": "functions omitted", "lines": sorted(omitted)})
+            except (SyntaxError, UnicodeError, RecursionError) as error:
+                invalid_depths = True
+                limitations.append({"path": name, "tool": "python-ast", "reason": str(error)})
+        rows = []
+        for function in info.function_list:
+            row = {"name": function.name, "line": function.start_line, "end_line": function.end_line,
+                   "nloc": function.nloc, "parameters": function.parameter_count}
+            if depths is not None:
+                if function.start_line in depths:
+                    row["max_nesting"] = depths[function.start_line]
+                else:
+                    limitations.append({"path": name, "tool": "python-ast", "reason": "unmatched function", "line": function.start_line})
+            elif not invalid_depths:
+                row["max_nesting"] = int(function.max_nested_structures)
+            rows.append(row)
+        records[name] = rows
+    clones = [
+        {"locations": [{"path": str(Path(part.file_name).relative_to(repo)), "line": part.start_line, "end_line": part.end_line} for part in group]}
+        for group in duplicates.get_duplicates(CLONE_TOKENS)
     ]
-    if len(same_name) == 1:
-        return same_name[0]
-    same_signature = [item for item in same_name if item["longName"] == function["longName"]]
-    if same_signature:
-        return min(same_signature, key=lambda item: abs(item["line"] - function["line"]))
-    if same_name:
-        return min(same_name, key=lambda item: abs(item["line"] - function["line"]))
-    return None
+    clones.sort(key=lambda group: [(part["path"], part["line"]) for part in group["locations"]])
+    return records, clones, float(duplicates.duplicate_rate() or 0), version
 
 
-def metric_value(
-    value: int,
-    baseline: int | None,
-    band: str | None = None,
-    is_new: bool = False,
-) -> dict[str, Any]:
-    result: dict[str, Any] = {"value": value}
-    if is_new:
-        result["baseline"] = "absent"
-        result["delta"] = "new"
-    elif baseline is not None:
-        result["baseline"] = baseline
-        result["delta"] = value - baseline
-    if band:
-        result["band"] = band
-    return result
+def leaf_name(name):
+    return re.split(r"\.|::", name)[-1]
 
 
-def duplicate_pairs(groups: list[list[dict[str, Any]]]) -> dict[tuple[str, str], int]:
-    pairs: dict[tuple[str, str], int] = {}
-    for group in groups:
-        for left, right in itertools.combinations(group, 2):
-            key = tuple(sorted((left["file"], right["file"])))
-            span = min(
-                left["endLine"] - left["line"] + 1,
-                right["endLine"] - right["line"] + 1,
-            )
-            pairs[key] = max(pairs.get(key, 0), span)
-    return pairs
+def enrich(report, records, paths, limitations):
+    files = {file["path"]: file for file in report["files"]}
+    attached = 0
+    for name in paths:
+        if name not in files:
+            limitations.append({"path": name, "tool": "cccc", "reason": "source not reported"})
+            files[name] = {"path": name, "functions": []}
+        file = files[name]
+        if file.get("parse_errors"):
+            limitations.append({"path": name, "tool": "cccc", "reason": "parse errors", "errors": file["parse_errors"]})
+        cccc_index, lizard_index = defaultdict(list), defaultdict(list)
+        for function in functions(file["functions"]):
+            cccc_index[(function["line"], leaf_name(function["name"]))].append(function)
+        for row in records.get(name, []):
+            lizard_index[(row["line"], leaf_name(row["name"]))].append(row)
+        unmatched = []
+        for key, rows in lizard_index.items():
+            targets = cccc_index.get(key, [])
+            if len(rows) == len(targets) == 1 and not file.get("parse_errors"):
+                targets[0]["lizard"] = {k: v for k, v in rows[0].items() if k not in {"name", "line"}}
+                attached += 1
+            else:
+                unmatched.extend(rows)
+        if unmatched:
+            file["lizard_unmatched"] = unmatched
+            limitations.append({"path": name, "tool": "join", "reason": "Lizard functions retained separately", "count": len(unmatched)})
+        missing = sum(len(targets) for key, targets in cccc_index.items() if key not in lizard_index)
+        if missing and name in records:
+            limitations.append({"path": name, "tool": "lizard", "reason": "cccc functions lack supporting measurements", "count": missing})
+    report["files"] = [files[name] for name in sorted(files)]
+    return attached
 
 
-def duplicate_triggers(
-    candidate_groups: list[list[dict[str, Any]]],
-    base_groups: list[list[dict[str, Any]]],
-    changed: dict[str, str | None],
-    changed_lines: dict[str, list[tuple[int, int]]],
-    whole_repository: bool,
-    minimum_tokens: int,
-) -> list[dict[str, Any]]:
-    base_pair_lengths = duplicate_pairs(base_groups)
-    results: list[dict[str, Any]] = []
-    seen: set[tuple[tuple[str, int, int], ...]] = set()
-
-    for group in candidate_groups:
-        touches_change = whole_repository or any(
-            snippet["file"] in changed
-            and intersects(
-                snippet["line"],
-                snippet["endLine"],
-                changed_lines.get(snippet["file"], []),
-            )
-            for snippet in group
-        )
-        if not touches_change:
-            continue
-
-        state = "present" if whole_repository else None
-        baseline_lines: int | None = None
-        if not whole_repository:
-            for left, right in itertools.combinations(group, 2):
-                old_left = changed.get(left["file"], left["file"])
-                old_right = changed.get(right["file"], right["file"])
-                if old_left is None or old_right is None:
-                    state = "new"
-                    continue
-                base_key = tuple(sorted((old_left, old_right)))
-                candidate_span = min(
-                    left["endLine"] - left["line"] + 1,
-                    right["endLine"] - right["line"] + 1,
-                )
-                prior_span = base_pair_lengths.get(base_key)
-                if prior_span is None:
-                    state = "new"
-                elif candidate_span > prior_span and state != "new":
-                    state = "expanded"
-                    baseline_lines = prior_span
-
-        if state is None:
-            continue
-        identity = tuple(
-            sorted((item["file"], item["line"], item["endLine"]) for item in group)
-        )
-        if identity in seen:
-            continue
-        seen.add(identity)
-        item: dict[str, Any] = {
-            "state": state,
-            "minimumTokens": minimum_tokens,
-            "locations": group,
-            "reference": REFERENCES["duplication"],
-        }
-        if state == "new":
-            item["baseline"] = "absent"
-            item["delta"] = "new"
-        elif state == "expanded":
-            item["delta"] = "expanded"
-        if baseline_lines is not None:
-            item["baselineSpanLines"] = baseline_lines
-        results.append(item)
-    return results
+def build_summary(report, records, clones, rate, attached):
+    rows = [row for file in records.values() for row in file]
+    lizard_summary = {"file_count": len(records), "function_count": len(rows), "attached_function_count": attached,
+                      "unmatched_function_count": len(rows) - attached}
+    for key in ("nloc", "max_nesting", "parameters"):
+        values = [row[key] for row in rows if key in row]
+        lizard_summary[key] = {**distribution(values), "measured_function_count": len(values)}
+    lizard_summary["duplication"] = {"minimum_tokens": CLONE_TOKENS, "group_count": len(clones), "rate": rate}
+    report["summary"]["lizard"] = lizard_summary
+    cccc_rows = [function for file in report["files"] for function in functions(file["functions"])]
+    attention = {}
+    for key, (minimum, reference) in ATTENTION.items():
+        population = cccc_rows if key in {"cognitive", "cyclomatic"} else rows
+        attention[key] = {"count": sum(row.get(key, -1) >= minimum for row in population),
+                          "minimum": minimum, "reference": f"references/{reference}"}
+    attention["duplication"] = {"count": len(clones), "minimum_tokens": CLONE_TOKENS, "reference": "references/duplication.md"}
+    report["summary"]["attention"] = attention
 
 
-def write_raw(payload: dict[str, Any]) -> str:
-    descriptor, path = tempfile.mkstemp(prefix="code-complexity-", suffix=".json")
-    with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
-        json.dump(payload, stream, indent=2, sort_keys=True)
-        stream.write("\n")
-    return path
-
-
-def parser() -> argparse.ArgumentParser:
-    result = argparse.ArgumentParser(description=__doc__)
-    result.add_argument("--repo", default=".", help="Git repository to measure")
-    result.add_argument("--base", help="Base revision for changed-code measurement")
-    result.add_argument(
-        "--whole-repository",
-        action="store_true",
-        help="Measure every supported production source file without a baseline",
-    )
-    result.add_argument("--all", action="store_true", help="Include every normalized record")
-    result.add_argument("--cyclomatic-review", type=int, default=DEFAULTS["cyclomaticReview"])
-    result.add_argument("--nloc-review", type=int, default=DEFAULTS["nlocReview"])
-    result.add_argument(
-        "--nested-structures-review",
-        type=int,
-        default=DEFAULTS["nestedStructuresReview"],
-    )
-    result.add_argument(
-        "--parameter-count-review",
-        type=int,
-        default=DEFAULTS["parameterCountReview"],
-    )
-    result.add_argument("--duplicate-tokens", type=int, default=DEFAULTS["duplicateTokens"])
-    return result
-
-
-def main() -> int:
-    args = parser().parse_args()
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--repo", default=".", help="Git repository root")
+    parser.add_argument("--base", default="HEAD", help="Git revision used only to select changed files, default HEAD")
+    parser.add_argument("--cccc", help="Override the bundled executable with a supplied path")
+    parser.add_argument("paths", nargs="*", help="Explicit files relative to --repo, overrides changed-file selection")
+    args = parser.parse_args()
     try:
-        if args.whole_repository and args.base:
-            raise MeasurementError("--base and --whole-repository cannot be combined.")
-        if not args.whole_repository and not args.base:
-            raise MeasurementError("--base is required unless --whole-repository is set.")
-        thresholds = {
-            "cyclomaticReview": args.cyclomatic_review,
-            "nlocReview": args.nloc_review,
-            "nestedStructuresReview": args.nested_structures_review,
-            "parameterCountReview": args.parameter_count_review,
-            "duplicateTokens": args.duplicate_tokens,
-        }
-        if any(value < 1 for value in thresholds.values()):
-            raise MeasurementError("Every threshold must be a positive integer.")
-
+        if sys.version_info < (3, 9):
+            raise MeasurementError("Python 3.9 or newer is required.")
         repo = Path(args.repo).resolve()
-        if not repo.is_dir():
-            raise MeasurementError(f"Repository directory does not exist: {repo}")
-        git(repo, "rev-parse", "--show-toplevel")
-        head = git(repo, "rev-parse", "HEAD").decode().strip()
-        base = None
-        if args.base:
-            base = git(repo, "rev-parse", "--verify", f"{args.base}^{{commit}}").decode().strip()
-
-        lizard, lizardns, duplicate_module, lizard_version = load_analyzer()
-        all_current_paths = current_paths(repo)
-        supported_current, _ = source_paths(all_current_paths, repo, lizard)
-
-        if args.whole_repository:
-            changed: dict[str, str | None] = {path: None for path in supported_current}
-            changed_lines = {
-                path: [(1, max(1, sum(1 for _ in (repo / path).open("rb"))))]
-                for path in supported_current
-            }
-            unsupported_changed: list[str] = []
-        else:
-            changed = changed_paths(repo, base or args.base)
-            changed_lines = {
-                path: line_ranges(repo, base or args.base, path, old_path is None)
-                for path, old_path in changed.items()
-            }
-            supported_changed, unsupported_changed = source_paths(changed, repo, lizard)
-            changed = {path: changed[path] for path in supported_changed}
-            changed_lines = {path: changed_lines[path] for path in supported_changed}
-
-        candidate_functions, candidate_duplicates, candidate_duplicate_rate = analyze(
-            repo,
-            supported_current,
-            lizard,
-            lizardns,
-            duplicate_module,
-            thresholds["duplicateTokens"],
-        )
-
-        base_functions: list[dict[str, Any]] = []
-        base_duplicates: list[list[dict[str, Any]]] = []
-        base_duplicate_rate: float | None = None
-        if base:
-            with tempfile.TemporaryDirectory(prefix="code-complexity-base-") as directory:
-                base_root = Path(directory)
-                possible_base_paths = base_paths(repo, base)
-                supported_base, _ = source_paths(possible_base_paths, base_root, lizard)
-                extracted = extract_base(repo, base, supported_base, base_root)
-                base_functions, base_duplicates, base_duplicate_rate = analyze(
-                    base_root,
-                    extracted,
-                    lizard,
-                    lizardns,
-                    duplicate_module,
-                    thresholds["duplicateTokens"],
-                )
-
-        changed_functions = [
-            function
-            for function in candidate_functions
-            if function["file"] in changed
-            and (
-                args.whole_repository
-                or intersects(
-                    function["line"],
-                    function["endLine"],
-                    changed_lines.get(function["file"], []),
-                )
-            )
-        ]
-
-        band_counts = {"low": 0, "moderate": 0, "high": 0, "veryHigh": 0}
-        maxima = {
-            "cyclomaticComplexity": 0,
-            "nloc": 0,
-            "nestedStructures": 0,
-            "parameterCount": 0,
-            "tokenCount": 0,
-        }
-        function_triggers: list[dict[str, Any]] = []
-
-        for function in changed_functions:
-            metrics = function["metrics"]
-            band = cyclomatic_band(metrics["cyclomaticComplexity"])
-            band_counts[band] += 1
-            for metric in maxima:
-                maxima[metric] = max(maxima[metric], metrics[metric])
-
-            baseline_function = baseline_match(
-                function,
-                base_functions,
-                changed.get(function["file"]),
-            )
-            baseline_metrics = baseline_function["metrics"] if baseline_function else {}
-            is_new = bool(base and baseline_function is None)
-            triggered: dict[str, Any] = {}
-            references: list[str] = []
-
-            if metrics["cyclomaticComplexity"] >= thresholds["cyclomaticReview"]:
-                triggered["cyclomaticComplexity"] = metric_value(
-                    metrics["cyclomaticComplexity"],
-                    baseline_metrics.get("cyclomaticComplexity"),
-                    band,
-                    is_new,
-                )
-                references.append(REFERENCES["cyclomaticComplexity"])
-            if metrics["nloc"] > thresholds["nlocReview"]:
-                triggered["nloc"] = metric_value(
-                    metrics["nloc"], baseline_metrics.get("nloc"), is_new=is_new
-                )
-                references.append(REFERENCES["nloc"])
-            if metrics["nestedStructures"] > thresholds["nestedStructuresReview"]:
-                triggered["nestedStructures"] = metric_value(
-                    metrics["nestedStructures"],
-                    baseline_metrics.get("nestedStructures"),
-                    is_new=is_new,
-                )
-                references.append(REFERENCES["nestedStructures"])
-            if metrics["parameterCount"] >= thresholds["parameterCountReview"]:
-                triggered["parameterCount"] = metric_value(
-                    metrics["parameterCount"],
-                    baseline_metrics.get("parameterCount"),
-                    is_new=is_new,
-                )
-                references.append(REFERENCES["parameterCount"])
-
-            if triggered:
-                function_triggers.append(
-                    {
-                        "file": function["file"],
-                        "line": function["line"],
-                        "endLine": function["endLine"],
-                        "symbol": function["symbol"],
-                        "metrics": triggered,
-                        "tokenCount": metrics["tokenCount"],
-                        "references": sorted(set(references)),
-                    }
-                )
-
-        duplication_triggers = duplicate_triggers(
-            candidate_duplicates,
-            base_duplicates,
-            changed,
-            changed_lines,
-            args.whole_repository,
-            thresholds["duplicateTokens"],
-        )
-
-        scope = {
-            "base": base,
-            "candidate": f"working-tree@{head}",
-            "changedProductionFiles": len(changed),
-            "sourceFilesAnalyzed": len(supported_current),
-            "changedFunctionsAnalyzed": len(changed_functions),
-            "excludedChangedPaths": sorted(
-                path
-                for path in (all_changed_paths(repo, base or args.base) if base else {})
-                if excluded(path)
-            ),
-        }
-        summary = {
-            "cyclomaticBands": band_counts,
-            "maxima": maxima,
-            "observedCloneGroups": len(candidate_duplicates),
-            "duplicateRate": candidate_duplicate_rate,
-            "triggeredFunctions": len(function_triggers),
-            "triggeredCloneGroups": len(duplication_triggers),
-        }
+        if Path(git(repo, "rev-parse", "--show-toplevel").strip()).resolve() != repo:
+            raise MeasurementError("--repo must be the Git repository root.")
+        paths, scope = select_files(repo, args.paths, args.base)
+        identity = content_id(repo, paths)
+        report, cccc_version = measure_cccc(repo, paths, args.cccc or bundled_cccc())
         limitations = []
-        if unsupported_changed:
-            limitations.append(
-                {
-                    "kind": "unsupported-language",
-                    "paths": sorted(unsupported_changed),
-                }
-            )
-
-        tool = {
-            "name": "lizard",
-            "version": lizard_version,
-            "cloneDetector": {
-                "name": "lizard-duplicate",
-                "version": lizard_version,
-            },
-        }
-        raw_payload = {
-            "schema": SCHEMA_VERSION,
-            "tool": tool,
-            "scope": scope,
-            "thresholds": thresholds,
-            "functions": candidate_functions,
-            "duplicates": candidate_duplicates,
-            "duplicateRate": candidate_duplicate_rate,
-            "baseFunctions": base_functions,
-            "baseDuplicates": base_duplicates,
-            "baseDuplicateRate": base_duplicate_rate,
-            "limitations": limitations,
-        }
-        raw_artifact = write_raw(raw_payload)
-        attention = bool(function_triggers or duplication_triggers)
-        status = "incomplete" if limitations else "attention" if attention else "clear"
-        output: dict[str, Any] = {
-            "schema": SCHEMA_VERSION,
-            "tool": tool,
-            "status": status,
-            "scope": scope,
-            "thresholds": thresholds,
-            "summary": summary,
-            "triggers": {
-                "functions": function_triggers,
-                "duplicates": duplication_triggers,
-            },
-            "rawArtifact": raw_artifact,
-        }
-        if limitations:
-            output["limitations"] = limitations
-        if args.all:
-            output["records"] = {
-                "functions": candidate_functions,
-                "duplicates": candidate_duplicates,
-            }
-        print(json.dumps(output, indent=2, sort_keys=True))
+        records, clones, rate, lizard_version = measure_lizard(repo, paths, limitations)
+        attached = enrich(report, records, paths, limitations)
+        build_summary(report, records, clones, rate, attached)
+        if content_id(repo, paths) != identity or select_files(repo, args.paths, args.base)[0] != paths:
+            raise MeasurementError("Selected source changed during measurement. Rerun on the current candidate.")
+        report.update({
+            "schema": 4, "status": "partial" if limitations else "complete",
+            "scope": {**scope, "content_id": identity},
+            "tools": {"cccc": cccc_version, "lizard": lizard_version, "python": sys.version.split()[0],
+                      "nesting": "Python AST for Python, lizard-ns for other languages"},
+            "duplicates": clones, "limitations": limitations,
+        })
+        descriptor, destination = tempfile.mkstemp(prefix="code-complexity-", suffix=".json")
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            json.dump(report, stream, indent=2)
+            stream.write("\n")
+        print(json.dumps({"schema": report["schema"], "status": report["status"], "summary": report["summary"],
+                          "scope": {"mode": scope["mode"], "file_count": len(paths), "content_id": identity},
+                          "tools": report["tools"], "limitation_count": len(limitations), "report": destination}, indent=2))
         return 0
-    except MeasurementError as error:
-        print(
-            json.dumps(
-                {
-                    "schema": SCHEMA_VERSION,
-                    "status": "incomplete",
-                    "error": str(error),
-                },
-                indent=2,
-                sort_keys=True,
-            )
-        )
+    except (MeasurementError, OSError, ValueError, KeyError, TypeError, ImportError, subprocess.TimeoutExpired) as error:
+        print(json.dumps({"status": "failed", "error": str(error)}, indent=2))
         return 2
 
 

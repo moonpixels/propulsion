@@ -1,45 +1,29 @@
 ---
 name: upgrade-dependencies
-description: Upgrades project packages and toolchain dependencies with compatibility checks and required migrations. Use when refreshing dependencies or upgrading their versions.
-metadata:
-    type: performer
-disable-model-invocation: true
+description: Upgrade a codebase's dependencies when the user requests package, build, CI, or runtime version updates.
 ---
 
-# Upgrade Dependencies
+# Upgrade dependencies
 
-Deliver compatible dependency upgrades, required migrations and verified local changes.
+Deliver the newest compatible stable dependencies within scope through **incremental migration**. Preserve existing behaviour and unrelated work.
 
-## Process
+## Inputs
 
-### 1. Establish scope
+Take the codebase and limits from the request. By default, include major upgrades, development packages, package-manager pins, CI actions, and build or container dependencies. Change language/runtime versions only when requested. Prefer the newest compatible LTS, or actively supported stable release where LTS does not exist. Explicit limits take precedence.
 
-Inspect the request, repository guidance and working tree; preserve unrelated changes. Resolve unclear scope through `$elicit-with-context`: patch/minor upgrades only or majors too; package dependencies only or the full project toolchain. Reuse explicit answers. Include development packages in package scope. Toolchain scope includes project runtime versions, package-manager pins, container images and CI actions. Machine-wide changes, publication and deployment need separate authorisation.
+Use repository instructions, manifests, lockfiles, workspace ownership, runtime pins, and CI or deployment constraints. Resolve discoverable facts first. Invoke [$elicit-with-context](../elicit-with-context/SKILL.md) only for unresolved material decisions, such as expanding scope to unblock a target. Leave commits, publication, deployment, and machine-wide changes to separately authorised work.
 
-### 2. Discover compatible targets
+## Method
 
-Identify the existing package managers, workspaces, manifests, lockfiles, runtime requirements and CI/deployment constraints. Record current versions and relevant baseline check failures. Run each manager's outdated command before dependency research, such as `composer outdated --locked --format=json`, `npm outdated --json`, `pnpm outdated` or `bun outdated`; check the installed CLI's help for supported options. For selected toolchain components without an outdated command, compare their pins with official release listings.
+1. **Establish the baseline.** Identify dependency managers and actual tool/runtime versions. Inspect the working tree, run repository-required checks and available audits, and record existing failures. Inventory installed, allowed, and latest versions with native outdated commands. Include versioned CI and container references that these commands miss. Establish a way to restore only your changes before upgrading.
+2. **Research before changing.** For each proposed batch, consult current official releases, support policies, compatibility metadata, changelogs, and upgrade guides across the entire installed-to-target interval. Map relevant breaking changes to code and configuration. Check peers, plugins, extensions, runtimes, platforms, affected workspaces, and known consuming projects. Record target versions, source links, required migrations, and compatibility evidence. Use solver diagnostics or dry runs where supported. Missing documentation is not proof of compatibility. Resolve missing evidence through official source or maintainer guidance, or block that target.
+3. **Sequence verifiable batches.** Prioritise critical security fixes and blocking dependencies. For stale dependencies, bring the current major to its latest compatible patch/minor before major migration. Keep coupled dependencies together. Default to one major at a time, using each major's latest compatible patch. Take a shorter path only when official guidance explicitly supports it. Follow documented migration order and ecosystem pre-1.0 rules. Hold back unsupported, withdrawn, or incompatible targets with reasons. Preserve security policies and resolve conflicts rather than bypassing checks.
+4. **Upgrade with native tools.** Use package-manager or framework upgrade commands and official codemods, with researched targets or bounded ranges. Verify command semantics against the installed CLI. Preserve dependency classification, range conventions, and workspace ownership. Let the manager generate lockfiles. Edit version declarations directly only where native tooling cannot express the change. Apply all required code and configuration migrations. Align affected project, container, and CI pins within scope, verifying release identifiers and preserving immutable pins. Read [upgrade techniques](references/upgrade-techniques.md) when targeting commands, coupled migrations, runtime constraints, or recovery need examples.
+5. **Verify every batch before continuing.** Inspect actual resolved versions, manifest and lockfile diffs, unexpected transitive changes, and codemod output against the research and scope. Investigate newly exposed compatibility or migration requirements. Run repository-required checks and relevant behaviour tests. Add focused regression coverage where a migration exposes a material gap. Diagnose regressions and repair or restore the batch before dependent work continues. Preserve prior verified batches and unrelated edits. Continue independent work where safe, recording any blocked remainder.
+6. **Prove the final state.** Reproduce installation from the final lockfiles with the configured tooling. Verify the resolved dependency graph and platform requirements, then run all required checks, available audits, and affected behaviour checks under the target runtime. Distinguish configured pins from versions actually tested. Rerun outdated discovery and review the complete diff. Account for every in-scope upgrade as applied or held back with evidence. Report unavailable checks and inherited failures separately from regressions.
 
-Distinguish installed, allowed and latest versions. Check candidate metadata, peer dependencies, framework compatibility, runtime/extension requirements and platform support together before selecting targets. Use solver diagnostics or dry runs where available, such as Composer's `why-not`. Select a compatible stable set within scope; a major upgrade allowance does not require incompatible latest versions. Treat pre-1.0 compatibility according to the ecosystem's rules. Explain blockers rather than bypassing peer, platform or security constraints.
+## Finish
 
-### 3. Read the selected upgrade guidance
+Return the upgraded codebase, old-to-new versions, required migrations and sources, validation commands and results, held-back items and reasons, and remaining limitations. Keep optional API changes and larger refactors separate. Local checks prove only the environments exercised.
 
-Send a fresh research agent the selected versions, compatibility evidence, scope, relevant project constraints and known documentation links. Have it consult official upgrade guides and release notes across the installed-to-target interval, including required intermediate upgrades. Return source links, required migration steps, compatibility findings and separately labelled optional improvements; stop at research. Keep version selection and changes in the main thread. Reassess targets if research reveals a blocker. Report missing documentation rather than inventing migration requirements.
-
-### 4. Upgrade and migrate
-
-Use official package-manager or framework upgrade commands first. Use explicit target versions or bounded ranges when a general update would miss permitted upgrades or exceed scope. Preserve dependency classification, range conventions and workspace ownership. For example, Composer `update` resolves existing constraints while `require` changes them; npm `update` respects ranges while `install package@range` can change them. Verify options against the installed tool. Let the manager generate lockfiles. Edit manifests or toolchain configuration directly only where no suitable official command exists.
-
-Apply coupled upgrades and required migration steps in the documented order. Update affected code and configuration while preserving behaviour. When toolchain upgrades are included, align project, container and CI pins, preserve existing immutable pinning and verify release identifiers against their official source. Distinguish project pins from the runtime actually used locally or by a deployment provider.
-
-After resolution, inspect the actual manifest and lockfile diff. Check compatibility and official release/migration guidance for additional changed packages, including transitives, using their resolved versions rather than predicted targets. Reconcile unexpected changes with scope before proceeding. Repeat this reconciliation if the resolved set changes again.
-
-Apply changes required by the upgrade guides. Record optional newer APIs, simplifications and larger refactors for the final handoff; leave their adoption to the user.
-
-### 5. Verify and hand off
-
-Verify reproducible installation from the resulting lockfiles, dependency/platform validity and the project's required checks, including relevant tests, static analysis and builds. Use available security checks and report unresolved findings. Check migrated behaviour with existing coverage; add focused regression coverage where a material gap remains. Separate pre-existing failures from upgrade regressions and state unavailable checks honestly.
-
-Rerun outdated discovery and review the final diff for unintended source, generated-file or toolchain changes. Explain remaining upgrades instead of treating a nonempty outdated report as failure. Stop with verified local changes, or clearly identified blockers when completion is not possible.
-
-Return a concise account of old-to-new versions, required migrations, validation results, held-back upgrades with reasons and optional improvements tied to affected code and official guidance. Do not claim remote CI or deployment success from local checks.
+**Done only when** every in-scope item is accounted for, the chosen set installs reproducibly, required migrations are complete, and compatibility, required checks, and affected behaviour pass. A blocker or unavailable verification leaves the affected work incomplete. Report the exact constraint, verified progress, and next action rather than claiming completion.

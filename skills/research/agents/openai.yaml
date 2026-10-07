@@ -1,6 +1,4 @@
 interface:
     display_name: 'Research'
-    short_description: 'Research a subject into a trusted cited report'
-    default_prompt: 'Use $research to investigate this subject in a fresh agent and write a trusted cited report.'
-policy:
-    allow_implicit_invocation: false
+    short_description: 'Delegate research and save an accessible cited report'
+    default_prompt: 'Use $research to investigate this subject and save a cited report.'

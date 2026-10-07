@@ -1,37 +1,29 @@
 ---
 name: elicit
-description: Elicits material information and decisions one question at a time until shared understanding is confirmed. Use when user-held context, clarification, or choices block a bounded outcome.
-metadata:
-    type: utility
-disable-model-invocation: false
+description: Resolve material user-held information and decisions when a bounded task needs clarification or stress-testing.
 ---
 
 # Elicit
 
-Builds confirmed shared understanding by resolving a bounded internal **decision tree**, then applying adapted **theoretical saturation**.
+Return confirmed shared understanding by relentlessly traversing a bounded **decision tree**. The user owns their information and decisions. The caller owns downstream action.
 
-## Process
+A branch is **material** when differing answers could change the outcome, scope, constraints, trade-offs, success conditions, or a consequential choice. Include choices the agent could otherwise guess. Leave routine details within established direction to the caller.
 
-### 1. Establish the basis
+## Inputs
 
-Inspect the request, conversation, caller context, and available task-scoped evidence before questioning. Use cheap read-only fact-finding and stable, confidently applicable general knowledge to close discoverable branches. Verify uncertain, contentious, or potentially current knowledge before treating it as fact. Leave material research and every state-changing action to the caller. The intended outcome, caller boundary, and factual basis are explicit.
+Take the task, intended outcome and authority boundary from the request or caller handoff. Resolve discoverable facts through task-scoped read-only inspection before dependent questioning. Verify uncertain or changing claims. Current behaviour is evidence, not authority for intended behaviour. Leave substantial research and changes to the caller.
 
-### 2. Maintain the decision tree
+## Method
 
-Build and continually recompute an internal, dependency-ordered tree containing only branches whose resolution could materially change the bounded outcome. Cover relevant outcome, scope, terminology, inputs, outputs, prerequisites, dependencies, constraints, flows, exceptions, permissions, risks, trade-offs, and success conditions. Preserve compatible answers; close, discard, or reopen branches as evidence changes; and follow directly consequential issues without expanding into unrelated discovery. Select the highest-impact unresolved branch whose prerequisites are resolved. Keep the tree internal and one active issue explicit.
+1. **Map the tree.** Track material branches, dependencies, and their disposition internally: open, resolved by user answer or evidence, explicitly delegated, or excluded by agreed scope. Preserve compatible answers. Assumptions, recommendations, and unanswered questions leave branches open.
+2. **Ask one question per turn.** Choose the highest-impact open branch whose prerequisites are settled. Explain what the answer changes. For a real choice, offer materially different viable options and a grounded recommendation. Ask directly for missing information. Leave room for the user's own answer and wait before relying on it.
+3. **Challenge and recompute.** After each answer or discovery, stress-test the proposal and affected answers against the goal, facts, alternatives, implications, concrete scenarios, and counterexamples. Directly identify factual errors, contradictions, and choices that undermine the goal. Explain the evidence or conflict before asking the resolving question. Distinguish evidence from inference and legitimate preferences from errors. Respect fixed constraints while surfacing conflicts that make them untenable. Acknowledge and correct your own mistaken interpretation. Reopen affected decisions, add exposed branches, and recompute dependencies before continuing.
+4. **Clarify the same decision.** Resolve ambiguity before relying on an answer. When the user asks for explanation or shows confusion, read [question clarification](references/clarification.md) and rephrase without changing the choice. Close clear answers without ceremonial repetition. An informed preference settles a viable choice. A factual contradiction remains unresolved while dependent work requires it.
+5. **Traverse to saturation.** Follow answers into dependent branches, then return to unresolved siblings. Use no question quota. An exhausted list, workable outline, or empty set of askable questions is insufficient. Walk the complete outcome and decision interactions through relevant responsibilities, inputs and outputs, defaults, states and transitions, time boundaries, visibility, exceptions, failure and recovery, and success evidence. Reopen consequential gaps and continue until every material branch has a supported disposition and a fresh coverage pass adds or reopens none.
+6. **Confirm the whole.** Present a concise, self-contained synthesis of facts, decisions, scope, constraints, consequential implications, delegated choices, and observable success conditions. Ask one question for explicit agreement. Corrections or later evidence reopen affected branches. Repeat traversal and coverage before confirming the revision. Reuse an earlier confirmed synthesis only when it covers the complete outcome and rechecking finds no material gap or change. Agreement to one option does not confirm the whole.
 
-### 3. Ask one question
+## Finish
 
-Ask exactly one explicit question per turn in natural language. Explain why an information question matters. Offer suggested answers only when grounded in the established basis. Apply **Design It Twice**: present at least two genuinely distinct viable options, state the material effect of each, and recommend the strongest when the evidence supports a clear winner. Make those options part of the one question; do not append another choice prompt. Leave room for another answer and keep the user as the sole authority over their information and decisions. The active issue receives one explicit response.
+Return the confirmed synthesis to the caller. Create no durable artefact or state change.
 
-### 4. Adapt and validate
-
-Test every response internally against the outcome, established facts, prior answers, implications, contradictions, scenarios, and counterexamples. Surface a challenge only when it could materially change the shared understanding. Close clear answers without ceremonial repetition. For ambiguity, conflict, difficulty, or consequential interpretation, use plain-English paraphrasing, rewording, clearer options and effects, examples, scenarios, or prerequisite questions resolved one at a time. Do not invent an answer or decide for the user. Recompute the tree and reopen every affected branch. The active issue is resolved consistently.
-
-### 5. Reach theoretical saturation
-
-Repeat steps 2–4 until every material branch is resolved. Make an adapted theoretical-saturation pass across the tree, implications, scenarios, counterexamples, and conflicts. Walk each material decision through affected actors and authority, defaults and unchanged behaviour, states and transitions, time boundaries, channels, visibility, exceptions, invalidation, and success evidence; open only consequential gaps. Saturation is reached only when the pass adds or reopens no branch whose answer could materially change the shared understanding. The bounded decision tree is saturated.
-
-### 6. Confirm shared understanding
-
-Present one concise, self-contained synthesis of the relevant facts, information, decisions, scope, constraints, implications, and observable success conditions. Ask exactly one question for explicit agreement. Only a new response confirming the complete synthesis ends elicitation; selecting an earlier option does not. Treat a correction or rejection as new evidence, reopen every affected branch, and repeat the saturation pass before presenting a revised synthesis. Return only the confirmed synthesis; create no durable artefact and leave mutation, persistence, verification, downstream action, and the caller's stopping boundary to the caller.
+**Done only when** every material branch has a supported disposition, a fresh coverage pass opens none, and the user has confirmed the complete synthesis. If a necessary fact or decision is unavailable, report it and the dependent work. Deferral leaves that work unresolved unless the user changes scope or explicitly delegates the choice.

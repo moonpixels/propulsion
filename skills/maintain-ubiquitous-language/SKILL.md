@@ -1,27 +1,29 @@
 ---
 name: maintain-ubiquitous-language
-description: Maintains project-specific language in GLOSSARY.md. Use when project terminology must be added, changed, challenged, renamed, deprecated, or reconciled.
-metadata:
-    type: utility
-disable-model-invocation: true
+description: Sharpen and maintain ubiquitous language when project terminology is introduced, ambiguous, conflicting, renamed, or deprecated.
 ---
 
-# Maintain Ubiquitous Language
+# Maintain ubiquitous language
 
-Applies **Ubiquitous Language** by keeping project-specific terminology consistent in one root `GLOSSARY.md` glossary.
+Actively sharpen **DDD ubiquitous language** and keep one root `GLOSSARY.md` current throughout the conversation. Capture each resolved meaning immediately.
 
-## Process
+## Inputs
 
-### 1. Inspect the language
+Take affected terms and their intended meanings from the conversation or caller handoff. Read root `GLOSSARY.md` and relevant project evidence. A clear, stable supplied meaning is resolved. Confirmed intended meaning governs an intended change. Current behaviour is evidence, not authority for intent.
 
-Inspect the relevant conversation or caller handoff, root `GLOSSARY.md`, applicable repository guidance, and only the project evidence needed to understand the language. Treat a stable project-specific meaning as resolved when that context makes it clear. Challenge uses that conflict with an established term.
+## Method
 
-### 2. Update inline
+1. **Ground the language.** Compare every affected term with the glossary and relevant evidence, including meanings already resolved in the incoming context. Use canonical terms in the dialogue.
+2. **Sharpen the model.** Challenge vague, overloaded, or conflicting terms. Propose precise canonical names and test conceptual boundaries with concrete scenarios. Ask one resolving question at a time when intent remains unclear. During `$elicit`, put these questions into its active decision tree. Preserve unresolved entries. Report code or document discrepancies against confirmed intended meaning to the caller without reopening settled intent.
+3. **Write immediately.** As soon as a meaning resolves, write it to `GLOSSARY.md` and read the affected entries back **before the next question or dependent work**. Do this for supplied meanings before questioning begins and after each answer or discovery. Never queue definitions for a batch or wait for the final synthesis. Routine resolved updates need no separate approval.
+4. **Reconcile affected entries.** Create the root file lazily. Preserve local formatting and unrelated terms, update existing entries, and remove duplicates. Define each canonical term in one or two project-native sentences. Qualify legitimately different meanings within the root glossary. Retain aliases, discouraged synonyms, or deprecations only while they help interpret project evidence. Keep general programming concepts, specifications, and implementation rationale in their own authorities.
 
-Update `GLOSSARY.md` as each meaning resolves, before the surrounding work continues. Do not request approval or announce the skill. Add no separate verification or handoff for a routine glossary update; follow the surrounding task's normal checks and reporting.
+Use [the glossary template](assets/glossary-template.md) when creating the first glossary. Group related concepts when useful.
 
-When ambiguity, conflict, rename, or deprecation could materially change the meaning, ask one direct question that distinguishes the alternatives. Preserve the existing entry until the answer resolves the meaning.
+For example, if Reservation is resolved while its expiry policy remains open, write Reservation now and continue questioning about expiry. Keep the expiry rule with its specification.
 
-Create the root file lazily from the [glossary template](assets/glossary-template.md). Preserve unrelated terms and local format. Edit only affected entries, prefer updating an entry to adding a duplicate, and reconcile resolved changes across affected entries. Retain an alias or deprecation only while it helps interpret current project evidence.
+## Finish
 
-Keep `GLOSSARY.md` a glossary, not a specification or implementation record. Give each canonical term one short project-native paragraph; group terms by domain only when useful.
+Keep routine resolved updates silent in progress messages and the final handoff. Report only material discrepancies, unresolved meanings, or write failures through the caller. Leave code and other document repairs with the caller.
+
+**Done only when** every resolved affected meaning is written and checked, affected entries are consistent, and every unresolved meaning is explicitly reported unchanged. A failed write leaves maintenance incomplete. Continue maintaining the glossary while the surrounding conversation proceeds.

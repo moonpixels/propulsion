@@ -1,5 +1,3 @@
 interface:
     display_name: 'Specify Feature'
-    short_description: 'Create one decision-complete feature specification'
-policy:
-    allow_implicit_invocation: false
+    short_description: 'Define feature behaviour and consequential design'

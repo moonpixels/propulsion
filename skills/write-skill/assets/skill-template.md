@@ -1,15 +1,26 @@
 ---
-name: skill-name
-description: Creates the intended outcome. Use when the skill's confirmed trigger applies.
-metadata:
-    type: performer
-disable-model-invocation: true
+name: task-specific-name
+description: Perform {recognisable task} when {decisive trigger}.
 ---
 
-# Skill Name
+# {Task name}
 
-States what the skill enables in one sentence.
+Produce {observable outcome}. Preserve {essential invariant}.
 
-## Process
+## Inputs
 
-Describe the minimum-sufficient behaviour in the form best suited to the work.
+Take {task input} from {request, caller handoff or named source}. Resolve {material ambiguity or missing prerequisite} before {dependent action}.
+
+## Method
+
+1. {Concrete action grounded in the inputs}.
+2. {Action and required behaviour, with an explicit bound where premature stopping matters}.
+3. {Check the actual output or state}.
+
+## Finish
+
+Return {specific output and necessary evidence}.
+
+**Done only when** {exhaustive, observable completion conditions}. If {blocking condition}, report {exact missing prerequisite}.
+
+<!-- Replace placeholders and remove this comment. Name an established method where it fits. Add resource pointers at the step that needs them, naming when to read a reference, use an asset, or run a script. -->

@@ -1,59 +1,27 @@
 ---
 name: test-design
-description: Teaches durable behavioural test design through stable seams, independent oracles, determinism, and counterfactual challenge. Use when writing, reviewing, or rationalising tests.
-metadata:
-    type: teaching
-disable-model-invocation: true
+description: Design minimal behavioural tests when application behaviour changes or testing work is explicitly requested.
 ---
 
-# Test Design
+# Test design
 
-Teaches a caller to retain tests that detect promised-behaviour defects without resisting hidden structural change.
+Protect **behavioural promises** with the fewest meaningful tests. Exercise the supported entry used by a person or system. Tests must survive internal refactors that preserve those promises.
 
-## Process
+## Inputs
 
-### 1. Fix the behavioural basis
+Take the behaviour to test from confirmed requirements, acceptance criteria or documented contracts. Derive expected results independently of the implementation. Resolve missing intended behaviour before its test. Current behaviour is authority only for explicitly requested characterisation work.
 
-Use the caller's confirmed behaviour, applicable contracts, and current production and test evidence. Inspect only evidence that is missing or stale. Treat representation as a valid oracle only when that representation is itself a published contract.
+## Method
 
-### 2. Select a durable seam
+1. **Decide eligibility.** Without an existing testing framework, stop silently. Add no tests, framework recommendation or testing-gap report. Otherwise, new or corrected observable behaviour requires **TDD**. Cosmetic edits, maintenance and behaviour-preserving refactors acquire no new coverage unless testing work is explicitly requested. Judge the actual promise, not the task label. Repair existing brittle tests while preserving useful coverage. The caller still owns existing checks and direct verification.
+2. **Choose the behavioural seam.** Drive the actual UI, HTTP route, CLI command, library product API, scheduled job or queue-consumer entry through real internal collaborators. An exported private helper is not a supported entry. Consult [$modular-design](../modular-design/SKILL.md) when interface ownership needs judgement. Read [test techniques](references/test-techniques.md) before writing or repairing tests and [entry examples](references/entry-examples.md) for CLI, library or automated work.
+3. **Select the promises.** Map requested promises to existing coverage. Extend or add tests only for missing protection, using representative inputs and material outcomes. Keep several cohesive assertions when they establish one promise. Trace invalid inputs through supported runtime paths. A mock-created bad value does not prove a defence necessary or redundant. Leave production deletion decisions to the caller.
+4. **Build the arrangement.** Follow repository conventions and create missing harnesses, model factories and fixtures. Missing scaffolding is work to complete, not a skip condition. Keep application-owned logic and disposable persistence real. Read [test doubles](references/test-doubles.md) for external services, time or randomness. Use **Arrange–Act–Assert**, independent expected results and observable completion. Isolate state and release resources after every test.
+5. **Run red–green–refactor.** For each behaviour change, write or adapt one test and observe failure for the intended missing behaviour before implementation. Setup, import and syntax failures are not red. Implement only enough to satisfy the promise, run green, then refactor while green. Complete the cycle before the next promise. A shared rule may satisfy further cases immediately. Retain their useful protection without breaking correct code to manufacture red. Test-only repairs and characterisation work require no artificial red.
+6. **Challenge and verify.** Name the promise each retained test protects and an internal refactor it tolerates. Remove redundant or implementation-coupled tests only after preserving useful protection. Never weaken an expectation to accommodate incorrect behaviour. Run affected tests after the final edits. The caller owns broader checks and independent review.
 
-Use the narrowest seam that is:
+## Finish
 
-- **Observable:** exposes a supported result, state, error, effect, persistence, navigation, or user-perceivable outcome.
-- **Stable:** hides algorithms, collaborator graphs, storage layouts, rendering wrappers, generated selectors, and other replaceable decisions.
-- **Predictive:** exercises the behaviour and technology whose production failure matters.
+Return concise evidence of the tested entries, protected promises, independent expectations, observed red and green where applicable, and affected test results. Report an actual execution blocker precisely. Without a framework, return no testing message. During read-only cleanup or review, apply these rules to findings without editing or starting an implementation cycle.
 
-Add a broader companion test only when the narrower seam cannot retain a material integration risk. Test a pure rule through its public function, a database guarantee against the real engine when its semantics matter, and an end-user interaction through the rendered application when wiring or accessibility is part of the promise.
-
-Prefer supported operations and observable outcomes over private methods, helper delegation, ORM calls, CSS classes, wrapper tags, DOM depth, stack shape, or broad incidental snapshots. For a defect, reproduce the wrong result and assert a requirement-derived correction rather than treating the existing failure as the expectation.
-
-When a slow, unavailable, destructive, non-deterministic, externally mutating, or otherwise uncontrollable boundary needs substitution or observation, load [Test Doubles](references/TEST-DOUBLES.md). Keep internal collaborators real and do not introduce a production abstraction solely to enable mocking.
-
-### 3. Build an independent oracle
-
-Prefer, in order:
-
-1. a confirmed requirement, accepted worked example, published protocol, or domain decision;
-2. a law, invariant, or contract independent of the production algorithm;
-3. a trusted external reference or separately implemented model; or
-4. accepted prior behaviour when preservation is the requirement.
-
-Encode the expectation as an independently reasoned literal or predicate. Do not call the production helper, copy its algorithm, approve newly captured output, or assert only that execution completed unless completion is the entire promise. When no credible oracle exists, surface the missing behavioural decision in the caller's workflow.
-
-When examples cannot economically cover a large input or state space, or a direct expected output is unavailable but an independent relation, model, or comparator exists, load [Generative Testing](references/GENERATIVE-TESTING.md). Use only the technique whose trigger and oracle hold.
-
-### 4. Make the test deterministic and complete
-
-Arrange local explicit state, perform one meaningful action, assert the complete promised outcome, then release acquired resources. Add a negative or unchanged-state assertion only when the requirement makes it material and the action has a real causal path to the observed value. One behaviour may need several cohesive assertions; split multiple independent actions or rules.
-
-Control time and randomness through a deterministic source at the system boundary. Use fixed instants and seeds and preserve a minimised failing counterexample. Give each test isolated data and restore process state, files, transactions, services, timers, and environment values it changes. Avoid sleeps, execution-order dependencies, live external services, and shared mutable fixtures.
-
-### 5. Challenge and rationalise
-
-Apply both counterfactuals before retaining a test:
-
-- If promised behaviour broke, would this test fail?
-- If only hidden structure changed, would this test remain unchanged and pass?
-
-Map every affected test to unique protection after refactoring. Keep a focused example when it specifies a distinct rule or gives a clearer failure. Otherwise remove duplicates or consolidate cases only when the resulting oracle and failure diagnosis remain clear. Fewer tests are better only when no unique defect detection is lost.
+**Done only when** requested promises have meaningful protection through supported entries, newly implemented behaviour had an intended red before green, retained tests tolerate internal refactoring, and affected tests pass. Stop within the requested behaviour or testing scope.

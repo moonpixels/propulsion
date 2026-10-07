@@ -1,5 +1,3 @@
 interface:
     display_name: 'Maintain Decision Records'
-    short_description: 'Maintain rare architecture decisions'
-policy:
-    allow_implicit_invocation: false
+    short_description: 'Preserve exceptional rationale and ADR history'

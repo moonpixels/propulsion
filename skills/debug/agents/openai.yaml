@@ -1,5 +1,3 @@
 interface:
-    display_name: 'Debug'
-    short_description: 'Find causal defects and verify local repairs'
-policy:
-    allow_implicit_invocation: false
+    display_name: 'Systematic Debugging'
+    short_description: 'Investigate root causes and verify minimal repairs'

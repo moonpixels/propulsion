@@ -1,33 +1,30 @@
 ---
 name: maintain-agents
-description: Maintains concise root AGENTS.md instructions. Use when creating the file or adding, refining, or assessing repository-wide agent guidance.
-metadata:
-    type: utility
-disable-model-invocation: true
+description: Create or update a project's root AGENTS.md when the user or a caller requests project instructions.
 ---
 
 # Maintain AGENTS.md
 
-Uses **Progressive Disclosure** to keep the repository's always-loaded agent guidance relevant to every request.
+Keep root `AGENTS.md` lean through **progressive disclosure**. Write short instructional sentences, one concept per bullet.
 
-## Process
+## Inputs
 
-### 1. Establish the file
+Take the requested instruction change from the request or caller handoff. Locate the project root. Treat explicit user or caller instructions as authority. Ask only about material ambiguity.
 
-Locate the repository root and read its `AGENTS.md` when present. Create it when absent. Ensure this line appears exactly once at the top, replacing or moving equivalent wording:
+## Method
 
-```markdown
-- When a user correction establishes a reusable repository-wide rule, ask whether to invoke `$maintain-agents` to add it.
-```
+1. Read the existing file. For setup, create a missing file with only this default line. Keep it first and present exactly once, replacing equivalent wording:
 
-### 2. Assess the guidance
+    ```markdown
+    - When a user correction establishes a durable project-wide instruction needed in every session, ask whether to invoke `$maintain-agents` to add it.
+    ```
 
-Recommend an instruction when it is user-confirmed, cannot be inferred reliably from repository evidence, governs the repository as a whole, and materially changes agent behaviour. Treat a composing caller's confirmed instruction as user-confirmed. When an instruction fails a gate, explain the concern and ask for the user's final decision; follow that decision.
+2. Apply the requested change with direct instructions. Preserve necessary conditions and exact commands. Update equivalent wording rather than adding duplicates. Preserve unrelated guidance during a targeted edit.
+3. For a whole-file tidy, remove repetition and obsolete material while preserving intended behaviour. Ask before a substantive deletion whose intent is uncertain.
+4. Follow explicit requests to include task-specific content. Apply the default line's strict reuse test only to proactive suggestions.
 
-### 3. Write the instruction
+## Finish
 
-Apply only the requested addition, refinement, or assessment. Use the shortest direct imperative sentence that preserves the required behaviour and conditions. State each policy once; update equivalent wording instead of adding a semantic duplicate. Leave unrelated instructions unchanged.
+Return the change or supported no-op and any unresolved ambiguity. Edit only root `AGENTS.md`.
 
-### 4. Verify the result
-
-Re-read `AGENTS.md`. Confirm the canonical first line, requested outcome, minimal wording, and absence of semantic duplication. Return the change, no-op, or requested advice with any concerns.
+**Done only when** rereading confirms the requested effect, short instructions, preserved meaning, no semantic duplicates, and the canonical first line exactly once.

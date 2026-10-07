@@ -1,19 +1,25 @@
 ---
 name: pull-request
-description: Publishes the current branch as one concise verified pull request. Use when the branch is ready for external review.
-metadata:
-    type: utility
-disable-model-invocation: true
+description: Publish a branch with a Conventional Commit title and succinct description when asked to open or update its pull request.
 ---
 
-# Pull Request
+# Pull request
 
-Publishes the complete branch for review without advancing it further.
+Publish the complete branch as **one matching open pull request** with a relevant title and description.
 
-## Process
+## Inputs
 
-Assign the entire process below to one fresh agent with the user's request and repository path. Have it invoke `$commit` when eligible uncommitted work belongs to the branch, compare the whole branch with its base, then use the repository's native tools to push without rewriting history before creating or updating one pull request.
+Take the branch to publish from the request or current Git state. Resolve the host, target repository, named head branch, and base before publication. Use an existing matching PR's base and readiness unless the request changes them. Ask only when inspection leaves a material ambiguity.
 
-Use one **Conventional Commit** title for the complete outcome. Write the first body paragraph as three short sentences covering what, why, and how. Add a short testing paragraph only when existing tests provide material behavioural evidence; describe the behaviour covered and any material gap, not the suite, coverage, metrics, or publication-time execution, and do not run tests.
+## Method
 
-Have the fresh agent read back the title, URL, head, base, state, and published revision. Return the title and URL, adding only a material blocker or excluded work when necessary, and retain only that result. Stop without reviewing, merging, releasing, or deploying.
+1. Read [$commit](../commit/SKILL.md) for the title conventions. Invoke it whenever uncommitted changes exist. Continue only after it completes.
+2. Inspect the complete branch diff against its base, including earlier commits. Invoke [$write-prose](../write-prose/SKILL.md) for a Conventional Commit title summarising the full change and a succinct description covering **what changed, why, and the resulting behaviour**. Keep required PR template fields and material evidence or limitations. Reuse valid checks and distinguish local evidence from remote CI status.
+3. Push the intended branch without rewriting remote history. Reuse a matching open PR and check its title and description against the full diff and these requirements. Update either when stale or noncompliant. Otherwise create one PR, ready by default. Preserve an existing PR's readiness unless directed to change it. After an uncertain mutation result, read host state before retrying to avoid duplicates.
+4. Read back the PR's URL, title, body, head, base, readiness, and published revision. Verify that the revision matches the intended local head and that the metadata describes the complete change.
+
+## Finish
+
+Return the PR title and URL with any blocker or material validation limitation.
+
+**Done only when** all uncommitted work is recorded and the matching open PR contains the intended revision, base, readiness, title, and description. Report failures with remaining work preserved. Stop before review, merge, release, deployment, or ongoing CI monitoring.

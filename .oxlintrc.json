@@ -4,7 +4,7 @@
         "correctness": "error",
         "suspicious": "error"
     },
-    "ignorePatterns": ["node_modules/**", ".opencode/node_modules/**"],
+    "ignorePatterns": ["**/node_modules/**"],
     "options": {
         "denyWarnings": true,
         "reportUnusedDisableDirectives": "error",

@@ -1,5 +1,3 @@
 interface:
     display_name: 'Write Skill'
-    short_description: 'Author skills through controlled evaluation'
-policy:
-    allow_implicit_invocation: false
+    short_description: 'Write and validate concise agent skills'

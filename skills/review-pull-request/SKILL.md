@@ -1,17 +1,23 @@
 ---
 name: review-pull-request
-description: Reviews a supplied pull request through independent specification and engineering-standards assessment. Use when a pull request needs a read-only independent report.
-metadata:
-    type: router
-disable-model-invocation: true
+description: Review a pull request through code-review when the user supplies a PR identifier and requests a review.
 ---
 
-# Review Pull Request
+# Review a pull request
 
-Routes one fixed pull request through `$code-review` and returns its independent findings unchanged.
+Return `$code-review`'s result for the supplied pull request. Keep the workflow **read-only**.
 
-## Process
+## Inputs
 
-Resolve the supplied pull-request identifier against the current repository unless another repository is named. Use native host metadata to fix its repository, number or URL, and exact base and head revisions. Return the exact blocker when the pull request is ambiguous or inaccessible.
+Take a PR URL or number from the request. Use the current repository for a bare number unless the request names another repository.
 
-Invoke `$code-review` with that fixed pull-request candidate and a read-only boundary. Return its result unchanged.
+## Method
+
+1. Resolve host metadata to a unique repository and exact base and head revisions. Make the PR's merge-base-to-head diff and source available for review.
+2. Load and invoke [$code-review](../code-review/SKILL.md) for that PR diff, passing any supplied behavioural authority.
+
+## Finish
+
+Return `$code-review`'s result unchanged.
+
+**Done only when** the PR is resolved and `$code-review` has completed. If resolution or review is blocked, return the exact blocker.

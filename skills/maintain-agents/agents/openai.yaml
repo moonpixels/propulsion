@@ -1,5 +1,3 @@
 interface:
     display_name: 'Maintain AGENTS.md'
-    short_description: 'Write concise repository-wide agent guidance'
-policy:
-    allow_implicit_invocation: false
+    short_description: 'Create and maintain a lean project AGENTS.md'

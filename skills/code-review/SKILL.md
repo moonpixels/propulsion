@@ -1,79 +1,26 @@
 ---
 name: code-review
-description: Reviews a fixed code change through isolated specification and engineering-standards agents. Use when a fixed candidate needs independent diagnostic review.
-metadata:
-    type: utility
-disable-model-invocation: true
+description: Review code independently when a file, module, branch diff or codebase needs assessment against behavioural intent and engineering standards.
 ---
 
-# Code Review
+# Code review
 
-Independently diagnoses one fixed code change against intended behaviour and engineering standards, returning falsifiable suggestions for its caller to adjudicate.
+Save one severity-ranked report from **independent Spec and Standards assessments**. Preserve the code and every supported finding. The caller owns adjudication and action.
 
-## Process
+## Inputs
 
-### 1. Fix the candidate and authorities
+Take the review scope from the request. Accept a file, module, diff or whole codebase. Resolve ambiguous scope before dispatch. An empty diff has no change to review. Existing code needs no diff.
 
-Use the caller's pinned candidate when supplied; otherwise resolve one exact non-empty diff, revision range, branch comparison, pull-request revision, repair, or local candidate. Capture its patch, changed and in-scope untracked paths, complete changed files, relevant source and tests, repository state, and exact revision identifiers where available. Ask when the target is materially ambiguous. Return the exact blocker when it is empty or cannot be fixed.
+## Method
 
-Resolve intended behaviour from an implementation-independent authority such as a specification, ticket, acceptance criteria, confirmed request, contract, or another project source. When none is reasonably available, omit Spec and continue Standards without inferring intent from code, commits, or implementation rationale.
+1. **Fix the candidate.** Inventory the in-scope source, tests and configuration. Record resolved revisions, comparison semantics and working-tree contents, including staged, unstaged and in-scope untracked files. Keep a path and content fingerprint inventory to detect movement. Include surrounding contracts and consumers needed to understand the scope.
+2. **Separate the briefs.** Give both reviewers actual source paths, candidate identity, scope, applicable repository instructions and [review instructions](references/reviewer.md). Give Spec the confirmed request, ticket, specification, acceptance criteria and published behavioural contracts, with [Spec instructions](references/spec.md). Give Standards repository conventions, architecture decisions and relevant check or measurement evidence, with [Standards instructions](references/standards.md). **Exclude the ticket, specification and request from Standards**, including their contents in summaries or check evidence. Exclude conversation history, implementation rationale, proposed findings and prior conclusions from both briefs.
+3. **Dispatch fresh.** Spawn separate read-only agents with no inherited conversation history. Run both in parallel when behavioural authority exists. Otherwise skip Spec and record why. Each reviewer follows its assigned instructions without further delegation. Self-review cannot replace either assessment.
+4. **Collect and consolidate.** Require complete scope accounting and evidenced findings. Return missing coverage or fields to the same reviewer. Read [the report contract](assets/review-report.md), then combine only the same defect and corrective outcome. Preserve supported disagreements and lone-reviewer findings. Do not adjudicate findings using the implementation conversation or replace independent judgement with your preferred verdict.
+5. **Verify and save.** Recheck revisions, comparison, paths and content fingerprints, including inspected context files. Mark affected assessments stale if the candidate moved and identify the reviewed and current state. Save the consolidated report to a unique Markdown file in the OS temporary directory. Read it back and verify identity, assessment status, coverage, findings and deduplication.
 
-Resolve applicable repository instructions, conventions, architecture decisions, configured checks, affected contracts and consumers, and supplied quality evidence. The review basis is explicit and sufficient to understand every changed line in context.
+## Finish
 
-### 2. Prepare isolated review packets
+Return **only the absolute report path**. If no report can be saved, return the exact blocker. Leave repair, finding dispositions, approval and publication to the caller.
 
-Give both applicable packets the fixed candidate, complete changed files and necessary surrounding source, their own authorities and criteria, the consequence ranking and finding format below, and a read-only boundary.
-
-Direct the Spec reviewer to account for every applicable requirement in code and retained tests, account for every introduced behaviour against authority, and follow affected contracts, states, data shapes, errors, effects, and consumers far enough to find missing, partial, conflicting, excessive, or regressed behaviour. Trace distinct success, failure, retry, and concurrent paths when the authority distinguishes them. When an external effect precedes durable state or acknowledgement, trace failure after the effect and before that record or response, including what a retry repeats. Report separate suggestions when a different triggering state, violated requirement, consequence, or narrow corrective outcome survives review, even if the evidence overlaps another suggestion.
-
-Direct the Standards reviewer to understand every changed line in its necessary context and assess:
-
-- correctness and regression risk;
-- the smallest coherent scope and absence of speculative or superseded work;
-- repository, language, and framework conventions;
-- changed-test validity, independent oracles, behavioural durability, and meaningful failure detection;
-- modular ownership, interface depth, dependencies, and change locality;
-- repository-required and changed-risk harness selection, measurement-path integrity, and honest evidence limits; and
-- recognised maintainability shapes and specialist risks exposed by the change.
-
-Require the Standards reviewer to load and apply `$modular-design` and `$test-design`. When a concrete maintainability shape needs recognised vocabulary, load [Code Smells](references/CODE-SMELLS.md); use it to investigate a mechanism and consequence, never as finding authority or a removal checklist.
-
-Require the Standards reviewer to invoke `$measure-code-complexity` against the fixed candidate and comparison base with read-only authority. Treat its current output as diagnostic evidence: inspect each trigger in source and test context, and retain a review suggestion only when a concrete maintainability consequence survives falsification. Report unavailable or incomplete measurement in the review limitations.
-
-### 3. Run independent reviews
-
-Give each applicable packet to a separate fresh agent and run them in parallel where possible. Do not substitute coordinator self-review. If fresh-agent execution is unavailable, mark the affected axis not performed and state the exact limitation.
-
-Each reviewer may run a safe, focused, non-mutating command only to confirm or falsify a concrete concern. It does not repeat the implementation's whole quality portfolio, edit code or tests, update snapshots or baselines, install dependencies, modify durable data, or repair a finding.
-
-Before retaining a suggestion, try to disprove it through contradicting authority, existing handling, repository-sanctioned exceptions, surrounding code, a focused counterexample, and the strongest benign interpretation. Omit unsupported generic advice, tooling-enforced trivia, speculative best practice, and a pre-existing issue unless the candidate introduces, worsens, or makes it newly consequential.
-
-Rank each surviving suggestion by consequence:
-
-- **High:** a credible path to materially wrong required behaviour, including a duplicated, lost, or misdirected external effect; security or privacy compromise; data loss or corruption; major production or reliability failure; or a structural, test, or evidence defect that makes the change untrustworthy.
-- **Medium:** a concrete defect, regression risk, or significant maintainability, modularity, test-quality, or harness-integrity weakness with a bounded material consequence.
-- **Low:** a local evidenced issue whose narrow correction has a concrete benefit.
-
-Priority orders attention only; it does not direct remediation.
-
-### 4. Preserve the results and candidate
-
-Validate only that each result uses the required fields. Return an incomplete result to that same reviewer for structural completion from its original packet. Do not substantively re-review, merge, deduplicate, suppress, or cross-axis rerank the independent results.
-
-Reinspect the fixed revisions, diff, paths, and in-scope untracked content. When the candidate drifted, preserve each affected frozen result, prefix it with `Status: stale`, state the changed paths and basis mismatch, and stop without retargeting it.
-
-## Handoff
-
-State the exact frozen scope, behavioural authority or reason Spec was omitted, Standards authorities, probes and limitations, unperformed axes, and scope drift. Return `## Standards` and `## Spec` separately; for an applicable current clean axis use `No findings.` and for an omitted, unperformed, or stale axis state that status explicitly.
-
-Format each suggestion as:
-
-```markdown
-### [high|medium|low] Concise finding
-
-- Evidence: exact code location, applicable authority or criterion, and observed fact
-- Consequence: concrete behavioural or code-health impact
-- Suggested direction: narrow outcome that addresses the concern without prescribing an unverified patch
-```
-
-End with axis-specific counts and review scope. Return the reviewers' substance and ordering unchanged. Do not repair the candidate, adjudicate suggestions, issue a verification, completion, or approval verdict, publish comments, or alter pull-request state. The caller owns validation, adjudication, remediation, re-review, verification, and publication.
+**Done only when** applicable fresh assessments cover the fixed scope, the verified report preserves every supported finding without duplicates, and the candidate remains current. An incomplete or stale assessment must identify its unreviewed scope or drift and cannot claim `No findings.`.

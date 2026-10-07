@@ -1,5 +1,3 @@
 interface:
     display_name: 'Elicit'
     short_description: 'Elicit material information and decisions'
-policy:
-    allow_implicit_invocation: true

@@ -1,29 +1,28 @@
-# {TKT-001} — {Ticket title}
+# {Ticket ID}: {Outcome title}
 
-- **Status:** {Todo or destination-native status}
-- **Complexity:** {1, 2, 3, 5, or 8}
-- **Blocked by:** {Ticket references or None}
-- **Blocks:** {Ticket references or None}
-- **Authority:** {Durable work-definition link and identifiers, or concise embedded authority context}
+- **Status:** {Todo or destination-native initial status}
+- **Source:** {Precise specification links and IDs, or embedded confirmed context below}
+- **Blocked by:** {Ticket links and required predecessor outcomes, or None}
 
-## Outcome
+## Outcome and scope
 
-{One independently observable vertical result or fulfilled contract.}
+{Why this slice matters, what becomes observable, supported cases and explicit exclusions. Include the required starting state.}
 
-## Context
+## Requirements and context
 
-{Only the bounded actors, current state, settled solution constraints, non-goals, and source details a fresh implementation session cannot infer safely.}
+{Applicable behaviour, data, shared contracts, constraints and safeguards. Link accessible authorities precisely. Embed necessary confirmed intent and consequential design when no durable source exists.}
 
-## Functional requirements
+## Implementation guidance
 
-- {Approved behaviour or rule owned by this ticket.}
+{Concrete route through the layers this outcome needs, useful inspected entry points, established patterns, data or interface changes and required migration or integration steps. Distinguish fixed decisions from adaptable suggestions and future structures from existing facts.}
 
-## Non-functional requirements
+## Verification
 
-<!-- Include only applicable feature-specific quality, technical, regulatory, compatibility, migration, or operational constraints. Omit this section when none apply beyond project guidance. -->
-
-- {Constraint in its operating context with an observable response or measure where established.}
+{Observable evidence for this slice, relevant test or direct-verification approach, inspected commands and required project checks. State what predecessor capability the verification relies on.}
 
 ## Acceptance criteria
 
-- [ ] {Observable pass/fail condition at a user, assistive-technology, contract, event, migration, persistence, provider, or operating boundary.}
+- [ ] {Observable pass/fail result and applicable requirement ID}
+- [ ] {Material boundary, denial, failure or recovery result}
+
+<!-- Keep acceptance last. Replace prompts and remove this comment. Include only applicable criteria and initialise every new box unchecked. -->

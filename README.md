@@ -2,184 +2,128 @@
 
 # Propulsion
 
-Propulsion is a compact, composable set of Agent Skills for practical software delivery. It supports the realistic lifecycle around coding—from establishing a product and defining features to creating tickets, implementation, and debugging.
+Propulsion is a set of composable Agent Skills for software delivery, from product definition and planning to implementation, review and maintenance.
 
-Each skill runs one bounded working session and stops with an independently useful outcome. You can enter wherever the necessary inputs already exist and leave when that outcome is complete.
+Each skill has a narrow scope and a clear outcome. Lifecycle entry points bring supporting skills together, so you can ask for an outcome without managing every step yourself.
 
-Substantial work narrows breadth-first over several sessions: product intent becomes a decision-complete feature specification, then implementation-ready tickets, and finally one implemented body of work per ticket. Small, understood work can begin directly with `$implement`.
+Planning works breadth-first. Establish the product's scope, explore a selected feature, then break it into small executable tickets. Start wherever you have enough context. A small, understood change can go straight to `$implement`.
 
 ## Installation
 
-### Remote
+### Skills CLI
 
-Install Propulsion from GitHub with the skills installer:
-
-```sh
-bunx skills@latest add moonpixels/propulsion
-```
-
-Choose the skills and coding agents you want when prompted.
-
-### Local
-
-When developing Propulsion from a local clone, link each skill you want to use into the shared Agent Skills directory:
+Install the full set with the [Skills CLI](https://github.com/vercel-labs/skills), including the supporting skills used by lifecycle entry points:
 
 ```sh
-mkdir -p ~/.agents/skills
-ln -s /absolute/path/to/propulsion/skills/elicit ~/.agents/skills/elicit
+bunx skills@latest add moonpixels/propulsion --skill '*'
 ```
 
-Repeat the link for each selected skill. Codex and OpenCode both discover skills from `~/.agents/skills`; edits in the clone are available through the links without reinstalling or publishing a new version.
+Choose your coding agents when prompted. Add `--global` to make the skills available across projects.
 
-## Lifecycle skills
+### Local symlinks
 
-The lifecycle areas below are independent entry points, not mandatory phase gates. Invoke the skill for the outcome you need, later stages do not start automatically.
+From the root of a local Propulsion clone, link the skills into the shared Agent Skills directory:
 
-### Establish
+```sh
+mkdir -p "$HOME/.agents/skills"
+for skill_path in "$PWD"/skills/*; do
+    ln -s "$skill_path" "$HOME/.agents/skills/"
+done
+```
 
-#### `$define-product`
+Use this with clients that discover `~/.agents/skills`. Edits in the clone are available through the links without reinstalling.
 
-Enter here to establish or deliberately revise the product and system requirements foundation:
+## Lifecycle entry points
+
+Choose the skill for the outcome you need. Each invocation finishes its own task. You decide when to move to the next one.
+
+| Skill                                                         | Start here to…                                                                                                                                       |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [$define-product](skills/define-product/SKILL.md)             | Explore a new app idea or revisit an existing product. Establish its goals, journeys, shared requirements and feature index in `PRODUCT.md`.         |
+| [$specify-feature](skills/specify-feature/SKILL.md)           | Define one feature's behaviour, acceptance examples and consequential technical choices. Produce a specification ready for ticket planning.          |
+| [$create-tickets](skills/create-tickets/SKILL.md)             | Break requested work into small vertical slices. Create executable tickets with acceptance criteria and dependencies.                                |
+| [$implement](skills/implement/SKILL.md)                       | Deliver a ticket or another understood change. Produce a minimal local implementation with applicable checks, simplification and independent review. |
+| [$commit](skills/commit/SKILL.md)                             | Record all uncommitted branch changes in atomic Conventional Commits.                                                                                |
+| [$pull-request](skills/pull-request/SKILL.md)                 | Publish the branch for review. Commit any remaining changes, push the branch, and create or update its pull request.                                 |
+| [$review-pull-request](skills/review-pull-request/SKILL.md)   | Independently assess an existing PR against engineering standards and available requirements. Return findings for you to act on.                     |
+| [$debug](skills/debug/SKILL.md)                               | Investigate a failure and establish its cause. Ask for diagnosis alone or a repair with implementation and verification.                             |
+| [$upgrade-dependencies](skills/upgrade-dependencies/SKILL.md) | Update dependencies and build or CI tooling through checked migrations. Include language or runtime upgrades when requested.                         |
+
+## Example workflow
+
+Imagine building **Shelf**, a personal reading list app. The following prompts follow the same idea from planning to maintenance. Use each in a separate session when you are ready, replacing the illustrative document, ticket and PR references with your own.
+
+Start with the whole app, then select its first feature:
 
 ```text
-$define-product
+$define-product Shelf, an app for saving books I want to read and tracking my progress
 ```
-
-The session produces a user-confirmed `PRODUCT.md` and the corresponding project language in `GLOSSARY.md`. It stops before defining individual features, selecting feature-specific architecture, or creating tickets.
-
-### Define
-
-#### `$specify-feature`
-
-Enter here when a high-level feature request needs enough behavioural and technical definition for planning:
 
 ```text
-$specify-feature
+$specify-feature the reading list in @PRODUCT.md, including adding books and marking them as read
 ```
 
-The session produces one approved, decision-complete feature specification containing visibly distinct feature intent and selected solution sections. No earlier lifecycle artefact is mandatory, and the skill stops before ticket creation or implementation.
-
-### Plan
-
-#### `$create-tickets`
-
-Enter here when an approved document or confirmed conversation is complete enough to decompose without inventing behaviour or material solution decisions:
+Turn the feature into tickets, then implement them in dependency order. For example, start with the ticket for adding a book:
 
 ```text
-$create-tickets
+$create-tickets for @docs/features/reading-list/specification.md
 ```
-
-The session creates and verifies small, vertically sliced, dependency-aware tickets with Fibonacci complexity in the destination named by the project's root `AGENTS.md`. It stops before scheduling or implementing them.
-
-Local Markdown destinations use one file per ticket under `docs/features/<work-slug>/tickets/`. External destinations use their native items, estimates, relationships, and statuses. If `AGENTS.md` does not name the destination, the skill asks and records it.
-
-### Refine
-
-#### `$review-architecture`
-
-Enter here to assess an explicitly bounded part of the current architecture:
 
 ```text
-$review-architecture
+$implement @docs/features/reading-list/tickets/TKT-007-add-book.md
 ```
 
-The session produces an evidence-backed report containing a small number of prioritised, high-value improvements and their trade-offs. It does not refactor the code or create speculative tickets.
-
-### Deliver
-
-#### `$implement`
-
-Enter here with one ticket or another small, confirmed body of work:
-
-```text
-$implement
-```
-
-The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
-
-`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` teaching for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
-
-#### `$commit`
-
-Enter here when eligible reviewed work is ready to be recorded:
+Record completed work when it forms a coherent unit. Publish the branch when it is ready for review:
 
 ```text
 $commit
 ```
 
-The session creates and verifies coherent Conventional Commits while preserving unrelated staged, unstaged, and untracked work. It does not push or open a pull request.
-
-#### `$pull-request`
-
-Enter here when the current branch is ready to publish for human review:
-
 ```text
-$pull-request
+$pull-request for Shelf's reading list feature
 ```
 
-The session commits eligible remaining work when needed, pushes the branch, and creates or updates one pull request describing the complete branch. It does not merge, release, or deploy the work.
-
-A substantial feature commonly moves through separate sessions:
+Review the resulting PR:
 
 ```text
-$specify-feature
-    → later $create-tickets
-    → $implement each selected ticket
-    → $commit whenever a coherent unit is ready
-    → $pull-request when the branch is ready
+$review-pull-request #12 against @docs/features/reading-list/specification.md
 ```
 
-A small, understood change may start later:
+As Shelf grows, use the maintenance entry points for specific needs:
 
 ```text
-$implement → $commit → $pull-request
+$debug and fix Shelf adding the same book twice when I submit the form once
 ```
 
-### Upgrade
-
-#### `$upgrade-dependencies`
-
-Enter here to upgrade package dependencies or the project's full toolchain:
-
 ```text
-$upgrade-dependencies
-```
-
-The session clarifies whether majors and toolchain changes are included, discovers outdated dependencies, checks compatibility and follows official upgrade guidance. It uses official CLI commands first, applies required migrations and verifies the local changes. The handoff reports version changes, validation, blockers and optional code improvements for the user to choose. It stops before publication, deployment or machine-wide changes unless separately authorised.
-
-### Debug
-
-#### `$debug`
-
-Enter here with observed and expected behaviour or another usable failure signal:
-
-```text
-$debug
-```
-
-The session establishes an evidence-backed root cause and stops there when diagnosis is the requested outcome. When repair is authorised, it produces a minimal, reviewed local change with regression evidence and stops before commit or publication.
-
-```text
-$debug → $commit → $pull-request
+$upgrade-dependencies in Shelf to the newest compatible stable versions
 ```
 
 ## Supporting skills
 
-These utilities and routers are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
+Lifecycle entry points invoke these focused capabilities when needed. You can also call them directly.
 
-| Skill                  | Type    | Invoke it to…                                                                                                                 |
-| ---------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$review-pull-request` | Router  | Independently assess someone else's pinned pull request without changing their branch or publishing a review unless requested |
-| `$elicit`              | Utility | Resolve material user-held information and decisions one question at a time                                                   |
-| `$elicit-with-context` | Router  | Resolve software-project questions through `$elicit`, always maintaining shared language and preserving qualifying decisions  |
-| `$research`            | Utility | Investigate a material subject with high-trust evidence and persist a trusted cited report                                    |
-| `$maintain-agents`     | Utility | Keep confirmed repository-wide agent guidance lean and current                                                                |
+| Skill                                                                         | Purpose                                                                                        |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [$elicit](skills/elicit/SKILL.md)                                             | Resolve material questions and decisions through a confirmed dialogue.                         |
+| [$elicit-with-context](skills/elicit-with-context/SKILL.md)                   | Clarify a software task while maintaining project terminology and qualifying decision records. |
+| [$research](skills/research/SKILL.md)                                         | Produce a durable cited research report.                                                       |
+| [$modular-design](skills/modular-design/SKILL.md)                             | Design simple interfaces that hide domain knowledge and complexity.                            |
+| [$test-design](skills/test-design/SKILL.md)                                   | Design minimal tests for observable behaviour.                                                 |
+| [$measure-code-complexity](skills/measure-code-complexity/SKILL.md)           | Measure code complexity and interpret signals that warrant attention.                          |
+| [$code-cleanup](skills/code-cleanup/SKILL.md)                                 | Independently identify deletions and simplifications that preserve behaviour.                  |
+| [$code-review](skills/code-review/SKILL.md)                                   | Independently assess code against requirements and engineering standards.                      |
+| [$maintain-agents](skills/maintain-agents/SKILL.md)                           | Keep project instructions in `AGENTS.md` concise and current.                                  |
+| [$maintain-ubiquitous-language](skills/maintain-ubiquitous-language/SKILL.md) | Sharpen project terminology and maintain `GLOSSARY.md`.                                        |
+| [$maintain-decision-records](skills/maintain-decision-records/SKILL.md)       | Preserve significant technical rationale and decision history.                                 |
+| [$write-prose](skills/write-prose/SKILL.md)                                   | Write clear, succinct UK English.                                                              |
+| [$write-skill](skills/write-skill/SKILL.md)                                   | Create or refactor concise skills and verify their behaviour.                                  |
 
-Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
+## Sources and acknowledgements
 
-## Acknowledgements
-
-Propulsion is heavily inspired by other great skill sets:
+Propulsion draws on these skill collections and resources:
 
 - [obra/superpowers](https://github.com/obra/superpowers)
 - [mattpocock/skills](https://github.com/mattpocock/skills)
+- [PStack](https://github.com/cursor/plugins/tree/main/pstack)
+- [Refactoring Guru](https://refactoring.guru/)
