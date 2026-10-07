@@ -149,10 +149,10 @@ Enter here with observed and expected behaviour or another usable failure signal
 $debug
 ```
 
-The session establishes an evidence-backed root cause and stops there when diagnosis is the requested outcome. When repair is authorised, it produces a minimal, reviewed local change with regression evidence and stops before commit or publication.
+The session applies systematic debugging through root cause investigation, pattern analysis and hypothesis testing, maintaining a Markdown causal record in the OS temporary directory. It establishes a supported mechanism and stops there for diagnosis-only work. When repair is authorised, it invokes `$implement` for the minimal change, checks and independent review, then verifies the original failure against the final candidate. Urgent mitigation is outside this workflow.
 
 ```text
-$debug → $commit → $pull-request
+$debug → $implement when repair is requested → $commit → $pull-request
 ```
 
 ## Supporting skills

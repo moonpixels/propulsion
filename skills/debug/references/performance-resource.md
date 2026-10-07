@@ -1,25 +1,61 @@
 # Performance and resource faults
 
-Use this reference when the defect is latency, throughput, CPU, memory, allocation, I/O, contention, queueing, exhaustion, leakage, query cost, or scale behaviour. The result is a measured causal connection between responsible work and the original user-visible regression.
+Read as soon as the symptom concerns latency, throughput, CPU, memory, I/O, contention, queueing, leakage, exhaustion or cost. Connect the responsible work or wait to the user's measured regression. Examples are illustrative.
 
-## Establish a representative signal
+## Establish comparable measurements
 
-Define the workload, environment, known-good baseline or expected threshold, warm-up, measurement interval, repetitions, and distribution that distinguishes the fault. Control input size and shape, concurrency, cache state, runtime version, machine resources, data volume, and other material conditions. Route a noisy classifier through nondeterministic guidance before trusting it.
+Define the intended threshold or trustworthy baseline, full workload, input scale and shape, environment, warm-up, cache state, concurrency, measurement interval and repetitions. Inspect the harness. Confirm that it counts errors, validates correct output and includes actual completed work in the measured region.
 
-For early systemic triage, inspect utilisation, saturation, and errors for each relevant resource. Then choose the measurement that matches the suspected cost:
+A fast rejection, unconsumed generator, unawaited promise or cache bypass can produce a plausible number for work that never happened. A small fixture can select a different database plan or avoid the production pressure. Preserve these fidelity limits.
 
-| Suspected cost                        | Evidence                                                        |
-| ------------------------------------- | --------------------------------------------------------------- |
-| CPU or call-path work                 | Sampling or instrumenting profile under the controlled workload |
-| Memory or allocation                  | Heap, allocation, retention, or growth measurement              |
-| I/O, network, queue, or lock pressure | Resource counter and targeted trace                             |
-| Database execution                    | Actual plan, cardinality, I/O, locks, and query timing          |
-| Version or configuration regression   | Stable differential benchmark or change bisection               |
+Compare repeated runs under equivalent conditions. Interleave baseline and candidate when drift matters. Report the relevant distribution and variation, not only a mean. A difference within noise is inconclusive. Separate diagnostic profiles from comparable timing runs when profiler overhead matters.
 
-Connect the hotspot, plan, wait, saturation, or growth to the user-visible signal through a controlled workload or intervention. A hotspot is where cost was observed, not automatically why the system is slow.
+## Find the limiter
 
-## Verify like with like
+Use the **USE method**, utilisation, saturation and errors, to triage relevant resources. Then select evidence that answers the active hypothesis.
 
-Record measurement overhead and production cost. Long averages can hide bursts, profiles are samples, and one constrained resource can be traded for another.
+| Suspected cost                      | Useful evidence                                                     |
+| ----------------------------------- | ------------------------------------------------------------------- |
+| CPU work                            | Call-path profile under the representative workload                 |
+| Waiting, queueing or contention     | Off-CPU trace, queue depth, lock or resource counters               |
+| Memory growth                       | Allocation profile and retaining paths across equivalent lifecycles |
+| Database work                       | Actual query plan, cardinalities, I/O, waits and query counts       |
+| Version or configuration regression | Matched benchmark or trustworthy change bisection                   |
 
-After one causal repair, rerun the identical workload and controls. Compare the full relevant distribution and low-level causal metric, then run functional regression evidence. Stop only when both move as predicted under the original representative workload. A faster result obtained by changing behaviour, workload, environment, or measurement does not verify the repair.
+A hotspot identifies where sampled work occurs. It does not automatically explain end-to-end latency. A caller can generate unnecessary work, a load generator can saturate before the server, and a fast CPU path can spend most wall time waiting elsewhere. Connect the proposed mechanism to both a low-level observation and the original user-visible measure.
+
+Before adding caches, concurrency or cheaper machinery, test whether the work is needed, repeated unnecessarily or performed too often. Removing unused work is the first candidate when the supported contract permits it. Preserve output, ordering and required timing.
+
+## Worked example, delete the unused pass
+
+An export is slow for large inputs. Its contract requires one complete ordered CSV. A profile locates repeated serialisation.
+
+```text
+Baseline workload: same records, release build, same cache and concurrency.
+Observed: formatRows(records) runs twice.
+Data flow: first result is discarded, second is written.
+
+Hypothesis: the unused first pass causes the added CPU work and latency.
+Experiment: remove only that pass in a disposable local run.
+Predict: one serialisation, identical CSV, reduced end-to-end latency.
+Falsifier: one serialisation remains slow because another limiter dominates.
+```
+
+Trace callers and effects to establish that the first pass owns no required work. Count serialisations and validate the full CSV, then measure complete unprofiled exports under the original controls. If work falls but latency does not, preserve that result and investigate the remaining limiter. Do not report the regression fixed from a faster helper alone. Pass the causal deletion and verification obligations to `implement` when supported.
+
+## Worked example, retained objects or a leak
+
+Opening and closing a panel repeatedly increases memory. Compare snapshots at the same lifecycle point after the same cycles and collection conditions. Follow growing objects' retaining paths to their owners.
+
+```text
+Observation: detached panel nodes remain after close.
+Retaining path: global event listener -> closure -> panel.
+Comparator: another panel unregisters its listener during teardown.
+Prediction: matching ownership and teardown removes that retaining path.
+```
+
+Growth alone can be caching or delayed collection. Console inspection can itself retain objects, and a snapshot can perturb collection. Test the lifecycle and retaining path, then repeat the original cycles and user-visible resource observation. One smaller snapshot at a different stage does not verify a repair.
+
+## Verify the actual regression
+
+After the causal repair, rerun the same workload and controls. Check both the relevant causal metric and the end-to-end outcome, with functional correctness and errors. Report repetitions, distribution, remaining variation and fidelity gaps. If an environment or capture boundary prevents the original comparison, verification remains incomplete.

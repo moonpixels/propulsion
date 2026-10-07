@@ -1,47 +1,39 @@
 ---
 name: debug
-description: Diagnose a software defect from discriminating evidence and, when requested, make a causal local repair with checks and independent review.
+description: Investigate software defects systematically when reported behaviour, tests, builds, integrations or performance fail their intended contract.
 ---
 
-# Debug
+# Systematic debugging
 
-Explain a defect through discriminating evidence. For an authorised repair, deliver a minimal local change that improves the original signal as predicted.
+Establish a supported causal mechanism before repairing a defect. Use **systematic debugging**, from root cause investigation through pattern analysis and hypothesis testing to implementation with verification. Prefer the smallest causal repair, including deletion.
 
 ## Inputs
 
-Take the defect from the request. Inspect its failure evidence and affected code. Resolve diagnosis-only versus repair scope. Use [$elicit-with-context](../elicit-with-context/SKILL.md) for a material user-held fact or decision that remains after inspection.
+Take the defect and diagnosis or repair intent from the request. Inspect the affected code and failure evidence. Requirements and documented contracts govern intended behaviour. Code and runtime observations establish actual behaviour. Use [$elicit-with-context](../elicit-with-context/SKILL.md) for material user-held gaps that inspection cannot resolve.
 
-Keep production and external systems read-only within the user's authority. Report a required external mutation separately. Protect secrets and unnecessary personal data in commands, captures, and reports.
+Preserve unrelated work and original failure evidence. Keep production and external systems read-only. Protect secrets and unnecessary personal data in probes, captures and reports.
+
+Create a unique Markdown **causal record** in the OS temporary directory for every investigation, or resume the supplied record. Keep its absolute path available. On resumption, read it and referenced evidence, then recheck relevant code and environment for drift before relying on prior conclusions.
 
 ## Method
 
-1. Establish the best available **signal**: focused test, command, trace, captured artefact, benchmark, safe observation, or measured failure rate. Record invocation or provenance, inputs, environment, expected and observed outcomes, and fidelity limits. Run it before implementation changes when safe. Preserve the original unminimised signal. If nothing can distinguish this defect, leave implementation unchanged and report the gap and next smallest experiment.
-2. Model the affected path, contracts, state, boundaries, and relevant changes. Keep a compact record of observations, ranked causal hypotheses, active prediction, experiment, result, implication, and contradictory evidence. Test the smallest safe prediction that separates credible alternatives, controlling material conditions. A recent change, suspicious line, correlation, or passing retry is evidence to investigate, not proof.
-3. Use the matching resource below when the current uncertainty calls for it. Return observations to the causal record before choosing another technique. Continue until the mechanism accounts for the signal and strongest alternatives, or the next experiment is unsafe, unavailable, outside authority, or no longer proportionate. A cause may require several interacting conditions.
-4. Remove owned temporary probes, captures, fixtures, and experimental edits. For diagnosis-only work, report the supported mechanism, trigger, alternatives, contradictions, confidence limits, and unknowns, then stop.
-5. For an authorised repair, apply [$modular-design](../modular-design/SKILL.md) and choose the minimal change directed at the supported cause. Use [$test-design](../test-design/SKILL.md) for testing eligibility and its test-first method. Run the original signal. Retain the repair only when it changes as predicted. Otherwise record the contradiction, revert only that attempt's owned edits, and resume investigation. Preserve pre-existing work.
-6. Freeze the complete repair, behavioural authority, causal account, original signal, regression and quality evidence, changed and untracked contents, and repository state. Invoke [$code-review](../code-review/SKILL.md). Read the returned report file and check its assessment status and coverage. Refresh an incomplete or stale review before treating the repair as independently reviewed. Adjudicate findings against those authorities, correct required findings, reject unsupported or out-of-scope ones with evidence, and obtain material user decisions. After a material change, rerun the original signal and affected checks, re-freeze, and repeat independent review.
+1. **Investigate the root cause.** Read [investigation and patterns](references/investigation-and-patterns.md). Read the actual errors and relevant traces. Establish an exact failure signal through a test, command, capture, safe observation or measured rate. Record its invocation or provenance, inputs, relevant environment, expected and observed results, and fidelity limits. Run it before repair when safe. Preserve the original unminimised scenario. Trace the failing path and bad state backwards to the first broken invariant. Inspect relevant code, dependency, configuration and state changes. If evidence cannot distinguish the reported defect, gather the missing observation before dependent conclusions.
+2. **Analyse the pattern.** Find a credible working example or authoritative reference and understand its complete relevant path, lifecycle and dependencies. Compare inputs, state, configuration, ordering and implementation. Account for material differences without dismissing small ones. Record when no credible comparator exists. A difference or first bad revision identifies a candidate, not its cause.
+3. **Test hypotheses.** Read [hypothesis experiments](references/hypothesis-experiments.md). Keep grounded, ranked alternatives in the causal record. State one active mechanism, supporting evidence, prediction and falsifier before the smallest discriminating observation or intervention. Control material conditions, inspect the result and update the account. Undo owned edits motivated by rejected hypotheses. Revisit the oracle and shared premises when attempts contradict the account or expose new coupling. Persist until the mechanism explains the exact failure and trigger, observations establish the relevant transition, and discriminating evidence favours it over the strongest alternatives, or a concrete evidence, access or authority blocker prevents progress. Prefer controlled runtime confirmation whenever safely available. Decisive captured evidence or direct analysis can suffice. Suggestive evidence remains a hypothesis.
+4. **Implement and verify.** For diagnosis-only work, return the supported account and stop. For an authorised repair, first consider removing unnecessary work or correcting the existing rule or state owner. Check related occurrences of the demonstrated pattern within the authorised capability and report wider discoveries separately. Restore owned experimental edits before handing off. Invoke [$implement](../implement/SKILL.md) with the causal record, intended contract, original signal, minimal repair boundary and verification obligations. It owns testing eligibility, implementation, simplification, checks and independent review. Require verification against the original failure and relevant causal observations before treating the change as working. If they contradict the account, record the result, revert that attempt's owned repair edits and resume investigation. Check the final candidate against the original signal after implementation finishes.
 
-## Conditional resources
+Load specialised guidance as soon as its signal appears. Combine techniques when they answer different unresolved questions.
 
-| Current uncertainty                                           | Read                                                                 |
-| ------------------------------------------------------------- | -------------------------------------------------------------------- |
-| Several plausible causes                                      | [Hypothesis experiments](references/hypothesis-experiments.md)       |
-| Observable boundaries along the failing path                  | [Boundary isolation](references/boundary-isolation.md)               |
-| Reliable ordered good and bad states                          | [Change bisection](references/change-bisection.md)                   |
-| Large reducible input, sequence, state, or change set         | [Delta debugging](references/delta-debugging.md)                     |
-| Bad state observed downstream from its origin                 | [Origin tracking](references/origin-tracking.md)                     |
-| A credible working comparator                                 | [Comparative debugging](references/comparative-debugging.md)         |
-| Existing observations cannot distinguish hypotheses           | [Instrumentation](references/instrumentation-debuggers.md)           |
-| Timing, order, randomness, load, or shared-state dependence   | [Nondeterministic faults](references/nondeterministic-concurrent.md) |
-| Latency, throughput, contention, leakage, exhaustion, or cost | [Performance faults](references/performance-resource.md)             |
+| Signal                                                         | Read                                                                 |
+| -------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Large trigger or regression between reliably classified states | [Reduction and bisection](references/reduction-and-bisection.md)     |
+| Timing, order, randomness, load or shared-state dependence     | [Nondeterministic faults](references/nondeterministic-concurrent.md) |
+| Latency, throughput, retention, exhaustion or resource cost    | [Performance faults](references/performance-resource.md)             |
 
-Use nondeterministic or performance guidance as soon as that signal appears. Combine techniques only when they answer different unresolved questions. Use [$research](../research/SKILL.md) when a material external-knowledge question requires a durable cited report.
+Record the initial signal and intended contract, append each experiment's prediction and actual result, and update the supported account, owned edits, blockers and next step before pausing or handing off. Link evidence by path or provenance and preserve rejected hypotheses. Keep the record concise rather than copying full tool transcripts. Use [$research](../research/SKILL.md) when a material external-knowledge question needs a durable cited investigation.
 
 ## Finish
 
-Return the requested diagnosis or repair, authority and environment boundary, original signal, decisive experiments and contradictions, reverted attempts, supported cause or evidence gap, retained regression protection, checks, review dispositions, limitations, and next discriminating step. Include a prevention observation only when it follows from the cause.
+Remove owned temporary probes and experimental edits while preserving needed evidence. Update the causal record and return its absolute path with the cause and trigger, original signal, decisive experiments and rejected alternatives, repair if requested, verification and implementation results, and remaining limitations. For blocked work, name the missing evidence or access and next discriminating experiment.
 
-A repair is complete when the current candidate has no unresolved supported finding, applicable existing regression checks pass, the original signal changes as predicted, and applicable repository and risk-relevant checks ran or their exact blockers are explicit. Green checks do not establish universal proof. State when diagnosis left implementation unchanged.
-
-Stop after the local result. Commit, tracker changes, publication, deployment, production mutation, and monitoring are separate actions.
+**Done only when** the causal record is current and the requested outcome meets its gate. Diagnosis must explain a supported mechanism and its evidence limits. An authorised repair must change the original failure and relevant causal observations as predicted, and `$implement` must have met its completion gate. Blocked or unverified work remains incomplete. Stop at the local result. Urgent mitigation, unrelated cleanup, commit, publication, deployment and monitoring are outside this contract.
