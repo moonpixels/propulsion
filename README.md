@@ -159,7 +159,7 @@ These skills are independently invokable outside the main lifecycle path and may
 
 | Skill                           | Invoke it to…                                                                                          |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review              |
+| `$review-pull-request`          | Review a supplied PR through `$code-review` and return its result                                      |
 | `$elicit`                       | Resolve material user-held information and decisions one question at a time                            |
 | `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance |
 | `$research`                     | Delegate research to a fresh agent and save an accessible cited report                                 |
