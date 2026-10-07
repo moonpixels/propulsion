@@ -83,11 +83,11 @@ Enter here with one ticket or another small, confirmed body of work:
 $implement
 ```
 
-The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
+The session produces the smallest complete local change with applicable verification, justified simplification and independent review. Small, understood work can begin here without a product definition, feature specification or ticket. Implementation does not commit or publish the change.
 
 `$implement` applies `$modular-design` before building. `$test-design` protects behavioural promises through supported entries used by people or systems, including scheduled jobs and queue consumers. Behavioural additions and fixes use TDD in the existing framework, creating missing harnesses, factories and fixtures. Cosmetic edits, maintenance and behaviour-preserving refactors do not acquire new coverage unless testing work is explicitly requested. Without a testing framework, the skill exits silently.
 
-Small local refactors happen throughout implementation. Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits. Then `$code-cleanup` uses a fresh read-only agent to challenge the whole affected capability, including unchanged related files. The reviewer loads the detailed techniques, writes a prioritised temporary report and returns only its path. The caller reads the report, adjudicates every candidate, resolves preservation gaps and applies accepted transformations.
+Small local refactors happen throughout implementation. Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits. Then `$code-cleanup` uses a fresh read-only agent to challenge the whole affected capability, including unchanged related files. The reviewer loads the detailed techniques, writes a prioritised temporary report and returns only its path. The caller reads the report, adjudicates every candidate, resolves preservation gaps and applies accepted transformations. `$code-review` accepts a file, module, diff or codebase and runs fresh Spec and Standards assessments. Spec receives the behavioural authorities and is skipped when none are available. Standards receives engineering guidance without the ticket, specification or request. The skill saves one severity-ranked temporary Markdown report and returns only its path. The caller reads the report, checks coverage and freshness, and adjudicates findings. Duplicate defects appear once, with combined evidence and axis labels where both assessments apply. Measurements guide inspection without numerical pass/fail gates.
 
 #### `$commit`
 
@@ -157,22 +157,22 @@ $debug → $commit → $pull-request
 
 These skills are independently invokable outside the main lifecycle path and may also be composed by lifecycle skills when their trigger applies.
 
-| Skill                           | Invoke it to…                                                                                            |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review                |
-| `$elicit`                       | Resolve material user-held information and decisions one question at a time                              |
-| `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance   |
-| `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report               |
-| `$code-cleanup`                 | Find deletions and simplifications through fresh review and save a report for the caller to assess       |
-| `$maintain-agents`              | Create and maintain a lean project AGENTS.md                                                             |
-| `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                            |
-| `$maintain-ubiquitous-language` | Sharpen domain language and immediately record resolved meanings in root `GLOSSARY.md`                   |
-| `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority |
-| `$measure-code-complexity`      | Measure current code, collect available native CRAP and interpret attention signals                      |
-| `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                             |
-| `$test-design`                  | Protect behavioural promises through supported human and automated entries                              |
-| `$write-prose`                  | Write clear, succinct UK English for humans and agents while preserving meaning and required behaviour   |
-| `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent      |
+| Skill                           | Invoke it to…                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review              |
+| `$elicit`                       | Resolve material user-held information and decisions one question at a time                            |
+| `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance |
+| `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report             |
+| `$code-cleanup`                 | Find deletions and simplifications through fresh review and save a report for the caller to assess     |
+| `$maintain-agents`              | Create and maintain a lean project AGENTS.md                                                           |
+| `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                          |
+| `$maintain-ubiquitous-language` | Sharpen domain language and immediately record resolved meanings in root `GLOSSARY.md`                 |
+| `$code-review`                  | Save independent findings on code scope against standards and available behavioural authority          |
+| `$measure-code-complexity`      | Measure current code, collect available native CRAP and interpret attention signals                    |
+| `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                           |
+| `$test-design`                  | Protect behavioural promises through supported human and automated entries                             |
+| `$write-prose`                  | Write clear, succinct UK English for humans and agents while preserving meaning and required behaviour |
+| `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent    |
 
 Use `$elicit-with-context` to work through questions or decisions within a software project. For non-software work, use `$elicit`.
 

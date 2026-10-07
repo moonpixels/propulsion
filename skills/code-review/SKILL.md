@@ -1,35 +1,26 @@
 ---
 name: code-review
-description: Review one fixed code change independently against intended behaviour and engineering standards, returning separate diagnostic findings.
+description: Review code independently when a file, module, branch diff or codebase needs assessment against behavioural intent and engineering standards.
 ---
 
 # Code review
 
-Return falsifiable findings for one fixed change through separate Standards and Spec reviews. Keep the candidate read-only and preserve each axis's independent results.
+Save one severity-ranked report from **independent Spec and Standards assessments**. Preserve the code and every supported finding. The caller owns adjudication and action.
 
 ## Inputs
 
-Use the pinned candidate or resolve an exact non-empty diff, revision range, branch comparison, pull-request revision, or local change. Capture the patch, changed and in-scope untracked paths and contents, complete changed files, surrounding source and tests, and repository state. Resolve a materially ambiguous target before review. Report an empty or unavailable candidate as a blocker.
-
-Find intended behaviour in a specification, ticket, acceptance criteria, confirmed request, contract, or other implementation-independent authority. If none is reasonably available, omit Spec and state why. Code, commits, and implementation rationale cannot supply missing intent.
-
-Find repository instructions, conventions, architecture decisions, configured checks, affected contracts and consumers, and current quality evidence.
+Use the repository, exact scope, candidate, comparison base where relevant, available behavioural authorities and check evidence. Accept a file, module, diff or whole codebase. Resolve ambiguous scope before dispatch. An empty diff has no change to review. Existing code needs no diff.
 
 ## Method
 
-1. Build self-contained packets with the fixed candidate, necessary surrounding source, each axis's authorities, [review rules](references/REVIEW-RULES.md), and a read-only boundary. Use [axis criteria](references/AXES.md) for the applicable review. Exclude desired findings and the other axis's conclusions.
-2. Give each applicable axis to a separate fresh agent with no conversation history. Run them in parallel when possible. Each reviewer reads its criteria and review rules, inspects the actual candidate, and returns its own findings. Coordinator self-review does not replace these reviews.
-3. Check only result structure. Return missing fields to the same reviewer for completion from its original packet. Preserve substance and ordering; leave adjudication to the caller.
-4. Recheck revisions, diff, paths, and in-scope untracked content. If the candidate drifted, retain affected reports with `Status: stale`, name changed paths and the basis mismatch, and stop without retargeting.
-
-## Conditional resources
-
-- Reviewers read [review rules](references/REVIEW-RULES.md) for falsification, consequence ranking, safe probes, and report fields.
-- Read [axis criteria](references/AXES.md) when preparing packets; each reviewer reads its own section.
-- The Standards reviewer reads [code smells](references/CODE-SMELLS.md) when a concrete maintainability shape needs recognised vocabulary. A smell is a diagnostic cue, not finding authority.
+1. **Fix the candidate.** Inventory the in-scope source, tests and configuration. Record resolved revisions, comparison semantics and working-tree contents, including staged, unstaged and in-scope untracked files. Keep a path and content fingerprint inventory to detect movement. Include surrounding contracts and consumers needed to understand the scope.
+2. **Separate the briefs.** Give both reviewers actual source paths, candidate identity, scope, applicable repository instructions and [review instructions](references/reviewer.md). Give Spec the confirmed request, ticket, specification, acceptance criteria and published behavioural contracts, with [Spec instructions](references/spec.md). Give Standards repository conventions, architecture decisions and relevant check or measurement evidence, with [Standards instructions](references/standards.md). **Exclude the ticket, specification and request from Standards**, including their contents in summaries or check evidence. Exclude conversation history, implementation rationale, proposed findings and prior conclusions from both briefs.
+3. **Dispatch fresh.** Spawn separate read-only agents with no inherited conversation history. Run both in parallel when behavioural authority exists. Otherwise skip Spec and record why. Each reviewer follows its assigned instructions without further delegation. Self-review cannot replace either assessment.
+4. **Collect and consolidate.** Require complete scope accounting and evidenced findings. Return missing coverage or fields to the same reviewer. Read [the report contract](assets/review-report.md), then combine only the same defect and corrective outcome. Preserve supported disagreements and lone-reviewer findings. Do not adjudicate findings using the implementation conversation or replace independent judgement with your preferred verdict.
+5. **Verify and save.** Recheck revisions, comparison, paths and content fingerprints, including inspected context files. Mark affected assessments stale if the candidate moved and identify the reviewed and current state. Save the consolidated report to a unique Markdown file in the OS temporary directory. Read it back and verify identity, assessment status, coverage, findings and deduplication.
 
 ## Finish
 
-State frozen scope, authorities, probes, evidence limitations, and drift. Return `## Standards` and `## Spec` separately with axis-specific counts and scope. Use `No findings.` for a current clean axis; explicitly identify an omitted, unperformed, or stale axis.
+Return **only the absolute report path**. If no report can be saved, return the exact blocker. Leave repair, finding dispositions, approval and publication to the caller.
 
-Return the reviewers' reports unchanged. Do not merge, deduplicate, suppress, or rerank across axes. Stop before repair, adjudication, approval, verification verdicts, publication, or pull-request changes. The caller owns those actions.
+**Done only when** applicable fresh assessments cover the fixed scope, the verified report preserves every supported finding without duplicates, and the candidate remains current. An incomplete or stale assessment must identify its unreviewed scope or drift and cannot claim `No findings.`.
