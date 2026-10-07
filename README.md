@@ -162,7 +162,7 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$review-pull-request`          | Resolve a pull request to fixed revisions and return an independent read-only code review              |
 | `$elicit`                       | Resolve material user-held information and decisions one question at a time                            |
 | `$elicit-with-context`          | Elicit confirmed project understanding with continuous glossary updates and qualifying ADR maintenance |
-| `$research`                     | Investigate a material subject with high-trust evidence and persist a trusted cited report             |
+| `$research`                     | Delegate research to a fresh agent and save an accessible cited report                                 |
 | `$code-cleanup`                 | Find deletions and simplifications through fresh review and save a report for the caller to assess     |
 | `$maintain-agents`              | Create and maintain a lean project AGENTS.md                                                           |
 | `$maintain-decision-records`    | Preserve qualifying agreed rationale and maintain ADR history                                          |

@@ -1,23 +1,23 @@
 # {Research title}
 
+## Answer
+
+{Answer the question or summarise the key findings. Include decisive qualifications and citations.}
+
 ## Scope
 
-{Describe what the research was for and the subject or information need it covered.}
+{State the question or subject, purpose, boundaries, and research date.}
 
 ## Findings
 
-### {Descriptive theme}
+### {Heading that names the finding}
 
-{Established findings and evidence. Cite each material claim with its numbered source, for example [1], and identify material inference explicitly.}
+{Explain the finding and its implications. Cite material claims with descriptive source links or numbered references. Identify inference. Use comparisons or examples where they help the reader.}
 
-## Conflicts
+## Conflicts and limitations
 
-{Give each material conflict its own paragraph, with citations. Write "None identified." when applicable.}
-
-## Limitations
-
-{Give each material evidence gap, access constraint, unresolved uncertainty, or relevant research limitation its own paragraph. Write "None identified." when applicable.}
+{Include only material disagreement, evidence gaps, access limits, or unanswered questions. Explain the relevant search and what each limit changes. Omit this section when empty.}
 
 ## Sources
 
-1. [{Source title}](https://example.com/source): {author, publisher, or owning organisation}
+1. [{Source title}](https://example.com/source). {Author or responsible organisation. Include relevant dates, versions, or file locations.}

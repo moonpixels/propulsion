@@ -1,29 +1,28 @@
 ---
 name: research
-description: Investigate a material question with high-trust evidence and save a cited report for later use.
+description: Produce a durable cited report when a user or calling agent requests research into a question, subject, package, or claim.
 ---
 
 # Research
 
-Produce a durable report that separates **sourced facts, inference, conflicts, and evidence gaps**.
+Delegate **desk research** to a fresh agent and return an accessible, verified report. Keep source gathering outside the caller's context.
+
+If explicitly assigned as the investigator, read [the investigator procedure](references/investigation.md) and perform it directly. Otherwise follow the caller method below.
 
 ## Inputs
 
-Use the question, purpose, scope, relevant task evidence, available source tools, and destination. Resolve discoverable facts directly; ask only when ambiguity would materially change the investigation. Follow the caller's destination or existing research convention, defaulting to `docs/research/`. Preserve existing reports unless maintenance or replacement is requested. Stay within authorised source reads and report writes.
+Take the research question or subject from the request. Ask only when missing information would materially change the investigation.
+
+Save reports in `docs/research/` unless told otherwise. Preserve existing reports unless updating or replacing them was requested.
 
 ## Method
 
-1. Identify the material claims and questions needed to cover the scope. Choose source types capable of establishing each claim. Prefer primary, original, official, or owning sources; use authoritative secondary evidence when appropriate to the claim and trace material assertions to their origin where possible.
-2. Appraise authority, validity, currency, applicability, completeness, incentives, and consistency with underlying evidence. A source can establish what its owner says without proving effectiveness. Seek credible disagreement and genuinely independent evidence routes; duplicate retellings of one upstream result do not corroborate it.
-3. Invoke `$write-prose` for the report, supplying the question, purpose, intended readers, established findings, sources, and required format. Organise findings by theme, cite each material claim, identify inference, and distinguish missing evidence from evidence against. Include conflicts, access limits, and unresolved questions. Use the report template unless the caller supplies another format preserving those distinctions.
-4. Check the finished report against its sources: claims have appropriate support, citations resolve, links identify the evidence, and confidence matches what was established. Correct defects before handoff. Stop searching when the scope has adequate coverage and further searches are unlikely to change the findings materially.
-
-Use a fresh investigator when the request calls for independent evidence gathering or when separating discovery from an existing hypothesis materially helps. Supply the question, scope, raw evidence, source tools, destination, and completion contract without prescribing an answer. The investigator owns the report and its source verification; the caller need not repeat that work without a specific concern. Context separation does not itself make shared sources independent.
-
-## Conditional resources
-
-Use [the report template](assets/research-report-template.md) when no output format was supplied. Its sections preserve the scope, findings, conflicts, limitations, and sources; adapt headings and citation style to the destination's conventions.
+1. **Brief a fresh agent.** Give it this skill's path, the request, relevant context, source access, and authorised reads and writes in a self-contained brief. Pass a user hypothesis as a claim to investigate. Start with fresh context rather than inheriting the conversation.
+2. **Keep the handoff small.** The investigator owns gathering, writing, and source verification. Request only the report path and material limitations or blockers. Relay necessary user questions through the caller. Continue independent work while it runs, then wait for completion before handing back.
+3. Check that the saved report exists. Use its content for downstream work without repeating source gathering or verification unless a specific concern warrants it.
 
 ## Finish
 
-Return the report path and any material blocker or limitation the consumer needs before using it. Done when the scope is covered, claims and references are checked, and unresolved evidence is visible. The consumer owns downstream decisions and mutations.
+Return the report path and material limitations or blockers. The caller owns downstream decisions, implementation, publication, and external changes.
+
+**Done only when** the investigator has met its completion gate and the saved report path has been returned. Report a missing prerequisite and its dependent work without claiming completion.
