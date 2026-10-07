@@ -85,9 +85,9 @@ $implement
 
 The session produces a minimal local change with retained tests, applicable quality evidence, and completed independent review. Small, understood work can begin here without a product definition, feature specification, or ticket. Implementation does not commit or publish the change.
 
-`$implement` applies `$modular-design`, uses `$tdd` for behaviour-changing work when a usable suite can exercise it, invokes `$code-cleanup` before final checks, and requires an independent `$code-review`. `$tdd` applies the reusable `$test-design` guidance for durable behavioural tests. Implementation uses existing project infrastructure and reports unavailable evidence instead of installing unrelated tooling or manufacturing confidence.
+`$implement` applies `$modular-design` before building. `$test-design` protects behavioural promises through supported entries used by people or systems, including scheduled jobs and queue consumers. Behavioural additions and fixes use TDD in the existing framework, creating missing harnesses, factories and fixtures. Cosmetic edits, maintenance and behaviour-preserving refactors do not acquire new coverage unless testing work is explicitly requested. Without a testing framework, the skill exits silently.
 
-Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits. Then `$code-cleanup` uses a fresh read-only agent to challenge the whole affected capability, including unchanged related files. The reviewer loads the detailed techniques, writes a prioritised temporary report and returns only its path. The caller reads the report, adjudicates every candidate, resolves preservation gaps and applies accepted transformations.
+Small local refactors happen throughout implementation. Once the requested change works, `$measure-code-complexity` measures every function in the changed production files. Its static tools are bundled for macOS and Linux ARM64/x64 and Windows x64. It collects native CRAP through available project tooling, saves full JSON, returns a compact summary and loads interpretation only for signals that warrant attention. The caller owns repeated runs, comparisons and edits. Then `$code-cleanup` uses a fresh read-only agent to challenge the whole affected capability, including unchanged related files. The reviewer loads the detailed techniques, writes a prioritised temporary report and returns only its path. The caller reads the report, adjudicates every candidate, resolves preservation gaps and applies accepted transformations.
 
 #### `$commit`
 
@@ -170,8 +170,7 @@ These skills are independently invokable outside the main lifecycle path and may
 | `$code-review`                  | Review a fixed candidate independently against engineering standards and available behavioural authority |
 | `$measure-code-complexity`      | Measure current code, collect available native CRAP and interpret attention signals                      |
 | `$modular-design`               | Choose cohesive ownership, deep interfaces and local changes                                             |
-| `$test-design`                  | Design deterministic behavioural tests with stable seams and independent oracles                         |
-| `$tdd`                          | Deliver behaviour through valid red-green-refactor cycles using an existing usable suite                 |
+| `$test-design`                  | Protect behavioural promises through supported human and automated entries                              |
 | `$write-prose`                  | Write clear, succinct UK English for humans and agents while preserving meaning and required behaviour   |
 | `$write-skill`                  | Create or refactor concise skills, validate packaging and exercise their behaviour in a fresh agent      |
 
