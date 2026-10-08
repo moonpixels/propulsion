@@ -8,7 +8,7 @@ Keep a path and content-fingerprint inventory for the complete reviewed scope an
 
 Give the inventory a compact candidate ID and retain older inventories. Record the scope and preservation baseline alongside it. Exclude the run's own logs and evidence. Recheck identity before and after reviews and checks, and after tools that can edit files. Detect newly introduced paths as well as changes to existing paths. Candidate drift invalidates affected evidence and the clean-review sequence under the root skill's counter rules.
 
-For example, two clean reviews followed by a test deletion require three new qualifying reviews. Changing only a report's finding disposition does not alter the candidate, but an unresolved preservation gap still prevents that review from qualifying.
+For example, at iteration 9 of 10, a test deletion resets two clean reviews to zero but leaves only one outer iteration available. Finish that iteration and verification, then report the limit rather than commissioning three more reviews. Changing only a report's finding disposition does not alter the candidate, but an unresolved preservation gap still prevents that review from qualifying.
 
 ## Preserve usable evidence
 
@@ -20,4 +20,4 @@ Index checks by candidate, command, actual result and material environment limit
 
 Update the record after meaningful changes, adjudications, verification, user questions and answers, blockers and counter transitions, and before ending a turn. Keep significant decisions, rejected findings and their reasons, unresolved work and the next useful action. Retain enough history to explain the final outcome without a command transcript.
 
-After compaction or resumption, read the running report and relevant linked evidence before continuing. Reconcile the inventory, candidate, scope and preservation baseline with the actual working tree. Trust the counter only when its qualifying evidence remains current. Reconstruct missing state from available evidence, making gaps explicit. Never infer an undocumented clean sequence.
+After compaction or resumption, read the running report and relevant linked evidence before continuing. Reconcile the inventory, candidate, scope and preservation baseline with the actual working tree. Trust the clean-review counter only when its qualifying evidence remains current. Preserve the total iteration count and configured limit across resumption, including an iteration already commissioned before interruption. Reconstruct missing counts from recorded outer review attempts, never from clean reviews alone. Make reconstruction gaps explicit rather than granting a fresh budget. If the limit is already reached, finish outstanding verification and hand back without another outer review. Never infer an undocumented clean sequence.

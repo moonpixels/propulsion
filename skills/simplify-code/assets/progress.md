@@ -3,9 +3,11 @@
 ## Current checkpoint
 
 - Status: {Active, Blocked, Interrupted or Complete}
+- Stopping reason: {Saturated, Iteration limit reached, or not yet stopped}
 - Objective and scope: {requested outcome and complete logical scope}
 - Constraints and exclusions: {behaviour to preserve and boundaries}
 - Current candidate: {compact ID and inventory link}
+- Outer iterations: {total commissioned / limit, including pending or failed attempts}
 - Clean-review count: {0–3, candidate and ordered qualifying report links}
 - Next useful action: {concrete continuation}
 
@@ -27,7 +29,7 @@ Record user questions, answers and resulting changes of direction here. Link a c
 
 ## Significant outcomes
 
-{Mechanisms removed or simplified, meaningful test changes and preservation evidence. Retain significant checkpoints and counter resets. Leave line-level edits to the Git diff.}
+{Mechanisms removed or simplified, meaningful test changes and preservation evidence. Retain significant checkpoints, numbered outer review attempts and clean-counter resets. Leave line-level edits to the Git diff.}
 
 ## Verification and evidence
 
@@ -37,8 +39,8 @@ Record user questions, answers and resulting changes of direction here. Link a c
 
 ## Outstanding work and blockers
 
-{Unresolved findings, missing coverage, exact blockers, attempted paths and needed input. Use None only when resolved.}
+{Remaining recommendations and their priorities, missing coverage, exact blockers, attempted paths and needed input. Distinguish deferred simplification from correctness or verification blockers. Use None only when resolved.}
 
 ## Final outcome
 
-{Complete only at the skill's finish gate. Summarise production and test reductions separately, comparable measurements, preserved behaviour, current verification, the three qualifying report links and material limitations.}
+{Complete only at the skill's finish gate. State the stopping reason and iterations used / limit. Summarise production and test reductions separately, comparable measurements, preserved behaviour, current verification, qualifying review links, remaining recommendations and material limitations. A limit-reached outcome leaves saturation unproven.}
