@@ -46,6 +46,7 @@ Choose the skill for the outcome you need. Each invocation finishes its own task
 | [$commit](skills/commit/SKILL.md)                             | Record all uncommitted branch changes in atomic Conventional Commits.                                                                                |
 | [$pull-request](skills/pull-request/SKILL.md)                 | Publish the branch for review. Commit any remaining changes, push the branch, and create or update its pull request.                                 |
 | [$review-pull-request](skills/review-pull-request/SKILL.md)   | Independently assess an existing PR against engineering standards and available requirements. Return findings for you to act on.                     |
+| [$simplify-code](skills/simplify-code/SKILL.md)               | Aggressively simplify a feature, module or codebase while preserving behaviour. Produce verified changes and a durable running report.               |
 | [$debug](skills/debug/SKILL.md)                               | Investigate a failure and establish its cause. Ask for diagnosis alone or a repair with implementation and verification.                             |
 | [$upgrade-dependencies](skills/upgrade-dependencies/SKILL.md) | Update dependencies and build or CI tooling through checked migrations. Include language or runtime upgrades when requested.                         |
 
@@ -90,6 +91,10 @@ $review-pull-request #12 against @docs/features/reading-list/specification.md
 ```
 
 As Shelf grows, use the maintenance entry points for specific needs:
+
+```text
+$simplify-code Shelf's reading list feature
+```
 
 ```text
 $debug and fix Shelf adding the same book twice when I submit the form once

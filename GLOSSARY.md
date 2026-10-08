@@ -21,3 +21,7 @@
 ### Software quality
 
 **Deterministic measurement**: A reproducible tool-produced observation of one named property of a fixed software candidate, with its scope, components, configuration, limitations, and comparison basis preserved. An attention threshold requires appraisal but is not by itself a defect, an overall quality score, or permission to weaken behaviour or design.
+
+**Simplification run**: A sustained simplification of a requested feature, module or codebase, including its related tests, driven by complexity measurement and independent cleanup reviews. Accepted changes are delivered through the implementation skill while preserving observable behaviour.
+
+**Running report**: The durable recovery record for a simplification run, retaining scope, constraints, decisions, evidence, outstanding work and completion progress across context compaction. It supports the final summary without reproducing the Git diff.
