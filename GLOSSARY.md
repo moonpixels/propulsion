@@ -24,4 +24,4 @@
 
 **Simplification run**: A sustained simplification of a requested feature, module or codebase, including its related tests, driven by complexity measurement and independent cleanup reviews. Accepted changes are delivered through the implementation skill while preserving observable behaviour.
 
-**Running report**: The durable recovery record for a simplification run, retaining scope, constraints, decisions, evidence, outstanding work and completion progress across context compaction. It supports the final summary without reproducing the Git diff.
+**Running report**: The sole durable recovery record for a simplification run, retaining scope, constraints, decisions, essential evidence, outstanding work and completion progress across context compaction and resumption. Supporting artefacts are disposable, so recovery relies on the report's contents. It supports the final summary without reproducing the Git diff.

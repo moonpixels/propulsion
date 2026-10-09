@@ -6,17 +6,18 @@
 - Stopping reason: {Saturated, Iteration limit reached, or not yet stopped}
 - Objective and scope: {requested outcome and complete logical scope}
 - Constraints and exclusions: {behaviour to preserve and boundaries}
-- Current candidate: {compact ID and inventory link}
+- Current candidate: {compact ID, inventory reconstruction basis and optional inventory link}
+- Supporting artefacts: {absolute temporary run directory, disposable}
 - Outer iterations: {total commissioned / limit, including pending or failed attempts}
-- Clean-review count: {0–3, candidate and ordered qualifying report links}
+- Clean-review count: {0–3, candidate, ordered qualifying review identities, coverage and conclusions, with optional report links}
 - Next useful action: {concrete continuation}
 
 ## Baseline and coverage
 
 - Baseline: {revision, starting dirty state and preserved unrelated work}
-- Inventory: {production, tests, supporting paths and coverage status, or link}
+- Inventory: {production, tests, supporting paths and coverage status, with optional detail link}
 - Behaviour: {supported entries, consumers, guarantees and verification}
-- Measurements: {baseline report, production size, test size and limitations}
+- Measurements: {baseline results, production size, test size and limitations, with optional report link}
 - Initial checks: {results and pre-existing failures}
 
 ## Decisions and finding dispositions
@@ -25,7 +26,7 @@
 | ------------------ | --------- | -------------------------------------- | ------------------- | -------------------------------------------- |
 | {link and ID}      | {ID}      | {Accepted, Rejected or Needs evidence} | {concrete basis}    | {implemented checkpoint or resolving action} |
 
-Record user questions, answers and resulting changes of direction here. Link a companion ledger if this section becomes too large.
+Record user questions, answers and resulting changes of direction here. Keep essential findings, dispositions and reasons in this report. Link a disposable companion ledger for additional detail if this section becomes too large.
 
 ## Significant outcomes
 
