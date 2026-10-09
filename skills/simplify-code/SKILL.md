@@ -1,6 +1,7 @@
 ---
 name: simplify-code
 description: Aggressively reduce code and maintenance burden when a feature, module, file or codebase needs sustained behaviour-preserving simplification.
+disable-model-invocation: true
 ---
 
 # Simplify code
