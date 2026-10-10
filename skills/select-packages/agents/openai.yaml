@@ -1,0 +1,3 @@
+interface:
+    display_name: 'Select Packages'
+    short_description: 'Delegate read-only package discovery and selection'

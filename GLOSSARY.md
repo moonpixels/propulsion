@@ -18,6 +18,8 @@
 
 **Duplicated procedure**: A composing skill or supporting resource repeats execution rules owned by a skill it delegates to. Caller-specific inputs, sequencing, authority boundaries and outcome checks define composition rather than duplicated procedure.
 
+**Package selection**: A supporting capability that delegates read-only discovery and evaluation of packages for a requested problem or feature to a fresh agent. It returns a succinct package recommendation or an explicit recommendation to use no package, without installations, scratch files or a detailed report.
+
 ### Software quality
 
 **Deterministic measurement**: A reproducible tool-produced observation of one named property of a fixed software candidate, with its scope, components, configuration, limitations, and comparison basis preserved. An attention threshold requires appraisal but is not by itself a defect, an overall quality score, or permission to weaken behaviour or design.
