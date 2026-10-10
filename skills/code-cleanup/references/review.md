@@ -12,6 +12,8 @@ Find ambitious, concrete simplifications in the supplied candidate. Review read-
 
 Apply **YAGNI** to speculative machinery and **DRY** to repeated knowledge. Prefer deletion, consolidation and direct code before extraction. Keep a new boundary only when it removes more reader burden than it adds. Count layers to trace and mutable state to hold. A lower line count or metric cannot justify dense code or displaced complexity.
 
+Flag common, reusable machinery that could be replaced by an established package when the code demonstrates a concrete maintenance burden. Identify the supported behaviour and preservation gaps, then refer candidate selection to the caller through [$select-packages](../../select-packages/SKILL.md). Leave package discovery and installation outside this review.
+
 ## Build the report
 
 Use [the report template](../assets/cleanup-report.md). Create a unique file such as `code-cleanup-<unique-id>.md` in the OS temporary directory. Record a compact candidate identity rather than a table of file hashes. Put a file path and verified line or symbol in every candidate index row. Use repository-relative paths in the index and absolute paths in the details. Keep one candidate per coherent transformation, including all related-file changes. Merge overlapping observations. Order by maintenance benefit, then strength of preservation evidence. Include every justified candidate without a quota.

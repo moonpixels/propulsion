@@ -113,6 +113,7 @@ Lifecycle entry points invoke these focused capabilities when needed. You can al
 | [$elicit](skills/elicit/SKILL.md)                                             | Resolve material questions and decisions through a confirmed dialogue.                         |
 | [$elicit-with-context](skills/elicit-with-context/SKILL.md)                   | Clarify a software task while maintaining project terminology and qualifying decision records. |
 | [$research](skills/research/SKILL.md)                                         | Produce a durable cited research report.                                                       |
+| [$select-packages](skills/select-packages/SKILL.md)                           | Delegate read-only discovery and return a succinct package recommendation.                     |
 | [$modular-design](skills/modular-design/SKILL.md)                             | Design simple interfaces that hide domain knowledge and complexity.                            |
 | [$test-design](skills/test-design/SKILL.md)                                   | Design minimal tests for observable behaviour.                                                 |
 | [$measure-code-complexity](skills/measure-code-complexity/SKILL.md)           | Measure code complexity and interpret signals that warrant attention.                          |
